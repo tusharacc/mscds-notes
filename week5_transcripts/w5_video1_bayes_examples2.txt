@@ -1,0 +1,140 @@
+Welcome back. So, what we have here is the examples of base rule in probability, right.
+So, now we will see a few more things that we can do with the base rule. So, recall what
+we have done is probability of F condition on E was nothing but probability of E condition
+on F divided by probability of E sorry probability of E condition on F times this E condition
+on F times probability of F plus probability of E condition on F complement times probability
+of F complement, right. So, this is what we saw.
+So, in the denominator the way we got the denominator was at probability of E and I
+could write it as probability of E condition on F times probability of F plus probability
+of E condition on F complement times probability of F complement, right. So, I can actually
+write F suppose F is some disjoint union of F 1, F 2 until some F k, I could write P of
+E as and the rest of the F complement is nothing but F k plus 1 until some F l. I can
+write P of E as summation over i going from 1 to l P of E condition on F i times P of
+F i, right. So, you do not just have to look at F and F complement, but you can actually
+look at even finer gradations of these events, right. So, this just we will give more examples
+in the tutorials for how to do this.
+So, let us continue. So, recall that we had P of E intersection F, we can write it as
+P of E condition on F times P of F or F condition on E times P of E, right. So, now, what if
+I have E intersection F intersection G? So, what can I write it as? I can treat it as
+this to be a single event and I can write probability of F intersection G conditioned
+on. So, the other way around sorry I can do this. So, I can write probability of E condition
+on F intersection G times probability of F intersection G, right. Now, this I can write
+as probability of E condition on F intersection G times probability of F condition on G times
+probability of G, right. So, what you have here is what we call a chain rule.
+So, we have probability of E 1 intersection E 2 intersection until intersection of E n
+can be written as probability of E n conditioned on E 1 intersection E 2 until E n minus 1
+times. So, for the sake of brevity I can actually write this expression as follows. So, I am
+going to just delete this and I am going to write it as intersection of E i where i ranges
+from 1 till n minus 1, right. So, this has the same meaning as E 1 intersection E 2 and
+so on until intersection of E n minus 1 times I have probability of E n minus 1 conditioned
+on intersection of probability intersection of events which are i from 1 till n minus
+1 and so on until probability of E 2 conditioned on E 1 times probability of E 1. So, this is what
+we will call the multiplication rule or chain rule or chain rule, right. So, hope this makes
+sense. So, we will define what is called independent. So, independence of events, right. So, we say
+events E and F are independent if probability of E conditioned on F is probability of E
+probability of F conditioned on E is probability of F, right. So, the conditional probabilities
+are equal to the probabilities of this events themselves. So, given E given E it does not
+matter to F. So, probability of F given E is equal to probability of F, right. So, this
+is what independence means. So, if you generalize this. So, what we say is probability of E 1
+intersection E 2 if E 1 and E 2 are independent is equal to probability of E 1 times probability
+of E 2 if E 1 and E 2 are independent E 1 and E 2 are independent, right. I can generalize
+this to any number intersection of events i to n E i is nothing but product over P of
+E i where i goes from 1 till n if E 1 E n are mutually independent, right. So, this
+is a notion of independence of events, ok. So, let us see more examples.
+So, we have a question here. Suppose, we have a bag, a bag contains 8 red balls and 4 red
+or white balls. So, the probability of rather let me say each ball is equally likely to
+be sampled. He is equally likely from the ones from those that are left in the bag.
+So, now what is the probability that the first 2 balls picked. So, this is picking
+are red. So, now, we ask you have a bag that contains 8 red balls and 14 white balls, right
+and each ball is equally likely from those which are left in the bag. Now, we ask what
+is the probability that the first 2 balls that are picked without replacement are red,
+right. So, now, this is the question that you have done before. We are going to do it
+again. So, let us say event E 1 is first ball is red, event E 2 says second ball is red,
+right. So, now, we will compute. So, what are we interested in? We are interested in
+E 1 intersection E 2. So, we want both of these events to happen, right. So, now, both
+the balls in the first 2 picks are red, right. So, this is what you have. So, let us compute
+this. So, probability of E 1 intersection E 2. So, from the conditional probability
+what we know is probability of I can write this probability of E 2 conditioned on E 1
+times probability of E 1. So, now, so, let us work each of them individually.
+What is probability of E 1? You have 8 red balls and 4 white balls, right and you want
+the ball that is sampled is red. So, what would that be? So, this is going to be I have
+8 red balls, I am choosing one of them and I have 12 balls, I am choosing one of them,
+right. So, the probability is 8 by 12. Further, probability of E 2 conditioned on E 1 is,
+so what is this probability? So, you are given that the first ball that is picked is
+red and now you ask what is the probability that the second ball that is picked is also
+red. So, how many balls are left? There are 11 balls left and how many red balls are left?
+There are 7 red balls left. Now, your probability is going to be 7 choose
+1 divided by 11 choose 1 and this is going to be 7 by 11, right and putting both of them
+together. So, what I am going to get? I am going to get 7 by 11 into 8 by 12 and what
+is this value? This value comes to 14 divided by 33. So, remember we could have also done
+this straight away by saying that I have 8 red balls and out of them I am picking 2 and
+I am not picking any from the rest of them and then I have 12 balls and I am picking
+2 of them, right. So, what is this going to be? This is going to be 8 factorial by 6 factorial
+into 2 factorial divided by 12 factorial by 10 factorial times 2 factorial and if you
+work this out, what you are going to get here is going to be 8 into 7 divided by 12 into
+11 which is the same value as 14 by 33, right. So, we are doing the same thing using conditional
+expectation. This is a small example, right. So, now, you can ask. So, what is the probability
+that the first 2 balls are red and then I can build on it. What is the probability that
+the third ball is white? So, you can ask this question which is what is the probability
+that the first 2 balls are red and the third ball is white, right. Here I am going to write
+the following. So, now, I will define an event E3 which is the third ball is white,
+in which case what I am interested in is probability of E1 intersection E2 intersection E3, right,
+which I can write as probability of E3 condition on E1 intersection E2 times probability of
+E1 intersection E2. I mean I could have also written it as probability of, so let us expand
+this because we have done this right before. So, I have probability of E2 condition on
+E1 times probability of E1, right. So, what we have here? So, we just need to
+compute this part. So, we are interested in probability of E3 condition on E1 intersection
+E2. So, what this says is all the white balls are intact. So, none of the white balls have
+been touched and how many balls have been taken out? 2 balls out of the 12 balls. So,
+what is the probability of E3? So, I have 4 white balls. So, I have 4 choose 1 divided
+by I have 10 balls left, I have 10 choose 1, right into 14 by 33 as we computed above
+and this gives us a value which is 28 by, so this is going to be 5 into 33. So, it is
+going to be 165, right. So, this is what we have. So, this is essentially this computation
+4 into 14 divided by 10 into 33, right. So, what the denominator is 33 into 5, good. So,
+this is like the way we have done this is using chain rule. So, here the sequence is
+also important, right. So far what we have seen is each outcome is
+equally likely. So, let us change the situation to a situation where each outcome is need
+not be equally likely. So, let us say, so situation where. So, I have each ball has
+a weight, each red ball has weight R and each white ball has weight W, right and each
+ball has the probability of picking T equal to its weight divided by total weight in the
+bag, right. So, here the situation is very different
+from what we have seen so far. So, each ball is not equally likely, right. So, now, so
+let us write this events as following. So, let B i be the event. So, let us say B i 1
+be the event that the ball rather the i th red ball, the i th red ball is chosen. Here
+i ranges between 1 till 8. So, initially I have 8 red balls and B i 1 actually represents
+the event that in the first pick I have the i th red ball is as chosen, right.
+And now what do we have? So, if you observe carefully E 1 is the union of events which
+is B 1 of i, where i goes from 1 till 8, right. B i 1 till B i 8 are this independent events
+rather this are disjoint events, right that whose union gives me E 1. So, E 1 says it
+is a event where a red ball is picked, but it does not specifically say I want a particular
+red ball to be picked. Now, I can distribute this distribute this event into disjoint
+events where for each ball I can define an event, right. So, now, these are independent.
+Now, what I get is probability of E 1 is nothing but summation of probabilities of these events,
+sorry the other way around. There is a notational mistake, but here. So, I have B 1 of i, right,
+good. So, now, what is the probability of the i th ball being picked? So, this ball
+is being picked with a probability of R by the total weight of the balls in the bag.
+So, what is the total weight? I have 8 red balls plus I have 4 white balls, right. The
+probability of the i th ball being picked is R by 8 R plus 4 W, right. So, which tells
+me that the probability of event E 1 is 8 R by 8 R plus 4 W. So, this probability of
+E 1. So, now, I will define probability of E 2 given E 1, right.
+So, now, initially my weight of the bag was 8 R plus 4 W. Now, I have taken one red ball
+away, then I have only 7 red balls. Now, the total weight of the bag is 7 R plus 4 W, right.
+Similarly, for B 2 for the round 2, I can define B 2 of i. I can define it for all i
+except for the ball that has been picked in the first round. Event that i th ball is
+chosen in round 2, i th red ball is chosen in round 2 or the second sampling, right where
+i. So, let us say in the first round, I have some ball which is called i star which is
+picked for all i not equal to i star in 1 to 8, right.
+So, now, I can write my probability of E 2 given E 1 as summation over all i not equal
+to i star, then i going from 1 till 8 probability of B of i of the second round, right. Now,
+again I have 7 red balls left and each red ball is sampled with the probability of R
+divided by 7 R plus 4 W. As we said, each ball is sampled in the with the probability
+that is given by the ratio of its weight divided by the total weight of contents of the bag.
+So, now, this happens to be 7 R by 7 R plus 4 W. Putting both of these together, what
+probability of E 1 intersection E 2 is going to be 8 R by 8 R plus 4 W times 7 R by 7 R
+plus 4 W. So, this gives you the probability. So, this is setting where you have probabilities
+of sampling different for each round and each outcome is not equally likely.
+So, if I actually pick in this round 2, if I pick a red ball the probability of picking
+it is R by 7 R plus 4 W, but if I were to pick white ball its probability is going to
+be W by 7 R plus 4 W, right. So, for a white ball, so, this probability would have been
+W by 7 R plus 4 W, right. So, this is a non-trivial example which uses both conditional probabilities
+and the probabilities of the outcomes not being equal, right.

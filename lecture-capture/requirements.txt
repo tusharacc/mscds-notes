@@ -1,0 +1,24 @@
+# Core processing
+openai-whisper
+torch
+Pillow
+imagehash
+img2pdf
+pytesseract
+fpdf2
+
+# Claude API
+anthropic
+
+# Google Drive
+google-api-python-client
+google-auth-oauthlib
+google-auth-httplib2
+
+# Utilities
+pyyaml
+tqdm
+python-dotenv
+
+# OBS WebSocket control
+obsws-python

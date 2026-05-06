@@ -1,0 +1,240 @@
+Welcome back. So, what were we doing? So, we are defining what is called conditional probability.
+So, what did we have before? So, we said for events E and F, probability of E condition on F.
+The other way to read this is probability of E given F.
+F is nothing but probability of
+E intersection F divided by probability of. So, this is what we have.
+Good. So, now, what can we do? So, let us take some examples.
+So, suppose you have two coins.
+What is the probability that
+the two coin outcomes
+are distinct? So, this is a basic problem that we have. So, what is the sample space for this?
+The sample space for this is H, H, T, T, H and T, T. So, what is the event here?
+The event here is that I have H, T and T, H. And what is the probability of this event?
+Probability of this event is. So, we are again, we are assuming that each of these
+outcomes is equally likely. So, these are our possible outcomes.
+And we are assuming that each of these outcomes is equally likely. So, in which case I have
+probability of P of E is number of elements in E which is 2 divided by the total number of elements
+4. So, I have 1 by 2. So, now, I ask the second question, which is, what is the probability
+that the first coin TOS has an outcome as hits?
+So, this is a valid question. So, let us call this event F.
+And this is going to be H of T, H, T and then I am going to have H, H.
+So, what do I have here? Probability of F is nothing but again 2 by 4, which is half.
+So, now, I ask the further question, which is,
+what is the probability of the outcome, probability of the event
+where the first coin toss is
+hits given the coin tosses are distinct?
+So, that means the first coin toss is not equal to the second coin toss.
+So, now, this is nothing but we are looking at probability of,
+so, we are looking at an event where the first outcome is hits. So, I have F given the coin
+tosses are distinct. So, what is that? It is probability of F given E. So, what is this?
+From our formula above, it is probability of F intersection E divided by probability of E.
+So, what is the probability of F intersection E? So, F intersection E is the set which is H, T.
+And probability of this is going to be, I have only one element here. So, I have 1 by 4.
+So, this is the probability there. So, probability of F given E is equal to
+1 by 4 divided by 1 by 2, which is nothing but half.
+So, this gives you the probability of F given E. The other way to look at this is the formula.
+So, given that event E occurs, we are interested in the event F.
+So, now, what is F given E? It is nothing but the set H, T.
+So, what is the probability of, so, what is this event E?
+So, event E is nothing but H, T and T, H. So, now, what we are looking at is,
+we are interested in the probability of the event F given E given this as the universe.
+So, if I work out my example, so, probability of F given E is actually equal to half.
+So, I have one out term or two possible outcomes. So, this event E
+has two possible outcomes and F given E is one possible outcome.
+That is, we have one possible outcome out of these two possible outcomes.
+So, here this is a situation where all the events are equally likely.
+Now, as an afterthought of this explanation, I would like you to think about the cases where
+the events are not equally likely, the outcomes are not equally likely.
+So, the other way to think about this conditioning is defining new probabilities
+based on this conditioned event as a new sample space or the new universe.
+So, something more philosophically that is going on. So, F given E and E, so, here E becomes a new
+universe or new sample space and the event you are at the subset that you are interested in is F
+given E. So, this is like some sort of, this is a smaller universe and the smaller subsets of that
+universe. So, this is a philosophical way of looking at conditioning, but for the sake of
+this course, we can assume this formula to be correct and work on. So, we will see more examples.
+So, the next example that will work is the following. So, given two dice,
+we are interested in. So, what are we interested in? We are interested in
+the event where the outcome of one of the two dice
+is odd given the sum is even. So, we have two dice. So, I have dice 1 and I have dice 2.
+So, let us let them output the values x and y. So, now,
+we are interested in the case where either x is odd or y is odd
+subject to the condition that their sum is even. So, this is a stupid case where
+if one of them is odd, the other one has to be odd for the sum to be even.
+So, now, what is our universe here? S is nothing but I have 1, 6. So, how many choices do I have?
+I have all 6 choose 2 into 2 options.
+So, we are interested in the possible sums. So, what is the range of the sums? So, initially,
+I have 2. The minimum possible value for x plus y is 2 and the maximum possible value for x plus
+y is 12. So, now, what are the values that are available? 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 and 12.
+So, these are the possible sums that are for x plus y. For 2, what are the possible choices
+of the outcomes? 1, 1. For 3, I have 1, 2 and 2, 1. For 4, I have 2, 2, then 1, 3 and then 3, 1.
+And for 5, similarly, I can keep writing this. So, for 5, I have 1, 4, then I have
+2, 3, 3, 2 and then I have 4, 1. And then for 6, I have 1, 5, then I have 2, 4, 3, 3, then I have
+4, 2, then I have 5, 1. Then for 7, I have 2, 5, 3, 4, 4, 3 and then 5, 2. And for 8, I have 2, 6,
+3, 3, 3, 5, then 4, 4. Then, so, I am missing for 6. For 7, so, I miss 1, 6 and 6, 1 here.
+So, now, similarly, yeah, so, there is going to be 5, 3, then 6, 2 and that is it. For 9,
+I have, so, the minimum that I can do is 3, 6, then 4, 5, then 5, 4 and then 6, 3.
+And then similarly, for 10, I have 5, 5, 4, 6 and 6, 4. And for 11, I have 5, 6 and 6, 5.
+And that is it. And for 12, I have only one option, which is 6.
+So, now, this actually is my, so, if I put all of them together, that is my sample space for 2 days.
+So, now, please mention in the description if I am missing any of these elements. However,
+so, let us see. So, what is the event E? So, let us say event E is the outcome of one of
+the 2 days is even. So, either x is odd, sorry, x is odd or y is odd, rather both of them are odd.
+So, event E is x is odd or y is odd. F is the event where the sum of x and y is even.
+So, now, what we are interested in is probability of E conditioned on F.
+So, what is this situation here? So, we want to find out what is probability of E intersection F
+divided by probability of F. So, I would leave this example to you to work things out
+given the sample space. Again, you would see the same. So, you can list out what is probability of
+E conditioned on F given probability of F. Rather, so, you look at all possible outcomes E
+conditioned on F and F and again, you will observe that you have a new sample space F
+and you are looking at E conditioned on F, which is a subset of F.
+So, please continue working this example by yourself. It is not very difficult.
+Right. So,
+so, these examples can be continued in like multiple ways. Suppose, question, the other
+question is, suppose we have a bag with R red balls and B blue balls.
+Right. And we are interested in, we are picking
+N balls without replacement, N balls at random without replacement.
+Right. So, what is the probability
+of E that the first ball is blue given k of those balls are blue.
+Right. So, this is the event we are interested in.
+Good. So, just stay with this question for a bit. So, you have enough balls. So, we assume that
+N is smaller than R plus B. Right. And we will also make an assumption that each ball is equally
+likely. So, these are assumptions that we are making. So, now we are interested in picking
+N balls and we are interested in the event E where the first ball is blue.
+So, let us say event E is first ball is blue. Event F is k out of N balls
+are blue. So, you have R plus B balls in your bag. What are them? R of them are red and B of them
+are blue. So, what are you interested? You are interested in picking N balls without replacement
+from this bag. So, we are interested in a case where the first ball is blue conditioned on the
+fact that the k out of N balls are blue. Right. So, now let us write this probability P. P of E
+conditioned on F. What is this? There is nothing but probability of E intersection F
+divided by probability of F. Right. So, what is this event probability of E intersection F?
+So, you have, so again, so let us write it in English, probability of E intersection F.
+So, out of the N balls that are picked,
+the first ball is blue and the rest
+of them are k minus 1 blue and N minus k minus 1 minus 1 red balls.
+Right. So, this is the distribution of your balls in the N balls that you have chosen.
+So, what is the sample space here in this experiment? Again, I can define my sample
+space to be, so again, I am going to choose as a vector R comma, a vector E
+belongs to R comma B to the N. So, that is I am choosing a vector of length N
+where each individual location can either take R or B, corresponding to whether it is a red ball
+or a blue ball. So, for the sake of simplicity, last time we said if it is red, 0, if it is blue,
+like put 1, but let us use the letters R and B and we are looking at vectors
+where individual coordinates can be either R or B and we are looking at N length vectors.
+So, this was your sample space. And the event F was nothing but you are looking at all those
+vectors E, E prime such that E prime belongs to S and the number of Bs, the number of B in this
+in this outcome, in this rather let us say the number of Bs in E prime is exactly k.
+So, now, so this is like, so here exactly, so let me also quantify this as exactly.
+So,
+so this is your, so that is what we have. And what will E be? So, just I will give you a moment to
+think what E is. So, E is, so it is going to be E double prime such that
+the first coordinate, the first coordinate of this is going to be equal to B,
+event E was nothing but the first ball is blue. So, this is sufficient.
+So, what we have here is probability of E condition on F is given by
+probability of E intersection F divided by probability of F.
+So, what is probability of E intersection F? So, let us compute that independently.
+So, we want the first ball to be blue. So, I have B by R plus B. So, why do I get this? So,
+this is given by, so this is given by B choose one, I have B many black balls or blue balls
+and the total number of balls is R plus B. So, this is nothing but B
+choose R plus B and then into, so out of the rest of the balls, I am choosing B minus 1 choose K
+minus 1 times I have R choose N minus K divided by R plus B minus 1 choose, so what is this quantity
+going to be have N minus 1 because I have picked one ball here, I am choosing N minus 1 balls here.
+Out of those N minus 1 balls K minus 1 of them are blue and N minus K of them are red. So,
+this is the direct application of the formula that we have seen in the probability basics.
+So, what is this evaluate to? So, we will use a lazy evaluation for this.
+So, let us ignore that one. Let us compute what is probability of F.
+The probability of F is, so the number of blue balls is exactly equal to K. So, I have B many
+blue balls and I am choosing K of them blue and then I have R many red balls and I am choosing
+N minus K of them and the total number of balls that I have is R plus B and I am actually looking
+at what do I have here. So, I am looking I am picking N balls. So, putting both of them together
+what do I get? I have B divided by R plus B. So, this is the computation that I am doing
+times B minus 1 by K minus 1 sorry. So, I should have B minus 1 choose K minus 1
+times R choose N minus K divided by R plus B minus 1 choose N minus 1 divided by what do I have
+here? B choose K times R choose N minus K divided by R plus B choose N. So, this is going to give
+me. So, let us examine. So, continue it over here. So, I have B divided by R plus B into
+B minus 1 factorial by K minus 1 factorial times B minus K factorial.
+So, I am going to just cancel these two terms right away. So, into. So, for this part I am
+going to write it here. So, I have K factorial times B minus K factorial by B factorial into.
+So, for this term I am going to write it as
+N minus 1 factorial divided by R plus B minus 1 factorial into
+R plus B minus N factorial. And for this part I am going to write
+R plus B factorial divided by. So, what do I get? So, sorry this goes into the exponent here.
+This moves here. So, this is going to be N factorial into R plus B minus N factorial.
+So, what I get here is this cancels with this, then this cancels with this and then these two
+together cancel this. And what I have here is this combined with this cancel this.
+So, essentially what I get here is K factorial by K minus 1 factorial which is actually equal to K
+times N minus 1 factorial divided by N factorial which is nothing but K by N.
+So, what we get here is probability that the first ball is blue conditioned on the fact
+that what are the N balls that are picked? K of them are blue. So, E is the event where the
+first ball is blue. F is the event where out of the N balls that are picked, K of them are blue.
+So, E conditioned on F you get K by N. So, there is another example of looking at conditional
+probabilities. So, implicitly we could have also done the following. So, we could have actually
+looked at P of E intersection F which is nothing but P of F conditioned on E times probability of E.
+So, this is what we have. So, what is probability of E? So, it says the first ball is blue.
+So, that is going to be B by R plus B. What is F conditioned on E? The first ball is blue,
+the rest of them, out of the rest of them K minus 1 of them are blue, the N minus K of them are red.
+So, there are N minus 1 balls that are being picked. Out of these N minus 1 balls, K minus
+1 of them are blue and N minus K of them are red. So, what is this? This is nothing but,
+so it is going to be B minus 1 choose K minus 1 times R choose N minus K divided by how many
+balls do we have left? I have R plus B minus 1 left and I am picking N minus 1 of them.
+But if you, so essentially what we get here is that P intersection F is going to be B by
+R plus B times B minus 1 choose K minus 1 times R choose N minus K divided by
+R plus B minus 1 choose N minus 1. So, this is the same value as we have got above.
+So, this is a different explanation for the same value. So, here what implicitly is going on is,
+so you have P of E intersection F. So, you can write this as P of E conditioned on F
+times probability of F. On the other hand, you can write it as P of E where P of F conditioned on E.
+So, you have P of F conditioned on E times probability of E is equal to P of E conditioned on F
+times probability of F. So, this is what is called the base rule.
+So, this is what we have. So, we can do something more interesting.
+Suppose I have a probability of an event E. This probability of an event E, I can write it as
+probability of event E conditioned on some event A times probability of A
+plus probability of event E conditioned on A complement times probability of A complement.
+So, this is yet another axiom that I am writing. So, this is another axiom that I have.
+So, either it is conditioned on a particular event A or it is conditioned on its complement.
+So, this is what we get. So, what is this? This is nothing but probability of E intersection A
+complement and this is nothing but P intersection P of E intersection A.
+So, it is easy to see. So, if I write it up in terms of my set theory. So, I have P of E
+plus P of A. So, this quantity is equal to P of E minus P of E union A. What I have here is nothing
+but, so what I have here plus P of A complement minus P of E union A complement.
+So, now, so there is a repetition of E. So, it is your homework to see
+how this repetition could be cancelled from the rest of the terms.
+So, what is P plus, so what is this?
+So, remind you that this is equal to 1 because of one of the axioms that we have studied before.
+So, this part is equal to 1. Then what about these two?
+I will leave it to you to work this things out. So, please stare at the Venn diagrams and through
+the Venn diagrams you will be able to derive how this axiom can be obtained.
+So, for now, I am just taking it as axiom, but it can be derived from the first instance.
+Good. So, now, I will come back to this statement where I said probability of F condition on E
+can be written as probability of E condition on F times probability of F divided by probability of
+E. Now, if I use this axiom that I have above, I can write it as P of E condition on F times
+P of F divided by P of E condition on F times probability of F plus probability of E condition
+on F complement times probability of F complement. So, this is the base rule that we see in most of
+the literature. Does it make sense? So, now, having studied all of this, we will try to apply
+this to our Monte-Hall problem. So, let us recall. So, what is the problem there? So, we had,
+so, what is the probability
+probability of winning
+by switching, by switching
+condition on
+the choice that was made, choice of the contestant
+and the host opening the door, host showing
+the door. So, this is what you can work out. So, now, let us do this one. So,
+probability of the contestant winning with the choice that they have made without switching.
+So, let us say there is an evidence that is being displayed by the host. So, this is a hypothesis
+made by the contestant.
+So, according to base rule, there is nothing but, so, this is the evidence
+shown by the host. So, from base rule, this is actually equal to probability of E given H
+times probability of H divided by probability of E condition of H
+times probability of H plus probability of E condition on H compliment times probability of H
+compliment. So, now, so, what is P of E condition on H? So, let us describe these quantities.
+What is probability of H? This is equal to 1 by 3. So, this is how the hypothesis of the
+contestant is done and then what is probability of H compliment is 2 by 3. Then what is probability of
+E condition on H? So, once the contestant has made the choice, the host has to show a door
+with a goat behind it. So, this evidence has a probability 1 and similarly probability of E
+condition on H compliment is also equal to 1.
+So, the host has to show a door with a goat behind it. So, this happens with probability 1 each.
+So, what we get here is that probability of host probability of the contestant winning
+with his initial hypothesis is 1 times 1 by 3 by 1 times 1 by 3 plus 1 times 2 by 3.
+So, this is nothing but 1 by 3. So, what does this say? This says given the evidence by the host,
+the contestant wins by sticking to their original decision
+is 1 by 3 probability. So, the hypothesis of the contestant is true for the probability of
+1 by 3 given the evidence. So, that is the case right now. So, now we have probability of
+H compliment condition on C is 2 by 3. So, there is another way of deriving the same thing using
+the base rule. So, we will see more examples of this in the next lecture.

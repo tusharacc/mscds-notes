@@ -1,0 +1,142 @@
+So, we will come back. So, today what we are going to see is the notion of random variables
+right. So, first we will define what is a random variable
+and then see what use this has right. A random variable, so let us say let us call it x,
+is a function or a map from sample space to real numbers right. A random variable is nothing
+but a function from the sample space to real numbers right. So, the examples that we can
+see are the following. So, number of heads in k many coin tosses right. So, see let us
+take an example. Suppose I have k coin tosses. So, my sample space is going to be a vector
+E in H comma t whole to the k. I have k many tosses and I have a vector E, so which is
+over H t to the k right. So, now what are we interested in? We are interested in the
+number of heads in the coin tosses. So, how many heads can we have? I can have 0 heads,
+I can have 1 heads, I can have 2 heads and so on until k many heads right. So, I have
+all these possibilities that I can have. So, I have the sample space and over the sample
+for every choice of k many coin tosses, I have a corresponding value of how many heads
+do I have in that right. Suppose I have heads, tails and so on until H. So, for this the
+corresponding random variable that I can define is going to take this as input and output
+of heads in this given sequence right. So, I have all possible coin tosses k many coin
+tosses and I have a corresponding number. So, my random variable here happens to be
+the number of heads in each of the sequences of coin tosses right. So, the way I can define
+here is x can take values between 0, 1, 2 and k and there is a corresponding value probabilistic
+value for each x. So, we will elaborate on that in a bit, but a random variable is nothing
+but a random function sorry a random variable is nothing but a function from the sample
+space to the real numbers. So, as it happens here the range of this random variable instead
+of being real numbers, we have natural numbers between 1 to k right. So, this is one example.
+So now, the other thing could be the other example of a random variable could be the
+outcome of a die roll right. So, what are the options for this random variable? So,
+the corresponding options are going to be it is going to be 1, 2, 3, 4, 5 and 6 ok.
+Then we can go on defining random variables as follows. So, let us first see a non-trivial
+example of a random variable which is the number of coin tosses until we see we see
+a heads for the first time right. So, suppose I have a sequence of coin tosses right I can
+get either a heads or a tails in the first call. So, suppose I do not get a heads in the first
+call then I have tails there. So, now, I toss a coin again I could either get a heads or a tails
+right. So, I wanted to see the number of coin tosses until I see the heads for the first time
+right. In this number I am going to include the coin toss where I see the heads as well right.
+So, now, like you know this could be either this corresponding random variable could be 1,
+2, 3 and so on right. So, the range of x in this particular situation is going to be the
+natural numbers itself right. So, here again I am going to say the range of x is this. So,
+instead of saying belongs to I am going to say range of x and again here instead of belongs
+to the right notion to say is the range of x because you are talking about functions
+right. So, it would be stupid to say belongs to because x is a function that takes element
+from the sample space rather it takes an outcome from the sample space and gives a corresponding
+value right. So, these are what are called random variables and I could also have random
+variables which are. So, I could say. So, indicator random variables right. So, I have
+x which takes a value 1 if experiment succeeds 0 otherwise right. So, this is this is a indicator
+random variable. Here the experiment is a random experiment. So, for the when we say
+variable it is associated with some random experiment or a random trial right. So, this
+is how we define random variables. So, what are we seen so far? So, the synopsis is random
+variables of functions, random variables of functions and the range of random variables
+it takes. So, when we say functions I can actually say sample space to real numbers
+range of the random variables specifies the values it takes right. So, this is the synopsis
+of what we have seen so far. So, now, for a random variable x we can talk about what
+is the probability it takes a particular value. So, in case of a dice it took values
+between 1 to 6 right. So, now, I ask what is the probability that the outcome is actually
+equal to 1 the random variable takes this value 1. So, in which case if it is a if the
+dice is such that all the sites are equally likely I have this value to be 1 by 6. Similarly,
+probability that x is equal to 1 is the same as probability for x is equal to 6 all equal
+to 1 by 6. So, now, let us look at the coin tosses again.
+So, when we have this coin tosses suppose we have suppose we toss 2 coins right. So,
+2 distinguishable coins then let x be the random variable
+that counts the number of heads right. So, now, what do we want? We want to see what
+is the probability that x takes a particular value right. So, if I look at my sample space
+for this my sample space is going to be H comma H, H comma T, T comma H and T comma
+T. So, these are these 4 events and let us assume that all these 4 are equally likely.
+So, this is the assumption that we want to work with right and what is the possible values
+So, let me say range of x. So, range of x is actually 0, 1 and 2 right. So, I have number
+of heads is 0, I have number of heads is equal to 1 and I have number of heads is 2 right.
+If I investigate this outcome the number of heads is 2, if I investigate either of these
+individually the number of heads is 1 here, the number of heads is 1 here and here the
+number of heads is 0 right. So, now, we ask what is the probability that my random variable
+takes a value 0 right. So, it only happens in this particular situation. So, this outcome
+1 by 4. So, now, I ask what is the probability that x is equal to 1 right. So, now, this
+probability is nothing but 2 by 4. So, how do we analyze this? We can also analyze it
+with our events notions right. So, x is equal to 1 is equivalent to saying the event where
+we have exactly 1 heads right. So, this is an equivalent way of looking at events right
+some of the events not every event can be written this way, but some of the events can
+be written in terms of random variables. So, in this particular case we are lucky.
+So, I have probability of x is equal to is 1 by 4. So, now, so, if you stare at both
+of these examples that we have here. So, if you look at this and if you look at this. So,
+we have the cases in the range I have 0 1 2 and if I sum up the probabilities for each of the
+values that appear in the range this probability sums up to 1 and similarly for each of these
+values in my range if I sum up their probability I get 1 right. So, now, let us make this explicit.
+For each value v in the range of x let p v be the probability that x equals v.
+Then summation over all v belong to the range p v is equal to 1. So, take few more examples
+and this will be very clear. So, let us work with another example. So, we have a bag
+with 20 balls with numbers of them. So, I have ball 1, I have ball 2 and so on until I have ball 20.
+Suppose, we pick 3 balls from the bag we want to analyze the probability that the
+ball is at least 17. The probability that the highest numbered ball is 17 right. So,
+this is what we have. So, we have a bag with 20 balls in it each ball has a number on it right
+and we are picking 3 balls out of the 20. We want to analyze what is the probability
+the highest numbered ball is 17 right. So, this is what we want to do right. So,
+let us do this using random variables right. So, let x be the random variable denoting
+the value of the ball. So, rather the highest the value of the highest valued ball or let
+me just say denoting the number of the ball of the highest valued ball amongst the 3 balls
+that we pick right. So, x can take values between. So, the minimum possible value x
+can take is 3 right. So, if I have to define range of x, range of x is from 3 until 20.
+So, x is a random variable that denotes the value of the highest valued ball in the 3
+balls that are picked right and the range is between 3 to 20. So, when you are picking
+3 balls. So, it must be the it must be the case that the highest valued ball the value
+should at least be 3 right. If you are picking 1 2 3 the highest value is 3 right good. So,
+now what are we interested in? We are interested in the probability that x is at least 17 right
+and then I am going to write this as probability O of x is equal to 17 plus probability that
+x is equal to 18 plus probability that x is 19 plus probability that x is 20 right.
+Now, let us compute probability that x is equal to k for some value k between 0 and between 3 and
+20 right. So, now what does it mean? So, I have 20 balls out of which I am picking picking 3 balls
+and I want the highest value to be k. That means, I have one ball whose value is k and the other
+2 balls and their value could lie between 1 and k minus 1 correct. So, my probability that x is
+equal to k will be equal to k minus 1 choose 2 divided by 20 choose 3 right and now this will
+tell us that the value that we are interested in is given by 16 choose 2 plus 17 choose 2 plus
+18 choose 2 plus 19 choose 2 all divided by 20 choose 3 right. So, there is another thing
+that we have learnt using this example that we can actually look at probability of x greater than
+equal to some value using these right. So, now what do we have? So, we learnt what is a random
+variable and we have learnt what are associated probabilities. So, we have probability mass
+functions right associated with every value we have a probability estimate. For every value v
+belong to the range of the random variable we have an associated mass or weight right and as
+we have seen above we have the summation p v is equal to 1 and what is this p v? p v is nothing
+but probability that x takes the value v right good. Now, let us see what is called an expectation.
+So, an expectation is nothing but a weighted average of your random variable right. So,
+suppose I have a random variable x and x takes the values. So, the range of x is such that I have
+0, 1, 2 right in the example of two coin tosses and my random variable x denotes the number of
+heads right. So, now, my expectation of a random variable is defined to be summation over all values
+in the range of x. So, I have v times probability of x equal to v right. So, I have 0, 1, 2
+in the example that you have chosen. So, it is a example of two coin tosses and x denoting
+the number of heads right. So, what did you say? The probability that x takes the value
+0 is 1 by 4, the probability that x takes the value 2 is again 1 by 4 and probability
+that x takes the value 1 is half right. So, now, I can say the expected number of
+heads is given by 0 into 1 by 4 plus 1 into 1 by 2 plus 2 into 1 by 4. So, what is the
+value here? So, I have. So, this gives me 0 plus half plus half right. So, what this
+says is on an average when each event is equally likely, I will see at least one heads right.
+So, this is what the average tells us. So, this is what you call expectation. You can
+think of your expectation to be a weighted average where the weights are given by the
+probability mass function right. So, we can see more examples of this form.
+So, what is an expected outcome rather what is the expected value of random variable
+x which denotes the outcome of it Faraday's right. So, here I have expectation of x is
+nothing but 1 times 1 by 6 plus 2 times 1 by 6 plus 3 times 1 by 6 plus 4 times 1 by
+6 plus 5 times 1 by 6 plus 6 times 1 by 6 right. So, what is this value? So, this is
+nothing but summation i from i is equal to i is equal to 1 till 6 divided by 6. So, if
+you apply this summation i from i is equal to 1 till n, you get n times n plus 1 divided
+by 2. So, here it is going to be 6 times 7 divided
+by 2 by 6. So, there is nothing but 3.5 right. So, this is an example to illustrate that
+the expected value has nothing to do with what are the outcomes. So, 3.5 is not an outcome
+of the dice, but still the expected value is this right. So, this is not a problem at
+all. So, you do not have you do not need to have the expected value to be the same as
+your range of your outcomes I mean to be in the range of your outcomes.

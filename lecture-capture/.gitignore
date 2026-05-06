@@ -1,0 +1,7 @@
+.env
+credentials/token.json
+credentials/google_oauth.json
+*.wav
+frames/
+__pycache__/
+.env

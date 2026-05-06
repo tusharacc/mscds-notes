@@ -1,0 +1,234 @@
+Good. So, let us see more examples for expectation. So, let us say so a student is writing an
+exam with two questions. So, the first question has V1 marks and the
+second question has V2 marks. Further, student can only answer the second question only if
+they know the first question, only if they answer the first question. Answer the second
+question only if they answer the first question correctly, right.
+So, the other information is student knows the answer, knows the answers to the questions
+with probabilities P1 and P2 respectively, right. So, now, so this is what we have.
+A student is writing an exam and the exam has two questions. The first question has
+V1 marks and the second question has V2 marks, right. And student can only answer the second
+question if they know the answer to the first question, right, rather they answer it correctly.
+And let us assume that if the student knows the answer, they write it and it is correct,
+right. So, there is an assumption that we are working with. And student knows the answers
+to these questions with probabilities P1 and P2 respectively, right.
+Now, what we ask is what is the expected number of marks for the student? So, what is the
+of marks that the student gets, right. So, this is very standard question. So, the student
+is writing an exam with the probability P1 and P2, they know the answer for the question
+P1 and P2. Here the caveat is that the student can only answer the second question if they
+answer the rather the second question will be graded if and only if the first question
+is answered correctly, right. So, let us say to make it more explicit, let us say student
+gets his answer or their answer graded if and only if they answer the first question
+correctly, right. So, good. So, let us look at this random variable
+x that denotes the marks the student could get, right. So, now, x can take values between
+it can take 0 where the student does not know answers to either of them and the student
+knows the answer of the first one and student knows the answer for both 1 and 2, right.
+So, now, we ask what is the probability that x is 0? So, that means, the student does not
+know the answer for the first one and does not know the answer for the second one. So,
+rather, ok. So, let me just be careful here. So, the student does not know the answer for
+the first one. If the student does not know the answer for the first one, they cannot
+even answer the second one that the second one will not be graded. So, the entire probability
+mass rests on this part, right and then I have probability of x is equal to 1, right.
+So, let us go back to x is equal to 0. So, as I was writing, I can write. So, this plus
+even if they know the answer to the second question, they cannot answer it. I mean rather
+they will not get graded if they do not know the answer for the first one, right. By putting
+both of these together, I am going to get 1 minus p1, right. So, just wanted to elaborate
+on why you get 1 minus p1. The student either does not know the answers to both the questions
+in which case they would get a 0 anyway or the student knows the answer to second one,
+but they did not know the answer for the first one, right. So, it is going to be 1 minus
+p1 times p2. If you club both of these cases together, what you get is 1 minus p1, right.
+And here for this, I am going to write for this, so not V. So, this should be 1 V1, right.
+The probability that x takes the value V1 is given by. So, it can only happen if they
+can answer the first question, sorry, if they can answer the first question and they cannot
+answer the second question, right. And the probability for x is equal to V1 plus V2
+is given by, they know the answer for the first one and they know the answer for the
+second one, right. So, if you put them together, so let us compute the probability which is
+summation of these 3 values. So, let us write it instead of summation, just write it as
+probability that x is 0 plus probability that x is V1 plus probability that x is equal to
+V1 plus V2. So, this is nothing but 1 minus p1 plus p1 minus p1 p2 plus p1 p2, right.
+So, what you get is this and this get cancelled, this and this get cancelled and what you have
+at the end is equal to 1, right. This also satisfies that property that we needed for
+the probability mass functions, right. So, this is a small example, right, good.
+So, now the question I ask is a variant of this where what if this condition was not
+there. So, then what would have happened is this could also would have taken the value
+V2 in which case the probability that x is equal to 0 is going to be only this and I
+am going to add probability of x is equal to V2 in which case I would get. So, what
+would I get? I would not know the answer for the first one and then I would know the answer
+for the second one, right, which is the same as this, this value is the same as this, right.
+So, at the end they also sum up to 1, so all is well, good.
+So, then let us take another simple example. So, let us say an experiment succeeds with
+probability P, right and this experiment is run independently k times, right. So, what
+is the expected number of successes? So, now I can define a random variable x and the range
+of x and the range of x is going to be it could be 0 all the way till k, right.
+So, now I have this k experiments which run independently and the number of successes
+could be anywhere between 0 and k and each experiment runs and succeeds with the probability
+and fails with the probability 1 minus P. So, now the first thing is what is the probability
+that x is equal to i? So, I have k experiments out of which I want to understand what is
+the probability that there are i successes in all of them. That means, there are i successes
+and k minus 1 failures, right. So, what would this be? So, this is going to be k choose
+i and for those each of those k choose i ones I am going to have. So, P to the i and for
+the rest of them I am going to have 1 minus P to the k minus i, right. So, this is what
+we have and so, the interesting thing here is if I take summation over probability of
+x is equal to i where i goes from 0 to k. So, what do you get? I have summation over
+i goes from 0 to k, I have k choose i times P to the i times 1 minus P k minus i. So,
+what does this look like? This looks like the binomial expansion of P plus 1 minus P
+to the k and this is nothing but 1, right. This satisfies both the principle where the
+summation of probabilities for each of these values sums up to 1 and at the same time this
+is a binomial expression, right, good. So, now, what is the expected value of this?
+So, my expected value is going to be expected value of x is going to be summation i is equal
+to 0 till k i times probability of x is equal to i, right. This summation of i is equal
+to 0 to k i times k choose i. So, for those who are familiar with binomial series please
+try to simplify this. I am going to discuss this in the tutorial at the end of the week,
+but try to work it out yourself. So, try to figure out if you can simplify this expression
+way, right. So, try to write this as in the k factorial terms. This is going to be k factorial
+by k minus i factorial times i minus 1 factorial, right. Possibly you can do some changes here.
+So, may be sorry what I was trying to tell you is you write this as k factorial by k
+minus i factorial and i factorial and this can be written as i minus 1 factorial times i and this
+can be written as k minus 1 factorial times k. Then what you would have here is nothing,
+but summation i is equal to 0 till k k times k minus 1 choose i minus 1 times p to the i times
+1 minus p to the k minus i. So, you can simplify this further and you can get a very simplified
+expression. I will leave it to you to figure this out and we can work it out over the weekend,
+good. So, this is the expected number of successes in k experiments.
+So, now let us look at another example. So, what is the expected number of trials?
+rather trials of coin tosses to see the first hits, right. So, what is the expected number
+of trials of coin tosses to see the first hits, right. So, let us say random variable x denotes
+the number of coin tosses including itself such that we see heads only in the last sorry. So,
+number of coin tosses such that yeah sorry what we wrote is correct only in the last toss, right.
+So, this value could be anywhere between 1 and greater. So, this is this I am going to
+write as natural numbers the range is natural numbers. So, let us compute what is the probability
+that x is equal to 1. So, what is it? So, I have only one coin toss and I want it to
+be heads. So, this value is going to be half, right. So, let us say we have a bias coin
+to make our life interesting and let us say this coin toss where heads happens with a
+probability p with probability p and tails with the probability 1 minus p, right. So,
+this will make our life definitely more interesting and I am going to write probability that x
+is equal to 1 is p and then I am going to write probability of x is equal to 2 that
+means my first trial is tails and then the second trial is heads. So, half 1 minus p
+times p, right. Similarly, I can have probability that x is equal to i is nothing but I have
+1 minus p to the i minus 1 times p, right. So, this is what we have. So, what is it?
+So, what is the expected number of trials needed to see first heads? So, I am going
+to write this is nothing but summation i greater than equal to 1, I have i times probability
+of x is equal to i, right. So, this is summation i greater than equal to 1, i times 1 minus
+i minus 1 times p, right. Again, this can be simplified. I am going to do it again in
+the tutorial. So, please think how this can be simplified.
+Think about what are you have seen during a high school or like 11 and 12 or your engineering
+expressions. So, please work this out, right. So, good. So, the answer that you get here
+is going to be roughly 1 by p. So, these are the expectations for the number of trials
+needed to see the first heads, right. So, let us see something more interesting here.
+So, implicitly what has been going on is something called linearity of expectation, right. Suppose,
+I have a random variable X, right, which can be written as sum of random variables
+X i's, right. I have X 1 to X n as a random variables and they sum up to give me a new
+random variable X. So, now, what is known is that the expectation
+of this random variable X can be written as summation of the expectations of random variables
+X i. So, it does not care whether these random variables X 1 to X n are independent or dependent.
+So, this holds regardless of how the random variables X 1 to X n behave. So, this statement
+is universal truth. Expectation of X is nothing but expectation, sum of expectations of X
+i, right. So, this is what is called linearity of expectation.
+So now, so the other experiment that the, so we had this example of, we had this experiment
+that is run independently k times, right and we wanted to understand what is the expected
+number of successes. So, that is nothing but, so for each random variable X i, I can have
+1 with probability p, 0 otherwise, right and now expectation of X is given by summation
+of expectations of X i's, right where i goes from 1 till k, right and what does this
+give us? So, what is expectation of each of these? So, let us concentrate on this expectation
+of X i's. So, X i takes a value 1 with probability p and value 0 with probability 1 minus p.
+So, this expectation is equal to the probability p. So, what I have here is the expectation
+is nothing but p times k. So, this is much simpler expression than what we have done
+some math over here to get this quantity, right. So, what is so complicated before
+can be obtained by this tool what is called linearity of expectation. It is a much simpler
+tool, right. So, you get this. So, random variables of this form is take 0 and values
+and 1 with probability p and 0 with probability 1 minus p, they are sometimes in literature
+called Bernoulli random variables, right. So, X here is sum of some Bernoulli random
+variables, right. So, this could also happen. So, let us see if each of these experiments
+was succeeding with probability p i and failing with probability 1 minus p i, right. So, X
+i is 1 with probability p i and 0 otherwise, right, in which case expectation of X i would
+be equal to p i and this implies expectation of X is nothing but summation p i.
+So, linearity of expectation is a very powerful tool in probabilistic analysis. So, let us
+count the number of triangles in a graph, ok. So, let us consider a probabilistic graph.
+So, that is I have vertices v 1 till v n, right and without loss of generality I am
+going to call 1 till n instead of v 1 to v n. Between any pair i comma j, the edge could
+exist with probability half and it does not have an edge with probability half, right.
+So, this is a random graph. So, you have n vertices between any pair of vertices there
+is an edge with probability half and there is no edge with probability another half,
+right. So, now, what we are interested in is we are interested in what is the expected
+number of triangles. So, even before this, a simpler question to ask is what is the expected
+number of edges in this graph, right. So, you have n vertices that means, the number
+of edges between them could be n choose 2. So, let us write this random variables for
+each possible pair. So, for a pair i comma j. So, such that i is less than j. So, I
+am going to make it without repetition. So, I am just say going to say i is less than
+j to ensure that there is no repetition. So, what are we interested in? We are interested
+in this random variable Xij, right and this is equal to 1 with probability half and 0
+with probability half, right and what is the expected number of edges? The expected
+number of edges. So, expected number of edges is nothing, but summation over all i comma
+j such that i is less than j expectation of Xij, right and what is this value? So, how
+many ij's are possible? I have n choose too many ij's and what is the value of each of
+this expectations? This expectation, this is 0 and random variable. If it is a 0 and random
+variable, then what is this? This is nothing, but the probability that Xij is equal to 1,
+right. So, I am going to write it that way. So, I am going to write it as summation i
+less than j. This is probability that this Xij is equal to 1 and what is this? So, this
+is going to be n choose 2 times half. So, these are the expected number of edges
+in this random graph. So, let us take this example slightly further to count the number
+of triangles, right. So, now, I can like extend this in the following way. So, I can take
+triples i, j, k such that i is less than j is less than k and number of such triples
+is n choose 3, right. So, now, I can define a random variable Xij k such that 1 if a triangle
+between i, j, k exists or 0 otherwise. So, what do you mean by triangle between i, j,
+k exists? So, that is there is an edge i comma j and there is a edge j comma k and there
+is an edge k comma i or i comma k, right. So, the this series of edges exist, right.
+So, now, what is the expected value of this random variable X i comma j comma k? So, this
+is nothing, but probability that this random variable X i comma j comma k is equal to 1
+and what is this probability? This probability is 1 by 2 into 1 by 2 into 1 by 2 which is
+1 by 8. So, why is this the case? So, it is a it is an AND of events where the edge i,
+k exists, then the edge j, k exists and the edge i, k exists. Each of them exists with
+a probability half. So, together what we get is the expected value of this random variable
+is 1 by 8, right. So, now, the expected number of triangles
+of triangles is given by all possible choices of i, j, k, we have the expectation of X i
+comma j comma k. So, this is nothing, but n choose 3 into 1 by 8. So, this is very good.
+Now again you can work out the examples of this by taking instead of half and half you
+can take p and 1 minus p, right in which case. So, what is this going to be? This is going
+to be n choose 2 times p and here I am what I what I would have is p cube and it is going
+to be n choose 3 times p cube. So, this is your expected number of triangles in your
+given graph, right. So, you can actually keep practicing more and more with respect to these
+examples. So, let us see another example where suppose
+we have we have a tray with with chits with names of individuals, right.
+So, the chits are upside down. So, the names are not seen from the top. So, each individual
+picks a chit at random and uniformly. So, that is every chit has equally possible out
+I mean each chit is equally likely, right. So, what is the expected number of
+number of individuals who pick their own who pick their own name, right. So, suppose
+the number of chits is with m many chits and m many individuals, all right again.
+So, we can write our random variable X i to be equal to 1 if 1 with rather it is 1 with
+probability 1 by m that is this denotes that the individual the i th individual pick their
+name, right and 0 otherwise. So, now, what do we have? We are interested in the expected
+number of the guess who pick their own name. So, now, from the above definition X denotes
+of individuals picking their own name, right. So, what do you have here? The expectation
+of X is nothing but summation over i from 1 to m expectation of X i. So, which is equal
+to. So, what I have each of them is equal to 1 by m. So, I have m times 1 by m. So,
+one individual will pick their own name, right. So, this is all very good. So, now, let us look
+at another non-trivial example. So, let us look at this.
+Suppose, we are interested or investing in a particular stock with following characteristics.
+So, with probability with probability P, stock grows by a factor of r and with probability
+1 minus P, stock falls by a factor of r, right. So, suppose we start with investing in the
+stock with 100 rupees. 100 rupees is our initial investment, right. So, we want to see what is the
+expected value of our investment on some day t. So, what is the expected value
+of our stock on dth day, right. So, this is what we are interested in. So, this is a non-trivial
+example of what we have done so far, good. So, now, so let us have random variables which
+are time dependent. So, let us say I have my value x 0 is 100. So, on day 0, my value is 100. So,
+want to understand what is the value of this from day 2, I have this random variables such
+that x i denotes the value of my stock, the value of my stock on day i. So, what is interesting
+here is each of these random variables are dependent on each other. So, if I have to write
+my x i. So, what is it? So, with a probability p. So, let us look at this. So, x i either it grows
+from the previous day. So, let us say I have x i minus 1, it grows with the factor r or it falls
+with a factor r. So, this happens with probability p and this happens with probability 1 minus p,
+right. So, now, the expected value of my x i is going to be. So, p times expectation of r times
+r times x i minus 1 plus 1 minus p times expectation of x i minus 1 by r. So, there is a reason why I
+have written it this way. So, suppose x is a random variable, then a times x is also a random
+variable for a constant a. So, x by a is also a random variable for a constant a as long as a is
+not 0, right. And in which case we also have this characteristic which can also be seen from
+linear expectation when r is greater than equal to 1. So, I have p times r times expectation of
+x i minus 1 plus 1 minus p by r times expectation of x i minus 1, right. And what is this? So,
+this is going to be p r plus 1 minus p by r times expectation of x i minus 1, right.
+And you keep doing this. Now, I can open this. This in turn is p r plus 1 minus p by r times
+expectation of x i minus 2, in which case I have expectation of x i is p r plus 1 minus p by r
+whole square times expectation of x i minus 2. If I keep continuing to do this, what I would
+get is p r plus 1 minus p by r to the i times expectation of x 0. On the other hand, x 0 is
+a value without any probability. It is not random. In which case I can just substitute this to be
+100. So, it is going to be p r plus 1 minus p by r to the i times 100, right. So, this is the expected
+value on day i. Then I can substitute i to be i with d, then you get the expected value of my
+stock on day d, right. So, this is slightly different from what you have seen. So,
+there is some sort of a recursion that is happening, right. Okay, good.

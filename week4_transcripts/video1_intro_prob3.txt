@@ -1,0 +1,221 @@
+Welcome back.
+So, let us look at something more explicitly that we pushed under the carpet last time,
+right.
+So, suppose we have this sample space which is 1, 2, 3, 4, 5 and 6 which are the possible
+outcomes of a 6-sided dice, right and we consider the event where all the outcomes
+were even numbers, right.
+So, we had 2, 4, 6 as a possible outcomes and what like correspondingly what we got
+was probability of E was half, right.
+Implicitly what is happening here is this also equal to the number of elements in the
+set E by the total number of elements in S, right.
+So, in case of outcomes which are all equally likely, so what we have is the probability
+of an event in general, I mean not just this particular situation where you have a dice
+and then you are looking at an event which is 2, 4, 6 which are even outcomes.
+In a general situation where you have a sample space S and a subset E that you are considering
+and you also have this additional criteria that every outcome is equally likely, then
+what do we have?
+We have probability of E is nothing but the number of elements of the sample space which
+fall into E divided by the number of elements in S or I can just say total number of elements,
+right.
+So, this is a probability for an event if we have considered the setting where the sample
+space where all the outcomes are equally likely.
+So, for a coin toss, so for a coin toss what do we have?
+The probability of heads is equal to the probability of tails is equal to half if both the outcomes
+are equally likely.
+A prior it is not very clear given a coin whether these outcomes are equally likely
+or not, right.
+But we want to assume or make an assumption that given a coin both the outcomes are equally
+likely.
+Suppose if you have an IPL match and you are tossing a coin before the IPL match, so there
+is no guarantee that this coin is going to have an equally likely outcome in general
+because it depends on a lot of factors.
+The precision of this thing or the air or the like which side you start with and a lot
+of parameters fit into this.
+But we would like to assume for the sake of this IPL match that or any cricket match that
+the coin outcome is equally likely.
+So there is a value that we assign to the coin, right.
+The reality we do not know, right because there is a lot of elements that contribute
+to the outcome, right.
+So this is something which we have been skipping, pushing under the carpet but we would like
+to see it more explicitly, right.
+So there is more explicit example that we can actually look at.
+So suppose, suppose we have a bag with N balls and only one of them is special
+right.
+And now we further say that we pick K balls, K balls from this bag.
+Now we ask what is the probability that the picked set of balls has this special ball,
+right.
+So now let us work with the sample space.
+So what would the sample space here be?
+So here there are two kinds of balls, one is special and the other is non-special, right.
+So what do I have?
+I have N minus 1 non-special balls and one special ball, right.
+So now I can write this as the following.
+So I can represent my choices as 0 corresponds to a non-special ball, 1 corresponds to the
+special ball.
+Now my sample space is going to be the strings, some string E belong to 0, 1 to the K, it
+is 0, 1 to the K such that the number of 1's in E is at most 1, right.
+So this is my sample space.
+So what is this the experiment is I have N balls in the bag and I am picking K balls
+out of them, right.
+So here out of this K balls all K of them could be non-special or K minus 1 of them
+are non-special and one of them is a special ball, right.
+So now if I actually look at the event that I am interested in, this event that is nothing
+but I have all those vectors E prime belong to 0, 1 to the K such that there is exactly
+one location which is 1, right.
+So to make it more explicit, so I will have I could have one in the first position, then
+I could have one in the second position, then I could have one in the third position and
+so on, right.
+So this is my event that I am interested in.
+So I want to have the special ball in the K balls that I pick, right.
+So here there is all possible cases where I have one special ball and the rest of them
+are non-special because I have K picks.
+So this length of this vector is K, right.
+So now so what is the probability of event E, right.
+So now each of this like an each of these balls is equally likely when I pick, right.
+So what would I have?
+Let us concentrate on this part, just so I am going to write this as the following.
+So it is summation over all E prime such that E prime belongs to the set E, have probability
+of E prime, right.
+And we will consider one particular E prime which is probability of 1, 0, 0 until.
+So what is this?
+We are picking the special ball first, how many special balls do I have?
+1.
+And how many balls do I have overall?
+I have n.
+And then I have how many how many balls do I have left, how many non-special balls do
+I have left?
+n minus 1, right.
+I have n minus 1.
+So how many balls are left?
+n minus 1 and so on, right.
+So then whatever the second one, I have n minus 1 special balls, sorry n minus 1 non-special
+balls and I am picking this one here and then I have 1 minus, right.
+So each of this, so some element here is going to be n minus i by n minus i and so
+on until 1 and similarly n minus i by n minus i and so on until 1, right.
+For each of this my value is going to be 1 by n, right.
+For each of these elements I am going to have, so I am going to have 1 by n, right.
+So if I actually sum this up, I am going to get summation over E prime belong to E, I
+have 1 by n.
+How many elements are there in the set E?
+So I claim that the number of elements in the set E is given by the value k because
+the number of elements is given by the possibilities of having one in a particular location in
+the k length vector, right.
+So how many vectors of this form are possible?
+They are exactly k of them, right.
+So if I put them together what I will get is it is k by n.
+So this makes sense?
+So the probability of picking a special ball in the k balls that you actually picked is
+k by n.
+The other way to look at it is nothing but the other way to compute this directly is
+I have one special ball, I am choosing it in 1 choose 1 case and then I have n minus
+1 special balls, I am choosing k minus 1 there and how many do I have overall, I have n choose
+k, right.
+This is a direct application of the formula.
+So what do I get here, I have n minus 1 factorial divided by n minus k factorial and k minus
+1 factorial divided by I have n factorial by n minus k factorial times k factorial,
+right.
+So what do you get here?
+I have k factorial by k minus 1 factorial times n minus 1 factorial.
+So I have n minus 1 factorial by n factorial, right.
+This is nothing but k by n, right.
+So we are obtaining the same value using two different procedures, right.
+So always working out with first principles will actually give you an idea of what exactly
+is happening underneath.
+You can use your shortcut formulas, so nobody is stopping you from doing that.
+But working out from the first principles gives you much more intuition about how this
+probability works.
+So let us look at another example, right.
+So let us look at this.
+Suppose I have, if we have a deck of 52 cards, right.
+So 52 cards, they are divided into 4 sets, right, 4 sets of 13 cards each, right.
+So what do you mean by 4 sets?
+So you have a diamond, diamond set of 13, so 13 of these diamonds, 13 of whatever you
+have hearts, you have cloves and you have spades, right.
+So I have 13 of each, right and these are the red colored set and these are the black
+colored set, right.
+So now the first question I pose is, so what is the probability, so what is the probability
+that 3 cards are red and 3 cards are black if 6 cards are picked, right.
+So here we will assume that all cards are equally likely, right, good.
+So now how do you approach this?
+So again you can write your sample space, you can write your sample space for this.
+See I am going to consider these cards now as either red or black, right.
+So now what I have is a vector whose elements, again I can consider 0 to correspond to red
+and 1 to correspond to black, right.
+So now my sample space for this experiment, a simplified experiment.
+So I am simplifying my view of the sample space.
+So I am going to consider this vectors E belong to 0 and power 6.
+So this is my sample space, so I can just write it as 0, 1, power 6.
+So that is this corresponds to all vectors of length 6.
+So why are we actually choosing vectors?
+So vectors actually ensure that the positions are, like you know the sanctity of the positions
+or the integrity of positions is maintained, right.
+if I have, so I want to distinguish between 0, 0, 0, 1, 1, 1 from 0, 1, 0, 0, 1, 1, right.
+So here by using the vector notation I am going to say that my second pick is a black
+instead of red, right.
+So these two are distinct.
+So using the vector notation actually ensures that the sequences that are being considered
+are distinct, right.
+So let us erase this part, which is, so now what is my event?
+My event is I have three picks which are white and three picks which are black, right.
+So now I am going to look at the vectors E in the set 0, 1 to the 6 such that number
+of 0s is equal to number of 1s, right.
+So what is the probability here?
+The probability of event E is nothing but summation over all vectors E, probability
+of this vector E, right.
+So let us consider one particular event.
+So let us say I consider this 0, 0, 0, 1, 1, 1.
+So what is this?
+I have 52 cards overall where 26 of them are red and 26 of them are black.
+I am going to pick, first I am going to pick red cards.
+So I have 26 red out of 52.
+Then I have 25 red out of 51.
+Then I have 24 red out of 50, 50.
+Now I have 49 cards left.
+Out of these 49 cards, I have still 26 black.
+I have 25 black now and then I have 24 black, right.
+So this is what I get.
+Now the second thing is I can actually consider the next sequence which is 1, 0, 0.
+So what is this?
+I have 26 black, sorry 26 red and 26 black.
+I am going to pick one card out of that, right.
+So here implicitly we are using this notation where I have some special elements and I am
+actually picking one out of the special elements, right.
+So I have this.
+So I have 20, no, the next pick is a black card.
+I have 26 black cards.
+Now I am picking one black card out of it.
+Then I have 25 red cards.
+So I have this.
+So please be careful when I actually, so again I am doing red card.
+Then what am I doing next?
+I am actually picking a black card.
+So how many black cards do I have?
+I have 25 of them, right.
+So now what I get here is this into 24 of 47, right.
+You can keep working things out.
+How many such things are there?
+So how many such elements E are there?
+So this cardinality of this element set E is, so I need exactly three 0s and three 1s.
+Now I can pick in which place I have those three, right.
+So as it turns out for each of this element E, the probability of E is 26 into 25 into
+24 squared by 52 into 51 into 50 into 49 into 48 into 47, right.
+So let us put this all together.
+What do I have?
+I have 6 choose 3 times this value whatever I have here.
+So I am going to just, right.
+So this is what I get.
+So let us use the other method to get the same value.
+So the other method to get this is the following.
+So I have 26 red cards out of which I am choosing 3 and I have 26 black cards out of
+which I am choosing 3 and I have 52 cards overall and I am choosing 6 out of them, right.
+So now let us open this up.
+So I have 26 factorial by 23 factorial times 3 factorial into 26 factorial by 23 factorial
+times 3 factorial divided by 52 factorial by 46 factorial times 6 factorial.
+So if you work things out, so what you would get above, so from this and this you would
+get this part, right.
+From this you would get this part and by combining this, so just look at this part.
+So this will give you 6 choose 3, right.
+So this is an equivalent way of getting what we have, right.
+So going by first principles tells you more about what your random process is, right.
+So this is where we will stop and in the assignment you would have more of these questions, right.
+Just think about these questions and practice them from the first principles.

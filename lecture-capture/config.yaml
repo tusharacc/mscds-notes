@@ -1,0 +1,47 @@
+# Lecture Capture Pipeline Configuration
+
+paths:
+  inbox: ~/lectures/inbox          # Drop MP4 recordings here
+  output: ~/lectures/output        # Processed files land here
+
+recording:
+  # OBS output format should be MP4 (H.264 video + AAC audio)
+  naming_convention: "<course>_<topic>_<YYYY-MM-DD>.mp4"
+  # Example: ml_backprop_2026-04-05.mp4
+
+slide_extraction:
+  scene_threshold: 0.4             # 0.0-1.0; lower = more sensitive to changes
+  hash_distance: 8                 # Hamming distance; lower = stricter dedup
+  min_ocr_words: 20                # Frames with fewer words are discarded (face/video frames)
+  output_dpi: 150                  # Slide PDF resolution
+
+transcription:
+  whisper_model: medium            # tiny | base | small | medium | large-v3
+  # large-v3 is best for technical/accented speech but ~4x slower than medium
+  language: en                     # Set to null for auto-detect
+
+notes:
+  claude_model: claude-sonnet-4-6
+  # Sections generated in notes.md:
+  #   Summary, Key Concepts, Formulas & Derivations, Important Details, Questions to Review
+
+google_drive:
+  # One-time setup: run `python pipeline.py --auth` to authenticate
+  credentials_file: credentials/google_oauth.json
+  token_file: credentials/token.json
+  root_folder_name: "NotebookLM Sources"
+  # Folder structure created: NotebookLM Sources / <CourseName> / <lecture-slug> /
+
+obs:
+  websocket_host: localhost
+  websocket_port: 4455
+  websocket_password: ""            # Set this to your OBS WebSocket password
+  launch_if_not_running: true       # Auto-launch OBS if it's not open
+  startup_wait_seconds: 10          # Seconds to wait for OBS to start
+
+lms:
+  url: ""                           # e.g. https://lms.iiit.ac.in
+
+chrome:
+  profile_dir: ~/.lecture-capture-chrome   # Persistent session storage
+  no_sandbox: true

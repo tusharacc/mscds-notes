@@ -1,0 +1,80 @@
+So, here is another example, so a company sells screws
+in packs of 10. So, each screw is faulty with probability 0.01, independently of other
+screws right. So, if the company sells
+with a guarantee that at most one screw is faulty and it can
+buy back or it can ask the customers to return the pack if more than one screw is faulty
+what are the number of returns, what are the estimated number of returns
+for the company if a million packs are sold. So, this is a question where a company selling
+packs of screws where each pack contains 10 screws right and each screw is faulty with
+probability 0.01 and this is faulty with respect with independently of every other screw in
+the pack or screw in the entire company right and the company is also offering a guarantee
+that at most one screw is faulty out of the 10. So, now, the company said if you found
+more screws that are faulty in a single pack please return the pack we will take it back
+no cost right and we will return the money. So, now, we want to estimate the number of
+returns for the company if a million packs are sold right. So, this is a problem with
+statistics involved right. So, now, let us concentrate on a single pack right.
+So, let X be a random variable that denotes the number of faulty number of faulty screws
+in a pack right and what could this be the value could be anywhere between 0 and 10,
+so this is my range right. So, now, I want to understand what is the probability that
+the pack gets returned. So, what is this? So, that means, I want to understand that
+the pack is returned if and only if there are at least two or more screws that are faulty.
+So that is we are interested in the values of X rather the probability that X takes values
+greater than equal to 2 right. This is nothing, but 1 minus probability that X is strictly
+less than 2. So, which is nothing, but 1 minus probability that X is 0 minus probability
+that X is equal to 1 right. So, what are the each of these probabilities? So, let us concentrate
+on this part. So, I am going to write probability that X is 0 is nothing, but I have 10 screws
+right I am picking 0 of them and then the faulty with the probability 0.01 right. So,
+with probability 1 minus 0.01 I have no faults right and similarly I have. So, I have 10 choose
+1 times 1 minus 0.01 for 9 of them and 0.01 for the rest of them right. So, now, I put this value
+here it is going to be 1. So, 1 minus 1 minus 0.0. So, let me write this is 0.99 to the 10
+minus 0.1 into 0.99 to the 9. So, now, what I have done here is I have combined this 0.01
+into 10 over here. So, I get 0.1 here right. So, you get this some value over here. So, now,
+this is a probability. So, let us call this value some epsilon if you compute it. So,
+what you get this value is roughly about 0.004 right. So, this is the probability with which
+the pack has to be returned right. Now, the expected number of packs expected number of
+packs that are need to be returned. So, this is nothing but this roughly rather
+0.004 into 1 million right. So, what is this? This is roughly 4000 packs. So, correct me if I am wrong,
+but yeah. So, I am going to move yeah. So, it is going to be roughly 4000. So, 4000 order the million
+packs need to be returned right. So, this is an estimation statistical estimation that can work
+in the industry. So, now, so far what we have seen is we have seen expectation right. There is a
+random variable and there is an there is an expectation. So, that means, you have some
+behavior and an average of that behavior. It is not necessary that the random variable will take
+this expectation right. So, I have a random variable and I have an expectation right. So,
+now, it is not necessary that this value will be equal to expectation all the time. So, we are
+interested in finding out how this random variable behaves with respect to this expectation. So,
+for example, what I am interested in is I want probability that X is at least 2 times expectation
+right. So, this is this is the behavior of this random variable as it deviates away from its
+expectation. Suppose, I have a random variable X that takes some values. So, let us say this
+horizontal line represents the range of X right, range of X placed on a real value real line.
+Let us say I have my expectation somewhere over here. So, now, the question here what we are
+asking is what is the probability that this random variable X deviates from my expectation right. So,
+I have this expectation and what is the probability that it deviates from. So, what is the probability
+that my random variable takes this value I mean that is this value. So, what is the random like.
+So, I can ask this instead of 2 I can put some constant C rather I can phrase it as
+probability that X takes a value greater than 1 plus epsilon times expectation of X right.
+What I claim here is that my claim is that probability of X greater than 1 plus epsilon
+of expectation of X is at most 1 by 1 plus epsilon right rather probability that X is
+greater than 2 expectation. So, it is at most half. So, here. So, if I have a strict inequality
+inside then I have a strict inequality outside as well right. So, now, in general what I can write
+this as I can write as probability that X is greater than a its at most expectation of X divided
+by a right. So, let us apply to the one of the things that we have done. So, let us say X denotes
+the number of successes in k trials in k independent trials of an experiment right.
+So, now, we ask what is the probability that X is greater than 3 by 4th k right and this is at
+most what is the expectation of this. So, probability times k divided by 3 by 4 into k and this value is
+nothing but 4 p by 3 right. This only makes sense when p is smaller than 4 3 by 4 right. So,
+this is an example and what we see here is what is called Markov inequality right. So,
+for example, if the each of the independent trials was about the number of heads seen in
+k coin tosses. So, in which case the expected number of heads. So, would have been k by 2
+and probability that the number of heads is greater than 3 by 4 k is at most half times 4
+by 3 which is nothing but 2 by 3 right. So, with the probability of at most 2 by 3 the number of
+the random variable X is at least 3 by 4 k right. So, this also explains you the behavior of your
+binomial random variable right. So, as you have seen before the number of heads or the number of
+successes in the previous session behaves like a binomial distribution right. So, half k trials
+and I want i of them to be heads right. So, now what was it? It was k choose i it was k choose
+i times half to the heads times 1 by 2 to the k minus i. So, this behaves like a binomial variable
+right. So, now if you stare at a binomial it peaks somewhere in the half right. So,
+your expected behavior of your random variable. So, the way it is like its mass is somewhere
+around the half. So, the other way to think about these kind of inequalities is what is the
+probability that a random variable takes a value while it deviates away from its expected value.
+So, these are what are called tail inequalities right good. So, we will see more of these
+examples in the sessions to come and in your problem set.

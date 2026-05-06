@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Discrete Mathematics — Course Notes</title>
+
+<!-- MathJax 3 -->
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    packages: {'[+]': ['ams']},
+    tags: 'none'
+  },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.min.js" crossorigin="anonymous"></script>
+
+<style>
+/* ── Reset & Base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --blue-border: #3b82f6; --blue-bg: #eff6ff; --blue-badge: #1d4ed8;
+  --amber-border: #f59e0b; --amber-bg: #fffbeb; --amber-badge: #b45309;
+  --green-border: #22c55e; --green-bg: #f0fdf4; --green-badge: #15803d;
+  --violet-border: #8b5cf6; --violet-bg: #f5f3ff; --violet-badge: #6d28d9;
+  --grey-border: #9ca3af;  --grey-bg: #f9fafb;  --grey-badge: #4b5563;
+  --text: #1e293b; --text-muted: #64748b; --surface: #ffffff; --page-bg: #f8fafc;
+  --toc-w: 260px; --radius: 8px; --shadow: 0 1px 3px rgba(0,0,0,.08);
+  --week-accent-1: #0ea5e9;   /* sky  — Weeks 4-5 */
+  --week-accent-2: #8b5cf6;   /* violet — Week 6  */
+  --week-accent-3: #22c55e;   /* green  — Week 7  */
+  --week-accent-4: #f59e0b;   /* amber  — Week 8  */
+}
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--page-bg); color: var(--text); line-height: 1.7;
+}
+
+/* ── Layout ── */
+.layout { display: flex; min-height: 100vh; }
+
+/* ── TOC Rail ── */
+.toc-rail {
+  width: var(--toc-w); flex-shrink: 0; position: sticky; top: 0;
+  height: 100vh; overflow-y: auto; background: var(--surface);
+  border-right: 1px solid #e2e8f0; padding: 1.2rem .8rem 2rem;
+}
+.toc-rail > .toc-title {
+  font-size: .7rem; font-weight: 800; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--text-muted);
+  margin-bottom: 1rem; padding: 0 .3rem;
+}
+
+/* Week group in TOC */
+.toc-week { margin-bottom: 1rem; }
+.toc-week-header {
+  display: flex; align-items: center; gap: .45rem;
+  font-size: .78rem; font-weight: 700; color: var(--text);
+  padding: .3rem .4rem; border-radius: 5px; cursor: default;
+  margin-bottom: .25rem;
+}
+.toc-week-dot {
+  width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+}
+.toc-week ol { list-style: none; counter-reset: toc-item; padding-left: 1rem; }
+.toc-week li { counter-increment: toc-item; margin-bottom: .1rem; }
+.toc-week a {
+  display: flex; align-items: baseline; gap: .35rem;
+  font-size: .79rem; color: var(--text-muted); text-decoration: none;
+  padding: .2rem .4rem; border-radius: 4px; transition: background .15s, color .15s;
+  line-height: 1.4;
+}
+.toc-week a::before {
+  content: counter(toc-item); font-size: .68rem;
+  color: #94a3b8; min-width: 1.1rem; flex-shrink: 0;
+}
+.toc-week a:hover { background: var(--blue-bg); color: var(--blue-border); }
+
+/* Upcoming week in TOC */
+.toc-week.upcoming .toc-week-header { color: var(--text-muted); }
+.toc-week.upcoming .toc-week-note {
+  font-size: .74rem; color: #94a3b8; font-style: italic;
+  padding: .15rem .4rem;
+}
+
+main { flex: 1; max-width: 920px; padding: 2.5rem 2rem 5rem; }
+
+/* ── Page Header ── */
+.page-header { margin-bottom: 3rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 1.5rem; }
+.page-header h1 { font-size: 2rem; font-weight: 800; color: var(--text); }
+.page-header .subtitle { color: var(--text-muted); margin-top: .35rem; font-size: .95rem; }
+.legend { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1rem; }
+.legend-item { display: flex; align-items: center; gap: .4rem; font-size: .8rem; }
+.legend-dot { width: 12px; height: 12px; border-radius: 50%; }
+
+/* ── Week Section ── */
+.week-section { margin-bottom: 4rem; scroll-margin-top: 1rem; }
+.week-banner {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 1rem 1.4rem; border-radius: 10px;
+  margin-bottom: 2rem; border-left: 5px solid;
+}
+.week-banner .week-tag {
+  font-size: .72rem; font-weight: 800; letter-spacing: .1em;
+  text-transform: uppercase; opacity: .8;
+}
+.week-banner h2 { font-size: 1.4rem; font-weight: 800; }
+.week-banner .week-meta { font-size: .83rem; opacity: .7; margin-top: .1rem; }
+
+/* Per-week colour themes */
+.week-section[data-week="4-5"] .week-banner {
+  background: #f0f9ff; border-color: var(--week-accent-1); color: #0c4a6e;
+}
+
+/* ── Concept Sections ── */
+.concept-section { margin-bottom: 2.5rem; scroll-margin-top: 1.5rem; }
+.concept-section > h3 {
+  font-size: 1.2rem; font-weight: 700; color: var(--text);
+  border-left: 4px solid #cbd5e1; padding-left: .8rem;
+  margin-bottom: 1.1rem;
+}
+
+/* ── Colored Blocks ── */
+.def-block, .axiom-block, .example-block, .formula-block, .practice-block {
+  position: relative; border-left: 4px solid; border-radius: var(--radius);
+  padding: 1rem 1.1rem 1rem 1.2rem; margin-bottom: 1.1rem;
+  box-shadow: var(--shadow);
+}
+.block-badge {
+  position: absolute; top: .65rem; right: .75rem;
+  font-size: .67rem; font-weight: 700; letter-spacing: .06em;
+  text-transform: uppercase; padding: .18rem .55rem;
+  border-radius: 999px; color: #fff;
+}
+.def-block    { border-color: var(--blue-border);   background: var(--blue-bg);   }
+.def-block    .block-badge { background: var(--blue-badge);   }
+.axiom-block  { border-color: var(--amber-border);  background: var(--amber-bg);  }
+.axiom-block  .block-badge { background: var(--amber-badge);  }
+.example-block{ border-color: var(--green-border);  background: var(--green-bg);  }
+.example-block .block-badge{ background: var(--green-badge);  }
+.formula-block{ border-color: var(--violet-border); background: var(--violet-bg); }
+.formula-block .block-badge{ background: var(--violet-badge); }
+.practice-block{ border-color: var(--grey-border);  background: var(--grey-bg);   }
+.practice-block .block-badge{ background: var(--grey-badge);  }
+
+.block-title { font-weight: 700; margin-bottom: .45rem; font-size: 1rem; }
+.block-label { font-weight: 600; color: var(--text-muted); font-size: .85rem; margin: .75rem 0 .25rem; }
+.result-line { font-weight: 700; margin-top: .6rem; }
+
+/* ── Steps ── */
+.steps { margin: .5rem 0 0 .5rem; }
+.steps li { margin-bottom: .35rem; }
+ol.steps, ul.steps { padding-left: 1.4rem; }
+
+/* ── Details/summary ── */
+details { margin-top: .5rem; }
+details[open] summary { margin-bottom: .6rem; }
+summary {
+  cursor: pointer; font-weight: 600; font-size: .9rem;
+  color: var(--text-muted); user-select: none;
+  list-style: none; display: flex; align-items: center; gap: .4rem;
+}
+summary::before { content: '▶'; font-size: .7rem; transition: transform .2s; }
+details[open] summary::before { transform: rotate(90deg); }
+
+/* ── Sub-headings within a concept section ── */
+.sub-h { font-size: 1.05rem; font-weight: 700; margin: 1.6rem 0 .7rem;
+  color: #334155; border-bottom: 1px solid #e2e8f0; padding-bottom: .3rem; }
+
+/* ── Responsive ── */
+@media (max-width: 960px) {
+  .toc-rail { display: none; }
+  main { padding: 1.5rem 1rem 3rem; }
+}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- ═══════════════════════════════ TOC RAIL ═══════════════════════════════ -->
+<nav class="toc-rail" aria-label="Table of contents">
+  <div class="toc-title">Contents</div>
+
+  <!-- ── Weeks 4-5 ── -->
+  <div class="toc-week">
+    <div class="toc-week-header">
+      <div class="toc-week-dot" style="background:var(--week-accent-1)"></div>
+      Weeks 4–5 · Probability
+    </div>
+    <ol>
+      <li><a href="#classical-prob">Classical Probability</a></li>
+      <li><a href="#combinatorial-prob">Combinatorial Probability</a></li>
+      <li><a href="#sample-space">Sample Space Construction</a></li>
+      <li><a href="#conditional-prob">Conditional Probability</a></li>
+      <li><a href="#total-prob">Law of Total Probability</a></li>
+      <li><a href="#bayes">Bayes' Theorem</a></li>
+      <li><a href="#chain-rule">Chain Rule</a></li>
+      <li><a href="#independence">Independence of Events</a></li>
+      <li><a href="#weighted-sampling">Weighted Sampling</a></li>
+      <li><a href="#random-variables">Random Variables</a></li>
+      <li><a href="#pmf">Probability Mass Function</a></li>
+      <li><a href="#expectation">Expectation</a></li>
+      <li><a href="#linearity">Linearity of Expectation</a></li>
+      <li><a href="#distributions">Special Distributions</a></li>
+      <li><a href="#markov">Markov Inequality</a></li>
+    </ol>
+  </div>
+
+  <!-- ── Placeholder for future weeks ── -->
+  <!-- ADD NEW WEEK TOC GROUPS HERE, following the same pattern:
+  <div class="toc-week">
+    <div class="toc-week-header">
+      <div class="toc-week-dot" style="background:var(--week-accent-2)"></div>
+      Week 6 · [Topic]
+    </div>
+    <ol>
+      <li><a href="#concept-id">Concept Name</a></li>
+    </ol>
+  </div>
+  -->
+
+</nav>
+
+<!-- ═══════════════════════════════ MAIN ═══════════════════════════════ -->
+<main>
+
+<header class="page-header">
+  <h1>Discrete Mathematics</h1>
+  <p class="subtitle">MScDS &nbsp;·&nbsp; IIIT Hyderabad &nbsp;·&nbsp; Complete concept reference with worked derivations</p>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--blue-badge)"></div> Definition</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--amber-badge)"></div> Axiom / Theorem</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--green-badge)"></div> Worked Example</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--violet-badge)"></div> Key Formula</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--grey-badge)"></div> Practice Problem</div>
+  </div>
+</header>
+
+<!-- ╔═══════════════════════════════════════════════════════════════════╗
+     ║  WEEKS 4–5 · PROBABILITY THEORY                                  ║
+     ╚═══════════════════════════════════════════════════════════════════╝ -->
+<section class="week-section" id="week4-5" data-week="4-5">
+  <div class="week-banner">
+    <div>
+      <div class="week-tag">Weeks 4 – 5</div>
+      <h2>Probability Theory</h2>
+      <div class="week-meta">15 concepts &nbsp;·&nbsp; 8 lectures &nbsp;·&nbsp; Classical probability · Conditional probability · Bayes · Random variables · Expectation · Markov inequality</div>
+    </div>
+  </div>
+
+  <!-- §1 ─ CLASSICAL PROBABILITY ────────────────────────────────────── -->
+  <section class="concept-section" id="classical-prob">
+    <h3>1 · Classical Probability &amp; Equally Likely Outcomes</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Sample Space and Event</div>
+      A <strong>sample space</strong> \(S\) is the set of all possible outcomes of an experiment.
+      An <strong>event</strong> \(E\) is any subset \(E \subseteq S\).
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Axiom</span>
+      <div class="block-title">Kolmogorov Axioms of Probability</div>
+      For any event \(E \subseteq S\):
+      <ol class="steps">
+        <li>\(P(E) \geq 0\)</li>
+        <li>\(P(S) = 1\)</li>
+        <li>For mutually disjoint events \(E_1, E_2, \ldots\): \(\displaystyle P\!\left(\bigcup_i E_i\right) = \sum_i P(E_i)\)</li>
+      </ol>
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Formula</span>
+      <div class="block-title">Equally Likely Outcomes</div>
+      When every outcome in \(S\) is equally likely:
+      \[P(E) = \frac{|E|}{|S|} = \frac{\text{number of outcomes in } E}{\text{total number of outcomes}}\]
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Fair Die — Even Outcomes</div>
+      \(S = \{1,2,3,4,5,6\}\), \(E = \{2,4,6\}\).
+      \[P(E) = \frac{|E|}{|S|} = \frac{3}{6} = \frac{1}{2}\]
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Fair Coin — Equal Probability Assumption</div>
+      For a coin toss, \(S = \{H, T\}\). We <em>assume</em> \(P(H) = P(T) = \tfrac{1}{2}\).
+      This is an assignment, not a physical law — in practice many factors (coin geometry, toss force, air) affect the true probability, but the fair-coin model is the standard assumption. The IPL match coin-toss example from lecture illustrates that we assign this value even without certainty about the physical outcome.
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Axiom</span>
+      <div class="block-title">Monotonicity</div>
+      If \(E \subseteq F\) then \(P(E) \leq P(F)\). Proof: \(F = E \cup (F \setminus E)\) is a disjoint union, so
+      \(P(F) = P(E) + P(F \setminus E) \geq P(E)\).
+    </div>
+  </section>
+
+  <!-- §2 ─ COMBINATORIAL PROBABILITY ─────────────────────────────────── -->
+  <section class="concept-section" id="combinatorial-prob">
+    <h3>2 · Combinatorial Probability</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Binomial Coefficient</div>
+      \(\displaystyle\binom{n}{k} = \frac{n!}{k!\,(n-k)!}\) — number of ways to choose \(k\) items from \(n\) without regard to order.
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">N Balls, K Picks — Probability of Picking the Special Ball</div>
+      <p>A bag has \(N\) balls, exactly one special. Pick \(K\) balls. What is \(P(\text{special ball picked})\)?</p>
+
+      <details open>
+        <summary>Derivation 1 — First Principles (Sequential)</summary>
+        <p>Represent picks as \(\mathbf{e} \in \{0,1\}^K\) where \(1\) = special (at most once). Event \(E\): the \(K\) strings with exactly one \(1\).</p>
+        <p>For e.g. \((1,0,0,\ldots,0)\): pick special first (\(\tfrac{1}{N}\)), then all remaining are non-special (prob 1 each round):</p>
+        \[\frac{1}{N} \cdot 1 \cdot 1 \cdots = \frac{1}{N}\]
+        <p>\(|E| = K\) (one position for the \(1\)), so:</p>
+        \[P(E) = K \cdot \frac{1}{N} = \frac{K}{N}\]
+      </details>
+
+      <details open>
+        <summary>Derivation 2 — Combinatorial Shortcut</summary>
+        \[P(E) = \frac{\binom{1}{1}\binom{N-1}{K-1}}{\binom{N}{K}} = \frac{\frac{(N-1)!}{(K-1)!(N-K)!}}{\frac{N!}{K!(N-K)!}} = \frac{K}{N}\]
+      </details>
+
+      <p class="result-line">Result: \(\displaystyle P(\text{special ball picked}) = \dfrac{K}{N}\)</p>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">52-Card Deck — Exactly 3 Red and 3 Black from 6 Picks</div>
+      <p>Deck: 26 red + 26 black cards. Pick 6. \(P(\text{exactly 3 red and 3 black})\)?</p>
+
+      <details open>
+        <summary>Derivation 1 — First Principles</summary>
+        <p>Represent picks as \(\mathbf{e}\in\{0,1\}^6\) (0=red, 1=black). For the specific sequence \((0,0,0,1,1,1)\):</p>
+        \[P = \frac{26}{52}\cdot\frac{25}{51}\cdot\frac{24}{50}\cdot\frac{26}{49}\cdot\frac{25}{48}\cdot\frac{24}{47}\]
+        <p>All \(\binom{6}{3} = 20\) balanced sequences share the same probability, so:</p>
+        \[P(E) = \binom{6}{3} \cdot \frac{(26 \cdot 25 \cdot 24)^2}{52 \cdot 51 \cdot 50 \cdot 49 \cdot 48 \cdot 47}\]
+      </details>
+
+      <details open>
+        <summary>Derivation 2 — Combinatorial</summary>
+        \[P(E) = \frac{\binom{26}{3}\binom{26}{3}}{\binom{52}{6}}\]
+        Expanding confirms equality with Derivation 1.
+      </details>
+
+      <p class="result-line">Result: \(\displaystyle P(E) = \dfrac{\binom{26}{3}^2}{\binom{52}{6}} \approx 0.3251\)</p>
+    </div>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Sample Space as Ordered Vectors</div>
+      Representing outcomes as <em>ordered vectors</em> (rather than sets) preserves position integrity — e.g. \((0,1,0,0,1,1)\) differs from \((1,0,0,0,1,1)\) because pick order matters for computing sequential probabilities.
+    </div>
+
+    <div class="practice-block">
+      <span class="block-badge">Practice</span>
+      More problems of this type appear in the problem set. Always try first-principles derivation before applying shortcut formulas.
+    </div>
+  </section>
+
+  <!-- §3 ─ SAMPLE SPACE CONSTRUCTION ─────────────────────────────────── -->
+  <section class="concept-section" id="sample-space">
+    <h3>3 · Sample Space Construction</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Two Methods</div>
+      <ol class="steps">
+        <li><strong>Enumeration</strong> — list all outcomes directly as tuples/vectors.</li>
+        <li><strong>Tree method</strong> — branch at each sequential decision; each root-to-leaf path is one outcome. The probability of a leaf = product of edge probabilities along its path.</li>
+      </ol>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Monty Hall — Tree-Based Sample Space</div>
+      <p>Three doors A, B, C. Car behind one door (uniformly random). Contestant picks a door. Host opens a goat-door (uniformly among valid choices if two are available).</p>
+      <p>Each outcome: <strong>(car location, contestant pick, door host opens)</strong>.</p>
+
+      <details open>
+        <summary>Full 12-outcome sample space</summary>
+        <ul class="steps">
+          <li>Car location: A, B, or C each with prob \(\tfrac{1}{3}\)</li>
+          <li>Contestant pick: A, B, or C each with prob \(\tfrac{1}{3}\)</li>
+          <li>Host: prob 1 when forced, \(\tfrac{1}{2}\) each when two goat-doors remain</li>
+        </ul>
+        <table style="border-collapse:collapse;font-size:.87rem;margin:.6rem 0">
+          <tr style="border-bottom:1px solid #cbd5e1">
+            <th style="padding:.3rem .7rem;text-align:left">Outcome</th>
+            <th style="padding:.3rem .7rem">Probability</th>
+            <th style="padding:.3rem .7rem">Switch wins?</th>
+          </tr>
+          <tr><td style="padding:.22rem .7rem">(A,A,B)</td><td style="text-align:center">\(\tfrac{1}{18}\)</td><td style="text-align:center">No</td></tr>
+          <tr style="background:#f8fafc"><td style="padding:.22rem .7rem">(A,A,C)</td><td style="text-align:center">\(\tfrac{1}{18}\)</td><td style="text-align:center">No</td></tr>
+          <tr><td style="padding:.22rem .7rem">(A,B,C)</td><td style="text-align:center">\(\tfrac{1}{9}\)</td><td style="text-align:center"><strong>Yes</strong></td></tr>
+          <tr style="background:#f8fafc"><td style="padding:.22rem .7rem">(A,C,B)</td><td style="text-align:center">\(\tfrac{1}{9}\)</td><td style="text-align:center"><strong>Yes</strong></td></tr>
+          <tr><td style="padding:.22rem .7rem">(B,A,C)</td><td style="text-align:center">\(\tfrac{1}{9}\)</td><td style="text-align:center"><strong>Yes</strong></td></tr>
+          <tr style="background:#f8fafc"><td style="padding:.22rem .7rem">(B,B,A)</td><td style="text-align:center">\(\tfrac{1}{18}\)</td><td style="text-align:center">No</td></tr>
+          <tr><td style="padding:.22rem .7rem">(B,B,C)</td><td style="text-align:center">\(\tfrac{1}{18}\)</td><td style="text-align:center">No</td></tr>
+          <tr style="background:#f8fafc"><td style="padding:.22rem .7rem">(B,C,A)</td><td style="text-align:center">\(\tfrac{1}{9}\)</td><td style="text-align:center"><strong>Yes</strong></td></tr>
+          <tr><td style="padding:.22rem .7rem">(C,A,B)</td><td style="text-align:center">\(\tfrac{1}{9}\)</td><td style="text-align:center"><strong>Yes</strong></td></tr>
+          <tr style="background:#f8fafc"><td style="padding:.22rem .7rem">(C,B,A)</td><td style="text-align:center">\(\tfrac{1}{9}\)</td><td style="text-align:center"><strong>Yes</strong></td></tr>
+          <tr><td style="padding:.22rem .7rem">(C,C,A)</td><td style="text-align:center">\(\tfrac{1}{18}\)</td><td style="text-align:center">No</td></tr>
+          <tr style="background:#f8fafc"><td style="padding:.22rem .7rem">(C,C,B)</td><td style="text-align:center">\(\tfrac{1}{18}\)</td><td style="text-align:center">No</td></tr>
+        </table>
+        Sum \(= 6 \cdot \tfrac{1}{18} + 6 \cdot \tfrac{1}{9} = \tfrac{1}{3} + \tfrac{2}{3} = 1\). ✓
+      </details>
+
+      \[P(\text{win by switching}) = 6 \times \frac{1}{9} = \frac{2}{3}\]
+      <p class="result-line">Counter-intuitive result: <strong>always switch</strong> — win with prob \(\tfrac{2}{3}\) vs. \(\tfrac{1}{3}\) if you stay.</p>
+    </div>
+  </section>
+
+  <!-- §4 ─ CONDITIONAL PROBABILITY ───────────────────────────────────── -->
+  <section class="concept-section" id="conditional-prob">
+    <h3>4 · Conditional Probability</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Conditional Probability</div>
+      The probability of event \(E\) <strong>given</strong> that \(F\) occurred:
+      \[P(E \mid F) = \frac{P(E \cap F)}{P(F)}, \quad P(F) > 0\]
+      Equivalently: \(P(E \cap F) = P(E \mid F)\,P(F)\).
+      <p style="margin-top:.5rem">Philosophically, conditioning on \(F\) makes \(F\) the new universe; \(E \cap F\) is the event of interest within it.</p>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Two Coins — Conditioning on Distinct Outcomes</div>
+      <p>\(S = \{HH, HT, TH, TT\}\), all equally likely.</p>
+      <ul class="steps">
+        <li>\(E\) = outcomes distinct = \(\{HT, TH\}\), \(P(E) = \tfrac{1}{2}\)</li>
+        <li>\(F\) = first toss is H = \(\{HH, HT\}\), \(P(F) = \tfrac{1}{2}\)</li>
+      </ul>
+      \[P(F \mid E) = \frac{P(F \cap E)}{P(E)} = \frac{P(\{HT\})}{P(\{HT,TH\})} = \frac{1/4}{1/2} = \frac{1}{2}\]
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Two Dice — P(at least one die odd | sum is even)</div>
+      <p>\(|S|=36\). Even sum requires both dice odd or both even. \(|F|=18\), \(P(F)=\tfrac{1}{2}\).</p>
+      <p>\(E \cap F\) = both dice odd (9 outcomes), since odd+even = odd ≠ even.</p>
+      \[P(E \mid F) = \frac{9/36}{18/36} = \frac{1}{2}\]
+      <div class="practice-block" style="margin-top:.7rem">
+        <span class="block-badge">Practice</span>
+        Complete the full sample space enumeration for this problem.
+      </div>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Red &amp; Blue Balls Without Replacement — P(first is blue | k of n are blue)</div>
+      <p>Bag: \(R\) red + \(B\) blue. Pick \(n\) without replacement. \(E\) = first is blue, \(F\) = exactly \(k\) of the \(n\) are blue.</p>
+      <details open>
+        <summary>Full derivation</summary>
+        \[P(E \cap F) = \frac{B}{R+B} \cdot \frac{\binom{B-1}{k-1}\binom{R}{n-k}}{\binom{R+B-1}{n-1}}, \qquad P(F) = \frac{\binom{B}{k}\binom{R}{n-k}}{\binom{R+B}{n}}\]
+        After factorial cancellation:
+        \[P(E \mid F) = \frac{k}{n}\]
+      </details>
+      <p class="result-line">Result: \(\displaystyle P(\text{first blue} \mid k \text{ of } n \text{ are blue}) = \dfrac{k}{n}\)</p>
+      <p>Intuition: by symmetry, any of the \(n\) positions is equally likely to be blue, so position 1 is blue with prob \(k/n\).</p>
+    </div>
+  </section>
+
+  <!-- §5 ─ LAW OF TOTAL PROBABILITY ──────────────────────────────────── -->
+  <section class="concept-section" id="total-prob">
+    <h3>5 · Law of Total Probability</h3>
+
+    <div class="axiom-block">
+      <span class="block-badge">Theorem</span>
+      <div class="block-title">Two-Part Version</div>
+      For any event \(A\) with \(0 < P(A) < 1\):
+      \[P(E) = P(E \mid A)\,P(A) + P(E \mid A^c)\,P(A^c)\]
+      Follows from \(E = (E \cap A) \cup (E \cap A^c)\), a disjoint union.
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Theorem</span>
+      <div class="block-title">General (Partition) Version</div>
+      If \(\{F_1, \ldots, F_\ell\}\) is a partition of \(S\):
+      \[P(E) = \sum_{i=1}^{\ell} P(E \mid F_i)\,P(F_i)\]
+      This generalization (from week 5) shows you can use any finer partition of the hypothesis space — not just \(F\) and \(F^c\).
+    </div>
+  </section>
+
+  <!-- §6 ─ BAYES' THEOREM ─────────────────────────────────────────────── -->
+  <section class="concept-section" id="bayes">
+    <h3>6 · Bayes' Theorem</h3>
+
+    <div class="axiom-block">
+      <span class="block-badge">Theorem</span>
+      <div class="block-title">Bayes' Rule</div>
+      \[P(F \mid E) = \frac{P(E \mid F)\,P(F)}{P(E \mid F)\,P(F) + P(E \mid F^c)\,P(F^c)}\]
+      <p>Derivation: from \(P(E \cap F) = P(E \mid F)P(F) = P(F \mid E)P(E)\), solve for \(P(F \mid E)\) and expand \(P(E)\) via total probability.</p>
+      <p style="margin-top:.5rem"><em>\(P(F)\)</em> = <strong>prior</strong>; &nbsp;<em>\(P(F \mid E)\)</em> = <strong>posterior</strong> after seeing evidence \(E\).</p>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Monty Hall — Bayes' Rule Approach</div>
+      <p>\(H\) = "initial pick is the car" (\(P(H)=\tfrac{1}{3}\)). \(E\) = "host opens a goat door" (always happens, so \(P(E\mid H)=P(E\mid H^c)=1\)).</p>
+      \[P(H \mid E) = \frac{1 \cdot \tfrac{1}{3}}{1\cdot\tfrac{1}{3} + 1\cdot\tfrac{2}{3}} = \frac{1}{3}\]
+      <p class="result-line">\(P(H^c \mid E) = \tfrac{2}{3}\) — switching wins with prob \(\tfrac{2}{3}\). Confirms the tree result.</p>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Student Knows the Answer</div>
+      <p>Student knows answer with prob \(p\); guesses correctly with prob \(\tfrac{1}{m}\) if not. \(E\) = correct, \(F\) = knows.</p>
+      \[P(F \mid E) = \frac{1 \cdot p}{1 \cdot p + \tfrac{1}{m}(1-p)} = \frac{mp}{p(m-1)+1}\]
+      <p class="result-line">Result: \(\displaystyle P(\text{knows} \mid \text{correct}) = \dfrac{mp}{p(m-1)+1}\). As \(m\to\infty\), this approaches 1.</p>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Medical Diagnostic Test</div>
+      <p>Test: 95% accurate (\(P(+\mid D)=0.95\)), false-positive rate 1% (\(P(+\mid D^c)=0.01\)), disease prevalence 0.5% (\(P(D)=0.005\)).</p>
+      <details open>
+        <summary>Full derivation</summary>
+        \begin{align*}
+        P(D \mid +) &= \frac{0.95 \times 0.005}{0.95 \times 0.005 + 0.01 \times 0.995} \\[6pt]
+                    &= \frac{0.00475}{0.00475 + 0.00995} = \frac{95}{294} \approx 0.323
+        \end{align*}
+      </details>
+      <p class="result-line">~32% chance of disease given a positive result. The low prior \(P(D)\) dominates — this is the <strong>base rate fallacy</strong>.</p>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Police Inspector — Suspect Guilt</div>
+      <p>\(P(G)=0.6\) (inspector's prior). Evidence: crime was committed by a left-handed person; \(P(C\mid G)=1\). Base rate of left-handedness \(P(C)\approx 0.2\).</p>
+      <details open>
+        <summary>Derivation using inequality</summary>
+        <p>Left-handedness among the innocent population is at most the base rate, so \(P(C \mid G^c) \leq 0.2\). Using Bayes:</p>
+        \[P(G \mid C) \geq \frac{1 \times 0.6}{1 \times 0.6 + 0.2 \times 0.4} = \frac{0.6}{0.68} = \frac{60}{68}\]
+      </details>
+      <p class="result-line">Result: \(\displaystyle P(\text{guilty} \mid \text{left-handed}) \geq \dfrac{60}{68} \approx 0.882\)</p>
+      <p>First use of an <em>inequality</em> inside Bayes — because we only have an upper bound on \(P(C \mid G^c)\).</p>
+    </div>
+  </section>
+
+  <!-- §7 ─ CHAIN RULE ─────────────────────────────────────────────────── -->
+  <section class="concept-section" id="chain-rule">
+    <h3>7 · Chain Rule (Multiplication Rule)</h3>
+
+    <div class="axiom-block">
+      <span class="block-badge">Theorem</span>
+      <div class="block-title">Chain Rule of Probability</div>
+      \[P\!\left(\bigcap_{i=1}^n E_i\right) = \prod_{i=1}^{n} P\!\left(E_i \,\middle|\, \bigcap_{j=1}^{i-1} E_j\right)\]
+      Base case: \(P(E_1 \cap E_2) = P(E_2 \mid E_1)\,P(E_1)\). Extend inductively.
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Red and White Balls — Chain Rule in Three Steps</div>
+      <p>Bag: 8 red + 4 white (12 total). Pick without replacement. \(E_1, E_2\) = red, \(E_3\) = white.</p>
+      <details open>
+        <summary>P(first two red)</summary>
+        \[P(E_1) = \frac{8}{12}, \quad P(E_2 \mid E_1) = \frac{7}{11} \implies P(E_1 \cap E_2) = \frac{8}{12}\cdot\frac{7}{11} = \frac{14}{33}\]
+      </details>
+      <details open>
+        <summary>P(first two red, third white)</summary>
+        <p>10 balls remain: 6 red + 4 white. \(P(E_3 \mid E_1 \cap E_2) = \tfrac{4}{10}\).</p>
+        \[P(E_1 \cap E_2 \cap E_3) = \frac{4}{10} \cdot \frac{14}{33} = \frac{28}{165}\]
+      </details>
+      <p class="result-line">Results: \(P(\text{first 2 red}) = \tfrac{14}{33}\), \(\quad P(\text{first 2 red, 3rd white}) = \tfrac{28}{165}\)</p>
+    </div>
+  </section>
+
+  <!-- §8 ─ INDEPENDENCE ───────────────────────────────────────────────── -->
+  <section class="concept-section" id="independence">
+    <h3>8 · Independence of Events</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Two Events Independent</div>
+      \(E\) and \(F\) are <strong>independent</strong> if:
+      \[P(E \mid F) = P(E) \quad \Longleftrightarrow \quad P(E \cap F) = P(E)\,P(F)\]
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Axiom</span>
+      <div class="block-title">Mutual Independence (Product Rule)</div>
+      \(E_1, \ldots, E_n\) are <strong>mutually independent</strong> if for every subset \(I \subseteq \{1,\ldots,n\}\):
+      \[P\!\left(\bigcap_{i \in I} E_i\right) = \prod_{i \in I} P(E_i)\]
+      Pairwise independence does <em>not</em> imply mutual independence.
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Sequential Coin Tosses</div>
+      \[P(\text{HTTHH}) = \left(\frac{1}{2}\right)^5 = \frac{1}{32}\]
+    </div>
+  </section>
+
+  <!-- §9 ─ WEIGHTED SAMPLING ──────────────────────────────────────────── -->
+  <section class="concept-section" id="weighted-sampling">
+    <h3>9 · Weighted / Non-Uniform Sampling</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Weighted Sampling</div>
+      Each item \(i\) has weight \(w_i\). Probability of selecting it:
+      \[P(\text{item } i) = \frac{w_i}{\sum_j w_j}\]
+      After removal, the denominator updates accordingly.
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Red (weight \(R\)) and White (weight \(W\)) Balls</div>
+      <p>8 red + 4 white, weights \(R\) and \(W\).</p>
+      <details open>
+        <summary>Two red picks in sequence</summary>
+        \[P(E_1) = \frac{8R}{8R+4W}, \qquad P(E_2 \mid E_1) = \frac{7R}{7R+4W}\]
+        \[P(E_1 \cap E_2) = \frac{8R}{8R+4W} \cdot \frac{7R}{7R+4W}\]
+        <p>If second pick is white instead: \(P(E_2^{\text{white}} \mid E_1) = \dfrac{4W}{7R+4W}\).</p>
+      </details>
+      <p class="result-line">Key insight: each draw's probability is relative to the <em>remaining total weight</em>. Chain rule still applies.</p>
+    </div>
+  </section>
+
+  <!-- §10 ─ RANDOM VARIABLES ──────────────────────────────────────────── -->
+  <section class="concept-section" id="random-variables">
+    <h3>10 · Random Variables</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Random Variable</div>
+      A <strong>random variable</strong> \(X\) is a function \(X: S \to \mathbb{R}\). The <strong>range</strong> of \(X\) is the set of values it can take.
+    </div>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Types</div>
+      <ul class="steps">
+        <li><strong>Discrete</strong>: countable range (e.g., \(\mathbb{N}\), \(\{0,\ldots,k\}\)).</li>
+        <li><strong>Indicator</strong>: \(X \in \{0,1\}\) — 1 if event occurs, 0 otherwise. Any indicator is Bernoulli.</li>
+        <li><strong>Continuous</strong>: range is an interval (future lectures).</li>
+      </ul>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Three Canonical Examples</div>
+      <ol class="steps">
+        <li><strong>Heads in \(k\) coin tosses</strong>: range \(\{0,1,\ldots,k\}\).</li>
+        <li><strong>Die roll</strong>: \(X: \{1,\ldots,6\} \to \{1,\ldots,6\}\) (identity). Range \(= \{1,\ldots,6\}\).</li>
+        <li><strong>Tosses until first heads (Geometric)</strong>: range \(= \mathbb{N} = \{1,2,3,\ldots\}\) — unbounded.</li>
+      </ol>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Highest-Valued Ball Among 3 Picks from 20</div>
+      <p>Let \(X\) = number of highest-valued ball. Range \(= \{3,\ldots,20\}\).</p>
+      \[P(X = k) = \frac{\binom{k-1}{2}}{\binom{20}{3}}, \quad k \in \{3,\ldots,20\}\]
+      \[P(X \geq 17) = \frac{\binom{16}{2}+\binom{17}{2}+\binom{18}{2}+\binom{19}{2}}{\binom{20}{3}}\]
+    </div>
+  </section>
+
+  <!-- §11 ─ PMF ───────────────────────────────────────────────────────── -->
+  <section class="concept-section" id="pmf">
+    <h3>11 · Probability Mass Function (PMF)</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">PMF</div>
+      \[p_v = P(X = v), \quad v \in \text{Range}(X)\]
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Axiom</span>
+      <div class="block-title">Normalization</div>
+      \[\sum_{v \in \text{Range}(X)} P(X = v) = 1\]
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Two Coin Tosses — PMF of Number of Heads</div>
+      <table style="border-collapse:collapse;font-size:.9rem;margin:.6rem 0">
+        <tr style="border-bottom:1px solid #cbd5e1">
+          <th style="padding:.3rem .9rem">\(v\)</th>
+          <th style="padding:.3rem .9rem">\(P(X=v)\)</th>
+          <th style="padding:.3rem .9rem">Outcomes</th>
+        </tr>
+        <tr><td style="padding:.25rem .9rem;text-align:center">0</td><td style="text-align:center">\(\tfrac{1}{4}\)</td><td style="padding:.25rem .9rem">TT</td></tr>
+        <tr style="background:#f8fafc"><td style="padding:.25rem .9rem;text-align:center">1</td><td style="text-align:center">\(\tfrac{1}{2}\)</td><td style="padding:.25rem .9rem">HT, TH</td></tr>
+        <tr><td style="padding:.25rem .9rem;text-align:center">2</td><td style="text-align:center">\(\tfrac{1}{4}\)</td><td style="padding:.25rem .9rem">HH</td></tr>
+      </table>
+      Sum: \(\tfrac{1}{4}+\tfrac{1}{2}+\tfrac{1}{4}=1\). ✓
+    </div>
+  </section>
+
+  <!-- §12 ─ EXPECTATION ───────────────────────────────────────────────── -->
+  <section class="concept-section" id="expectation">
+    <h3>12 · Expectation</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Expected Value (Mean)</div>
+      \[\mathbb{E}[X] = \sum_{v \in \text{Range}(X)} v \cdot P(X = v)\]
+      Probability-weighted average of all values. Need <em>not</em> be in the range of \(X\).
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Die Roll: \(\mathbb{E}[X] = 3.5\)</div>
+      \[\mathbb{E}[X] = \frac{1+2+3+4+5+6}{6} = \frac{21}{6} = 3.5\]
+      <p>3.5 is not an outcome of the die — the expected value is an average, not a realization.</p>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Two Coin Tosses: \(\mathbb{E}[\text{heads}] = 1\)</div>
+      \[\mathbb{E}[X] = 0 \cdot \tfrac{1}{4} + 1 \cdot \tfrac{1}{2} + 2 \cdot \tfrac{1}{4} = 1\]
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Sequential Exam Questions</div>
+      <p>Q1 worth \(V_1\), Q2 worth \(V_2\). Student can only attempt Q2 if Q1 correct. Knows Q1 with prob \(p_1\), Q2 with prob \(p_2\).</p>
+      <table style="border-collapse:collapse;font-size:.9rem;margin:.5rem 0">
+        <tr style="border-bottom:1px solid #cbd5e1">
+          <th style="padding:.3rem .8rem">\(X\)</th><th style="padding:.3rem .8rem">Probability</th><th style="padding:.3rem .8rem">Scenario</th>
+        </tr>
+        <tr><td style="padding:.22rem .8rem;text-align:center">0</td><td style="text-align:center">\(1-p_1\)</td><td style="padding:.22rem .8rem">Fails Q1</td></tr>
+        <tr style="background:#f8fafc"><td style="padding:.22rem .8rem;text-align:center">\(V_1\)</td><td style="text-align:center">\(p_1(1-p_2)\)</td><td style="padding:.22rem .8rem">Passes Q1, fails Q2</td></tr>
+        <tr><td style="padding:.22rem .8rem;text-align:center">\(V_1+V_2\)</td><td style="text-align:center">\(p_1 p_2\)</td><td style="padding:.22rem .8rem">Passes both</td></tr>
+      </table>
+      \[\mathbb{E}[X] = p_1 V_1 + p_1 p_2 V_2\]
+    </div>
+  </section>
+
+  <!-- §13 ─ LINEARITY OF EXPECTATION ─────────────────────────────────── -->
+  <section class="concept-section" id="linearity">
+    <h3>13 · Linearity of Expectation</h3>
+
+    <div class="axiom-block">
+      <span class="block-badge">Theorem</span>
+      <div class="block-title">Linearity of Expectation</div>
+      For <em>any</em> random variables \(X_1, \ldots, X_n\) (independent or dependent):
+      \[\mathbb{E}\!\left[\sum_{i=1}^n X_i\right] = \sum_{i=1}^n \mathbb{E}[X_i], \qquad \mathbb{E}[aX] = a\,\mathbb{E}[X]\]
+      Holds regardless of dependence structure — one of the most powerful tools in probabilistic analysis.
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Expected Edges in a Random Graph</div>
+      <p>\(n\) vertices; each edge exists independently with prob \(\tfrac{1}{2}\). Let \(X_{ij}=\mathbf{1}[\text{edge }(i,j)\text{ exists}]\).</p>
+      \[\mathbb{E}[\text{edges}] = \sum_{i < j} \mathbb{E}[X_{ij}] = \binom{n}{2} \cdot \frac{1}{2} = \frac{n(n-1)}{4}\]
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Expected Triangles in a Random Graph</div>
+      <p>\(X_{ijk}=\mathbf{1}[\text{triangle on }i,j,k]\). All three edges needed, each prob \(\tfrac{1}{2}\):</p>
+      \[\mathbb{E}[X_{ijk}] = \frac{1}{8} \implies \mathbb{E}[\text{triangles}] = \binom{n}{3}\cdot\frac{1}{8} = \frac{n(n-1)(n-2)}{48}\]
+      <p>For edge prob \(p\): \(\mathbb{E} = \dbinom{n}{3}p^3\).</p>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Hat-Check Problem</div>
+      <p>\(m\) people, hats returned randomly. \(X_i=\mathbf{1}[\text{person }i\text{ gets own hat}]\), \(P(X_i=1)=\tfrac{1}{m}\).</p>
+      \[\mathbb{E}\!\left[\sum_{i=1}^m X_i\right] = m \cdot \frac{1}{m} = 1\]
+      <p class="result-line">Exactly <strong>1 person</strong> expected to get own hat, regardless of \(m\). (The \(X_i\) are highly dependent — linearity doesn't care.)</p>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Stock Price</div>
+      <p>Start ₹100. Each day: ×\(r\) with prob \(p\), ×\(\tfrac{1}{r}\) with prob \(1-p\).</p>
+      <details open>
+        <summary>Recursive expectation</summary>
+        \[\mathbb{E}[X_i] = \left(pr + \frac{1-p}{r}\right)\mathbb{E}[X_{i-1}]\]
+        Unrolling to day 0 (\(X_0 = 100\)):
+        \[\mathbb{E}[X_d] = \left(pr + \frac{1-p}{r}\right)^{\!d} \times 100\]
+      </details>
+    </div>
+  </section>
+
+  <!-- §14 ─ SPECIAL DISTRIBUTIONS ────────────────────────────────────── -->
+  <section class="concept-section" id="distributions">
+    <h3>14 · Special Distributions</h3>
+
+    <div class="sub-h">14a · Bernoulli Distribution</div>
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Bernoulli\((p)\)</div>
+      \(X \in \{0,1\}\), \(P(X=1)=p\), \(P(X=0)=1-p\). \(\mathbb{E}[X] = p\).
+      Building block for Binomial. Any indicator variable is Bernoulli.
+    </div>
+
+    <div class="sub-h">14b · Binomial Distribution</div>
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Binomial\((k,p)\)</div>
+      \(X\) = successes in \(k\) independent trials each with prob \(p\).
+      \[P(X = i) = \binom{k}{i} p^i (1-p)^{k-i}, \quad i \in \{0,\ldots,k\}\]
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Theorem</span>
+      <div class="block-title">PMF Sums to 1 — via Binomial Theorem</div>
+      \[\sum_{i=0}^{k} \binom{k}{i} p^i (1-p)^{k-i} = (p+(1-p))^k = 1 \quad \checkmark\]
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Formula</span>
+      <div class="block-title">Expected Value via Linearity: \(\mathbb{E}[X] = kp\)</div>
+      <p>Write \(X = X_1 + \cdots + X_k\), each \(X_i \sim \text{Bernoulli}(p)\):</p>
+      \[\mathbb{E}[X] = \sum_{i=1}^k \mathbb{E}[X_i] = k \cdot p\]
+      <p>If trials have different probabilities \(p_i\): \(\mathbb{E}[X] = \sum_{i=1}^k p_i\).</p>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Screw Pack Quality Control</div>
+      <p>10 screws/pack, each faulty independently with prob 0.01. Pack returned if \(\geq 2\) faulty. 1 million packs sold.</p>
+      <details open>
+        <summary>Compute P(return)</summary>
+        \begin{align*}
+        P(X=0) &= (0.99)^{10} \approx 0.9044 \\
+        P(X=1) &= 10 \cdot 0.01 \cdot (0.99)^9 \approx 0.0914 \\
+        P(X \geq 2) &\approx 1 - 0.9044 - 0.0914 = 0.0042 \approx 0.004
+        \end{align*}
+      </details>
+      \[\mathbb{E}[\text{returns}] \approx 0.004 \times 10^6 = 4{,}000 \text{ packs}\]
+    </div>
+
+    <div class="sub-h">14c · Geometric Distribution</div>
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Geometric\((p)\)</div>
+      \(X\) = trials until first success (including success trial). Each trial succeeds with prob \(p\).
+      \[P(X = i) = (1-p)^{i-1} p, \quad i \in \{1,2,3,\ldots\}\]
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Theorem</span>
+      <div class="block-title">PMF Sums to 1 (Geometric Series)</div>
+      \[\sum_{i=1}^{\infty}(1-p)^{i-1}p = p \cdot \frac{1}{1-(1-p)} = 1 \quad \checkmark\]
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Formula</span>
+      <div class="block-title">Expected Trials to First Success</div>
+      \[\mathbb{E}[X] = \frac{1}{p}\]
+      <p>Uses \(\displaystyle\sum_{i=1}^{\infty} i x^{i-1} = \frac{1}{(1-x)^2}\) with \(x=1-p\). Worked out in tutorial.</p>
+    </div>
+  </section>
+
+  <!-- §15 ─ MARKOV INEQUALITY ─────────────────────────────────────────── -->
+  <section class="concept-section" id="markov">
+    <h3>15 · Markov Inequality &amp; Tail Inequalities</h3>
+
+    <div class="axiom-block">
+      <span class="block-badge">Theorem</span>
+      <div class="block-title">Markov's Inequality</div>
+      For non-negative \(X\) and any \(a > 0\):
+      \[P(X \geq a) \leq \frac{\mathbb{E}[X]}{a}\]
+      <details open>
+        <summary>Proof sketch</summary>
+        \[\mathbb{E}[X] \geq \sum_{v \geq a} v \cdot P(X=v) \geq a \sum_{v \geq a} P(X=v) = a \cdot P(X \geq a)\]
+        Divide by \(a\).
+      </details>
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Formula</span>
+      <div class="block-title">Equivalent Forms</div>
+      Setting \(a = (1+\varepsilon)\mathbb{E}[X]\):
+      \[P\!\left(X \geq (1+\varepsilon)\,\mathbb{E}[X]\right) \leq \frac{1}{1+\varepsilon}\]
+      In particular, \(P(X \geq 2\,\mathbb{E}[X]) \leq \tfrac{1}{2}\).
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Binomial Tail Bound</div>
+      <p>\(X \sim \text{Binomial}(k,p)\), \(\mathbb{E}[X]=kp\).</p>
+      \[P\!\left(X > \frac{3k}{4}\right) \leq \frac{kp}{\tfrac{3k}{4}} = \frac{4p}{3}\]
+      <p>For a fair coin (\(p=\tfrac{1}{2}\)):</p>
+      \[P\!\left(\text{\# heads} > \frac{3k}{4}\right) \leq \frac{2}{3}\]
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Screw Pack — Markov Bound</div>
+      <p>\(\mathbb{E}[X] = 10 \times 0.01 = 0.1\). Markov gives:</p>
+      \[P(X \geq 2) \leq \frac{0.1}{2} = 0.05\]
+      <p>Loose bound (actual ≈ 0.004), but requires only the mean — no further distributional knowledge.</p>
+    </div>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Tail Inequalities (Preview)</div>
+      Markov is the weakest <strong>tail inequality</strong>. Stronger bounds (future sessions):
+      <ul class="steps">
+        <li><strong>Chebyshev's inequality</strong> — uses variance, gives two-sided deviation bound.</li>
+        <li><strong>Chernoff bounds</strong> — exponentially tight for sums of independent RVs.</li>
+      </ul>
+      The Binomial PMF peaks near \(kp\); tail inequalities quantify how fast mass falls away from this peak.
+    </div>
+
+    <div class="practice-block">
+      <span class="block-badge">Practice</span>
+      Tail inequality problems in the problem set. Apply Markov before moving to Chebyshev and Chernoff.
+    </div>
+  </section>
+
+</section>
+<!-- END WEEKS 4-5 ────────────────────────────────────────────────────── -->
+
+
+<!-- ╔═══════════════════════════════════════════════════════════════════╗
+     ║  ADD FUTURE WEEKS BELOW THIS LINE                                ║
+     ║                                                                   ║
+     ║  Template for a new week:                                         ║
+     ║                                                                   ║
+     ║  <section class="week-section" id="week6" data-week="6">         ║
+     ║    <div class="week-banner">                                      ║
+     ║      <div>                                                        ║
+     ║        <div class="week-tag">Week 6</div>                         ║
+     ║        <h2>Topic Name</h2>                                        ║
+     ║        <div class="week-meta">N concepts · description</div>      ║
+     ║      </div>                                                       ║
+     ║    </div>                                                         ║
+     ║                                                                   ║
+     ║    <section class="concept-section" id="concept-id">             ║
+     ║      <h3>1 · Concept Name</h3>                                   ║
+     ║      ... blocks here ...                                          ║
+     ║    </section>                                                     ║
+     ║  </section>                                                       ║
+     ║                                                                   ║
+     ║  Also add the week to the TOC rail above.                        ║
+     ╚═══════════════════════════════════════════════════════════════════╝ -->
+
+</main>
+</div>
+</body>
+</html>

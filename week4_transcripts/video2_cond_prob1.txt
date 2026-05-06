@@ -1,0 +1,193 @@
+So, welcome back. So, so far we have discussed basics of probability. Now we will see another
+problem which actually takes the basics a bit further. So, let us work with this problem
+which is very famous called Monteholl. So, many of you might have known this problem
+called Monteholl or Monteholl, whatever you call it. So, what is the problem? We have
+3 doors. So, there is door 1, door 2 and door 3. So, what is the premise of the game? So,
+the game is, so there is a car behind one of these doors, one of these doors. Further,
+are goats in the other two. So, the contestant is supposed to pick a door and this is the
+process of the game. So, first the contestant picks a door and second, so once the contestant
+picks a door, let us say the contestant picks a door once and then out of 2 and 3, so one of them,
+either one of them has a car and the other goat or both of them contain goat. So, what will the
+host do, the game show host? The host decides to open a door with a goat behind it and then the
+host asks, oh do you want to stick with this choice of 1 or do you want to flip it? So,
+let us say, let us consider a situation where there is a goat behind, so let us say we will
+put a goat behind 2, there is a goat behind 3 and there is a car here and as we said before,
+let the contestant choose the gate, the door 1. So, the contestant chooses this. So, now there
+are two choices for the host to open. The host can either open 2 or 3. So, this is the choices
+that the host makes. So, now then the host has the contestant saying, the host gives the contestant
+the option to change his answer, his or her or their answer. So, this is the game. So,
+you have 3 doors. So, behind one door is a car and behind the other 2 doors are goats
+and the contestant has to pick a door and they get what is behind the door. So, in this example,
+what we have here is the contestant, if they choose to pick 1 and there is a car behind door 1,
+they would get it. So, now let us also make the premise of the game a bit more
+explicit. So, the car is placed behind a door
+that is randomly chosen, chosen with equal probability.
+So, this makes sense. So, we have this like 3 doors. So, behind 3 doors,
+the host decides to place a car at a randomly chosen location. So, this is the premise of the
+problem and then what we are interested in is, so if the contestant decides to change their answer,
+what is the probability of their win? So, let us go through this problem again.
+So, you have 3 doors and a car is placed behind one of these doors at random and then
+the contestant picks a door. So, once the contestant picks a door, there are 2 other
+doors which are remaining. So, out of those 2 doors, at least one of them will have a goat.
+Now, the host says, I am going to pick one of the doors which contains a goat and open it to the
+contestant to see. So, it is possible that the contestant picks a door with a goat and then
+there is exactly one door for the host to open. In the other case, when the host
+has 2 choices of doors with goats, he can choose a door at random. So, with probability half each,
+let us say the contestant has actually chosen the door 1 which has a car behind it and the door 2
+and 3 have goats behind them. Now, the host has to open a door with a goat behind it. So,
+he can choose it at random. So, with probability half, he will pick the door 1. So, this is the
+premise of the game. And now, the whole point of this question here is, should the contestant
+change their answer or not? If they change their answer, what is the probability of their win?
+If they do not change their answer, what is the probability of their win? So, this is what the
+analysis that we want to do using the techniques that we already learned.
+Good, so far so good. So, based on what we have done so far, the first thing that we actually
+looked at was, what is the sample space for a given problem? So, we will first note what is the
+sample space. So, how would you define sample space for such a problem? So, let us see. This
+is slightly more complicated and thus it makes sense for us to do it more explicitly. The door
+with a car behind it. Two, the door chosen by
+the contestant. And three,
+the door the host decides to show. So, there are these three things going on.
+So, let us say, let us rename our doors as A, B and C, so that we can use numbers for something else.
+So, now, there are these three things going on. So, let us define a sample space to be the
+following tuples. The first location corresponds to door with car behind it. Let me remind you that
+this choice is random. And then, of all the possibilities, contestants make a pick.
+So, let us call this contestants pick. And then, in the third location, what I have here is door
+opened by
+the host. So, we have the following tuple.
+So, let us see how we can also build up the sample space using what are called trees. So,
+let us start. So, initially there is nothing. So, now, in the first instance, you have three options.
+The first option is the car is placed between behind either door A, B or C.
+So, this gives us three options. So, this I would say is for car location.
+Then, I have three choices for a contestant picking.
+So, this is A, this is B and this is C. Similarly, I have
+similar A, B and C. So, this is a choice of A, B, C, A, B, C. So, let me remind you this corresponds
+to door picked by the contestant. So, now, once the door is chosen by the contestant,
+the host has to make a choice. So, now, host knows where the car is and where the votes are.
+If the car is behind the door A and the contestant has chosen the door A, then
+this guy, the host has two choices. Either you can open B or you can open C. Both of them could
+have votes behind them, I mean would have votes behind them. On the other hand, if the car location
+was A, if the car location was A and the host, the contestant chose door B, then there is only
+one option for the host to open, that is C. Here, again, so if the contestant chose C and the door
+behind which the car is, is A, then what is the option that we have here? So, that option would
+be B. So, these are the ones which are opened by the host. Similarly, we do the following here.
+So, the car is behind the door B and then what do we have here? So, the contestant has chosen B,
+contestant has chosen A. So, there is only one option for the host to open, C.
+Similarly, here I would have two options because if the car is behind B and the contestant has
+chosen B, then the host has two options to open, A or C. Similarly, I have, if the contestant chooses
+to the C and the car is behind B, then what option do they have? They have only one option,
+which is A. Similarly, we fill this as well. So, you have, so this will be B, this will be
+A and this will be A and B. So, these are the choices that, so now,
+so what is the sample space here? Our sample space will be corresponding to this, it is going to be
+A, A and B and corresponding to the second one, it is going to be A,
+A, C and here I have A, B, C, then I have A, C, B. So, this is the correspondence
+space. And then I have here B, A, C, then similarly I have B, B, A, B, B, B and then I have B, C,
+A and then similarly I have C, A, B, then C, B, A and then you have C, C, A and C, C, B.
+So, all that you see on the right side, this form your sample space. So, this is what we are
+interested in. So, this is the first step of what we have done in the basics of probability.
+So, now the first question I ask here is, is the probability of each of these elements
+the same? So, as I said, probability is a value that we are saying. And for this,
+we are going to assign values ground up. So, what I mean by ground up is the following.
+So, I am going to assign a value here for this edge. So, I said each of these values are chosen
+uniformly at random. So, let us 1 by 3, I have 1 by 3 and I have 1 by 3 here.
+So, again a contestant also let us say they choose their door at random.
+So, again I have 1 by 3, 1 by 3, 1 by 3 here and then I have 1 by 3, 1 by 3 and 1 by 3 here.
+And then for the and the host in cases he has two options, he will pick one at random.
+So, let us call this half and half. So, in which case there is only one door they can
+the probability is 1. So, again 1, half, half, 1, 1, 1, half, half.
+Right. So, now what we will define probability for
+this element a, a, b. So, this probability is given by. So, it is going to be 1 by 3 into 1
+by 3 into 1 by 1 by 2. So, here it is going to be. So, it is 1 by 18. Similarly, here it is
+going to be, 1 by 18. So, here it is going to be 1 by 9, here it is going to be 1 by 9.
+So, here it is going to be 1 by 9. This is 1 by 18, this is 1 by 18,
+this is 1 by 9 and this is 1 by 9, this is 1 by 9 and this is 1 by 18 and this is 1 by 18.
+So, now, let us look at the following thing. So, the question was, given the setup that
+we have discussed so far, so the contestant has initially made a choice. Now, the host
+asked at the end of the process whether the contestant would like to change their option.
+So, here, so we will say what is the possibility that the contestant wins
+by after changing their option. So, that is what we want to decide.
+So, now, let us work things out, even work. So, where can a switching win?
+So, let us analyze the situation here. So, let us concentrate on this. So, the car is behind door
+A and the contestant has chosen B and then the contestant has chosen B and the host has shown
+the door C. So, it is known that the door C has a goat behind it. The contestant has to choose
+between A and B. And in this situation, upon switching, the contestant would win. So, again,
+so what are the conditions? So, here, the same thing follows, the same logic applies over here
+as well. So, if the contestant switches their choice, so what do you mean? So, the car is
+behind door A, the contestant has made a choice C, but since the goat is shown to be behind door B,
+so it is possible that the goat is behind door A or door C. So, now, the contestant has to make
+a choice. If they switch, then even under this, they will. So, now, we will first enumerate the
+cases where upon switching, the contestant wins. So, now, let us enumerate. So, let us tick them up.
+So, let us highlight them. So, this one, this one, these two are done, then this one as well,
+then this one, then what else? So, you have this one and then you have this one. These are the
+choices. If the contestant uses and uses them to switch, then the contestant wins. So, you have
+this, this, this, this and this and this. These are the cases where switching helps the contestant
+win. So, what is the cumulative probability? So, first, I will ask the students to actually
+sum this up and ensure that the sum is equal to 1. Further, so what do we have here? I have 1 by 9,
+6 times. So, what is the cumulative probability for these events? So, let us say the event that
+we are interested in, the event of interest is actually given by the set A, B, C, then A, C,
+B, then B, A, C, then B, C, A, then C, A, B and then C, B, A. So, if you observe carefully,
+there is also a pattern to which the elements that are being chosen into the event have.
+So, now let us use this probability. So, what is the probability of the event that we are
+interested in? So, let me call this event E. So, there is nothing but summation of probabilities
+of A, B, C plus probabilities of A, C, B plus probability of B, A, C plus probabilities of B,
+C, A plus probability of C, A, B plus probability of C, B, A. The reason I am doing it so explicitly
+is to revise your fundamentals. So, this is nothing but 2 by 3.
+So, what does this tell us? This tells us that if the contestant switches their option,
+then the probability that they win a car is two-thirds. So, this is where you distinguish
+reality from the probabilistic estimates. So, it could so happen that the contestant switches
+and does not win. But the probability tells us that in two-thirds of the cases,
+the contestant wins compared to one-thirds of the cases. So, what does probability tell us?
+Over all possible events that are possible. So, in two-thirds of the cases,
+the contestant wins. There are cases when in one-third of the cases the contestant loses
+by switching. But in two-thirds the contestant wins. So, now it is up to you and your wisdom
+to either go by probability or not. So, the mathematics tells you counter-intuitively
+that if you make a switch, you will win with a probability of two-thirds.
+It is a probabilistic estimate. It is not a guarantee that you will win or lose.
+So, what we have here is probabilistic. So, now what we will do here is,
+so we will make this statement explicitly, which says contestant
+could win with probability two-thirds if they switch their answer.
+So, this is what the probability tells us.
+So, this is a game that we have done. So, again, since we have renamed,
+so I will call this door A, door B, door C. So, this is a famous Monty Hall program.
+So, this has also bothered mathematicians for quite a while, as in like why this is happening.
+So, now what do we take away from this? So, the take away from this example is that
+you can actually list out the sample space using this tree method. So, previously we
+examined the case step by step and then listed our sample space. But there is also a tree-like way
+to describe your sample space. So, this is yet another tool in your pocket, right?
+So, good. So, what we are doing implicitly here is, I have defined the probability of the event
+A, B, C. This choice A, B, C is 1 by 3 times 1 by 3 times half, right? So, this is something
+which I posted on the carpet last time. But you can assume this to be another axiom of probability.
+Suppose, I have events
+A, B, C that happen independently.
+That is, the choice of whatever happens in B is independent of choice that is
+made in either A or C. So, or the way B is picked is independent of how things in A and C are put.
+So, now for this, the probability of A, B, C is nothing but the probability of A
+times probability of B times probability of C. So, this A, B, C is not to be confused with the
+door notations. So, for any sub-events E1, E2, and E3, if they are happening independently,
+what I would have is probability of the tuple E1, E2, and E3.
+The probability of this joint event, let us say, is probability of E1 times probability of E2
+times probability of E3. We have used this implicitly throughout our first lectures of
+probability. So, you can take this as another axiom of probability.
+So, I will call it axiom of independence
+and product.
+So, this is the name that we give to this. So, people have, people use different names,
+but for the sake of this course, let us call them axioms of independence and product.
+It is good. So, one of the interesting things is, here implicitly there is some conditioning
+happening. So, here this, so there is a sequence of choices that are being made.
+So, now the sequence, this choice, the option of having C is dependent on A and B.
+So, when I say this probability of picking C, the probability of picking C from the available options.
+So, probability of picking C overall, I am not saying that it is 1. So, given the sequence of
+choices that we have made so far, this force us that C is the only option available. So,
+the probability is 1. So, here the probability half is given with respect to the choices that
+are available. So, these choices that are available are conditioned normally to the
+choices that are available are conditioned on the random events that have happened so far.
+So, they are given this happening, I have these two choices that are left.
+So, given these choices that have happened, I have these two choices that I am doing.
+Given these two happened, I have this option. Given that this has happened, I have this option.
+So, there is some sort of a conditioning happening. Condition on this event, this event,
+I have this happening. So, let us formally define this conditioning and what is called conditional
+probability. So, what is conditional probability? So, the notation is as follows.
+So, probability of an event E conditioned on F is given by probability of E intersection F
+divided by probability of F. The other way to write this is probability of E intersection F
+is nothing but probability of E conditioned on F times probability of F. So, this is axiom of
+conditional probabilities. So, what does an axiom mean? Axiom is a ground truth.
+We are not trying to prove it. We just take using it as a ground truth and then working upwards.

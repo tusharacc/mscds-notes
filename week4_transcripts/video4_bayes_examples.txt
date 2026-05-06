@@ -1,0 +1,132 @@
+So, what have we done so far? We have seen the basics of probability, we have seen what
+is conditional independence, conditional probability sorry and we have seen what is called Bayes
+rule or Bayes theorem right and in all of these we have also seen what are called axioms.
+So, let us see more examples of Bayes theorem that we have done last time right. So, let
+us look at a question which is suppose a student knows the answer to a question
+with probability P, probability P and does not know
+with probability 1 minus P right. So, this is a this is a assumption that we have and
+probability that the student guesses the answer correctly
+is 1 by M for this for a parameter M let us say. So, let us not worry about what M is
+right now right. So, now we ask what is the probability that the student knows the answer
+the answer is correct. So, this is a question that we will study. So, this is a very simple
+problem to state. So, we have a student, the student knows the answer with probability
+P and does not know the answer with probability 1 minus P. Now, student can if they do not
+know they can guess the answer right. So, they can guess the answer with a probability
+of 1 by M. Now, what is the probability that the student knows the answer given that the
+answer is correct right. So, let us work it out using the events that
+we say. So, let E be the event or let us E be the event that
+the answer is correct. F be the event that student knows the answer right. So, now what
+we are interested in this, we are interested in probability of F conditioned on E right.
+So, why is this interesting? So, if the student does not know the answer there is a probability
+that the answer is correct because they can guess the right answer. On the other hand
+if the student knows the answer the answer is going to be correct as well. Now, we ask
+given that the answer is correct what is the probability that the student actually knew
+the answer right. So, we will use Bayes rule to compute this.
+So, now I am going to write this as probability of E conditioned on F times probability of
+F divided by probability of E conditioned on F times probability of F plus probability
+of E conditioned on F compliment times probability of F compliment. So, now let us recall what
+each of these things are. So, now let us concentrate on this term right. So, what is probability
+of E given F? So, probability of E given F refers to the event where the answer is correct
+and the student knows the answer right. Probability that the answer is correct given the student
+knows the answer. So, we will actually say that this is equal to 1 right and what is
+this quantity? This quantity is what is the probability that the student knows the answer
+and let us concentrate on this. So, this is the same as this. So, we know what to fill
+here and then what about this? So, let us concentrate on the first part of this. So,
+what is the probability that the answer is correct given the fact that the student does
+not know the answer right. This is where the student has to guess right. If the student
+has to guess. So, this quantity is going to be 1 by m right and what is this? So, this
+is the F compliment is the event where the student does not know the answer and this
+happens with a probability of 1 minus p. So, overall what we have here effectively is
+I have 1 times probability of F is p because student knows the answer and so, again I write
+the same thing over here and what I have here is probability of E conditioned on F compliment
+is 1 by m times 1 minus p right. This is a simple application of what we call
+Bayes theorem or Bayes rule right. So, it is easy to figure out E given F by the other
+way was slightly more complicated. So, given that the student knows the answer. So, sorry
+given that the answer is correct we want to figure out what is the probability that the
+student knows the answer because there are two ways. The answer could be correct with
+student knowing the answer and the answer could be correct by student not doing the
+answer and guessing. So, we want to figure out what is the probability that the answer
+is the student knows the answer and the answer given the answer is correct right. So, let
+us simplify this. So, what do what can I write this as this I can write it as m times p divided
+by. So, here it is going to be p times m minus 1 plus 1 right. So, this is what we have.
+So, this is a example of using Bayes rule to understand the quantity that is unknown.
+So, let us look at yet another example. So, let us look at this question 2. Suppose there
+is a diagnostic tool or a diagnostic test
+that is 95 percent accurate right. So, these days as you have seen with COVID these tests
+can also come with what is what are called false positives right. So, the false positive
+rate. So, it is occur for 0.5 percent of the population have the disease. So, what are
+we interested in? We are interested in the probability that the person has the disease
+conditioned on test being positive right. As with the case before it could. So, happen
+that the test could be positive, but it could be a false positive right. So, we want to
+understand what is the percentage of what. So, what is the probability that a person
+has a disease given that the test is positive right. So, we want to understand this probability.
+So, again for this we go for this Bayes rule. So, let us say person has in having a disease
+I am going to denote it by the event D right and then the test being positive I am going
+to write it as P right. So, D is the event that the tested person
+has the disease and P is the probability of the test being positive or sorry P is the
+event that the test is positive right. So, we will apply Bayes rule for this. So, what
+this is equal to? This is equal to probability of P given D right times probability of D
+divided by probability of P given D times probability of D plus probability of P given
+D compliment times P of D compliment right. So, I would like to differentiate these two
+different P's this and this. So, let me just make it right. So, now, what is the what is
+this value? So, you want to understand what is the probability that the test is positive
+right. So, what how do you get this? So, given the disease what is the probability
+that the test is positive? So, we said the test is 95 percent accurate right. The probability
+of that becomes 0.95 and then what is the probability of having this disease in the
+patient that we are testing right. So, as I said if you look at the demographic of the
+population that we consider 0.5 percent of this population have the disease right. So,
+if you convert the percentage into probabilities you are going to have 2 zeros before the 5 in the
+decimal location. Then I have 0.95 into 0.005 plus then what about the rest? Suppose the test
+is positive and there is no disease right what is this probability? So, this probability comes
+from the false positives. So, what are the false positives here? The false positives are 1 percent
+and here we ask what is the probability that there is no there is no disease right. So,
+here it is going to be 0.0 sorry 0.995 right. So, how do you compute p of d complement? There
+1 minus p of d which is nothing but 1 minus 0.005. So, that gives us 0.995 right. If you
+put both of this together if you compute it is going to be 95 divided by 294. I leave it to you
+to work this arithmetic out, but the main point here is. So, we understand how p conditioned on
+d is right. We can compute probability of this the test coming positive condition and disease,
+but not the other way around right. So, now, for the other way around we use base rule to infer
+that. So, we know this, but to get this we actually look at base rule right. So,
+let us look at more examples. So, let us look at some funny example.
+So, suppose there is an inspector, there is a police inspector who is 60 percent convinced
+that the suspect is guilty right. So, further a new evidence comes up.
+That tells us. So, what are we interested here? We are interested in what is the probability
+that the suspect is guilty given that they are left handed.
+So, now, let us write this in terms of events. So, let us say G is the event that the suspect
+is guilty right and then I am going to write C saying that event that this given that the
+suspect is left handed right. So, what are we interested in? We are interested in probability
+of G conditioned on C right. So, we are going to write this in terms of probability of C
+given G times probability of G divided by probability of C given G times probability
+of G plus probability of C given G compliment times probability of G compliment right.
+So, let us analyze these terms individually. So, what is this? So, what is the probability
+that a person is left handed given that they are guilty? So, now, this comes from the evidence
+that we have. Here it says there is a new evidence that comes up that tells us that
+the person committing the crime is left handed right. So, in which case this quantity becomes
+1 and if you look at this the probability that a person is guilty will use the information
+from the inspector right. So, I have 1 into 0.6 right I can have 1 into 0.6. So, now,
+I stare at this expression which is probability of C given G compliment. So, what is the probability
+that a non guilty person has this characteristic right. So, 20 percent of the population have
+this characteristic which is left handedness right. So, here I will use something very
+loosely instead of looking at equality I am going to look at an inequality here. So, I
+am going to say. So, let me go bit slowly. So, let me just say that probability of C
+is 0.2 and what I claim here is probability of C conditioned on G compliment is at most
+probability of C and this implies that probability of C conditioned on G compliment is at most
+0.2 right. So, now, I am going to use this knowledge and information to say this quantity
+is at most 0.2 right. Now, if I plug this what I will get is this
+quantity is at least. So, this quantity is at least this plus 0.2 times 0.4 because this
+is obtained from 1 minus P of G right. So, this is the first time we are actually using
+an inequality. So, this says probability of C is at least probability of a C conditioned
+on G compliment. So, this is the first time we are actually seeing this kind of a statement.
+So, let me just finish this and make that statement explicit. So, I am going to say
+this is at least 0.2 times 0.4 right. So, if I write this it is going to be 0.6 divided
+by. So, here I get 0.6 and here this is going to be 0.08. So, this is going to be 0.68
+right. So, this is nothing but 60 by 68 and you can simplify it further however you like
+right. So, here we have seen a very interesting fact or we used an interesting axiom that
+we have not stated explicitly before. So, we will state it explicitly here.
+So, if events E and F are such that E is a subset of F then probability of E is at most
+of F right. So, this is an axiom that we would like to use. So, here in the example above
+what we have seen is C conditioned on G compliment is a sub event of C itself right. So, which
+is why we have this inequality that we are using. So, this is a new axiom that you are
+learning right now right. So, unlike all the other cases here we have an inequality.
+So, this just says probability that the suspect is guilty given that they are left handed
+is at least 60 by 68 right. So, this is what we get by Bayes rule.
