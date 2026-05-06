@@ -4,8 +4,7 @@
   "workflowType": "full",
   "created": "2026-05-06T00:00:00Z",
   "currentPhase": "complete",
-  "status": "archived",
-  "archivedDate": "2026-05-06T01:50:00Z",
+  "status": "complete",
   "branch": "feature/week4-5-transcript-concept-html",
   "roles": {
     "po": { "status": "complete", "completed": "2026-05-06T00:10:00Z" },
