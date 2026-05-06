@@ -3,13 +3,13 @@
   "type": "feature",
   "workflowType": "full",
   "created": "2026-05-06T00:00:00Z",
-  "currentPhase": "architect",
+  "currentPhase": "developer",
   "status": "active",
   "branch": "feature/week4-5-transcript-concept-html",
   "roles": {
     "po": { "status": "complete", "completed": "2026-05-06T00:10:00Z" },
-    "architect": { "status": "in-progress", "completed": null },
-    "developer": { "status": "pending", "completed": null },
+    "architect": { "status": "complete", "completed": "2026-05-06T00:20:00Z" },
+    "developer": { "status": "in-progress", "completed": null },
     "reviewer": { "status": "pending", "completed": null },
     "tester": { "status": "pending", "completed": null },
     "executor": { "status": "pending", "completed": null },
@@ -18,7 +18,7 @@
   "artifacts": {
     "po": "artifacts/week4-5-transcript-concept-html.po.md",
     "architect": "artifacts/week4-5-transcript-concept-html.architect.md",
-    "developer": null,
+    "developer": "artifacts/week4-5-transcript-concept-html.developer.md",
     "reviewer": null,
     "tester": null,
     "executor": null,
@@ -26,6 +26,8 @@
   },
   "timelines": {
     "po_complete": "2026-05-06T00:10:00Z",
-    "architect_start": "2026-05-06T00:10:00Z"
+    "architect_start": "2026-05-06T00:10:00Z",
+    "architect_complete": "2026-05-06T00:20:00Z",
+    "developer_start": "2026-05-06T00:20:00Z"
   }
 }
