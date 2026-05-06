@@ -3,12 +3,12 @@
   "type": "feature",
   "workflowType": "full",
   "created": "2026-05-06T00:00:00Z",
-  "currentPhase": "po",
+  "currentPhase": "architect",
   "status": "active",
   "branch": "feature/week4-5-transcript-concept-html",
   "roles": {
-    "po": { "status": "in-progress", "completed": null },
-    "architect": { "status": "pending", "completed": null },
+    "po": { "status": "complete", "completed": "2026-05-06T00:10:00Z" },
+    "architect": { "status": "in-progress", "completed": null },
     "developer": { "status": "pending", "completed": null },
     "reviewer": { "status": "pending", "completed": null },
     "tester": { "status": "pending", "completed": null },
@@ -17,12 +17,15 @@
   },
   "artifacts": {
     "po": "artifacts/week4-5-transcript-concept-html.po.md",
-    "architect": null,
+    "architect": "artifacts/week4-5-transcript-concept-html.architect.md",
     "developer": null,
     "reviewer": null,
     "tester": null,
     "executor": null,
     "po-approval": null
   },
-  "timelines": {}
+  "timelines": {
+    "po_complete": "2026-05-06T00:10:00Z",
+    "architect_start": "2026-05-06T00:10:00Z"
+  }
 }
