@@ -1,0 +1,25 @@
+# Videos — large files, stored locally only
+*.mp4
+*.mov
+*.avi
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+
+# Editor
+.idea/
+.vscode/
+*.swp
+*.swo
