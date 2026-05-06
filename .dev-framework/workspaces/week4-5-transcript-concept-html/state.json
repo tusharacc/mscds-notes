@@ -3,14 +3,14 @@
   "type": "feature",
   "workflowType": "full",
   "created": "2026-05-06T00:00:00Z",
-  "currentPhase": "developer",
+  "currentPhase": "reviewer",
   "status": "active",
   "branch": "feature/week4-5-transcript-concept-html",
   "roles": {
     "po": { "status": "complete", "completed": "2026-05-06T00:10:00Z" },
     "architect": { "status": "complete", "completed": "2026-05-06T00:20:00Z" },
-    "developer": { "status": "in-progress", "completed": null },
-    "reviewer": { "status": "pending", "completed": null },
+    "developer": { "status": "complete", "completed": "2026-05-06T00:40:00Z" },
+    "reviewer": { "status": "in-progress", "completed": null },
     "tester": { "status": "pending", "completed": null },
     "executor": { "status": "pending", "completed": null },
     "po-approval": { "status": "pending", "completed": null }
@@ -19,7 +19,7 @@
     "po": "artifacts/week4-5-transcript-concept-html.po.md",
     "architect": "artifacts/week4-5-transcript-concept-html.architect.md",
     "developer": "artifacts/week4-5-transcript-concept-html.developer.md",
-    "reviewer": null,
+    "reviewer": "artifacts/week4-5-transcript-concept-html.reviewer.md",
     "tester": null,
     "executor": null,
     "po-approval": null
@@ -28,6 +28,8 @@
     "po_complete": "2026-05-06T00:10:00Z",
     "architect_start": "2026-05-06T00:10:00Z",
     "architect_complete": "2026-05-06T00:20:00Z",
-    "developer_start": "2026-05-06T00:20:00Z"
+    "developer_start": "2026-05-06T00:20:00Z",
+    "developer_complete": "2026-05-06T00:40:00Z",
+    "reviewer_start": "2026-05-06T00:40:00Z"
   }
 }
