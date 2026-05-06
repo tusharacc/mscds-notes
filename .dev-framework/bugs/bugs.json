@@ -1,0 +1,9 @@
+{
+  "next_id": "BUG-005",
+  "bugs": [
+    { "id": "BUG-001", "severity": "low", "status": "open", "file": "bugs/bug-001.md" },
+    { "id": "BUG-002", "severity": "low", "status": "open", "file": "bugs/bug-002.md" },
+    { "id": "BUG-003", "severity": "low", "status": "open", "file": "bugs/bug-003.md" },
+    { "id": "BUG-004", "severity": "low", "status": "open", "file": "bugs/bug-004.md" }
+  ]
+}
