@@ -4,8 +4,7 @@
   "workflowType": "full",
   "created": "2026-05-06T02:00:00Z",
   "currentPhase": "complete",
-  "status": "archived",
-  "archivedDate": "2026-05-07T00:05:00Z",
+  "status": "complete",
   "branch": "feature/repo-setup-subject-folder-structure",
   "roles": {
     "po": { "status": "complete", "completed": "2026-05-06T02:10:00Z" },
