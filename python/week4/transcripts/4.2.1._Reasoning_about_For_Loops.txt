@@ -1,0 +1,696 @@
+Hello and welcome back to Python Core and Applied Concept.
+So we'll continue today our discussion from where we left in the last lecture.
+So if you recall, we were talking about the concept of loops in Python programming language.
+So in the last lecture, to be more precise, we looked at while loops.
+So this was no content from our previous lecture where we justified the use of while loop in
+doing or mechanizing some repetitive work that may be useful while trying to compute
+some function.
+So we have seen some example where these loops turn out to be more useful to abstract out
+some general repetitive task and convert them into a sequence of instructions which can
+be repeated multiple number of times depending upon some condition.
+So this is what we discussed.
+So if you recall, let me come to the Jupyter Notebook.
+So we are here.
+So this was the syntax and semantics of while loop that we discussed in our previous lecture.
+So the syntax for a while loop has this form where we write while and then followed by
+some condition.
+And remember, this condition is nothing but an expression which can evaluate to either
+true or false.
+So you can form a very complicated condition based on whatever is your requirement for
+entering into the loop.
+And you can write down in this condition expression.
+And when it is followed by colon, you give the set of a statement or sequence of a statement
+that you want to execute.
+So this is what we also call the loop body.
+So this is the loop condition and this is the loop body.
+So this is what we discussed in the last class.
+Now remember, by construction, while loop keeps running until this condition is true.
+So you can only exit this loop when this condition becomes false.
+So this is what we call condition b in the previous lecture, if you recall.
+This is what we were calling condition b.
+So if your b is true, you will always repeat this set of actions that you have included
+inside the loop body.
+So for you to exit the loop, this condition has to be false.
+So that's what the semantics of this while loop says that you go into an indefinite iteration
+until your condition becomes false.
+And the second point is also very important.
+You have to manually control the variables which are, let's say, presenting this condition
+so that at some point of time, this condition becomes false.
+Normally, we don't want to go into an infinite loop.
+So we have to be very careful.
+So if you are writing or if you are using while loop to perform some repetitive action,
+you also want this while loop to finally terminate.
+We normally don't want this while loop to continue forever.
+And that control is with the programmer.
+So you have to make sure that somehow in the loop body, in this sequence of statements,
+you're taking care of this requirement that you change the variable in such a way so that
+you don't go into infinite loops.
+So this is the next point.
+So we have to take care of this as well when we are writing while loop.
+If you are a little bit careless, you can easily write while loop which never terminates.
+In a simpler program, it may be easy to debug, but when you're running a very large piece
+of code or developing large piece of code, it may not be that easy to figure out these
+kind of infinite loops.
+So when is the good time to use loop?
+When you don't know how many iterations you need in advance.
+In many computations, we may not know exactly how many iterations we need to let's say achieve
+a particular goal.
+We know that certain conditions can help us determine when to stop or not.
+So in those kind of scenarios when you don't have a priori knowledge or bound on the number
+of iterations that you need to take to achieve some computation, you may be looking for a
+while loop.
+So while loop may be a better way to deal with those kind of repetitive instructions
+or repetitive actions.
+So this is what we discussed in the last class.
+And if you recall, I also talked about find max function using while loop, which was doing
+something similar.
+So this is not the full code, but this was the logical structure of the code, which explains
+how you can write down a function which will find you the maximum among all the numbers
+that has been given to you as input in a list.
+So the logic was you always keep the maximum number seen so far, and you traverse the whole
+list.
+That's how we change this index and we continued the iteration till your index actually hit
+the last element in the list.
+And every time you just want to update your maximum seen so far with the current number
+only if the current number is greater than the maximum seen so far.
+So this was a simple logic.
+And this step was very important.
+You also incremented this i.
+So after each check, whether or not you increase maximum so far variable, which includes the
+maximum numbers in so far, you should always increase this i.
+And why this is important?
+Because if you don't increase this i, then again, this is an infinite loop.
+So I hope these things are clear to you.
+So please go through the code again and make sure that you understand the semantics in
+the correct or most appropriate way.
+So what we are going to do today is to look at an alternative for this kind of looping
+construct, which we call for loop.
+So for loop, again, not something very new to Python, it's available in almost every
+programming language.
+And the purpose of this loop is to provide you an alternative method to compute some
+function which would require repetitive action.
+But the difference is that, you know, this for loop, you know, always terminate, OK,
+so by construction, they always terminate because you normally write this for loops
+for doing some set of action.
+If you know how many times that repetition has to be done by your code.
+So the syntax.
+So let me start with the syntax now, proper syntax for let me enlarge the font a little
+bit.
+So this is the syntax for a for loop.
+OK, so just like in a while loop, we have for followed by some, you know, check.
+Now this check may not be exactly the Boolean expression.
+What we are saying is now instead of a Boolean expression, which can be true or false, what
+we are saying, we have a variable which somehow acts like a counter for you.
+And we want to repeat this loop body for this variable's value in the sequence.
+OK, so normally we represent this variable by I or J to represent this is some index.
+But what are the values of I that you want to take and then execute this loop is determined
+by this sequence.
+OK, so the variable in sequence says that, I mean, variable can take any variable should
+take every value in the sequence one by one, increasing from the lowest value to the largest
+value.
+And for each of those values of variable, you will execute some set of statement which
+may again involve some reference to this variable, which we normally represent using I or J.
+So but the important thing, few important thing that we want to discuss upfront before
+going with example is that now in this case, I mean, since your sequence is defined up
+priority, your variables can only take values from the sequence.
+Right. And since you have defined the sequence up priority, you know that there are definite
+number of in iteration for this kind of loop.
+OK, so this loop runs for each item in the sequence.
+And that's how you know that it will always terminate.
+Now, Python handles moving to next item.
+I mean, Python knows how to increase the value of this variable.
+Now, again, I mean, by construction, I will show you some example where you will see that
+Python will know how to increase the value of variable by looking at the syntax of the
+exact syntax of the for loop.
+So you may not need to maybe explicitly change these variable values inside the, you know,
+loop body, which was the case when we were working with the while loop.
+Right. Because in the while loop, you wanted to change this I so that you never, you know,
+enter an infinite loop.
+But in the case of for loop, this is the set of a statement may not want to change.
+Let's say this variable.
+You may optionally want to change this, you know, variable values.
+But then, I mean, even if you don't change, I mean, there is a predefined semantics for
+this, you know, structure for for loop.
+OK, so there is no risk of infinite loop because I know that the variable can only take values
+among the sequence.
+So it will terminate for sure.
+And when to use this?
+I mean, over when to prioritize the use of for loop over while loop.
+OK, so a hint is that if you know a priority that how many times you want to iterate, if
+it is clear from the let's say problem structure of the solution in a structure, then most
+probably we will like try to use this for loop instead of while loop.
+So in many, you know, cases, they're more or less, you know, exchangeable.
+I mean, you can interchange one with another.
+So in most of the case, you will see that, you know, whenever you can use while loop,
+you can also use for loop and vice versa.
+But in some situation, for loop may turn out to be a preferable choice over while loop.
+And there are certain advantages that I have explicitly mentioned here that there will
+never be an infinite loop kind of situation here.
+But I mean, this can be a scenario if you're using a while loop.
+So depending upon what is your criteria, whether you are sure about, you know, the number of
+iteration that your loop should execute a priority, you can choose between this for
+loop and while loop.
+So let me come back to the same example that we discussed in the last lecture, which was
+a fine maximum for a list of numbers.
+If we have to, let's say, implement that using for loop, we can do that immediately, right?
+Because in the last lecture, if you recall, I mean, what was we checking?
+I mean, we are always keeping this max so far, right?
+We always want to remember whatever maximum value we have seen so far while, you know,
+traversing this list.
+And there we made sure that we traverse the whole list by, you know, checking this condition.
+But here, what we can do is we can explicitly say that now for every i, so this is the syntax,
+okay?
+So all previous portions are as it is.
+You store the initial number as maximum seen so far.
+And then when you get into the loop, so this is how we write for loop.
+For i in range, okay?
+So i is used here as an index to refer to different elements in the list.
+So for i in the range starting from 1 to the length of the list, we want to repeat some
+set of actions, okay?
+So what do we want to do?
+So for each i, you want to check whether the current i that is in your hand is greater
+than maximum seen so far, okay?
+So the logic you can relate is exactly the same as what we have written in the while
+loop.
+But there is a difference that you can notice here that we don't need to now increment this
+i explicitly, right?
+You see there is no step which explicitly tries to increment the value of i here.
+So the loop, the semantics for loop guides Python to figure out how this counter i should
+be incremented, okay?
+So what does this range mean?
+So we'll come to this shortly and we'll see that when you define range, you in a way tell
+Python how this variable i will be changed from one iteration to another iteration and
+what are the possible values that it can take, okay?
+So here by default, in every step, in every next step, Python increments i by 1.
+If you don't say anything explicitly.
+So this is the, you know, when you say range 1 to length of n, the possible values of i
+is between 1 and the length of the list, okay?
+And if you don't tell me how I sell, you know, increment i that we formally call, you know,
+steps that this i should take, then by default, it will increase i by count number 1, okay?
+So by default, the increment value for these variables is 1 if you don't explicitly mention
+it.
+But otherwise, if you can see the whole logic is same, okay?
+So these are two points that I mentioned just now that for loop handles counters management
+automatically.
+So you don't need to actually increment this i.
+By default, increases it by value 1 if you explicitly don't tell Python using the syntax
+what you want to or how you want to change the value of i, then it will increment the
+value of i by 1.
+Okay, so we can almost now apply everything that we learned about while loop here as well
+without, you know, any fear of getting wrong.
+So all the loop invariant that you have seen in the previous case, you can actually write
+here also safely and prove them, you know, correct.
+Now, what is this range?
+This range is a function that will generate a sequence of number which is used in this
+for loop for that variable, right?
+So variable can take values from this sequence of number 1 by 1.
+So now there are multiple variants of this range that normally we want to use.
+So some of the variant that I want to highlight here is, you know, these three variants where
+the very first variant of range only, you know, so this is the syntax for the very,
+you know, first variant of range.
+So when you write range and then one number, it by default understand that that is the
+last, you know, number that this variable should take starting from zero.
+Okay, so and that last number has to be excluded.
+Okay, so when you write, you know, range five, what you're saying is when you want to say
+that, you know, my I should be in range five, it means that I should take values 0, 1, 2,
+3, and 4, excluding the last number, okay, which is, you know, your stop.
+So this is what the meaning or semantics of this statement is that it generates numbers
+from 0 to stop minus one.
+Okay, so now let me, you know, quickly, you know, try whatever we said, I mean, we want
+justify whether this meaning is what, you know, Python accepts.
+So what we can say is, let's say, write a small piece of code for i in, let's say, range.
+So if I write, let's say, 10, okay, so for i in range 10, if I want to, let's say,
+you know, print all these numbers on the same line, okay, this is the simplest kind of thing
+I can imagine right now to explain the semantics of this simple, you know, form of range.
+Okay, so what I'm saying is for i in range 10, okay, do something, okay, so what is that,
+you know, something that I want to do?
+Maybe I want to just print i, okay, just to avoid going to the new line, maybe I want
+to separate all these values with a comma, and that's it, okay.
+So let's say if I print it, what can you expect?
+You see, so when I say, you know, for i in range 10, by default, you know, it starts from 0,
+right, and goes up to stop minus one.
+So what is stop?
+I mean, stop is the number that I gave.
+So if you pass only one argument, that is taken as the stop value for this i.
+Okay, so you can see for i in the range, this is what you expected, right, it will print all the i.
+So 0, 1, 2, 3, 4, now up to 9, and it excludes the last number.
+So by default, you know, in this range function,
+it generates a sequence where you have everything from 0 to last minus 1.
+Okay, so now there is a distinction between, you know, this range and list, which again,
+I mean, we will discuss in detail later on, I mean, it's not like, you know, all these numbers,
+when you say range 10, all these numbers, you know, are generated and immediately kept in,
+you know, memory, I mean, this is a concept of, you know, it travel where
+it knows how to compute this number, I mean, by telling, by, you know, specifying range 10
+or by, you know, writing range 10, you are hinting to a computation, which Python understands,
+and it knows the rules to compute all the, you know, valid variable values,
+which are specified by, let's say, this expression, which we write as range 10.
+Okay, and these are the value computed, but remember, I mean, they are not computed
+in the very beginning and kept in a list, although you can actually achieve the same,
+you know, set of behavior, if instead of writing range, if I write it here,
+list, okay, so that will be same, but then, I mean, there is some difference in, you know,
+efficiency, memory efficiency, okay, so, I mean, what you can keep in mind right now is that this
+is a sequence, you know, this range 10 represents a sequence, where the numbers in the sequence are
+like this, and when we write range 10, we don't, you know, compute the whole sequence and keep them
+in memory, you know, this sequence is computed, you know, one at a time, you know, every element
+of this is computed, no one at a time when it is needed, okay, so it expresses, so it's something
+like, you know, set notation, I mean, if you are talking about a big set, right, or an infinite set,
+normally, what's the method that we use, do we enumerate all the elements in the set, or
+we just say, how to form different element in that set, okay, so if you have used basic set
+theory, where you use set builder notation, you understand what I'm not trying to tell you,
+so you only tell how to construct different element in the set instead of enumerating all
+the sets, so it's something very similar here, okay, so instead of, you know, giving you the
+whole list, you know, in one place, what I'm telling you is, what are the elements in the
+list or sequence, I'm giving you a rule to, you know, come up with all valid elements in the
+sequence, okay, so this range 10 is nothing but like a rule in set builder notation kind of thing,
+where it tells you what are the possible values that this I can take, okay, so I hope, you know,
+this is clear, so this is again, I mean, one form by which you can give the sequence information,
+but this is most primitive form, you can also, you know, explicitly tell where to start, okay,
+what can be the starting point, if you don't want to start always at zero, you may want to give,
+you know, that also as an argument, okay, so if you pass two arguments, so by default,
+they're taken as a start and stop argument, okay, so for instance, again, I mean, if you want to
+generate number, you know, from, you know, let's say five to ten, okay, so in that case, you can
+pass this five and ten both as argument to this end, okay, again, I mean, let's say, if I want
+to repeat the same set of, you know, action, I want to just print some different values of I
+that I can take from this, you know, range, the sequence, and I want to experiment with the
+second variant of range, so what should I do, I can make, you know, additionally say here my
+starting point, which is let's say five, and then the end point ten, and if I now try to, no,
+now run this piece of code,
+what you can see is numbers starting from five up to nine, okay, so the starting point is included,
+okay, so the starting point five is included, but the last point or the stop point is not
+included in this sequence, and remember, again, this is not stored somewhere, okay, so this
+range five, you know, comma ten, just tells Python about the rule to construct, you know,
+different element in this sequence, which are nothing but five, six, you know, seven, eight,
+nine, so by default, Python will assume that you want a step gap of one, so that's why you get
+after five, six, and not know some other number, but no optionally, again, you can also provide
+this, you know, steps that you may want, you know, to explicitly tell Python, and in the cases when
+you don't want, let's say, the default value of a step to be one, you can optionally give it as a
+third argument to this range function, okay, so the third variant, which again, I mean, in some
+case, depending upon what you want to compute, you may find this variant useful, okay, so the
+third variant of range, we give a start, stop, and the steps also, like, let's say, I mean,
+if I want to skip, you know, every other number, and I, you know, want to, you know, get, you know,
+only, let's say, even number, you know, in this range from, let's say, zero to ten, so how to,
+you know, tell that to Python, so what I will, you know, want to write is something like this,
+so let's now experiment with, maybe let me copy this piece of code here, and maybe
+test, okay, so now, you know, instead of saying that my steps are, you know, one, what I want to say
+is, you know, my steps are, you know, two, maybe, and I want to print, let's say, everything between,
+I want to start at zero, I mostly, you know, try to write things explicitly, because, you know, it
+removes any ambiguity, so even though, if I, you know, leave, so that's why I'm writing zero comma
+ten, so the start point, and then end point, and then I'm explicitly telling Python to take a step
+of size two, so now, this expression, which is, you know, range zero comma ten comma two,
+represents a sequence which starts from zero, and goes, you know, up to ten, excluding ten,
+and the step, you know, count is two, so what you can expect here is,
+let me, you know, print this thing,
+can you see, so we got zero, two, four, six, eight, and we did not, you know,
+include ten, right, because, you know, I mean, this is the semantics, like,
+we always leave the last thing, okay, so, you know, if you want to go and say that, you know,
+three is my step, and let's, you know, experiment with this, and then see what do you get,
+so what you get is, you know, zero, three, six, and nine, right, so, okay,
+okay, so these are some, again, I mean, this is just to summarize what we said,
+so it always, this range function, you know, always creates a sequence which stops at,
+you know, stop minus one, but it may not go up to stop minus one also, right, if that is not
+defined by the rule, right, because in this case, although you see that it goes to stop minus one,
+in the previous case, in this case itself, when I put it two,
+you see the last element is not stop minus one, because, you know, so it will check all the
+numbers till stop minus one, but it will also, you know, see whether it's at a distance two or
+not, okay, so till nine, okay, so you can only have this kind of element if you take, you know,
+steps of, you know, count two, okay, so that's important to keep in mind, so the default start
+is zero, if you don't mention anything, if, you know, takes zero, the default start and default
+step is one, and if you give some rule, you know, which does not, let's say, somehow
+gives a valid sequence, in that case, you get, you know, empty range, okay,
+okay, so these are some, you know, example that we saw just now, right, and if you write range
+five, you know, numbers from, you know, zero, one, two, three, up to four will be generated,
+and remember, this is, you know, stop minus one, right, so this is the most primitive form that we
+have seen where, by default, the starting point will be zero, and since you have not mentioned
+step also, its step size will be one, here we mentioned start point and stop point, so it starts
+from two and stops at, you know, five, which is one less than, you know, six, and by default,
+the step size is one, so you get these numbers in the sequence, here, when you are explicitly
+telling that you want two step size, then you start at zero, but then it doesn't take every value,
+it takes, next value is two, then four, then six, and then eight, okay, so this is how, you know,
+this, you know, semantics of this range works, and if you know this much, then you will be able
+to write meaningful for loop in most of the, you know, scenarios, so this, again, I mean,
+this table summarizes what we discussed so far comparing this while loop and for loop,
+so the first point that I, you know, highlighted was this, you know, indefinite nature of the while
+loop, that you can't be sure that your while loop will always terminate if you don't, if you're not
+careful and if you're not changing the variable which are involved in the expression of the while
+loop, but in case of for loop, this is definite, right, you know, a priori that this loop will,
+you know, terminate at some point in time, so you don't need to do, you know, index management
+explicitly for this for loop, right, by just, you know, defining, you know, this range from,
+range function in a proper way, this range expression, you can actually tell
+how to, you know, or what are the value, exact value that this variable can take,
+okay, so this automatically changes the value of the variable and you don't need to do
+anything inside the loop body to actually change the value of variable,
+so this, this is what, you know, we already discussed and this is, you know, your, how will you,
+you know, you know, guess at the first place that whether you should go for a while loop or a,
+you know, for loop, so the hint is that if you don't know a priori, let's say in your
+set of computation or in your desired computation, how many times you want to iterate, then you
+certainly go with a while loop because you have a condition and you don't know how many times
+that condition can be true, but if you know a priori that, you know, you only want to do,
+you know, iteration these many times depending upon some, some counter or some variable,
+then you better go for a for loop, okay, so great, so with that, you know, we know now the basic of
+for loop, now let's try to work out some small example to, again, I mean, deeply understand this,
+no semantics of for loop and try to write down, you know, meaningful again assertions
+to learn about, I mean, this for loop, so this is, you know, just a re-emphasis on the same,
+you know, principle that we were discussing for while loop, we want to write not only, you know,
+you know, the code which involves for loop and while loop, but we also want to make sure that
+this code matches our intention of writing this loop, right, in the last lecture, if you recall,
+I emphasized on loop invariance, right, so loop invariance are nothing but an alternate way to
+describe the behavior of your loop, okay, so if I ask beyond this implementation of the loop that
+you have written, what is another characterization that can precisely tell me about the nature of
+computation that is going inside the loop, then loop invariant is, you know, one such statement
+that you can clearly give, okay, so loop invariant doesn't tell you how the computation is going
+inside loop, but it tells you what the computation is itself, okay, so why are you computing it or
+what are you computing or what is the one thing that is, you know, to throw the iteration of this
+loop or execution of the loop, so, you know, this is like giving another alternative description of
+the loop in a much more precise way which can be most of the time easier to, you know, comprehend,
+okay, because, you know, till now all the loop structure that we have seen are very simple, but
+when you write real programs, your, you know, loop body may not be this simple, okay, you may want to,
+you know, execute some complicated, you know, sequence of instructions inside the loop also,
+but if you want to reason about whether your code is working properly or not, you would need, you
+know, some mathematical specification or a clear, you know, formal specification of even this loop
+body which will abstract out the functioning of the loop and just based on that, you know,
+you know, invariant you can actually reason about the remaining part of the program,
+so that's the, you know, essence of, you know, last lecture and even the today's lecture that
+we should not only write down loops to do job, but we should also try to
+come up with an alternate description of the loop which we call here loop invariant and always try
+to, you know, look at the loop invariant and justify ourselves whether we want to, you know,
+achieve these loop invariant or whether we want these loop invariant to be true
+for each of the iteration, so if you are convinced with the loop, you know, invariant,
+then most probably you are, you know, thinking in the right direction and trying to implement
+something which is correct, you know, by construction, so again, let's come back to a very,
+very simple example, now I, what I want to write is a function which I call, want to call isSorted
+and what is the input to this isSorted function, I want to pass a list to this function and whenever
+the list is sorted, let's say I want to return true, if the list is not sorted, I want to return
+false, so this is the only purpose of my function, so remember that I don't want to sort a list,
+okay, so the purpose of this isSorted function is not to sort a given list, so the purpose of this
+function is to just check whether a given list is sorted or not, okay, so the input is list and the
+output is simple, true and false value which are, you know, bullions in our programming language,
+so this is, you know, the intuitive description of isSorted function checks whether a list of
+numbers is arranged in non-decreasing order, okay, and now if, you know, you see, I mean,
+this list is sorted list, right, because this is, all the elements in the list is actually arranged
+in an increasing order, okay, and a very simple way to check or, you know, come up with the
+implementation of this isSorted function is to come up with some simple logic, okay, so when can
+your, so if your list is not sorted, then, I mean, what can you expect? You can expect at least one
+pair of adjacent elements which are out of order, right, because in this case if you compare 0, 1,
+they're perfectly in order, right, similarly if you go to, you know, 1 and 2 and see their order,
+they're also perfectly in order, so if you can check for every consecutive, let's say, element in
+the list and figure out that they are in order, then in that case there is no problem, right,
+we would like to say true or we would like to, you know, return true for this particular value,
+okay, so intuitively, I mean, if you can implement this logic, what I have, you know, described here
+in a picture that for a given list if I can check every consecutive element,
+okay, for example, here I'm checking what are the consecutive element that I'm checking,
+zeroth element and the first element, right, they're in order, if they're in order, I will
+go to the next consecutive set of, you know, element in this list which is 1 and 2, in this
+case also, since they're in order, I may want to proceed and go to the element,
+third and fourth, which is, you know, referred as, you know, second element in the area and
+third element, okay, so if I even, you know, find out that even, you know, this is in order,
+then I will go to the last element and if I could not find out any, you know, two consecutive
+numbers in the list which is out of order, then it is safe to say that this, you know, list is
+sorted, right, there's a very, you know, clean and simple logic which if you can implement will give
+you a correct function which resembles this is sorted function, so we are clear about our
+intention, right, we want, what is the intention of writing this function is sorted, it should
+return true whenever the list is sorted and it should return false whenever the list is
+not sorted, or if you can find out any two elements which, you know, not in order in the list,
+then you can actually say false, so, you know, this is the key insight that we just now discussed,
+right, so what we need to do is, you know, we can implement this using for loop where, you know,
+in each iteration of the for loop, we can only compare, you know, two elements which are adjacent
+to each other, okay, so what that for loop should, you know, look like, let's say, I mean,
+if I go through different values of i and i represents the iteration of the loop, then I
+can actually use that i as an index for the list and just compare two numbers and I can keep
+increasing, you know, by default the loop if you don't say, you know, any step side, it will
+increment i by one and then check, so, you know, in first case, I check, you know, the
+a zero, let's say, I mean, if your, you know, input is, you know, this numbers, then numbers zero
+and numbers one, I will compare, right, so numbers i and numbers i plus one element, I will always
+compare and I will change my i to take care of all the different values for this i and hence,
+you know, make sure that everything is, you know, covered, okay, so now let me, so this is what we
+want to do, right, we always want to compare number i with number i plus one for all possible
+values of i, if you can do this, then we will actually achieve what we want to do, okay, so let
+me again, you know, come to this and try to write down a proper function which can, you know,
+implement this thing, what can be a very, you know, simple function that can implement this
+thing, so let me, so let's call it definition, we want to define a function which we want to
+give a name also, right, so what is the name, isSorted, okay, so we define isSorted
+isSorted and what can be input to this function, right, this numbers list,
+now what I want here is not use while loop, I could have used while loop also, but since we
+discussed while loop in the last lecture, let us, you know, try to use a for loop for the same
+purpose, okay, so when I write this colon and then type enter, it always, you know, takes this
+indentation and then I want to start for loop and in for loop syntax, you know, there is a variable,
+here I want to say this, this i is my variable, okay, and I want to take, you know, talk about
+all the, you know, consecutive element in this, you know, list, so a nice way to get the length
+of the list is, you know, use this length function that you might have seen in the previous lecture,
+so what I want to say is, I want a range, okay, which is determined by this, you know, length function,
+okay, so what I want is length of, so first figure out what is the length of the list,
+okay, so I want to start from zero and I want to go till length of this number minus one and there
+is a reason why I write this minus one, okay, so you'll see in the code what I want to do is,
+I always want to compare i with i plus one, okay, so if you want to do that, you know, you can,
+you know, just know after I write this code, just make sure that this makes sense to you why I don't
+write, you know, length here and, you know, length minus one here, so we put a colon and then we go
+and what we say is, now I want to make a check, right, what is the check, that if my number i,
+whether my number i is, you know, less than equal to, you know, number i plus one or not,
+if otherwise is the case, if the number is out of order, let's say, it means if, let's say my
+number, so I'm just trying to, you know, encode the logic that we have seen just now, so what I'm
+saying is, if my, you know, current number, let's say, is greater than, let's say, now my next number,
+okay, so what is my next number, my next number is i plus one, okay, so in this case,
+you know, I found something, you know, out of order, right, so this is the troublesome
+case, right, here I could figure out a pair of, let's say, number in my list, which is out of order
+and this is not a good case, right, this is the bad case, so if this is the scenario, then I would
+like to return a false, because I don't now need to check no other remaining portion of the list,
+because already I found a, you know, counter example, this is, you know, out of order sequence of
+two numbers or pair, so immediately what I can say is, I don't want to maybe, you know, go through
+the whole list and I want to return a false here, okay, so, you know, this is, you know, how I can
+actually come out of this function by returning false, in case if I find any, you know, two
+consecutive numbers which are out of order, but if you don't, you know, let's say, get this kind of
+order, you go to the next, you know, again two numbers, like, I mean, in this case, you know,
+this was the good case, right, and we always progress to the next, you know, consecutive number,
+two consecutive numbers, okay, so for that, I mean, what, I don't need to do anything, right, I mean,
+I can, you know, just, you know, do nothing and by default, from the semantics of this for loop,
+I will take the next possible value, okay, and what is the next possible value, so it will be i
+plus no one, whatever is the current value, because why, because in the range, inside range,
+I have passed only one argument which tells that this is the last, you know, stopping point,
+so if you only give stopping point, it by default starts from zero and takes a step of size one
+until it reaches the last stopping point minus one, okay, so remember, I mean, I'm saying,
+my stop point is, you know, length of this list minus one, it means it will go up to length
+of the string minus two, and you see why, because, you know, right, because if you want to come,
+so what is the last element that you want to compare, right, if you look at this example,
+the length of this string is, you know, five, so what do you want to compare is,
+the third element present at the third position as well as the fourth position if your length is five,
+okay, so try to justify, you know, or convince yourself that this is the right piece of code,
+go through it slowly and figure out whether there is something wrong or the code is correct,
+so in the other case, let's say, if you don't find, you know, anything, you don't do anything,
+and you just go to the next, you know, iteration, and when you want to come out of this function,
+so what you want to do is, so if you don't find, you know, counter example, let's say, or
+pair of number which are not out of order, then at last, when you finish this loop,
+so this is, you know, at looking at the indentation, you know that this return is,
+when this whole loop executes successfully and never actually return with a false value,
+if you never return with a false value and your whole execution is, you know, perfect,
+then at the last, you want to return true, okay, I hope this, you know, makes sense,
+because this is a very simple piece of code where what we are saying is, I run a loop to figure out
+whether there is a counter example which can tell me that this list is not sorted, I could not find
+a counter example, so my whole, you know, list, this will execute without ever executing, you know,
+this line of code, okay, so when the whole loop executes, you know, successfully without, you know,
+returning from inside, I will, you know, hit this branch, and at that moment of time, since I did
+not find any counter example, I want to return the value true, okay, so this makes sense, so what we
+want to, you know, wanted to, you know, highlight here is that we always check these two consecutive
+numbers, and we want to, you know, stop at the second to last element, okay, so these two things
+are important, and I just summarize this in a comment below, maybe just have a look, okay,
+so note, I mean, this is, you know, what I emphasize just now,
+okay, so this seems to be a, you know, correct function, so let me run this piece of code,
+and then try to, you know, run this on some numbers, so let's say, call it, it's
+sorted, and then what shall I pass here, shall pass a list which is, you know, 1 comma 2 comma
+3 comma, let's say, 4 comma 5, so what do you expect, I mean, this is certainly a sorted list,
+right, so when I run this, what is the problem, okay, so this is the problem, we have to write it
+numbers, right, because this was our input, so we again, maybe recompile this piece of code,
+and then if we run now this, we get a true, right, so because, I mean, this is a sorted list,
+right, but if you, you know, minimally, let's say, change this list to make it, you know,
+not a sorted list, let me copy paste this thing, and maybe, you know, add something at the end,
+let's say, 5 comma 1 at the end, so we have a counterexample here, right, so in this case,
+if I run this piece of code, what do I expect, I expect a false, right, so which is correct, okay,
+so this is not as expected, you know, we get, you know, what we, you know, expected as a
+value, output value, but, I mean, this is only based, so we can't always, you know, believe our
+function to be correct based on only left to, you know, input and output pair, which we know,
+according to the correct, let's say, intensity of the program that we have written,
+so this is not a sufficient, you know, ground for declaring it, so that's why we said in the last
+class, it will be better if we can also come up with some, you know, loop invariants for this,
+you know, a small program, let's say, if you can write down some meaningful loop invariant for this
+small program, then that gives more confidence, because we are reasoning very closely about the
+loop, and we are trying to come up with a more precise, you know, characterization of the loop
+itself, so can we do this exercise at least for this, you know, small example, you know, before
+moving to the next topic, so let me try to, you know, come up with some, you know, meaningful loop
+invariant for this small program, and see whether those loop invariants, you know, hold true when
+you run the whole thing on different, you know, set of inputs, okay, so now let me again, you know,
+copy paste the whole program, and now what we want to write down here is add explicit loop invariant,
+you know, so that we can actually explain our reasoning about this loop, because this is what
+we want, so shall we copy paste this piece of code first, because this is the piece of code that
+we want to now reason about, so there is, remember there is only one loop, okay, so we have to come
+up with one loop invariant, which can characterize the, no, no correct behavior of this loop,
+so let me write it down here, okay, so what we want to write down, I mean, when you get
+inside this loop, you want some loop invariant, which should be, you know, correct in the beginning
+of the loop, right, that was the definition of loop invariant, right, when you get inside a loop,
+if some invariant is true, after the execution of that iteration, before going into the next
+iteration also, that no invariant should be true, okay, so this is what you want to maybe, you know,
+write down inside the loop invariant, right, so what we can write down here, I mean, can you think
+of a proper loop invariant, so what we, what is the position where you want to write down, maybe,
+you know, I want to write down here, when I just enter the, let me comment, write down some comment
+to make sense for your later reading, so what we want to do here is write some loop invariant, right,
+okay, so which should be true, you know, at, let's say, this start of each iteration,
+okay, so we want to come up with the, you know, loop invariant, which should be started each,
+so what is the loop invariant, you know, guess at this moment, when you start,
+when you are at a particular iteration, let's say, i, at that moment of time,
+when you get inside this loop, what can you expect,
+so since you reached, you know, this, you know, ith iteration, you know that you could not find
+any counter example till now, right, so at least you can, you know, in language, if I want to
+ask you to specify what you expect here, is that the sub-array or the sub-list that you have seen
+so far, which is, you know, starting from zero to ending at i contains no counter example or
+which you can call inversion, okay, out of order things, okay, so let me, you know, write it down
+here and then maybe next we can actually try to write down what can be a, you know,
+good mathematical description of this, so what we are saying is the
+sub-list, which, sub-list of, you know, this numbers, starting from zero,
+zero till this i, so now this part of the, you know, whole list
+contains no inversions, inversions with out of order, you know, element, because this is,
+this is what we can at least write down that all adjacent pair in the, you know, numbers starting
+from zero to i are in order, because this is what we can claim, I mean, if you have reached this
+till this point, you know, inside this loop, okay, and how to, you know, assert that,
+so even before, you know, we can assert it, let me, you know, in the language itself write down
+what you can, you know, expect at this moment of time, let's say, if I, you know,
+no, so if this is true in the beginning and if, you know, you executed this statement and you
+did not exit the, you know, function with this value, at the end what you can say, so in the
+beginning you can certainly, you know, say that the loop invariant is that, you know, your sub-array
+or sub-list which was from, you know, zero to i contains no inversion, but since you have processed
+this i and i plus one also in this current round, what we can, you know, say here at the, you know,
+before going to the next iteration that the loop invariant is maintained, right, even after the
+execution of this particular step, so in the language if I have to say, what I can say is loop
+invariant is maintained, right,
+and again, I mean, what does it mean that we reached up to this point and the number, you know,
+i and i plus one are also in order, right, because that's what we checked in this particular
+iteration, right, so, right, and if that's true, then what we can say that numbers from zero to
+i plus one contains no inversion, so at least, no, we can safely say this, right, so since you,
+right, since you, you know, reached this place, let me write down explicitly, since we reached this
+place, we know that whatever is, you know, at this place i in the number is certainly, you know,
+less than equal to numbers i plus one, right, otherwise you could have just, you know, exited
+the whole function and, you know, written false, but since we reached here, I mean, this is a proof
+that this was true and since this was true and from the previous, you know, loop invariant,
+we know that this, you know, this has no inversion, so now we know that starting from zero till i
+plus one we have no inversion, okay, so let me just, you know, copy paste, so since, you know,
+we know this in the beginning of the loop and we reach at this point, it means, I mean, this is true,
+so, you know, but hence we can claim here that the sublist starting from zero till let's say i plus
+one now contains no inversions, this is what we can, you know, safely assert at this particular
+point in time, okay, so how to write it down now, so since we have written it, so if these two
+conditions are true, then you know again that, you know, so these two are always true for every
+iteration of the loop, right, and at the end, now before you, you know, return, you can also write
+down, you know, something very similar and which is, you know, for the final, you know, property of,
+or the, you know, final thing that you may want to confirm before you, you know, exit this function,
+right, because since this whole assertion, I mean, or this invariant is to throw out the loop,
+so it should be true at the end of the loop also, right, because it was true at the beginning of the
+loop and every iteration of the loop maintain this invariant, so at the end what you can,
+you know, write, which we call, you know, mostly post condition, remember, I mean, this is the point
+where you already stopped or you completed the iteration for your for loop, right, you completed
+all the iteration for your for loop and then you can, you know, claim something very interesting
+because you reach this place, now if you complete the loop and all adjacent pair are in order,
+therefore the entire list is sorted, this is what we can actually, you know, write down here, so let
+me, you know, write down that in the form of assertion itself before, instead of, you know,
+writing down in this English language, so let's start with the very first one, now here I want
+to use assertion to, you know, compactly write what I said just now, right, so we use, we can use
+something, you know, similar to what we have used in the previous class, right, so assert all and
+then what we can say is that numbers and then this j, now you take number j and what you want
+to claim is the number appearing at the place j is always less than equal to number appearing at
+j plus one, okay, and you want this to be true for all, you know, j till i, right, because when
+you reach this, you know, iteration i, you want to only claim till position i because we have seen
+only till this position, okay, so what we want to maybe, you know, claim is that you want to claim
+this thing to be true for all j which are in, I'm going to claim this for j
+in
+range and then what is the range that I want to say, my range is i,
+okay, so this is what we want to maybe claim and if, you know, this is not true then maybe you want
+to, you know, go to and maybe, you know, print some useful information that you want to print
+in this case, okay, so what is the information that you want to print, maybe, you know, invariant
+is violated for this particular piece or, you know, this particular, you know, prefix, okay,
+something like this, so let me, what we want to maybe write at this moment of time is, you know,
+simple message which is like this, so if this is not true then maybe, you know, we want to
+write this message that invariant is violated and in the prefix i itself right from zero to i itself,
+okay, so we write, we display this message if this is valid, okay, so I hope you can make sense
+because, you know, we have discussed this all in the last class, right, so what it says is that it
+has, you know, the condition that I have given here should be true for all the, you know, j
+which is in this range, so for all the j, you know, which is, you know, less than, you know, i,
+this condition has to be true and this is exactly what we want to say, right, because
+I read this position, so I want to, you know, capture this notion that till now I did not
+find any inversion and formally how to represent that, so formally this expression, you know,
+precisely capture what we want to say, okay, so if you know this now can we write down, you know,
+the exact thing that we want to maybe say at this point in time, so can we copy paste this thing and
+then you can help me identify the modification or minimal modification that we need to do in this
+assertion to make sense at this particular, you know, point in time, so what shall I change?
+I want something similar to be tested but not till i, right, because I have also processed my i plus
+one, so what we can do is if we want to minimally change this and maybe, you know,
+I can say that no, I want to claim this at this particular point in time,
+okay, so does it make sense and of course, I mean, if it is not then I want to display a message which
+should also reflect my current point of, you know, disagreement or where did I find the counter
+example, okay, so for that I need to change even, you know, this, you know, output message. What
+about the final thing that I may want as a post condition? Again, I can, you know, add some
+assertions which can tell us exactly what went, when your whole function executed on every input,
+okay, so if you never found a counter example, then you want to check, I mean, after the loop
+exited, whether this assertion is still true or not, if it is not true throughout this whole thing,
+then it's certainly true at the end, so, right, so can we, you know, add some assertions,
+you know, write down safely this thing here and of course, I mean, since, you know, you have seen
+everything, maybe, you know, what we want to write here in the range is not, you know, this i anymore,
+right, what we want to say is here, so what was our length of this string, so how to write
+length, length of this number, numbers, right, and we want to check till length of number minus
+one, okay, and what we want to, you know, if this is, let's say, violated, if this is not true,
+this is violated, remember, I mean, this message is printed only when, you know, this is violated,
+so you can maybe, you know, say that post condition is not valid, right, so we can say that
+post condition violated, okay, and, you know, those lists should be, you know, fully sorted,
+right, so, or, I mean, if this is not true, then the list is not sorted, this is what you can
+say, so we can remove this message, maybe,
+right, so what we can say is list
+post condition violated, just this, okay, so these are, you know, correct set of, you know,
+assertion that we can maybe provide inside our code to make, you know, more sense, and
+if your code is, you know, correct, or if it, you know, captures the same intensity that we have
+written using assertion, then none of these assertion violations should take place, right, so,
+so remember, I mean, even if you, your list is not sorted, okay, even if your list is not sorted,
+you will not violate any of these, you know, assertions, right, so this is important to keep,
+I mean, many of you may think that when list is sorted, then only these assertions are,
+you know, true, but on contrary, what I'm trying to say is that these assertions should be true
+irrespective of whether, you know, your input is sorted or not, because, you know, the function
+has to work correctly even for, you know, not sorted list, okay, so this is a very important
+distinction, so don't confuse these assertions to, you know, reflect whether the string is sorted
+or not, I mean, this assertion actually reflects the invariant that you want to maintain, okay,
+so in some cases when the list is not sorted, you may want to leave a little early and then
+tell false, but in that case, none of the assertions will be violated, right, because whenever you
+enter a loop, you always check for these assertions, and these are no correct, because
+you completed the last loop, okay, in case if you, you know, come up with a counter example,
+then you immediately, you know, return false and you don't actually execute this, you know,
+piece of code, okay, so if you have come up to this place, it means that even in that,
+you know, iteration, you could not find a counter example, so this assertion should be
+valid, and if throughout the execution of the loop, you never exited, let's say, with, you know,
+premature, let's say, return, then this assertion should be true, right, and this should not be,
+you know, violated, okay, so, I mean, for all possible, you know, inputs, your assertion should
+not violate if you have written a correct piece of code, okay, so make sure that you understand
+this distinction, you know, properly, and what we can do now, so this is what, you know, we
+discussed that, you know, before the first iteration, the invariant is true, and then
+after each iteration, you have no inversion, so your invariant is true, and when the loop completes,
+then at that point of time, you can, you know, claim something like this, okay, so this is what
+we wanted to discuss, but I think we can take one or two small, maybe, so what we have not seen
+right now is, maybe, let's try to, what I said just now, I mean, whether the input is sorted or not,
+none of this assertion should get violated, because this somehow captures the intent of our
+programming, okay, so if I, let's say, I now try to use it, this function, so what is my, you know,
+function is, what is the name of the function, it's sorted, okay,
+so let me, you know, run this function first, so what was the error that was given now,
+why is this an error here,
+did I do some mistake,
+this may be a simple indentation error, it may not be, I have to check it, but let's now
+compile it again and see,
+okay, so I think I forgot to write down this last colon here and that was the purpose,
+that was the reason why,
+now, you know, it compiles and now if we can use this function is sorted on some input,
+maybe not sorted, now let's use this on some sorted list, okay, for example, I give it again,
+one, two, three, four, five, so after writing all these assertions, I want to check whether,
+you know, for this particular input, any of the assertions is violating, because this was
+my intention of writing the loop, so it's true, right, and none of the assertion got violated,
+because if any of the assertion gets violated, you will get that message, you know, corresponding
+message, okay, so when the loop was sorted, it returned true, none of the assertion violated,
+what about if I run it again on a list which is not sorted, let's say, minimally again,
+change it to one, in this case, I can expect a false, and see, in the case when you, you know,
+get a false, in this case also, we don't get any assertion violation, right, because you should
+not get these assertion violation if you have written the invariance properly, whether,
+you know, you return true or false, your function should always behave correctly, so this is,
+in a sense, capturing the correct specification of your, you know, intention inside your function,
+okay, so with this, I would like to conclude today's lecture, so we'll meet in the next lecture and
+talk about some more, you know, interesting examples building on top of these small functions,
+and we'll try to write down some more meaningful and intricate loop invariance which can come
+handy for, you know, for ensuring correctness in our code, so I'll meet you in the next video,
+till then, goodbye.

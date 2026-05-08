@@ -1,0 +1,533 @@
+So, welcome back to Python Core and Applied Concept for Reliable Data Science Workflow.
+Today, we'll continue with our discussion of module 3, where we were discussing the
+syntax and semantics of assignment and conditional.
+So, we'll continue our discussion and we will move on to the loop constructs in Python
+programming language.
+So let me take you to the Jupyter notebook and then let's continue our discussion from
+there.
+Okay, so just as a quick recap, so this is what we were discussing in the last class,
+right?
+We were left at this place where we discussed the correct functioning of if-then-else kind
+of conditional construct inside Python programming language.
+We saw how to compare three numbers and in the context of this task, we tried to figure
+out what is the exact syntax and semantics of if-then-else construct in Python programming
+language.
+Now, if-then-else is not, again, I mean, specific to Python.
+In any programming language, you will have something similar.
+The important point to note is that you should try to understand properly what is the condition
+that is true when you are inside a particular branch in this if-then-else condition.
+For example, if you remember, we took this example of max of three function which takes
+three numbers a, b, c as input and always gives back the maximum of these three numbers.
+And for figuring out the maximum of a, b, c, we came up with a program logic which looks
+something like this, right?
+That we did something when a was greater than or equal to b, otherwise we did some other
+piece of code and we built this program from scratch.
+So the important point to note here was that the kind of task you want to do or the kind
+of instruction that you want to execute depends upon where you are in the code, right?
+If your initial two conditions, for example, if this is true and then again if this is
+true, then we wanted to do this kind of an execution.
+We wanted to execute this instruction because in this particular condition, this execution
+or this instruction does the job that we want to do, right?
+So that's why we motivated ourselves about this if-then-else condition that every time
+you may not want to do the same set of actions, okay?
+Depending upon condition, you may want to do a different set of actions to achieve a
+particular goal.
+So remember that while doing all of these branching and then executing instruction
+inside a branch, we had the same purpose, right?
+We wanted to get the maximum of all three numbers.
+So our purpose does not change.
+The final goal of the program is to actually generate maximum of three numbers, but then
+you want to do different set of actions depending upon what is the nature of input to achieve
+the final goal, okay?
+And that's why the logic that you finally try to implement under the hood of each branch
+is different, right?
+Because here what you finally do, these are the final actions that you're doing, right?
+So if you are inside this branch, deeply nested inside this branch, then you want to do this
+Operation 1, let's say, or Task 1, which is putting a value of A into the result variable,
+okay?
+Similarly, if your first condition is true and the second is not true, it's false, then
+you want to maybe execute this operation.
+Again, this is a different task than this one, right?
+But the final goal is same.
+I mean, in all of these cases, we always want to get the maximum of A, B, C, right?
+So this is a very small example, but very clearly highlights the need for branching
+kind of reasoning in a programming language.
+Because if branching is not available, then you will always be doing the same set of actions.
+So if you want or if you think that your final goal can be achieved by, let's say, executing
+different set of instructions, depending upon different criteria that can be derived from
+the input, then you're most probably going to use if-then-else kind of branching, okay?
+So now if you understood this example, then I think you understood the overall concept
+of if-then-else.
+Okay, we take this input as numbers, okay?
+So let me now define my function, which...
+So let me define a function which is like the previous function, but now I maybe want
+to call it findMax, okay?
+And what is input?
+So input is numbers, right?
+So this is what we...
+And inside number, I may pass this kind of list that I have just now, you know, written
+in the previous code block, okay?
+So numbers may, numbers, I mean, this numbers is actually a list which may contain something
+like this, okay?
+Something like this or something, you know, different.
+I mean, which user may want to pass you.
+And depending upon whatever it pass, you know, you want to, you know, independent of that,
+your code should be able to figure out what is the...
+So the very first thing, I mean, certainly, I mean, I would like to do as a sanity check
+when I get inside.
+So I have forgot the colon, so let me put the colon here and then you see, I mean, Python
+automatically takes this indentation, right?
+When you put a colon and then press enter, I mean, it will take this indentation.
+And as a very, you know, first, you know, sanity check, what I may want to do is to
+check whether, you know, the list that has been given to me is, you know, non-empty or
+not, okay?
+So if I have been given an empty kind of list, then I would, you know, I would want to print
+some message which can help user figure out that it has given a non-empty string, an empty
+list, which I don't want to process, okay?
+So let's say, so we can use length function for that.
+Again, I will come to detail about the available function on list later on, but let me, you
+know, for time being use the length function, which is nothing but I mean, the length of
+list, okay?
+So if you pass this length function a list, then it will actually return you the length
+of this list.
+And what I want is I always want, let's say, my length to be greater than zero for any
+processing to do.
+So since I'm writing my function, I have, you know, this kind of, you know, rights to
+decide what I will consider as a valid input and what not as a valid input.
+And in case, you know, the user gives me some invalid input, there should be some way I
+can communicate to, you know, the users that this is not what I'm expecting.
+So at this moment of time, if let's say this assertion violates, it means I'm not willing
+to work on this kind of a list, so I may want to print some message to user saying
+that no, this must be must not be, you know, empty, something like this, okay?
+So we can optionally, you know, print something like this, okay?
+So this is the very first thing that I would like to do.
+Then I would like to now generalize whatever we have written in the previous class.
+So for instance, I mean, you remember, I mean, when we wanted to compare three numbers, ABC,
+what was our logic?
+Primarily, I mean, if you go to the chart, let me show you the block diagram and maybe
+full, maybe this is better, can I put the full diagram in the image, okay?
+So now I hope you can see the whole image.
+Now you remember, I mean, what was the logic that we use, right?
+So remember A, B and C were the three number and A was the first number, B was the second
+number and C was the third number, right?
+What we did was we first checked, no, we first compared the first two number, right, A and
+B and depending upon whatever was the final evaluation of that expression, we did something,
+right?
+So it's correct to say that depending upon whatever was the outcome, we forget about
+the lower number among the two, right?
+So if let's say A is greater than B, then I only use A in any additional check or let's
+say processing.
+This was our idea that we only carry the maximum number that we found at this point in time
+and then all the further processing will take care of only that maximum number.
+I can actually safely forget whatever was the not maximum among A and B, okay?
+So for example, in this case, when A was greater than B, you will see only A appears in any
+further check and also in the result, B will never appear because B was not the maximum,
+okay?
+Similarly, if you go to this branch, I mean, you know that B is now maximum.
+So again, I mean, you can safely forget about A in all the, you know, future processing
+because we are, you know, aiming to find out the maximum among, you know, all.
+So the maximum among whatever we have seen can only help us, you know, go ahead and figure
+out a proper logic for it.
+For example, in this case, we carried with B, we did some checks on B and then the output
+was either B or some other number, but not certainly A, okay?
+So this is some, you know, roughly the logic that we tried to implement in the previous
+class where we were, you know, willing to figure out what is the maximum of three number.
+So can we, can we, you know, simply let's generalize this logic to a list of number?
+Can we do something similar?
+You know, we can start with, let's say, the first two number or let's say the first number.
+So what we can do here is we can always compare the portion of list that we have seen.
+So just to be, you know, simple, I mean, let me go back to the block.
+So what we can do here is, I mean, if you look at this particular example, so we can
+do something similar, right?
+So I assume this was your A and this is your B. So what we can now do is we can, you know,
+compare A and B and figure out which is the maximum and only keep the maximum in our hand
+and go ahead processing the remaining list.
+So this will do right.
+I mean, and we can write some logic which can mimic the previous logic that we have
+written for A, B, C.
+So we always need maybe the maximum of what we have seen so far.
+And with that maximum, we can go ahead and check it with the new element that we see
+down the line in the list.
+And whenever, let's say, you know, the new element that we see is greater than the maximum
+that we keep in our hand, we will update our maximum.
+Okay.
+So this is how we can actually maybe, you know, in the first step, you know, when we
+compare these two, we get our maximum to be 25.
+So we keep 25 in hand and then we go to the next element, you know, 56.
+And we compare whether 25 is greater than 56 or not.
+So certainly not.
+So at this moment, I will not change my maximum to 56.
+So the maximum that you have at this moment, 56, this is maximum among all of the three
+that you have seen.
+And this is how maybe we can, you know, update, keep updating our maximum.
+And when we reach the end of the list, we will have something which is maximum among
+all the elements that we have seen inside the list.
+Okay.
+So this logic seems very trivial.
+So let me not further discuss it and let's try to implement the same logic that we said
+right now.
+So somewhere we have to initialize it, right?
+So in the very beginning, when you start your, even before you start comparing two numbers,
+you have to start with some number, right?
+So let's say, I mean, I use a variable which is called, you know, maximum so far to
+store the maximum number among the numbers that we have seen at any point of time.
+Okay.
+So let's say initialize a number which tries to, you know, capture our intention that we
+discussed just now.
+Maximum so far.
+And what we want to do it, we want to initialize this number with the very first number in
+the list.
+So, you know, zero is how, so this is how we know we accessed, let me, you know, improve
+the font size a little bit.
+So this is how we access the very first element in the list.
+Okay.
+So number zero means, I mean, whatever number you have given, I take the first element in
+the list and then initialize my maximum so far, you know, with that number.
+So this is like a starting point of, you know, your whole process.
+So in the very beginning, I say that this is the number which I have seen right now.
+And since this is the only number, this is my maximum number.
+This is what we do.
+And then we say that just to indicate what all we have seen, I mean, what is the index
+up to which we have already seen, we use another variable, let's say, called i, and we initialize
+it to, you know, one.
+Okay.
+So when I say that i is equal to one, what it means is that I have already seen one element
+in the list.
+Okay.
+And I want to go, so what should be the value of i to which I want to maybe see?
+So i is equal to one indicates that I have seen one element in the list.
+So ultimately, I want to see, you know, all the n element in the list if there are n element.
+But then, you know, I have to also store maybe, you know, the length of the string to do that.
+Right.
+To go up to the last element, I need to figure out what is the length of the list.
+So let me use the same function that we just use.
+So we say that n is equal to our length of the exactly same function that we have used.
+So now you understand, I mean, this n helps me figure out when shall I stop, let's say,
+whatever sequence of steps we are going to write down next.
+I need some point to stop, right, that compression and when will I stop?
+So when I have seen all the elements and that is what is encoded in this n.
+And then we discuss about the core part of the logic, which we can actually describe
+using loops.
+So the one kind of loop that is present in Python is called while loop.
+So while loop can keep some piece of code which will be executed again and again until
+the condition of the while loop is true.
+So for example, here what I want is while my, let's say, I, which I initialize to track
+how many elements I have seen.
+So right now I said that, you know, since I have seen only one element, I has been initialized
+to one.
+So it makes no perfect sense that I have seen only one element, which is the very first
+element in the list.
+For example, in this case, if your list is this set of or the sequence of elements, what
+you have seen is only one when you execute, let's say, this first line of instruction.
+And hence I shall say that I have already seen, I know is equal to one, so I have already
+seen one element.
+But I want to repeat some set of, you know, operation until I see all the elements.
+So until I is less than n, so I want to do some set of actions.
+This is what, again, I mean, if you put a colon and then enter in Jupyter, you get the
+automatic indentation.
+So you don't have that problem.
+So it understand that now you want to give me the logic that should happen, you know,
+should be implemented inside this while loop.
+So every time now, what is the set of action that I want to take?
+So I would like to take the current element, which I have not seen at that point of time.
+So let's say if you have seen, you know, if you have seen I number of elements.
+So what do you say?
+I mean, how many so what is the last index in this number that you have already processed?
+It's I minus one, right?
+Because the first index is zero.
+So since we have seen I elements, we will say that we have seen numbers, still numbers
+I minus one because it starts from zero.
+So what you want to do is now you in the I step when you're looking at the next element,
+you want to get the next element, which is nothing but, you know, number I, OK, so numbers
+I and then compare it with the current maximum.
+So what we are trying to do is now we want to maybe, you know, process it.
+Let me write some comment now.
+I want to in this particular step, OK, so I want to process current element.
+So and what does processing means?
+I know, take that element in hand and then compare it with whatever it was the maximum
+till now.
+This was the logic, right?
+So what I want to say is, if let's say my.
+So the number that I have not taken in my hand, this no Ith element, the next element,
+OK, that has not been processed till now, because since I've seen I numbers, I have
+already seen index up to I minus one.
+So in this step, what I want is I want to take out this number, you know, I and what
+I want to do is I want to check whether this number is greater than or equal to, you know,
+strictly greater than the maximum so far.
+So let me say maximum.
+So I have already I also know what is the maximum so far, right?
+So I have so see that's why I mean you.
+So when you get inside this loop for the first iteration, you need the value of this maximum
+so far, right?
+This is how we initialized all these variables outside the loop.
+We said that maximum so far has an intention of, you know, studying the maximum among whatever
+we have seen till now.
+And since we are just starting, we say by default, let's say, you know, keep that value
+to be num zero.
+And so what should be the set of action here if it's my current number that I'm looking
+at right now, or the next number, whatever you want to call is greater than whatever
+I have seen so far, then I would certainly want to update my maximum so far.
+Right.
+So this is what my actions should be at this point in time.
+So my real action here is maximum, sorry, maximum so far is equal to, okay, so this
+is what I want to do.
+If let's say this is not true, that your, you know, number i that you want, you're seeing
+right now at this particular moment in time is not greater than the maximum that you have
+seen till now.
+So then in that case, you know, do we some, shall we do some, maybe element, right?
+So if that's not true, let's say if this is not true, then I don't want to do anything,
+right?
+Because my maximum so far captures the maximum seen so far.
+So I would just like to, you know, maybe, you know, increment the value of i and then
+go to the next, you know, again, because I need to indicate that I have already processed,
+you know, this element and how will I indicate it?
+So I will indicate so, you know, in any case, I mean, whether this condition is true or
+false, I always, whenever I go out of this loop, I always want to increase the number,
+the value of i to i plus one so that next time when I come to the loop again, I know
+that now I have processed the number till that point and I have moved one step ahead.
+Okay.
+So what is the action that we want to do now?
+So what we want to do is, you know, i, okay, so this is, you know, what we want to do.
+So just to say that now next time when you enter, you process the next element and not
+the current i that we have processed in this, you know, this iteration of the loop.
+So this is the body of the loop that we have written.
+Okay.
+So this is exactly the body of the loop that we have written.
+So there are two things for, you know, for a while loop.
+Okay.
+So one is condition.
+I mean, when cell i executes of the body of the loop or the code block that appears inside
+the loop tells you what are the sequence of instruction that you need to take or what
+is the logic that you need to implement that you can think independently and write inside
+this, you know, code block that we have done.
+Right.
+So when we come with certain i, what we want to do is that at that point in time, I want
+to get the number present in, you know, numbers i and then compare it with the maximum.
+If the number is greater than maximum, then certainly I want to update it.
+I want to update the maximum since so far.
+In other case, I want to, I don't want to maybe do anything.
+So that's why you see there is no else, no branch that we have written here.
+And this is perfectly valid syntax.
+So you don't need to always give the else branch.
+Okay.
+So we have not done anything.
+So we prefer to not write any logic for else branch.
+But whatever it be, whether it is if or else, whatever set of action you want to do, when
+you exit or when you go for the next iteration inside the loop, you always want your i to
+be increased by one, because otherwise you will keep repeating the same set of logic
+for the same i.
+Okay.
+And this will be, you know, like an infinite loop and your program will never come out
+of this.
+You know, it will always be, you know, looping in this logic that you have written inside
+the loop.
+Okay.
+So this is not dangerous in programming, you don't want this kind of infinite loop.
+So this incrementing i helps you, you know, ensure that at some point of time, this condition
+will become false.
+Okay.
+So if you don't increment i, if you, you know, go ahead with the same i again and again, then
+this is always true and you will always be, you know, executing this set of actions.
+And you will never terminate.
+So you will get a program which is non-terminating.
+Okay.
+So that's why it's very important to think when you're writing a while loop, are you
+making sure that the condition that is checked before getting inside this loop, you know,
+for the next set of execution, are you changing this condition?
+If you're not changing this condition in no certain way that, you know, ensure that at
+one moment in time, it will certainly be false, then you are somehow, you know, creating an
+infinite loop.
+So we are making sure that n is not changing, right, because n is the length of loop, but
+a length of the list that you're giving.
+But i is your number, which you're checking against n.
+And if you're always increasing, you know, this number i after doing the set of action
+that you want to do inside the loop, then you're ensuring that at one point of time,
+this will be, you know, this will hit the boundary condition and i will become greater
+than n or equal to n.
+And at that moment in time, you will not execute the loop code.
+Okay.
+So please go through it slowly and try to make sense of, you know, how this loop works.
+So for loop, the first important thing is you have to write condition that you want
+to be true to get inside the loop and execute the sequence of instruction or whatever logic
+you have implemented inside the loop.
+And then always there should be some instruction.
+It need not be the last instruction in the code block that you have written inside the
+while loop.
+It can appear anywhere, which should change the variables which appear in the condition
+in the loop.
+Okay.
+Otherwise, you know, there is a very high chance that you end up with a non terminating
+program.
+Okay.
+So now let me just close this function and then maybe say that we want to now return.
+So this is not the correct indentation.
+So I shall take a tab and then come to this.
+So we return.
+So what are we returning?
+So certainly we want to return whatever is collected in maximum so far.
+Okay.
+What if I, you know, compile this piece of code?
+So this, you know, interpreter accepts it properly.
+And now if we have to, let's say, run this piece of code on, let's say, some models.
+So let me call this function, which is find max and pass maybe a list to it.
+And let us pass a list which has no multiple elements, let's say 1, 5, 6.
+So I can pass a longer list, right?
+We need not pass only three or four.
+I mean, we can pass as long as we want, because now our program logic does not, you know,
+confine us to only work with the list of given size, right?
+So what we have written is a general logic where depending upon whatever the size of
+our list, I will repeat this set of action because this n is what controls how many times
+this while loop will get executed.
+Okay.
+So now, you know, this program should return me something.
+Let us run it.
+And it returns, you know, nine.
+Okay.
+So what was happening initially, you know, we initialize it with one.
+So one had one was stored in maximum.
+So far, when your I was referring to this, you updated your maximum so far, right?
+So when you are, you know, let me put the font size a little bit.
+Now you can see when we went to this five, what happened?
+This branch was not true, right?
+At this moment of time, your current number became greater than whatever was maximum so
+far.
+So you executed this piece of code and then increase your I by one.
+And hence you move to the next position.
+If you don't increase your I to I plus one, then you see, I mean, you will not in the
+next iteration, you will not go here, but you will not remain at this place itself.
+Again, next time, since your new number that you encounter is greater than your maximum
+so far, you see, you will, we will update maximum so far also in this iteration.
+But what happens next time?
+I mean, when, when we get to three, what piece of code gets executed?
+Certainly, I mean, every time you are, you know, evaluating this condition, right?
+No, whether it be true or not, you're evaluating for sure.
+So you will execute this piece of code and you will see that this is not true.
+So since this is not true, you will not execute this in a line of code.
+You will directly go and you will, we need to increase the value of I so that we can,
+you know, reach this place in the next iteration.
+Once you reach this place, again, you do the same thing in maximum.
+So far you have six and you will compare it with four.
+So again, the condition, which condition this condition becomes, you know, false and
+you don't do any, you know, operation and you simply go and, you know, increase the
+number I to again enable the loop to access, you know, this element.
+And at the moment, again, when you access this element, you see, this condition becomes
+again true.
+Why?
+So the maximum so far was six and your current number is greater than six.
+So you would want to again execute this piece of code, which is nothing but updating your
+maximum so far to the current number, since the current number turned out to be greater
+than the maximum so far.
+Okay.
+So the maximum so far gets updated to eight.
+And similarly in the next step also, it will get updated to nine because nine is greater
+than maximum so far.
+But in the last step, remember that even though this number is not greater than maximum so
+far, loop will execute for sure to check whether this number is greater than so far or not.
+So the loop will execute certainly for all of these indices.
+In some of the cases, we will execute this piece of code, which we shall execute whenever
+our new number that we have seen is greater than maximum so far or not.
+And in other cases, I will not update it.
+Okay.
+But the loop has to go for all of these, you know, iteration, I mean, since our logic is
+simple and it tells that, you know, for every next I, I want to go inside the loop until
+this condition is true.
+And when will this not go inside the loop?
+Can you tell me the exact condition when, you know, for the first time, let's say it
+does not again go back to the loop and it, it exists the loop.
+It doesn't just go inside the loop.
+No, it will not.
+So when this condition is violated, so, so when your i becomes is equal to n, then this
+is not true, right?
+Because this is strict less than n.
+But by the time your i becomes n, you have already seen elements starting from zero to
+n minus one.
+And that contains everything in your list.
+So you're not missing also something inside the list.
+Okay.
+So, so this is, you know, what the code looks like for a simple maximum function, which
+we want to write for figuring out maximum among the numbers.
+So now you can run it, you know, multiple time, the same function to get, so you can
+actually maybe, you know, repeat it on some other numbers.
+Let me now copy, you know, call to other functions here.
+And then maybe we use the same thing with the different set of numbers here.
+And in this case, you can see if you run this piece of code, what do you expect?
+You expect a number which is 13.
+Okay.
+Let me run it.
+And you get 13.
+Okay.
+So this is what we have written just now.
+And just a quick recap of the logic.
+So this is the logic.
+Okay.
+So we start our program and then we try to check whether our list is empty or not.
+So this is what is happening in this, you know, block, right?
+We check whether the list is empty or not.
+If the list is not empty, we want to just provide some error message so that our user
+knows that they have to input a valid, let's say, sequence of numbers for it to return
+the maximum number.
+When it is true, then we go and initialize our portable variable, we think can be useful
+inside the loop or the repeating structure.
+So we have maximum so far, and then we also initialize this i.
+And we have also, you know, somehow calculated the length of the list that is given to us.
+Now, depending upon this condition, we would repeat certain set of actions, which we call
+the loop body.
+So if my loop has reached the end, then in that case, I will return whatever is the maximum
+number.
+If not, then I will keep repeating some set of execution, which is, you know, encoded
+here in this part of the code.
+What is this part of the code?
+The same as we discussed.
+Now, if your current number is greater, then you update the maximum else you don't update
+the maximum in any case, whether you go this part or this part, you always need to finally
+increase your counter i, which is kept to keep track of the index of the last element
+that we have checked.
+And you increase this and then you go back to the starting point in the loop.
+And then again, repeat same set of actions, remember, I mean, this is a compulsory step
+you are doing, whether this is true or this is false, you always want to increase this
+so that eventually you get a termination when you check this condition.
+So I think we have discussed very clearly the syntax and semantics of while loop.
+So let me just, you know, summarize it here, whatever we said right now, there is some
+initialization steps before you enter the loop.
+So this is what it summarizes.
+So before the first iteration, what we did was we put i is equal to one and maximum so
+far to this one so that when you get inside the loop for the first time, you have something
+to check against, right?
+Otherwise you will not be able to check again then.
+So we'll come to it.
+So what does it mean?
+So, you know, your so your number that you have stored the maximum so far is actually
+greater than equal to whatever you have seen so far, because you have seen only one element.
+So that is greater than equal to itself.
+So this is what it says.
+And this is what we want to maintain as an invariant when we are running this loop.
+So then your number is also same as the number.
+Remember, I mean, in the last lecture also, we wanted to calculate the maximum among three
+and we wanted to return only a number which is one out of three.
+So this is also what you need to keep in track.
+So this is what I could have done here.
+I could have initialized maximum so far to a very high number, which is not among the
+list.
+And still, you know, when I get in for the first time inside the loop, my number is greater
+than whatever I have seen, the first number, but that may not be the right kind of result
+that you want to return.
+OK, so that's the second condition, which we will capture in a proper specification
+later on.
+Then what are we maintaining?
+So see, when you are writing a loop or this kind of repetitive set of actions, you want
+to achieve something, right?
+What are we trying to achieve here?
+We said that we abstracted out a general logic out of our three number example that we can
+maybe translate that to a piece of code, which always maintains some invariant.
+So in this case, what was the invariant?
+The invariant is that the maximum so far variable always contain the maximum of all the elements
+that we have seen so far.
+So inside the loop, remember, I mean, when you progress inside the loop, I mean, every
+other iteration, every next iteration actually increases the length of or increases the portion
+of the list that you have already observed, right?
+With every new iteration, you are observing new elements.
+So that's how you are observing different initial segments of the given list that is
+given to you as input by the users.
+So what invariant we are maintaining is whatever we have seen so far, max so far variable contains
+maximum among all those elements that we have seen so far.
+So this is what we call a loop invariant.

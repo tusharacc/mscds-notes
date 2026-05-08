@@ -1,0 +1,185 @@
+Just to summarize, every loop has these three major components which we call initialization,
+maintenance and termination.
+So, in the initialization what we do as we have seen here is that we initialize the variables
+which maybe we want to manipulate inside the loop and we want to now set these variables
+to appropriate values so that when we encounter them inside the loop body, we can manipulate
+and change their values accordingly to maintain some essential property of the loop which
+we call loop invariance.
+So then the second important thing to note is that the maintenance part.
+So whatever is your intention behind writing a loop can almost always be translated to
+some sort of invariance or properties that we can assert for the loop and no matter how
+many times you go inside the loop, we always want to ensure those property to be true for
+each of the iteration and at the end also when we terminate the loop we want those conditions
+to be true.
+So this is what we call maintaining these invariants and these invariants are indirectly
+a way to assign meaning to the loop.
+So if I ask you what is the meaning of your loop or what is the intention of your loop,
+maybe you can just give me the loop invariant and it's a very precise mathematical way to
+tell the intention of a loop.
+For example, in this case, the example that we were looking, our intention is to maintain
+this invariant that maximum so far is greater than everything that we have seen so far.
+So at any iteration of the loop, we have seen only the partial list, we have seen partial
+initial segment of the list and till this point whatever we could see or whatever value
+we could observe, maximum so far variable contains the maximum amount, the element that
+we have seen.
+So this is kind of invariant and if we can maintain this invariant throughout, then we
+are guaranteed in case if the loop terminates, then we'll always have an answer which satisfies
+this invariant.
+So this is also what translates to the logical rules for reasoning about the loop where let
+me help you with this rule, what does it say?
+In the bottom of the consequence of this, what you can see here is a while loop, this
+is the condition, B is the condition for the while loop and C is the body of the while
+loop.
+Let's say I mean you want to execute some set of instruction which is what we call code
+block which is represented here as C and B is the condition which you always want to
+check before you get onto this code block and want to execute them.
+Then if we can come up with some nice property which we call loop invariance P, then we can
+at the end of the termination of the loop also we can say that the P is true and now
+since the loop has terminated, I know that this B was not true anymore, so B has become
+false.
+We can claim safely this thing, we can claim safely the denominator of what we are discussing
+here, this thing, for this thing what we can claim safely is this statement only if you
+can prove that every execution of the code block C maintains P as an invariant.
+So this is what we are writing here, I mean if you look at this, whatever we have written
+is that if my C or execution of the code C maintains P as an invariant, so writing this
+in this form says that if P was true initially and then I executed this code block C later
+on also I want my P to be true, if this whole thing is true then only you can call this
+P to be invariant.
+So more formally, if let's say P is true and you are able to enter the loop body, that's
+what this B indicates, if your condition is true and if your loop invariant before entering
+the loop next time is true, then after executing the code block that is there inside the loop,
+if you can somehow prove that the P will always remain true after the execution of the code
+block one time let's say, then using mathematical induction you can maybe prove that why this
+is true.
+For the whole loop body you can always claim this, that before you started executing your
+loop, this is your loop whole thing, if you can somehow observe that your property that
+you want to be preserved, which we call loop invariant is true initially, then at the end
+of the loop when that loop terminates your P is true and your P becomes false, this is
+what this negation B says.
+This is roughly what we wanted to discuss regarding the semantics of, let me run this
+piece of code and then you can see this is the semantics of what we wanted to discuss.
+If the invariant P holds and the condition B is true, after executing the loop body C
+the invariant P still holds, this is what you need to prove, so this is the key requirement
+that you need to prove if you want to claim something about the loop action or the intention
+of the loop.
+So with this background now let me come back to where we left actually, can we now write
+down these invariants, can we identify these invariants and write down properly using assertions
+the way we did for let's say maximum of three number for this new function.
+So let me first copy and paste the code of this whole thing and then maybe let me copy
+this code and then maybe paste it here and then try to figure out what will be the correct
+location for inserting those.
+So we have written it, now you know you see this is the loop part right, so this is where
+I see the condition and I get inside the body of the loop right, so if you want some property
+to be true you know throughout the execution of the code and that's what you know you want
+to maintain here also, so you should be able to prove it for this block of code also right,
+so for this block of code, so this is C, in this notation when I write while B do C, what
+is C, here for our example this is the piece of code that we are calling or let's say denoting
+with C, for this piece of code we can you know prove this that you know whenever P is
+true and this gets executed P is true even after this then we will be happy.
+Now I want to identify one such property which I will call you know invariant and then try
+to write it down, so if you can do this then we can certainly say that that invariant is
+true before this one and after this one also execute you know after the termination of
+the code also okay, so let me try to first write down this invariant here somewhere,
+so let me use assertion to write down invariant at this place, so what is the you know kind
+of desired property for that we want to write down as a loop invariant, so at the start
+of each you know iteration I want to say that max so far contains the maximum of numbers
+from 0 to i minus 1, so this is what I want to say right, after you know any number of
+iteration I want to say maybe this at the very beginning okay, so the nice way to say
+this whole thing is using assertion and let me write down here, so what we are trying
+to come up right now is loop invariant okay, for our program which we call here you know
+p and now we can assert something interesting about this loop which kind of you know characterizes
+this loop also, so what we want to say is you know maximum of maximum that we could
+see so far okay is greater than equal to numbers, so what shall I put here, I mean I don't want it
+to be no maximum than one number or two number right, I certainly want this max so far to be
+maximum than any number that I have seen so far, so what is that index that represents you know any
+number that I have seen so far, so anything which is less than i right, so this is what we want to
+know maybe say here okay, so what we want to say that now for every number in the range 0 to let's
+say i minus 1 I want to check and say this okay, so let's say that number be called j, so what we
+are saying that I want to check these properties to be this property to be 2 for every number you
+know j that is in some range okay, so what is that range so let me know write it down, so this is how
+you know we can write so max so far is greater than equal to number j for j in some range right
+and what is that range so that range is no defined by this i, so when you write range i it is actually
+a collection of number i now starting this is collection of numbers which has 0, 1, 2, 3 and till
+i minus 1 okay, so this is what we also want to check right, so range i actually represent you know
+this no list of number which contains 0, 1, 2, 3 till i minus 1 okay, so if your j is in this
+range then you want to check this no condition, so this is what this is telling okay and if this
+was certainly I mean the assert can only you know check for Boolean conditions right, so I want to
+do it for all the j in this range, so this is what no I intend to write here so to make it you know
+clear so we can use you know our syntax so let me so this is the condition that I want to check
+certainly for j which lies in the range and I want to check whether this condition is true for all
+the j in the range that I give here okay, so I what I do want is that no for if it is true for
+all the you know j which is inside this range all the j which is in this range then only you know
+this whole thing will you know return me true, so if I find even one you know such j for which this
+is not true then in that case this you know all of this expression will not return me true in that
+case it will return me false because you know I mean so this is like you know joining all these
+things in there and all this expression for different j with and operator okay, so the
+semantics of this all is that no you whatever condition you have written here should be true
+for all the j which is in this range okay, so if this is true then I mean this returns you know
+true and see I mean this is exactly what we wanted to also you know maybe say as a loop
+invariant right this is what we want to capture using max so far so if this is not true then we
+will say that no upper bound violation or something like this right okay, so this is
+what we want to maybe say and check when the you know when we are about to enter the loop but in
+order and this is also what we want to say after we exit from the loop right so we also want to
+say the same thing after exiting from the loop but to do that as the rule of reasoning for a while
+say that you have to do it for every iteration okay and if you can know maybe a better place
+to put this same thing is maybe copy this thing see and then a better place to put it is inside
+the code block okay, so this is what we saw just now if you can prove this thing in the beginning
+of the loop and then just before going to the next iteration in the loop if we can know prove
+this it means that we are maintaining so whenever I enter the loop I check whether this is true or
+not and whatever piece of code I execute I also you know before you know going for the next
+iteration let me have a space here so going for the next it so this is the piece of code C that
+we highlighted in the previous rule of reasoning about while so before this I want this property P
+to be true and after execution of this also I want this to be true so if I can know make sure
+that these two assertions are true for inside you know while loop it means that no for every you
+know iteration that you take I mean this is always maintained so if this is always maintained then
+you can also safely you know say at the end that this thing is maintained okay now if you if none
+of these assertions you know break then after completion of this you know whole while thing you
+can also safely claim that this assertion remains true okay so maybe you know after before returning
+from the function also I can safely claim this right because since I have you know I could check
+it you know for each of the while iteration okay so so the finally what we want is you know this
+assertion that our loop invariant that we came up with we want it to be present in the beginning
+and we want it to be true at the end and by the rule of logic or rule of reasoning about program
+we know that we can claim this only if we can you know test for every you know iteration that
+this property is truly an invariant okay every iteration in the beginning it is true and when
+we go to for the next iteration again this property is true that not this max so far is
+actually the max of whatever we have seen so far if you can maintain all of this then at the end
+you know this is guaranteed okay by just checking you know these two assertions of what we can make
+sure is that this is always not true but let's say for safety I have written you know at all these
+places you know these three things and then what if we run it so let me compile this piece of code
+and it compiles properly and now if I let's say want to say find max of maybe some numbers
+which I pass here as input let's say let me pass some number like no 1,10,3 some some numbers 4
+maybe 20 and then maybe 34 something like this so if we pass this and then you know run this
+function so what we get is 34 which is correct now it's not the only output that we want to
+check or see here right I mean so certainly I mean it's giving you the correct or intended result
+but we have done you know more than just getting the output right but what we are saying is the
+property that we wanted to maintain for this you know function we could write it properly here okay
+we could properly write it and no execution of the program violates this property so this is
+more interesting right because you know this input output pair the test cases that you can
+actually check with can be very cumbersome right if you can properly encode what is your desired
+or what is your desired property of output in you know in terms of this assert statement actually
+I don't need to look at even what I what did I get as an output for this given input this is
+stronger than checking so this we did just because you know we wanted to convince ourselves whether
+this is giving us a right or wrong result by looking at some small example but if you have
+written assertions like this you don't need to even you know run this on these inputs and check
+it okay so only thing that you need to know do it run it on multiple input and see whether you get
+a certain value failure or not if you don't get an assertion failure certainly your function has
+this property which are encoded by these assertions okay so you actually don't need to look at the
+output and you know tell me whether you know you got what you wanted or not provided that you have
+written these assertions carefully but most of the time I mean writing correct assertions or correct
+invariant for let's say loop requires some practice and experience okay so I would you
+know urge you to go through this example again and try to figure out whether you know this is
+the most appropriate assertion that you want to write for maybe this loop or does it have some
+you know drawback nor it has no some incompleteness or it's is it not that strong which captures our
+intention of writing this particular loop so how about you know look at this example and think
+about you know what can be missing in this assertion so this is certainly a correct assertion
+because you see I mean now when we run it it is always you know passing but this might not be the
+most you know desired assertion that you want to write for this particular piece of code okay so
+take your time go through this example slowly and try to figure out whether you can strengthen this
+assertion to make it more appropriate for the intention of writing this code okay so we have
+our intention of writing this while loop and does this assertion act as the most appropriate
+invariant for this piece of code which you know we wanted to write okay or can we make it a little
+stronger to reflect the correct nature of you know this loop in you know some way so you can take
+you know hint from our previous example where we compared three numbers and you can simply maybe
+relate those to these two you know different assertions and try to figure out whether there
+is something missing or not okay so I leave you with this you know example to think about and
+work with this example to come up as strong I will see you in the next lecture till then goodbye
