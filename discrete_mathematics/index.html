@@ -269,13 +269,165 @@ details[open] summary::before { transform: rotate(90deg); }
   .toc-rail { display: none; }
   main { padding: 1.8rem 1.2rem 4rem; }
   .page-header h1 { font-size: 2rem; }
+}
 
-  /* Badge is position:absolute top-right; without enough padding-right the
-     block-title text flows beneath it on narrow screens. Reserve ~5.5rem
-     (~88px) on the right — enough to clear the widest label "KEY FORMULA". */
-  .def-block, .axiom-block, .example-block, .formula-block, .practice-block {
-    padding-right: 5.5rem;
+/* ═══════════════════════════════════════════════════
+   UX & RESPONSIVENESS ENHANCEMENTS
+   ═══════════════════════════════════════════════════ */
+
+/* ── Reading progress bar ── */
+#read-progress {
+  position: fixed; top: 0; left: 0; height: 3px;
+  width: 0%; background: linear-gradient(90deg, var(--gold), #c2692a);
+  z-index: 500; pointer-events: none;
+  transition: width .08s linear;
+}
+
+/* ── Touch devices: kill hover lift (stuck state after tap) ── */
+@media (hover: none) {
+  .def-block:hover, .axiom-block:hover, .example-block:hover,
+  .formula-block:hover, .practice-block:hover {
+    transform: none;
+    box-shadow: var(--shadow-sm);
   }
+}
+
+/* ── MathJax display math overflow ── */
+mjx-container[jax="CHTML"][display="true"] {
+  overflow-x: auto; overflow-y: hidden;
+  max-width: 100%; padding-bottom: .25rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ── Table overflow ── */
+.tbl-scroll {
+  overflow-x: auto; -webkit-overflow-scrolling: touch;
+  margin: .5rem 0 .7rem; border-radius: 6px;
+}
+.tbl-scroll table { margin: 0; min-width: 400px; }
+
+/* ── Active TOC link ── */
+.toc-week a.is-active {
+  color: var(--gold); font-weight: 600;
+  background: rgba(146,64,14,.08); padding-left: .75rem;
+}
+.toc-week a.is-active::before { color: var(--gold); }
+
+/* ── Focus ring ── */
+:focus-visible {
+  outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 3px;
+}
+
+/* ── Extended fade-up delays (original covers only 8 children) ── */
+.concept-section:nth-child(9)  { animation-delay: .36s; }
+.concept-section:nth-child(10) { animation-delay: .38s; }
+.concept-section:nth-child(11) { animation-delay: .40s; }
+.concept-section:nth-child(12) { animation-delay: .42s; }
+.concept-section:nth-child(13) { animation-delay: .44s; }
+.concept-section:nth-child(14) { animation-delay: .46s; }
+.concept-section:nth-child(15) { animation-delay: .48s; }
+.concept-section:nth-child(16) { animation-delay: .50s; }
+.concept-section:nth-child(17) { animation-delay: .52s; }
+
+/* ══════════════════════════════════════════════
+   MOBILE-SPECIFIC OVERRIDES  (max-width: 960px)
+   ══════════════════════════════════════════════ */
+@media (max-width: 960px) {
+
+  /* ── Badge: remove absolute position → flow inline above title ──
+     This eliminates the need for the 5.5rem reserved space and gives
+     blocks their full content width back.                           */
+  .block-badge {
+    position: static;
+    display: inline-block;
+    margin-bottom: .5rem;
+    font-size: .62rem;
+  }
+  /* Restore natural right padding now that badge is no longer floating */
+  .def-block, .axiom-block, .example-block, .formula-block, .practice-block {
+    padding-right: 1.3rem;
+    padding-top: .95rem;
+  }
+
+  /* ── Typography scaling ── */
+  .concept-section > h3 { font-size: 1.1rem; }
+  .block-title { font-size: .97rem; }
+  .week-banner { padding: 1.1rem 1.2rem; margin-bottom: 2rem; }
+  .week-banner h2 { font-size: 1.25rem; }
+  .week-banner .week-meta { font-size: .76rem; }
+  .page-header h1 { font-size: 1.9rem; }
+  .page-header .subtitle { font-size: .84rem; }
+
+  /* ── Touch targets ── */
+  summary { min-height: 44px; display: flex; align-items: center; padding: .35rem 0; }
+  .toc-week a { min-height: 44px; }
+}
+
+/* ── Mobile TOC drawer ── */
+#m-toc-btn {
+  display: none;
+  position: fixed; bottom: 1.75rem; right: 1.5rem; z-index: 500;
+  width: 52px; height: 52px;
+  background: var(--gold); color: #fff;
+  border: none; border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(146,64,14,.35), 0 2px 6px rgba(0,0,0,.12);
+  transition: transform .2s, box-shadow .2s;
+  align-items: center; justify-content: center;
+}
+#m-toc-btn:hover { transform: scale(1.07); box-shadow: 0 6px 22px rgba(146,64,14,.42); }
+#m-toc-btn svg { width: 22px; height: 22px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+#m-toc-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(28,20,16,.4); z-index: 510;
+  opacity: 0; transition: opacity .28s;
+  -webkit-backdrop-filter: blur(1px); backdrop-filter: blur(1px);
+}
+#m-toc-overlay.vis { opacity: 1; }
+
+#m-toc-drawer {
+  display: none; position: fixed;
+  bottom: 0; left: 0; right: 0; max-height: 74vh;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-radius: 18px 18px 0 0;
+  z-index: 520;
+  padding: 0 1.4rem 3rem;
+  overflow-y: auto; -webkit-overflow-scrolling: touch;
+  transform: translateY(102%);
+  transition: transform .32s cubic-bezier(.32,.72,0,1);
+  box-shadow: 0 -12px 40px rgba(28,20,16,.14);
+}
+#m-toc-drawer.open { transform: translateY(0); }
+.m-pill { width: 36px; height: 4px; background: var(--border); border-radius: 2px; margin: .9rem auto 1rem; }
+.m-drawer-hd {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: .68rem; font-weight: 700; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--text-muted);
+  padding-bottom: .65rem; border-bottom: 1px solid var(--border);
+  margin-bottom: .8rem;
+}
+#m-toc-drawer .toc-week a { min-height: 44px; font-size: .86rem; }
+#m-toc-drawer .toc-week-header { font-size: .82rem; margin-top: .4rem; }
+
+#back-top {
+  display: none; position: fixed; bottom: 1.75rem; left: 1.5rem; z-index: 500;
+  width: 42px; height: 42px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 50%; cursor: pointer; color: var(--text-muted);
+  box-shadow: var(--shadow-sm);
+  align-items: center; justify-content: center;
+  opacity: 0; transition: opacity .25s, transform .2s, box-shadow .2s;
+}
+#back-top.vis { opacity: 1; }
+#back-top:hover { transform: translateY(-2px); color: var(--gold); box-shadow: var(--shadow-md); }
+#back-top svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+@media (max-width: 960px) {
+  #m-toc-btn   { display: flex; }
+  #m-toc-overlay, #m-toc-drawer { display: block; }
+  #back-top    { display: flex; }
 }
 </style>
 </head>
@@ -1453,5 +1605,126 @@ details[open] summary::before { transform: rotate(90deg); }
 
 </main>
 </div>
+
+<!-- ── Reading progress bar ── -->
+<div id="read-progress"></div>
+
+<!-- ── Back-to-top button ── -->
+<button id="back-top" aria-label="Back to top">
+  <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<!-- ── Mobile TOC button ── -->
+<button id="m-toc-btn" aria-label="Open table of contents" aria-expanded="false">
+  <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="16" y2="12"/><line x1="3" y1="18" x2="12" y2="18"/></svg>
+</button>
+
+<!-- ── TOC overlay ── -->
+<div id="m-toc-overlay" role="presentation"></div>
+
+<!-- ── Mobile TOC drawer (contents cloned from desktop nav) ── -->
+<nav id="m-toc-drawer" aria-label="Mobile table of contents">
+  <div class="m-pill"></div>
+  <div class="m-drawer-hd">Contents</div>
+</nav>
+
+<script>
+(function () {
+  /* ── 1. Clone desktop TOC into mobile drawer ── */
+  const desktopToc = document.querySelector('.toc-rail');
+  const drawer = document.getElementById('m-toc-drawer');
+  if (desktopToc && drawer) {
+    Array.from(desktopToc.children).forEach(function (node) {
+      if (node.classList && node.classList.contains('toc-title')) return; // skip — drawer has its own heading
+      drawer.appendChild(node.cloneNode(true));
+    });
+  }
+
+  /* ── 2. Drawer open/close ── */
+  const btn     = document.getElementById('m-toc-btn');
+  const overlay = document.getElementById('m-toc-overlay');
+
+  function openDrawer() {
+    drawer.classList.add('open');
+    overlay.classList.add('vis');
+    btn.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDrawer() {
+    drawer.classList.remove('open');
+    overlay.classList.remove('vis');
+    btn.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  btn.addEventListener('click', openDrawer);
+  overlay.addEventListener('click', closeDrawer);
+
+  /* Close drawer when a link inside is tapped */
+  drawer.addEventListener('click', function (e) {
+    if (e.target.closest('a')) { closeDrawer(); }
+  });
+
+  /* ── 3. Wrap all tables in overflow scroll containers ── */
+  document.querySelectorAll('main table').forEach(function (tbl) {
+    if (tbl.closest('.tbl-scroll')) return;
+    var wrap = document.createElement('div');
+    wrap.className = 'tbl-scroll';
+    tbl.parentNode.insertBefore(wrap, tbl);
+    wrap.appendChild(tbl);
+  });
+
+  /* ── 4. Reading progress bar ── */
+  var bar = document.getElementById('read-progress');
+  function updateProgress() {
+    var scrollTop = window.scrollY || document.documentElement.scrollTop;
+    var docH = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    bar.style.width = (docH > 0 ? (scrollTop / docH) * 100 : 0) + '%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+
+  /* ── 5. Back-to-top button ── */
+  var backTop = document.getElementById('back-top');
+  window.addEventListener('scroll', function () {
+    if (window.scrollY > 400) backTop.classList.add('vis');
+    else backTop.classList.remove('vis');
+  }, { passive: true });
+  backTop.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  /* ── 6. Active section highlighting (IntersectionObserver) ── */
+  var allTocLinks = Array.from(document.querySelectorAll('.toc-week a[href^="#"]'));
+  var sections    = allTocLinks.map(function (a) {
+    return document.getElementById(a.getAttribute('href').slice(1));
+  }).filter(Boolean);
+
+  function setActive(id) {
+    allTocLinks.forEach(function (a) {
+      var match = a.getAttribute('href') === '#' + id;
+      a.classList.toggle('is-active', match);
+    });
+    /* Mirror into drawer links */
+    Array.from(drawer.querySelectorAll('a[href^="#"]')).forEach(function (a) {
+      var match = a.getAttribute('href') === '#' + id;
+      a.classList.toggle('is-active', match);
+    });
+  }
+
+  if ('IntersectionObserver' in window) {
+    var activeId = null;
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          activeId = entry.target.id;
+          setActive(activeId);
+        }
+      });
+    }, { rootMargin: '-15% 0px -70% 0px', threshold: 0 });
+    sections.forEach(function (s) { obs.observe(s); });
+  }
+})();
+</script>
+
 </body>
 </html>
