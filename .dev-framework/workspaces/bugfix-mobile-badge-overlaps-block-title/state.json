@@ -1,0 +1,39 @@
+{
+  "name": "bugfix-mobile-badge-overlaps-block-title",
+  "type": "bugfix",
+  "workflowType": "bugfix",
+  "bugId": "mobile-badge-overlaps-block-title",
+  "created": "2026-05-08T00:00:00Z",
+  "currentPhase": "complete",
+  "status": "archived",
+  "archivedDate": "2026-05-08T01:45:00Z",
+  "branch": "bugfix/bugfix-mobile-badge-overlaps-block-title",
+  "roles": {
+    "developer": { "status": "complete", "completed": "2026-05-08T01:00:00Z" },
+    "reviewer": { "status": "complete", "completed": "2026-05-08T01:10:00Z" },
+    "tester": { "status": "complete", "completed": "2026-05-08T01:20:00Z" },
+    "executor": { "status": "complete", "completed": "2026-05-08T01:30:00Z" },
+    "po-approval": { "status": "complete", "completed": "2026-05-08T01:40:00Z" }
+  },
+  "artifacts": {
+    "developer": "artifacts/bugfix-mobile-badge-overlaps-block-title.developer.md",
+    "reviewer": "artifacts/bugfix-mobile-badge-overlaps-block-title.reviewer.md",
+    "tester": "artifacts/bugfix-mobile-badge-overlaps-block-title.tester.md",
+    "executor": "artifacts/bugfix-mobile-badge-overlaps-block-title.executor.md",
+    "po-approval": "artifacts/bugfix-mobile-badge-overlaps-block-title.po-approval.md",
+    "complete": "artifacts/bugfix-mobile-badge-overlaps-block-title.complete.md"
+  },
+  "timelines": {
+    "developer_start": "2026-05-08T00:00:00Z",
+    "developer_complete": "2026-05-08T01:00:00Z",
+    "reviewer_start": "2026-05-08T01:00:00Z",
+    "reviewer_complete": "2026-05-08T01:10:00Z",
+    "tester_start": "2026-05-08T01:10:00Z",
+    "tester_complete": "2026-05-08T01:20:00Z",
+    "executor_start": "2026-05-08T01:20:00Z",
+    "executor_complete": "2026-05-08T01:30:00Z",
+    "po-approval_start": "2026-05-08T01:30:00Z",
+    "po-approval_complete": "2026-05-08T01:40:00Z",
+    "complete": "2026-05-08T01:40:00Z"
+  }
+}
