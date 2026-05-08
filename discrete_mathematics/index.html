@@ -308,6 +308,8 @@ details[open] summary::before { transform: rotate(90deg); }
       <li><a href="#linearity">Linearity of Expectation</a></li>
       <li><a href="#distributions">Special Distributions</a></li>
       <li><a href="#markov">Markov Inequality</a></li>
+      <li><a href="#problem-framework">Problem-Solving Framework &amp; Common Traps</a></li>
+      <li><a href="#representative-problems">Representative Problems</a></li>
     </ol>
   </div>
 
@@ -349,7 +351,7 @@ details[open] summary::before { transform: rotate(90deg); }
     <div>
       <div class="week-tag">Weeks 4 – 5</div>
       <h2>Probability Theory</h2>
-      <div class="week-meta">15 concepts &nbsp;·&nbsp; 8 lectures &nbsp;·&nbsp; Classical probability · Conditional probability · Bayes · Random variables · Expectation · Markov inequality</div>
+      <div class="week-meta">17 concepts &nbsp;·&nbsp; 8 lectures &nbsp;·&nbsp; Classical probability · Conditional probability · Bayes · Random variables · Expectation · Markov inequality · Problem-solving framework · Representative problems</div>
     </div>
   </div>
 
@@ -1018,6 +1020,408 @@ details[open] summary::before { transform: rotate(90deg); }
       <span class="block-badge">Practice</span>
       Tail inequality problems in the problem set. Apply Markov before moving to Chebyshev and Chernoff.
     </div>
+  </section>
+
+  <!-- §16 ─ PROBLEM-SOLVING FRAMEWORK & COMMON TRAPS ─────────────────── -->
+  <section class="concept-section" id="problem-framework">
+    <h3>16 · Problem-Solving Framework &amp; Common Traps</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Why Probability Errors Happen</div>
+      <p>Probability errors almost never come from forgetting a formula — they come from misreading the problem's structure. The formula \(P(E \mid F) = P(E \cap F)/P(F)\) is not wrong; what is wrong is applying it to the wrong event or the wrong space. Every concept below names a structural mistake that masquerades as a computational one.</p>
+    </div>
+
+    <!-- A1 — Conditioning Changes the Universe -->
+    <div class="formula-block">
+      <span class="block-badge">Key Insight</span>
+      <div class="block-title">A1 — Conditioning Replaces the Sample Space</div>
+      <p>The intuition first: when someone tells you "at least one person lost their lunch box," you are no longer living in the original world where nobody losing is a real possibility. You have been transported to a smaller world. The formula makes this precise.</p>
+      <p>When we write \(P(E \mid F)\), the denominator \(P(F)\) is not a correction factor — it is a <em>re-normalization</em> that makes \(F\) the new universe. The event \(E\) is not modified; the space is.</p>
+      <ul class="steps">
+        <li>The original probability \(P(A)\) and the conditional probability \(P(A \mid B)\) are answers to <em>different questions</em> about <em>different worlds</em>.</li>
+        <li>Conditioning can create apparent dependence between events that were originally independent: once you condition on a shared outcome, events that had nothing to do with each other become correlated.</li>
+        <li><strong>Critical trap:</strong> reading "given that" as background context rather than a mathematical instruction. The words "given that F" instruct you to replace \(S\) with \(F\) and renormalize — not to note F and proceed as before.</li>
+      </ul>
+      <p><strong>Diagnostic test:</strong> before computing, ask — "Has any information arrived that restricts which outcomes are still possible?" If yes, you must condition.</p>
+    </div>
+
+    <!-- A2 — Ordered vs Unordered -->
+    <div class="formula-block">
+      <span class="block-badge">Key Insight</span>
+      <div class="block-title">A2 — Ordered vs. Unordered Counting</div>
+      <p>The formula \(P = \text{favorable}/\text{total}\) is only valid when every outcome in the sample space is equally likely. This requires that the sample space matches the experiment's <em>natural structure</em>.</p>
+      <ul class="steps">
+        <li><strong>Ordered experiments</strong> (use permutations or sequences): dice rolls, coin sequences, passwords, birthday assignments, race finishes — outcomes are distinguishable by position.</li>
+        <li><strong>Unordered experiments</strong> (use combinations): poker hands, committee selection, lottery draws, group formation — only the set of elements matters, not their sequence.</li>
+      </ul>
+      <p>Three diagnostic questions to identify which applies:</p>
+      <ol class="steps">
+        <li>Does order matter in this experiment?</li>
+        <li>Am I counting sequences (each arrangement is distinct) or subsets (arrangements of the same elements collapse into one)?</li>
+        <li>Can two outcomes differ only by rearrangement? If yes, and if I'm treating them as distinct, I'm in ordered territory.</li>
+      </ol>
+      <p><strong>Why it matters:</strong> if you count a lottery draw as \(P(49, 6)\) ordered sequences but each winning ticket is an unordered set, you have overcounted every outcome by \(6! = 720\). The correct count is \(\binom{49}{6}\) unordered outcomes. The resulting "probabilities" will not be uniform, and your computation will be wrong by a factor of 720.</p>
+    </div>
+
+    <!-- A3 — Population Weighting in Bayes -->
+    <div class="formula-block">
+      <span class="block-badge">Key Insight</span>
+      <div class="block-title">A3 — Population Weighting in Bayes' Theorem</div>
+      <p>Conditional probabilities are <em>local rates</em>: they describe behavior <em>within</em> a subgroup, not across the whole population. A machine with a 5% defect rate and a machine with a 2% defect rate together produce an average defect rate that depends on how many bolts each machine makes, not on the arithmetic mean of 5% and 2%.</p>
+      \[P(D) = P(D \mid A)\,P(A) + P(D \mid B)\,P(B) + P(D \mid C)\,P(C)\]
+      <p>Each conditional rate must be <strong>weighted by the subgroup's share of the population</strong>. Without weighting, you compute a quantity that corresponds to no physical experiment.</p>
+      <p>Equivalently: \(P(D \cap A) = P(D \mid A) \cdot P(A)\). To get a joint probability, multiply the local rate by the size of the subgroup. Summing unweighted rates is adding apples and oranges.</p>
+    </div>
+
+    <!-- A4 — Tree Rule -->
+    <div class="formula-block">
+      <span class="block-badge">Key Insight</span>
+      <div class="block-title">A4 — The Tree Rule (Chain Rule Made Visual)</div>
+      <p>A probability tree is not a mnemonic device — it is a geometric representation of the chain rule. Each edge carries a <em>conditional</em> probability (not a marginal one), and the probability of any leaf outcome is the product of all edge weights along its path.</p>
+      \[P(A_1 \cap A_2 \cap \cdots \cap A_k) = P(A_1)\,P(A_2 \mid A_1)\,P(A_3 \mid A_1 \cap A_2)\cdots\]
+      <p>The law of total probability then sums all valid paths:</p>
+      \[P(E) = \sum_{\text{path to } E} (\text{product of edge weights on path})\]
+      <p><strong>Error check:</strong> all leaf probabilities must sum to 1. If they do not, an edge weight was mislabeled as a marginal probability rather than a conditional one.</p>
+    </div>
+
+    <!-- A5 — Mutually Exclusive vs Independent -->
+    <div class="formula-block">
+      <span class="block-badge">Key Insight</span>
+      <div class="block-title">A5 — Mutually Exclusive vs. Independent</div>
+      <p>These two properties are frequently confused but are conceptually opposite extremes of how much two events "know" about each other.</p>
+      <table style="border-collapse:collapse;font-size:.9rem;margin:.6rem 0">
+        <tr style="border-bottom:1px solid #d8b4fe">
+          <th style="padding:.3rem .8rem;text-align:left">Property</th>
+          <th style="padding:.3rem .8rem;text-align:left">Definition</th>
+          <th style="padding:.3rem .8rem;text-align:left">Effect on information</th>
+        </tr>
+        <tr>
+          <td style="padding:.22rem .8rem"><strong>Mutually exclusive</strong></td>
+          <td style="padding:.22rem .8rem">\(A \cap B = \emptyset\)</td>
+          <td style="padding:.22rem .8rem">Knowing \(A\) occurs makes \(B\) <em>impossible</em></td>
+        </tr>
+        <tr style="background:#ede9fe">
+          <td style="padding:.22rem .8rem"><strong>Independent</strong></td>
+          <td style="padding:.22rem .8rem">\(P(A \cap B) = P(A)\,P(B)\)</td>
+          <td style="padding:.22rem .8rem">Knowing \(A\) gives <em>no information</em> about \(B\)</td>
+        </tr>
+      </table>
+      <p>For events with positive probability, these two properties <strong>cannot both hold simultaneously</strong>. Proof: if \(A \cap B = \emptyset\) and \(A\) occurs, then \(P(B \mid A) = 0 \neq P(B)\). Thus knowing \(A\) occurred makes \(B\) impossible — they are as <em>dependent</em> as events can be.</p>
+    </div>
+
+    <!-- A6 — Five-Step Framework -->
+    <div class="axiom-block">
+      <span class="block-badge">Framework</span>
+      <div class="block-title">A6 — Five-Step Problem-Solving Protocol</div>
+      <p>Before writing down any formula, work through these steps in order. Steps 1–4 are structural; step 5 is computational. Rushing to step 5 is the most common source of errors.</p>
+      <ol class="steps">
+        <li><strong>Define events clearly</strong> in words and in notation. Write \(F_1 =\) "first friend loses" — not just "loss."</li>
+        <li><strong>Identify whether order matters</strong> in the counting. If the experiment produces a sequence, use ordered counting. If it produces a set, use combinations.</li>
+        <li><strong>Determine if any conditioning exists.</strong> Look for "given that," "at least one," "knowing that," "after observing." Each phrase may change the sample space.</li>
+        <li><strong>Construct the sample space,</strong> a two-way table, or a probability tree. Make the structure of the problem visible before invoking formulas.</li>
+        <li><strong>Only then apply formulas</strong> — conditional probability, Bayes, inclusion-exclusion, or independence product rule — once the structure is clear.</li>
+      </ol>
+    </div>
+
+    <!-- A7 — Common Traps -->
+    <div class="practice-block">
+      <span class="block-badge">Practice</span>
+      <div class="block-title" style="font-family:'Playfair Display',Georgia,serif;font-weight:700;margin-bottom:.5rem;font-size:1rem">A7 — Trap Taxonomy: Six Mistakes and How to Catch Them</div>
+      <ol class="steps">
+        <li><strong>Conditioning Trap.</strong> Answering \(P(A)\) when the question asks \(P(A \mid B)\). The phrase "given that" is not context — it is a mathematical instruction. Re-read every problem for conditional language before setting up the computation.</li>
+        <li><strong>Order/Combination Trap.</strong> Applying unordered formulas \(\binom{n}{k}\) to ordered experiments, or vice versa. The resulting sample space is not uniform, so \(P = \text{favorable}/\text{total}\) yields a wrong answer.</li>
+        <li><strong>Population Weight Trap.</strong> Averaging defect rates (or base rates) across subgroups without weighting by subgroup size. Always use \(P(D) = \sum_i P(D \mid G_i) P(G_i)\).</li>
+        <li><strong>Premature Formula Trap.</strong> Applying \(P(A \cap B) = P(A)P(B)\) before verifying independence. Independence must be established, not assumed.</li>
+        <li><strong>Surface-Similarity Trap.</strong> Pattern-matching from a vaguely similar problem seen before. "At least one" and "exactly one," "given that" and "and," "sequence" and "set" each place the answer in a different category. Surface resemblance misleads; structure determines the answer.</li>
+        <li><strong>The Meta-Trap.</strong> Reading too fast. Slow reading is itself a mathematical skill in probability. Spend more time on the problem statement than on the computation.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- §17 ─ REPRESENTATIVE PROBLEMS ──────────────────────────────────── -->
+  <section class="concept-section" id="representative-problems">
+    <h3>17 · Representative Problems</h3>
+
+    <!-- Problem A — Lunch Box -->
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Problem A — Lunch Box (Conditional Probability)</div>
+      <p>Two friends each independently lose their lunch box with probability \(0.2\). Given that at least one friend lost their lunch box, what is the probability that <em>only the second friend</em> lost?</p>
+      <p>Let \(F_1 =\) "first friend loses," \(F_2 =\) "second friend loses." We need \(P(F_2 \cap F_1^c \mid F_1 \cup F_2)\).</p>
+
+      <details open>
+        <summary>Technique 1 — Direct Formula</summary>
+        <p><strong>Numerator:</strong> \(P(F_2 \cap F_1^c) = P(F_2)\,P(F_1^c) = 0.2 \times 0.8 = 0.16\)</p>
+        <p><strong>Denominator:</strong> \(P(F_1 \cup F_2) = 1 - P(F_1^c \cap F_2^c) = 1 - (0.8)(0.8) = 1 - 0.64 = 0.36\)</p>
+        \[P(F_2 \cap F_1^c \mid F_1 \cup F_2) = \frac{0.16}{0.36} = \frac{4}{9}\]
+      </details>
+
+      <details open>
+        <summary>Technique 2 — Reduced Sample Space Table</summary>
+        <p>List all four outcomes of \((F_1, F_2)\), mark which survive conditioning on \(F_1 \cup F_2\), then renormalize:</p>
+        <table style="border-collapse:collapse;font-size:.9rem;margin:.6rem 0">
+          <tr style="border-bottom:1px solid #bbf7d0">
+            <th style="padding:.3rem .8rem;text-align:left">First Friend</th>
+            <th style="padding:.3rem .8rem;text-align:left">Second Friend</th>
+            <th style="padding:.3rem .8rem;text-align:center">Probability</th>
+            <th style="padding:.3rem .8rem;text-align:center">In conditioned space?</th>
+          </tr>
+          <tr>
+            <td style="padding:.22rem .8rem">Not lost</td>
+            <td style="padding:.22rem .8rem">Not lost</td>
+            <td style="text-align:center;padding:.22rem .8rem">0.64</td>
+            <td style="text-align:center;padding:.22rem .8rem">No — eliminated</td>
+          </tr>
+          <tr style="background:#f0fdf4">
+            <td style="padding:.22rem .8rem">Lost</td>
+            <td style="padding:.22rem .8rem">Not lost</td>
+            <td style="text-align:center;padding:.22rem .8rem">0.16</td>
+            <td style="text-align:center;padding:.22rem .8rem">Yes</td>
+          </tr>
+          <tr>
+            <td style="padding:.22rem .8rem">Not lost</td>
+            <td style="padding:.22rem .8rem">Lost</td>
+            <td style="text-align:center;padding:.22rem .8rem">0.16</td>
+            <td style="text-align:center;padding:.22rem .8rem">Yes — desired outcome</td>
+          </tr>
+          <tr style="background:#f0fdf4">
+            <td style="padding:.22rem .8rem">Lost</td>
+            <td style="padding:.22rem .8rem">Lost</td>
+            <td style="text-align:center;padding:.22rem .8rem">0.04</td>
+            <td style="text-align:center;padding:.22rem .8rem">Yes</td>
+          </tr>
+        </table>
+        <p>Remaining probability mass: \(0.16 + 0.16 + 0.04 = 0.36\). Desired outcome: \(0.16\).</p>
+        \[P = \frac{0.16}{0.36} = \frac{4}{9}\]
+      </details>
+
+      <p class="result-line">Result: \(\dfrac{4}{9} \approx 0.444\)</p>
+      <p style="margin-top:.7rem"><em><strong>Learning Point.</strong> Do not answer 0.2 — that is the unconditional probability, the answer in the original world where nobody losing is still possible. Conditioning on "at least one lost" eliminates the (not lost, not lost) outcome with probability 0.64, dramatically shifting the relative weights of the remaining outcomes.</em></p>
+    </div>
+
+    <!-- Problem B — Defective Bolts -->
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Problem B — Defective Bolts (Bayes + Population Weighting)</div>
+      <p>Three machines produce bolts. Machine A produces 25% of all bolts with a 5% defect rate; machine B produces 35% with a 4% defect rate; machine C produces 40% with a 2% defect rate. A randomly selected bolt is defective. What is the probability it came from machine A or machine C?</p>
+      <p>Since A, B, C partition the production, they are mutually exclusive: \(P(A \cup C \mid D) = P(A \mid D) + P(C \mid D)\).</p>
+
+      <details open>
+        <summary>Technique 1 — Bayes' Theorem</summary>
+        <p><strong>Numerator</strong> \(P(D \cap (A \cup C)) = P(D \mid A)P(A) + P(D \mid C)P(C)\):</p>
+        \[0.05 \times 0.25 + 0.02 \times 0.40 = 0.0125 + 0.0080 = 0.0205\]
+        <p><strong>Denominator</strong> \(P(D) = P(D \mid A)P(A) + P(D \mid B)P(B) + P(D \mid C)P(C)\):</p>
+        \[0.0125 + 0.04 \times 0.35 + 0.0080 = 0.0125 + 0.0140 + 0.0080 = 0.0345\]
+        \[P(A \cup C \mid D) = \frac{0.0205}{0.0345} = \frac{41}{69}\]
+      </details>
+
+      <details open>
+        <summary>Technique 2 — Frequency Simulation (10,000 bolts)</summary>
+        <table style="border-collapse:collapse;font-size:.9rem;margin:.6rem 0">
+          <tr style="border-bottom:1px solid #bbf7d0">
+            <th style="padding:.3rem .8rem;text-align:left">Machine</th>
+            <th style="padding:.3rem .8rem;text-align:center">Bolts produced</th>
+            <th style="padding:.3rem .8rem;text-align:center">Defect rate</th>
+            <th style="padding:.3rem .8rem;text-align:center">Defective bolts</th>
+          </tr>
+          <tr>
+            <td style="padding:.22rem .8rem">A</td>
+            <td style="text-align:center;padding:.22rem .8rem">2,500</td>
+            <td style="text-align:center;padding:.22rem .8rem">5%</td>
+            <td style="text-align:center;padding:.22rem .8rem">125</td>
+          </tr>
+          <tr style="background:#f0fdf4">
+            <td style="padding:.22rem .8rem">B</td>
+            <td style="text-align:center;padding:.22rem .8rem">3,500</td>
+            <td style="text-align:center;padding:.22rem .8rem">4%</td>
+            <td style="text-align:center;padding:.22rem .8rem">140</td>
+          </tr>
+          <tr>
+            <td style="padding:.22rem .8rem">C</td>
+            <td style="text-align:center;padding:.22rem .8rem">4,000</td>
+            <td style="text-align:center;padding:.22rem .8rem">2%</td>
+            <td style="text-align:center;padding:.22rem .8rem">80</td>
+          </tr>
+        </table>
+        <p>Total defective: \(125 + 140 + 80 = 345\). From A or C: \(125 + 80 = 205\).</p>
+        \[P(A \cup C \mid D) = \frac{205}{345} = \frac{41}{69}\]
+      </details>
+
+      <p class="result-line">Result: \(\dfrac{41}{69} \approx 0.594\)</p>
+      <p style="margin-top:.7rem"><em><strong>Learning Point.</strong> The overall defect rate is not \((5\% + 4\% + 2\%)/3 = 3.67\%\) — that arithmetic mean treats every machine as if it produces the same number of bolts. The true overall rate is \(0.0345 = 3.45\%\), lower because the highest-volume machine (C) also has the lowest defect rate. Always weight conditional rates by population share.</em></p>
+    </div>
+
+    <!-- Problem C — Box Selection -->
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Problem C — Box Selection (Law of Total Probability)</div>
+      <p>Box I contains 6 red, 4 blue, and 3 green balls (13 total). Draw one ball: if red, draw next from Box II (no white); if blue, draw next from Box III (1 blue, 3 green, 2 white — 6 total); if green, draw next from Box IV (10 green, 10 orange, 4 white — 24 total). What is \(P(\text{second ball is white})\)?</p>
+      <p>White balls appear only in Box III and Box IV. So white can arrive only via the blue path or the green path.</p>
+
+      <details open>
+        <summary>Technique 1 — Tree (Path Products)</summary>
+        <p><strong>Path 1 (Blue → Box III → White):</strong></p>
+        \[P(B) \cdot P(W \mid B) = \frac{4}{13} \cdot \frac{2}{6} = \frac{4}{13} \cdot \frac{1}{3} = \frac{4}{39}\]
+        <p><strong>Path 2 (Green → Box IV → White):</strong></p>
+        \[P(G) \cdot P(W \mid G) = \frac{3}{13} \cdot \frac{4}{24} = \frac{3}{13} \cdot \frac{1}{6} = \frac{3}{78}\]
+        <p><strong>Total</strong> (sum valid paths):</p>
+        \[\frac{4}{39} + \frac{3}{78} = \frac{8}{78} + \frac{3}{78} = \frac{11}{78}\]
+      </details>
+
+      <details open>
+        <summary>Technique 2 — Law of Total Probability</summary>
+        <p>Condition on the first ball's colour (R, B, G form a partition of \(\Omega\)):</p>
+        \[P(W) = P(W \mid R)\,P(R) + P(W \mid B)\,P(B) + P(W \mid G)\,P(G)\]
+        \[= 0 \cdot \frac{6}{13} + \frac{1}{3} \cdot \frac{4}{13} + \frac{1}{6} \cdot \frac{3}{13} = 0 + \frac{4}{39} + \frac{1}{26} = \frac{8}{78} + \frac{3}{78} = \frac{11}{78}\]
+      </details>
+
+      <p class="result-line">Result: \(\dfrac{11}{78}\)</p>
+      <p style="margin-top:.7rem"><em><strong>Learning Point.</strong> When an event can happen through multiple distinct branches, compute every valid path's probability and sum them. The probability tree and the law of total probability are two representations of the same formula — the tree makes the conditional structure visible; the formula makes the algebra compact.</em></p>
+    </div>
+
+    <!-- Problem D — Rain, Traffic, Late -->
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Problem D — Rain, Traffic, Late (Bayes with a Three-Level Tree)</div>
+      <p>\(P(\text{Rain}) = \tfrac{1}{3}\). \(P(\text{Traffic} \mid \text{Rain}) = \tfrac{1}{2}\), \(P(\text{Traffic} \mid \text{No Rain}) = \tfrac{1}{4}\). Conditional lateness probabilities:</p>
+      <ul class="steps">
+        <li>\(P(L \mid \text{Rain, Traffic}) = \tfrac{1}{2}\)</li>
+        <li>\(P(L \mid \text{Rain, No Traffic}) = \tfrac{1}{4}\)</li>
+        <li>\(P(L \mid \text{No Rain, Traffic}) = \tfrac{1}{4}\)</li>
+        <li>\(P(L \mid \text{No Rain, No Traffic}) = \tfrac{1}{8}\)</li>
+      </ul>
+      <p>Find \(P(\text{Rain} \mid \text{Late})\).</p>
+
+      <details open>
+        <summary>Technique 1 — Full Tree Expansion</summary>
+        <p><strong>Rain branch</strong> — compute \(P(\text{Rain} \cap \text{Late})\) by summing two leaf paths:</p>
+        \[P(R \cap L) = P(R)\bigl[P(T \mid R)\,P(L \mid R,T) + P(T^c \mid R)\,P(L \mid R,T^c)\bigr]\]
+        \[= \frac{1}{3}\!\left[\frac{1}{2} \cdot \frac{1}{2} + \frac{1}{2} \cdot \frac{1}{4}\right] = \frac{1}{3} \cdot \frac{3}{8} = \frac{1}{8}\]
+        <p><strong>No Rain branch</strong> — compute \(P(R^c \cap L)\):</p>
+        \[P(R^c \cap L) = \frac{2}{3}\!\left[\frac{1}{4} \cdot \frac{1}{4} + \frac{3}{4} \cdot \frac{1}{8}\right] = \frac{2}{3} \cdot \frac{5}{32} = \frac{5}{48}\]
+        <p><strong>Total lateness probability:</strong></p>
+        \[P(L) = \frac{1}{8} + \frac{5}{48} = \frac{6}{48} + \frac{5}{48} = \frac{11}{48}\]
+        <p><strong>Bayes:</strong></p>
+        \[P(R \mid L) = \frac{P(R \cap L)}{P(L)} = \frac{1/8}{11/48} = \frac{1}{8} \cdot \frac{48}{11} = \frac{6}{11}\]
+      </details>
+
+      <details open>
+        <summary>Technique 2 — Marginalise Traffic First</summary>
+        <p>Compute \(P(L \mid R)\) by averaging over traffic within the rain world:</p>
+        \[P(L \mid R) = P(T \mid R)\,P(L \mid R,T) + P(T^c \mid R)\,P(L \mid R,T^c) = \frac{1}{2}\cdot\frac{1}{2} + \frac{1}{2}\cdot\frac{1}{4} = \frac{3}{8}\]
+        <p>Then apply Bayes directly:</p>
+        \[P(R \mid L) = \frac{P(L \mid R)\,P(R)}{P(L)} = \frac{\tfrac{3}{8} \cdot \tfrac{1}{3}}{\tfrac{11}{48}} = \frac{\tfrac{1}{8}}{\tfrac{11}{48}} = \frac{6}{11}\]
+      </details>
+
+      <p class="result-line">Result: \(P(\text{Rain} \mid \text{Late}) = \dfrac{6}{11} \approx 0.545\)</p>
+      <p style="margin-top:.7rem"><em><strong>Learning Point.</strong> \(P(\text{Rain} \mid \text{Late}) = \tfrac{6}{11} > P(\text{Rain}) = \tfrac{1}{3}\). Rain is a "good explanation" for lateness: it increases the likelihood of traffic and thereby increases the probability of being late. Bayes updates the prior \(\tfrac{1}{3}\) upward because rain makes the observed evidence more probable than no-rain does.</em></p>
+    </div>
+
+    <!-- Problem E — Birthday Problem -->
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Problem E — Birthday Problem (Ordered Counting)</div>
+      <p>There are 365 days in a year. With 30 people in a room, what is \(P(\text{at least two share a birthday})\)?</p>
+      <p>People are distinguishable — person 1's birthday on March 5 differs from person 2's birthday on March 5, and the assignment order matters. The natural sample space is ordered sequences of length 30 over 365 days.</p>
+      <p>Total birthday assignments: \(365^{30}\) (ordered, with repetition allowed).</p>
+
+      <details open>
+        <summary>Technique 1 — Complement: No Shared Birthday</summary>
+        <p>Person 1: 365 choices. Person 2: must avoid person 1's birthday — 364 choices. Person \(k\): must avoid all previous — \(365 - (k-1)\) choices. Person 30: \(365 - 29 = 336\) choices.</p>
+        \[P(\text{no shared birthday}) = \frac{365 \times 364 \times 363 \times \cdots \times 336}{365^{30}} = \frac{P(365,30)}{365^{30}}\]
+        <p>To avoid overflow, compute as a running product of fractions:</p>
+        \[P(\text{no repeat}) = \frac{364}{365} \cdot \frac{363}{365} \cdots \frac{336}{365} \approx 0.2937\]
+        \[P(\text{at least two share}) \approx 1 - 0.2937 \approx 0.7063\]
+      </details>
+
+      <details open>
+        <summary>Technique 2 — Intuition via Pair Count</summary>
+        <p>There are \(\binom{30}{2} = 435\) pairs of people. Each pair shares a birthday with probability approximately \(\tfrac{1}{365}\). By the union bound (approximate for small probabilities):</p>
+        \[P(\text{at least one match}) \lesssim 435 \times \frac{1}{365} \approx 1.19\]
+        <p>The bound exceeds 1 and is therefore vacuous — it gives no useful information here. The actual collision probability must be established by the complement calculation above, not from the union bound. The pair-count argument serves only as intuitive motivation: with 435 pairs each carrying a ~\(\tfrac{1}{365}\) collision chance, a high probability is plausible.</p>
+      </details>
+
+      <p class="result-line">Result: \(P(\text{at least two share a birthday}) \approx 70.6\%\)</p>
+      <p style="margin-top:.7rem"><em><strong>Learning Point.</strong> Birthday sequences are ordered — each person occupies a distinguishable position, so we use permutations, not combinations. The counterintuitive 71% collision probability emerges because \(\binom{30}{2} = 435\) pairs each carry an independent collision chance of roughly \(\tfrac{1}{365}\), and these chances compound rapidly.</em></p>
+    </div>
+
+    <!-- Problem F — Dice vs Cards -->
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Problem F — Dice vs. Cards (Ordered vs. Unordered)</div>
+      <p>This problem juxtaposes two experiments to make the ordered/unordered distinction concrete.</p>
+
+      <details open>
+        <summary>Technique 1 — Dice: Ordered Sample Space</summary>
+        <p>Roll two distinguishable dice. Outcome \((1, 4)\) and \((4, 1)\) are <em>different</em> because die 1 and die 2 are distinct positions. Sample space: \(6 \times 6 = 36\) equally likely ordered pairs.</p>
+        <p>Event "sum = 5": \(\{(1,4),(4,1),(2,3),(3,2)\}\) — 4 outcomes.</p>
+        \[P(\text{sum} = 5) = \frac{4}{36} = \frac{1}{9}\]
+        <p>Treating dice as unordered (i.e., counting \(\{1,4\}\) and \(\{4,1\}\) as one outcome) creates an <em>unequal-probability</em> sample space: the pair \(\{1,1\}\) has probability \(\tfrac{1}{36}\) while \(\{1,4\}\) has probability \(\tfrac{2}{36}\). The formula \(P = \text{favorable}/\text{total}\) would give the wrong answer.</p>
+      </details>
+
+      <details open>
+        <summary>Technique 2 — Cards: Unordered Sample Space (Four of a Kind)</summary>
+        <p>A poker hand is a <em>set</em> of 5 cards — only the collection matters, not the order dealt. Sample space: \(\displaystyle\binom{52}{5} = 2{,}598{,}960\) equally likely hands.</p>
+        <p>Count <em>four of a kind</em> hands:</p>
+        <ol class="steps">
+          <li>Choose the rank for the four-of-a-kind: 13 ways.</li>
+          <li>The four cards of that rank are fully determined (all four suits).</li>
+          <li>Choose the fifth card from the remaining 48 cards: 48 ways.</li>
+        </ol>
+        <p>Favorable hands: \(13 \times 48 = 624\).</p>
+        \[P(\text{four of a kind}) = \frac{624}{\binom{52}{5}} = \frac{624}{2{,}598{,}960} \approx \frac{1}{4165}\]
+        <p>If we mistakenly used ordered counting \(52 \times 51 \times 50 \times 49 \times 48\) in the denominator without also ordering the favorable outcomes, every probability would be off by a factor of \(5! = 120\).</p>
+      </details>
+
+      <p class="result-line">Result: \(P(\text{four of a kind}) = \dfrac{624}{\binom{52}{5}} \approx 0.024\%\)</p>
+      <p style="margin-top:.7rem"><em><strong>Learning Point.</strong> \(P = \text{favorable}/\text{total}\) requires equally likely outcomes, which holds only when the sample space matches the experiment's natural structure. Dice are ordered; card hands are unordered. Forcing the wrong structure breaks the uniformity assumption and yields wrong probabilities.</em></p>
+    </div>
+
+    <!-- Problem G — Inclusion-Exclusion with Independence -->
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Problem G — Inclusion-Exclusion with Independence (Reverse Engineering)</div>
+      <p>Events A, C are independent; events B, C are independent; \(A \cap B = \emptyset\). Given:</p>
+      <ul class="steps">
+        <li>\(P(A \cup C) = \tfrac{2}{3}\)</li>
+        <li>\(P(B \cup C) = \tfrac{3}{4}\)</li>
+        <li>\(P(A \cup B \cup C) = \tfrac{11}{12}\)</li>
+      </ul>
+      <p>Find \(P(A)\), \(P(B)\), \(P(C)\).</p>
+      <p>Let \(a = P(A)\), \(b = P(B)\), \(c = P(C)\). Key simplifications before writing equations:</p>
+      <ul class="steps">
+        <li>\(A \cap B = \emptyset \Rightarrow P(A \cap B) = 0\) and \(P(A \cap B \cap C) = 0\) (since \(A \cap B \cap C \subseteq A \cap B = \emptyset\)).</li>
+        <li>Independence: \(P(A \cap C) = ac\) and \(P(B \cap C) = bc\).</li>
+      </ul>
+
+      <details open>
+        <summary>Technique 1 — System of Equations</summary>
+        <p>Write inclusion-exclusion for each given:</p>
+        \[\text{Eq. 1: } a + c - ac = \frac{2}{3}\]
+        \[\text{Eq. 2: } b + c - bc = \frac{3}{4}\]
+        \[\text{Eq. 3: } a + b + c - ac - bc - 0 + 0 = \frac{11}{12}\]
+        <p>Notice that Eq. 3 = Eq. 1 + Eq. 2 \(- c\) (the \(c\) terms cancel one copy):</p>
+        \[\frac{2}{3} + \frac{3}{4} - c = \frac{11}{12}\]
+        \[\frac{8}{12} + \frac{9}{12} - c = \frac{11}{12} \quad\Longrightarrow\quad c = \frac{17}{12} - \frac{11}{12} = \frac{6}{12} = \frac{1}{2}\]
+        <p>Back-substitute \(c = \tfrac{1}{2}\) into Eq. 1:</p>
+        \[a + \frac{1}{2} - \frac{a}{2} = \frac{2}{3} \quad\Longrightarrow\quad \frac{a}{2} = \frac{2}{3} - \frac{1}{2} = \frac{1}{6} \quad\Longrightarrow\quad a = \frac{1}{3}\]
+        <p>Back-substitute \(c = \tfrac{1}{2}\) into Eq. 2:</p>
+        \[b + \frac{1}{2} - \frac{b}{2} = \frac{3}{4} \quad\Longrightarrow\quad \frac{b}{2} = \frac{3}{4} - \frac{1}{2} = \frac{1}{4} \quad\Longrightarrow\quad b = \frac{1}{2}\]
+      </details>
+
+      <details open>
+        <summary>Technique 2 — Verification by Substitution</summary>
+        <p>With \(P(A) = \tfrac{1}{3}\), \(P(B) = \tfrac{1}{2}\), \(P(C) = \tfrac{1}{2}\):</p>
+        \[P(A \cup C) = \frac{1}{3} + \frac{1}{2} - \frac{1}{3} \cdot \frac{1}{2} = \frac{2}{6} + \frac{3}{6} - \frac{1}{6} = \frac{4}{6} = \frac{2}{3} \checkmark\]
+        \[P(B \cup C) = \frac{1}{2} + \frac{1}{2} - \frac{1}{2} \cdot \frac{1}{2} = 1 - \frac{1}{4} = \frac{3}{4} \checkmark\]
+        \[P(A \cup B \cup C) = \frac{1}{3} + \frac{1}{2} + \frac{1}{2} - \frac{1}{6} - \frac{1}{4} - 0 + 0 = \frac{4}{12} + \frac{6}{12} + \frac{6}{12} - \frac{2}{12} - \frac{3}{12} = \frac{11}{12} \checkmark\]
+      </details>
+
+      <p class="result-line">Result: \(P(A) = \dfrac{1}{3},\quad P(B) = \dfrac{1}{2},\quad P(C) = \dfrac{1}{2}\)</p>
+      <p style="margin-top:.7rem"><em><strong>Learning Point.</strong> When \(A \cap B = \emptyset\), the triple intersection \(A \cap B \cap C\) is also empty because it is contained in \(A \cap B\). This elimination, combined with the independence of C from A and from B individually, collapses the inclusion-exclusion formula into a linear system that can be solved by recognizing that Eq. 3 is a linear combination of Eq. 1 and Eq. 2.</em></p>
+    </div>
+
   </section>
 
 </section>
