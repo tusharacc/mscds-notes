@@ -1,0 +1,27 @@
+{
+  "name": "bugfix-mobile-badge-overlaps-block-title",
+  "type": "bugfix",
+  "workflowType": "bugfix",
+  "bugId": "mobile-badge-overlaps-block-title",
+  "created": "2026-05-08T00:00:00Z",
+  "currentPhase": "developer",
+  "status": "active",
+  "branch": "bugfix/bugfix-mobile-badge-overlaps-block-title",
+  "roles": {
+    "developer": { "status": "in-progress", "completed": null },
+    "reviewer": { "status": "pending", "completed": null },
+    "tester": { "status": "pending", "completed": null },
+    "executor": { "status": "pending", "completed": null },
+    "po-approval": { "status": "pending", "completed": null }
+  },
+  "artifacts": {
+    "developer": "artifacts/bugfix-mobile-badge-overlaps-block-title.developer.md",
+    "reviewer": null,
+    "tester": null,
+    "executor": null,
+    "po-approval": null
+  },
+  "timelines": {
+    "developer_start": "2026-05-08T00:00:00Z"
+  }
+}
