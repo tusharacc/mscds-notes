@@ -9,7 +9,7 @@ and rendered as self-contained HTML documents.
 | Subject | Notes | Coverage |
 |---|---|---|
 | Discrete Mathematics | [View notes](https://tusharacc.github.io/mscds-notes/discrete_mathematics/) | Weeks 4–5: Probability theory |
-| Python | Coming soon | — |
+| Python | [View notes](https://tusharacc.github.io/mscds-notes/python/) | Weeks 4–5: Loops, reasoning, sorting, lists |
 
 ## Structure
 

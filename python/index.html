@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Python Core &amp; Applied Concepts course notes — MScDS IIIT Hyderabad. Weeks 4–5: Loops, loop invariants, sorting, and lists.">
+<title>Python — Course Notes</title>
+
+<!-- Scholarly fonts: Playfair Display (headings) + Lora (body) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,600&display=swap" rel="stylesheet">
+
+<style>
+/* ── Reset & Base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* Semantic block colors */
+  --blue-border: #2563eb;   --blue-bg: #eef4ff;   --blue-badge: #1d4ed8;
+  --amber-border: #d97706;  --amber-bg: #fefce8;  --amber-badge: #92400e;
+  --green-border: #16a34a;  --green-bg: #f0fdf4;  --green-badge: #14532d;
+  --violet-border: #7c3aed; --violet-bg: #f5f3ff; --violet-badge: #5b21b6;
+  --grey-border: #78716c;   --grey-bg: #faf9f7;   --grey-badge: #44403c;
+
+  /* Parchment palette */
+  --page-bg: #faf6ef;
+  --surface:  #fffdf9;
+  --border:   #e5d9c8;
+  --text:     #1c1410;
+  --text-muted: #6b5f54;
+  --gold:     #92400e;
+  --toc-w: 270px;
+  --radius: 10px;
+  --shadow-sm: 0 1px 3px rgba(28,20,16,.06), 0 1px 2px rgba(28,20,16,.04);
+  --shadow-md: 0 4px 14px rgba(28,20,16,.10), 0 2px 4px rgba(28,20,16,.06);
+
+  /* Week accent colors */
+  --week-accent-1: #0369a1;
+  --week-accent-2: #7c3aed;
+  --code-bg: #1e1a16;
+  --code-surface: #2a2420;
+  --code-border: #3d3028;
+}
+
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: 'Lora', Georgia, serif;
+  background: var(--page-bg);
+  color: var(--text);
+  line-height: 1.8;
+}
+
+/* ── Layout ── */
+.layout { display: flex; min-height: 100vh; }
+
+/* ── TOC Rail ── */
+.toc-rail {
+  width: var(--toc-w); flex-shrink: 0;
+  position: sticky; top: 0; height: 100vh; overflow-y: auto;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  padding: 1.8rem 1rem 2.5rem;
+}
+.toc-rail > .toc-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: .68rem; font-weight: 700; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--text-muted);
+  margin-bottom: 1.4rem; padding: 0 .4rem;
+}
+.toc-week { margin-bottom: 1.2rem; }
+.toc-week-header {
+  display: flex; align-items: center; gap: .5rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: .78rem; font-weight: 700; color: var(--text);
+  padding: .3rem .4rem; margin-bottom: .3rem;
+}
+.toc-week-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.toc-week ol { list-style: none; counter-reset: toc-item; padding-left: .8rem; }
+.toc-week li { counter-increment: toc-item; margin-bottom: .05rem; }
+.toc-week a {
+  display: flex; align-items: baseline; gap: .4rem;
+  font-family: 'Lora', Georgia, serif;
+  font-size: .78rem; color: var(--text-muted); text-decoration: none;
+  padding: .22rem .45rem; border-radius: 4px; line-height: 1.45;
+  transition: color .2s, padding-left .18s;
+}
+.toc-week a::before {
+  content: counter(toc-item, decimal);
+  font-size: .63rem; color: #b5a898; min-width: 1.1rem;
+  flex-shrink: 0; font-variant-numeric: tabular-nums;
+}
+.toc-week a:hover { color: var(--gold); padding-left: .75rem; }
+.toc-week a.is-active {
+  color: var(--gold); font-weight: 600;
+  background: rgba(146,64,14,.08); padding-left: .75rem;
+}
+.toc-week a.is-active::before { color: var(--gold); }
+
+/* ── Main content ── */
+main { flex: 1; max-width: 900px; padding: 3rem 2.5rem 6rem; }
+
+/* ── Page Header ── */
+.page-header {
+  margin-bottom: 3.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+.page-header::after {
+  content: '';
+  position: absolute; bottom: -3px; left: 0;
+  width: 4rem; height: 3px;
+  background: var(--gold); border-radius: 2px;
+}
+.page-header h1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 2.8rem; font-weight: 800; color: var(--text);
+  line-height: 1.15; letter-spacing: -.02em;
+}
+.page-header .subtitle {
+  color: var(--text-muted); margin-top: .5rem;
+  font-size: .88rem; font-style: italic;
+}
+.legend { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.25rem; }
+.legend-item {
+  display: flex; align-items: center; gap: .4rem;
+  font-size: .77rem; color: var(--text-muted);
+}
+.legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+
+/* ── Week Section ── */
+.week-section { margin-bottom: 5rem; }
+.week-banner {
+  display: flex; align-items: flex-start; gap: 1rem;
+  padding: 1.5rem 1.8rem;
+  border-radius: 12px; margin-bottom: 2.8rem;
+  border-left: 5px solid;
+}
+.week-banner .week-tag {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: .65rem; font-weight: 700; letter-spacing: .16em;
+  text-transform: uppercase; opacity: .7;
+}
+.week-banner h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.6rem; font-weight: 700; line-height: 1.2; margin-top: .15rem;
+}
+.week-banner .week-meta {
+  font-size: .8rem; opacity: .6; margin-top: .3rem; font-style: italic;
+}
+.week-section[data-week="4"] .week-banner {
+  background: linear-gradient(135deg, #dbeafe 0%, #eff9ff 70%);
+  border-color: var(--week-accent-1); color: #0c4a6e;
+}
+.week-section[data-week="5"] .week-banner {
+  background: linear-gradient(135deg, #ede9fe 0%, #f5f3ff 70%);
+  border-color: var(--week-accent-2); color: #3b0764;
+}
+
+/* ── Concept Sections ── */
+.concept-section {
+  margin-bottom: 3rem;
+  scroll-margin-top: 2rem;
+  animation: fadeUp .55s cubic-bezier(.22,1,.36,1) both;
+}
+.concept-section:nth-child(1)  { animation-delay: .04s; }
+.concept-section:nth-child(2)  { animation-delay: .09s; }
+.concept-section:nth-child(3)  { animation-delay: .14s; }
+.concept-section:nth-child(4)  { animation-delay: .18s; }
+.concept-section:nth-child(5)  { animation-delay: .22s; }
+.concept-section:nth-child(6)  { animation-delay: .26s; }
+.concept-section:nth-child(7)  { animation-delay: .30s; }
+.concept-section:nth-child(8)  { animation-delay: .33s; }
+.concept-section:nth-child(9)  { animation-delay: .36s; }
+.concept-section:nth-child(10) { animation-delay: .38s; }
+.concept-section:nth-child(11) { animation-delay: .40s; }
+.concept-section:nth-child(12) { animation-delay: .42s; }
+.concept-section:nth-child(13) { animation-delay: .44s; }
+.concept-section:nth-child(14) { animation-delay: .46s; }
+.concept-section:nth-child(15) { animation-delay: .48s; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.concept-section > h3 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.28rem; font-weight: 700; color: var(--text);
+  border-left: 4px solid var(--border);
+  padding-left: .85rem; margin-bottom: 1.2rem; line-height: 1.3;
+}
+
+/* ── Colored Blocks ── */
+.def-block, .axiom-block, .example-block, .formula-block, .practice-block {
+  position: relative; border-left: 4px solid; border-radius: var(--radius);
+  padding: 1.1rem 1.3rem 1.1rem 1.4rem; margin-bottom: 1.2rem;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow .25s ease, transform .25s ease;
+}
+.def-block:hover, .axiom-block:hover, .example-block:hover,
+.formula-block:hover, .practice-block:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.block-badge {
+  position: absolute; top: .75rem; right: .85rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: .58rem; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; padding: .2rem .65rem;
+  border-radius: 999px; color: #fff;
+}
+.def-block     { border-color: var(--blue-border);   background: var(--blue-bg);   }
+.def-block     .block-badge { background: var(--blue-badge);   }
+.axiom-block   { border-color: var(--amber-border);  background: var(--amber-bg);  }
+.axiom-block   .block-badge { background: var(--amber-badge);  }
+.example-block { border-color: var(--green-border);  background: var(--green-bg);  }
+.example-block .block-badge { background: var(--green-badge);  }
+.formula-block { border-color: var(--violet-border); background: var(--violet-bg); }
+.formula-block .block-badge { background: var(--violet-badge); }
+.practice-block{ border-color: var(--grey-border);   background: var(--grey-bg);   }
+.practice-block .block-badge{ background: var(--grey-badge);   }
+
+.block-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700; margin-bottom: .5rem; font-size: 1rem; line-height: 1.3;
+}
+.block-label {
+  font-weight: 600; color: var(--text-muted);
+  font-size: .84rem; margin: .75rem 0 .25rem; font-style: italic;
+}
+.result-line { font-weight: 600; margin-top: .7rem; }
+
+/* ── Steps ── */
+.steps { margin: .5rem 0 0 .5rem; }
+.steps li { margin-bottom: .4rem; }
+ol.steps, ul.steps { padding-left: 1.5rem; }
+
+/* ── Details/summary ── */
+details { margin-top: .6rem; }
+details[open] summary { margin-bottom: .7rem; }
+summary {
+  cursor: pointer;
+  font-weight: 600; font-size: .87rem; font-style: italic;
+  color: var(--text-muted); user-select: none;
+  list-style: none; display: flex; align-items: center; gap: .45rem;
+  transition: color .2s;
+}
+summary:hover { color: var(--gold); }
+summary::before { content: '▶'; font-size: .62rem; transition: transform .2s; font-style: normal; }
+details[open] summary::before { transform: rotate(90deg); }
+
+/* ── Sub-headings ── */
+.sub-h {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.05rem; font-weight: 700;
+  margin: 1.8rem 0 .8rem; color: #2d2218;
+  border-bottom: 1px solid var(--border); padding-bottom: .35rem;
+}
+
+/* ── Code blocks ── */
+.code-wrap {
+  margin: .8rem 0 .9rem;
+  border-radius: 10px; overflow: hidden;
+  box-shadow: 0 2px 10px rgba(28,20,16,.15), 0 1px 3px rgba(0,0,0,.1);
+}
+.code-label {
+  background: var(--code-border); color: #c4a882;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: .6rem; font-weight: 700; letter-spacing: .14em;
+  text-transform: uppercase; padding: .35rem .9rem;
+}
+pre {
+  background: var(--code-bg); color: #d4c5b0;
+  font-family: 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', monospace;
+  font-size: .825rem; line-height: 1.75;
+  padding: 1rem 1.2rem; margin: 0;
+  overflow-x: auto; -webkit-overflow-scrolling: touch;
+  tab-size: 4;
+}
+pre .kw  { color: #e06c75; }  /* keywords */
+pre .fn  { color: #61afef; }  /* functions */
+pre .st  { color: #98c379; }  /* strings */
+pre .cm  { color: #7a6a58; font-style: italic; }  /* comments */
+pre .nu  { color: #d19a66; }  /* numbers */
+pre .op  { color: #c6a0f6; }  /* operators / builtins */
+
+code {
+  font-family: 'Menlo', 'Monaco', 'Consolas', monospace;
+  font-size: .84em; background: rgba(28,20,16,.07);
+  padding: .1em .35em; border-radius: 3px; color: #6b3e1f;
+}
+pre code { background: none; padding: 0; color: inherit; font-size: inherit; }
+
+/* ── Invariant callout ── */
+.invariant-box {
+  background: #fef9f0; border: 1.5px dashed var(--amber-border);
+  border-radius: 8px; padding: .9rem 1.1rem; margin: .8rem 0;
+  font-size: .9rem;
+}
+.invariant-box .inv-label {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: .65rem; font-weight: 700; letter-spacing: .13em;
+  text-transform: uppercase; color: var(--amber-badge);
+  margin-bottom: .35rem;
+}
+
+/* ── Comparison table ── */
+.tbl-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: .5rem 0 .7rem; border-radius: 6px; }
+.tbl-scroll table { margin: 0; min-width: 400px; }
+table { border-collapse: collapse; width: 100%; font-size: .87rem; }
+th { background: #f0e8da; font-family: 'Playfair Display', Georgia, serif; font-weight: 700; }
+th, td { border: 1px solid var(--border); padding: .55rem .9rem; text-align: left; vertical-align: top; }
+tr:nth-child(even) td { background: rgba(229,217,200,.18); }
+
+/* ── Responsive ── */
+@media (max-width: 960px) {
+  .toc-rail { display: none; }
+  main { padding: 1.8rem 1.2rem 4rem; }
+  .page-header h1 { font-size: 2rem; }
+}
+
+/* ═══════════════════════════════════════════════════
+   UX & RESPONSIVENESS ENHANCEMENTS
+   ═══════════════════════════════════════════════════ */
+
+#read-progress {
+  position: fixed; top: 0; left: 0; height: 3px;
+  width: 0%; background: linear-gradient(90deg, var(--gold), #c2692a);
+  z-index: 500; pointer-events: none;
+  transition: width .08s linear;
+}
+
+@media (hover: none) {
+  .def-block:hover, .axiom-block:hover, .example-block:hover,
+  .formula-block:hover, .practice-block:hover {
+    transform: none;
+    box-shadow: var(--shadow-sm);
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 3px;
+}
+
+/* ══════════════════════════════════════════════
+   MOBILE-SPECIFIC OVERRIDES  (max-width: 960px)
+   ══════════════════════════════════════════════ */
+@media (max-width: 960px) {
+  .block-badge {
+    position: static;
+    display: inline-block;
+    margin-bottom: .5rem;
+    font-size: .62rem;
+  }
+  .def-block, .axiom-block, .example-block, .formula-block, .practice-block {
+    padding-right: 1.3rem;
+    padding-top: .95rem;
+  }
+  .concept-section > h3 { font-size: 1.1rem; }
+  .block-title { font-size: .97rem; }
+  .week-banner { padding: 1.1rem 1.2rem; margin-bottom: 2rem; }
+  .week-banner h2 { font-size: 1.25rem; }
+  .week-banner .week-meta { font-size: .76rem; }
+  .page-header h1 { font-size: 1.9rem; }
+  .page-header .subtitle { font-size: .84rem; }
+  summary { min-height: 44px; display: flex; align-items: center; padding: .35rem 0; }
+  .toc-week a { min-height: 44px; }
+}
+
+/* ── Mobile TOC drawer ── */
+#m-toc-btn {
+  display: none;
+  position: fixed; bottom: 1.75rem; right: 1.5rem; z-index: 500;
+  width: 52px; height: 52px;
+  background: var(--gold); color: #fff;
+  border: none; border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(146,64,14,.35), 0 2px 6px rgba(0,0,0,.12);
+  transition: transform .2s, box-shadow .2s;
+  align-items: center; justify-content: center;
+}
+#m-toc-btn:hover { transform: scale(1.07); box-shadow: 0 6px 22px rgba(146,64,14,.42); }
+#m-toc-btn svg { width: 22px; height: 22px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+#m-toc-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(28,20,16,.4); z-index: 510;
+  opacity: 0; transition: opacity .28s;
+  -webkit-backdrop-filter: blur(1px); backdrop-filter: blur(1px);
+}
+#m-toc-overlay.vis { opacity: 1; }
+
+#m-toc-drawer {
+  display: none; position: fixed;
+  bottom: 0; left: 0; right: 0; max-height: 74vh;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-radius: 18px 18px 0 0;
+  z-index: 520;
+  padding: 0 1.4rem 3rem;
+  overflow-y: auto; -webkit-overflow-scrolling: touch;
+  transform: translateY(102%);
+  transition: transform .32s cubic-bezier(.32,.72,0,1);
+  box-shadow: 0 -12px 40px rgba(28,20,16,.14);
+}
+#m-toc-drawer.open { transform: translateY(0); }
+.m-pill { width: 36px; height: 4px; background: var(--border); border-radius: 2px; margin: .9rem auto 1rem; }
+.m-drawer-hd {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: .68rem; font-weight: 700; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--text-muted);
+  padding-bottom: .65rem; border-bottom: 1px solid var(--border);
+  margin-bottom: .8rem;
+}
+#m-toc-drawer .toc-week a { min-height: 44px; font-size: .86rem; }
+#m-toc-drawer .toc-week-header { font-size: .82rem; margin-top: .4rem; }
+
+#back-top {
+  display: none; position: fixed; bottom: 1.75rem; left: 1.5rem; z-index: 500;
+  width: 42px; height: 42px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 50%; cursor: pointer; color: var(--text-muted);
+  box-shadow: var(--shadow-sm);
+  align-items: center; justify-content: center;
+  opacity: 0; transition: opacity .25s, transform .2s, box-shadow .2s;
+}
+#back-top.vis { opacity: 1; }
+#back-top:hover { transform: translateY(-2px); color: var(--gold); box-shadow: var(--shadow-md); }
+#back-top svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+@media (max-width: 960px) {
+  #m-toc-btn   { display: flex; }
+  #m-toc-overlay, #m-toc-drawer { display: block; }
+  #back-top    { display: flex; }
+}
+</style>
+</head>
+<body>
+
+<div id="read-progress"></div>
+
+<div class="layout">
+
+<!-- ═══════════════════════════════ TOC RAIL ═══════════════════════════════ -->
+<nav class="toc-rail" id="desktop-toc" aria-label="Table of contents">
+  <div class="toc-title">Contents</div>
+
+  <div class="toc-week">
+    <div class="toc-week-header">
+      <div class="toc-week-dot" style="background:var(--week-accent-1)"></div>
+      Week 4 · Loops
+    </div>
+    <ol>
+      <li><a href="#while-loops">While Loops</a></li>
+      <li><a href="#loop-invariants-while">Loop Invariants (While)</a></li>
+      <li><a href="#for-loops">For Loops &amp; range()</a></li>
+      <li><a href="#for-vs-while">For vs While</a></li>
+      <li><a href="#issorted">isSorted — For Loop Example</a></li>
+    </ol>
+  </div>
+
+  <div class="toc-week">
+    <div class="toc-week-header">
+      <div class="toc-week-dot" style="background:var(--week-accent-2)"></div>
+      Week 5 · Sorting &amp; Lists
+    </div>
+    <ol>
+      <li><a href="#bubble-sort-idea">Bubble Sort — The Idea</a></li>
+      <li><a href="#one-pass">One Bubble Pass</a></li>
+      <li><a href="#bubble-sort-full">Full Bubble Sort</a></li>
+      <li><a href="#bubble-sort-optimized">Optimized Bubble Sort</a></li>
+      <li><a href="#bubble-invariants">Loop Invariants for Bubble Sort</a></li>
+      <li><a href="#lists-create">Lists — Creation &amp; Access</a></li>
+      <li><a href="#lists-modify">Lists — Modification</a></li>
+      <li><a href="#lists-search">Lists — Searching &amp; Membership</a></li>
+    </ol>
+  </div>
+
+</nav>
+
+<!-- ═══════════════════════════════ MAIN ═══════════════════════════════ -->
+<main>
+
+<header class="page-header">
+  <h1>Python Core &amp; Applied Concepts</h1>
+  <p class="subtitle">MScDS &nbsp;·&nbsp; IIIT Hyderabad &nbsp;·&nbsp; Weeks 4–5: Loops, reasoning, sorting, and lists</p>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--blue-badge)"></div> Definition</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--amber-badge)"></div> Rule / Theorem</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--green-badge)"></div> Worked Example</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--violet-badge)"></div> Key Concept</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--grey-badge)"></div> Practice / Exercise</div>
+  </div>
+</header>
+
+<!-- ╔═══════════════════════════════════════════════════════════════════╗
+     ║  WEEK 4 · LOOPS & REASONING                                       ║
+     ╚═══════════════════════════════════════════════════════════════════╝ -->
+<section class="week-section" id="week4" data-week="4">
+  <div class="week-banner">
+    <div>
+      <div class="week-tag">Week 4</div>
+      <h2>Loops &amp; Reasoning</h2>
+      <div class="week-meta">5 concepts &nbsp;·&nbsp; 2 lectures &nbsp;·&nbsp; While loops · Loop invariants · For loops · range() · isSorted</div>
+    </div>
+  </div>
+
+  <!-- §1 ─ WHILE LOOPS ─────────────────────────────────────────────── -->
+  <section class="concept-section" id="while-loops">
+    <h3>1 · While Loops — Motivation &amp; Mechanics</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">While Loop Syntax</div>
+      <p>A <strong>while loop</strong> repeats a block of code as long as a condition evaluates to <code>True</code>. The loop exits only when the condition becomes <code>False</code>.</p>
+      <div class="code-wrap" style="margin-top:.75rem">
+        <div class="code-label">Python Syntax</div>
+        <pre><code><span class="kw">while</span> &lt;condition&gt;:
+    &lt;loop body&gt;</code></pre>
+      </div>
+      <p style="margin-top:.5rem">The condition is a Boolean expression. The loop body is a sequence of statements indented under the <code>while</code>. Python evaluates the condition <em>before</em> each iteration — if it is <code>False</code> from the start, the body never runs.</p>
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Concept</span>
+      <div class="block-title">When to Use a While Loop</div>
+      <p>Use a while loop when you <strong>do not know in advance</strong> how many iterations are needed. The number of repeats is determined by a condition, not a fixed count.</p>
+      <ul class="steps">
+        <li>Searching until a value is found</li>
+        <li>Reading input until valid data is provided</li>
+        <li>Numerical algorithms that converge to a threshold</li>
+        <li>Any computation where the stopping criterion is data-dependent</li>
+      </ul>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">findMax — Finding the Maximum in a List</div>
+      <p>Given a list <code>numbers</code>, find the largest element by traversing it once.</p>
+
+      <div class="code-wrap">
+        <div class="code-label">Python — findMax with while loop</div>
+        <pre><code><span class="kw">def</span> <span class="fn">findMax</span>(numbers):
+    n = <span class="fn">len</span>(numbers)
+    maximum_so_far = numbers[<span class="nu">0</span>]   <span class="cm"># start with the first element</span>
+    i = <span class="nu">1</span>                          <span class="cm"># index: we've already seen numbers[0]</span>
+
+    <span class="kw">while</span> i &lt; n:
+        <span class="kw">if</span> numbers[i] &gt; maximum_so_far:
+            maximum_so_far = numbers[i]
+        i += <span class="nu">1</span>                      <span class="cm"># CRITICAL: always increment i</span>
+
+    <span class="kw">return</span> maximum_so_far</code></pre>
+      </div>
+
+      <details open>
+        <summary>Walk-through of the logic</summary>
+        <ul class="steps">
+          <li><strong>Before the loop:</strong> We assume <code>numbers[0]</code> is the maximum of the first element seen.</li>
+          <li><strong>Each iteration:</strong> Compare the current element <code>numbers[i]</code> to the running maximum and update if larger.</li>
+          <li><strong>Loop variable <code>i</code>:</strong> Increases by 1 every iteration. When <code>i</code> equals <code>n</code>, every element has been seen and the loop exits.</li>
+          <li><strong>Why <code>i += 1</code> is critical:</strong> Omitting this line leaves <code>i</code> unchanged — the condition <code>i &lt; n</code> remains <code>True</code> forever, creating an <em>infinite loop</em>.</li>
+        </ul>
+      </details>
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Rule</span>
+      <div class="block-title">The Infinite Loop Danger</div>
+      <p>A while loop can only exit when its condition becomes <code>False</code>. If the variables in that condition are never updated inside the loop body, the condition stays <code>True</code> forever. This is an <strong>infinite loop</strong> — a common programming error that is easy to introduce and sometimes hard to debug in large programs.</p>
+      <p style="margin-top:.5rem"><strong>Prevention:</strong> ensure at least one variable in the loop condition is modified during each iteration in a way that eventually makes the condition <code>False</code>.</p>
+    </div>
+  </section>
+
+  <!-- §2 ─ LOOP INVARIANTS (WHILE) ─────────────────────────────────── -->
+  <section class="concept-section" id="loop-invariants-while">
+    <h3>2 · Loop Invariants for While Loops</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Loop Invariant</div>
+      <p>A <strong>loop invariant</strong> is a property <em>P</em> that holds:</p>
+      <ol class="steps">
+        <li><strong>Before the first iteration</strong> (initialization)</li>
+        <li><strong>After every iteration</strong>, assuming it held at the start of that iteration (maintenance)</li>
+        <li>When the loop exits, it combines with the negated condition to give a useful guarantee (termination / post-condition)</li>
+      </ol>
+      <p style="margin-top:.5rem">Loop invariants describe <em>what</em> is being computed, not <em>how</em>. They provide a formal, implementation-independent specification of the loop's purpose.</p>
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Rule</span>
+      <div class="block-title">Formal Loop Invariant Rule</div>
+      <p>If property <em>P</em> is the invariant and <em>B</em> is the loop condition:</p>
+      <div class="invariant-box">
+        <div class="inv-label">Invariant Rule</div>
+        <p>If <strong>{P ∧ B} C {P}</strong> holds (executing the body <em>C</em> while condition <em>B</em> is true preserves <em>P</em>), then:</p>
+        <p style="margin-top:.4rem"><strong>{P}</strong> &nbsp;<code>while B do C</code>&nbsp; <strong>{P ∧ ¬B}</strong></p>
+      </div>
+      <p>On exit, we have both <em>P</em> (the invariant) and <em>¬B</em> (the condition failed). Together these are the post-condition that proves correctness.</p>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Loop Invariant for findMax</div>
+      <p>After processing index <code>i</code>, the following invariant holds:</p>
+      <div class="invariant-box">
+        <div class="inv-label">Invariant P</div>
+        <p><code>maximum_so_far</code> is the maximum of <code>numbers[0], numbers[1], …, numbers[i−1]</code></p>
+        <p style="margin-top:.3rem">Formally: <code>maximum_so_far &gt;= numbers[j]</code> for all <code>j in range(i)</code></p>
+      </div>
+
+      <div class="code-wrap" style="margin-top:.75rem">
+        <div class="code-label">Python — findMax with assert-encoded invariant</div>
+        <pre><code><span class="kw">def</span> <span class="fn">findMax</span>(numbers):
+    n = <span class="fn">len</span>(numbers)
+    maximum_so_far = numbers[<span class="nu">0</span>]
+    i = <span class="nu">1</span>
+
+    <span class="kw">while</span> i &lt; n:
+        <span class="cm"># Loop invariant: maximum_so_far is max of numbers[0..i-1]</span>
+        <span class="kw">assert</span> <span class="fn">all</span>(maximum_so_far &gt;= numbers[j] <span class="kw">for</span> j <span class="kw">in</span> <span class="fn">range</span>(i)), \
+               <span class="st">f"Invariant violated at i=</span><span class="op">{</span>i<span class="op">}</span><span class="st">"</span>
+
+        <span class="kw">if</span> numbers[i] &gt; maximum_so_far:
+            maximum_so_far = numbers[i]
+        i += <span class="nu">1</span>
+
+    <span class="cm"># Post-condition: maximum_so_far is max of the entire list</span>
+    <span class="kw">assert</span> <span class="fn">all</span>(maximum_so_far &gt;= numbers[j] <span class="kw">for</span> j <span class="kw">in</span> <span class="fn">range</span>(n))
+    <span class="kw">return</span> maximum_so_far</code></pre>
+      </div>
+
+      <details>
+        <summary>Why assertions are stronger than test cases</summary>
+        <p>A test case verifies the input-output behaviour for one specific input. An assertion encoded in the loop verifies the invariant for <em>every input</em> on <em>every iteration</em>. If the assertion is never violated across all inputs, we have much stronger evidence that the code is correct than a finite set of test cases can ever provide.</p>
+      </details>
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Concept</span>
+      <div class="block-title">Three Components Every Loop Must Have</div>
+      <ol class="steps">
+        <li><strong>Initialization:</strong> Establish the invariant before the loop starts. (<code>maximum_so_far = numbers[0]</code>, <code>i = 1</code>)</li>
+        <li><strong>Maintenance:</strong> The loop body must preserve the invariant. (update <code>maximum_so_far</code> if needed, always increment <code>i</code>)</li>
+        <li><strong>Termination:</strong> The loop must eventually exit. (<code>i</code> increases each iteration; once <code>i == n</code>, condition fails)</li>
+      </ol>
+      <p style="margin-top:.5rem">If any component is missing, the loop is either incorrect or may not terminate.</p>
+    </div>
+  </section>
+
+  <!-- §3 ─ FOR LOOPS ───────────────────────────────────────────────── -->
+  <section class="concept-section" id="for-loops">
+    <h3>3 · For Loops &amp; the <code>range()</code> Function</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">For Loop Syntax</div>
+      <p>A <strong>for loop</strong> iterates over a predefined sequence. The variable takes each value in the sequence, one per iteration. Python advances the variable automatically — no manual increment needed.</p>
+      <div class="code-wrap" style="margin-top:.75rem">
+        <div class="code-label">Python Syntax</div>
+        <pre><code><span class="kw">for</span> variable <span class="kw">in</span> sequence:
+    &lt;loop body&gt;</code></pre>
+      </div>
+      <p style="margin-top:.5rem">Because the sequence is finite and fully specified upfront, a for loop <strong>always terminates</strong> — there is no risk of an infinite loop.</p>
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Concept</span>
+      <div class="block-title">The range() Function — Three Variants</div>
+      <p><code>range()</code> generates a sequence of integers used to control a for loop. It does not store all values in memory at once — it computes each value on demand (like a set-builder rule).</p>
+
+      <div class="tbl-scroll">
+        <table>
+          <thead>
+            <tr><th>Form</th><th>Values generated</th><th>Example</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>range(stop)</code></td>
+              <td>0, 1, …, stop−1</td>
+              <td><code>range(5)</code> → 0 1 2 3 4</td>
+            </tr>
+            <tr>
+              <td><code>range(start, stop)</code></td>
+              <td>start, start+1, …, stop−1</td>
+              <td><code>range(5, 10)</code> → 5 6 7 8 9</td>
+            </tr>
+            <tr>
+              <td><code>range(start, stop, step)</code></td>
+              <td>start, start+step, … (while &lt; stop)</td>
+              <td><code>range(0, 10, 2)</code> → 0 2 4 6 8</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>The <strong>stop value is always excluded</strong>. Default start is 0; default step is 1.</p>
+
+      <div class="code-wrap" style="margin-top:.75rem">
+        <div class="code-label">Python — range() in action</div>
+        <pre><code><span class="cm"># Print 0–9</span>
+<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="nu">10</span>):
+    <span class="fn">print</span>(i, end=<span class="st">", "</span>)
+<span class="cm"># → 0, 1, 2, 3, 4, 5, 6, 7, 8, 9,</span>
+
+<span class="cm"># Even numbers only</span>
+<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="nu">0</span>, <span class="nu">10</span>, <span class="nu">2</span>):
+    <span class="fn">print</span>(i, end=<span class="st">", "</span>)
+<span class="cm"># → 0, 2, 4, 6, 8,</span></code></pre>
+      </div>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">findMax Rewritten with a For Loop</div>
+      <p>The same logic as the while-loop version, but without manual index management:</p>
+      <div class="code-wrap">
+        <div class="code-label">Python — findMax with for loop</div>
+        <pre><code><span class="kw">def</span> <span class="fn">findMax</span>(numbers):
+    maximum_so_far = numbers[<span class="nu">0</span>]
+    <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="nu">1</span>, <span class="fn">len</span>(numbers)):
+        <span class="kw">if</span> numbers[i] &gt; maximum_so_far:
+            maximum_so_far = numbers[i]
+        <span class="cm"># No i += 1 needed — range() handles it</span>
+    <span class="kw">return</span> maximum_so_far</code></pre>
+      </div>
+      <p>The loop variable <code>i</code> takes values 1, 2, …, n−1. Python increments it automatically each iteration. The loop invariant — <em>maximum_so_far is the max of numbers[0..i−1]</em> — remains exactly the same as before.</p>
+    </div>
+  </section>
+
+  <!-- §4 ─ FOR VS WHILE ───────────────────────────────────────────── -->
+  <section class="concept-section" id="for-vs-while">
+    <h3>4 · For vs While — Which to Choose?</h3>
+
+    <div class="tbl-scroll">
+      <table>
+        <thead>
+          <tr><th>Property</th><th>While loop</th><th>For loop</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Termination guarantee</td>
+            <td>Not automatic — programmer must update condition variable</td>
+            <td>Always terminates (sequence is finite)</td>
+          </tr>
+          <tr>
+            <td>Index management</td>
+            <td>Manual — must increment inside body</td>
+            <td>Automatic via <code>range()</code></td>
+          </tr>
+          <tr>
+            <td>Infinite loop risk</td>
+            <td>Yes, if not careful</td>
+            <td>No</td>
+          </tr>
+          <tr>
+            <td>When to prefer</td>
+            <td>Number of iterations unknown upfront (condition-driven)</td>
+            <td>Number of iterations known upfront (count-driven)</td>
+          </tr>
+          <tr>
+            <td>Loop invariants</td>
+            <td>Applicable — same reasoning</td>
+            <td>Applicable — same reasoning</td>
+          </tr>
+          <tr>
+            <td>Interchangeability</td>
+            <td colspan="2">In most cases, while ↔ for are equivalent. Choose based on clarity.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Rule</span>
+      <div class="block-title">Decision Heuristic</div>
+      <p><strong>Use <code>for</code></strong> when you know the number of iterations (or can express it as a range) — e.g., "do this for every element in a list."</p>
+      <p style="margin-top:.4rem"><strong>Use <code>while</code></strong> when the stopping point is determined by a runtime condition that may vary across inputs — e.g., "keep trying until you find a value greater than the threshold."</p>
+    </div>
+  </section>
+
+  <!-- §5 ─ isSorted ──────────────────────────────────────────────── -->
+  <section class="concept-section" id="issorted">
+    <h3>5 · isSorted — A For Loop with Loop Invariants</h3>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Checking Whether a List is Sorted</div>
+      <p>Goal: return <code>True</code> if a list is sorted in non-decreasing order, <code>False</code> otherwise. Strategy: scan for any adjacent pair that is out of order (an <em>inversion</em>). One inversion is enough to declare the list unsorted.</p>
+
+      <div class="code-wrap">
+        <div class="code-label">Python — isSorted</div>
+        <pre><code><span class="kw">def</span> <span class="fn">isSorted</span>(numbers):
+    <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="fn">len</span>(numbers) - <span class="nu">1</span>):   <span class="cm"># stop at second-to-last</span>
+        <span class="kw">if</span> numbers[i] &gt; numbers[i + <span class="nu">1</span>]:
+            <span class="kw">return</span> <span class="kw">False</span>               <span class="cm"># inversion found → not sorted</span>
+    <span class="kw">return</span> <span class="kw">True</span>                          <span class="cm"># no inversions found</span></code></pre>
+      </div>
+
+      <details>
+        <summary>Why <code>range(len(numbers) - 1)</code>?</summary>
+        <p>We compare <code>numbers[i]</code> with <code>numbers[i+1]</code> inside the loop. If <code>i</code> reached <code>len(numbers) - 1</code> (the last index), then <code>i+1</code> would be out of bounds. Stopping at <code>len(numbers) - 2</code> (i.e., <code>range(len(numbers) - 1)</code> which goes up to <code>len - 2</code>) ensures we always compare adjacent pairs safely.</p>
+      </details>
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Concept</span>
+      <div class="block-title">Loop Invariant for isSorted</div>
+      <div class="invariant-box">
+        <div class="inv-label">Invariant P (at start of iteration i)</div>
+        <p>The sublist <code>numbers[0..i]</code> contains no inversions — every adjacent pair is in non-decreasing order.</p>
+        <p style="margin-top:.3rem">Formally: <code>numbers[j] &lt;= numbers[j+1]</code> for all <code>j in range(i)</code></p>
+      </div>
+
+      <div class="code-wrap" style="margin-top:.75rem">
+        <div class="code-label">Python — isSorted with assertions</div>
+        <pre><code><span class="kw">def</span> <span class="fn">isSorted</span>(numbers):
+    <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="fn">len</span>(numbers) - <span class="nu">1</span>):
+        <span class="cm"># Invariant: numbers[0..i] has no inversions</span>
+        <span class="kw">assert</span> <span class="fn">all</span>(numbers[j] &lt;= numbers[j+<span class="nu">1</span>] <span class="kw">for</span> j <span class="kw">in</span> <span class="fn">range</span>(i)), \
+               <span class="st">f"Invariant violated in prefix 0..{i}"</span>
+
+        <span class="kw">if</span> numbers[i] &gt; numbers[i + <span class="nu">1</span>]:
+            <span class="kw">return</span> <span class="kw">False</span>
+
+        <span class="cm"># Invariant maintained: now numbers[0..i+1] has no inversions</span>
+        <span class="kw">assert</span> <span class="fn">all</span>(numbers[j] &lt;= numbers[j+<span class="nu">1</span>] <span class="kw">for</span> j <span class="kw">in</span> <span class="fn">range</span>(i+<span class="nu">1</span>))
+
+    <span class="cm"># Post-condition: no inversions in entire list</span>
+    <span class="kw">assert</span> <span class="fn">all</span>(numbers[j] &lt;= numbers[j+<span class="nu">1</span>] <span class="kw">for</span> j <span class="kw">in</span> <span class="fn">range</span>(<span class="fn">len</span>(numbers)-<span class="nu">1</span>)), \
+           <span class="st">"Post-condition violated: list not sorted"</span>
+    <span class="kw">return</span> <span class="kw">True</span></code></pre>
+      </div>
+
+      <p style="margin-top:.5rem">The assertions must hold whether the list is sorted or not — they express the <em>reasoning</em>, not just the result. If <code>isSorted</code> returns <code>False</code> early, the assertions at the early-exit point are still valid (the invariant held up to the point of exit).</p>
+    </div>
+
+    <div class="practice-block">
+      <span class="block-badge">Practice</span>
+      <div class="block-title">Exercises — Loop Invariants</div>
+      <p>For each of the following functions, write down a meaningful loop invariant and encode it as a Python <code>assert</code> statement:</p>
+      <ol class="steps">
+        <li><strong>GCD (Euclidean algorithm):</strong> <code>while b != 0: a, b = b, a % b</code> — what property of <code>a</code> and <code>b</code> is preserved each iteration?</li>
+        <li><strong>Factorial:</strong> <code>result = 1; for i in range(1, n+1): result *= i</code> — what does <code>result</code> represent at the start of each iteration?</li>
+      </ol>
+      <p style="margin-top:.5rem">Hint: think about what <em>has been computed</em> at the start of each iteration, expressed in terms of the loop variable.</p>
+    </div>
+  </section>
+
+</section><!-- /week4 -->
+
+<!-- ╔═══════════════════════════════════════════════════════════════════╗
+     ║  WEEK 5 · SORTING & DATA STRUCTURES                               ║
+     ╚═══════════════════════════════════════════════════════════════════╝ -->
+<section class="week-section" id="week5" data-week="5">
+  <div class="week-banner">
+    <div>
+      <div class="week-tag">Week 5</div>
+      <h2>Sorting &amp; Python Lists</h2>
+      <div class="week-meta">8 concepts &nbsp;·&nbsp; 2 lectures &nbsp;·&nbsp; Bubble sort · Loop invariants · List creation · Access · Modification · Searching</div>
+    </div>
+  </div>
+
+  <!-- §6 ─ BUBBLE SORT IDEA ────────────────────────────────────────── -->
+  <section class="concept-section" id="bubble-sort-idea">
+    <h3>6 · Bubble Sort — The Core Idea</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Bubble Sort Algorithm</div>
+      <p><strong>Bubble sort</strong> works by making multiple <em>passes</em> over a list. During each pass, it scans from left to right, comparing every adjacent pair. If a pair is out of order, it swaps them immediately. This causes large elements to "bubble" toward the right end of the list.</p>
+      <ul class="steps">
+        <li><strong>Pass 1:</strong> The largest element reaches its final position at index <code>n−1</code></li>
+        <li><strong>Pass 2:</strong> The second largest reaches index <code>n−2</code></li>
+        <li><strong>Pass k:</strong> The k-th largest is in its final position</li>
+      </ul>
+      <p style="margin-top:.5rem">In the worst case (completely reversed list), <em>n</em> passes are needed. Each pass fixes one additional element from the right.</p>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Trace Through: [5, 2, 8, 1, 9]</div>
+
+      <details open>
+        <summary>Pass 1 — bubbles 9 to the end</summary>
+        <ol class="steps">
+          <li>Compare 5, 2 → out of order → swap → <code>[2, 5, 8, 1, 9]</code></li>
+          <li>Compare 5, 8 → in order → no swap → <code>[2, 5, 8, 1, 9]</code></li>
+          <li>Compare 8, 1 → out of order → swap → <code>[2, 5, 1, 8, 9]</code></li>
+          <li>Compare 8, 9 → in order → no swap → <code>[2, 5, 1, 8, 9]</code></li>
+        </ol>
+        <p>After pass 1: last element (9) is in its correct position. 8 is also there.</p>
+      </details>
+
+      <details open>
+        <summary>Pass 2 — bubbles 8 to its final position</summary>
+        <ol class="steps">
+          <li>Compare 2, 5 → in order → no swap</li>
+          <li>Compare 5, 1 → out of order → swap → <code>[2, 1, 5, 8, 9]</code></li>
+          <li>Compare 5, 8 → in order → no swap</li>
+        </ol>
+        <p>After pass 2: last two elements are sorted.</p>
+      </details>
+
+      <details open>
+        <summary>Pass 3 — completes the sort</summary>
+        <ol class="steps">
+          <li>Compare 2, 1 → out of order → swap → <code>[1, 2, 5, 8, 9]</code></li>
+          <li>Compare 2, 5 → in order → no swap</li>
+        </ol>
+        <p>After pass 3: list is fully sorted. <code>[1, 2, 5, 8, 9]</code></p>
+      </details>
+    </div>
+  </section>
+
+  <!-- §7 ─ ONE BUBBLE PASS ────────────────────────────────────────── -->
+  <section class="concept-section" id="one-pass">
+    <h3>7 · Implementing One Bubble Pass</h3>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">one_bubble_pass(array)</div>
+      <p>A single pass over the entire list, swapping every adjacent out-of-order pair.</p>
+
+      <div class="code-wrap">
+        <div class="code-label">Python — one_bubble_pass</div>
+        <pre><code><span class="kw">def</span> <span class="fn">one_bubble_pass</span>(array):
+    n = <span class="fn">len</span>(array)
+    <span class="kw">for</span> j <span class="kw">in</span> <span class="fn">range</span>(n - <span class="nu">1</span>):             <span class="cm"># j goes from 0 to n-2</span>
+        <span class="kw">if</span> array[j] &gt; array[j + <span class="nu">1</span>]:    <span class="cm"># adjacent pair out of order</span>
+            array[j], array[j + <span class="nu">1</span>] = array[j + <span class="nu">1</span>], array[j]  <span class="cm"># swap</span>
+    <span class="kw">return</span> array</code></pre>
+      </div>
+
+      <details>
+        <summary>The Pythonic swap idiom</summary>
+        <p>In most languages, swapping two variables requires a temporary: <code>tmp = a[j]; a[j] = a[j+1]; a[j+1] = tmp</code>. Python's tuple assignment evaluates the right side fully before assigning, so <code>a[j], a[j+1] = a[j+1], a[j]</code> swaps them in one statement with no temporary variable.</p>
+      </details>
+
+      <div class="invariant-box" style="margin-top:.75rem">
+        <div class="inv-label">Inner loop invariant (after j comparisons)</div>
+        <p>The maximum of <code>array[0..j]</code> is at position <code>j</code>.</p>
+        <p style="margin-top:.3rem">Formally: <code>max(array[:j+1]) == array[j]</code></p>
+      </div>
+
+      <p style="margin-top:.6rem">When the pass completes (<code>j == n−2</code>), the maximum of the entire array has been bubbled to position <code>n−1</code>.</p>
+    </div>
+  </section>
+
+  <!-- §8 ─ FULL BUBBLE SORT ────────────────────────────────────────── -->
+  <section class="concept-section" id="bubble-sort-full">
+    <h3>8 · Full Bubble Sort — Naive Version</h3>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">bubble_sort_simple — Always n Passes</div>
+      <p>The simplest correct implementation: repeat <code>one_bubble_pass</code> exactly <em>n</em> times. This guarantees sorting even in the worst case, at the cost of some redundant passes in the best case.</p>
+
+      <div class="code-wrap">
+        <div class="code-label">Python — bubble_sort_simple</div>
+        <pre><code><span class="kw">def</span> <span class="fn">bubble_sort_simple</span>(array):
+    n = <span class="fn">len</span>(array)
+    <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(n):               <span class="cm"># n passes total</span>
+        array = <span class="fn">one_bubble_pass</span>(array)
+
+    <span class="cm"># Post-condition: array is sorted</span>
+    <span class="kw">assert</span> <span class="fn">isSorted</span>(array), <span class="st">"Array not sorted — post-condition violated"</span>
+    <span class="kw">return</span> array</code></pre>
+      </div>
+
+      <p style="margin-top:.5rem">This is <strong>correct but inefficient</strong>: if the list is already sorted after pass 2, passes 3 through <em>n</em> are wasted work doing nothing. The optimized version avoids this.</p>
+    </div>
+  </section>
+
+  <!-- §9 ─ OPTIMIZED BUBBLE SORT ──────────────────────────────────── -->
+  <section class="concept-section" id="bubble-sort-optimized">
+    <h3>9 · Optimized Bubble Sort — Early Termination</h3>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Concept</span>
+      <div class="block-title">Two Optimizations in One</div>
+      <ol class="steps">
+        <li><strong>Early termination:</strong> If a pass completes with no swaps, the list is already sorted — stop immediately.</li>
+        <li><strong>Shrinking inner range:</strong> After <em>i</em> passes, the last <em>i</em> elements are in their final positions. The inner loop need only scan up to index <code>n − i − 1</code>.</li>
+      </ol>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">bubble_sort — Optimized Implementation</div>
+
+      <div class="code-wrap">
+        <div class="code-label">Python — bubble_sort (optimized)</div>
+        <pre><code><span class="kw">def</span> <span class="fn">bubble_sort</span>(array):
+    n = <span class="fn">len</span>(array)
+    <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(n):
+        swapped = <span class="kw">False</span>               <span class="cm"># reset flag each pass</span>
+
+        <span class="kw">for</span> j <span class="kw">in</span> <span class="fn">range</span>(n - i - <span class="nu">1</span>):   <span class="cm"># last i elements already sorted</span>
+            <span class="kw">if</span> array[j] &gt; array[j + <span class="nu">1</span>]:
+                array[j], array[j + <span class="nu">1</span>] = array[j + <span class="nu">1</span>], array[j]
+                swapped = <span class="kw">True</span>         <span class="cm"># a swap occurred this pass</span>
+
+        <span class="kw">if</span> <span class="kw">not</span> swapped:                <span class="cm"># no swap → list is sorted → stop early</span>
+            <span class="kw">break</span>
+
+    <span class="kw">assert</span> <span class="fn">isSorted</span>(array), <span class="st">"Post-condition violated"</span>
+    <span class="kw">return</span> array</code></pre>
+      </div>
+
+      <details open>
+        <summary>Why the <code>swapped</code> flag works</summary>
+        <p>If an entire pass over the remaining unsorted portion finds zero adjacent pairs out of order, then every adjacent pair is in order — the list is fully sorted. Setting <code>swapped = False</code> at the start of each pass and only setting it <code>True</code> when a swap happens lets us detect this condition and <code>break</code> early, skipping all remaining passes.</p>
+      </details>
+
+      <details>
+        <summary>Performance comparison</summary>
+        <div class="tbl-scroll">
+          <table>
+            <thead>
+              <tr><th>Input</th><th>Simple (n passes)</th><th>Optimized</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Already sorted</td><td>n passes (wasted)</td><td>1 pass (breaks immediately)</td></tr>
+              <tr><td>Nearly sorted</td><td>n passes</td><td>Few passes + early break</td></tr>
+              <tr><td>Reversed (worst case)</td><td>n passes</td><td>n passes (no early break)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- §10 ─ BUBBLE SORT LOOP INVARIANTS ──────────────────────────── -->
+  <section class="concept-section" id="bubble-invariants">
+    <h3>10 · Loop Invariants for Bubble Sort</h3>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Concept</span>
+      <div class="block-title">Two-Level Loop Invariants</div>
+      <p>Bubble sort has two nested loops, each with its own invariant.</p>
+
+      <div class="invariant-box">
+        <div class="inv-label">Outer loop invariant (at start of pass i)</div>
+        <p>The last <code>i</code> elements of the array are in their final sorted positions.</p>
+        <p style="margin-top:.3rem">Formally: <code>isSorted(array[n-i:])</code></p>
+      </div>
+
+      <div class="invariant-box" style="margin-top:.65rem">
+        <div class="inv-label">Inner loop invariant (after j comparisons in pass i)</div>
+        <p>The maximum of <code>array[0..j]</code> has been moved to position <code>j</code>.</p>
+        <p style="margin-top:.3rem">Formally: <code>max(array[:j+2]) == array[j+1]</code></p>
+      </div>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Validated Bubble Sort with Assertions</div>
+
+      <div class="code-wrap">
+        <div class="code-label">Python — validated_bubble_sort</div>
+        <pre><code><span class="kw">def</span> <span class="fn">validated_bubble_sort</span>(array):
+    n = <span class="fn">len</span>(array)
+    <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(n):
+        <span class="cm"># Outer invariant: last i elements in sorted position</span>
+        <span class="kw">assert</span> <span class="fn">isSorted</span>(array[n-i:]), <span class="st">f"Outer invariant violated at i={i}"</span>
+        swapped = <span class="kw">False</span>
+
+        <span class="kw">for</span> j <span class="kw">in</span> <span class="fn">range</span>(n - i - <span class="nu">1</span>):
+            <span class="kw">if</span> array[j] &gt; array[j + <span class="nu">1</span>]:
+                array[j], array[j + <span class="nu">1</span>] = array[j + <span class="nu">1</span>], array[j]
+                swapped = <span class="kw">True</span>
+
+        <span class="cm"># Outer invariant maintained: now last i+1 elements are sorted</span>
+        <span class="kw">assert</span> <span class="fn">isSorted</span>(array[n-i-<span class="nu">1</span>:]), <span class="st">f"Invariant not maintained at i={i}"</span>
+
+        <span class="kw">if</span> <span class="kw">not</span> swapped:
+            <span class="kw">break</span>
+
+    <span class="cm"># Post-condition: entire array is sorted</span>
+    <span class="kw">assert</span> <span class="fn">isSorted</span>(array), <span class="st">"Final array not sorted"</span>
+    <span class="kw">return</span> array</code></pre>
+      </div>
+
+      <p style="margin-top:.5rem">None of these assertions should be violated for a correct input and correct implementation. Testing on multiple inputs — including worst-case (reversed) and best-case (already sorted) — and seeing zero assertion violations gives strong confidence in correctness.</p>
+    </div>
+
+    <div class="practice-block">
+      <span class="block-badge">Practice</span>
+      <div class="block-title">Prove the Outer Loop Invariant</div>
+      <p>Argue informally:</p>
+      <ol class="steps">
+        <li><strong>Initialization:</strong> Before pass 0, the last 0 elements are trivially sorted (empty sublist).</li>
+        <li><strong>Maintenance:</strong> After pass <em>i</em>, one_bubble_pass ensures the maximum of the unsorted portion is at position <code>n−i−1</code>. Combined with the previous invariant (last <em>i</em> elements already sorted), the last <em>i+1</em> elements are now in sorted order.</li>
+        <li><strong>Termination:</strong> After <em>n</em> passes (or an early break when no swaps occurred), the entire array is sorted.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- §11 ─ LISTS — CREATION & ACCESS ─────────────────────────────── -->
+  <section class="concept-section" id="lists-create">
+    <h3>11 · Python Lists — Creation &amp; Access</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">What is a Python List?</div>
+      <p>A Python <strong>list</strong> is an <em>ordered, mutable, heterogeneous</em> collection. Three properties distinguish it from other data structures:</p>
+      <ul class="steps">
+        <li><strong>Ordered:</strong> Elements have a definite position. Two lists with the same elements in different orders are different lists.</li>
+        <li><strong>Mutable:</strong> Elements can be added, removed, or changed after creation. The list's size can grow or shrink dynamically.</li>
+        <li><strong>Heterogeneous:</strong> Elements can have different types — integers, strings, floats, and even other lists can coexist in one list.</li>
+      </ul>
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Concept</span>
+      <div class="block-title">Creating a List &amp; Getting Its Length</div>
+
+      <div class="code-wrap">
+        <div class="code-label">Python — list creation and len()</div>
+        <pre><code><span class="cm"># Create a list with square brackets</span>
+my_list = [<span class="nu">1</span>, <span class="nu">2</span>, <span class="nu">3</span>, <span class="nu">4</span>, <span class="nu">5</span>]
+
+<span class="cm"># Empty list</span>
+empty = []
+
+<span class="cm"># Heterogeneous list</span>
+mixed = [<span class="nu">42</span>, <span class="st">"hello"</span>, <span class="nu">3.14</span>, <span class="kw">True</span>]
+
+<span class="cm"># Length</span>
+<span class="fn">print</span>(<span class="fn">len</span>(my_list))   <span class="cm"># → 5</span></code></pre>
+      </div>
+
+      <p>Elements are indexed from <code>0</code>. The last element is at index <code>len(list) - 1</code>.</p>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Accessing Elements &amp; Slicing</div>
+
+      <div class="code-wrap">
+        <div class="code-label">Python — indexing and slicing</div>
+        <pre><code>my_list = [<span class="nu">1</span>, <span class="nu">2</span>, <span class="nu">3</span>, <span class="nu">4</span>, <span class="nu">5</span>]
+
+<span class="cm"># First element (index 0)</span>
+my_list[<span class="nu">0</span>]        <span class="cm"># → 1</span>
+
+<span class="cm"># Last element — two equivalent ways</span>
+my_list[<span class="fn">len</span>(my_list) - <span class="nu">1</span>]   <span class="cm"># → 5</span>
+my_list[-<span class="nu">1</span>]                 <span class="cm"># → 5  (Pythonic shorthand)</span>
+
+<span class="cm"># Slice: elements at index 1, 2, 3 (stop is excluded)</span>
+my_list[<span class="nu">1</span>:<span class="nu">4</span>]      <span class="cm"># → [2, 3, 4]</span>
+
+<span class="cm"># Last i elements (useful in bubble sort invariants!)</span>
+my_list[-<span class="nu">3</span>:]      <span class="cm"># → [3, 4, 5]</span></code></pre>
+      </div>
+
+      <details>
+        <summary>Negative indices — how they work</summary>
+        <p>Python treats negative index <code>-k</code> as <code>len(list) - k</code>. So <code>-1</code> is the last element, <code>-2</code> is second-to-last, etc. This is a convenient shorthand that avoids having to call <code>len()</code> just to access from the end.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- §12 ─ LISTS — MODIFICATION ──────────────────────────────────── -->
+  <section class="concept-section" id="lists-modify">
+    <h3>12 · Python Lists — Adding &amp; Removing Elements</h3>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Concept</span>
+      <div class="block-title">Adding Elements — Three Methods</div>
+
+      <div class="code-wrap">
+        <div class="code-label">Python — append, insert, extend</div>
+        <pre><code>my_list = [<span class="nu">1</span>, <span class="nu">2</span>, <span class="nu">3</span>, <span class="nu">4</span>, <span class="nu">5</span>]
+
+<span class="cm"># append: add one element to the end</span>
+my_list.<span class="fn">append</span>(<span class="nu">6</span>)
+<span class="cm"># my_list → [1, 2, 3, 4, 5, 6]</span>
+
+<span class="cm"># insert: add at a specific index (shifts everything right)</span>
+my_list.<span class="fn">insert</span>(<span class="nu">2</span>, <span class="nu">99</span>)
+<span class="cm"># my_list → [1, 2, 99, 3, 4, 5, 6]</span>
+
+<span class="cm"># extend: append all elements of another list to the end</span>
+my_list.<span class="fn">extend</span>([<span class="nu">7</span>, <span class="nu">8</span>, <span class="nu">9</span>])
+<span class="cm"># my_list → [1, 2, 99, 3, 4, 5, 6, 7, 8, 9]</span>
+
+<span class="cm"># Concatenation: creates a NEW list, originals unchanged</span>
+combined = [<span class="nu">1</span>, <span class="nu">2</span>, <span class="nu">3</span>] + [<span class="nu">4</span>, <span class="nu">5</span>, <span class="nu">6</span>]
+<span class="cm"># combined → [1, 2, 3, 4, 5, 6]</span>
+
+<span class="cm"># Repetition: repeat a list n times</span>
+repeated = [<span class="nu">1</span>, <span class="nu">2</span>, <span class="nu">3</span>] * <span class="nu">3</span>
+<span class="cm"># repeated → [1, 2, 3, 1, 2, 3, 1, 2, 3]</span></code></pre>
+      </div>
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Concept</span>
+      <div class="block-title">Removing Elements — Three Methods</div>
+
+      <div class="code-wrap">
+        <div class="code-label">Python — remove, pop, clear</div>
+        <pre><code>my_list = [<span class="nu">1</span>, <span class="nu">2</span>, <span class="nu">99</span>, <span class="nu">3</span>, <span class="nu">99</span>, <span class="nu">5</span>]
+
+<span class="cm"># remove: delete FIRST occurrence of a value</span>
+my_list.<span class="fn">remove</span>(<span class="nu">99</span>)
+<span class="cm"># my_list → [1, 2, 3, 99, 5]  (only first 99 removed)</span>
+
+<span class="cm"># pop(index): remove and RETURN element at index</span>
+value = my_list.<span class="fn">pop</span>(<span class="nu">1</span>)
+<span class="cm"># value → 2,  my_list → [1, 3, 99, 5]</span>
+
+<span class="cm"># pop(): no argument → remove and return LAST element</span>
+last = my_list.<span class="fn">pop</span>()
+<span class="cm"># last → 5,   my_list → [1, 3, 99]</span>
+
+<span class="cm"># clear: remove ALL elements</span>
+my_list.<span class="fn">clear</span>()
+<span class="cm"># my_list → []</span></code></pre>
+      </div>
+
+      <div class="invariant-box" style="margin-top:.75rem">
+        <div class="inv-label">Side-effect note</div>
+        <p><code>append</code>, <code>insert</code>, <code>extend</code>, <code>remove</code>, <code>pop</code>, and <code>clear</code> all <strong>modify the original list in place</strong>. This is a side effect. Concatenation (<code>+</code>) and repetition (<code>*</code>) create a new list and leave the originals unchanged.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- §13 ─ LISTS — SEARCHING ─────────────────────────────────────── -->
+  <section class="concept-section" id="lists-search">
+    <h3>13 · Python Lists — Searching &amp; Membership</h3>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Concept</span>
+      <div class="block-title">Counting, Finding, and Testing Membership</div>
+
+      <div class="code-wrap">
+        <div class="code-label">Python — count, index, in</div>
+        <pre><code>numbers = [<span class="nu">1</span>, <span class="nu">2</span>, <span class="nu">3</span>, <span class="nu">2</span>, <span class="nu">4</span>, <span class="nu">2</span>]
+
+<span class="cm"># count: how many times does a value appear?</span>
+numbers.<span class="fn">count</span>(<span class="nu">2</span>)      <span class="cm"># → 3</span>
+numbers.<span class="fn">count</span>(<span class="nu">7</span>)      <span class="cm"># → 0  (not present → 0, no error)</span>
+
+<span class="cm"># index: first position where a value appears</span>
+numbers.<span class="fn">index</span>(<span class="nu">2</span>)      <span class="cm"># → 1  (first 2 is at index 1)</span>
+
+<span class="cm"># index with start: search from a given position onward</span>
+numbers.<span class="fn">index</span>(<span class="nu">2</span>, <span class="nu">2</span>)   <span class="cm"># → 3  (first 2 at or after index 2)</span>
+
+<span class="cm"># Membership test: is a value in the list?</span>
+<span class="nu">3</span> <span class="kw">in</span> numbers          <span class="cm"># → True</span>
+<span class="nu">8</span> <span class="kw">in</span> numbers          <span class="cm"># → False</span>
+<span class="nu">8</span> <span class="kw">not in</span> numbers      <span class="cm"># → True</span></code></pre>
+      </div>
+
+      <p style="margin-top:.5rem">When <code>index()</code> is called on a value not in the list, Python raises a <code>ValueError</code>. Use <code>in</code> to check membership first if the value might be absent.</p>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Safe Pattern — Check Before index()</div>
+      <div class="code-wrap">
+        <div class="code-label">Python — defensive index lookup</div>
+        <pre><code><span class="kw">def</span> <span class="fn">find_position</span>(numbers, target):
+    <span class="kw">if</span> target <span class="kw">in</span> numbers:
+        <span class="kw">return</span> numbers.<span class="fn">index</span>(target)
+    <span class="kw">return</span> -<span class="nu">1</span>   <span class="cm"># sentinel: not found</span>
+
+<span class="fn">find_position</span>([<span class="nu">1</span>, <span class="nu">2</span>, <span class="nu">3</span>], <span class="nu">2</span>)    <span class="cm"># → 1</span>
+<span class="fn">find_position</span>([<span class="nu">1</span>, <span class="nu">2</span>, <span class="nu">3</span>], <span class="nu">9</span>)    <span class="cm"># → -1</span></code></pre>
+      </div>
+    </div>
+
+    <div class="practice-block">
+      <span class="block-badge">Practice</span>
+      <div class="block-title">List Operations — Quick Reference Exercise</div>
+      <p>Given <code>data = [5, 3, 8, 1, 3, 7]</code>, predict the output of each expression without running it:</p>
+      <ol class="steps">
+        <li><code>len(data)</code></li>
+        <li><code>data[-2]</code></li>
+        <li><code>data[1:4]</code></li>
+        <li><code>data.count(3)</code></li>
+        <li><code>data.index(3, 2)</code></li>
+        <li><code>8 in data</code></li>
+        <li><code>data.pop()</code> — what does <code>data</code> look like afterwards?</li>
+        <li><code>data + [9, 10]</code> — does this change <code>data</code>?</li>
+      </ol>
+
+      <details>
+        <summary>Answers</summary>
+        <ol class="steps">
+          <li><code>6</code></li>
+          <li><code>7</code> (index 4)</li>
+          <li><code>[3, 8, 1]</code></li>
+          <li><code>2</code></li>
+          <li><code>4</code> (first 3 at or after index 2)</li>
+          <li><code>True</code></li>
+          <li>Returns <code>7</code>; <code>data</code> becomes <code>[5, 3, 8, 1, 3]</code></li>
+          <li>Returns <code>[5, 3, 8, 1, 3, 7, 9, 10]</code>; <code>data</code> is <strong>unchanged</strong> (concatenation creates a new list)</li>
+        </ol>
+      </details>
+    </div>
+  </section>
+
+</section><!-- /week5 -->
+
+</main>
+</div><!-- /layout -->
+
+<!-- ── Mobile TOC Controls ── -->
+<button id="m-toc-btn" aria-label="Open table of contents" aria-expanded="false">
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <line x1="3" y1="6" x2="21" y2="6"/>
+    <line x1="3" y1="12" x2="21" y2="12"/>
+    <line x1="3" y1="18" x2="15" y2="18"/>
+  </svg>
+</button>
+<div id="m-toc-overlay" role="presentation"></div>
+<nav id="m-toc-drawer" aria-label="Mobile table of contents">
+  <div class="m-pill"></div>
+  <div class="m-drawer-hd">Contents</div>
+</nav>
+
+<button id="back-top" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <polyline points="18 15 12 9 6 15"/>
+  </svg>
+</button>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ── Mobile TOC drawer ── */
+  const btn     = document.getElementById('m-toc-btn');
+  const overlay = document.getElementById('m-toc-overlay');
+  const drawer  = document.getElementById('m-toc-drawer');
+  const desktopToc = document.getElementById('desktop-toc');
+
+  /* Clone desktop TOC into mobile drawer */
+  if (desktopToc && drawer) {
+    const clone = desktopToc.cloneNode(true);
+    clone.removeAttribute('id');
+    clone.removeAttribute('aria-label');
+    clone.querySelectorAll('a').forEach(a => { a.setAttribute('tabindex', '-1'); });
+    drawer.appendChild(clone);
+  }
+
+  function openDrawer() {
+    drawer.classList.add('open');
+    overlay.classList.add('vis');
+    btn.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+    drawer.querySelectorAll('a').forEach(a => a.setAttribute('tabindex', '0'));
+  }
+  function closeDrawer() {
+    drawer.classList.remove('open');
+    overlay.classList.remove('vis');
+    btn.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+    drawer.querySelectorAll('a').forEach(a => a.setAttribute('tabindex', '-1'));
+  }
+
+  btn.addEventListener('click', openDrawer);
+  overlay.addEventListener('click', closeDrawer);
+  drawer.addEventListener('click', e => {
+    if (e.target.closest('a')) closeDrawer();
+  });
+
+  /* ── Wrap tables in scroll containers ── */
+  document.querySelectorAll('main table').forEach(tbl => {
+    if (tbl.closest('.tbl-scroll')) return;
+    const wrap = document.createElement('div');
+    wrap.className = 'tbl-scroll';
+    tbl.parentNode.insertBefore(wrap, tbl);
+    wrap.appendChild(tbl);
+  });
+
+  /* ── Reading progress bar ── */
+  const bar = document.getElementById('read-progress');
+  function updateProgress() {
+    const scrolled = window.scrollY;
+    const total    = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = total > 0 ? (scrolled / total * 100) + '%' : '0%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+
+  /* ── Back-to-top ── */
+  const backTop = document.getElementById('back-top');
+  function updateBackTop() {
+    if (window.scrollY > 400) backTop.classList.add('vis');
+    else backTop.classList.remove('vis');
+  }
+  backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  window.addEventListener('scroll', updateBackTop, { passive: true });
+
+  /* ── Active TOC section via IntersectionObserver ── */
+  const sections = document.querySelectorAll('.concept-section[id]');
+  const allTocLinks = document.querySelectorAll('.toc-week a');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      const id = entry.target.id;
+      allTocLinks.forEach(a => {
+        if (a.getAttribute('href') === '#' + id) {
+          if (entry.isIntersecting) a.classList.add('is-active');
+          else a.classList.remove('is-active');
+        }
+      });
+    });
+  }, { rootMargin: '-15% 0px -70% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+})();
+</script>
+
+</body>
+</html>
