@@ -1,41 +1,44 @@
 # Dev Framework Checkpoint
-**Date**: 2026-05-09
+**Date**: 2026-05-17
 **Workspace**: (none)
 **Phase**: —
 **Branch**: main
 **Workflow**: —
 
 ## Done this session
-- feat(python): add Week 4–5 study notes page
-- fix(discrete-maths): split TOC into separate Week 4 and Week 5 groups
+- feat(discrete-maths): add Week 6 — Variance, Distributions, and Matrices
+  - §18 Variance (definition, E[X²]−μ² formula, dice example, moments)
+  - §19 Bernoulli & Binomial variance + casino dice game worked example
+  - §20 Poisson distribution
+  - §21 Geometric distribution — tail-probability derivation, tail-sum expectation proof, ball-urn example
+  - §22 Negative Binomial distribution
+  - §23 Hypergeometric distribution & variance additivity for independent RVs
+  - §24 Vectors (arrays, addition, scalar multiplication, inner product)
+  - §25 Matrices (addition, multiplication as inner products, dimension rule, non-commutativity, associativity, operation count)
+  - New TOC groups (Week 6a · Variance & Distributions, Week 6b · Linear Algebra)
+  - New banner CSS for data-week="6a" (green) and data-week="6b" (amber)
+- Staged transcript folders: discrete_mathematics/week6/ and python/week5/
 
 ## Where things stand
-No active dev-framework workspace. All three previous workspaces are archived
-(bugfix-mobile-badge-overlaps-block-title, repo-setup-subject-folder-structure,
-week4-5-transcript-concept-html). This session's work was done directly on main:
+No active dev-framework workspace. Work done directly on main.
 
-1. **python/index.html** — full study notes page for Python Weeks 4–5. Covers
-   while loops, for loops, range(), loop invariants (formal + assert-encoded),
-   isSorted, bubble sort (naive + optimized), two-level loop invariants, and
-   Python list operations (create, access, modify, search). Matches the
-   discrete_mathematics design system exactly (same fonts, CSS variables,
-   block-badge types, mobile TOC drawer, progress bar, active-section tracking).
+**discrete_mathematics/index.html** now covers:
+  - Weeks 4–5 (§1–§17): Classical probability, conditional probability, Bayes, RVs, expectation, Markov, problem-solving framework
+  - Week 6a (§18–§23): Variance, Bernoulli/Binomial/Poisson/Geometric/Negative Binomial/Hypergeometric, variance additivity
+  - Week 6b (§24–§25): Vectors, matrices and operations
 
-2. **discrete_mathematics/index.html TOC** — split the single "Weeks 4–5 ·
-   Probability" TOC group into two separate groups matching the Python style:
-   - Week 4 · Probability Foundations (§1–§8)
-   - Week 5 · Random Variables & Expectation (§9–§17)
-
-3. **README.md** — updated Python row from "Coming soon" to live GitHub Pages link.
+**python/index.html** covers Weeks 4–5 (§1–§13) and is complete for available transcripts:
+  - While/for loops, range(), loop invariants, isSorted
+  - Bubble sort (one pass, naive, optimised with early termination), loop invariant assertions
+  - Python lists: creation, access, slicing, append/insert/extend, concatenation, repetition, remove/pop/clear, count/index/in
 
 ## Pending decisions
-- [ ] Python Week 4–5 transcripts only partially covered (5.2.1 Lists covers
-      only creation/modification/search — list sorting/copying/reversing deferred
-      to next lecture; add when week 6 transcripts arrive)
-- [ ] No formal dev-framework workspace was opened for this session's work;
-      consider whether to retroactively create one or just track via git log
-- [ ] GitHub Pages for python/ may still be propagating (pushed ~end of session)
+- [ ] Python: list sorting, reversing, and copying (slice-copy pitfall) are covered in the
+      next lecture after 5.2.1 — add when that transcript arrives
+- [ ] Python week5/ folder contains .mp4 files but no transcript subfolders for the videos
+      themselves — only the transcripts/ subfolder with .txt files is staged
 
 ## Next action
-When new transcripts arrive (Week 6+): run `/dev new-feature` to open a workspace,
-read transcripts, and extend the relevant subject's index.html with new sections.
+When new transcripts arrive (Python Week 6, Discrete Maths Week 7+):
+run `/dev new-feature` to open a workspace, read transcripts, and extend the
+relevant subject's index.html with new sections.
