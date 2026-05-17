@@ -1,0 +1,123 @@
+So, let us go a bit further than the geometric distribution. So, what we ask is, so we want
+to see or we want to know the number of expected trials
+before we see our successes. Suppose, you are running an experiment, right and you want
+to know the number of trials that you need to do to finally, see our successes. So, what
+we have computed before was, we wanted to see only one success, right. We extend this
+a bit further to ask, what is the number of trials that we need to do to see our successes,
+right. So, now, X denotes a random variable. The random variable or let us denotes is a
+random variable that denotes the number of trials to see our successes, right.
+So, now, let us compute this value probability X is equal to n. So, you want to say that
+have n trials and the nth step you see the rth success, right. So, if you see our successes
+before n, you do not have to go to the n itself, right. So, it has to be that the nth trial
+is where you get the rth success, right and before that you have n minus 1 previous trials.
+Under the n minus 1 previous trials, you would have r interspersed somewhere in between,
+right. So, I have n trials out of which r are successful and n minus r, r fails, right
+and we have this additional criteria that the rth success only happens at the nth step.
+So, this r minus 1 other successes would be interspersed between the n minus 1 locations.
+So, towards this what I would write here is I would say I will pick location of r minus
+1 in n minus 1 trials, right and my final trial is fixed. So, it is going to be 1 choose
+n, right and I have r successes and n minus r failures, right. So, this is a random variable
+x that is denotes the number of trials needed to see r successes, right and then if I actually
+write it as expectation of x. So, it is going to be summation over n minus
+n greater than equal to 0 rather n greater than equal to 1. It does not make sense to
+say n greater than equal to 1 because you need at least r trials to see r successes.
+So, I will say n greater than equal to r times n times probability of x is equal to n and
+this is nothing but summation of n greater than equal to r n times n minus 1 choose r
+minus 1 times p to the r times 1 minus p to the n minus r, right and this value actually
+comes out to be r by p, right. So, I will skip the derivation for a bit, but this is
+what it turns out to be.
+So, let us look at an example. So, let us say we are interested in. So, what is the
+probability of r successes before m failures? So, this is a twist on the above problem.
+So, what we said is previously what we computed was the probability of r successes and trials.
+Now, we just twist it a bit and say what is the probability of the r successes before
+m failures, right. So, what could be the way here?
+So, what are we interested in? We are interested in the rth success should happen before r
+plus m minus 1th trial, right. So, if n is equal to r plus m minus 1th trial, right.
+If n naught then m failures would have happened. So, now, if I have r successes and m failures
+then the total number of trials would be r plus m. Rather if I have a successes and b
+failures then the total number of trials is going to be a plus b.
+So, if I cross r plus m. So, there is a possibility that I have more than m failures greater than
+equal to m failures, right. So, now what this says is my rth success should happen before
+the r plus m r plus m minus 1th trial. That is my rth trial could have rth success could
+happen anywhere between rth location rth trial and r plus m minus 1th trial, right. It can
+be this, it can be this and so on until this. So, in other words what I want is I want a
+summation from n is equal to r till r plus m minus 1 of this probability of m failures
+probability as I described above, right. So, this is the probability that I have described
+here. So, that is what I want. So, it is going to be summation of m minus 1 choose r minus
+1 times p to the r times 1 minus p to the n minus r, right. So, this gives me the probability
+of r successes before m failures. So, now, this kind of random this kind of random variables
+and the corresponding distribution are what are called negative binomial distributions.
+So, this is the distribution which is called negative binomial distribution, right. I will
+not spend too much time into why it is called negative binomial distribution because the
+reason seems very vague to me, right. So, one idea of why that could happen could
+be obtained by expanding this term and the way to get this, right good. So, then the
+other distribution that you want to look at is what is called a hyper geometric distribution.
+So, now, so what is this? So, let us say my random variable is of the form probability
+that x is equal to i is m choose i times n minus m choose n minus i sorry yeah. So, n
+minus i. So, right. So, this is what I have. So, one instantiation could be suppose I am
+choosing n objects out of capital N many objects, capital N many objects out of capital N many
+objects such that m out of n objects are special, right. My random variable x is denotes
+rather it is corresponding to rather it denotes
+the number of special objects picked, right. So, the number of special objects picked
+right. So, this is the this is something which you have seen before. For example, we had
+a bag of red balls and blue balls. So, let us say I have or red balls and white balls
+in our questions. So, question is suppose we have a bag of red balls and blue balls
+with bag with r red balls and w white balls, right. So, and we pick n balls from it. So,
+what is the probability that a bag of red balls with bag with r red balls with r red
+balls at least r sorry at least i red balls are picked, right. So, this probability is
+going to be probability that x is equal to i. So, what is x? x denotes the minimum number
+of red balls being picked and this is given by. So, I have r choose i and then I have
+how many do I have r plus w minus i many balls and I pick n minus i from the rest of them.
+So, what is this say? The first term tells us that I need to pick i red balls regardless.
+From the rest of the balls I can pick red balls or white balls, right. So, here i the
+minimum quantity is taken care of already. Then here the rest of the quantity is coming
+from the rest of the r plus w minus i balls, right. So, this is going to give me a probability
+that at least i balls are picked, right. Here this random variable x is saying the it is
+saying the minimum number of red balls that need to be picked, right.
+So, then the other concept that we need to discuss is the expectation and variance of
+sums of Bernoulli random variables, right. So, now, so, sums of independent Bernoulli
+random variables to be more precise. So, I have x 1, x 2 and so on to x n where each
+of a each of which is a Bernoulli random variable. And then x is summation of each of these
+random variables, right. So, what I am interested in? I am interested in expectation of x and
+by linear to expectation, this is given by 1 till n expectation of x i. So, this is the
+sum of x 1, x 2 and so on to x n where each of a each of which is a Bernoulli random variable
+and then x is summation of each of these random variables, right.
+So, what I am interested? I am interested in expectation of x and by linear to expectation
+right. So, this is just linear to expectation. So, now, for variance for variance what we
+are interested in is the x the computation of expectation of x squared, right. So, what
+is this? The other way to write this is expectation of summation x i, i is equal to 1 till n times
+summation of. So, let us say j is equal to 1 till n x j, right. So, this I can write
+it as expectation of summation of i is equal to 1 till n x i times summation of x j where
+j goes from 1 till n. And this can further be written as expectation
+of summation of x i squared where i goes from 1 till n plus expectation of x i is equal
+times x j. So, let me just say summation of these summation of i comma j where i is not
+equal to j. So, this is between 1 to n. So, again applying linear to expectation what
+I would get is summation of i is equal to 1 till n expectation of x i squared where
+i is not equal to j plus expectation of summation i comma j where i is not equal to j x i times
+x j, right. So, now, the variance happens to be the variance
+of this random variables is going to be summation of x is expectation of x squared minus expectation
+of x the whole squared, right. And this is nothing but summation of i is equal to 1 till
+n. So, what is this quantity? This is going to be summation of expectation of x i the
+whole squared. So, what is this quantity? This quantity is again summation of i is equal
+to 1 till n I have expectation of x i the whole squared sorry x i x i squared plus summation
+i comma j 1 till n i not equal to j I have expectations of x i times expectation of x
+j, right. So, putting it all together what I would get
+here is. So, I would have expectation of x squared sorry x i squared i is 1 till n minus
+expectation of x i squared plus summation i comma j within 1 till n expectation of x
+i squared minus expectation of x i squared i is 1 till n minus expectation of x i squared
+x j minus here i not equal to j expectation of x i times expectation of x j, right. So,
+now, if random variables x i and x j. So, if you are actually taking x i is to be independent
+Bernoulli random variables then each of these quantities is going to be 0 I mean. So, this
+quantity is going to be 0, right. So, why is that? So, this quantity can be written
+as expectation of x i times expectation of x j if they are independent, right and this
+quantity is the same as this quantity. So, this quantity disappears and in which case
+you can write it as. So, I can write a summation of i is equal to 1 till n variance of x i
+plus summation of i comma j i not equal to j expectation of x i x j minus expectation
+of x i times expectation of x j. So, this expression that we have derived here is the
+it holds for every random variables random variable x that is the summation of some other
+random variables x i's, right. So, what inference that we get is if x 1 till x n are independent
+we get variance of x or variance of summation x i is given by summation of variances of
+x i, right. So, this is a very interesting fact to know and keep in mind, good.
+So, in case there x i's are Bernoulli random variables and indicator random variables of
+independent trials then what we have is variance of the summation is equal to variance of the
+sum of variance of individual random variables x i.

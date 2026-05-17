@@ -1,0 +1,216 @@
+So, good. So, since we have seen random variables and we have explained what distributions mean.
+So, let us look at some examples of distributions. So, now, we are going to introduce you to
+terminologies of how certain random variables behave. So, here we have discussed something
+called indicator random variables or Bernoulli random variables. A random variable X is
+called an indicator random variable if with probability p for some p it is 1 and it is
+0 with probability 1 minus p right. So, now, this was used in example where you are interested
+in success of an experiment right. So, a trial could succeed with probability p and fail
+with probability 1 minus p right. So, this is what we call an indicator random variable
+or a Bernoulli random variable right. So, now, what we will do in this lecture is we
+will look at random variables and say oh if this random variable has a certain behavior
+then we will call it as a particular name. Here this random variable X that we have defined
+here has an indicative nature and we will call this a Bernoulli random variable or an
+indicator random variable right. So, its purpose is to indicate some event right. So, Bernoulli
+after the mathematician Bernoulli right and then. So, this random variable if you stare
+at it its expectation is nothing, but it is equal to the probability that X is equal to
+in which case it is p right and what is the variance of this random variable. So, let
+us compute X square. So, what is this? It is nothing, but. So, what is it going to be?
+It is going to be p right. So, it takes value look at X square. So, it is going to be identical
+with probability p 0 with probability 1 minus p right. So, now, I have expectation of X
+square also equal to p and then what would happen? So, what is the variance of this random
+variable? So, it is going to be p minus p square this is nothing, but p times 1 minus
+p right. This is a behavior of this random variable. So, now. So, standard deviation
+of this random variable is going to be root of variance right and is going to be root
+of p times 1 minus p good. So, this is your indicator or Bernoulli random variable right.
+So, we can ask the next question. So, one of the examples that we have seen is suppose
+I have k trials. So, what is the probability that I of them succeed? So, this is another
+thing that we have seen. So, what is this? So, let us for the sake of clarity instead
+of k we will use n right. So, X is a random variable that denotes the number of successes
+in n trials right and probability that this random variable takes a value i is given
+by n choose i times p to the i times 1 minus p to the n minus i right. So, this is a probability
+a term in your binomial expansion of 1 plus sorry it is in the binomial expression of
+p plus 1 minus p to the power of n right. Suppose I take this binomial expansion. So,
+this is the ith term in that binomial expansion and which is why the variables the random
+variables which are distributed in such a form they are called what are called a binomial
+random variables right. So, now what do we have here? I have expectation
+of X if you have computed last time. So, what was it? It was summation over all possible
+values of i let us say greater than equal to 0 I have n choose i times p to the i times
+1 minus p to the n minus i. So, ideally I was supposed to write a limit for the summation
+I would have said n, but so note that a choose b for all b greater than a is 0 right. So,
+which is why I have been slightly relaxed about writing that, but if you wanted we can
+write it. So, expect sorry this is going to be i times
+here. So, this times i. So, now, so what is this part? So, this part is a probability
+that X is equal to i and this is the value right. So, this entire expression turns out
+to be i times probability that good right. So, now, what is this? This summation over
+i is equal to 0 to n I have n factorial by n minus i factorial times i factorial. So,
+the top I have p to the i times 1 minus p to the n minus i. So, I just take n out and
+p out and what I would be left with i is equal to 0 to n I have n choose. So, what can I
+have? I have n minus 1 choose i minus 1. So, what do I get? So, I have out of n factorial
+I will take 1 n. So, I am going to write as n minus i factorial times i factorial. So,
+this is nothing but n minus 1 factorial times n divided by n minus i factorial times i minus
+i. So, this i cancels this i and then this n we are going to take it out and then for
+the rest of it what I am going to write it as is p to the i minus 1 times 1 minus p to
+the n minus i right. So, now, I can write this n minus i you can write it as this part
+as 1 minus p to the n minus 1 minus i minus 1 right. So, what I would have here is nothing
+but n times p times p plus 1 minus p whole to the n minus 1 right and this value is nothing
+but n p. So, this is my expectation of this binomial random variable. Now, I ask you what
+is going to be the variance. So, what is the variance? So, variance is going to be expectation
+of x square minus expectation of x the whole square right. So, what is expectation of x
+square? So, this is going to be summation of i greater than equal to 0 I have i square
+times probability that I have n choose i times p to the i minus 1 sorry p to the i times
+1 minus p to the n minus i. So, now, based on the simplification I have
+given below above. So, can you actually try to find a simplification for this right. So,
+I will discuss this in the tutorial. So, please try to find a simplification for this if you
+can no pressure right and then correspondingly I can compute exponential. So, this is well
+expectation of x whole square good. So, let us work out an example for this binomial random
+variable which is different from what you have seen so far right.
+Suppose a player is allowed to bet on numbers 1, 2, 3, 4, 5 and 6 right and the game is
+by the game is decided by 3 dice 3 6 sided dice where each side is equally likely for
+each of these dice 3 dice 3 dice 6 face dice such that player wins i dollars i dollars
+if the number he bet on appears i times for i in 1, 2, 3. So, that is so let us say player
+bets on number 4 right and the dice is rolled. So, now, if one of the face exactly one of
+the one of the dice out of the 3 dice shows the number 4 and the other two show different
+numbers then the player wins 1 dollar. So, let us sorry player wins 1 dollar yes and
+then if this number shows up on 2 dice then the player wins 2 dollars and if the number
+shows shows up on 3 dice the player wins 3 dollars or player loses rather else player
+1 dollar right. So, to tell you the problem again so player is allowed to bet on 6 numbers
+right and his fate is decided by 3 dice. So, now, you roll 3 dice independently. So, now,
+you check if the number appears on any of them if the number does not appear on any
+of these dice then the player loses a dollar. On the other hand if the number appears on at
+least 1 dice he is he stands ground to make some money. So, if the number appears on 1 dice then
+he gets 1 dollar if it appears on 2 dice he gets 2 dollars if it appears on 3 dice he gets 3 dollars
+right. So, this is the game now we ask what is the expected winning of this person
+right. So, now, let us define a random variable x to be the number of faces
+the number
+picked by the person appears.
+So, now, x can take values. So, it can take values from either 0 1 2 or 3 or the other
+way to define this is I can say. So, since we are interested in the expected number of
+the expected amount of money he makes or loses. So, let us define a random variable y which is
+nothing but the amount of money player makes or loses right. So, the so, this random variable
+can take values minus 1 1 2 and 3 right. So, these are these 4 numbers.
+So, for this what do you have? So, probability that y is equal to minus 1. So, what is this?
+So, out of the 3 dice the value appears nowhere. So, this is equivalent to situation saying
+probability x is equal to 0 right and what is this? This is 3 choose 0 times. So, what like
+the number appears nowhere right. So, it will be 5 by 6 to the 3 right and then probability that
+y is equal to 1. So, it is going to be correspondingly probability of x is equal to 1. So, it is going to
+be 3 choose 1 times 1 by 6 times 5 by 6 2 right. So, in short probability y is equal to i is nothing
+but 3 choose i times sorry probability. So, this is for all i not equal to 0 and i is in 1 2 3.
+So, I have 3 choose i times 1 by 6 to the i times 5 by 6 to the 3 minus i. So, this term holds for
+i is equal to 0 as well, but it does not make sense for me to say y is equal to 0 right good.
+So, what do I get? So, if I compute these values. So, what I get the values to be is I would get
+for y is equal to 0 sorry y is equal to minus 1 I have 125 by 216 for y is equal to 1 I have 75 by
+216 then for y is equal to 2 I have 15 by 216 and for the rest I have 1 by 216 right.
+So, now, the expected value of y is going to be minus 1 times 125 by 216 plus 75 by 216 plus 2
+into 15 divided by 216 plus 3 divided by 216 and this entire value sums up to be minus 7 by 216
+right. So, this game is not in the favor of the player the player is expected to lose money
+right. So, this question could be phrased as rather than asking what is the expected amount
+of money that the player makes I could actually ask is the game fair for the player or not.
+So, now, the other way to think about this game is if the expectation is positive then the game
+is fair to the player and the expectation is negative then the game is not fair for the player
+right. So, in most of the games if the expectation is positive towards the player
+then it is not fair for the company that is running the game and if the expectation is
+negative for the player then it is not fair for the player themselves right good.
+So, let us see something called a Poisson distribution right now or a Poisson random variable.
+So, the pronunciation of this could be anywhere between Poisson or Poisson depending on where
+you come from. So, I am going to I am not going to delve too much into this Poisson random variable,
+but I just want to tell you what it is. So, the for the Poisson random variable x
+the probability that x is equal to i is given by e to the minus lambda times lambda to the i
+by i factorial for a parameter lambda right. So, what is known here is that.
+So, Poisson random variables approximate binomials,
+binomial distributions when lambda is equal to n p, n is large, n is very large
+and lambda is what is called a reasonable quantity or a moderate quantity right.
+So, I am not going to go into much details, but for such a distribution the expectation
+of this random variable is going to be equal to lambda right. So, for now this is out of the
+scope of our syllabus for this course, but it is good to know that there exists something called
+a Poisson random variable which approximates binomial distribution as n grows very large
+right and lambda is moderate. So, in other words when you have lambda is n times p.
+So, your probability if it is too small and n is very large then lambda tends to be
+moderate right good. So, the approximation can be seen
+by do taking this x equal to i. So, let us say limit or n tends to infinity
+look at this quantity which is nothing but limit n tends to infinity of n choose i times
+p to the i times 1 minus p to the n minus i. So, here we can substitute p with lambda by n
+and then using the limits you will end up with e to the minus lambda times lambda to the i by
+i factorial right. As I said this part is kind of good to know, but we will not delve on this much
+deeper right good. Then we will go to something called a geometric random variable.
+Right. So, one of the examples that we have seen is what are the expected number of trials
+to see a success right. So, now we are interested in.
+So, x is a random variable where which denotes the number of trials needed
+to see a success. So, for example, like one of the examples that we have done is suppose
+I have a coin toss right how many trials do we need to see a heads for the first time right.
+So, though x is a random variable and let us say for the each of each of these trials
+is actually a Bernoulli trial. So, we are interested in the number of Bernoulli trials
+that are that are needed to see a success right. So, what is this probability that x is equal to
+i for a value i is going to be. So, 1 minus p to the i minus 1 times p right. So, if for all of
+these random variables that we have seen in the last few examples they actually their support is
+in the natural numbers right. So, now we have probability that x is equal to i is this right.
+So, what is the expectation? The expectation of this quantity is summation i times 1 minus p
+to the i minus 1 times p right and this value turns out to be 1 by p right good. So,
+one way to infer this is through what is called probability x greater than equal to k for some k.
+So, what is this going to be? This is going to be probability of
+probability of x equal to k plus probability of x equal to k plus 1 and so on. In other words,
+it is nothing but probability that x is equal to i for all i greater than equal to k right.
+So, let us compute that. So, probability of x greater than equal to k is given by
+summation over i greater than equal to k. So, what is probability of x is equal to i? It is
+going to be 1 minus. So, this right and what is this? I am going to take p common.
+What do I have? I have. So, 1 minus p to the i minus 1
+right. So, this is an infinite summation. So, I can further take p 1 minus p to the i minus 1
+out common and then what do I have here? 1 plus 1 minus p and so on and this is an infinite series.
+So, it is going to be sum of geometric progression where I have p times 1 minus p
+times 1 by 1 minus 1 minus p and this is equal to 1 minus p sorry here this starting from k right.
+So, this is going to be
+k k 1 minus p to the k minus 1 right good. So, now,
+expectation of this random variable x is given by summation of i times probability that
+x is equal to i for i greater than equal to 0.
+The funny part is this is actually equal to for all i greater than equal to 0
+probability that x is greater than equal to i.
+This is a very funny thing in the sense that. So, what does it mean? So, I am going to write
+probability of x greater than equal to 1 right. So, what is this going to be? Probability of x
+is equal to 1 plus probability of x is equal to 2 and so on until the end. Then I write probability
+of x greater than equal to 2. So, I have nothing here then I have probability of x equal to 2
+plus so on. Now, I write probability of x greater than equal to 3
+and I have probability of x greater than equal to sorry probability of x
+equal to 3 and so on right and if you actually sum it up. So, on left side
+on my left side here what I would get here is summation i greater than equal to 0
+probability of let us say probability of i greater than equal to 1 because in this case
+0 does not make sense right. This is the same as summation i times probability that x is equal to i.
+So, if you look at it in column wise. So, 1 is added only once here 2 is added twice
+here 3 is added thrice and so on right. So, if you write this so you are taking a
+summation of all of these and you are taking a summation of all of these right.
+So, we get that the quantity on the left is sufficient to look at expectation of x right.
+So, what do I have here? So, let us say right. So, this is also I will say 1.
+So, this is nothing but summation i greater than equal to 1 I have 1 minus p to the k minus 1
+sorry i minus 1 right and this being an infinite series what I would get is 1 minus sorry 1 by 1
+minus 1 by p sorry 1 by 1 minus 1 minus p. So, this is nothing but 1 by p good.
+So, now, for a variable which is geometrically distributed
+their expectation is given by 1 by p. So, now, for this random variable x which is
+geometrically distributed expectation of x is 1 by p. Now, I ask you what is the variance
+right. So, try to work out the variance for this. So, for that what I would need is expectation of
+x square right. So, what is this? This is going to be i square times p of x is equal to i.
+So, this turns out to be slightly more complicated. I will give you a notes later
+right. So, this is a summation of i greater than equal to 0 right good.
+So, now, let us see another example for this problem.
+Suppose, I have n white balls and m black balls. So, balls are drawn
+from the set with replacement until a black ball is seen or black ball is drawn.
+Right and now, we ask what is the expected number of ball draws that we need to do
+right. I can define my random variable x to be number of draws
+until a black ball is seen
+or a black ball is drawn right. So, now, what is this? So, probability that x is equal to
+some number n is. So, how many black balls do I have? I have m black balls and I have n white
+balls and here we are actually drawing with replacements. So, at any point of time before
+a draw there are m plus n balls right total of m plus n and every time a white ball is drawn
+and this happens for n minus 1 events and then at the end in the nth draw
+I pick a black ball right. So, this is going to be m times n to the n minus 1 divided by
+m plus n to the n right. So, this is what we have.
+So, now, we ask what is the probability that x is greater than some value k
+right. So, this is again I do summation over summation over say let us say n
+greater than equal to k I have probability of x is equal to n is nothing but summation of
+n greater than equal to k m times n to the n minus 1 by m plus n to the n right.
+So, I can either work through this laboriously or I apply the formula that I have before that
+I obtained before. So, which is this right. So, this is going to be. So, what is it is going to be
+n sorry m divided by m plus n whole. So, what do we have we wanted 1 minus p right. So,
+1 minus p should be m n to the k minus 1. So, this is what we have right good.
+So, implicitly what we are doing is we are using the that sum of geometric progressions
+right. So, here it is geometric because
+the sum of geometric progressions is implicit in each of the computations that you have done
+in these places right. So, there is a sum of geometric progressions very implicit in
+most of these computations.

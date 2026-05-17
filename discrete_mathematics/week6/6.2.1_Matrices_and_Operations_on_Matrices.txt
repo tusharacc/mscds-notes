@@ -1,0 +1,232 @@
+So, now we will start a new section which is linear algebra right. So, what is linear
+algebra right? So, here in this section what we are focusing on is the algebraic manipulations
+which are linear right. For example, I have 4 x plus 5 y right. So, here x and y are algebraic
+objection these are variables and what do I have? I have a linear equation that is the
+degrees of each of these variables are at most 1 right. So, what we are interested in
+this particular section is to understand linear algebraic transformations right good.
+So, now, so let us first study what are called vectors and matrices right. So, in high school
+and in other places you would have studied vectors as those objects which are both direction
+and magnitude right. So, in high school these are objects that specify or that contain both
+direction and magnitude. For example, you would have had vectors from origin let us say. So,
+suppose I have my x axis and y axis right. I could have a vector starting from origin
+to this place right. So, let this be a vector A and I can have let us say this vector which is B
+right. So, what is it contain? So, now, so let us mark it as 1 2 3 5 6 and let us say this is 1 2 3 4 5.
+So, this particular point that we have. So, this is what is this point? This is 6 comma 4 and this
+particular point that we have is 2 comma 4 right. So, let me take another line which is. So, let me
+use another color to describe that. So, as to right. So, I have another line which is
+called which I will call it C right. So, now, what do I do? I will make another vector here.
+So, this also I will call it C. So, what is the vector here? The vector A defines a line
+or a ray from it is not a ray it is a line because we have an end point rays without
+here we have 2 end points let us say a line from 0 comma 0 to 6 comma 4 right, but rather
+than seeing it as this line we say it is a line in the direction in the direction or
+slope or slope. So, what is slope here? So, m is y is equal to m is y by x which is 4
+divided by 6 from origin of magnitude. So, what is it root of 4 square plus 6 square
+right. So, that is our vector A. Similarly, I have vector B which can be defined. Now,
+what do I have here is I would get A is nothing, but B plus C right. So, I go to a. So, what
+is B? B is a line from origin with slope. So, it is going to be 4 by sorry 4 by 2 yes
+and magnitude which is root of 2 square plus 4 square right. So, now, I can like C is another
+line which has slope 0 and it has magnitude this much right. So, this is what we understand
+in high school. So, the other way to represent vectors here. So, A can be represented as
+it is. So, it is 4 6 B can be represented as vector it is going to be 2 4 right and
+what do I have here C? C is a vector which is. So, my right. So, it is other way around.
+So, it is 6 and 4 and C is a vector which is given by 4 comma 0 right. If you actually
+put them together what do you get? I have 6 4 given by 2 4 plus 4 comma 0 right. So,
+what are the properties that are happening here that are being used here? So, let us
+So, what is this? A vector for us is a data structure right and it can take a meaning
+depending on the context right. In physics and in coordinate geometry for us vector actually
+said what is the direction and what is the magnitude right. So, we can use vector to
+be anything. So, for us for the sake of this math for CS vector is nothing, but a data
+structure with a specified structure right. So, we will say a vector is an array. So,
+it is like an array right. So, it has some specified locations and each of the specified
+locations carry some value. So, now, a vector V has some sort of a dimension
+right. So, the number of coordinates that this vector carries is my dimension of the
+vector right. So, to be more precise. So, what is the dimension of a vector? So, it
+carries a quantity called dimension of a vector right. So, simply put number of coordinates
+it is rather it is at most number of coordinates. So, we will come to the specific nature of
+what is the dimension of a vector right and now what else. So, therefore, they have an
+additive structure, they follow some nice arithmetic properties right. So, I have a
+vector U and I have a vector V, I can add them up right. I will get a new vector which
+is given by U plus V. So, this is my notation or I could call this W right. So, I have addition
+of vectors is possible right. So, we will also see that multiplication of vectors is
+also possible, but we will come to that in a bit.
+So, there are specified ways of multiplying vectors and addition is point wise. So, given
+a vector A. So, I have a vector A which is given by A 1, A 2 and so on until A n and
+have a vector B. So, I can only add vectors which are of the same dimension A 1 plus B
+2 and so on until A n plus B n right. So, if I had a vector which is of the form 3,
+2, 1 and I had another vector of the form 2, 3, I cannot add them up right. These are
+of different dimensions. So, this has 3 coordinates and this has 2 coordinates right. These are
+2 incomparable vectors right. So, this cannot be added right.
+So, now. So, the examples that we saw above were what are called geometric vectors right.
+So, they had a direction that they were specifying a magnitude and it is easy to visualize them
+right. You had a 3 dimensional space and you could visualize this vectors or a 2 dimensional
+space in our examples right. So, anything beyond 2 dimension or 3 dimensions, we cannot
+visualize them so easily right. It is I mean our world is 3 dimensional and even if you
+add the another dimension which is the 4th dimension, we cannot visualize it with the
+that we have right now right good. So, what we saw there was geometric vectors,
+but vectors could be of any kind. So, vectors could be like arrays of elements from real
+numbers right. I can have a vector whose entries are real numbers. So, what do you mean by
+this notation here is my vector each of its entries takes a real number and the number
+of entries are at most I mean the number of entries are exactly n. So, when I actually
+say my vector V belongs to R3 that means, I have a vector which has 3 coordinates and
+each of its entry takes a real value right. Instead of R, I can actually use some generic
+domain D right. So, I have vector in R to the 3 that sorry D to the 3 that means, each
+of these entries comes from the domain D. So, here domain right. So, this is our introduction
+to vectors. So, what properties do they have? I can multiply a vector with a scalar. So,
+that means, A times V I can do this. So, for example, I have 2 3 1 and I am multiplying
+this by 5. So, what is this going to be? This is going to be 10, 15 and 5 right. More abstractly
+suppose I have a vector V1 is rather A1, A2, A1, A2 and so on until An and I have multiplied
+with alpha then what do I get? I get alpha times A1, alpha times A2 and so on. So, at
+this point of time I am being very critical in the sense that I am multiplying only on
+the left, but on the other hand I can actually multiply it on the right as well and it gives
+the same thing right. So, what do I have on the right? So, if I multiply 2 3 1 with 5
+then I get the same thing which is 10, 15, 5, but for the sake of generality we will
+always multiply a scalar on the left. So, we will see why this is the case pretty soon
+right. So, there is no there is no importance of left multiplication or right multiplication
+for a vector with a scalar right. So, now, so what we will observe is matrices are generalizations
+of vectors right. So, what we had was a structure a data structure which could take values
+in a column right. On the other hand I can actually have a matrix which is a n cross
+n structure or a m cross n structure where I have m entries sorry n entries per row and
+I have m many rows right. Here what I mean by m, m counts the number of rows and n counts
+the number of columns right and when n is equal to 1 what we have is a vector.
+So, matrix is a one dimensional sorry matrix is a higher dimensional vector right. So,
+right. So, now, what do you have? So, let us say I have values a 11, a 12, a 13, b 11,
+b 12, b 13, c 11, c 12 sorry c sure right. Then I have a 21, a 22, a 23, b 21, b 22,
+b 23, then I have c 21, c 22, c 23. Suppose I have these two matrices and I want to add them
+up right. So, I can add them up entry by entry. So, I have a 11 plus a 21, then I have a 12 plus
+a 22, I have a 13 plus a 23 and similarly I have b 11 plus b 21, then similarly b 12 plus b 22,
+then I have b 13 plus b 23 and then c 11 plus c 21, c 12, then I have c 13 plus c 23. So,
+this is my addition of two matrices right and I can also multiply matrix with a constant.
+Let us say I have this matrix, let me just copy the one from above. Suppose I have this matrix.
+So, what is this going to give me? So, this is going to give me. So, each of this
+entry. So, it is going to give me alpha in each of these entries right. So, this is what we have.
+So, what we noted before is a vector of dimension N is a matrix of dimension
+N cross 1 right. Here I have N rows and 1 column right. So, now, let us multiply two matrices.
+Suppose I have these matrices for the sake of a, b, c, d, then I have this another matrix which
+is a prime, b prime, c prime, d prime. So, what is that I get? So, the way you multiply two matrices
+is you take a row and multiply with the column entry by entry. So, this entry multiplies with
+this, this entry multiplies with this right. So, the other way to think about this is what we,
+the other way to think about this is what we call inner product rather. So, we will come back to this.
+So, let us do this. I have a, a prime plus b, c prime right. Then I have this and this right. So,
+I have a, a, b prime plus b, d prime right. And then what do you have here? I have c,
+a prime plus d, c prime. Then I have c, b prime plus d, d prime right. So, this is my
+matrix multiplication. The way you multiply it is I have this row, then you multiply with this
+column and the way you do it is you do. So, think of it as I have a and b, then you have a and c
+prime. So, let me not use the vector notation. So, I have a times a, b, then I have a prime,
+c prime. So, what you are doing is you are taking a, a prime plus b, c prime right. So,
+this is related to something called inner product of vectors right. So, basically what
+is the inner product of two vectors? Suppose, I have a vector u which is u 1, u 2 until u n.
+And suppose I have a vector v which is v 1, v 2 so on until v n right. The inner product which
+is generally represented in this brackets like this or it is represented using u dot v is
+summation i goes from 1 till n u i times v i right. And if you look at this matrix multiplication,
+what is happening here is. So, we have my row a, b. So, the first entry of my the product matrix
+is going to be the inner product of row 1 and column 1 row 1 of the first matrix and
+column 1 of the second matrix. And then what do I have here row 1 of the first matrix and
+column 2 of the second matrix. And here I have row 2 of the first matrix and column
+1 of the second matrix. Then I have row 2 of the first matrix and column 2 of the second matrix.
+So, that is my inner product. So, I can treat this row as a vector. So, what I have here is. So,
+I have this and this. So, what I am doing is an inner product between the row 1 and column 1,
+row 1 of the first matrix and the column 1 of the second matrix. And similarly for the second entry
+I have this multiplied with this. So, it is row 1 of the first matrix and column 2 of the second
+matrix. And here what I have here is row 2 of the second matrix times column 1 of the first matrix.
+This is all inner product. Again what we need here is that for inner product to work both these
+vectors have to be of the same dimension. You cannot do an inner product between vectors of
+different dimensions. So, that is going to be absurd mathematically. So, we have seen
+multiplication of two matrices. Now, I said we were interested in multiplying scalars with the
+matrices. So, with vector I can actually think of my scalar to be a vector of rather a matrix
+of dimension 1 cross 1. I have a vector like I have this matrix which is A 1, A 2 and so on
+till A n. Then this is n cross 1. So, I have to decide whether I do a left multiplication,
+right. If I treat them as matrices the only way I can write it as matrix multiplication is as
+right multiplication of the constant, right. So, implicitly what is being what is going on
+here is I can actually multiply matrices of dimension m cross m and m cross k first. So,
+I need the number of columns of my first matrix to be the same as the number of rows of the
+second matrix. So, this is implicit in the inner product definition that we have that I can only
+look at inner product of vectors of same dimensions, right. So, I need the number of the number of
+columns in the first matrix to be equal to the number of rows of the second matrix, right. So,
+matrix multiplication can only happen matrices A and B, A and B can only be multiplied if the
+number of columns of A is equal to the number of rows of B, right. Here what we have are matrices
+A and B and here matrix A is multiplied with matrix B that means the rows of. So, you are
+looking at inner products of rows of A with columns of B. So, that means the number of
+elements in a row should be equal to the number of elements in a column of B, right. So, the other
+way of looking at it is number of elements in a row of A must equal number of elements in a column,
+in every column rather. So, instead of A I will say every, here also every column of B, right. Only
+then two matrices can be multiplied, right. So, if I have to write my vector A1 till An being
+multiplied by a constant, then what is the dimension of this vector? n cross 1 and what
+is the dimension of this constant as a matrix? It is 1 cross 1, right. So, a right multiplication
+makes sense in the matrix notation, right. So, here this definition does not continue to hold
+when you go to the matrices because you can multiply a matrix with a constant, right.
+And that, so you cannot multiply a m cross n matrix with a 1 cross n matrix as we have seen
+above, right. So, this analogy does not go beyond this vector multiplied by a scalar. For matrices
+there is another analogy that we will look at, we will come to that in a bit, right. So,
+so the other important point about the matrix multiplication is the matrices A and B are being
+multiplied this way, right. Here the order matters. So, AB need not be equal to BA, right. So,
+it might so happen that, so if AB equal to BA, then so what is this force? If this is
+the case, then number of rows equals of A, sorry of B equals number of columns of A and
+from the second part I have number of, so basically number of columns of B equal number
+of rows of A, right. So, basically it should be of the form n into
+m, then this is A and this should be some m into n and the other way round, right. So,
+this is a necessity, right. So, this is a necessary condition to multiply AB and BA,
+right. And here, so if this is true then something more holds, but we will come to
+that in a bit, right. So, this is a necessary condition. If what I mean here is A and B
+are multiplicable and B and A are multiplicable, then this condition has to be true, right.
+If AB is equal to BA, lot more things will happen, we will come to that in a bit. So,
+the next thing that we will actually talk about is if I have matrices A, B and C, then
+I have A, B, C as a product of these three matrices, then let us say I have A which is
+of the dimension I1 cross I2, then B has dimension I2 cross I3, then C has dimension I3 cross
+I4, right. So, what we observe here is suppose I have
+a dimension m cross m of A and m cross n of B, the matrix that we end up getting is of
+dimension n cross n. In particular, suppose I have a matrix which is of the dimension
+k cross l and the other one is l cross m, then if I multiply these two matrices, the
+resulting matrix, the product matrix has dimension k cross m, right. So, again this follows from
+the definition that we have. So, we are taking rows of A and multiplying with the columns
+in a inner product way, right. So, this is the matrix product definition, right.
+So, now the other important thing is what happens if I have a product A, B, C. So, now
+I have the product A, B, C, I can multiply first A and B, then I multiply it with C or
+this is equivalent to saying I have A, then which is multiplied with the product B, C,
+right. So, this is slightly more interesting in the sense that suppose I have A and B being
+multiplied first, then what do I get as a product A, B is a matrix of dimension I cross
+I3 and this is a matrix which is of a dimension I3 cross I4. If I multiply them both, both
+of them together, I have this matrix product which is A, B, C which is of dimension I1
+cross I4, right. Instead if I multiply B and C first, I would
+have got an B, C which is of dimension I2 cross I4, then I am multiplying with A which
+is of dimension I1 cross I2 and then together what I get is A, B, C which is of dimension
+I1, I4, right. The interesting property here is what is called the associativity law of
+multiplication. So, what I have here is A, B times C is the same as A, B times C, right.
+So, there is a very good algorithmic question that is like you know inherent in this. Suppose
+I have these 3 matrices A, B and C, what is the optimum order of multiplying these matrices?
+So, I can also describe this in a multiple way. So, I have A1, A2 and so on A, K for
+some K, right. Each of each has a dimension which is compatible. If I have to get the
+product of A1, A2, A3 and so on it will A, K. Now, there is a very interesting algorithmic
+question which is what is the right order of multiplying these matrices? It may so happen
+that this sequence may be optimal than this sequence, right. So, towards that we ask how
+many operations are involved in computing the matrix multiplication, right.
+So, if I have to generate matrices A and B, right. So, now, the I, jth entry of this is
+given by the inner product of. So, let us write it as the inner product of rho i of
+A with column j of B, right. So, what is this? This is nothing but summation over some K
+is equal to 1 till the dimension n. So, let us say this is dimension m, let us say. So,
+A is dimension n cross m and B is dimension m cross l, right. So, what do I have? I have
+summation, the elements of this. So, it is going to be A i, k times B k, j, right. So,
+if you concentrate. So, here I am using the notation where my matrix A has entries of
+A 1 1, A 1 2 and so on until A 1 m and similarly I have A 2 1, A 2 2 and so on until A 2 m
+and similarly the nth row will have A n 1, A n 2 so on until A n m. This is my notation
+that I am using. At the same time I have B which is given by B 1 1, B 1 2 and so on
+until B 1 l and at the end I have B m 1, B m 2 and so on until B m l. So, this is the
+notation I am using. So, if I multiply these two matrices and the i jth entry is going
+to be the i th row. So, for example, 2 comma 2 entry is going to be I will take the second
+row of A and multiply it with the second column. So, this has m elements and this has m elements,
+right. So, I am going to do a inner product of these two and that is going to be my 2
+comma 2 entry. So, this is my matrix multiplication. So, if you look at it I have m elements in
+the row and m elements in a column. So, I have m multiplications that I am doing. So,
+for each entry of the product multiplying this way as shown above
+n multiplications, n scalar multiplications and n minus 1 additions. So, I have n elements
+and I am adding them together. So, I can do that using n minus 1 additions or I like in
+the rough case I can just say n additions. So, the number of operations per entry is
+2 n right and there are n square entries. So, rather so, here m right. So, sorry here
+this should be m. So, I have 2 at most 2 m operations and the number of entries in the
+product are n times l. So, both of them put together what I have is 2 m and l many operations
+to compute to compute matrix product. So, each of these operations need not be an atomic
+operation here this operation is multiplication of 2 scalars all right. So, but just to give
+you are an like you know an idea of the algorithmic task up here is what is the number of operations
+that are involved in multiplying 2 matrices. So, we will see like you know if you can optimize
+as it turns out this value can be optimized much better value, but we will just push it
+into the carpet for now right. So, these are the matrices and vectors right
+we have seen elementary operations on matrices and vectors.

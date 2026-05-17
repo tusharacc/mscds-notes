@@ -1,0 +1,685 @@
+Hello and welcome back to Python Core and Applied Concepts for Reliable Data Science
+Workflow.
+Today we will continue our discussion of where we left in the last lecture.
+We will be continuing the discussion of for loop and while loop and in particular we will
+try to focus on loop invariant with some really good examples which are simple but illustrative
+in nature.
+Let me continue with a very quick review of what we did in the immediately previous lecture.
+We talked about this simple function which we named isSorted.
+The purpose of this function was to figure out whether a given list is sorted or not.
+If you recall how did we do it, I mean we just checked throughout the list, we traversed
+the list once and then checked whether there is any inverted pair or out of order pair
+inside this list.
+If there is any single out of order pair of numbers inside this list then you simply say
+that this is not sorted otherwise it is sorted.
+This was our logic and we have also written meaningful, so this was the simple program
+that we have written, it is a one line program where we do something inside this for loop
+and this thing would have made sense for most of you, so it is not that difficult to see
+why this program should produce correct results.
+Also we have written some meaningful loop invariant that somehow characterizes the behavior
+of this loop.
+So why this loop should be correct?
+What is invariant throughout the execution of this loop is what we have written here
+and what was that?
+This thing is true for all the j in range i, and what is your i?
+So if you come up to the i-th element then you can be sure that your number j is less
+than number j plus 1, so everything is correct at least until that point.
+This is the loop invariant and if you can finish your whole traversal and come to the
+end of the list then you know that this is true for the whole of the list and if this
+is true for the whole of the list then you have no inverted pair kind of thing and there
+is no inversion and hence you are sure that the list is sorted.
+So this was kind of a correctness assurance about this particular function that we have
+written and we also checked that this works perfectly.
+So instead of whether you get a true or false value here, what I emphasize in the last class
+is that always the assertions are true because assertions are meant to be true for the correct
+implementation.
+So whether you return a value of true or false irrespective of that, your assertions should
+not be violated if you have written them carefully because we want these assertions to be true
+if your program is working properly.
+This is what I tried to emphasize in the last class and asked you to go through a little
+carefully when you see the piece of code.
+So we continue the same similar kind of discussion but now we do it for a sorting algorithm.
+So what we saw in the last class was a function which checks whether a given list is sorted
+or not.
+But what if we want to instead sort the list, I mean if you have been given a list and your
+task is to sort the list then how can we sort a list?
+So bubble sort algorithm is a very simple algorithm and maybe for a very first example
+that most of you might have seen in your programming and data structure course.
+So the idea is very simple.
+So what we'll do is we'll first discuss the idea of bubble sort at a high level, conceptual
+level and then we will try to implement it in Python and after the implementation we
+would also like to reason about whether our implementation is correct or not.
+So this is the goal of today's lecture.
+So if we can write down or we can understand this algorithm properly, implement it in Python
+and also specify its property independent of the implementation and check whether those
+properties are true for the implementation or not then we can be confident that we have
+written a correct by specification algorithm.
+So let me briefly tell you about this nice, beautiful bubble sort algorithm, so how it
+works.
+It's very similar to what you did in the last class.
+So what it does is bubble sort works by traversing this list multiple times.
+So this is what we call passes of this algorithm.
+So one pass of the algorithm means that you have traversed the whole list one time and
+in the second pass again you will traverse the list a second time.
+And what is the purpose of each of the passes is what I'm going to tell you.
+So for example let's say you start with this list where this list clearly is not sorted.
+So conceptually or at a high level what this bubble sort does is in each pass it tries
+to traverse the list and then tries to fix locally if there is an inversion.
+So for example the very first thing that it will do in the first pass when it sees the
+first two elements of this list it sees that there is an inverted pair.
+It will immediately correct it, it will swap these values.
+So once you swap this value you know now that these two are in order and your higher value
+has reached the higher index.
+So like in 5 was no greater than 2 so you swapped it and here now after the first you
+know this comparison the resulting list that you get in the very first pass itself.
+So first pass are not completed remember I mean it is just the first comparison of the
+first pass that resulted in this swap.
+After this I mean you go now since you know that the first two elements are in order if
+you have let's only these two elements then they are certainly in order right because
+we have fixed based on our you know comparison of which one was standing where.
+So then we go to the next two elements and then again compare them.
+In this case you see that you know 5 and 8 are already in order so you don't need to
+do anything.
+Okay so in such circumstances you are sure that now until this point I mean everything
+was in order so I don't need to change this maybe in future.
+In the next in the same pass you know in next comparison what we do is we go one step
+ahead again and compare 8 and 1 so when you compare 8 and 1 again what do you see.
+You see there is a you know inversion right I mean there is a inverted pair where you
+know the first one is greater than the second one.
+So we'll immediately try to fix it.
+Okay so and remember these fixes are local okay so when you do this fix what you do
+is you just swap these two values here 1 becomes you know comes here and then 8 now comes to
+this point.
+Okay so what you have at the end 8 is certainly you know bigger than 1 and so let's I mean
+first you know before doing this I mean can we ask again this question for the next pair
+8 and 9 because here 8 and 1 you know cause this you know we hinted that we should swap
+them so we swap them but what about the remaining portion of the list.
+So here again 8 and 9 are in order so you will not swap them okay so you have traversed
+now you have completed one pass of the algorithm and after the one pass of the algorithm your
+status of the list is something like this okay when you complete your one pass what
+happened 8 has been bubbled to the end why we are saying not saying 9 because 9 was already
+at the end of the loop so it was the largest number and it was already present in the end
+so another you know from the remaining list whatever was the remaining list the largest
+number which was 8 has been pushed to the end up at the end of the first pass okay now
+you see I mean 8 and 9 are already at their you know correct position okay so now when
+we go to you know pass 2 okay so we have completed pass 1 you know here and from here
+again I mean we can repeat the same process okay and we can see what will happen if we
+again traverse the whole list one more time okay so can we do it quickly I mean so if
+you know but you just compare 2 and 5 they are in order right so nothing will happen
+but when you compare 5 and 1 you see there will be a swap okay that's why you know one
+came here and 5 no went at this place but what as soon as 5 reaches this place and again if you
+compare 5 with 8 they're already in order right so nothing you know will be swapped and 8 and 9
+were already in order so after the second you know pass which is nothing but traversing the
+whole list again what you get is something like this and you can now know again observe
+something very interesting at this point that no after this pass you know that you know all
+these three elements are in their correct position okay so the largest three elements
+are actually at their respective positions and sorted okay so again in the next pass when we
+but remember not everything is sorted right even at the end of this pass so what we do again in
+the next pass when we go to the pass 3 okay so so what we need to do we will start again comparison
+from the very beginning so every time you start the comparison from the very beginning okay and
+try to traverse the whole list so if you do this what will happen this 2 and 1 are compared they
+are certainly out of order so we need to now do a swap immediately to fix this so we did this swap
+and 2 is this position but once 2 is this position you see i mean 2 is already in order with 5 i
+mean 8 2 and 5 are in correct order in the list so you don't need any further swap again you go
+ahead and check 5 and 8 they are again in order so you don't do a swap and similarly with 8 and 9
+we don't need to do any swap okay so at this point you know we see the whole list is sorted
+and maybe we don't need to proceed no any further now so so this this is the you know the overall
+idea and we will discuss again i mean about the details of this as we you know run some examples
+and try to implement this record but i hope you understand the overall you know idea or the concept
+behind this bubble sort algorithm you know clearly so the name bubble comes from this bubbling the
+highest element in the list towards the end okay that's why we call it a bubble sort algorithm
+okay so so now i mean let's try to you know build this algorithm so let's you know try to you know
+before writing the whole code for the whole algorithm try to implement one pass of the
+algorithm no one pass should be very simple right because this is what so i have explained very
+you know slowly what happens in one pass you traverse the whole list and then try to fix
+you know any you know local or you know out of order kind of thing immediately you know when
+you are when you encounter any two adjacent let's say elements or numbers which are out of order
+then you immediately fix it okay so this should be very simple to implement okay so let me you know
+work with you to figure out what can be a nice and simple way to implement this
+you know one pass algorithm so one pass of this you know bubble sort algorithm okay so
+what we so you know before we try to write down the invariant thing let me write down the simple
+uh one pass algorithm so even before so let me add one code block and what we are going to define is
+this one pass of the bubble sort algorithm okay one
+one
+let's say let's call it one arm bubble pass is what now i want to call it okay so and let's say what
+we pass here is we call array i mean i'm calling it no array but this is actually a list okay so
+it doesn't matter right what name you write here it should not uh no okay so since i come from a
+background i normally think of them as array but i mean here we are working with list right now and
+there is nothing called array in python so by default you know when i write this array assume
+that we are talking about okay list so we so so we pass a list here which we call this no array and
+then uh we want to you know do this whole uh you know one pass but now i need to know the length of
+the list to know make sure that i in that so let's say i mean we want to implement it using
+for loop okay then uh what i would know prefer to do is i will first try to now extract what is the
+so you you can directly do this inside the loop body also but let me for clarity you know write
+down clearly that n is what stores the length of my uh you know list which is not length of the array
+that i pass so when i once i know this n now i want to do something right what do i want to do
+i want to compare keep comparing i know these two consecutive element until i reach the end of the
+loop right and at the so when you reach the end of the loop what what should be your uh you know
+counter because you are comparing the last two element remembers okay so then no if the last
+element is nth element then i am actually comparing the nth and uh n minus one element
+but again i mean indexes are one you know left shifted in case of this right so your zero index
+represent the very first element okay so so what we need want to do is to traverse this list and
+how we can do it so i i will start a for loop and then i will say that now this j is my variable
+which i want to be in some range okay so that range you have to uh make sure that you write
+properly okay so do this you know a little bit of you know boundary check kind of thing
+using pen and paper if you know get confused but you know make sure that you are
+writing these you know indices in a correct way okay so for j in in range let's say n minus one
+when i say n minus one i i don't uh you know take n minus one right so my j can go
+at max up to n minus two okay so i will be you know then comparing you know array n minus two
+with array n minus one and this will be my last comparison right if i you know keep my range as
+i have specified here and that should work right because your last element index should be n minus
+one if the last element is the nth element okay because you know zero element is the first
+no element zero index zero index actually represent the first thing so please i mean
+go through it slowly and make sure that you know it makes sense it's it's correct i mean and you
+are satisfied that this thing is correct so then what what do i need to do i i will check you know
+when when i'm moving my j so j is like you know moving from the beginning to the end of the loop
+so at each point what i want to check is whether my current element is you know greater than uh
+the the next element if that's the case then i would like to swap right this is a very simple
+logic that i want to maybe implement here what i want to say is if my let's say current element j
+is greater than the next element which i call now j plus one sorry j plus one then i want to do
+something right and we write a colon to represent that no off so this is a block and i want to
+no perform a set of actions after this you know one check
+so what we do immediately is write down this
+okay so if this is the case then there is a inversion right and in that case i want to
+swap the value and a very uh you know short uh and you know effective way to do achieve this is
+do this swap in one go and we have already seen something like this in previous classes that you
+know this kind of assignment statement can help us achieve the kind of swap that we want to do at
+this moment in time so please you know make sure you understand this right because a a j plus one
+is going to aj and then uh you know um whatever was at the position j is going to j plus one
+okay so this is what we are writing in no one go you can write it in no manner no multiple
+different way but this is a very nice and short way of doing what we want to do we want to swap
+them okay and this is nothing but swapping those value and then maybe you know once we are done
+this uh you know i i think we are done right and we want to maybe now return from this function
+so we see we can return from this function because you know this function only implements
+one pass of this uh bubble sort okay so remember i mean returning from this function does not mean
+that you have sorted the whole uh you know your list right so we implemented just one pass of this
+bubble sort algorithm so that's why you know we are returning this array okay so so the written
+array may not be sorted so but what we have now see is we have uh done one pass of this bubble
+sort algorithm on the given list okay so so this is this may be you know uh sample
+implementation of the one pass of this bubble sort algorithm and if so so this is what you know we
+already you know looked at right so the largest element in the array is at position j plus one
+right so when you are doing this uh iteration so when you're doing it this iteration what can you
+actually say confidently so after jth iteration you can certainly say that whatever uh you know
+list or portion of the list that you have seen the largest in that list is at the end of the list
+this is what we can claim and hence when if you know perform this uh for the whole of the list
+you can certainly say that the at the largest element or of the whole list is at the end of
+the list okay so this is how this you know this kind of you know passes make some improvement
+from the previous case okay now can we uh again i mean uh can we uh write a meaningful uh loop
+invariance that we have discussed just now i mean what we said can we write down those things using
+assertions inside python okay so can we refer to the let's say the maximum among uh existing so we
+have already if you remember we have already written a function which can find for us maximum
+of a list right so what we said just now the session that we want to make is that if i have
+to write down let's say loop invariant for let me first you know copy paste this code and then
+maybe we can directly talk what do we want to write down let me now copy this code and write down here
+so what we are saying here is
+so this is our function right we have implemented this function and there is a purpose of this
+for loop and what is the variable in the for loop j is the variable in the for loop and
+so at the jth iteration what can be you know uh saved for sure so this is what can be
+a good loop invariant okay so you you need to guess a good loop invariant that characterizes
+kind of the purpose of let's say this passes of you know bubble sort so think for a moment
+and you know try to come up with a good loop invariant in this case so what can be a good
+loop invariant which is true for each iteration and which also makes sense you know for the
+overall purpose of this let's say bubble sort algorithm okay so can we i mean somehow convert
+this thing that we have written here after j comparison what we want is the largest element in
+this portion of the array is at position j plus one and what is the j plus one position the last
+position right so this is what you know we want to claim i mean if we can claim this and if this
+is now valid throughout the execution of the code then we should be happy because this is what we
+want to achieve by these passes of this you know bubble sort algorithm okay so let me now try to
+encode the same thing uh using again what is our way of claiming something inside the program
+it is assert statement okay and what we are so either you can use this max of list function
+that we have you know written earlier on and you know somehow proved or made sure that that
+function is correct we believe that function or we can use an inbuilt you know library function
+which can help you figure out what is the maximum among any list okay so that function is called
+max so this is very simple so let's now assume that that function has been now implemented the
+library function has been implemented correctly and we had used directly that function instead
+of our function that we have written you know earlier on so the function has you know this kind
+of syntax that you want to find max of some you know array or some no list so here i mean our
+array is nothing but list so what we are calling array is actually a list so what portion of the
+list we want to you know probe when we want to know look for maximum remember you are you know
+inside this loop right so to what what do you want i mean in the very beginning so we want to
+have something like this right so that array and then we want to maybe look for only insert so this
+is again a syntax which we will come to in detail when we talk about list but for now i mean what it
+means is that now i want to go up to this position in the array okay and when i say this position i
+mean again it you know excludes the last position okay so it goes up to you know j so you take your
+list and then you know slice this particular portion of your list and what we are trying to
+say is now when we see elements up to this position my largest element okay in this
+you know portion of the list and largest when i say so what is the last element that i can
+actually access is nothing but j okay so
+j is my you know so this is my you know last element in the list that i have traversed so far
+when i you know when i'm in the jth iteration okay and i want to say that you know this particular
+element is my maximum element so far okay so okay so this this this this says that from zero to
+j whatever is your array uh in in that array you figure out what is the maximum okay so i
+forgot a parenthesis here so you figure out what is the maximum number in this portion of the
+list and this should be equal to the last element okay so the maximum should be presented the last
+is what we are claiming here okay so if this is not true then we maybe we want to print something
+saying that you know our invariant you know failed in the very uh beginning okay so in the start of
+this loop itself our you know invariant failed so let me write down some informative you know
+comment which can help us figure out what happened if if this assertion fails
+so start invariant failed add and maybe you know i can give a hint of at what you know j
+this failed so let me you know give that j so this is not the syntax for this sorry this is the
+syntax for on the formatted you know print statement okay so i want to print uh no message
+this thing only when this assertion is not no valid so this is how we say that invariant failed
+at the beginning i mean at the start so start invariant failed at j is equal to no exact
+value of j so so this this should be you know true in the beginning and and as we discussed
+when we talk about loop invariant just before you want to now come out of this loop something
+no also should be true right when you want to come out of this loop so what should be true here
+just before you come out of the loop now for the incremented value of j also this thing should be
+you know correct right now this pass actually fixed no j and j plus one right so this is what
+you're doing here right that you're comparing aj with aj plus one so earlier you know that your
+aj is the you know top most uh you know your aj means the last element in your uh least that you
+have seen so far is the largest but now you're comparing the that element with the next element
+and you you made sure through this code that if this is no the larger than the next one then
+you swap them okay so your now largest now goes to the position j plus one so this is what you want
+to claim maybe when you want to exit from this loop okay so what we want to say is now we want
+to maybe you know increase here and say we want to go to up to no j plus two again when i say j
+plus two it means no j no j you're going up to j plus one and here what you can say is the largest
+element in the list now seen so far after now doing this swap is at this position j plus one
+okay so this is maybe no we what we want to return at this particular point in time
+okay so let me now run this piece of code and see what happens i mean let's say we want to
+run this piece of code on so what is the name one
+one bubble pass
+yes and maybe so let me give give an array let's say give a list which has one maybe two
+then some elements you know out of order maybe six you know then four maybe five
+eight again maybe you know six and then seven and maybe nine okay so so this is a
+moderate size list where you can see there are some elements in order and some elements out of
+order okay so if you know do one pass of this bubble sort algorithm then some of things will
+be local things will be fixed and at the end you can expect that you know the largest thing will be
+you know bubble towards the right hand side so this is what you know we want to see nine is
+already at the you know largest position but then you know eight is not at the its correct position
+okay so what we can expect here is that you know after the one pass of you know bubble sort
+uh the bubble sort algorithm that we have implemented just now at least know the eight
+should come at its correct position since nine is already there so it should know come to the
+right position so if we run this piece of code let me run this piece of code
+and then we run this and can you see i mean uh this is what we expected right
+your eight has now come to the right position because nine was already at the right position
+so this is what we were expecting now what if i know run the same
+bubble pass one pass of this bubble sort algorithm on the output that i got right because remember
+for the whole or for the main you know bubble sort algorithm what we need to do
+is to run this pass multiple times right so now we are trying to do that you know manually let's
+say for the first time and then we will see how to implement that in python but let's say you know
+copy paste the output of the previous pass for a new pass let's say manually if i want to again
+run this the processed one pass no uh this list again for the next pass so what do we get
+we don't see any change right and what is the reason of not seeing any change because it's
+already sorted it's so so that there were no no inverted uh end up thing but in here which need
+no needed to be fixed so in in this case we were fortunate that you know in one pass we could
+achieve a sorted list but this may not be true always right i mean uh for example i mean to
+give you a you know bad example or no the other extreme kind of case or no maybe um let me
+let me try to figure out what can be a bad example for this kind of algorithm so maybe
+something like this let's say uh one
+bubble pass and then what if i pass uh something which is uh you know completely out of heart let's
+say not a list which is uh sorted in decreasing order maybe you know that can be a very bad
+example for this kind of uh you know algorithm so that can work as a extreme uh you know case
+where you may have to go through multiple passes to fix things right because now every pass only
+you know brings the highest element to the end but there will be so many other elements which
+which are not fixed you know by the first pass so let me give you this example uh where we have
+you know uh elements let's say kept in this particular way okay so what if we run this
+piece of code so what happened okay so there was a syntax problem here but let's say if we run it
+now can you see uh what happened so the first pass no bubble six to its current position which
+was the at last okay but then all other things you know remain as it is right so this is an
+extreme example okay this extreme you know kind of input for this uh particular program so you
+know now it's not fixed right after one pass you don't want to uh you know uh stop the algorithm
+okay so we may want to go ahead with another pass so let me do that for you so what do you
+guess for the next pass if we run the same pass a bubble sort algorithm on the output list let's
+say this is our output list so in the next go what will happen the six is already fixed so
+what do you expect will come towards the right hand side if i run it one more time what's the
+largest in the remaining uh you know list so this is the remaining list right so we expect that five
+is bubble towards the right hand side so because five is the largest in this
+no whole uh initial portion of the list which is not sorted it okay so so it should be so this
+is what we expect right so can we run it and see this is exactly what we got right
+so but can we stop here right now or we shall you know go through some more passes to make sure that
+uh you know this thing is sorted this is not sorted it right so we have to go through it
+now some more number of time to make sure that everything is sorted so in worst case what can
+happen is you have to you know go through the number of passes exactly equal to the number of
+elements in the list okay so because now every uh pass only fixes one element and you know brings
+the largest element towards the to the largest position okay so then this in in this this extreme
+case you may have to repeat this multiple times as as many time as the number of elements in the
+list to fix the list completely and get a completely sorted list okay so let me you
+know do it you know quickly for you uh so if if you want to do this thing so what we can do is
+again copy paste and then just pass on to this one this thing and then if we run it you see again
+you know four is at its current position at a correct position and what if we add some more
+cells just to you know for this example we want to see you know completely you know in action and
+so we control c control b and then let's copy this you know output thing and pass it as a
+input here when we run again you see now uh it's almost uh you know sorted and maybe you know in
+one more pass it's done right
+when you copy and pass this thing as an argument here what you get in then immediately next step
+is the whole thing is already sorted okay so we have you know done uh one pass uh some you know
+multiple pass of the of the on the same you know on the input list that we got so we continued the
+passes on the output that we received from the previous pass and hence you know we could get to
+the final sortedly so this is no one the passes of bubble sort in action and you know in the worst
+case it can go up to the uh you know n number of iteration okay n number of passes okay so can now
+i mean after observing you know this two uh different kind of input and the passes of bubble
+sort algorithm can we now write down the exact code uh for let's say the bubble pass algorithm
+the main bubble pass algorithm it should not be that difficult right so maybe you have to
+uh insert or you know create an outer loop which controls these passes so what we did was we
+already implemented uh this one pass bubble pass right now if you can just write down maybe one
+more you know for loop which can ensure that the number of passes that we go through
+is equal to n then even in the worst case i mean the list will be sorted right so so this is what
+at least we can write down immediately so what can be a very no maybe you know correct but in
+inefficient implementation so remember in good cases you you may want to stop early on right
+but in bad cases you may have to go on until you know n number of time so uh to take care of the
+this worst case what we can do is we can write a very simple algorithm which always gives you the
+sorted let's say uh output but in some cases it may do some redundant computation or passes
+which may not be necessary for um algorithm to actually go through okay so let's know first try
+to write down a correct version i mean and reason about why why it should be correct so what can be
+a very uh you know simple and correct algorithm let's say i mean since we have already written
+this one bubble pass algorithm so one bubble pass we should be able to write down quickly what can
+be uh you know what can be a nice and a small definition of the main bubble pass let's say
+uh raw bubble sort algorithm so let's call it
+bubble sort sort so this is not the most efficient but let's call it bubble sort simple algorithm
+maybe okay let's pass it the same list so what can we do again i mean the very first thing that
+i want to do is to get the length of this list and then i will have an outer list which will somehow
+ensure that i go through n number of times right so this now so let me know write down so what
+we are writing here is an outer loop and the purpose of this outer loop is to ensure that we
+go through n number of passes right so it's very simple so for i mean just ensuring that
+maybe some other variable i in
+range and what what is the range range is just the number of so it just controls how many times
+you want to do this process of bubble sort algorithm okay so this is maybe what we want to
+do right and what we want to do is now we let's use our previous function which we call one
+bubble pass so so that now the code is clean and it makes sense right because
+every time we do a no bubble pass that we have written earlier and whatever is written you keep
+in the array and you go for the next iteration right this is what we were doing here so we were
+doing it manually here right so every every time we you know applied this thing on the
+list that we have in hand and whatever we got at as an output we passed next time again to this
+and you know one more bubble pass so that's what we are doing here right it's simple
+translation of what we were doing mechanically or manually in the previous no codes blocks
+is what we have written as a for loop so for i in the range this ensures that i repeat
+know this set of action n number of time and that is what i was doing here manually repeating this
+thing n number of times so whatever you apply one pass you know one bubble pass on this list
+and whatever you get you you store somewhere so that next time again you can pass that
+to the bubble pass and again you can continue this you know action n number of time and when
+you finish n number of you know iteration you what you get is a sorted
+array so so this should not be very difficult for you to make sense right now okay so
+so this is what we want to you know say here and you know just for let's say i mean
+clarity i mean when when if you want to see this in action and then relate to what we did
+just now i mean maybe we can you know write some meaningful or you know
+statement like you know this is something running so at this point what you are doing is
+you're running a pass so what is your pass currently you are in ith iteration so you
+know you are running ith pass okay there's some message that can help us figure out know how many
+passes you know this algorithm run for and what is the current pass so so we want to maybe output
+this for you know better appreciation of what's going on inside this and also you know when
+maybe you have completed a pass then let let me i mean so what are the list how the list is modified
+so that now you can at least guess whether things are going correctly or not so array
+maybe you know after this pass let's say the current pass looks like you know what is the
+array so your array is so your list is stored in this variable array okay so this is what
+we want to say here and can you tell me i mean once this for loop is over so what can i expect
+so remember now now this is not one pass of you know one bubble pass right we have already
+continued and you know completed this for loop means we have already executed this bubble pass
+n number of times and after you execute this bubble pass n number of time you
+may want to expect something right something very strong at this point now even in the worst
+case now you can claim that your list is sorted right so can we put in you know or can we say
+something you know strong here i mean before we exit this function or in return the array can we
+say that can we assert here safely that our array is sorted and we can you know use our is sorted
+function that we have defined earlier right
+and if no you violate this what will you print so for example here i want to bring array
+maybe found not sorted
+sorted okay and okay so so so and then maybe at last we what we want to do is we want to
+just return what do you want to return you want to return this array okay so now now this combines
+all the possible passes of the bubble no sort algorithm so this can be a very you know simple
+and and and it looks very no correct right because if this assertion is not violated then you are
+sure that the array that you get at the end is actually sorted right otherwise this will be
+violated because we have written this is sorted function carefully in our previous class right
+and we have reasoned about know its correctness also you remember i mean this was our function
+and we have already discussed about why it should be correct but since that is correct we can maybe
+now utilize you know that function in our bubble sort algorithm and the main bubble sort algorithm
+which is simple maybe inefficient but then the least thing that the least that we want is the
+correctness of this you know simple algorithm okay so now let me now run this piece of code so
+let's come let us compile this first and then run this so what can we pass let's say bubble
+sort maybe what we call it now simple and then what if i pass to this
+you know small you know worst case i mean let's say four three two comma one okay so this kind of
+thing if i have passed it now you can expect i mean see this is the worst case you know example
+this there will be you know many passes the maximum number of passes that you know can go
+so why is it showing this error here
+so what's the mistake that we have done this particular point bubble sort simple and we are
+passing it four comma three comma two comma one and what is not sorted
+okay is sorted is not defined okay so there so this error come because i mean maybe we need to
+uh recompile this code from the previous class and maybe if we just now recompile this thing and
+then go back to the cell where we are and now once you again compile this thing
+and then run this so there is no error right i mean uh so and you can see i mean uh in in this
+case i mean you so algorithm has to run multiple passes you know for for zero pass i mean then for
+for pass one it has to again do one whole traversal for pass two and for pass three and at the end of
+pass three you you got this one no you you got this one at the end of you know pass two itself
+and then i mean it did one maybe no redundant pass okay so it's sure that i mean uh if you write
+algorithm in this way then i mean there will be some you know redundant passes and can we uh now
+you know take care of those redundant passes okay so so before uh no we write down these no redundant
+passes what we would like to do is uh let's let's i mean yeah so i mean so since we are you know
+having redundant passes now we would like to maybe rewrite this algorithm so this algorithm
+is correct because you know this assessment is not getting violated and you can now check it on
+some other input also for example you remember the very uh the other kind of input that we use
+in the previous case was now this input which was which required only one pass the best kind
+of scenario where you needed only one pass for example this one but if you now run it
+you see i mean after the very first pass it actually produced the correct result but then
+you have gone through all this passes you know without you know any reason because i mean this
+algorithm doesn't check whether you know things are sorted uh early or not okay so we can maybe
+you know get rid of this you know inefficiency by rewriting this algorithm and checking whether
+you know things are still a short is still you know out of order or not before going
+into the next pass so so a simple uh you know modification of this algorithm can you know
+help us you know figure out or can fix this problem so let me now help you with that algorithm
+so what we want to do is uh we want to now you know write down
+so before we go to the validation phase i mean what we want to do is we want to you know write
+down a algorithm which is you know correct and efficient so what is this block so let me add a
+code block here and now what we want to do is we want to get rid of this inefficiency so let's
+now call this our bubble sort algorithm okay and since we have observed something you know
+important that we may not need to go till the last point so we can now i can let me
+okay so again i mean the very first step is uh
+we stored this length in
+okay and then the outer loop is same as the previous one right so for i in
+range
+n what do we want to do so in this case let's say uh just to check whether uh the last iteration
+so how can we you know maybe uh check whether uh we need to go ahead let's say if your last
+you know pass did not have any swap in that case maybe you don't want to go to the next you know
+okay so next pass right so if you can you know somehow remember or some somehow
+uh you know remember what happened in the last pass properly then maybe you know that can be
+helpful for us in avoiding you know unnecessary passes in future right so so we can maybe use our
+variable to to you know remember this information whether you know something was swapped in the last
+you know pass or not so by default let's say so so this is what this variable uh
+uh so what is the purpose of this variable to you know just capture this information that
+whether some something was swapped in the previous uh you know uh iteration or not okay so in previous
+pass or not okay so if to by default we started you know for false we say you know nothing is
+swapped so by default you want to go and you know execute the next pass but if in any of the pass
+you know you you know change or you swap some of the an out of order disappear then at that
+moment of time you want to maybe put a true value into the swap variable okay and that's how you can
+actually indicate into the next in the next pass whether you have swapped something or not if you
+do not know swap things uh then maybe uh you know if you're you know if you have not swapped in let's
+say some of the you know passes then you may want to actually get out of the you know this loop so
+so this is what we want to say here so so for i uh in the range false what we want to again maybe
+we can copy paste the same piece of code here first but now since for every uh you know pass
+so after every pass you also know that you know the last few elements are now already sorted right
+that now the last let's say after you know the ith iteration what you can say that the last i
+elements are in their sorted position it for example for what was the effect of first pass
+you know the largest element is at the correct position okay so your the last uh element in the
+list is actually at its correct position so after two passes for sure you can claim that the last
+two elements are in you know sorted position in there you know correct position so similarly
+at the end of you know uh whenever you are you know going for i plus one pass you have already
+completed i number of passes so you can say that the last i elements are already in a
+sort of position so maybe you don't want to again check them also right in the inner loop when you
+go through the pass so we may not want to use our uh what to say i mean we may not want to use our
+previous one pass you know algorithm that we have written for this bubble sort so let's know
+try to write a more efficient algorithm this time which we say that i don't need to go till the end
+right because after each pass i know that that many number of you know elements have already
+been sorted and kept at their correct position so maybe i want to leave that portion so what
+you know precisely we can say is let's say that i now now i'm re-implementing every
+you know each pass but with this thing in mind that after i iteration my last i element has
+already been sorted and kept in at the right position okay so what's the way to say that
+that i i i now don't want to go till the end so i i want to and that's what i'm controlling with
+this j variable okay so the j variable variable actually let me control in one of the pass
+in whatever pass i am till what position i should you know compare so this is what this j control
+so for j in range and now i always want to start from zero for sure but i maybe don't want to go
+no the last n but it's what i want to go is till no n
+minus i minus one okay so this is the place you know till which i want to go and you know
+just i mean go through the code again slowly to make sure that this makes sense right i mean
+we were leaving now last i element and if you want to leave last i element you would want to go up
+to this position okay for the comparison because you start comparison from one you know before
+so this is what we want to do to make it you know more efficient than the previous one and
+so what we want to now do is again i mean the same check that you performed earlier if your
+this one is you're greater than
+the next element which is j plus one then you want to do something right then what you want to do is
+so in this case when there is something out of order you you want to actually maybe we
+can just copy paste the same piece of code right what what did we do it
+i didn't know the one pass of this thing same same thing we want to do here something
+okay so maybe you know we just want to do the same nano thing here so but i mean in this case
+since we swapped something you know this pass has changed something right so so there was a
+swapping which took place so now the you know swap variable that i by default you know initialize
+to false in the beginning of each pass i would try to capture this information here that last pass
+swap something so maybe we need to go for the next pass okay so this this information i want
+to capture and hence what i'm saying is if i swap then i also record this you know behavior or this
+no action in this variable and i say that i i already swapped so swap now becomes true
+okay and you know maybe you know we can again put similar you know information here also that
+no when you are inside a pass you just i want to maybe print this one okay and when
+so after you know i have gone through this pass so okay so because when you come out of this
+you know inner forward loop which okay so when we come out of this inner forward loop then we want
+to maybe print this that we want to print the array that you get after this pass
+and you certainly don't so see i mean you came out of the this inner j loop here but you did
+not come out of this no outer loop even now and you would not want to go into the next outer
+loop which is the next pass if you found that your swap is still false let's say if in this
+particular pass you did not change anything it means everything is sorted right i mean you did
+not swap anything it means everything is perfect so if your swap is you know false then in that
+case you want to you know simply break and don't want to continue this no another iteration okay
+so this is how you know we can say it i mean so this is so to you know capture the semantics
+of continuation what we say is that we want to do you know maybe early termination so what we
+are going to write here is for early termination okay and what what is the early termination that
+we want to so do you want to always know early terminate or you want to check something so we
+want to check whether our swap swap variable is still uh you know false so if not of swap is true
+so this is how we say so this is the way to say that swap is false okay if not of swap is uh
+true then what you want to do is you want to break okay and you don't want to now go to the next
+you know iteration so this is the semantics of this break okay this is same as you know other
+programming languages so we don't want to go to the next no iteration and maybe then what we want
+is we simply want to no return so this is not like an early exit from the loop and then you
+want to return this array and whatever now you return uh will be your final sorted thing okay
+so again i mean in this case also you know we can write the same assertion uh which is you know
+is sorted and then make sure that the code returns to the correct output okay so let me
+you know again quickly uh run this thing before we look at the loop invariant so if we compile this
+code and then maybe run it on the same you know a simple case for which we did so many passes
+right here you remember i mean although we did not need so many passes for this particular example
+our previous version which was not efficient but correct has gone through all the no passes
+without any reason so now if you want to apply on the same you know input maybe
+this modified no bubble sort which we call no bubble sort here what do we get
+now see this is no more efficient because you know it went through the first pass and in the first
+pass it is sorted so so running pass one i mean uh so in the in the first pass actually it
+sorted so swap was actually uh you know there was a swap so swap was true so it did not
+you know exit the loop so it went in the second pass and in the second pass it cannot could not
+exchange any uh you know element right i mean it could not exchange any two consecutive
+element because none were out of order so after this pass it did not went into the second
+pass okay so zero pass first pass but no second pass so so why it did not go into another pass
+because it executed you know this break statement why because in this case there was no swap that
+happened and then this condition became you know true and it simply uh you know exited this loop
+without going into the next iteration okay and that's how you get this one you can make it i
+mean someone you know can say that i can make it even you know more um you know efficient by
+checking uh in the current iteration itself whether my uh thing is sorted or not right you
+can actually check whether your array is sorted after ith iteration and if it is sorted you can
+immediately you know i did so that that can also be a another way uh to do this but i mean let's
+i mean if this is the way i mean which we want to do then also i mean things appear to be correct
+okay and we save a lot of you know competition now once we have written a complete program now
+can we write down meaningful uh you know uh assertions to figure capture the loop invariant
+that we talked just now so we have already talked about loop invariant right for that for this outer
+loop i what can be the loop invariant there so why are we not going till the end here
+because already the last you know few elements which which is you know um somehow you can refer
+by this ith are already sorted right at the end of you know let's say third iteration i know that
+the three element at the end will be in their correct position so i don't need to touch them
+right so they they're already sorted so at least this much you can uh you know claim right and this
+is the intention of this outer loop and this is the reason why you are not going here till the
+last position okay so for the outer loop you can certainly write down a nice loop invariant which
+captures the essence of computation that you are trying to know in code or implement okay so so this
+is what we have written here also right so outer loop invariant is the last i elements are in their
+final sorted position and for the inner loop what you can say so after j comparison in uh you know
+pass i so in ith pass when you do j comparison you know the largest element in this uh
+number will be at j plus one so did i write something wrong i mean just check it
+so this this comes from uh the previous one right so what was our previous no discussion
+about this one pass of the bubble algorithm we have written some
+certain right so you can write something like this there also right so this may not be uh the
+correct uh assertion so just go through it and check it once again whether this is the correct
+statement to claim at this place i i think this is not the correct statement but you should be
+able to uh you know correct it if you follow the discussion of one pass uh you know of this bubble
+bubble sort algorithm okay so so can we write down the outer loop because that seems more
+interesting because if you can satisfy the outer loop then you can actually satisfy uh the correctness
+of the algorithm because when you exit i mean uh you know already i mean if you exit by via this
+you know swap then you know for sure that you know since swap has not been changed uh everything is
+in order or if you know go through the whole list then also in that case you know that since you have
+executed that many of times so all the elements in the list are correct okay just i mean let me
+write down whatever i have written as the outer loop invariant in using assertions and then we
+will conclude today's lecture so what can we write down for the outer loop let's say
+so can we copy and paste this whole thing here
+okay quickly uh this block and then uh let's call it instead of bubble sort let's call it
+valley dated bubble sort algorithm okay and everything else is same is just that now we
+not want to write down some you know pre uh so some you know loop invariant that should be
+no correct so what is that we want we want to say that last i elements should be sorted right so
+this is what we want to maybe uh right here right before you get into the inner loop so as you know
+when you get inside this loop at this moment of time and you know before going into the next loop
+what we want to say is going to assert something right and what is the assertion is simply what we
+said earlier but now in a more formal sense so we want to say here that this
+array and the last i element how to say last i element so this is the
+syntax to say it so so n minus i you start from n minus y and go till end so this is what it means
+okay again i mean i i will discuss this in detail when we come to list but for now you can you know
+make sense of this i think so no this this says that i'm talking about the portion of this list
+starting from n minus i till the end since i did not write anything after colon though this means
+that i want to go till the end okay so this portion of the you know list is already sorted if you
+are inside this ith you know iteration okay so this is what we want to say so that so
+otherwise i mean let's say if this assertion is valid then we want to say that
+the last i elements you know should be sorted i mean there is something you know wrong that
+has happened so we may optionally want to or maybe we just want to say loop invariant
+okay so that loop invariant is invalidated okay and you know similarly now you can guess i mean
+you can also write down this before exiting the loop right so after you come out of this loop maybe
+you can also write down the same thing just before you you know want to exit from
+this iteration on the loops because for every iteration you know so we are talking about the
+outer loop and for every iteration this must be true right that your assert is sorted and now
+so in this you know go you have processed one more element so shall we write n minus i or n
+minus i minus one because you want to include one more element right so what we ideally want
+to write here is this one right so this is you know sorted otherwise we say that loop this loop
+invariant now the in let's say loop invariant invalidated and let's say call it this thought
+loop invariant invalidated okay and since now everything i mean if this program is correct
+then at the end i mean before it returns the value of the you know array what we want to claim is
+we want to assert something right and this is the correctness of the whole algorithm
+right and what is that i should be able to claim something right at this moment when you're about
+to exit the program and no return your array you know what is uh right so you want to claim that
+the array that you are returning is already sorted the final error should be fully sorted
+okay so if not then i mean you want to print that no array is not sorted okay
+okay final array not sorted maybe sorted if this is not true then this is what we would display
+so something went wrong okay but in in in case if it is correct then all these assertions should
+you know pass our test and we should be able to see that none of these assertions are violated
+now if you run again the same uh you know piece of code maybe on this new
+function so let me you know use it so what we are saying is we
+now apply it is validated
+bubble sort
+okay and then see whether any of the let's say go to the extreme case where our list is not
+sorted at all now in the beginning it's just the opposite and if we know uh so did we compile this
+piece of code no so that's fine then we run it see what happens you see i mean uh it went through
+all these passes and finally uh produce this and none of the assertions is violated and
+remember assertions closely capture your intention of the whole computation so so in this case i mean
+we see none of the assessment is valid it's violated so we can not believe our code okay so
+this was you know very uh small uh you know and very illustrative example of bubble sort algorithm
+and uh how to use again assertions to encode the or characterize your action of loop so we
+figured out one very uh you know strong and correct invariant that remained true throughout
+the iteration of this loop no on whatever input you give to this program you can check it on
+multiple input none of these assertions will get violated if none of these assertions are getting
+validated it means i mean they are true for this piece of code and if they are true then you can
+make sense i mean why this program should always return correct okay so this is what you know we
+wanted to say in summary in this lecture so i have given you two you know assignment you know
+problems for which you can actually try to write down loops and implement algorithms to let's say
+figure out this thing so the very first one is the gcd so greatest common divisor for two given
+number so can you write down a python program which can implement this gcd of two number
+okay where you know the mathematical property of gcd i have you know already given you
+in this jupyter notebook so whatever you know implementation you write down i mean it should
+uh you know finally uh have this property okay so for example i have given you a very simple uh you
+know code so can you you know insert meaningful uh assertions for loop invariant in this particular
+piece of code now that should always remain correct and that should also capture the essence
+of this loops because remember writing or not correct invariant is not the only goal i mean you
+have to write down a strong invariant also which can characterize the computation that is going on
+inside this loop okay so if you have if you have seen uh you know euclidean algorithm to calculate
+gcd then this will look familiar to you so please go through this algorithm try to make sense whether
+this should you know return correct value as gcd i mean the value that it returns is indeed gcd
+and try to come up with the explanation using loop invariant okay so please try to go through
+this example slowly and write down loop invariants and see whether they are correct or not for this
+piece of code similarly you can do it for factorial so factorial and again another function which has
+some mathematical property and when you write a function uh so factorial again can be calculated
+in many ways you can use recursion or iteration here we are using the simple one let's say we
+use iteration to compute you know factorial of a number so in this case can you guess uh you know
+loop invariant so i'm intentionally leaving these two problems for you to uh you know just practice
+writing meaningful assertions for loop in any given you know situation and the more you practice
+you become you know proficient in identifying or characterizing loop independent of its you know
+implementation so remember i mean although uh we are trying to always you know figure out some
+independent characterization of uh loops it may not be that easy for every uh you know a given
+program so in some of the cases your implementation and specification or mathematical
+characterizations are so close that it is very difficult to you know figure out what you will
+call implementation and what we will call specification so we'll again i mean discuss
+these things in uh you know some detail but uh before that i mean please try to go through these
+two examples and figure out solution for this okay so with this i would like to conclude today's
+lecture and we will meet in the next video thank you

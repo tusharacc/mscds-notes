@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Discrete Mathematics course notes — MScDS IIIT Hyderabad. Weeks 4–5: Probability theory with full derivations.">
+<meta name="description" content="Discrete Mathematics course notes — MScDS IIIT Hyderabad. Weeks 4–6: Probability theory, distributions, variance, and linear algebra (vectors &amp; matrices).">
 <title>Discrete Mathematics — Course Notes</title>
 
 <!-- MathJax 3 -->
@@ -168,6 +168,14 @@ main { flex: 1; max-width: 900px; padding: 3rem 2.5rem 6rem; }
 .week-section[data-week="4-5"] .week-banner {
   background: linear-gradient(135deg, #dbeafe 0%, #eff9ff 70%);
   border-color: var(--week-accent-1); color: #0c4a6e;
+}
+.week-section[data-week="6a"] .week-banner {
+  background: linear-gradient(135deg, #dcfce7 0%, #f0fdf4 70%);
+  border-color: var(--week-accent-3); color: #14532d;
+}
+.week-section[data-week="6b"] .week-banner {
+  background: linear-gradient(135deg, #fef3c7 0%, #fffbeb 70%);
+  border-color: var(--week-accent-4); color: #78350f;
 }
 
 /* ── Concept Sections ── */
@@ -475,18 +483,33 @@ mjx-container[jax="CHTML"][display="true"] {
     </ol>
   </div>
 
-  <!-- ── Placeholder for future weeks ── -->
-  <!-- ADD NEW WEEK TOC GROUPS HERE, following the same pattern:
+  <!-- ── Week 6a ── -->
   <div class="toc-week">
     <div class="toc-week-header">
-      <div class="toc-week-dot" style="background:var(--week-accent-2)"></div>
-      Week 6 · [Topic]
+      <div class="toc-week-dot" style="background:var(--week-accent-3)"></div>
+      Week 6 · Variance &amp; Distributions
     </div>
     <ol>
-      <li><a href="#concept-id">Concept Name</a></li>
+      <li><a href="#variance">Variance</a></li>
+      <li><a href="#bernoulli-binomial-var">Bernoulli &amp; Binomial — Variance</a></li>
+      <li><a href="#poisson">Poisson Distribution</a></li>
+      <li><a href="#geometric-tail">Geometric — Tail Sum &amp; Expectation</a></li>
+      <li><a href="#negative-binomial">Negative Binomial</a></li>
+      <li><a href="#hypergeometric-variance-additivity">Hypergeometric &amp; Variance Additivity</a></li>
     </ol>
   </div>
-  -->
+
+  <!-- ── Week 6b ── -->
+  <div class="toc-week">
+    <div class="toc-week-header">
+      <div class="toc-week-dot" style="background:var(--week-accent-4)"></div>
+      Week 6 · Linear Algebra: Matrices
+    </div>
+    <ol>
+      <li><a href="#vectors">Vectors</a></li>
+      <li><a href="#matrices">Matrices &amp; Operations</a></li>
+    </ol>
+  </div>
 
 </nav>
 
@@ -1590,28 +1613,338 @@ mjx-container[jax="CHTML"][display="true"] {
 <!-- END WEEKS 4-5 ────────────────────────────────────────────────────── -->
 
 
-<!-- ╔═══════════════════════════════════════════════════════════════════╗
-     ║  ADD FUTURE WEEKS BELOW THIS LINE                                ║
-     ║                                                                   ║
-     ║  Template for a new week:                                         ║
-     ║                                                                   ║
-     ║  <section class="week-section" id="week6" data-week="6">         ║
-     ║    <div class="week-banner">                                      ║
-     ║      <div>                                                        ║
-     ║        <div class="week-tag">Week 6</div>                         ║
-     ║        <h2>Topic Name</h2>                                        ║
-     ║        <div class="week-meta">N concepts · description</div>      ║
-     ║      </div>                                                       ║
-     ║    </div>                                                         ║
-     ║                                                                   ║
-     ║    <section class="concept-section" id="concept-id">             ║
-     ║      <h3>1 · Concept Name</h3>                                   ║
-     ║      ... blocks here ...                                          ║
-     ║    </section>                                                     ║
-     ║  </section>                                                       ║
-     ║                                                                   ║
-     ║  Also add the week to the TOC rail above.                        ║
-     ╚═══════════════════════════════════════════════════════════════════╝ -->
+<!-- ════════════════════════════════ WEEK 6a ═════════════════════════════ -->
+<section class="week-section" id="week6a" data-week="6a">
+  <div class="week-banner">
+    <div>
+      <div class="week-tag">Week 6 · Part A</div>
+      <h2>Variance &amp; Distributions</h2>
+      <div class="week-meta">6 concepts &nbsp;·&nbsp; 3 lectures &nbsp;·&nbsp; Variance · Bernoulli · Binomial · Poisson · Geometric · Negative Binomial · Hypergeometric · Variance additivity</div>
+    </div>
+  </div>
+
+  <!-- §18 ─ VARIANCE ───────────────────────────────────────────────── -->
+  <section class="concept-section" id="variance">
+    <h3>18 · Variance — Measuring Spread</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Motivation</span>
+      <div class="block-title">Mean Alone Does Not Describe a Distribution</div>
+      <p>Consider two random variables both with \(\mathbb{E}[X] = 0\):</p>
+      <table style="border-collapse:collapse;font-size:.9rem;margin:.6rem 0">
+        <tr style="border-bottom:1px solid #cbd5e1">
+          <th style="padding:.3rem .9rem">RV</th>
+          <th style="padding:.3rem .9rem">Values</th>
+          <th style="padding:.3rem .9rem">Probabilities</th>
+          <th style="padding:.3rem .9rem">Mean</th>
+        </tr>
+        <tr><td style="padding:.25rem .9rem">\(X\)</td><td style="text-align:center">\(-1,0,1\)</td><td style="text-align:center">\(\tfrac{1}{3},\tfrac{1}{3},\tfrac{1}{3}\)</td><td style="text-align:center">0</td></tr>
+        <tr style="background:#f8fafc"><td style="padding:.25rem .9rem">\(Y\)</td><td style="text-align:center">\(-1,0,1\)</td><td style="text-align:center">\(\tfrac{2}{5},\tfrac{1}{5},\tfrac{2}{5}\)</td><td style="text-align:center">0</td></tr>
+      </table>
+      <p>Same mean, but the probability mass is distributed differently. We need a second statistic — <strong>variance</strong> — to distinguish them.</p>
+    </div>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Variance and Standard Deviation</div>
+      <p>Let \(\mu = \mathbb{E}[X]\). The <strong>variance</strong> of \(X\) is:</p>
+      \[\operatorname{Var}(X) = \mathbb{E}\!\left[(X - \mu)^2\right]\]
+      <p>Expanding the square gives the computationally convenient form:</p>
+      \[\operatorname{Var}(X) = \mathbb{E}[X^2] - \mu^2 = \mathbb{E}[X^2] - (\mathbb{E}[X])^2\]
+      <p>The <strong>standard deviation</strong> is \(\sigma = \sqrt{\operatorname{Var}(X)}\), measured in the same units as \(X\).</p>
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Derivation</span>
+      <div class="block-title">Why \(\operatorname{Var}(X) = \mathbb{E}[X^2] - \mu^2\)</div>
+      <p>Expanding \((X - \mu)^2 = X^2 - 2\mu X + \mu^2\) and applying linearity of expectation:</p>
+      \begin{align*}
+      \mathbb{E}[(X-\mu)^2] &= \mathbb{E}[X^2] - 2\mu\,\mathbb{E}[X] + \mathbb{E}[\mu^2] \\
+      &= \mathbb{E}[X^2] - 2\mu^2 + \mu^2 = \mathbb{E}[X^2] - \mu^2
+      \end{align*}
+      <p>Key step: \(\mathbb{E}[\mu] = \mu\) because \(\mu\) is a fixed constant (not random).</p>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Variance of \(X\) and \(Y\) Above</div>
+      <p><strong>\(X\):</strong> \(\mathbb{E}[X^2] = 1^2 \cdot \tfrac{1}{3} + 0 \cdot \tfrac{1}{3} + (-1)^2 \cdot \tfrac{1}{3} = \tfrac{2}{3}\).
+      &emsp;\(\operatorname{Var}(X) = \tfrac{2}{3} - 0^2 = \tfrac{2}{3}\).</p>
+      <p><strong>\(Y\):</strong> \(\mathbb{E}[Y^2] = 1 \cdot \tfrac{2}{5} + 0 \cdot \tfrac{1}{5} + 1 \cdot \tfrac{2}{5} = \tfrac{4}{5}\).
+      &emsp;\(\operatorname{Var}(Y) = \tfrac{4}{5} - 0^2 = \tfrac{4}{5}\).</p>
+      <p>Same mean (0), but \(\operatorname{Var}(Y) > \operatorname{Var}(X)\): probability mass in \(Y\) is more concentrated at the extremes.</p>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Fair 6-Sided Die: \(\operatorname{Var}(X) = \tfrac{35}{12}\)</div>
+      <p>\(\mathbb{E}[X] = \tfrac{7}{2}\). Compute \(\mathbb{E}[X^2]\) directly from the definition (cannot simply square the range values):</p>
+      \[\mathbb{E}[X^2] = \sum_{v=1}^{6} v^2 \cdot \tfrac{1}{6} = \tfrac{1+4+9+16+25+36}{6} = \tfrac{91}{6}\]
+      \[\operatorname{Var}(X) = \tfrac{91}{6} - \left(\tfrac{7}{2}\right)^2 = \tfrac{91}{6} - \tfrac{49}{4} = \tfrac{182 - 147}{12} = \frac{35}{12}\]
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Concept</span>
+      <div class="block-title">Moments</div>
+      <p>For integer \(k \geq 1\):</p>
+      <ul class="steps">
+        <li><strong>\(k\)-th moment:</strong> \(\mathbb{E}[X^k]\) — e.g., mean is the 1st moment.</li>
+        <li><strong>\(k\)-th central moment:</strong> \(\mathbb{E}[(X-\mu)^k]\) — e.g., variance is the 2nd central moment.</li>
+      </ul>
+      <p>Two distributions can share the same mean and variance yet differ in higher-order moments (e.g., shape, skewness). The distribution is not fully determined by just two parameters.</p>
+    </div>
+  </section>
+
+  <!-- §19 ─ BERNOULLI & BINOMIAL VARIANCE ──────────────────────────── -->
+  <section class="concept-section" id="bernoulli-binomial-var">
+    <h3>19 · Bernoulli &amp; Binomial — Variance</h3>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Formula</span>
+      <div class="block-title">Variance of Bernoulli\((p)\)</div>
+      <p>\(X^2 = X\) since \(X \in \{0,1\}\), so \(\mathbb{E}[X^2] = p\).</p>
+      \[\operatorname{Var}(X) = \mathbb{E}[X^2] - (\mathbb{E}[X])^2 = p - p^2 = p(1-p)\]
+      \[\sigma = \sqrt{p(1-p)}\]
+      <p>Maximum at \(p = \tfrac{1}{2}\): the fair coin is the most uncertain Bernoulli trial.</p>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Casino Dice Game — Expected Gain</div>
+      <p>A player bets on one number from 1–6. Three fair 6-sided dice are rolled. Outcome: player <em>wins</em> \(\$i\) if their number appears on exactly \(i\) dice (\(i = 1,2,3\)), and <em>loses</em> \(\$1\) if the number appears on none.</p>
+      <p>Let \(X \sim \text{Binomial}(3, \tfrac{1}{6})\) = number of dice showing the chosen number. Define \(Y\) = net gain:</p>
+      \[P(Y = -1) = P(X=0) = \binom{3}{0}\!\left(\tfrac{1}{6}\right)^0\!\left(\tfrac{5}{6}\right)^3 = \frac{125}{216}\]
+      \[P(Y = i) = P(X=i) = \binom{3}{i}\!\left(\tfrac{1}{6}\right)^i\!\left(\tfrac{5}{6}\right)^{3-i}, \quad i = 1,2,3\]
+      <details open>
+        <summary>Compute probabilities and expected gain</summary>
+        <table style="border-collapse:collapse;font-size:.9rem;margin:.6rem 0">
+          <tr style="border-bottom:1px solid #cbd5e1">
+            <th style="padding:.3rem .8rem">\(Y\)</th><th style="padding:.3rem .8rem">Prob</th><th style="padding:.3rem .8rem">Numerator/216</th>
+          </tr>
+          <tr><td style="padding:.25rem .8rem;text-align:center">\(-1\)</td><td style="text-align:center">\(125/216\)</td><td style="text-align:center">125</td></tr>
+          <tr style="background:#f8fafc"><td style="padding:.25rem .8rem;text-align:center">\(1\)</td><td style="text-align:center">\(75/216\)</td><td style="text-align:center">75</td></tr>
+          <tr><td style="padding:.25rem .8rem;text-align:center">\(2\)</td><td style="text-align:center">\(15/216\)</td><td style="text-align:center">15</td></tr>
+          <tr style="background:#f8fafc"><td style="padding:.25rem .8rem;text-align:center">\(3\)</td><td style="text-align:center">\(1/216\)</td><td style="text-align:center">1</td></tr>
+        </table>
+        \[\mathbb{E}[Y] = \frac{-125 + 75 + 30 + 3}{216} = \frac{-17}{216} \approx -\$0.079\]
+      </details>
+      <p><strong>Conclusion:</strong> The game is unfair to the player — on average they lose about 8 cents per dollar bet. A negative expected value means the house has an edge.</p>
+    </div>
+  </section>
+
+  <!-- §20 ─ POISSON DISTRIBUTION ──────────────────────────────────── -->
+  <section class="concept-section" id="poisson">
+    <h3>20 · Poisson Distribution</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Poisson\((\lambda)\)</div>
+      <p>For parameter \(\lambda > 0\), a random variable \(X\) is <strong>Poisson</strong> if:</p>
+      \[P(X = i) = \frac{e^{-\lambda}\lambda^i}{i!}, \quad i = 0, 1, 2, \ldots\]
+      \[\mathbb{E}[X] = \lambda\]
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Theorem</span>
+      <div class="block-title">Poisson as a Limit of Binomial</div>
+      <p>When \(n \to \infty\), \(p \to 0\) with \(\lambda = np\) held fixed (so \(p = \lambda/n\)):</p>
+      \[\lim_{n\to\infty} \binom{n}{i}\!\left(\tfrac{\lambda}{n}\right)^i\!\left(1-\tfrac{\lambda}{n}\right)^{n-i} = \frac{e^{-\lambda}\lambda^i}{i!}\]
+      <p><strong>Interpretation:</strong> Use Poisson to model rare events (\(p\) small) occurring over many trials (\(n\) large). Examples: radioactive decay counts, arrivals per hour in a queue, rare defects.</p>
+    </div>
+  </section>
+
+  <!-- §21 ─ GEOMETRIC — TAIL SUM & EXPECTATION ─────────────────────── -->
+  <section class="concept-section" id="geometric-tail">
+    <h3>21 · Geometric Distribution — Tail Sum &amp; Expectation</h3>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Formula</span>
+      <div class="block-title">Tail Probability: \(P(X \geq k) = (1-p)^{k-1}\)</div>
+      <p>\(X\) = trials to first success; each trial succeeds independently with prob \(p\). The event \(\{X \geq k\}\) means the first \(k-1\) trials all failed:</p>
+      \[P(X \geq k) = \sum_{i=k}^{\infty}(1-p)^{i-1}p = p(1-p)^{k-1} \cdot \frac{1}{1-(1-p)} = (1-p)^{k-1}\]
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Theorem</span>
+      <div class="block-title">Tail-Sum Formula for Expectation</div>
+      <p>For any non-negative integer-valued \(X\):</p>
+      \[\mathbb{E}[X] = \sum_{k=1}^{\infty} P(X \geq k)\]
+      <details>
+        <summary>Why this works</summary>
+        <p>Write out the sum column-by-column. \(P(X \geq 1)\) contributes 1 to every outcome. \(P(X \geq 2)\) contributes 1 to outcomes with \(X \geq 2\), and so on. Collecting the contribution at each value \(i\): value \(i\) appears in \(P(X \geq 1), \ldots, P(X \geq i)\), so it is counted \(i\) times, weighted by \(P(X=i)\). The total equals \(\mathbb{E}[X]\).</p>
+      </details>
+      <p>Applying to \(\text{Geometric}(p)\):</p>
+      \[\mathbb{E}[X] = \sum_{k=1}^{\infty}(1-p)^{k-1} = \frac{1}{1-(1-p)} = \frac{1}{p}\]
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Drawing Balls Until First Black</div>
+      <p>An urn has \(n\) white balls and \(m\) black balls. Balls are drawn <em>with replacement</em> until a black ball appears. Let \(X\) = number of draws.</p>
+      <p>At each draw: \(p = \dfrac{m}{m+n}\). Thus \(X \sim \text{Geometric}\!\left(\dfrac{m}{m+n}\right)\), so:</p>
+      \[\mathbb{E}[X] = \frac{1}{p} = \frac{m+n}{m}\]
+    </div>
+  </section>
+
+  <!-- §22 ─ NEGATIVE BINOMIAL ─────────────────────────────────────── -->
+  <section class="concept-section" id="negative-binomial">
+    <h3>22 · Negative Binomial Distribution</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Trials to the \(r\)-th Success</div>
+      <p>Generalise Geometric: let \(X\) = number of trials needed to accumulate exactly \(r\) successes (each trial succeeds with prob \(p\)). Then \(X\) follows the <strong>Negative Binomial</strong> distribution:</p>
+      \[P(X = n) = \binom{n-1}{r-1} p^r (1-p)^{n-r}, \quad n \geq r\]
+      <p>Interpretation: the \(n\)-th trial <em>must</em> be a success (fixed), and the \(r-1\) other successes are placed among the first \(n-1\) trials.</p>
+      \[\mathbb{E}[X] = \frac{r}{p}\]
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Formula</span>
+      <div class="block-title">\(P(r \text{ successes before } m \text{ failures})\)</div>
+      <p>The \(r\)-th success must occur no later than trial \(r+m-1\) (if it happens at trial \(r+m\) or later, at least \(m\) failures have already accumulated):</p>
+      \[P(\text{r successes before m failures}) = \sum_{n=r}^{r+m-1} \binom{n-1}{r-1} p^r (1-p)^{n-r}\]
+    </div>
+  </section>
+
+  <!-- §23 ─ HYPERGEOMETRIC & VARIANCE ADDITIVITY ───────────────────── -->
+  <section class="concept-section" id="hypergeometric-variance-additivity">
+    <h3>23 · Hypergeometric Distribution &amp; Variance Additivity</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Hypergeometric Distribution</div>
+      <p>There are \(N\) objects in total, of which \(m\) are "special". We pick \(n\) objects <em>without replacement</em>. Let \(X\) = number of special objects chosen:</p>
+      \[P(X = i) = \frac{\binom{m}{i}\binom{N-m}{n-i}}{\binom{N}{n}}\]
+      <p>Key difference from Binomial: sampling is <em>without</em> replacement, so trials are not independent. The Binomial approximates Hypergeometric when \(N\) is large relative to \(n\).</p>
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Theorem</span>
+      <div class="block-title">Variance of a Sum — General Formula</div>
+      <p>For any random variables \(X_1, \ldots, X_n\) with \(X = \sum_i X_i\):</p>
+      \[\operatorname{Var}(X) = \sum_{i=1}^{n}\operatorname{Var}(X_i) + \sum_{i \neq j}\underbrace{\left(\mathbb{E}[X_i X_j] - \mathbb{E}[X_i]\mathbb{E}[X_j]\right)}_{\operatorname{Cov}(X_i, X_j)}\]
+      <p>The cross terms are <strong>covariances</strong>. When \(X_i\) and \(X_j\) are <em>independent</em>, \(\mathbb{E}[X_i X_j] = \mathbb{E}[X_i]\mathbb{E}[X_j]\), so each covariance is 0.</p>
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Formula</span>
+      <div class="block-title">Variance Additivity for Independent RVs</div>
+      \[\text{If } X_1,\ldots,X_n \text{ are independent:} \quad \operatorname{Var}\!\left(\sum_{i=1}^n X_i\right) = \sum_{i=1}^n \operatorname{Var}(X_i)\]
+      <p><strong>Consequence — Binomial variance:</strong> Write \(\text{Binomial}(n,p) = \sum_{i=1}^n X_i\) where each \(X_i \sim \text{Bernoulli}(p)\) independently. Then:</p>
+      \[\operatorname{Var}\!\left(\text{Binomial}(n,p)\right) = n \cdot p(1-p)\]
+    </div>
+  </section>
+
+</section>
+<!-- END WEEK 6a ─────────────────────────────────────────────────────── -->
+
+
+<!-- ════════════════════════════════ WEEK 6b ═════════════════════════════ -->
+<section class="week-section" id="week6b" data-week="6b">
+  <div class="week-banner">
+    <div>
+      <div class="week-tag">Week 6 · Part B</div>
+      <h2>Linear Algebra: Vectors &amp; Matrices</h2>
+      <div class="week-meta">2 concepts &nbsp;·&nbsp; 1 lecture &nbsp;·&nbsp; Vectors · Scalar multiplication · Inner product · Matrices · Matrix multiplication · Associativity · Operation count</div>
+    </div>
+  </div>
+
+  <!-- §24 ─ VECTORS ────────────────────────────────────────────────── -->
+  <section class="concept-section" id="vectors">
+    <h3>24 · Vectors</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Vector — Abstract View</div>
+      <p>A <strong>vector</strong> is an ordered array of \(n\) values. The number \(n\) is its <strong>dimension</strong>. We write \(\mathbf{v} \in \mathbb{R}^n\) to mean a vector with \(n\) real-valued coordinates:</p>
+      \[\mathbf{v} = (v_1,\, v_2,\, \ldots,\, v_n)\]
+      <p>Unlike the geometric notion of "direction and magnitude," in this course a vector is simply a finite-length array. Its meaning depends on context.</p>
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Concept</span>
+      <div class="block-title">Vector Operations</div>
+      <p><strong>Addition</strong> (vectors must have the same dimension):</p>
+      \[(a_1,\ldots,a_n) + (b_1,\ldots,b_n) = (a_1+b_1,\,\ldots,\,a_n+b_n)\]
+      <p><strong>Scalar multiplication</strong> (\(\alpha \in \mathbb{R}\)):</p>
+      \[\alpha\,(a_1,\ldots,a_n) = (\alpha a_1,\,\ldots,\,\alpha a_n)\]
+      <p>Vectors of different dimensions cannot be added — they are incomparable.</p>
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Formula</span>
+      <div class="block-title">Inner (Dot) Product</div>
+      <p>For \(\mathbf{u}, \mathbf{v} \in \mathbb{R}^n\):</p>
+      \[\mathbf{u} \cdot \mathbf{v} = \langle \mathbf{u}, \mathbf{v} \rangle = \sum_{i=1}^{n} u_i v_i\]
+      <p>Inner product is only defined when both vectors have the same dimension. It returns a <em>scalar</em>, not a vector.</p>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Vector Arithmetic</div>
+      \[(3,2,1) + (2,3,0) = (5,5,1)\]
+      \[5 \cdot (2,3,1) = (10,15,5)\]
+      \[\langle (1,2,3),\,(4,5,6)\rangle = 1 \cdot 4 + 2 \cdot 5 + 3 \cdot 6 = 4+10+18 = 32\]
+    </div>
+  </section>
+
+  <!-- §25 ─ MATRICES ───────────────────────────────────────────────── -->
+  <section class="concept-section" id="matrices">
+    <h3>25 · Matrices &amp; Operations</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Matrix</div>
+      <p>A <strong>matrix</strong> is a 2D array with \(m\) rows and \(n\) columns — written as \(m \times n\). Entry in row \(i\), column \(j\) is denoted \(A_{ij}\). A vector \(\mathbf{v} \in \mathbb{R}^n\) is the special case of an \(n \times 1\) matrix (a column vector).</p>
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Concept</span>
+      <div class="block-title">Addition &amp; Scalar Multiplication</div>
+      <p><strong>Addition:</strong> entry-wise, only defined for matrices of identical dimensions.
+      \((A+B)_{ij} = A_{ij} + B_{ij}\).</p>
+      <p><strong>Scalar multiplication:</strong> \((\alpha A)_{ij} = \alpha A_{ij}\).</p>
+    </div>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Matrix Multiplication</div>
+      <p>\(A\) is \(m \times k\) and \(B\) is \(k \times n\). Their product \(C = AB\) is \(m \times n\), where:</p>
+      \[C_{ij} = \sum_{\ell=1}^{k} A_{i\ell}\, B_{\ell j} = \langle \text{row}_i(A),\; \text{col}_j(B) \rangle\]
+      <p>The entry \(C_{ij}\) is the inner product of the \(i\)-th row of \(A\) with the \(j\)-th column of \(B\).</p>
+      <p><strong>Dimension rule:</strong> columns of \(A\) must equal rows of \(B\). Result is \(m \times n\).</p>
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Properties</span>
+      <div class="block-title">Non-Commutativity &amp; Associativity</div>
+      <p><strong>Not commutative:</strong> \(AB \neq BA\) in general. Even when both products are defined, their results need not be equal.</p>
+      <p><strong>Associative:</strong> \((AB)C = A(BC)\). This means you can parenthesise a chain of matrix products in any order — the result is the same, though the <em>cost</em> of computing it may differ.</p>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">2×2 Matrix Multiplication</div>
+      \[\begin{pmatrix} a & b \\ c & d \end{pmatrix} \begin{pmatrix} a' & b' \\ c' & d' \end{pmatrix} = \begin{pmatrix} aa'+bc' & ab'+bd' \\ ca'+dc' & cb'+dd' \end{pmatrix}\]
+      <p>Each entry is an inner product: top-left \(= \langle(a,b),(a',c')\rangle = aa'+bc'\).</p>
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Formula</span>
+      <div class="block-title">Operation Count for Matrix Multiplication</div>
+      <p>To compute \(A_{m \times k} \cdot B_{k \times n}\):</p>
+      <ul class="steps">
+        <li>The product has \(mn\) entries.</li>
+        <li>Each entry requires \(k\) multiplications and \(k-1\) additions \(\approx 2k\) operations.</li>
+        <li><strong>Total:</strong> \(\approx 2mkn\) scalar operations.</li>
+      </ul>
+      <p>This quadratic-to-cubic cost motivates the question: <em>in what order should a chain of matrices be multiplied to minimise total work?</em> (Matrix-chain multiplication — a classic dynamic programming problem.)</p>
+    </div>
+  </section>
+
+</section>
+<!-- END WEEK 6b ─────────────────────────────────────────────────────── -->
 
 </main>
 </div>

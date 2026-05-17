@@ -1,0 +1,464 @@
+Hello and welcome back to Python Core and Applied Concept for Reliable Data Science
+Workflow.
+Today we will continue our discussion of Python programming language and we will dive a little
+deep into one of the very popular data structure in Python which is called list.
+We have already seen this data structure in previous lecture but we only discussed very
+minimal amount of features about this Python list data structure in the context where we
+were using this.
+So instead of that today what we planned is to devote the whole lecture discussing in
+detail and in a systematic way how this list data structure can be used effectively inside
+Python programming language.
+So any programming language draws its strength from the choice of good set of data structure.
+So Python is also one such language which gives you flexibility of working with data
+using different kind of data structure which makes your life easy compared to if you were
+a simple type kind of thing where you can write and read from computationally I mean
+it does not give Python any new power I mean it's not as powerful as Turing machine but
+you don't get any more power but then the ease of using data becomes a lot more I mean
+if you use data structures properly so Python has list as one of the data structure which
+is very commonly used and that's why I mean we should know in a structured way what are
+the possible things you can do with this kind of data structure.
+So if you know these things then you can handle data properly using this kind of data structure.
+So we'll be discussing today that in detail.
+So just to begin I mean what is list?
+So list again as I said is a data structure which is audit collection so it has some difference
+from the notion of set that you might be aware of in mathematics right.
+Set is also a collection of you know objects or elements whatever you want to say but then
+when we talk about set we don't talk about you know we don't care about the order of
+elements inside the set right I mean we only care whether something is present in the set
+or absent in the set but in the list data structure order is important okay.
+If you have two lists with the same let's say set of elements but they are in different
+order then you will call that lists are not same I mean that they are different lists
+okay.
+So this ordering is very important and it distinguishes you know your list from set
+data structure and the second most important you know part is this no mutability okay.
+So list is one such data structure which is mutable what does it mean I mean it means
+that once you start or in this let's say initiate this list with some value you can
+later on change these values so you can later on you know change even the dimension of the
+list you can now add more elements to the list you can add strictly more element to
+the list or you can remove elements from the list so this is why we call this is mutable
+so you can change it okay it's not that once you instantiate a list with some value you
+later on so in that sense I mean no list is mutable you can you know add remove append
+and do a lot of other kind of activity which you mostly require when writing any meaningful
+program so that's how also no list becomes so important in programming in Python programming.
+Another thing which distinguishes it from you know some of the data structure that you
+might be aware from programming language like C, C++ is heterogeneous you know concept so here
+I mean list no almost you know resembles like you know an array but then you can put heterogeneous
+elements in a list okay like in C you can't know put heterogeneous objects in the array but then
+here you can actually put heterogeneous you know elements in the list so you can you know for
+example put no integer strings float all in the single list okay so different elements of the
+list may have different data types so that's what we call that's why we call this to be a
+heterogeneous you know data structure so now these three combination that we discussed just
+now is really you know unique combination that makes list very useful data structure for handling
+ordered objects okay so if you want to keep objects in an ordered way if you want to keep
+objects which have different data types you want to know remove or add things you know dynamically
+as you write down your program then most probably you are looking for a data structure which is
+list okay so list may be a good choice so let's know discuss again systematically what can we do
+with list okay first we will see how to create list and then we will slowly go and see what are
+the very common operation on list that you will anyway need to know when you are writing any
+meaningful program okay we will start with creating a list and maybe you know accessing
+different element of list then we will go to you know different ways of you know adding elements
+to the list or removing element from the list and we'll also look maybe briefly about how to
+search some elements in the list and you also want to probe many times whether something is
+present in the list or not if present how many times that no particular element is present in
+the list so all this we will discuss slowly today so let's start with very simple example and try
+to learn this concept around list so the very first thing that now I would like to do is to
+create a list right so we should know how to create how to create a list and then how to
+know access let's say elements from the list okay so the we already created a multiple list
+in the previous lecture so let me you know write it down what we are going to do here is
+we're going to create a list and most straightforward you know method of creating a list is again I mean
+the identifier I mean how do you name a list you know borrows the same concepts or restriction
+from the variable naming okay so you have to follow the same you know restriction that we
+discussed when we are discussing how to name a variable okay so to naming a list is same in a
+similar to naming a variable so you have to use those rules and you have to be confined with a
+set of rules while you define any name for your list so for example let's say I want to say this
+no my list and a very simple list that I want to instantiate is no let's say one more two so this
+is how we separate different elements in the list okay you can put this commerce and you can
+open a square bracket and then close this square bracket so it means that whatever you write inside
+there's two square brackets separated by commas will be different elements in the list okay for
+example here I write you know all you know let's say list elements are your number okay you could
+have written some character also but for simplicity let's say our first no list we want to keep it
+very simple so let's hit be all the numbers okay so this is our list okay if you know you know
+let's say you want to print all the element in your list so what what do what can I do I can simply
+okay so let's say if I want to know see the original element in my list I can maybe just
+print it and then pass my list here and that should do the job okay so let me just run this
+piece of code to see whether we get what we instantiated this my list with so my list has
+these you know numbers put in this sequence and see when you when I print it using the print you
+know command this is exactly what you get okay so the list has been created in a correct way now
+one again I mean very frequently occurring action that you want to do with list is to know its
+length right we have already seen that we wanted to start a loop based on the number of or the
+length number of element in the list right to do some operation in the last lectures so so this
+function is very useful very handy and it helps you get the length of the list so so what we are
+writing is how to get the length of the list and what was that number if you recall it was
+the length function right alien so so let me for the list that we have just now instantiated so
+let me find out the length of the list so what is the length of the list how to get this length
+we use this function length okay and then you pass your list and it will return you the length
+of the list so if we you know run this piece of code what do we get so what is the length of
+our list so the length of our list is five okay so why because there are five element okay although
+the last no element has index four as we discussed in the very beginning in Python we start with no
+index zero so your first element will have actually index zero the second element will
+have index one and hence if you can you know go to this place okay so no we can actually
+experiment with this okay so let me you know just quickly try to write it down let's access
+some element okay so so this is what now we are trying to discuss now how to access say
+elements in the list okay so for example if I want to let's access a very first element okay so
+so what shall be the very first element how to access it so we use the name of the list and
+then we have to provide the index also right so what is the index for the first element so index
+for the first element should be zero right so if you know write this zero and then if you know
+print it so what do you get so what's the error here okay so we forgot this comma right and this
+is what the error message is saying that I forgot to separate this two so your you know
+first element is actually this one but I access it with no index zero okay so similarly I mean
+you can access also the last element I mean just like the first element in some cases you may want
+to you know access the last element and what's the way to do that how will you know what is the last
+element so one way is either you probe the and you know know the length of the list and use that
+length to get the last index and you know write it to get the last number in the list or there is
+a you know another alternative way where you don't need to get the length of the list you can directly
+access it okay so let me write it down so so most of the time you know if you are interested in
+knowing last number maybe just for once I mean and you don't want to go via the length route then
+what we do is we say no my list and this minus one okay so if you pass this index no this minus
+one ideally it should not be a valid index right because your elements are starting from zero and
+going not in there but this is this minus one helps you get the last in the last element in the
+list okay so so I mean keep it in your mind as I mean if you know let's say
+list length is n then what will be your the last you know last element index it should be n minus
+one right because as we discussed we start from zero okay so instead of writing n minus one we
+simply write minus one let's say I mean assume that the n is implicit to the python because it
+knows the no list so it can figure out what is n so you just write no this minus one and that
+should be enough so it will you know consider this as n minus one while figuring out which
+element you want to access okay so this is a very you know handy again way to get the last element
+of the list without referring to the length of the list so you can simply write no my list minus one
+and then you can get the last element of the list for example in this case what was our last element
+in the list so we had you know one two three four five so if you know print this I expect
+the value of five right and this is what you get it okay now I mean you may not always you know want
+to know access the first element or the last element you may want to access some element
+you know in between let's say okay so how what's the no syntax that you want to use to get this work
+done okay so let me you know write it down for example let's say if I want to you know get
+maybe you know these elements okay two three and four so if I want to get these elements
+you know element you know starting from so what will the starting index of this
+starting index will be one right because two is at the index one and what is the you know final
+index of that appears here the final index is three so if you want to you know get element from
+you know index one to index three let's say then what you need to write is you know you have to
+mention you know one is your starting point and you know four is stopping point so stopping point
+is almost stopping point is you know always you know left out so you get from one to three okay
+so this is normally how it happens in python right because in loops also we discuss when we
+give some stopping point we stop one point you know before that so let me so for for example in
+this case if I want to print element which are between let's say index one to three so what can
+I maybe write here okay so the elements between one to three is what I can refer to as one colon
+four you know one is starting and four is stop so you only take you know one two three and you
+exclude four okay so when we write one to four I mean it means I mean I'm excluding four always
+okay so you are actually you know trying to get element from index one to three and if we
+now run this you can see I mean this is what we get right so the index for two was one
+for three was two and for four was three okay so so this is you know how we know access the basic
+the basic way to access the element of a list now I can actually access the element of the list
+no and keep it in some other variable also okay and in that case you know I would like to see
+I mean whether those two values are you know correct or not so many time what I'm saying is
+let's say my list is the same list let's say this is the same list right now and what I want to do
+is let's say I want to take the first element and the zero element let's say okay and I want
+to keep it in now some variable which is you know my zero let's say what I'm doing here is I'm trying
+to get or access this element at the zero position what was the element at the zero position this was
+one right okay so if I do write a statement like this what does what will it happen we know what
+assignment does right it gives it first evaluates the right hand side so what is our right hand side
+my list zero this is like accessing an element so it will return you the value at zero position
+or zero index and it will keep that in this variable my zero okay so after doing this let's
+say what do you know expect if I even know want to now print what is
+so it should now give you uh so let me now print
+so you get exactly you know what you know expected right you get this value inside this variable
+okay so now we have seen how to you know create a list and how to
+access its different elements and how to also let's say in some cases you may want to store
+them right I mean you don't only want to access but store them in no variable so all of this we
+have no seen just now now we want to go to the next set of operations uh you know which modify
+which can modify a list okay so the very uh you know first kind of operation that you may want
+to do after let's say you have created some list is to add some element in the list okay now there
+are you know multiple ways to add when we say add add does not now have a single meaning okay
+depending upon what do you mean by adding an element you will have different syntax to
+achieve those tasks for instance I mean if you want to add you know something from the end of
+the list then we normally call it you know appending to the list okay so this action is
+called appending to the list so again I mean taking the same example let me uh you know have
+the same so our list is still so just for simplicity and what I do is I just to make sure that this is
+same list here we're talking about the same list let me copy and paste this so we have this same
+list and now if let's say I want to add another number to this list let's say I want to add six
+to this you know in this list of numbers or you know set of numbers so what shall I do so
+the way to achieve that is to just use this append
+so so what we do is so I want to add something at the end of this so this append
+method will help us do that okay so
+if we write this and after this if you know want to print the list again so let me
+you know print it immediately after okay so if you print the list just after appending what
+what can you expect
+so this is you know the correct you know semantics right that we expected so appending means you
+know adding something to the line but then I mean not always you would like to let's say insert
+some element at the end of the list right this is not you know q kind of thing data structure
+right so it is a list and in list you can you know add not only at the end but you can also add
+or insert something in between okay so for that we specifically use this you know method called
+insert okay so if you want to insert at a given or let's say index okay some some value so if at
+a given index you want to insert some value you can actually refer that index and then you can say
+what is the value that you want to insert that okay so for example let's say if I want to insert
+some big number let's say on 99 at the second index so in that case so what can I write so
+so what we are looking right now is how to add
+element at specific location and this may come handy again at many multiple places where you
+don't want to insert either you know at the end or you know always at the end or you know
+maybe always at the beginning you want to insert at some some position so in that case what we do
+is we use this function okay my list of insert and you have to pass two arguments the first
+argument tells where to insert okay so let's say second index is where I want to insert and
+the second argument will be what is the number or what is the value that you want to insert there
+so let me you know put some large value so that we can distinguish it easily so after inserting
+again if I want to print and see what's the status of the list
+okay can you see so this is what we intended right we wanted to insert it at the second
+index so what was earlier at the second index so if you see earlier we had three at the
+you know index two but when you say I want to insert you know this number 99 at index two
+it inserts it at that place and then you know keeps all the other elements to later indices
+okay so so the issue index of everything you know that was present after the index two
+now increases by one okay so now if you want to know the index of three what will be the next
+index of three index of three is three exactly okay it's not two anymore so so this is the
+semantics of what will happen if you write this index where we say my list dot insert
+some index followed by some value okay so so again I mean that there is another way
+when you know you can know maybe you want to you know extend the list and you know append let's
+say multiple entries at the end of the list okay so let's say instead of you know appending one
+value at the end of the list you want to extend list with multiple values let's say I mean we had
+no values till six if I want to add seven eight and nine to this list and then extend it so now
+again there is a specific method to do that which is you know called list dot extend so we can use
+that to add multiple elements at once I mean to at the end of the list okay so so I mean all of
+this thing you know can be implemented using you know one element extend and it is a good you know
+exercise also you can try out writing a function which can implement let's say this an extend kind
+of functionality okay so what I'm trying to say here is we can also add multiple elements
+in the list okay and at once I mean in one go you can do this and the method that helps you do this
+is this extend method where you can pass multiple elements like this what we are saying is I mean
+extend my current list with this list so it will you know append this thing at the end of the so
+so the simple append only can append for you one element at the end of a list okay but if you
+want to append let's say another list here you can actually use this extend function to do that
+so there is something called you know concatenation also you know available inside
+python which will do the same you know action for you which may turn out to be handy you know in
+some cases but I mean this simple extend helps most of the time and you want to simply you know
+add some multiple elements at the end of already you know created list okay so what will happen
+if I run this piece of code and and then if I now print my list
+so so did we expect this so this is exactly we expected right this you know you can see
+seven eight nine appears at the end of the list okay so this is how you can add maybe you know
+multiple elements no one element or more element to a list no either no in the at the end of the
+list or a certain position in the list okay now let's go to you know another set of operation
+which I just know now mentioned which is concatenation so you you can use no simple
+operators you know like this plus operator and this exponential operator with a different meaning
+for handling this kind of list okay so by default I mean we use this plus and this
+exponential operator in arithmetic operation but as I mentioned in inside python you can actually
+overload no different semantics on the same operator so we can use the same plus and
+exponential operator in the context of list also but they will have certainly you know different
+meaning or outcomes when you use them in the context of list so for example this plus
+operation actually does nothing but simply concatenates you know two strings so if you
+already have let's say created two strings you can simply use this plus to you know concatenate
+one string after the other okay so so this is what this concatenation means so let me you know
+quickly create you know two lists let's say my list one is
+some you know simple like one two three and then what let me you know create another list
+with again three element let's say but they are four five and six
+and what I want to do is you know concatenate this okay so let's say I mean I want to combine
+them and keep list one and followed by list two so you can actually use this up no extend thing
+but then I can also simply write down that may you know combine list let's say is list one plus
+right I mean so should see this is very very you know easy to you know write and
+work with you can simply use this plus notation to concatenate these two lists so
+so what we get
+we can actually print immediately and see what the effect of this
+okay this is what you get right and this is what we also expected okay and I mean this operation
+will not change the original list okay so so what we are saying is I mean you have done some
+operation right so you have evaluated some expression so what was the expression that
+you evaluated you evaluated this you know concatenation operator right here the same
+plus means concatenation and this evaluation does not have any side effect so we discussed
+about side effect in previous lectures right and it's very important to understand I mean whether
+evaluating some expression will have any side effect or not so here what we are saying is
+when you evaluate this expression on the right hand side you are not changing list one or list
+two okay so your list one and list two will remain as it is but in the combined you know list which
+we call combined here we will have concatenation of both this okay so even if you know print list
+one and list two at this moment you will get exact list one and list two so that they are not altered
+by this operation is what we are you know claiming right now okay so no similar to you know concatenation
+now at some places we may want to repeat a list multiple number of time okay so for that what we
+use is this you know this multiplication operator that we have used earlier okay so sorry I call it
+exponential earlier but I mean we should call it multiplication okay so this is for list repetition
+I mean and you can relate it with arithmetic also right when you want to add the same number
+multiple times what you do is you don't add them you know simply multiply so simply similarly if
+you want to concatenate the same list multiple times no then what we do is we simply you know
+say multiply it that many times okay so multiplication means imply no concatenation
+in the world of list okay so so what we're trying to do is no list let's say repetition
+and how to implement it so what we say is let's say call the resulting
+list repeated and if you want to repeat let's say maybe list one
+three times so what we write is simply list one multiplied by three and then you can now
+print it and see what will be your outcome okay so what is your repeated
+okay so when we run this you can see your the initial list one which was you know one two three
+has been repeated three times okay so this is how you can actually concatenate existing you know
+list or repeat one list no multiple number of time meaning I mean that you're concatenating it
+multiple number of time okay now we we have already seen how to add something to an existing
+you know list we have already seen how to you know maybe add two big lists or I mean create
+a bigger list by just repeating list itself you know multiple number of time now what we want
+to look at look at is how can we remove now elements from the list okay so again I mean
+same as adding I mean we'll ask the same question again what do we mean by removing something from
+a list okay so do you know want to know actually remove so when you want to remove some value you
+can say that I mean I want to remove this particular value which exists let's say in the list okay
+then I mean the python should be able to figure out where that element exists and if it exists
+there then it will remove it you may also want to know remove element based on the place where it
+exists like I mean you may not want to say that I want to remove this value but remove something
+which is present at this particular index okay so you may want to remove either you know by value
+by referring to the value that you want to remove from the list or you may want to remove an element
+you know based on the index of the element okay or you we know in some simple cases you may
+just want to remove maybe the last no element the way we you know added here something to the last
+of the list by using no append you can also actually maybe want to remove the last element
+only then no there is some no there is no function which is called pop you can call the pop method
+corresponding to that list and then it will actually take out the last element okay you may
+also want to know completely let's say it is the list for some purpose I mean you know maybe you
+can you want to use the same you know name for the list but you may want to refresh the list
+completely in that case no we used clear function so let me you know write them one by one in this
+case so what we are you know trying to discuss right now is how to remove element okay so I mean
+there are no three method that we will discuss right now one is remove pop and then clear and
+all has you know different meaning for example again I mean if I know want to take the same
+so let me
+now we want to let me you know create another list maybe
+at this point
+okay and let's say that no we want to remove the first no element with value let's say 99
+okay so you see where there are no two elements in the list with the value 99 if I want to remove
+the first element in the list by 99 what I say so so the this syntax when I write that my list
+okay but remove and then if I you know pass it the value which I want to remove so 99
+so by default what it does it goes to the list and searches for this value and the very first
+value that it it can match with this you know 99 it will simply you know remove that value okay
+so for for instance if we do this action and then if I
+print my list what what shall I expect
+you see the first 99 has been removed right and the second 99 is still there so it does not
+remove you know all the you know value with 99 in this case okay so I mean just keep this in mind
+I mean if you want to remove with value and if you use this method then you are actually removing
+the first element with that number okay now what about if I let's say want to
+um remove an element and or if you want to let's say remove an element and you know return that
+value but now you want to do it with index I mean instead of the actual number then what what can
+we do so what we are trying to see here is the second case what we want to say is we want to know
+remove and you know return
+elements by index
+okay so if you want to remove and return the value by index then what you can do is
+you can simply use this pop method okay so let's say the value
+that you know obtained is kept in this variable value obtained okay and then I simply say my list
+pop okay and let's say if in this case I want to you know pop the you know element at the second
+index okay so so what is that element let's say if I just write two it means the second
+index is what I want to remove okay and then you want to store that in the no value obtained
+variable so then after this no action if I print let's say what is there in this value obtained
+and then maybe we also know want to print the list to see what happened to the list okay
+so what do you expect what will be the value obtained if you use this index two
+what is that two the value three right and what will happen to the final list I mean if I do the
+pop here what do I expect so no we are talking about removing right not only accessing so removing
+again has a side effect I mean when you remove you know something you are actually changing the list
+okay so this is the distinction otherwise if your intention was only to let's say access some element
+and now store it somewhere then you know maybe we just access it and keep in the variable but we
+we here want to you know access it and also let's say store it so in that case we use this pop
+and if we run this piece of code what do we get we get something like this which which is what we
+expected right you we have removed this value three and we you know kept this value in value obtained
+okay again I mean as I said I mean you can use this pop method to uh you know if you don't pass
+any let's say index to this pop then what will it remove it will certainly remove something
+but it will remove for you the last element in the list okay whatever is presented now at
+the last index in the list will be pop so for example uh what I'm uh trying to say right now is
+if you have if you want to let's say remove the last element you can simply write something like
+this okay so the last element is my list.pop so what was the last element here last element is
+five so if we execute this piece of code what you can expect is let's see if you know I want to now
+print
+last element as well as if we let's say try to see what was the effect on my list
+maybe we can print both of this and see what happened this is what you'd be expected right
+whatever we uh you know pop came into uh this last variable and which gave us five and my list
+no no no has us you know suffered a side effect and the last element is removed for it so now we
+have only you know this one to three there's no this no index zero one two and three okay
+okay good so now that we know how to you know modify a list know how to access a element how
+to add something to the list or how to know remove something from list so I think I'll just I left
+one thing I mean which I said in the beginning that there is something called clear also which
+will completely you know reset the list so this is what you can do to the list if you want to maybe
+you know retain the name of the list but then you want to clear all the elements in the list
+you can call this method and it will simply clear the list now so after this if you let's say if we
+print if you want to print what is your current list this should give you an empty list okay
+can you see I mean the last list is the empty list okay good so uh we have already seen how to
+do this you know basic addition removal kind of thing on on the list and you know concatenation
+also repeated you know addition or concatenation of the list we may want to talk about searching
+right that this is one of the very uh common operation that you do on a data structure you
+want to search and maybe you know count elements you know based on some you know condition right
+so this is a very uh you know useful uh thing that we almost always do when we work with
+you know data structure so let's see them uh let's do you know something like that in the context of
+list also for example I mean if you want to count let's say how many time a particular
+you know element has appeared in the list so how so what can be the method to do that so there is
+a you know explicit method which is called count which you can directly use to count you know this
+kind of thing and so let me you know write again I mean let let us write down some simple
+method to search and no count inside a list so for instance I mean let me uh create a new list here
+let me put some numbers in this list number
+okay so we have let's say numbers from you know one two three two you know the way we have kept
+these numbers into the list okay now if I want to let's say count how many times let's say two has
+appeared in this list okay so so what will be the count of two in the list so let's say I
+store this count okay I want to know the count of two so the way to do is I use the list name
+which is no numbers here and then I call this no method which is count and I want to know pass
+what value I want to count in this list the value that I want to count is two okay so what can you
+expect in this no count two variable at the end okay so what I'm asking is if I let's say print
+count two what do I expect here so I can expect a value three right because two appeared
+three number of time here right so can we check it and see this is what we can we expected and
+this is what we get here okay so so what about I mean what if I mean something is not have no
+present in the list and you you want to still uh you know count that because you may not know right
+whether this element is present or not in the list but you you may want to just check whether
+you know this is present or not and if present then how many time you know it is present for
+instance I mean let's say in this list seven is not present right so what what will happen if I
+wanted to let's say you know just let me copy this and what we are saying is I mean if I do the same
+thing for seven if I want to know find out how many times seven appeared in the list
+and use this what can you expect so cells will it give an error message or it will
+simply return that no seven is not present by you know indicating that its count is zero
+okay so it will do the second thing that we discussed just now so if you run it and if
+you let's say now the same way if I
+print the count of seven here so what will I get again zero right because seven is not
+not present in this one so the count of seven is zero okay now no again I mean while when you're
+writing code you may not only want to you know count how many times the element appear but
+you may also want to know you know at what index this particular you know element appears in the
+list and that may you know come out to be very handy at you know some places when you're writing
+a program so there is a you know index method again explicitly that you can use to which you
+can actually pass the element for which you want to know the index and it will actually return you
+the index okay but again I mean so let me actually write it down for you so this index takes as an
+argument the value that you want index for and it will return you the index so as well for example
+let's say if I want to know the index of let's say two okay this is you know same as now we
+wanted index of so count of two we now want index of two you know where is two appearing in the
+list okay so what I use here is numbers dot index and then I pass this value two
+okay so this should return with the index of two but again I mean see two appears at
+two different three different places right so which index will be returned
+so always the first index is written okay if it appears multiple times so by default python
+will return to the first index and what is the first index of two so the first index of two is
+one okay so this is what you know python returns you when you let's say simply print
+so index of two okay so this is what we wanted to see what will be returned here
+okay so if you know only pass you know the value as
+if you only you know pass the value then I mean
+it will return the very first index where this value appears but let's say if you also want to
+say that you know find me index of two let's after a position okay then how to do that okay
+so so let me say you know explicitly so what I want to say is
+you may not want to know the you know very fast index but you may want to
+know search in the list or in a particular you know sublist list of the main list
+what's the index of the two so let's say I'm not interested in that first index I know that
+first index now appears at what was the position for my first index so if I run it one right so
+if I want to say that no I want index starting from you know two onward I mean two onward tell
+me what is the you know the index of what is the first first index of you know two
+okay so I'm also now passing a start index you know in addition to the value that I want to
+find index for I am also saying that you start from this index and then search onward and give
+me the index you know very first index where this element you know appears so what I'm saying is I
+want to now do something index of two let's say since you know my first index is one so I want
+to say now no don't give me that index maybe I know I want to say index of two after let's say
+two in that case you you you can pass that thing again as an extra argument to this one and so when
+you now let's say print this whole thing
+we get three right and this this would be the case right because after two
+if I try to find out what is the first index of two then this would return me three right okay and
+you can write down a quick you know assertions to check whether these kind of functions are returning
+correct thing or not okay so I leave it again as an exercise you can can you figure out some
+good assertions which can check the correctness of this kind of you know inbuilt function okay
+so think about some inbuilt function which can check the correctness in you know think about
+some no assertion that can check the correctness of this inbuilt function index okay okay now I mean
+good so I mean now we have seen how to do the how to actually count a given value in in the list
+how many time it appears and whether I mean that element appears or not and if that element appears
+then what is the index of that element so instead of you know always trying to count the number
+or the value inside the list you may also want to simply know whether you know a number
+exists in the list or not okay so there is a very you know simple a very simple
+expression that you can actually evaluate and get to know that whether something exists inside
+the list or not okay so if you want to let us check whether an element exists inside the
+list or not you can actually use you know some expressions like this one so let me use the same
+list and then if I want to check whether let's say whether three is in the list or not okay so
+three is certainly in the list right but maybe eight is not in the list okay so let me so what
+I'm trying to check is whether in first case nothing is three in list is what I want to check
+okay and this expression which is a very uh sorry it's a very uh simple expression can
+help you evaluate this uh you know value of you know true or false value of this thing
+okay so three in numbers I mean if we so if it returns true it means three is in in the list
+okay so what do we expect I mean if we right so what is the value that has been printed you can
+see this is true okay so good so uh we we know uh but can we check for you know another number
+which is not in list I mean just to make sure that this function works correctly so let me
+know copy this and then maybe paste here and then I want to check whether some number
+eight is in the list or not so in that case what shall I do
+can see since eight is not in the list no we get a false okay okay so I think uh you know we have
+discussed enough for today I mean we'll continue the discussion on list in the next lecture also
+so please go through you know these you know very basic and primitive
+action that you would always want to do on a list and this is a systematic you know discussion of
+what can we do with the list I mean basic kind of operations like adding or removing you know
+searching inside a list okay so we'll continue our discussion and we will again discuss in the
+next class about no sorting and reversing the list and copying list and different way to copy list
+so we'll see some issues that comes up if you are not careful about copying a list in the next
+lecture okay but no till then I will say goodbye I'll see you in the next video
