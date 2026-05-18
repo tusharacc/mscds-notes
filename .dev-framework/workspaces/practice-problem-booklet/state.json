@@ -1,0 +1,28 @@
+{
+  "name": "practice-problem-booklet",
+  "type": "feature",
+  "workflowType": "full",
+  "created": "2026-05-17T00:00:00Z",
+  "currentPhase": "developer",
+  "status": "active",
+  "branch": "feature/practice-problem-booklet",
+  "roles": {
+    "po": { "status": "completed", "completed": "2026-05-17" },
+    "architect": { "status": "skipped", "completed": "2026-05-17" },
+    "developer": { "status": "completed", "completed": "2026-05-18" },
+    "reviewer": { "status": "pending", "completed": null },
+    "tester": { "status": "pending", "completed": null },
+    "executor": { "status": "pending", "completed": null },
+    "po-approval": { "status": "pending", "completed": null }
+  },
+  "artifacts": {
+    "po": "artifacts/practice-problem-booklet.po.md",
+    "architect": null,
+    "developer": "practice/index.html",
+    "reviewer": null,
+    "tester": null,
+    "executor": null,
+    "po-approval": null
+  },
+  "timelines": {}
+}
