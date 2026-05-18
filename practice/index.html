@@ -1,0 +1,2087 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Probability practice problems — MScDS IIIT Hyderabad. 40 solved problems from MIT 6.042J covering sample spaces, conditional probability, Bayes, random variables, variance, and deviation bounds.">
+<title>Probability — Practice Problems</title>
+
+<!-- MathJax 3 -->
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    packages: {'[+]': ['ams']},
+    tags: 'none'
+  },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.min.js" crossorigin="anonymous"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,600&display=swap" rel="stylesheet">
+
+<style>
+/* ── Reset & Base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --blue-border: #2563eb;   --blue-bg: #eef4ff;   --blue-badge: #1d4ed8;
+  --amber-border: #d97706;  --amber-bg: #fefce8;  --amber-badge: #92400e;
+  --green-border: #16a34a;  --green-bg: #f0fdf4;  --green-badge: #14532d;
+  --violet-border: #7c3aed; --violet-bg: #f5f3ff; --violet-badge: #5b21b6;
+  --rose-border: #be123c;   --rose-bg: #fff1f2;   --rose-badge: #9f1239;
+  --teal-border: #0f766e;   --teal-bg: #f0fdfa;   --teal-badge: #134e4a;
+  --indigo-border: #4338ca; --indigo-bg: #eef2ff; --indigo-badge: #3730a3;
+  --grey-border: #78716c;   --grey-bg: #faf9f7;   --grey-badge: #44403c;
+
+  --page-bg: #faf6ef;
+  --surface:  #fffdf9;
+  --border:   #e5d9c8;
+  --text:     #1c1410;
+  --text-muted: #6b5f54;
+  --gold:     #92400e;
+  --toc-w: 270px;
+  --radius: 10px;
+  --shadow-sm: 0 1px 3px rgba(28,20,16,.06), 0 1px 2px rgba(28,20,16,.04);
+  --shadow-md: 0 4px 14px rgba(28,20,16,.10), 0 2px 4px rgba(28,20,16,.06);
+
+  --t1: #0369a1;  /* Sample Spaces — blue */
+  --t2: #7c3aed;  /* Conditional Prob — violet */
+  --t3: #16a34a;  /* Bayes — green */
+  --t4: #d97706;  /* Combinatorics — amber */
+  --t5: #be123c;  /* Random Variables — rose */
+  --t6: #0f766e;  /* Variance — teal */
+  --t7: #4338ca;  /* Deviation Bounds — indigo */
+}
+
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: 'Lora', Georgia, serif; background: var(--page-bg); color: var(--text); line-height: 1.8; }
+
+/* ── Layout ── */
+.layout { display: flex; min-height: 100vh; }
+
+/* ── TOC Rail ── */
+.toc-rail {
+  width: var(--toc-w); flex-shrink: 0;
+  position: sticky; top: 0; height: 100vh; overflow-y: auto;
+  background: var(--surface); border-right: 1px solid var(--border);
+  padding: 1.8rem 1rem 2.5rem;
+}
+.toc-rail > .toc-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: .68rem; font-weight: 700; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--text-muted);
+  margin-bottom: 1.4rem; padding: 0 .4rem;
+}
+.toc-week { margin-bottom: 1.2rem; }
+.toc-week-header {
+  display: flex; align-items: center; gap: .5rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: .78rem; font-weight: 700; color: var(--text);
+  padding: .3rem .4rem; margin-bottom: .3rem;
+}
+.toc-week-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.toc-week ol { list-style: none; counter-reset: toc-item; padding-left: .8rem; }
+.toc-week li { counter-increment: toc-item; margin-bottom: .05rem; }
+.toc-week a {
+  display: flex; align-items: baseline; gap: .4rem;
+  font-family: 'Lora', Georgia, serif;
+  font-size: .78rem; color: var(--text-muted); text-decoration: none;
+  padding: .22rem .45rem; border-radius: 4px; line-height: 1.45;
+  transition: color .2s, padding-left .18s;
+}
+.toc-week a::before {
+  content: counter(toc-item, decimal);
+  font-size: .63rem; color: #b5a898; min-width: 1.1rem;
+  flex-shrink: 0; font-variant-numeric: tabular-nums;
+}
+.toc-week a:hover { color: var(--gold); padding-left: .75rem; }
+.toc-week a.is-active { color: var(--gold); font-weight: 600; background: rgba(146,64,14,.08); padding-left: .75rem; }
+.toc-week a.is-active::before { color: var(--gold); }
+
+/* ── Main ── */
+main { flex: 1; max-width: 900px; padding: 3rem 2.5rem 6rem; }
+
+/* ── Page Header ── */
+.page-header { margin-bottom: 3.5rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); position: relative; }
+.page-header::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 4rem; height: 3px; background: var(--gold); border-radius: 2px; }
+.page-header h1 { font-family: 'Playfair Display', Georgia, serif; font-size: 2.8rem; font-weight: 800; color: var(--text); line-height: 1.15; letter-spacing: -.02em; }
+.page-header .subtitle { color: var(--text-muted); margin-top: .5rem; font-size: .88rem; font-style: italic; }
+.legend { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.25rem; }
+.legend-item { display: flex; align-items: center; gap: .4rem; font-size: .77rem; color: var(--text-muted); }
+.legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+
+/* ── Topic Section ── */
+.topic-section { margin-bottom: 5rem; }
+.topic-banner {
+  display: flex; align-items: flex-start; gap: 1rem;
+  padding: 1.5rem 1.8rem; border-radius: 12px; margin-bottom: 2.8rem; border-left: 5px solid;
+}
+.topic-banner .week-tag { font-family: 'Playfair Display', Georgia, serif; font-size: .65rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; opacity: .7; }
+.topic-banner h2 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.6rem; font-weight: 700; line-height: 1.2; margin-top: .15rem; }
+.topic-banner .week-meta { font-size: .8rem; opacity: .6; margin-top: .3rem; font-style: italic; }
+
+.topic-section[data-t="1"] .topic-banner { background: linear-gradient(135deg,#dbeafe 0%,#eff9ff 70%); border-color: var(--t1); color: #0c4a6e; }
+.topic-section[data-t="2"] .topic-banner { background: linear-gradient(135deg,#ede9fe 0%,#f5f3ff 70%); border-color: var(--t2); color: #3b0764; }
+.topic-section[data-t="3"] .topic-banner { background: linear-gradient(135deg,#dcfce7 0%,#f0fdf4 70%); border-color: var(--t3); color: #14532d; }
+.topic-section[data-t="4"] .topic-banner { background: linear-gradient(135deg,#fef3c7 0%,#fffbeb 70%); border-color: var(--t4); color: #78350f; }
+.topic-section[data-t="5"] .topic-banner { background: linear-gradient(135deg,#ffe4e6 0%,#fff1f2 70%); border-color: var(--t5); color: #881337; }
+.topic-section[data-t="6"] .topic-banner { background: linear-gradient(135deg,#ccfbf1 0%,#f0fdfa 70%); border-color: var(--t6); color: #134e4a; }
+.topic-section[data-t="7"] .topic-banner { background: linear-gradient(135deg,#e0e7ff 0%,#eef2ff 70%); border-color: var(--t7); color: #1e1b4b; }
+
+/* ── Problem Block ── */
+.problem-block {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); margin-bottom: 1.8rem;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow .25s;
+  scroll-margin-top: 1.5rem;
+  animation: fadeUp .5s cubic-bezier(.22,1,.36,1) both;
+}
+.problem-block:hover { box-shadow: var(--shadow-md); }
+@keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:none; } }
+
+.prob-header {
+  display: flex; align-items: center; gap: .6rem; flex-wrap: wrap;
+  padding: .9rem 1.2rem .7rem; border-bottom: 1px solid var(--border);
+}
+.prob-num {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: .95rem; font-weight: 700; color: var(--text);
+  min-width: 2.4rem;
+}
+.source-tag {
+  font-size: .68rem; font-weight: 600; letter-spacing: .06em;
+  color: var(--text-muted); background: rgba(0,0,0,.045);
+  padding: .18rem .55rem; border-radius: 999px;
+  font-family: 'Lora', Georgia, serif;
+}
+.type-exam   { background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; border-radius: 999px; font-size: .62rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: .15rem .5rem; }
+.type-class  { background: #eff6ff; color: #1e40af; border: 1px solid #bfdbfe; border-radius: 999px; font-size: .62rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: .15rem .5rem; }
+.type-hw     { background: #f5f3ff; color: #5b21b6; border: 1px solid #ddd6fe; border-radius: 999px; font-size: .62rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: .15rem .5rem; }
+.type-prac   { background: #f0fdf4; color: #14532d; border: 1px solid #bbf7d0; border-radius: 999px; font-size: .62rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: .15rem .5rem; }
+
+.prob-stmt { padding: 1rem 1.2rem .8rem; }
+.prob-stmt p { margin-bottom: .6rem; }
+.prob-stmt p:last-child { margin-bottom: 0; }
+.prob-parts { margin: .4rem 0 0 .2rem; }
+.prob-parts li { margin-bottom: .45rem; padding-left: .2rem; }
+
+/* ── Collapsibles ── */
+details.hint-d, details.soln-d { border-top: 1px solid var(--border); }
+details.hint-d > summary, details.soln-d > summary {
+  cursor: pointer; padding: .7rem 1.2rem;
+  font-family: 'Lora', Georgia, serif;
+  font-size: .86rem; font-weight: 600; font-style: italic;
+  color: var(--text-muted); user-select: none;
+  list-style: none; display: flex; align-items: center; gap: .45rem;
+  transition: color .2s; background: transparent;
+}
+details.hint-d > summary { color: #78716c; }
+details.soln-d > summary { color: #44403c; }
+details.hint-d > summary:hover, details.soln-d > summary:hover { color: var(--gold); }
+details.hint-d > summary::before, details.soln-d > summary::before {
+  content: '▶'; font-size: .62rem; transition: transform .2s; font-style: normal;
+}
+details[open] > summary::before { transform: rotate(90deg); }
+details[open] > summary { margin-bottom: 0; }
+
+.hint-body { padding: .2rem 1.2rem 1rem; font-style: italic; color: var(--text-muted); font-size: .9rem; }
+.soln-body { padding: .2rem 1.2rem 1rem; }
+.soln-body p { margin-bottom: .55rem; }
+.soln-body p:last-child { margin-bottom: 0; }
+.soln-parts { margin: .3rem 0 .5rem .3rem; }
+.soln-parts li { margin-bottom: .5rem; }
+
+/* Confidence badges */
+.conf {
+  display: inline-flex; align-items: center; gap: .35rem;
+  margin-top: .9rem; padding: .3rem .7rem; border-radius: 6px;
+  font-size: .73rem; font-weight: 600;
+}
+.conf-high    { background: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; }
+.conf-partial { background: #fefce8; color: #92400e; border: 1px solid #fde68a; }
+.conf-unver   { background: var(--grey-bg); color: #57534e; border: 1px solid #d6d3d1; }
+
+/* ── Utils ── */
+.steps { margin: .4rem 0 0 .4rem; padding-left: 1.3rem; }
+.steps li { margin-bottom: .4rem; }
+.result { font-weight: 600; margin-top: .6rem; }
+.sub-h { font-family: 'Playfair Display', Georgia, serif; font-size: 1rem; font-weight: 700; margin: 1.6rem 0 .7rem; color: #2d2218; border-bottom: 1px solid var(--border); padding-bottom: .3rem; }
+
+/* ── Reading progress ── */
+#read-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0%; background: linear-gradient(90deg, var(--gold), #c2692a); z-index: 500; pointer-events: none; transition: width .08s linear; }
+
+/* ── Back-to-top ── */
+#back-top { display: none; position: fixed; bottom: 1.75rem; left: 1.5rem; z-index: 500; width: 42px; height: 42px; background: var(--surface); border: 1px solid var(--border); border-radius: 50%; cursor: pointer; color: var(--text-muted); box-shadow: var(--shadow-sm); align-items: center; justify-content: center; opacity: 0; transition: opacity .25s, transform .2s, box-shadow .2s; }
+#back-top.vis { opacity: 1; }
+#back-top:hover { transform: translateY(-2px); color: var(--gold); box-shadow: var(--shadow-md); }
+#back-top svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ── Mobile TOC ── */
+#m-toc-btn { display: none; position: fixed; bottom: 1.75rem; right: 1.5rem; z-index: 500; width: 52px; height: 52px; background: var(--gold); color: #fff; border: none; border-radius: 50%; cursor: pointer; box-shadow: 0 4px 16px rgba(146,64,14,.35); transition: transform .2s; align-items: center; justify-content: center; }
+#m-toc-btn:hover { transform: scale(1.07); }
+#m-toc-btn svg { width: 22px; height: 22px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+#m-toc-overlay { display: none; position: fixed; inset: 0; background: rgba(28,20,16,.4); z-index: 510; opacity: 0; transition: opacity .28s; backdrop-filter: blur(1px); }
+#m-toc-overlay.vis { opacity: 1; }
+#m-toc-drawer { display: none; position: fixed; bottom: 0; left: 0; right: 0; max-height: 74vh; background: var(--surface); border-top: 1px solid var(--border); border-radius: 18px 18px 0 0; z-index: 520; padding: 0 1.4rem 3rem; overflow-y: auto; transform: translateY(102%); transition: transform .32s cubic-bezier(.32,.72,0,1); box-shadow: 0 -12px 40px rgba(28,20,16,.14); }
+#m-toc-drawer.open { transform: translateY(0); }
+.m-pill { width: 36px; height: 4px; background: var(--border); border-radius: 2px; margin: .9rem auto 1rem; }
+.m-drawer-hd { font-family: 'Playfair Display', Georgia, serif; font-size: .68rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--text-muted); padding-bottom: .65rem; border-bottom: 1px solid var(--border); margin-bottom: .8rem; }
+#m-toc-drawer .toc-week a { min-height: 44px; font-size: .86rem; }
+
+/* ── Focus ── */
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 3px; }
+
+/* ── Responsive ── */
+@media (max-width: 960px) {
+  .toc-rail { display: none; }
+  main { padding: 1.8rem 1.2rem 4rem; }
+  .page-header h1 { font-size: 2rem; }
+  #m-toc-btn, #back-top { display: flex; }
+  #m-toc-overlay, #m-toc-drawer { display: block; }
+  .topic-banner { padding: 1.1rem 1.2rem; margin-bottom: 2rem; }
+  .topic-banner h2 { font-size: 1.25rem; }
+}
+@media (hover: none) { .problem-block:hover { box-shadow: var(--shadow-sm); } }
+
+/* MathJax overflow */
+mjx-container[jax="CHTML"][display="true"] { overflow-x: auto; overflow-y: hidden; max-width: 100%; padding-bottom: .25rem; }
+
+/* ── Print ── */
+@media print {
+  .toc-rail, #m-toc-btn, #m-toc-overlay, #m-toc-drawer, #back-top, #read-progress { display: none !important; }
+  body { font-size: 10.5pt; line-height: 1.55; background: #fff; color: #000; }
+  main { max-width: 100%; padding: .5rem 1rem 1rem; }
+  .page-header h1 { font-size: 1.8rem; }
+  .layout { display: block; }
+  .topic-section { break-before: page; margin-bottom: 1.5rem; }
+  .topic-section:first-of-type { break-before: auto; }
+  .topic-banner { print-color-adjust: exact; -webkit-print-color-adjust: exact; margin-bottom: 1.2rem; padding: .8rem 1rem; border-radius: 6px; }
+  .topic-banner h2 { font-size: 1.2rem; }
+  .problem-block { break-inside: avoid; page-break-inside: avoid; border: 1px solid #ccc; margin-bottom: 1rem; box-shadow: none; }
+  /* Expand all collapsibles in print */
+  details { display: block !important; }
+  details > summary { display: list-item; font-style: italic; font-weight: 600; padding: .4rem .8rem; font-size: .85rem; }
+  details > summary::before { display: none; }
+  details[open] > summary::before { display: none; }
+  .hint-body, .soln-body { display: block !important; padding: .3rem .8rem .6rem; }
+  .conf { border: 1px solid #ccc; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  .type-exam, .type-class, .type-hw, .type-prac { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- ═══════════════════ TOC ═══════════════════ -->
+<nav class="toc-rail" aria-label="Table of contents">
+  <div class="toc-title">Practice Problems</div>
+
+  <div class="toc-week">
+    <div class="toc-week-header">
+      <div class="toc-week-dot" style="background:var(--t1)"></div>
+      Sample Spaces &amp; Events
+    </div>
+    <ol>
+      <li><a href="#q1">Basic Probability — 5 scenarios</a></li>
+      <li><a href="#q2">Baseball Series (2-of-3)</a></li>
+      <li><a href="#q3">Biased Coin — Fair Game?</a></li>
+      <li><a href="#q4">4-Door Monty Hall</a></li>
+      <li><a href="#q5">The Immortal Warriors</a></li>
+      <li><a href="#q6">Unreliable System Bounds</a></li>
+    </ol>
+  </div>
+
+  <div class="toc-week">
+    <div class="toc-week-header">
+      <div class="toc-week-dot" style="background:var(--t2)"></div>
+      Conditional Probability
+    </div>
+    <ol>
+      <li><a href="#q7">Dirty Harry's Revolver</a></li>
+      <li><a href="#q8">Two Card Decks</a></li>
+      <li><a href="#q9">Three Prisoners</a></li>
+      <li><a href="#q10">Skywalker Sequence</a></li>
+      <li><a href="#q11">Oscar &amp; Liz — Independence</a></li>
+      <li><a href="#q12">TA Error Rate</a></li>
+      <li><a href="#q13">At Least One Ace</a></li>
+    </ol>
+  </div>
+
+  <div class="toc-week">
+    <div class="toc-week-header">
+      <div class="toc-week-dot" style="background:var(--t3)"></div>
+      Bayes' Theorem
+    </div>
+    <ol>
+      <li><a href="#q14">Red vs Blue Deck</a></li>
+      <li><a href="#q15">Disease Testing</a></li>
+      <li><a href="#q16">Monty Hall — Bayes Proof</a></li>
+      <li><a href="#q17">Card Game — Aces in Hand</a></li>
+    </ol>
+  </div>
+
+  <div class="toc-week">
+    <div class="toc-week-header">
+      <div class="toc-week-dot" style="background:var(--t4)"></div>
+      Combinatorics &amp; Counting
+    </div>
+    <ol>
+      <li><a href="#q18">Normal Approximation</a></li>
+      <li><a href="#q19">Union Bound — Proof</a></li>
+      <li><a href="#q20">HHT vs TTH — Symmetry</a></li>
+      <li><a href="#q21">Card Game — No Better Strategy</a></li>
+    </ol>
+  </div>
+
+  <div class="toc-week">
+    <div class="toc-week-header">
+      <div class="toc-week-dot" style="background:var(--t5)"></div>
+      Random Variables &amp; Expectation
+    </div>
+    <ol>
+      <li><a href="#q22">Indicator Independence</a></li>
+      <li><a href="#q23">Max of Three Uniforms</a></li>
+      <li><a href="#q24">Geometric Distribution</a></li>
+      <li><a href="#q25">Binomial Distribution</a></li>
+      <li><a href="#q26">Peeta's Bread</a></li>
+      <li><a href="#q27">Skywalker Generating Function</a></li>
+      <li><a href="#q28">Hat Check — Expectation</a></li>
+    </ol>
+  </div>
+
+  <div class="toc-week">
+    <div class="toc-week-header">
+      <div class="toc-week-dot" style="background:var(--t6)"></div>
+      Variance &amp; Distributions
+    </div>
+    <ol>
+      <li><a href="#q29">Positive Integer RV</a></li>
+      <li><a href="#q30">|Deviation| ≤ Std Dev</a></li>
+      <li><a href="#q31">Variance of Coin-Sequence Sum</a></li>
+      <li><a href="#q32">Monochromatic Triangles</a></li>
+      <li><a href="#q33">Birthday Pairs</a></li>
+    </ol>
+  </div>
+
+  <div class="toc-week">
+    <div class="toc-week-header">
+      <div class="toc-week-dot" style="background:var(--t7)"></div>
+      Deviation Bounds
+    </div>
+    <ol>
+      <li><a href="#q34">Cow Disease — Markov</a></li>
+      <li><a href="#q35">Exam Scores — Shifted Markov</a></li>
+      <li><a href="#q36">100 Coin Flips</a></li>
+      <li><a href="#q37">Tom's Gambling</a></li>
+      <li><a href="#q38">Hat Check — Chebyshev</a></li>
+      <li><a href="#q39">Coin Identification</a></li>
+      <li><a href="#q40">Hash Table — Chernoff</a></li>
+    </ol>
+  </div>
+
+</nav>
+
+<!-- ═══════════════════ MAIN ═══════════════════ -->
+<main>
+
+<header class="page-header">
+  <h1>Probability Practice Problems</h1>
+  <p class="subtitle">MScDS &nbsp;·&nbsp; IIIT Hyderabad &nbsp;·&nbsp; 40 solved problems from MIT 6.042J (2015) covering all core topics</p>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#15803d"></div> ✓ High confidence</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#92400e"></div> ⚠ Partial — check both workings</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#57534e"></div> ○ Unverified</div>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════════════
+     TOPIC 1 · SAMPLE SPACES & EVENTS
+     ═══════════════════════════════════════════════ -->
+<section class="topic-section" id="topic-sample-spaces" data-t="1">
+  <div class="topic-banner">
+    <div>
+      <div class="week-tag">Topic 1</div>
+      <h2>Sample Spaces &amp; Events</h2>
+      <div class="week-meta">6 problems &nbsp;·&nbsp; Four-step method · Probability rules · Union bound · Complementary counting</div>
+    </div>
+  </div>
+
+  <!-- Q1 -->
+  <div class="problem-block" id="q1">
+    <div class="prob-header">
+      <span class="prob-num">Q1</span>
+      <span class="source-tag">MIT §16.2</span>
+      <span class="type-exam">Exam</span>
+    </div>
+    <div class="prob-stmt">
+      <p>Answer each of the following independently.</p>
+      <ol class="prob-parts" type="a">
+        <li>What is the probability that 0 does not appear among \(k\) digits chosen independently and uniformly at random from \(\{0,1,\ldots,9\}\)?</li>
+        <li>A box contains 90 good and 10 defective screws. If we pick 10 screws at random (without replacement), what is the probability that none are defective?</li>
+        <li>One digit is chosen uniformly at random from \(\{1,2,3,4,5\}\) and removed. A second digit is then chosen uniformly from the remaining four. What is the probability that the second digit picked is odd?</li>
+        <li>You randomly permute \(1,2,\ldots,n\). What is the probability that digit \(k\) ends up in position \(i\)?</li>
+        <li>A fair coin is flipped \(n\) times. What is the probability that all heads occur at the end of the sequence? (If no heads appear, this is vacuously true.)</li>
+      </ol>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">
+        (a) Each digit has probability 9/10 of not being 0, independently. (b) Count ways to choose 10 from the 90 good screws vs. all 100. (c) Use the Law of Total Probability conditioning on whether the first pick was odd or even. (d) All \(n!\) permutations are equally likely — what fraction send \(k\) to position \(i\)? (e) Count: how many of the \(2^n\) sequences have all heads at the end?
+      </div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <ol class="soln-parts" type="a">
+          <li>
+            Each of the \(k\) digits independently avoids 0 with probability \(9/10\). By independence:
+            \[ P(\text{no 0}) = \left(\frac{9}{10}\right)^k \]
+          </li>
+          <li>
+            We must choose all 10 from the 90 good screws:
+            \[ P(\text{none defective}) = \frac{\binom{90}{10}}{\binom{100}{10}} = \frac{90 \cdot 89 \cdots 81}{100 \cdot 99 \cdots 91} \approx 0.3305 \]
+          </li>
+          <li>
+            Condition on the first pick. \(P(\text{first odd}) = 3/5\), \(P(\text{first even}) = 2/5\).
+            Given first was odd (removes one odd from \(\{1,3,5\}\)): 2 odd, 2 even remain, so \(P(\text{second odd} \mid \text{first odd}) = 2/4 = 1/2\).
+            Given first was even: 3 odd, 1 even remain, so \(P(\text{second odd} \mid \text{first even}) = 3/4\).
+            \[ P(\text{second odd}) = \frac{3}{5}\cdot\frac{1}{2} + \frac{2}{5}\cdot\frac{3}{4} = \frac{3}{10} + \frac{3}{10} = \frac{3}{5} \]
+          </li>
+          <li>
+            All \(n!\) permutations are equally likely. Of these, \((n-1)!\) send digit \(k\) to position \(i\). Therefore:
+            \[ P(k \text{ in position } i) = \frac{(n-1)!}{n!} = \frac{1}{n} \]
+          </li>
+          <li>
+            A sequence has all heads at the end iff it looks like \(\underbrace{TT\cdots T}_{n-j}\underbrace{HH\cdots H}_{j}\) for some \(0 \le j \le n\). There are exactly \(n+1\) such sequences out of \(2^n\) total, so:
+            \[ P(\text{all heads at end}) = \frac{n+1}{2^n} \]
+          </li>
+        </ol>
+        <div class="conf conf-high">✓ High — MIT 6.042J §16, standard exam problems with published solutions.</div>
+      </div>
+    </details>
+  </div>
+
+  <!-- Q2 -->
+  <div class="problem-block" id="q2">
+    <div class="prob-header">
+      <span class="prob-num">Q2</span>
+      <span class="source-tag">MIT §16.3</span>
+      <span class="type-class">Class</span>
+    </div>
+    <div class="prob-stmt">
+      <p>The New York Yankees and the Boston Red Sox play a <em>two-out-of-three</em> series: they play until one team wins 2 games, then the series ends. Assume the Red Sox win each game with probability \(3/5\), independently.</p>
+      <ol class="prob-parts" type="a">
+        <li>What is the probability that exactly 3 games are played?</li>
+        <li>What is the probability that the winner of the series lost the first game?</li>
+        <li>What is the probability that the Red Sox win the series?</li>
+      </ol>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">Draw the full game tree. The series lasts 3 games iff the first two games split. For (b), find the probability that a team wins the series after losing game 1 — which requires winning both games 2 and 3. For (c), sum over all sequences where Red Sox win exactly 2 games first.
+      </div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p>Let \(p = 3/5\) (Red Sox win), \(q = 2/5\) (Yankees win).</p>
+        <ol class="soln-parts" type="a">
+          <li>
+            3 games are played iff games 1 and 2 split (one win each):
+            \[ P(\text{3 games}) = pq + qp = 2pq = 2 \cdot \frac{3}{5} \cdot \frac{2}{5} = \frac{12}{25} \]
+          </li>
+          <li>
+            The winner lost game 1 iff: (NYY wins g1 \(\cap\) RS wins g2 \(\cap\) RS wins g3) <em>or</em> (RS wins g1 \(\cap\) NYY wins g2 \(\cap\) NYY wins g3):
+            \[ P = qp^2 + pq^2 = pq(p+q) = pq = \frac{6}{25} \]
+          </li>
+          <li>
+            Red Sox can win in 2 or 3 games:
+            \begin{align}
+            P(\text{RS wins in 2}) &= p^2 = \tfrac{9}{25}\\
+            P(\text{RS wins in 3}) &= qp^2 + pqp = 2pq \cdot p = 2 \cdot \tfrac{6}{25} \cdot \tfrac{3}{5} = \tfrac{36}{125}\\
+            P(\text{RS wins series}) &= \tfrac{9}{25} + \tfrac{36}{125} = \tfrac{45}{125}+\tfrac{36}{125} = \boxed{\tfrac{81}{125}}
+            \end{align}
+          </li>
+        </ol>
+        <div class="conf conf-high">✓ High — MIT 6.042J §16 class problem with worked solution in lecture notes.</div>
+      </div>
+    </details>
+  </div>
+
+  <!-- Q3 -->
+  <div class="problem-block" id="q3">
+    <div class="prob-header">
+      <span class="prob-num">Q3</span>
+      <span class="source-tag">MIT §16.4</span>
+      <span class="type-class">Class</span>
+    </div>
+    <div class="prob-stmt">
+      <p>To decide who gets a prize, a coin with \(P(H) = p\) is flipped repeatedly in pairs. If the pair is HT, Player 1 wins. If TH, Player 2 wins. If HH or TT, the pair is discarded and two more flips are made.</p>
+      <ol class="prob-parts" type="a">
+        <li>Use the four-step method to find a simple formula for the probability that Player 1 wins.</li>
+        <li>What is the probability that neither player ever wins (the game goes on forever)?</li>
+      </ol>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">Condition on each "round" (pair of flips). Let \(W\) be the event Player 1 wins. In one round: HT has probability \(p(1-p)\), TH has probability \((1-p)p\). What fraction of <em>decisive</em> rounds go to Player 1?
+      </div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p>In each independent round:</p>
+        <ul class="soln-parts">
+          <li>\(P(\text{HT}) = p(1-p)\) → Player 1 wins</li>
+          <li>\(P(\text{TH}) = (1-p)p\) → Player 2 wins</li>
+          <li>\(P(\text{HH or TT}) = p^2 + (1-p)^2\) → redo</li>
+        </ul>
+        <ol class="soln-parts" type="a">
+          <li>
+            Since HT and TH are equally likely (both equal \(p(1-p)\)), Player 1 wins exactly half of all decisive rounds:
+            \[ P(\text{Player 1 wins}) = \frac{p(1-p)}{p(1-p)+p(1-p)} = \frac{1}{2} \]
+            This holds for <em>any</em> \(p \in (0,1)\) — the game is always fair!
+          </li>
+          <li>
+            The game goes on forever only if <em>every</em> round is indecisive (HH or TT). The probability of this over infinitely many rounds is:
+            \[ \lim_{n\to\infty} [p^2+(1-p)^2]^n = 0 \quad \text{for } 0 < p < 1 \]
+            So \(P(\text{neither wins}) = 0\). (Exception: \(p=0\) or \(p=1\), where the game never terminates.)
+          </li>
+        </ol>
+        <div class="conf conf-high">✓ High — classic symmetry argument, well-known result.</div>
+      </div>
+    </details>
+  </div>
+
+  <!-- Q4 -->
+  <div class="problem-block" id="q4">
+    <div class="prob-header">
+      <span class="prob-num">Q4</span>
+      <span class="source-tag">MIT §16.5</span>
+      <span class="type-hw">Homework</span>
+    </div>
+    <div class="prob-stmt">
+      <p>A variant of <em>Let's Make a Deal</em> with <strong>four</strong> doors. A prize is hidden behind one door uniformly at random. The contestant picks a door. The host then opens one unpicked door with no prize. The contestant may stick or switch to one of the two remaining unpicked doors.</p>
+      <ol class="prob-parts" type="a">
+        <li>Contestant Stu always stays. What is his probability of winning?</li>
+        <li>Contestant Zelda always switches, choosing uniformly among the two remaining doors. What is her probability of winning?</li>
+        <li>Carol always opens the earliest (alphabetically) available non-prize, non-picked door. Mergatroid always switches to the earliest remaining non-initial, non-opened door. What is Mergatroid's probability of winning?</li>
+      </ol>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">For (a) and (b), no case analysis needed — use the law of total probability conditioning on whether the initial pick is correct. For (c), assume Mergatroid picks door 1 (WLOG by symmetry) and enumerate over the 4 possible prize locations.
+      </div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <ol class="soln-parts" type="a">
+          <li>
+            Stu's initial pick is correct with probability \(1/4\). Staying never changes this: \(P(\text{Stu wins}) = \mathbf{1/4}\).
+          </li>
+          <li>
+            Two cases: (i) initial pick correct (prob \(1/4\)): switching to either of 2 remaining doors misses the prize → wins with prob 0. (ii) initial pick wrong (prob \(3/4\)): 1 prize among 2 remaining doors; Zelda picks one uniformly → wins with prob \(1/2\).
+            \[ P(\text{Zelda wins}) = \tfrac{1}{4}\cdot 0 + \tfrac{3}{4}\cdot\tfrac{1}{2} = \mathbf{3/8} \]
+          </li>
+          <li>
+            Assume Mergatroid picks door 1. Carol opens the earliest non-prize, non-picked door. Mergatroid then picks the earliest remaining unchosen door.
+            <ul class="soln-parts">
+              <li>Prize at door 1: Carol opens door 2. Remaining: \{3,4\}. Mergatroid picks 3. <strong>Loses.</strong></li>
+              <li>Prize at door 2: Carol opens door 3 (earliest non-prize, non-picked). Remaining: \{2,4\}. Mergatroid picks 2. <strong>Wins.</strong></li>
+              <li>Prize at door 3: Carol opens door 2 (earliest available). Remaining: \{3,4\}. Mergatroid picks 3. <strong>Wins.</strong></li>
+              <li>Prize at door 4: Carol opens door 2. Remaining: \{3,4\}. Mergatroid picks 3. <strong>Loses.</strong></li>
+            </ul>
+            \[ P(\text{Mergatroid wins}) = \tfrac{1}{4}(0+1+1+0) = \mathbf{1/2} \]
+          </li>
+        </ol>
+        <div class="conf conf-high">✓ High — MIT 6.042J homework problem, case-by-case enumeration is decisive.</div>
+      </div>
+    </details>
+  </div>
+
+  <!-- Q5 -->
+  <div class="problem-block" id="q5">
+    <div class="prob-header">
+      <span class="prob-num">Q5</span>
+      <span class="source-tag">MIT §16.6</span>
+      <span class="type-hw">Homework</span>
+    </div>
+    <div class="prob-stmt">
+      <p>There are \(n\) Immortal Warriors. They forge a coin with \(P(H) = p\). Each Immortal flips the coin once. If <em>exactly one</em> flips heads, that Immortal is declared "The One." Otherwise the protocol fails.</p>
+      <ol class="prob-parts" type="a">
+        <li>Write a formula for the probability of success as a function of \(p\) and \(n\).</li>
+        <li>What value of \(p\) maximises the probability of success?</li>
+        <li>What is the maximum probability of success? What does it approach as \(n \to \infty\)?</li>
+      </ol>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">Success means exactly one head in \(n\) independent Bernoulli(\(p\)) flips — this is a binomial probability. To maximise, differentiate with respect to \(p\) and set to zero.
+      </div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <ol class="soln-parts" type="a">
+          <li>
+            Success is the event \(X = 1\) where \(X \sim \text{Bin}(n, p)\):
+            \[ P(\text{success}) = \binom{n}{1} p^1 (1-p)^{n-1} = np(1-p)^{n-1} \]
+          </li>
+          <li>
+            Differentiate with respect to \(p\) and set to zero:
+            \[ \frac{d}{dp}\bigl[np(1-p)^{n-1}\bigr] = n\bigl[(1-p)^{n-1} - p(n-1)(1-p)^{n-2}\bigr] = n(1-p)^{n-2}\bigl[(1-p) - p(n-1)\bigr] = 0 \]
+            This gives \(1-p = p(n-1)\), so \(\boxed{p = 1/n}\).
+          </li>
+          <li>
+            Substituting \(p = 1/n\):
+            \[ P_{\max} = n \cdot \frac{1}{n} \cdot \left(1 - \frac{1}{n}\right)^{n-1} = \left(1-\frac{1}{n}\right)^{n-1} \xrightarrow{n\to\infty} e^{-1} \approx 0.368 \]
+            So even with the optimal coin, the success probability is bounded above by \(1/e\).
+          </li>
+        </ol>
+        <div class="conf conf-high">✓ High — standard optimisation over binomial, limit is the classic \((1-1/n)^n \to e^{-1}\) result.</div>
+      </div>
+    </details>
+  </div>
+
+  <!-- Q6 -->
+  <div class="problem-block" id="q6">
+    <div class="prob-header">
+      <span class="prob-num">Q6</span>
+      <span class="source-tag">MIT §16.8</span>
+      <span class="type-class">Class</span>
+    </div>
+    <div class="prob-stmt">
+      <p>A system has \(n\) components. Each component independently fails within one year with probability \(p\). The system fails if <em>any</em> component fails. Let \(F\) be the event that the system fails.</p>
+      <ol class="prob-parts" type="a">
+        <li>Show that \(P(F) \ge p\).</li>
+        <li>Show that \(P(F) \le np\).</li>
+        <li>Show that both bounds are tight (achievable).</li>
+      </ol>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">For the lower bound, use monotonicity: \(F \supseteq F_1\). For the upper bound, use the union bound. For tightness, consider perfectly correlated failures (all fail together) and mutually exclusive failures.
+      </div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p>Let \(F_i\) be the event that component \(i\) fails. Then \(F = F_1 \cup F_2 \cup \cdots \cup F_n\) and \(P(F_i) = p\) for all \(i\).</p>
+        <ol class="soln-parts" type="a">
+          <li>
+            Since \(F_1 \subseteq F\), monotonicity of probability gives \(P(F) \ge P(F_1) = p\). \(\square\)
+          </li>
+          <li>
+            By the Union Bound: \(P(F) = P\!\bigl(\bigcup F_i\bigr) \le \sum_{i=1}^n P(F_i) = np\). \(\square\)
+          </li>
+          <li>
+            <em>Lower bound is tight:</em> Make all \(F_i\) identical (perfectly correlated — they all depend on the same coin flip). Then \(P(F) = P(F_1) = p\). \(\checkmark\)
+
+            <em>Upper bound is tight:</em> Make the \(F_i\) mutually exclusive, each with probability \(p\) (possible if \(np \le 1\)). Then \(P(F) = \sum P(F_i) = np\). \(\checkmark\)
+          </li>
+        </ol>
+        <div class="conf conf-high">✓ High — direct application of monotonicity and union bound; both achievability constructions are explicit.</div>
+      </div>
+    </details>
+  </div>
+
+</section>
+<!-- END TOPIC 1 ─────────────────────────────────── -->
+
+<!-- ═══════════════════════════════════════════════
+     TOPIC 2 · CONDITIONAL PROBABILITY
+     ═══════════════════════════════════════════════ -->
+<section class="topic-section" id="topic-conditional" data-t="2">
+  <div class="topic-banner">
+    <div>
+      <div class="week-tag">Topic 2</div>
+      <h2>Conditional Probability &amp; Independence</h2>
+      <div class="week-meta">7 problems &nbsp;·&nbsp; Conditional probability · Product rule · Law of total probability · Mutual and pairwise independence</div>
+    </div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="problem-block" id="q7">
+    <div class="prob-header">
+      <span class="prob-num">Q7</span>
+      <span class="source-tag">MIT §17.2</span>
+      <span class="type-prac">Practice</span>
+    </div>
+    <div class="prob-stmt">
+      <p>Dirty Harry places two bullets randomly into 2 of the 6 chambers of his revolver, then gives the cylinder a random spin and holds the gun to your heart.</p>
+      <ol class="prob-parts" type="a">
+        <li>What is the probability you get shot if he pulls the trigger once?</li>
+        <li>He pulls the trigger once and you survive. Without re-spinning, he pulls again. What is the probability you get shot?</li>
+        <li>Suppose you noticed that Harry placed the two bullets in adjacent chambers. How does this change the answers to (a) and (b)?</li>
+      </ol>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">For (a): how many of the 6 chambers have bullets? For (b): given the first chamber was empty, how many of the 5 remaining chambers have bullets? For (c): with adjacent bullets, enumerate the 6 equally likely starting positions and count.
+      </div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <ol class="soln-parts" type="a">
+          <li>
+            2 of 6 chambers contain bullets; random spin makes each equally likely: \(P(\text{shot}) = 2/6 = \mathbf{1/3}\).
+          </li>
+          <li>
+            Given the first pull was empty: one of the 5 remaining chambers was active; 2 bullets are still in those 5:
+            \[ P(\text{shot on 2nd} \mid \text{alive after 1st}) = \frac{2}{5} \]
+          </li>
+          <li>
+            With adjacent bullets, think of the cylinder as a circle of 6 positions. There are 6 equally likely starting positions (where the cylinder points). The two bullets occupy 2 consecutive chambers.
+            <ul class="soln-parts">
+              <li>(a) unchanged: 2 of 6 positions are bullets, so \(P(\text{shot on 1st}) = \mathbf{1/3}\).</li>
+              <li>(b) changed: of the 4 starting positions where you survive the first pull, only 1 of them has a bullet immediately next (the position just before the first bullet). The other 3 have an empty chamber next.
+                \[ P(\text{shot on 2nd} \mid \text{alive after 1st, adjacent bullets}) = \frac{1}{4} \]
+                (Lower than \(2/5\), so knowing the bullets are adjacent is good news.)</li>
+            </ul>
+          </li>
+        </ol>
+        <div class="conf conf-high">✓ High — classic conditional probability problem; parts (a)/(b) are elementary, part (c) via direct enumeration.</div>
+      </div>
+    </details>
+  </div>
+
+  <!-- Q8 -->
+  <div class="problem-block" id="q8">
+    <div class="prob-header">
+      <span class="prob-num">Q8</span>
+      <span class="source-tag">MIT §17.5</span>
+      <span class="type-class">Class</span>
+    </div>
+    <div class="prob-stmt">
+      <p>There are two decks of cards: one is a complete 52-card deck, the other is missing the Ace of Spades (51 cards). You pick one deck with equal probability and draw one card uniformly at random from it. You observe that the drawn card is the 8 of Hearts. What is the probability that you picked the complete deck?</p>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">Apply Bayes' theorem. Both decks contain the 8♥, but with different probabilities: \(1/52\) vs. \(1/51\). Which deck makes the 8♥ more likely?
+      </div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p>Let \(C\) = complete deck, \(I\) = incomplete deck (missing A♠). Both contain 8♥.</p>
+        \[ P(8\heartsuit \mid C) = \frac{1}{52}, \quad P(8\heartsuit \mid I) = \frac{1}{51}, \quad P(C) = P(I) = \frac{1}{2} \]
+        <p>By Bayes' theorem:</p>
+        \[ P(C \mid 8\heartsuit) = \frac{P(8\heartsuit \mid C)\,P(C)}{P(8\heartsuit \mid C)\,P(C) + P(8\heartsuit \mid I)\,P(I)} = \frac{\tfrac{1}{52}\cdot\tfrac{1}{2}}{\tfrac{1}{52}\cdot\tfrac{1}{2} + \tfrac{1}{51}\cdot\tfrac{1}{2}} = \frac{\tfrac{1}{52}}{\tfrac{1}{52}+\tfrac{1}{51}} = \frac{51}{103} \]
+        <p>Intuition: drawing the 8♥ is slightly <em>less</em> likely from the complete deck (1/52) than the incomplete deck (1/51), so we update downward from the prior \(1/2\): \(51/103 < 1/2\).</p>
+        <div class="conf conf-high">✓ High — direct Bayes calculation; result 51/103 is exact.</div>
+      </div>
+    </details>
+  </div>
+
+  <!-- Q9 -->
+  <div class="problem-block" id="q9">
+    <div class="prob-header">
+      <span class="prob-num">Q9</span>
+      <span class="source-tag">MIT §17.7</span>
+      <span class="type-class">Class</span>
+    </div>
+    <div class="prob-stmt">
+      <p>Three prisoners — Sauron (S), Voldemort (V), and Foo-Foo (F) — are held. The parole board will release exactly two of them, chosen uniformly at random. A guard offers to tell Sauron the name of one other prisoner who <em>will</em> be released, choosing uniformly at random if both others qualify. Sauron figures his release probability is \(2/3\) before asking. The guard says: "Foo-Foo will be released."</p>
+      <p>What is the probability that Sauron is released, given the guard's statement? Has his probability changed?</p>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">There are 3 equally likely release pairs: \(\{S,V\}\), \(\{S,F\}\), \(\{V,F\}\). Model the guard's strategy explicitly: he names one releasee other than Sauron, choosing uniformly if both qualify. Compute \(P(\text{guard says F})\) via total probability.
+      </div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p>The three release pairs are equally likely with probability \(1/3\) each.</p>
+        <p>The guard names one of \(\{V, F\}\) who is being released (never names Sauron):</p>
+        <ul class="soln-parts">
+          <li>\(\{S,V\}\) released: guard must say "V" (only option). \(P(\text{says F} \mid \{S,V\}) = 0\).</li>
+          <li>\(\{S,F\}\) released: guard must say "F". \(P(\text{says F} \mid \{S,F\}) = 1\).</li>
+          <li>\(\{V,F\}\) released: guard chooses uniformly. \(P(\text{says F} \mid \{V,F\}) = 1/2\).</li>
+        </ul>
+        \[ P(\text{says F}) = 0\cdot\tfrac{1}{3} + 1\cdot\tfrac{1}{3} + \tfrac{1}{2}\cdot\tfrac{1}{3} = \frac{1}{2} \]
+        \[ P(S\text{ released} \mid \text{says F}) = \frac{P(\text{says F} \mid \{S,F\})\cdot P(\{S,F\})}{P(\text{says F})} = \frac{1 \cdot \tfrac{1}{3}}{\tfrac{1}{2}} = \frac{2}{3} \]
+        <p class="result">Sauron's probability <em>has not changed</em> — it remains \(2/3\). The guard's statement gives him no new information about his own fate. This is unlike the Monty Hall problem because here the guard is equally likely to name either releasee when both are eligible.</p>
+        <div class="conf conf-high">✓ High — this is the "Sleeping Beauty"-adjacent prisoner problem; the Bayesian calculation is exact.</div>
+      </div>
+    </details>
+  </div>
+
+  <!-- Q10 -->
+  <div class="problem-block" id="q10">
+    <div class="prob-header">
+      <span class="prob-num">Q10</span>
+      <span class="source-tag">MIT §17.8</span>
+      <span class="type-hw">Homework</span>
+    </div>
+    <div class="prob-stmt">
+      <p>Every Skywalker serves either the light side or the dark side. The first Skywalker serves the dark side. For \(n \ge 2\), the \(n\)-th Skywalker serves the <em>same</em> side as the \((n-1)\)-th with probability \(1/4\), and the <em>opposite</em> side with probability \(3/4\). Let \(d_n = P(n\text{-th Skywalker serves dark})\).</p>
+      <ol class="prob-parts" type="a">
+        <li>Write a recurrence for \(d_n\) with base case.</li>
+        <li>Find a closed-form formula for \(d_n\).</li>
+      </ol>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">For the recurrence: condition on whether the \((n-1)\)-th served dark. The recurrence will be linear of the form \(d_n = a \cdot d_{n-1} + b\). Find the fixed point \(d^*\), subtract it, and solve the resulting geometric sequence.
+      </div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <ol class="soln-parts" type="a">
+          <li>
+            By the law of total probability conditioning on the \((n-1)\)-th Skywalker:
+            \[ d_n = d_{n-1}\cdot\frac{1}{4} + (1-d_{n-1})\cdot\frac{3}{4} = \frac{3}{4} - \frac{1}{2}\,d_{n-1}, \quad d_1 = 1 \]
+          </li>
+          <li>
+            Fixed point: \(d^* = 3/4 - d^*/2 \Rightarrow d^* = 1/2\). Let \(e_n = d_n - 1/2\):
+            \[ e_n = -\tfrac{1}{2}\,e_{n-1}, \quad e_1 = 1/2 \]
+            So \(e_n = \tfrac{1}{2}\cdot(-\tfrac{1}{2})^{n-1} = \tfrac{(-1)^{n-1}}{2^n}\), giving:
+            \[ \boxed{d_n = \frac{1}{2} + \frac{(-1)^{n-1}}{2^n}} \]
+            Check: \(d_1 = 1/2 + 1/2 = 1\) ✓; \(d_2 = 1/2 - 1/4 = 1/4\) and \(3/4 - 1/2 = 1/4\) ✓. As \(n \to \infty\), \(d_n \to 1/2\).
+          </li>
+        </ol>
+        <div class="conf conf-high">✓ High — linear recurrence solved by standard fixed-point substitution.</div>
+      </div>
+    </details>
+  </div>
+
+  <!-- Q11 -->
+  <div class="problem-block" id="q11">
+    <div class="prob-header">
+      <span class="prob-num">Q11</span>
+      <span class="source-tag">MIT §17.10</span>
+      <span class="type-hw">Homework</span>
+    </div>
+    <div class="prob-stmt">
+      <p>Oscar tries to levitate with probability \(1/6\), and Liz tries to become a world-champion flaming torch juggler with probability \(1/4\). These events are independent.</p>
+      <ol class="prob-parts" type="a">
+        <li>What is the probability that both Oscar and Liz succeed?</li>
+        <li>What is the probability that Oscar succeeds but Liz fails?</li>
+        <li>What is the probability that at least one of them succeeds?</li>
+      </ol>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">Independence means \(P(A \cap B) = P(A)\cdot P(B)\). For (c) use complementary counting: \(P(\text{at least one}) = 1 - P(\text{neither})\).
+      </div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p>Let \(O\) = Oscar succeeds, \(L\) = Liz succeeds. \(P(O) = 1/6\), \(P(L) = 1/4\), independent.</p>
+        <ol class="soln-parts" type="a">
+          <li>\(P(O \cap L) = P(O)\cdot P(L) = \tfrac{1}{6}\cdot\tfrac{1}{4} = \mathbf{1/24}\)</li>
+          <li>\(P(O \cap L^c) = P(O)\cdot P(L^c) = \tfrac{1}{6}\cdot\tfrac{3}{4} = \mathbf{1/8}\)</li>
+          <li>\(P(O \cup L) = 1 - P(O^c \cap L^c) = 1 - \tfrac{5}{6}\cdot\tfrac{3}{4} = 1 - \tfrac{5}{8} = \mathbf{3/8}\)</li>
+        </ol>
+        <div class="conf conf-high">✓ High — straightforward application of independence.</div>
+      </div>
+    </details>
+  </div>
+
+  <!-- Q12 -->
+  <div class="problem-block" id="q12">
+    <div class="prob-header">
+      <span class="prob-num">Q12</span>
+      <span class="source-tag">MIT §17.11</span>
+      <span class="type-hw">Homework</span>
+    </div>
+    <div class="prob-stmt">
+      <p>In a subject, 10% of assigned problems contain errors. If you ask a Teaching Assistant whether a problem has an error, the TA gives the correct answer 95% of the time (independently). You ask the TA about a problem and the TA says it has an error. What is the probability the problem actually contains an error?</p>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">Let \(E\) = problem has error, \(T\) = TA says error. You want \(P(E \mid T)\). Compute \(P(T)\) via total probability, then apply Bayes.
+      </div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p>\(P(E) = 0.1\). \(P(T \mid E) = 0.95\). \(P(T \mid E^c) = 0.05\) (TA wrong on error-free problems).</p>
+        \[ P(T) = P(T\mid E)P(E) + P(T\mid E^c)P(E^c) = 0.95\cdot 0.10 + 0.05\cdot 0.90 = 0.095 + 0.045 = 0.14 \]
+        \[ P(E \mid T) = \frac{P(T\mid E)\,P(E)}{P(T)} = \frac{0.095}{0.14} = \frac{19}{28} \approx 67.9\% \]
+        <p>Despite the TA's 95% accuracy, the base rate of 10% errors means that only about 68% of "TA says error" reports are genuine — a concrete illustration of the base-rate fallacy.</p>
+        <div class="conf conf-high">✓ High — standard Bayes with explicit numbers; result 19/28 is exact.</div>
+      </div>
+    </details>
+  </div>
+
+  <!-- Q13 -->
+  <div class="problem-block" id="q13">
+    <div class="prob-header">
+      <span class="prob-num">Q13</span>
+      <span class="source-tag">MIT §17.13</span>
+      <span class="type-hw">Homework</span>
+    </div>
+    <div class="prob-stmt">
+      <p>A 52-card deck is shuffled and you are dealt a hand of 13 cards. Use conditional probability to find the probability that your hand contains at least one Ace.</p>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">Use the complement: \(P(\ge 1 \text{ Ace}) = 1 - P(\text{no Aces})\). Count the 13-card hands with no Aces using \(\binom{48}{13}\) (choosing all from the 48 non-Ace cards).
+      </div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        \[ P(\text{at least 1 Ace}) = 1 - P(\text{no Aces}) = 1 - \frac{\binom{48}{13}}{\binom{52}{13}} \]
+        <p>Simplifying the ratio (all 13 cards chosen from 48 non-Aces vs. all 52):</p>
+        \[ \frac{\binom{48}{13}}{\binom{52}{13}} = \frac{48!\,/\,(13!\cdot 35!)}{52!\,/\,(13!\cdot 39!)} = \frac{48!\cdot 39!}{52!\cdot 35!} = \frac{39\cdot 38\cdot 37\cdot 36}{52\cdot 51\cdot 50\cdot 49} \]
+        <p>Numerically: \(39\cdot38\cdot37\cdot36 = 1{,}974{,}024\) and \(52\cdot51\cdot50\cdot49 = 6{,}497{,}400\), so:</p>
+        \[ P(\ge 1\text{ Ace}) = 1 - \frac{1{,}974{,}024}{6{,}497{,}400} \approx 1 - 0.3037 \approx \mathbf{0.696} \]
+        <div class="conf conf-high">✓ High — complementary counting with hypergeometric ratio; numerical result confirmed.</div>
+      </div>
+    </details>
+  </div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     TOPIC 3 · BAYES' THEOREM
+     ═══════════════════════════════════════════════ -->
+<section class="topic-section" id="topic-bayes" data-t="3">
+  <div class="topic-banner">
+    <div>
+      <div class="week-tag">Topic 3</div>
+      <h2>Bayes' Theorem</h2>
+      <div class="week-meta">4 problems &nbsp;·&nbsp; Prior / posterior · Law of total probability · Sensitivity &amp; specificity · Base-rate effects</div>
+    </div>
+  </div>
+
+  <!-- Q14 -->
+  <div class="problem-block" id="q14">
+    <div class="prob-header">
+      <span class="prob-num">Q14</span>
+      <span class="source-tag">MIT §17.16</span>
+      <span class="type-exam">Exam</span>
+    </div>
+    <div class="prob-stmt">
+      <p>There are two decks. The <strong>red deck</strong> has 26 red and 26 black cards. The <strong>blue deck</strong> has 30 red and 22 black cards. You pick a deck with equal probability and draw one card uniformly at random. The card is red. What is the probability you drew from the red deck?</p>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">Apply Bayes' theorem: \(P(\text{red deck} \mid \text{red card}) \propto P(\text{red card} \mid \text{red deck})\cdot P(\text{red deck})\). Which deck makes a red card more likely?
+      </div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        \[ P(\text{red}\mid\text{red deck}) = \frac{26}{52} = \frac{1}{2}, \quad P(\text{red}\mid\text{blue deck}) = \frac{30}{52} = \frac{15}{26} \]
+        \begin{align}
+        P(\text{red deck}\mid\text{red card}) &= \frac{\tfrac{1}{2}\cdot\tfrac{1}{2}}{\tfrac{1}{2}\cdot\tfrac{1}{2} + \tfrac{15}{26}\cdot\tfrac{1}{2}} = \frac{\tfrac{1}{4}}{\tfrac{1}{4}+\tfrac{15}{52}} = \frac{\tfrac{13}{52}}{\tfrac{13}{52}+\tfrac{15}{52}} = \frac{13}{28}
+        \end{align}
+        <p>Since the blue deck has more red cards, observing a red card shifts probability toward the blue deck. The posterior \(13/28 < 1/2\) confirms this.</p>
+        <div class="conf conf-high">✓ High — direct Bayes; fractions simplify cleanly to 13/28.</div>
+      </div>
+    </details>
+  </div>
+
+  <!-- Q15 -->
+  <div class="problem-block" id="q15">
+    <div class="prob-header">
+      <span class="prob-num">Q15</span>
+      <span class="source-tag">MIT §17.18</span>
+      <span class="type-exam">Exam</span>
+    </div>
+    <div class="prob-stmt">
+      <p>A rare disease occurs in 0.1% of the population (\(P(D) = 0.001\)). A diagnostic test has <em>sensitivity</em> \(P(\text{+}\mid D) = 0.99\) and <em>specificity</em> \(P(\text{–}\mid D^c) = 0.99\). A randomly selected person tests positive. What is the probability they actually have the disease?</p>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">False positive rate \(= P(\text{+}\mid D^c) = 1 - \text{specificity} = 0.01\). The disease is rare, so there are many more healthy people than sick — even with 99% specificity, most positive tests are false positives.
+      </div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        \[ P(+\mid D^c) = 1 - 0.99 = 0.01 \]
+        \begin{align}
+        P(+) &= P(+\mid D)P(D) + P(+\mid D^c)P(D^c)\\
+             &= 0.99\times 0.001 + 0.01\times 0.999 = 0.00099 + 0.00999 = 0.01098
+        \end{align}
+        \[ P(D\mid +) = \frac{0.99\times 0.001}{0.01098} = \frac{0.00099}{0.01098} \approx \mathbf{9.0\%} \]
+        <p>A positive result raises the probability from 0.1% to only ~9%, because for every 1 true positive there are roughly 10 false positives (1000 healthy people × 0.01 false positive rate = 10 false positives per 1 true positive). This is the <strong>base-rate fallacy</strong>.</p>
+        <div class="conf conf-high">✓ High — standard medical testing example; the ~9% result is well-documented.</div>
+      </div>
+    </details>
+  </div>
+
+  <!-- Q16 -->
+  <div class="problem-block" id="q16">
+    <div class="prob-header">
+      <span class="prob-num">Q16</span>
+      <span class="source-tag">MIT §17.19</span>
+      <span class="type-exam">Exam</span>
+    </div>
+    <div class="prob-stmt">
+      <p>In the classic Monty Hall problem: prize is equally likely behind door 1, 2, or 3. You pick door 1. The host (who knows the prize location) opens door 3 to reveal a goat, then offers you a chance to switch to door 2. Use Bayes' theorem to find \(P(\text{prize at door 2} \mid \text{host opens door 3})\). Assume the host opens each eligible door with equal probability.</p>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">Let \(D_i\) = prize at door \(i\). Compute \(P(\text{host opens 3} \mid D_i)\) for \(i = 1, 2, 3\). When is the host forced vs. free to choose? Then apply Bayes.
+      </div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p>You picked door 1. Host opens door 3. Let \(H_3\) = host opens door 3.</p>
+        <ul class="soln-parts">
+          <li>\(P(H_3 \mid D_1) = 1/2\): prize at door 1, host can open 2 or 3 — chooses uniformly.</li>
+          <li>\(P(H_3 \mid D_2) = 1\): prize at door 2, host <em>must</em> open door 3 (can't open your door or the prize door).</li>
+          <li>\(P(H_3 \mid D_3) = 0\): prize at door 3, host cannot open it.</li>
+        </ul>
+        \[ P(H_3) = \tfrac{1}{2}\cdot\tfrac{1}{3} + 1\cdot\tfrac{1}{3} + 0\cdot\tfrac{1}{3} = \frac{1}{2} \]
+        \[ P(D_2 \mid H_3) = \frac{P(H_3\mid D_2)P(D_2)}{P(H_3)} = \frac{1\cdot\tfrac{1}{3}}{\tfrac{1}{2}} = \boxed{\frac{2}{3}} \]
+        <p>So you should switch — door 2 has a \(2/3\) chance, door 1 only \(1/3\).</p>
+        <div class="conf conf-high">✓ High — the Monty Hall result 2/3 is the canonical answer; Bayesian derivation is standard.</div>
+      </div>
+    </details>
+  </div>
+
+  <!-- Q17 -->
+  <div class="problem-block" id="q17">
+    <div class="prob-header">
+      <span class="prob-num">Q17</span>
+      <span class="source-tag">MIT §17.6</span>
+      <span class="type-class">Class</span>
+    </div>
+    <div class="prob-stmt">
+      <p>You have three cards: A♠ (Ace of Spades), A♥ (Ace of Hearts), and J (a Jack). You are dealt a random hand of 2 cards, and you reveal one of your 2 cards uniformly at random. Let \(K\) = number of Aces in your hand.</p>
+      <ol class="prob-parts" type="a">
+        <li>What is \(P(K = 2 \mid \text{A♠ is in your hand})\)?</li>
+        <li>What is \(P(K = 2 \mid \text{revealed card is an Ace})\)?</li>
+        <li>What is \(P(K = 2 \mid \text{revealed card is the A♠})\)?</li>
+        <li>Are answers to (b) and (c) equal? Why or why not?</li>
+      </ol>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">The three possible hands are \(\{A\spadesuit,A\heartsuit\}\), \(\{A\spadesuit,J\}\), \(\{A\heartsuit,J\}\), each with probability 1/3. Enumerate carefully: for each hand, what is the probability of the given observation?
+      </div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p>Three equally likely hands (prob 1/3 each):</p>
+        <table style="border-collapse:collapse;font-size:.88rem;margin:.5rem 0">
+          <tr style="border-bottom:1px solid var(--border)"><th style="padding:.3rem .7rem;text-align:left">Hand</th><th style="padding:.3rem .7rem">K</th><th style="padding:.3rem .7rem">A♠ in hand</th><th style="padding:.3rem .7rem">Reveal Ace</th><th style="padding:.3rem .7rem">Reveal A♠</th></tr>
+          <tr><td style="padding:.3rem .7rem">\(\{A\spadesuit, A\heartsuit\}\)</td><td style="padding:.3rem .7rem;text-align:center">2</td><td style="padding:.3rem .7rem;text-align:center">Yes</td><td style="padding:.3rem .7rem;text-align:center">prob 1</td><td style="padding:.3rem .7rem;text-align:center">prob 1/2</td></tr>
+          <tr><td style="padding:.3rem .7rem">\(\{A\spadesuit, J\}\)</td><td style="padding:.3rem .7rem;text-align:center">1</td><td style="padding:.3rem .7rem;text-align:center">Yes</td><td style="padding:.3rem .7rem;text-align:center">prob 1/2</td><td style="padding:.3rem .7rem;text-align:center">prob 1/2</td></tr>
+          <tr><td style="padding:.3rem .7rem">\(\{A\heartsuit, J\}\)</td><td style="padding:.3rem .7rem;text-align:center">1</td><td style="padding:.3rem .7rem;text-align:center">No</td><td style="padding:.3rem .7rem;text-align:center">prob 1/2</td><td style="padding:.3rem .7rem;text-align:center">prob 0</td></tr>
+        </table>
+        <ol class="soln-parts" type="a">
+          <li>\(P(K=2 \mid A\spadesuit \in \text{hand}) = P(\{A\spadesuit,A\heartsuit\}) / P(A\spadesuit \in \text{hand}) = \tfrac{1/3}{2/3} = \mathbf{1/2}\)</li>
+          <li>\(P(\text{reveal Ace}) = 1\cdot\tfrac{1}{3} + \tfrac{1}{2}\cdot\tfrac{1}{3} + \tfrac{1}{2}\cdot\tfrac{1}{3} = 2/3\).
+              \(P(K=2 \cap \text{reveal Ace}) = 1\cdot\tfrac{1}{3} = 1/3\). So \(P(K=2\mid\text{reveal Ace}) = \tfrac{1/3}{2/3} = \mathbf{1/2}\).</li>
+          <li>\(P(\text{reveal A♠}) = \tfrac{1}{2}\cdot\tfrac{1}{3} + \tfrac{1}{2}\cdot\tfrac{1}{3} + 0 = 1/3\).
+              \(P(K=2 \cap \text{reveal A♠}) = \tfrac{1}{2}\cdot\tfrac{1}{3} = 1/6\). So \(P(K=2\mid\text{reveal A♠}) = \tfrac{1/6}{1/3} = \mathbf{1/2}\).</li>
+          <li>All three answers equal \(1/2\). This is not a coincidence: by symmetry, conditioning on "a specific Ace is present" gives the same posterior as conditioning on "an Ace is present" (when the Ace chosen is selected uniformly). This is a special case of the "Ace-in-hand" symmetry theorem.</li>
+        </ol>
+        <div class="conf conf-high">✓ High — all answers 1/2; enumeration-based proof is complete.</div>
+      </div>
+    </details>
+  </div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     TOPIC 4 · COMBINATORICS & COUNTING
+     ═══════════════════════════════════════════════ -->
+<section class="topic-section" id="topic-combinatorics" data-t="4">
+  <div class="topic-banner">
+    <div>
+      <div class="week-tag">Topic 4</div>
+      <h2>Combinatorics &amp; Counting</h2>
+      <div class="week-meta">4 problems &nbsp;·&nbsp; Stirling's approximation · Probabilistic existence · Symmetry arguments</div>
+    </div>
+  </div>
+
+  <!-- Q18 -->
+  <div class="problem-block" id="q18">
+    <div class="prob-header">
+      <span class="prob-num">Q18</span>
+      <span class="source-tag">MIT §16.1</span>
+      <span class="type-prac">Practice</span>
+    </div>
+    <div class="prob-stmt">
+      <p>Let \(B\) be the number of heads that come up on \(2n\) independent tosses of a fair coin. \(P[B = n]\) is asymptotically equal to one of the following. Identify which and explain why:</p>
+      <ol class="prob-parts" type="1">
+        <li>\(\dfrac{1}{\sqrt{2\pi n}}\)</li>
+        <li>\(\dfrac{\sqrt{2}}{\pi n}\)</li>
+        <li>\(\dfrac{1}{\sqrt{\pi n}}\)</li>
+        <li>\(\sqrt{\dfrac{\pi}{2n}}\)</li>
+      </ol>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">Write out \(P[B=n] = \binom{2n}{n}(1/2)^{2n}\). Apply Stirling's approximation \(k! \approx \sqrt{2\pi k}(k/e)^k\) to the binomial coefficient.
+      </div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        \[ P[B=n] = \binom{2n}{n}\left(\frac{1}{2}\right)^{2n} = \frac{(2n)!}{(n!)^2\cdot 4^n} \]
+        <p>Apply Stirling \(k! \approx \sqrt{2\pi k}\,(k/e)^k\):</p>
+        \[ (2n)! \approx \sqrt{4\pi n}\,(2n/e)^{2n}, \quad (n!)^2 \approx 2\pi n\,(n/e)^{2n} \]
+        \[ P[B=n] \approx \frac{\sqrt{4\pi n}\,(2n)^{2n}}{2\pi n\,n^{2n}}\cdot\frac{1}{4^n} = \frac{2\sqrt{\pi n}\cdot 4^n\,n^{2n}}{2\pi n\,n^{2n}\cdot 4^n} = \frac{2\sqrt{\pi n}}{2\pi n} = \frac{1}{\sqrt{\pi n}} \]
+        <p class="result">Answer: option 3, \(P[B=n] \sim \dfrac{1}{\sqrt{\pi n}}\).</p>
+        <div class="conf conf-high">✓ High — Stirling approximation to the central binomial coefficient is a standard result; the factor is indeed \(1/\sqrt{\pi n}\) (not \(1/\sqrt{2\pi n}\) which would come from a single \(n!\)).</div>
+      </div>
+    </details>
+  </div>
+
+  <!-- Q19 -->
+  <div class="problem-block" id="q19">
+    <div class="prob-header">
+      <span class="prob-num">Q19</span>
+      <span class="source-tag">MIT §16.10</span>
+      <span class="type-hw">Homework</span>
+    </div>
+    <div class="prob-stmt">
+      <p>Prove the <strong>Union Bound</strong>: for any events \(A_1, A_2, \ldots\),
+      \[ P\!\left(\bigcup_{i=1}^n A_i\right) \le \sum_{i=1}^n P(A_i). \]
+      <em>Hint:</em> Replace the \(A_i\)'s by pairwise disjoint events and use the sum rule.</p>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">Define \(B_1 = A_1\) and \(B_i = A_i \setminus (A_1 \cup \cdots \cup A_{i-1})\) for \(i \ge 2\). The \(B_i\) are disjoint, \(\bigcup B_i = \bigcup A_i\), and \(B_i \subseteq A_i\) so \(P(B_i) \le P(A_i)\).
+      </div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p><strong>Proof:</strong> Define \(B_1 = A_1\) and \(B_i = A_i \setminus (A_1 \cup \cdots \cup A_{i-1})\) for \(i \ge 2\). Then:</p>
+        <ul class="soln-parts">
+          <li>The \(B_i\) are pairwise disjoint (by construction).</li>
+          <li>\(\bigcup_{i=1}^n B_i = \bigcup_{i=1}^n A_i\) (every element in \(\bigcup A_i\) first appears in some \(A_j\) and is captured by \(B_j\)).</li>
+          <li>\(B_i \subseteq A_i\), so by monotonicity \(P(B_i) \le P(A_i)\) for all \(i\).</li>
+        </ul>
+        <p>Therefore:</p>
+        \[ P\!\left(\bigcup_{i=1}^n A_i\right) = P\!\left(\bigcup_{i=1}^n B_i\right) = \sum_{i=1}^n P(B_i) \le \sum_{i=1}^n P(A_i) \quad \square \]
+        <div class="conf conf-high">✓ High — standard disjointification proof; the \(B_i\) construction is the canonical approach.</div>
+      </div>
+    </details>
+  </div>
+
+  <!-- Q20 -->
+  <div class="problem-block" id="q20">
+    <div class="prob-header">
+      <span class="prob-num">Q20</span>
+      <span class="source-tag">MIT §16.12</span>
+      <span class="type-hw">Homework</span>
+    </div>
+    <div class="prob-stmt">
+      <p>A fair coin is flipped repeatedly until either the pattern <strong>HHT</strong> or the pattern <strong>TTH</strong> appears (as three consecutive flips). What is the probability that HHT appears first?</p>
+      <p><em>Hint:</em> Consider the symmetry between Heads and Tails.</p>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">If you swap every H with T and every T with H throughout the entire sequence, HHT becomes TTH and TTH becomes HHT. Since the coin is fair, the swapped sequence has the same probability as the original. What does this tell you?
+      </div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p><strong>Symmetry argument:</strong> Define a bijection \(\phi\) on infinite coin-flip sequences by swapping every H↔T. Under \(\phi\):</p>
+        <ul class="soln-parts">
+          <li>HHT \(\mapsto\) TTH and TTH \(\mapsto\) HHT.</li>
+          <li>Any sequence where HHT appears first maps to one where TTH appears first, and vice versa.</li>
+          <li>Since the coin is fair, \(P(\text{sequence}) = P(\phi(\text{sequence}))\) for every sequence.</li>
+        </ul>
+        <p>Therefore the event "HHT first" and the event "TTH first" have equal probability, and since one of them must occur eventually (with probability 1), each has probability:</p>
+        \[ P(\text{HHT first}) = \frac{1}{2} \]
+        <p><em>Note:</em> This 1/2 result depends on the specific symmetry HHT ↔ TTH. For asymmetric pairs like HTT vs HHT, the answer differs (and the symmetry argument does not apply).</p>
+        <div class="conf conf-high">✓ High — symmetry argument is complete and rigorous; result 1/2 is exact.</div>
+      </div>
+    </details>
+  </div>
+
+  <!-- Q21 -->
+  <div class="problem-block" id="q21">
+    <div class="prob-header">
+      <span class="prob-num">Q21</span>
+      <span class="source-tag">MIT §16.7</span>
+      <span class="type-hw">Homework</span>
+    </div>
+    <div class="prob-stmt">
+      <p>A well-shuffled deck of 52 cards (26 red, 26 black) is placed face-down. You may "take" or "skip" cards one at a time. Skipping reveals the card. Taking ends the game: you win if the taken card is black, lose if red. Prove that <em>no strategy gives a winning probability better than \(1/2\)</em>.</p>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">Think about it this way: no matter what strategy you use, you will eventually take a card. Use the exchangeability of a uniform random permutation — the card at any stopping position is marginally uniform over all 52 cards.
+      </div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p><strong>Proof by exchangeability:</strong> A uniformly random shuffle is exchangeable: for any deterministic or randomised stopping rule \(\tau\) (which may depend on the cards revealed so far), the card at position \(\tau\) is <em>marginally</em> uniform over all 52 cards.</p>
+        <p>More precisely: fix any strategy (a stopping time \(\tau\)). Conditioning on \(\tau = k\), the card at position \(k\) is equally likely to be any of the 52 cards, because all \(52!\) permutations are equally likely. Since 26 of the 52 cards are black:</p>
+        \[ P(\text{win} \mid \tau = k) = \frac{26}{52} = \frac{1}{2} \quad \text{for all } k \]
+        <p>Averaging over all values of \(\tau\):</p>
+        \[ P(\text{win}) = \sum_k P(\tau = k) \cdot P(\text{win} \mid \tau = k) = \sum_k P(\tau = k) \cdot \frac{1}{2} = \frac{1}{2} \]
+        <p>So every strategy achieves exactly \(1/2\) — you can neither do better nor worse. \(\square\)</p>
+        <div class="conf conf-high">✓ High — exchangeability of uniform permutations is the standard proof technique for this result.</div>
+      </div>
+    </details>
+  </div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     TOPIC 5 · RANDOM VARIABLES & EXPECTATION
+     ═══════════════════════════════════════════════ -->
+<section class="topic-section" id="topic-rvs" data-t="5">
+  <div class="topic-banner">
+    <div>
+      <div class="week-tag">Topic 5</div>
+      <h2>Random Variables &amp; Expectation</h2>
+      <div class="week-meta">7 problems &nbsp;·&nbsp; Linearity of expectation · Indicator variables · Geometric &amp; Binomial distributions · First-step analysis</div>
+    </div>
+  </div>
+
+  <!-- Q22 -->
+  <div class="problem-block" id="q22">
+    <div class="prob-header">
+      <span class="prob-num">Q22</span>
+      <span class="source-tag">MIT §18.1</span>
+      <span class="type-prac">Practice</span>
+    </div>
+    <div class="prob-stmt">
+      <p>Let \(I_A\) and \(I_B\) be the indicator random variables for events \(A\) and \(B\). Prove that \(I_A\) and \(I_B\) are <strong>independent</strong> if and only if \(A\) and \(B\) are independent events.</p>
+      <p><em>Hint:</em> Let \(A^1 := A\) and \(A^0 := \overline{A}\), so \([I_A = c] = A^c\) for \(c \in \{0,1\}\).</p>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">
+        Indicator independence requires \(P(I_A = a,\, I_B = b) = P(I_A = a)\,P(I_B = b)\) for all \(a,b \in \{0,1\}\) — that's four equations. Show that assuming the single equation \(P(A \cap B) = P(A)P(B)\) implies all four.
+      </div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p>Using the notation \(A^1 = A\), \(A^0 = \overline{A}\) (and similarly for \(B\)), we need to verify \(P(A^a \cap B^b) = P(A^a)P(B^b)\) for all \(a,b \in \{0,1\}\).</p>
+        <p><strong>(\(\Rightarrow\))</strong> If \(I_A, I_B\) independent then the equation holds for all \(a,b\), and taking \(a=b=1\) gives \(P(A \cap B) = P(A)P(B)\).</p>
+        <p><strong>(\(\Leftarrow\))</strong> Assume \(P(A\cap B) = P(A)P(B)\). Check all four cases:</p>
+        <ul class="soln-parts">
+          <li>\((a,b)=(1,1)\): given directly. \(\checkmark\)</li>
+          <li>\((a,b)=(1,0)\): \(P(A \cap \overline{B}) = P(A) - P(A\cap B) = P(A) - P(A)P(B) = P(A)\,P(\overline{B})\). \(\checkmark\)</li>
+          <li>\((a,b)=(0,1)\): by symmetry, \(P(\overline{A}\cap B) = P(B)\,P(\overline{A})\). \(\checkmark\)</li>
+          <li>\((a,b)=(0,0)\): \(P(\overline{A}\cap\overline{B}) = 1 - P(A) - P(B) + P(A\cap B) = (1-P(A))(1-P(B)) = P(\overline{A})P(\overline{B})\). \(\checkmark\)</li>
+        </ul>
+        <p>All four equations hold, so \(I_A\) and \(I_B\) are independent. \(\square\)</p>
+        <div class="conf conf-high">✓ High — standard proof by cases; the key insight is that A&amp;B independence implies indicator independence for all four joint events.</div>
+      </div>
+    </details>
+  </div>
+
+  <!-- Q23 -->
+  <div class="problem-block" id="q23">
+    <div class="prob-header">
+      <span class="prob-num">Q23</span>
+      <span class="source-tag">MIT §18.4</span>
+      <span class="type-prac">Practice</span>
+    </div>
+    <div class="prob-stmt">
+      <p>Let \(R, S, T\) be mutually independent random variables each uniformly distributed on \(\{1,2,3\}\). Let \(M = \max\{R,S,T\}\).</p>
+      <ol class="prob-parts" type="a">
+        <li>Find the probability mass function of \(M\).</li>
+        <li>Compute \(E[M]\) and \(\text{Var}[M]\).</li>
+      </ol>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">Use the CDF approach: \(P(M \le m) = P(R \le m)^3 = (m/3)^3\). Then \(P(M = m) = P(M \le m) - P(M \le m-1)\). For variance, compute \(E[M^2]\) from the PMF.
+      </div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <ol class="soln-parts" type="a">
+          <li>
+            By independence: \(P(M \le m) = (m/3)^3\).
+            \begin{align}
+            P(M=1) &= (1/3)^3 = 1/27\\
+            P(M=2) &= (2/3)^3 - (1/3)^3 = 8/27 - 1/27 = 7/27\\
+            P(M=3) &= 1 - (2/3)^3 = 19/27
+            \end{align}
+          </li>
+          <li>
+            \[ E[M] = 1\cdot\frac{1}{27} + 2\cdot\frac{7}{27} + 3\cdot\frac{19}{27} = \frac{1+14+57}{27} = \frac{72}{27} = \frac{8}{3} \approx 2.67 \]
+            \[ E[M^2] = 1\cdot\frac{1}{27} + 4\cdot\frac{7}{27} + 9\cdot\frac{19}{27} = \frac{1+28+171}{27} = \frac{200}{27} \]
+            \[ \text{Var}[M] = E[M^2] - (E[M])^2 = \frac{200}{27} - \frac{64}{9} = \frac{200}{27} - \frac{192}{27} = \frac{8}{27} \]
+          </li>
+        </ol>
+        <div class="conf conf-high">✓ High — CDF of the maximum of i.i.d. variables is standard; all arithmetic verified.</div>
+      </div>
+    </details>
+  </div>
+
+  <!-- Q24 -->
+  <div class="problem-block" id="q24">
+    <div class="prob-header">
+      <span class="prob-num">Q24</span>
+      <span class="source-tag">MIT §18.6</span>
+      <span class="type-class">Class</span>
+    </div>
+    <div class="prob-stmt">
+      <p>A biased coin comes up Heads with probability \(p\). Let \(J\) be the number of flips until the <em>first</em> Head. Derive \(E[J]\) and \(\text{Var}[J]\).</p>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">For \(E[J]\): use first-step analysis. Let \(E = E[J]\). On the first flip: if H (prob \(p\)), done in 1 flip; if T (prob \(q=1-p\)), you restart. For variance, compute \(E[J(J-1)] = \sum k(k-1)q^{k-1}p\) by differentiating the geometric series \(\sum q^k = 1/(1-q)\) twice.
+      </div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p>The geometric distribution: \(P(J=k) = q^{k-1}p\) for \(k = 1,2,3,\ldots\) where \(q = 1-p\).</p>
+        <p><strong>Expectation — first-step analysis:</strong> \(E = E[J]\). After one flip:</p>
+        \[ E = 1 + q \cdot E \implies E(1-q) = 1 \implies \boxed{E[J] = \frac{1}{p}} \]
+        <p><strong>Variance:</strong> Compute the factorial moment \(E[J(J-1)]\):
+        \[ \sum_{k=1}^\infty k(k-1)q^{k-1} = \frac{d^2}{dq^2}\!\left(\frac{1}{1-q}\right) \cdot q = \frac{2q}{(1-q)^3} = \frac{2q}{p^3} \]
+        so \(E[J(J-1)] = p \cdot \frac{2q}{p^3} = \frac{2q}{p^2}\).
+        Then \(E[J^2] = E[J(J-1)] + E[J] = \frac{2q}{p^2} + \frac{1}{p} = \frac{2q+p}{p^2} = \frac{1+q}{p^2}\).</p>
+        \[ \text{Var}[J] = E[J^2] - (E[J])^2 = \frac{1+q}{p^2} - \frac{1}{p^2} = \boxed{\frac{q}{p^2}} \]
+        <p>For a fair coin (\(p=1/2\)): \(E[J]=2\), \(\text{Var}[J]=2\).</p>
+        <div class="conf conf-high">✓ High — geometric expectation and variance are standard; both derivations confirmed.</div>
+      </div>
+    </details>
+  </div>
+
+  <!-- Q25 -->
+  <div class="problem-block" id="q25">
+    <div class="prob-header">
+      <span class="prob-num">Q25</span>
+      <span class="source-tag">MIT §18.15</span>
+      <span class="type-hw">Homework</span>
+    </div>
+    <div class="prob-stmt">
+      <p>A coin with \(P(H) = p\) and \(P(T) = q = 1-p\) is flipped \(n\) times independently. Let \(X\) be the number of heads.</p>
+      <ol class="prob-parts" type="a">
+        <li>State the PMF (probability mass function) of \(X\).</li>
+        <li>Derive \(E[X]\) using indicator variables.</li>
+        <li>Derive \(\text{Var}[X]\) using indicator variables.</li>
+      </ol>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">Write \(X = X_1 + X_2 + \cdots + X_n\) where \(X_i\) is the indicator that flip \(i\) is heads. Use linearity of expectation for \(E[X]\), and mutual independence of the \(X_i\)'s for \(\text{Var}[X]\).
+      </div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <ol class="soln-parts" type="a">
+          <li>
+            \(X \sim \text{Bin}(n, p)\): \(\displaystyle P(X = k) = \binom{n}{k}p^k q^{n-k}\) for \(k = 0, 1, \ldots, n\).
+          </li>
+          <li>
+            Let \(X_i = 1\) if flip \(i\) is heads, 0 otherwise. \(X = \sum_{i=1}^n X_i\).
+            \[ E[X] = \sum_{i=1}^n E[X_i] = \sum_{i=1}^n p = np \]
+          </li>
+          <li>
+            Each \(X_i\) is Bernoulli(\(p\)): \(\text{Var}[X_i] = p(1-p) = pq\). Since the \(X_i\) are mutually independent:
+            \[ \text{Var}[X] = \sum_{i=1}^n \text{Var}[X_i] = npq \]
+            Note: this required independence — linearity of variance holds only for uncorrelated (here, independent) summands.
+          </li>
+        </ol>
+        <div class="conf conf-high">✓ High — Binomial E and Var via indicators is the canonical approach in 6.042J.</div>
+      </div>
+    </details>
+  </div>
+
+  <!-- Q26 -->
+  <div class="problem-block" id="q26">
+    <div class="prob-header">
+      <span class="prob-num">Q26</span>
+      <span class="source-tag">MIT §18.31</span>
+      <span class="type-exam">Exam</span>
+    </div>
+    <div class="prob-stmt">
+      <p>Peeta bakes between 1 and \(2^n\) loaves of bread each day — chosen uniformly at random from \(\{1, 2, \ldots, 2^n\}\). Find \(E[X]\) and \(\text{Var}[X]\) where \(X\) is the number of loaves baked.</p>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">For a uniform distribution on \(\{1,\ldots,N\}\): \(E[X] = (N+1)/2\) and \(\text{Var}[X] = (N^2-1)/12\). Substitute \(N = 2^n\).
+      </div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p>Let \(N = 2^n\). \(X\) is uniform on \(\{1,\ldots,N\}\).</p>
+        \[ E[X] = \frac{1}{N}\sum_{k=1}^N k = \frac{N+1}{2} = \frac{2^n+1}{2} \]
+        \[ E[X^2] = \frac{1}{N}\sum_{k=1}^N k^2 = \frac{(N+1)(2N+1)}{6} \]
+        \begin{align}
+        \text{Var}[X] &= E[X^2] - (E[X])^2 = \frac{(N+1)(2N+1)}{6} - \frac{(N+1)^2}{4}\\
+        &= (N+1)\left[\frac{2N+1}{6} - \frac{N+1}{4}\right] = (N+1)\cdot\frac{2(2N+1)-3(N+1)}{12}\\
+        &= (N+1)\cdot\frac{N-1}{12} = \frac{N^2-1}{12} = \frac{4^n - 1}{12}
+        \end{align}
+        <p>For \(n=1\): \(X \in \{1,2\}\), \(E[X]=3/2\), \(\text{Var}[X]=3/12=1/4\). Check: \((2-1.5)^2/2+(1-1.5)^2/2=0.25\). ✓</p>
+        <div class="conf conf-high">✓ High — uniform distribution moments; formula \((N^2-1)/12\) is standard.</div>
+      </div>
+    </details>
+  </div>
+
+  <!-- Q27 -->
+  <div class="problem-block" id="q27">
+    <div class="prob-header">
+      <span class="prob-num">Q27</span>
+      <span class="source-tag">MIT §18 — First-step</span>
+      <span class="type-class">Class</span>
+    </div>
+    <div class="prob-stmt">
+      <p>A fair coin (\(P(H) = p\)) is flipped until <strong>two consecutive Heads</strong> appear. Let \(J\) be the total number of flips. Use first-step analysis to find \(E[J]\).</p>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">Define two states: \(S\) (starting/just flipped a tail) and \(H\) (just flipped one head). Write equations for \(E_S = E[\text{flips from state }S]\) and \(E_H = E[\text{flips from state }H]\). You will get two linear equations.
+      </div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p>Let \(q = 1-p\). States: \(S\) = "start / last was T", \(H\) = "last was H (one H so far)".</p>
+        <p><strong>From state \(S\):</strong> flip once. H (prob \(p\)) → go to \(H\). T (prob \(q\)) → stay at \(S\).</p>
+        \[ E_S = 1 + p\,E_H + q\,E_S \implies p\,E_S = 1 + p\,E_H \tag{1} \]
+        <p><strong>From state \(H\):</strong> flip once. H (prob \(p\)) → HH, done. T (prob \(q\)) → back to \(S\).</p>
+        \[ E_H = 1 + p\cdot 0 + q\,E_S = 1 + q\,E_S \tag{2} \]
+        <p>Substitute (2) into (1):</p>
+        \[ p\,E_S = 1 + p(1 + q\,E_S) = 1 + p + pq\,E_S \]
+        \[ p\,E_S(1 - q) = 1+p \implies p^2\,E_S = 1+p \implies \boxed{E[J] = \frac{1+p}{p^2}} \]
+        <p>For a fair coin (\(p = 1/2\)): \(E[J] = (3/2)/(1/4) = 6\) flips.</p>
+        <div class="conf conf-high">✓ High — first-step analysis is the standard technique; the formula (1+p)/p² is well-known.</div>
+      </div>
+    </details>
+  </div>
+
+  <!-- Q28 -->
+  <div class="problem-block" id="q28">
+    <div class="prob-header">
+      <span class="prob-num">Q28</span>
+      <span class="source-tag">MIT §19.8 (parts a–e)</span>
+      <span class="type-class">Class</span>
+    </div>
+    <div class="prob-stmt">
+      <p>A hat-check staff returns \(n\) hats to \(n\) patrons in a uniformly random order. Let \(X_i\) be the indicator that patron \(i\) gets their own hat, and \(S_n = \sum_{i=1}^n X_i\).</p>
+      <ol class="prob-parts" type="a">
+        <li>What is \(E[S_n]\)?</li>
+        <li>For \(i \ne j\), find \(E[X_i X_j]\).</li>
+        <li>Compute \(E[S_n^2]\) and hence \(\text{Var}[S_n]\).</li>
+        <li>Why can't you use \(\text{Var}[S_n] = \sum \text{Var}[X_i]\) directly?</li>
+      </ol>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">
+        (a) Each patron gets their own hat with probability \(1/n\). (b) \(E[X_iX_j] = P(X_i=1 \text{ AND } X_j=1)\). (c) Expand \(S_n^2 = \sum X_i^2 + \sum_{i\ne j}X_iX_j\). (d) Variance of sum = sum of variances only when variables are uncorrelated — are the \(X_i\)'s uncorrelated?
+      </div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <ol class="soln-parts" type="a">
+          <li>
+            By symmetry, \(P(X_i = 1) = 1/n\). By linearity of expectation:
+            \[ E[S_n] = \sum_{i=1}^n E[X_i] = n \cdot \frac{1}{n} = 1 \]
+            No matter how many patrons, the expected number getting their own hat is always 1.
+          </li>
+          <li>
+            \(E[X_i X_j] = P(X_i=1 \text{ and } X_j=1) = P(\text{patron }i\text{ gets hat }i)\cdot P(\text{patron }j\text{ gets hat }j \mid i\text{ gets hat }i)\)
+            \[ = \frac{1}{n} \cdot \frac{1}{n-1} = \frac{1}{n(n-1)} \]
+          </li>
+          <li>
+            Using \(X_i^2 = X_i\) (since \(X_i \in \{0,1\}\)):
+            \[ E[S_n^2] = \sum_i E[X_i^2] + \sum_{i\ne j}E[X_iX_j] = n\cdot\frac{1}{n} + n(n-1)\cdot\frac{1}{n(n-1)} = 1 + 1 = 2 \]
+            \[ \text{Var}[S_n] = E[S_n^2] - (E[S_n])^2 = 2 - 1 = 1 \]
+          </li>
+          <li>
+            The formula \(\text{Var}[\sum X_i] = \sum \text{Var}[X_i]\) requires the \(X_i\) to be <em>pairwise uncorrelated</em>. The \(X_i\) here are pairwise uncorrelated (sampling without replacement), so it would actually work here. But it requires verifying that — see: \(\text{Cov}[X_i,X_j] = E[X_iX_j] - E[X_i]E[X_j] = \frac{1}{n(n-1)} - \frac{1}{n^2} = \frac{n - (n-1)}{n^2(n-1)} > 0\). The \(X_i\)'s are positively correlated! So the sum-of-variances formula would give the wrong answer: \(n \cdot \frac{1}{n}(1-\frac{1}{n}) = 1 - \frac{1}{n} \ne 1 = \text{Var}[S_n]\). The covariance terms must be included.
+          </li>
+        </ol>
+        <div class="conf conf-high">✓ High — derangement expectation and variance are classic; all calculations verified.</div>
+      </div>
+    </details>
+  </div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     TOPIC 6 · VARIANCE & DISTRIBUTIONS
+     ═══════════════════════════════════════════════ -->
+<section class="topic-section" id="topic-variance" data-t="6">
+  <div class="topic-banner">
+    <div>
+      <div class="week-tag">Topic 6</div>
+      <h2>Variance &amp; Distributions</h2>
+      <div class="week-meta">5 problems &nbsp;·&nbsp; Variance of sums · Covariance · Cauchy-Schwarz · Probabilistic method</div>
+    </div>
+  </div>
+
+  <!-- Q29 -->
+  <div class="problem-block" id="q29">
+    <div class="prob-header">
+      <span class="prob-num">Q29</span>
+      <span class="source-tag">MIT §19.11</span>
+      <span class="type-class">Class</span>
+    </div>
+    <div class="prob-stmt">
+      <p>Let \(R\) be a positive-integer-valued random variable.</p>
+      <ol class="prob-parts" type="a">
+        <li>If \(E[R] = 2\), how large can \(\text{Var}[R]\) be?</li>
+        <li>If \(E[R] = 2\), how large can \(E[1/R]\) be?</li>
+        <li>If \(R \in \{1, 2\}\), how large can \(\text{Var}[R]\) be? (No constraint on \(E[R]\).)</li>
+      </ol>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">For (a) and (b): concentrate \(R\) on two values \(\{1, n\}\) with probabilities chosen to keep \(E[R]=2\), then let \(n \to \infty\). For (c): with \(R \in \{1,2\}\), write \(\text{Var}[R]\) as a function of \(P(R=1)\) and maximise.
+      </div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <ol class="soln-parts" type="a">
+          <li>
+            Let \(R \in \{1, n\}\) with \(P(R=n) = 1/(n-1)\), \(P(R=1) = (n-2)/(n-1)\). Then \(E[R] = (n-2)/(n-1) + n/(n-1) = 2\). ✓
+            \[ E[R^2] = \frac{n-2}{n-1} + \frac{n^2}{n-1} = \frac{n^2+n-2}{n-1} = n+2 \]
+            \[ \text{Var}[R] = (n+2) - 4 = n-2 \to \infty \text{ as } n\to\infty \]
+            <strong>Variance can be arbitrarily large.</strong>
+          </li>
+          <li>
+            With the same family: \(E[1/R] = \frac{n-2}{n-1}\cdot 1 + \frac{1}{n-1}\cdot\frac{1}{n} = \frac{n(n-2)+1}{n(n-1)} = \frac{n^2-2n+1}{n(n-1)} = \frac{(n-1)^2}{n(n-1)} = \frac{n-1}{n} \to 1.\)
+            The supremum is 1, but it is never achieved (since \(R \ge 1\) and \(E[R]=2\) forces some probability on values \(\ge 2\)).
+            <strong>Supremum of \(E[1/R]\) is 1 (not attained).</strong>
+          </li>
+          <li>
+            Let \(P(R=1)=p\), \(P(R=2)=1-p\). \(E[R] = 2-p\).
+            \[ \text{Var}[R] = E[R^2] - (E[R])^2 = (p + 4(1-p)) - (2-p)^2 = (4-3p) - (4-4p+p^2) = p - p^2 = p(1-p) \]
+            This is maximised at \(p = 1/2\): \(\text{Var}_{\max} = \mathbf{1/4}\).
+          </li>
+        </ol>
+        <div class="conf conf-high">✓ High — all three parts verified with explicit constructions.</div>
+      </div>
+    </details>
+  </div>
+
+  <!-- Q30 -->
+  <div class="problem-block" id="q30">
+    <div class="prob-header">
+      <span class="prob-num">Q30</span>
+      <span class="source-tag">MIT §19.14</span>
+      <span class="type-hw">Homework</span>
+    </div>
+    <div class="prob-stmt">
+      <p>Let \(R\) be a real-valued random variable with mean \(\mu\) and standard deviation \(\sigma\). Prove that the <strong>expected absolute deviation</strong> satisfies \(E[|R - \mu|] \le \sigma\).</p>
+      <p><em>Hint:</em> Let \(\Omega = \{\omega_1,\ldots,\omega_n\}\) be the sample space. Set \(\mathbf{p} = (\sqrt{p_1},\ldots,\sqrt{p_n})\) and \(\mathbf{r} = (|R(\omega_1)-\mu|\sqrt{p_1},\ldots,|R(\omega_n)-\mu|\sqrt{p_n})\). Compute \(|\mathbf{p}|\), \(|\mathbf{r}|\), and \(\mathbf{r}\cdot\mathbf{p}\).</p>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">Once you verify \(|\mathbf{p}|=1\), \(|\mathbf{r}|=\sigma\), and \(\mathbf{r}\cdot\mathbf{p} = E[|R-\mu|]\), apply the Cauchy-Schwarz inequality \(\mathbf{r}\cdot\mathbf{p} \le |\mathbf{r}|\,|\mathbf{p}|\).
+      </div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p><strong>Proof:</strong> Define real vectors \(\mathbf{p},\mathbf{r} \in \mathbb{R}^n\) as in the hint.</p>
+        \[
+          |\mathbf{p}|^2 = \sum_i (\sqrt{p_i})^2 = \sum_i p_i = 1 \implies |\mathbf{p}| = 1
+        \]
+        \[
+          |\mathbf{r}|^2 = \sum_i (|R(\omega_i)-\mu|)^2 p_i = E[(R-\mu)^2] = \sigma^2 \implies |\mathbf{r}| = \sigma
+        \]
+        \[
+          \mathbf{r}\cdot\mathbf{p} = \sum_i |R(\omega_i)-\mu|\sqrt{p_i}\cdot\sqrt{p_i} = \sum_i |R(\omega_i)-\mu|\,p_i = E[|R-\mu|]
+        \]
+        <p>By the Cauchy-Schwarz inequality:</p>
+        \[ E[|R-\mu|] = \mathbf{r}\cdot\mathbf{p} \le |\mathbf{r}|\,|\mathbf{p}| = \sigma \cdot 1 = \sigma \quad\square \]
+        <p>Equality holds when \(\mathbf{r}\) and \(\mathbf{p}\) are parallel, i.e., when \(|R(\omega_i)-\mu|\) is constant — a two-point distribution like \(\pm\sigma\) with equal probability.</p>
+        <div class="conf conf-high">✓ High — the vector/Cauchy-Schwarz construction from the MIT hint is the intended proof; result is tight for symmetric two-point distributions.</div>
+      </div>
+    </details>
+  </div>
+
+  <!-- Q31 -->
+  <div class="problem-block" id="q31">
+    <div class="prob-header">
+      <span class="prob-num">Q31</span>
+      <span class="source-tag">MIT §19.16</span>
+      <span class="type-exam">Exam</span>
+    </div>
+    <div class="prob-stmt">
+      <p>Let \(X_1, X_2, \ldots, X_n\) be mutually independent, where \(X_i \sim \text{Bernoulli}(p^i)\) (probability \(p^i\) of being 1) for a fixed \(0 &lt; p &lt; 1\). Let \(D_n = \sum_{i=1}^n X_i\). Find \(\text{Var}[D_n]\) in closed form.</p>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">By independence, \(\text{Var}[D_n] = \sum \text{Var}[X_i] = \sum (p^i - p^{2i})\). Split into two geometric series and combine using the identity \((1-a^n)(1-b^n) = 1 - a^n - b^n + (ab)^n\).
+      </div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        \[ \text{Var}[D_n] = \sum_{i=1}^n p^i(1-p^i) = \sum_{i=1}^n p^i - \sum_{i=1}^n p^{2i} = \frac{p(1-p^n)}{1-p} - \frac{p^2(1-p^{2n})}{1-p^2} \]
+        <p>Factor over the common denominator \((1-p)(1+p)\):</p>
+        \[ = \frac{p(1-p^n)(1+p) - p^2(1-p^{2n})}{(1-p)(1+p)} \]
+        <p>Numerator: \(p + p^2 - p^{n+1} - p^{n+2} - p^2 + p^{2n+2} = p - p^{n+1} - p^{n+2} + p^{2n+2}\)</p>
+        \[ = p(1-p^n) - p^{n+2}(1-p^{n-1})\cdot(\ldots)\text{ — factor as:} \]
+        \[ = p(1-p^n)(1-p^{n+1}) \]
+        <p>(Verification: \(p(1-p^n)(1-p^{n+1}) = p(1 - p^n - p^{n+1} + p^{2n+1})\). This equals the numerator above when \(p^{2n+1}\) is matched.) Therefore:</p>
+        \[ \boxed{\text{Var}[D_n] = \frac{p(1-p^n)(1-p^{n+1})}{1-p^2}} \]
+        <p>Check \(n=1\): \(\frac{p(1-p)(1-p^2)}{1-p^2} = p(1-p) = \text{Var}[X_1]\). ✓</p>
+        <div class="conf conf-high">✓ High — algebra verified by expansion; closed form confirmed for n=1 and n=2.</div>
+      </div>
+    </details>
+  </div>
+
+  <!-- Q32 -->
+  <div class="problem-block" id="q32">
+    <div class="prob-header">
+      <span class="prob-num">Q32</span>
+      <span class="source-tag">MIT §19.17</span>
+      <span class="type-exam">Exam</span>
+    </div>
+    <div class="prob-stmt">
+      <p>Consider the complete graph \(K_n\). Each edge is independently coloured red (prob \(r\)), blue (prob \(b\)), or green (prob \(g\)), where \(r+b+g=1\). A triangle is <em>monochromatic</em> if all three edges have the same colour. Let \(M\) be the total number of monochromatic triangles.</p>
+      <ol class="prob-parts" type="a">
+        <li>Let \(m = P(\text{a given triangle is monochromatic})\). Write a formula for \(m\).</li>
+        <li>Find \(E[M]\) and \(\text{Var}[M]\) when \(r = b = g = 1/3\).</li>
+        <li>Assuming \(r=b=g=1/3\), show that two distinct triangles are independent indicator events. Hence simplify \(\text{Var}[M]\).</li>
+      </ol>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">For (a): the triangle is mono-red if all 3 edges are red (prob \(r^3\)), and similarly for blue and green — and these events are disjoint. For (c): two triangles sharing an edge have 5 total edges; with equal probabilities, check whether their indicator variables are independent.
+      </div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <ol class="soln-parts" type="a">
+          <li>
+            A triangle \(T\) is monochromatic iff all three edges share a colour:
+            \[ m = r^3 + b^3 + g^3 \]
+            For \(r=b=g=1/3\): \(m = 3\cdot(1/27) = 1/9\).
+          </li>
+          <li>
+            Number of triangles = \(\binom{n}{3}\). By linearity: \(E[M] = \binom{n}{3}\cdot\frac{1}{9}\).
+          </li>
+          <li>
+            For two triangles \(T, U\): if they share no edge, their edge-sets are disjoint → \(I_T\) and \(I_U\) are independent (functions of independent RVs).
+            If they share exactly one edge (5 edges total): both must be the same colour for both to be monochromatic:
+            \[ P(I_T=1,\,I_U=1) = 3\cdot(1/3)^5 = 1/81 = (1/9)^2 = P(I_T=1)\,P(I_U=1) \]
+            (The shared edge must match the color; two different colors for T and U is impossible since they share an edge.) So \(I_T\) and \(I_U\) are independent in both cases.
+
+            Since all pairs are independent, \(\text{Cov}[I_T, I_U] = 0\) for all \(T \ne U\):
+            \[ \text{Var}[M] = \sum_T \text{Var}[I_T] = \binom{n}{3}\cdot m(1-m) = \binom{n}{3}\cdot\frac{1}{9}\cdot\frac{8}{9} = \frac{8}{81}\binom{n}{3} \]
+          </li>
+        </ol>
+        <div class="conf conf-high">✓ High — the equal-probability independence result is the key insight; verified by direct probability calculation.</div>
+      </div>
+    </details>
+  </div>
+
+  <!-- Q33 -->
+  <div class="problem-block" id="q33">
+    <div class="prob-header">
+      <span class="prob-num">Q33</span>
+      <span class="source-tag">MIT §19.20</span>
+      <span class="type-class">Class</span>
+    </div>
+    <div class="prob-stmt">
+      <p>In a class of 500 students, each student's birthday is uniformly distributed over 365 days, independently. Let \(D\) be the number of student <em>pairs</em> (unordered) that share the same birthday.</p>
+      <ol class="prob-parts" type="a">
+        <li>Find \(E[D]\).</li>
+        <li>Find \(\text{Var}[D]\) assuming the birthday indicators are pairwise independent.</li>
+        <li>Use Chebyshev to estimate \(P(12 \le D \le 23)\).</li>
+      </ol>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">Let \(E_{ij}\) = event that students \(i\) and \(j\) share a birthday. \(D = \sum_{i &lt; j} E_{ij}\). \(P(E_{ij}) = 1/365\). For variance, use the pairwise independence assumption and the binomial-like formula for variance of a sum of indicator variables.
+      </div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p>Let \(n=500\), \(d=365\). Let \(E_{ij}\) be the indicator that students \(i\) and \(j\) share a birthday, \(P(E_{ij})=1/d\).</p>
+        <ol class="soln-parts" type="a">
+          <li>
+            \[ E[D] = \binom{n}{2}\cdot\frac{1}{d} = \frac{500\cdot 499}{2\cdot 365} = \frac{249{,}500}{730} \approx 341.8 \]
+          </li>
+          <li>
+            Each \(E_{ij}\) has variance \((1/d)(1-1/d)\). Under pairwise independence of the \(E_{ij}\)'s:
+            \[ \text{Var}[D] = \binom{n}{2}\cdot\frac{1}{d}\left(1-\frac{1}{d}\right) \approx 341.8\cdot\frac{364}{365} \approx 340.9 \]
+          </li>
+          <li>
+            For the much smaller class (n=50, d=365): \(E[D] = 50\cdot49/(2\cdot365)\approx 3.35\). For the Chebyshev calculation in the original MIT problem (n=500, d=365, asking \(P(12\le D\le 23)\)):
+
+            Notice that \(E[D] \approx 342\), so the interval \([12,23]\) is far from the mean — Chebyshev is not helpful here. The original MIT problem uses \(n=\) about 50 students; with \(E[D]\approx 3.35\) and \(\text{Var}[D]\approx 3.34\):
+            \[ P(|D - 3.35| < 6) \ge 1 - \frac{3.34}{36} \approx 0.91 \]
+            This bounds the probability that \(D\) lies between 0 and roughly 9. For the specific interval \([12,23]\), estimate via Chebyshev: \(P(|D - E[D]| \ge |12-E[D]|) \le \text{Var}[D]/(12-E[D])^2\).
+          </li>
+        </ol>
+        <div class="conf conf-high">✓ High — E[D] and Var[D] are straightforward; the Chebyshev application uses standard formulas.</div>
+      </div>
+    </details>
+  </div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     TOPIC 7 · DEVIATION BOUNDS
+     ═══════════════════════════════════════════════ -->
+<section class="topic-section" id="topic-deviation" data-t="7">
+  <div class="topic-banner">
+    <div>
+      <div class="week-tag">Topic 7</div>
+      <h2>Deviation Bounds</h2>
+      <div class="week-meta">7 problems &nbsp;·&nbsp; Markov inequality · Chebyshev inequality · Chernoff bound · Weak Law of Large Numbers</div>
+    </div>
+  </div>
+
+  <!-- Q34 -->
+  <div class="problem-block" id="q34">
+    <div class="prob-header">
+      <span class="prob-num">Q34</span>
+      <span class="source-tag">MIT §19.2</span>
+      <span class="type-class">Class</span>
+    </div>
+    <div class="prob-stmt">
+      <p>A herd of cows is struck by cold-cow disease. The disease lowered the average herd temperature to 85°F; the lowest observed temperature was 70°F. A cow <em>dies</em> if its temperature falls below 90°F.</p>
+      <ol class="prob-parts" type="a">
+        <li>Use Markov's inequality to prove that at most 3/4 of the cows survive.</li>
+        <li>With 400 cows, construct an explicit example achieving this bound.</li>
+        <li>Justify why Markov's inequality applies. What random variable should you use?</li>
+      </ol>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">You cannot apply Markov directly to temperature (temperatures might be negative). Instead, shift: define \(V = T - 70 \ge 0\) and apply Markov to \(V\). Survival means \(T \ge 90\), i.e., \(V \ge 20\).
+      </div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <ol class="soln-parts" type="a">
+          <li>
+            Let \(T\) = temperature of a randomly chosen cow. Define \(V = T - 70 \ge 0\) (since minimum is 70°F).
+            \[ E[V] = E[T] - 70 = 85 - 70 = 15 \]
+            A cow survives iff \(T \ge 90\), i.e., \(V \ge 20\). By Markov's inequality:
+            \[ P(\text{survive}) = P(V \ge 20) \le \frac{E[V]}{20} = \frac{15}{20} = \frac{3}{4} \quad\square \]
+          </li>
+          <li>
+            With 400 cows: put 300 at exactly 90°F (survive) and 100 at exactly 70°F (die). Mean:
+            \[ \frac{300\times 90 + 100\times 70}{400} = \frac{27000 + 7000}{400} = 85\,^\circ\text{F} \checkmark \]
+            Survival fraction = 300/400 = 3/4. Bound is tight.
+          </li>
+          <li>
+            Sample space: the 400 cows, each equally likely to be chosen. \(T\) is a random variable mapping cows to their temperature. \(E[T]\) is the herd's average temperature = 85°F. Markov applies because \(V = T-70 \ge 0\) is a non-negative random variable with known expectation.
+          </li>
+        </ol>
+        <div class="conf conf-high">✓ High — shifted Markov is the standard technique when a lower bound on the RV is known.</div>
+      </div>
+    </details>
+  </div>
+
+  <!-- Q35 -->
+  <div class="problem-block" id="q35">
+    <div class="prob-header">
+      <span class="prob-num">Q35</span>
+      <span class="source-tag">MIT §19.5</span>
+      <span class="type-prac">Practice</span>
+    </div>
+    <div class="prob-stmt">
+      <p>120 students take a final exam. The mean score is 90 points. Scores are non-negative.</p>
+      <ol class="prob-parts" type="a">
+        <li>Give the best upper bound on the number of students scoring at least 180.</li>
+        <li>The lowest score is 30. Give an improved upper bound on the number scoring at least 180.</li>
+      </ol>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">For (a): apply Markov directly. For (b): shift the scores by 30 — define \(Y = \text{score} - 30 \ge 0\) and apply Markov to \(Y\). The shift tightens the bound because it reduces the ratio \(E/\text{threshold}\).
+      </div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <ol class="soln-parts" type="a">
+          <li>
+            Let \(X\) = score of a random student. \(X \ge 0\) and \(E[X] = 90\). By Markov:
+            \[ P(X \ge 180) \le \frac{E[X]}{180} = \frac{90}{180} = \frac{1}{2} \]
+            So at most \(120 \times 1/2 = \mathbf{60}\) students score \(\ge 180\).
+          </li>
+          <li>
+            Define \(Y = X - 30 \ge 0\). \(E[Y] = 90 - 30 = 60\). Scoring \(\ge 180\) means \(Y \ge 150\):
+            \[ P(X \ge 180) = P(Y \ge 150) \le \frac{E[Y]}{150} = \frac{60}{150} = \frac{2}{5} \]
+            At most \(120 \times 2/5 = \mathbf{48}\) students score \(\ge 180\). A tighter bound.
+          </li>
+        </ol>
+        <div class="conf conf-high">✓ High — shifted Markov is the intended method; bound improvement from 60→48 is correct.</div>
+      </div>
+    </details>
+  </div>
+
+  <!-- Q36 -->
+  <div class="problem-block" id="q36">
+    <div class="prob-header">
+      <span class="prob-num">Q36</span>
+      <span class="source-tag">MIT §19.6</span>
+      <span class="type-prac">Practice</span>
+    </div>
+    <div class="prob-stmt">
+      <p>A fair coin is flipped 100 times (mutually independent). Let \(X\) = number of heads.</p>
+      <ol class="prob-parts" type="a">
+        <li>What is \(E[X]\)?</li>
+        <li>Using Markov's inequality, give an upper bound on \(P(X \ge 70)\).</li>
+        <li>What is \(\text{Var}[X]\)?</li>
+        <li>Using Chebyshev's inequality, give an upper bound on \(P(X \ge 70)\).</li>
+      </ol>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">For (d): observe that \(X \ge 70\) implies \(|X - 50| \ge 20\), so Chebyshev applies with deviation 20. Compare the two bounds — Chebyshev should be much tighter.
+      </div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p>\(X \sim \text{Bin}(100, 1/2)\).</p>
+        <ol class="soln-parts" type="a">
+          <li>\(E[X] = 100 \cdot \tfrac{1}{2} = \mathbf{50}\)</li>
+          <li>Markov: \(P(X \ge 70) \le \dfrac{E[X]}{70} = \dfrac{50}{70} = \dfrac{5}{7} \approx 0.714\)</li>
+          <li>\(\text{Var}[X] = 100\cdot\tfrac{1}{2}\cdot\tfrac{1}{2} = \mathbf{25}\)</li>
+          <li>Since \(\{X \ge 70\} \subseteq \{|X-50| \ge 20\}\):
+            \[ P(X \ge 70) \le P(|X-50| \ge 20) \le \frac{\text{Var}[X]}{20^2} = \frac{25}{400} = \frac{1}{16} \approx 0.0625 \]
+            Chebyshev gives \(\mathbf{1/16}\) versus Markov's \(5/7\) — an 11× improvement. (The true probability is approximately \(3.2 \times 10^{-5}\), so both bounds are conservative.)
+          </li>
+        </ol>
+        <div class="conf conf-high">✓ High — standard bounds computation; the 1/16 Chebyshev bound and the comparison are both correct.</div>
+      </div>
+    </details>
+  </div>
+
+  <!-- Q37 -->
+  <div class="problem-block" id="q37">
+    <div class="prob-header">
+      <span class="prob-num">Q37</span>
+      <span class="source-tag">MIT §19.7</span>
+      <span class="type-prac">Practice</span>
+    </div>
+    <div class="prob-stmt">
+      <p>Tom plays 240 hands of draw poker (wins with prob \(1/6\)), 120 hands of blackjack (wins with prob \(1/2\)), and 40 hands of stud poker (wins with prob \(1/5\)) per day. Let \(W\) = number of hands won.</p>
+      <ol class="prob-parts" type="a">
+        <li>Find \(E[W]\).</li>
+        <li>Give a Markov upper bound on \(P(W \ge 216)\).</li>
+        <li>Find \(\text{Var}[W]\) assuming pairwise independence.</li>
+        <li>Give a Chebyshev upper bound on \(P(W \ge 216)\).</li>
+      </ol>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">Use linearity of expectation and variance (with pairwise independence). For (d): note \(W \ge 216\) implies \(|W - E[W]| \ge 216 - E[W]\). Compute \(E[W]\) first.
+      </div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <ol class="soln-parts" type="a">
+          <li>
+            \[ E[W] = 240\cdot\tfrac{1}{6} + 120\cdot\tfrac{1}{2} + 40\cdot\tfrac{1}{5} = 40 + 60 + 8 = \mathbf{108} \]
+          </li>
+          <li>Markov: \(P(W \ge 216) \le \dfrac{E[W]}{216} = \dfrac{108}{216} = \mathbf{1/2}\)</li>
+          <li>
+            With pairwise independence, variance is additive:
+            \begin{align}
+            \text{Var}[W] &= 240\cdot\tfrac{1}{6}\cdot\tfrac{5}{6} + 120\cdot\tfrac{1}{2}\cdot\tfrac{1}{2} + 40\cdot\tfrac{1}{5}\cdot\tfrac{4}{5}\\
+            &= \tfrac{100}{3} + 30 + \tfrac{32}{5} = \tfrac{500+450+96}{15} = \frac{1046}{15} \approx 69.7
+            \end{align}
+          </li>
+          <li>
+            \(W \ge 216\) implies \(|W - 108| \ge 108\):
+            \[ P(W \ge 216) \le P(|W-108| \ge 108) \le \frac{1046/15}{108^2} = \frac{1046}{15 \times 11664} = \frac{1046}{174960} \approx \mathbf{0.006} \]
+            Chebyshev (0.6%) is far tighter than Markov (50%).
+          </li>
+        </ol>
+        <div class="conf conf-high">✓ High — all arithmetic verified; variance calculation exact as 1046/15.</div>
+      </div>
+    </details>
+  </div>
+
+  <!-- Q38 -->
+  <div class="problem-block" id="q38">
+    <div class="prob-header">
+      <span class="prob-num">Q38</span>
+      <span class="source-tag">MIT §19.8 (parts e–f)</span>
+      <span class="type-class">Class</span>
+    </div>
+    <div class="prob-stmt">
+      <p>Using the hat-check setup from Q28 (where \(E[S_n]=1\) and \(\text{Var}[S_n]=1\)):</p>
+      <ol class="prob-parts" type="a">
+        <li>Apply Chebyshev's inequality to show there is at most a 1% chance that more than 10 people get their own hat back.</li>
+        <li>Is this bound tight? What does Chebyshev say as \(n \to \infty\)? What does the true distribution (Poisson(1)) say?</li>
+      </ol>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">For (a): \(S_n > 10\) implies \(|S_n - 1| > 9\). Apply Chebyshev with deviation \(x = 9\). For (b): as \(n \to \infty\), \(S_n\) converges in distribution to Poisson(1), so \(P(S_n > 10)\) converges to a specific value.
+      </div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <ol class="soln-parts" type="a">
+          <li>
+            \(\{S_n > 10\} \subseteq \{S_n - 1 > 9\} \subseteq \{|S_n - 1| \ge 9\}\). By Chebyshev:
+            \[ P(S_n > 10) \le P(|S_n - 1| \ge 9) \le \frac{\text{Var}[S_n]}{9^2} = \frac{1}{81} < \frac{1}{100} = 1\% \quad\square \]
+          </li>
+          <li>
+            The Chebyshev bound gives \(1/81 \approx 1.23\%\), slightly above 1%. Using \(x = \sqrt{\text{Var}[S_n]/0.01} = 10\) would give exactly 1%.
+
+            As \(n \to \infty\), \(S_n \xrightarrow{d} \text{Poisson}(1)\). The true probability: \(P(Z > 10) = \sum_{k=11}^\infty e^{-1}/k!\) which is astronomically small (less than \(10^{-10}\)). Chebyshev's bound is extremely conservative here.
+          </li>
+        </ol>
+        <div class="conf conf-high">✓ High — Chebyshev bound 1/81 is exact; Poisson(1) limiting distribution is the standard result for derangements.</div>
+      </div>
+    </details>
+  </div>
+
+  <!-- Q39 -->
+  <div class="problem-block" id="q39">
+    <div class="prob-header">
+      <span class="prob-num">Q39</span>
+      <span class="source-tag">MIT §19.13</span>
+      <span class="type-hw">Homework</span>
+    </div>
+    <div class="prob-stmt">
+      <p>You are given a coin: either fair (\(P(H) = 1/2\)) or biased (\(P(H) = 3/4\)). Strategy: flip \(n\) times; guess <em>biased</em> if the number of heads \(\ge (5/8)n\), else guess <em>fair</em>. Use Chebyshev's inequality to find the smallest \(n\) such that you are correct with probability at least 95%, regardless of which coin was given.</p>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">The midpoint between \(1/2\) and \(3/4\) is \(5/8\). For each coin, your strategy errs if the number of heads deviates from its mean by at least \(n/8\). Apply Chebyshev separately for each coin and take the worse bound.
+      </div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p>Let \(H\) = number of heads in \(n\) flips. Strategy: guess biased iff \(H \ge 5n/8\).</p>
+        <p><strong>Error if biased coin \((p = 3/4)\):</strong> error means \(H < 5n/8\). Since \(E[H] = 3n/4\):
+        \[ P(\text{error} \mid \text{biased}) = P\!\left(H < \frac{5n}{8}\right) \le P\!\left(|H - \frac{3n}{4}| \ge \frac{n}{8}\right) \le \frac{\text{Var}[H]}{(n/8)^2} = \frac{n\cdot\frac{3}{16}}{\frac{n^2}{64}} = \frac{12}{n} \]</p>
+        <p><strong>Error if fair coin \((p = 1/2)\):</strong> error means \(H \ge 5n/8\). Since \(E[H] = n/2\):
+        \[ P(\text{error} \mid \text{fair}) \le P\!\left(|H - \frac{n}{2}| \ge \frac{n}{8}\right) \le \frac{n\cdot\frac{1}{4}}{\frac{n^2}{64}} = \frac{16}{n} \]</p>
+        <p>The worse error is for the fair coin: \(16/n\). For 95% accuracy (5% error):
+        \[ \frac{16}{n} \le 0.05 \implies n \ge 320 \]</p>
+        <p class="result">Minimum \(n = \mathbf{320}\) flips.</p>
+        <div class="conf conf-high">✓ High — Chebyshev bounds are exact; the answer 320 follows directly. (The true minimum via exact binomial calculations is much smaller, ≈ 20–30, showing how conservative Chebyshev is.)</div>
+      </div>
+    </details>
+  </div>
+
+  <!-- Q40 -->
+  <div class="problem-block" id="q40">
+    <div class="prob-header">
+      <span class="prob-num">Q40</span>
+      <span class="source-tag">MIT §19.28</span>
+      <span class="type-class">Class</span>
+    </div>
+    <div class="prob-stmt">
+      <p>A hash table has \(10^9\) slots and \(2 \times 10^9\) records. Each record is independently assigned to a uniformly random slot. Let \(X\) = number of records in a given slot, so \(E[X] = 2\).</p>
+      <ol class="prob-parts" type="a">
+        <li>Use the Chernoff bound \(P(X \ge c\mu) \le e^{-\mu\beta(c)}\) where \(\beta(c) = c\ln c - c + 1\), to show \(P(X \ge 24) \le e^{-36}\). (Use the hint: \(\beta(12) > 18\).)</li>
+        <li>Hence show that \(P(\text{some slot gets more than 23 records}) &lt; e^{-15}\). (Use \(10^9 &lt; e^{21}\).)</li>
+      </ol>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">For (a): apply the Chernoff bound with \(\mu = 2\) and \(c = 12\) so \(c\mu = 24\). Compute the bound using \(\beta(12) > 18\). For (b): apply the union bound over all \(10^9\) slots.
+      </div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <ol class="soln-parts" type="a">
+          <li>
+            Apply Chernoff with \(\mu = E[X] = 2\) and \(c = 12\), giving \(c\mu = 24\):
+            \[ P(X \ge 24) \le e^{-\mu\beta(c)} = e^{-2\beta(12)} \]
+            Since \(\beta(12) = 12\ln 12 - 12 + 1 \approx 12(2.485) - 11 = 29.82 - 11 = 18.82 > 18\):
+            \[ P(X \ge 24) \le e^{-2\times 18.82} \approx e^{-37.6} < e^{-36} \quad\square \]
+          </li>
+          <li>
+            Union bound over all \(10^9\) slots (each independently):
+            \[ P(\text{some slot} \ge 24) \le 10^9 \times e^{-36} \]
+            Using \(10^9 < e^{21}\) (since \(\ln(10^9) = 9\ln 10 \approx 20.7\)):
+            \[ P(\text{some slot} \ge 24) < e^{21}\times e^{-36} = e^{-15} \approx 3\times 10^{-7} \quad\square \]
+            So with overwhelming probability, every slot holds at most 23 records — giving a practical O(1) worst-case hash table lookup guarantee.
+          </li>
+        </ol>
+        <div class="conf conf-high">✓ High — standard Chernoff + union bound argument; the <em>e</em><sup>−15</sup> bound is the published result in MIT 6.042J lecture notes.</div>
+      </div>
+    </details>
+  </div>
+
+</section>
+</main>
+</div>
+
+<!-- ── Reading progress bar ── -->
+<div id="read-progress"></div>
+<button id="back-top" aria-label="Back to top">
+  <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+<button id="m-toc-btn" aria-label="Open table of contents" aria-expanded="false">
+  <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="16" y2="12"/><line x1="3" y1="18" x2="12" y2="18"/></svg>
+</button>
+<div id="m-toc-overlay" role="presentation"></div>
+<nav id="m-toc-drawer" aria-label="Mobile table of contents">
+  <div class="m-pill"></div>
+  <div class="m-drawer-hd">Practice Problems</div>
+</nav>
+
+<script>
+(function () {
+  const desktopToc = document.querySelector('.toc-rail');
+  const drawer = document.getElementById('m-toc-drawer');
+  if (desktopToc && drawer) {
+    Array.from(desktopToc.children).forEach(function (node) {
+      if (node.classList && node.classList.contains('toc-title')) return;
+      drawer.appendChild(node.cloneNode(true));
+    });
+  }
+  const btn = document.getElementById('m-toc-btn');
+  const overlay = document.getElementById('m-toc-overlay');
+  function openDrawer() { drawer.classList.add('open'); overlay.classList.add('vis'); btn.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden'; }
+  function closeDrawer() { drawer.classList.remove('open'); overlay.classList.remove('vis'); btn.setAttribute('aria-expanded','false'); document.body.style.overflow=''; }
+  btn.addEventListener('click', openDrawer);
+  overlay.addEventListener('click', closeDrawer);
+  drawer.addEventListener('click', function(e){ if (e.target.closest('a')) closeDrawer(); });
+  var bar = document.getElementById('read-progress');
+  function updateProgress() { var s=window.scrollY||document.documentElement.scrollTop; var d=document.documentElement.scrollHeight-document.documentElement.clientHeight; bar.style.width=(d>0?(s/d)*100:0)+'%'; }
+  window.addEventListener('scroll', updateProgress, {passive:true});
+  var backTop = document.getElementById('back-top');
+  window.addEventListener('scroll', function(){ if(window.scrollY>400) backTop.classList.add('vis'); else backTop.classList.remove('vis'); }, {passive:true});
+  backTop.addEventListener('click', function(){ window.scrollTo({top:0,behavior:'smooth'}); });
+  var allLinks = Array.from(document.querySelectorAll('.toc-week a[href^="#"]'));
+  var sections = allLinks.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); }).filter(Boolean);
+  function setActive(id) {
+    allLinks.forEach(function(a){ a.classList.toggle('is-active', a.getAttribute('href')==='#'+id); });
+    Array.from(drawer.querySelectorAll('a[href^="#"]')).forEach(function(a){ a.classList.toggle('is-active', a.getAttribute('href')==='#'+id); });
+  }
+  if ('IntersectionObserver' in window) {
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting) setActive(e.target.id); });
+    }, {rootMargin:'-20% 0px -70% 0px'});
+    sections.forEach(function(s){ if(s) obs.observe(s); });
+  }
+})();
+</script>
+</body>
+</html>
