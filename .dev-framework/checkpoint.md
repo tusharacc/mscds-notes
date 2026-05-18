@@ -1,44 +1,33 @@
 # Dev Framework Checkpoint
-**Date**: 2026-05-17
-**Workspace**: (none)
-**Phase**: —
-**Branch**: main
-**Workflow**: —
+**Date**: 2026-05-18
+**Workspace**: practice-problem-booklet
+**Phase**: developer (complete)
+**Branch**: feature/practice-problem-booklet
+**Workflow**: feature
 
 ## Done this session
-- feat(discrete-maths): add Week 6 — Variance, Distributions, and Matrices
-  - §18 Variance (definition, E[X²]−μ² formula, dice example, moments)
-  - §19 Bernoulli & Binomial variance + casino dice game worked example
-  - §20 Poisson distribution
-  - §21 Geometric distribution — tail-probability derivation, tail-sum expectation proof, ball-urn example
-  - §22 Negative Binomial distribution
-  - §23 Hypergeometric distribution & variance additivity for independent RVs
-  - §24 Vectors (arrays, addition, scalar multiplication, inner product)
-  - §25 Matrices (addition, multiplication as inner products, dimension rule, non-commutativity, associativity, operation count)
-  - New TOC groups (Week 6a · Variance & Distributions, Week 6b · Linear Algebra)
-  - New banner CSS for data-week="6a" (green) and data-week="6b" (amber)
-- Staged transcript folders: discrete_mathematics/week6/ and python/week5/
+- Built `practice/index.html` — probability practice problem booklet
+  - 40 solved problems from MIT 6.042J Ch16-19 (pdftotext extraction via poppler)
+  - 7 topic sections: Sample Spaces, Conditional Probability, Bayes, Combinatorics, Random Variables, Variance, Deviation Bounds
+  - Each problem: source badge, collapsible hint, full step-by-step solution, confidence badge (✓/⚠/○)
+  - Print CSS: sidebar hidden, all <details> expanded, page-break-inside: avoid
+  - Mobile TOC drawer, IntersectionObserver active link, progress bar, back-to-top
+  - Committed: d3c5da6 on feature/practice-problem-booklet
+- ProbabilityChapter/probability_chapter_notes.pdf confirmed: continuous textbook prose (Ch12), no separate exercise sections — all 40 problems sourced from MIT notes
+- Workspace state.json updated: PO ✓, architect skipped, developer ✓
 
 ## Where things stand
-No active dev-framework workspace. Work done directly on main.
+feature/practice-problem-booklet is committed locally but NOT pushed to remote.
+practice/index.html is ready for browser verification and potential PR to main.
 
-**discrete_mathematics/index.html** now covers:
-  - Weeks 4–5 (§1–§17): Classical probability, conditional probability, Bayes, RVs, expectation, Markov, problem-solving framework
-  - Week 6a (§18–§23): Variance, Bernoulli/Binomial/Poisson/Geometric/Negative Binomial/Hypergeometric, variance additivity
-  - Week 6b (§24–§25): Vectors, matrices and operations
-
-**python/index.html** covers Weeks 4–5 (§1–§13) and is complete for available transcripts:
-  - While/for loops, range(), loop invariants, isSorted
-  - Bubble sort (one pass, naive, optimised with early termination), loop invariant assertions
-  - Python lists: creation, access, slicing, append/insert/extend, concatenation, repetition, remove/pop/clear, count/index/in
+**Pending from previous checkpoint** (still applies):
+- Python: list sorting, reversing, and copying — add when transcript arrives
+- python/week5/ folder: only transcripts/ subfolder staged, not video files
 
 ## Pending decisions
-- [ ] Python: list sorting, reversing, and copying (slice-copy pitfall) are covered in the
-      next lecture after 5.2.1 — add when that transcript arrives
-- [ ] Python week5/ folder contains .mp4 files but no transcript subfolders for the videos
-      themselves — only the transcripts/ subfolder with .txt files is staged
+- [ ] Push feature/practice-problem-booklet to GitHub remote?
+- [ ] Open PR to merge into main?
+- [ ] Week 7+ discrete maths / Python Week 6 — when transcripts arrive
 
 ## Next action
-When new transcripts arrive (Python Week 6, Discrete Maths Week 7+):
-run `/dev new-feature` to open a workspace, read transcripts, and extend the
-relevant subject's index.html with new sections.
+Ask user: push to GitHub and merge to main? Or continue with Python/discrete maths content?
