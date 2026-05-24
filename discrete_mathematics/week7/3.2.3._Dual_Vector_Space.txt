@@ -1,0 +1,51 @@
+So far, what we have seen is we have seen the definitions of what is called a vector
+space and we have seen what is the basis of a vector space through the concept of linear
+independence. So, this is what we have seen and then we briefly saw what is called dimension,
+dimension of a vector space, right. So, now there is also this notion of a dual vector
+space, right. So, we will briefly touch upon these topics and then go back to the system
+of linear equations that we were discussing before, right.
+Now, so what is the basis? The basis given a vector space V. So, notation is we use the
+letters capital U, capital B, capital W to denote vector spaces. So, it could also be
+like V1, V2 or U1, U2, etc., right. Suppose V is a vector space that I have, then basis
+of V is set of vectors that span all the vectors of V. So, like to be more precise,
+I can say linearly span, right, because we are taking linear combinations. So, this is
+good. Now, so what we call dimension is the cardinality of the basis, of a basis.
+Right. So, this brings us to a very interesting question which is, so can I have, can we have
+two distinct bases of different cardinalities? Do think about this question and we will discuss
+later in the tutorial. So, let's say we have a basis B. So, let me use this calligraphic
+version of B to define the basis, right. So, this contains some vectors V1 till Vn.
+So, that means I have the dimension of the vector space is n. So, a shorthand notation
+for dimension is we use dim, right. So, that's the dimension. So far, so good. So, now let's
+recall our linear equations that we had. So, let's copy these. So, I'm going to just copy them and
+paste them. Right. So, now I can actually transform them into vectors as follows. So, I have 2,
+4, 1, 1, then I have 3, 6, 1, 2, then I have 5, 3, sorry, 5, 10, 2, and 3.
+So, as it turns out, I can actually look at these vectors and come up with a linear combination
+that makes them 0. Right. And so, what is that lambda 1, lambda 2, lambda 3? As it turns out,
+lambda 1 is equal to 1. So, lambda 1 is equal to lambda 2 is equal to 1 and lambda 3 is equal
+to minus 1. This is one of the many constants. So, as I said, so, last time when we discussed
+linear combinations, here I said, so, here I have linear combination of this form.
+So, any other linear combination here, instead of 1, I could have 10
+and things would have still worked. Right. I have infinitely many linear combinations
+that will give me the sum of these vectors to be 0. Right. Something same holds here as well.
+Right. So, I have these 3 vectors and then that linear combination is going to give me
+0. Right. Where all lambda 1, lambda 2, lambda 3 are all not 0.
+So, that means the equations were linearly dependent. So, when you have linearly dependent
+equations and to be more explicit, if we have fewer linearly dependent vectors
+than the number of variables, then we have infinitely many solutions.
+Infinitely many solutions assuming consistency. Right. So, this,
+there is another way to look at the linear equations as vectors. Right. So, in particular,
+these 2, these 2 are linearly independent and these 2 together,
+these 3 put together, they are linearly dependent. Right. Good.
+So, now the question, like an important question that we can ask is,
+what if we have
+what if we have n equations, sorry, n unknowns
+and m equations
+with m greater than n. So, how many linearly independent equations?
+So, okay. So, let me be linearly independent vectors. So, I apologize. They should be
+linearly independent vectors. Right. So, they should be linearly independent.
+Right. So, now what if we have n unknowns and m equations and m is greater than n.
+So, the important question is, would all m equations
+be linearly independent
+or is there an example where
+of m equations
+that are linearly independent when m is greater than n. Right. Think about this question.

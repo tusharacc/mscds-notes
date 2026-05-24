@@ -1,0 +1,170 @@
+So, what did we do before? So, we said we have vectors alpha to beta. They can be written
+in terms of what we described as elementary vectors. So, now the other claim that we made
+was R2 can be covered by 1, 0, 0, 1, and 0, 0. So, henceforth, I am not going to explicitly
+write 0, 0, 0, 0, because it is well understood that 0 vector is a part of my vector space.
+So, now I can describe any point in R2. So, let us say my point is alpha beta. I can express
+it in terms of these two what we call basis vectors. So, the other way to say that is
+elementary vectors these two form a basis for R2. So, informally, a basis is nothing
+but a set of vectors that generates every other element in my vector space of under
+discussion. So, similarly, extending this analogy, Rn is described by n elementary
+vectors. So, which are usually called E1, E2 until En. I am going to put a hat, I mean
+I am going to put an overline to say that it is a vector. So, what is Ei? Ei is nothing
+but in the ith location. So, I am going to write it in the row form and then put a transpose
+at the top to make our life easy to describe. So, the ith position, the ith location is
+1 and 0 elsewhere. So, this is all zeros and this is all zeros. So, for example, E1 is
+1, 0, 0, 0 and so on. Similarly, R3 is given by 1, 0, sorry, I shouldn't put commas there
+because we are looking at vectors. So, I have 1, 0, 0 transpose. I have 0, 1, 0 transpose
+and then I have 0, 0, 1 transpose or the equivalent is saying 1, 0, 0, then I have
+0, 1, 0 and 0, 0, 1. So, writing them as column vectors or row vectors is something is a notation
+convention that you follow. So, if you start writing them as row vectors, keep writing
+them as row vectors elsewhere, everywhere. And if you start writing them as column vectors,
+you keep writing them as column vectors everywhere. So, we stick to the notation where we treat
+vectors as columns. So, this makes our life easier in certain situations.
+So now, before I formally define what's basis. So, let me define what is called linear
+independence or linear dependence. So, what is this? So, I am just going to write the following.
+A set of vectors
+V1 to say Vm are set to be linearly dependent
+if there exists, instead of writing it as there exists in symbolically, I will write
+that verbally. If there are constants, lambda 1 to lambda m such that not all of lambda 1 to
+lambda m are 0 and lambda 1 V1 plus lambda m Vm is 0.
+Right. So, here we say a set of vectors V1 to Vm are dependent if there are constants.
+So, if there are constants which lambda 1 to lambda m. So, that means not all of them are 0.
+So, lambda 1 to lambda m cannot all simultaneously be 0. So, there exists at least some elements
+which are non-zero. If I think of lambda 1 to lambda m as some locations of a vector.
+So, this is not equal to the 0 vector on m coordinates.
+That means there exists some non-zero element somewhere in between.
+So, here the other thing that I want to clarify is lambda 1 to lambda m are real numbers.
+So, we say a set of vectors V1 to Vm are dependent if there exists constants lambda 1,
+lambda 2 and lambda m such that there is a linear combination. So, expressing vectors,
+so just as a related note. So, I am going to say
+linear combinations. So, I am going to define this word as well.
+So, linear combination of vectors say V1 till Vm. So, any vector that is obtained by
+a summation like this where alpha is a constant, where alpha 1 till alpha m
+belong to real numbers. So, such an operation is called. So, this is called linear combination
+of vectors. So, let us look at things more importantly. So, here all it says is
+given a set of vectors V1 to Vm they are dependent, linearly dependent if there exists
+a linear combination of these vectors that leads us to a 0 vector. So, let us take some examples.
+So, I have a vector 1, 1 and I have vector 2, 2. So, this is a very simple example.
+So, for this it is easy to observe that these are dependent because I can come up with a
+constant let us say I can set my lambda 1 to be 1 itself or I can set my lambda 1 to be
+2 and then I can set my lambda to be minus 1 and this will give me 0 because this part is going
+to be 2 and 2 minus 2 to 0. It is a very simple example. You can have slightly more complex
+examples. Instead of working with R2, I can work with R3. Then I can have examples of the form I
+can have 3, 5, 2 and then I can have 4, 3, 6. Then I can have 7, 8, 8. This is not a very hard
+example, but this is also slightly more trivial example. So, this is my V1, this is my V2 and this
+is my V3. Are these independent or are these not independent? So, now what do you say?
+I want to look at lambda 1 times this 3, 5, 2 plus lambda 2 times 4, 3, 6 plus
+lambda 3 such that I have 8, 8 is equal to 0. So, this is a way of writing it. That means
+if I simplify this expression, what I am going to get is 3 times lambda 1 plus 4 times lambda 2
+plus 7 times lambda 3 in the first coordinate. I have 5 times lambda 1 plus 3 times lambda 2
+plus 8 times lambda 3. And in the third position, I have 2 times lambda 1 plus 6 times lambda 2
+plus 8 times lambda 3 is equal to what I want? I want a zero vector.
+0, 0, 0. So, now I ask, so this is a zero vector. I am going to write it as 0, 0, 0.
+So, can we find such lambda 1, lambda 2, lambda 3? As it turns out, it is not very difficult to
+find lambda 1 and lambda 2 and lambda 3. So, this is equal to 1 and lambda 3 is minus 1.
+Or I can do lambda 1 is equal to lambda 2 is equal to minus 1 and lambda 3 to be 1.
+So, it is not just one combination, but there are two combinations that will lead me to zero.
+So, in which case, this V1, V2, V3 are linearly dependent.
+So, let us take another example, which is I have 1, 0, 0. Then I have 0, 1, 0. Then I have
+0, 0, 1. Now, I ask if these are linearly independent or linearly dependent.
+So, let us try to look at this example. I have lambda 1, lambda 2, that is lambda 3 is equal to
+0. So, what does this give me? I have this vector, which is lambda 1, lambda 2, and lambda 3.
+This should be equal to 0, 0, 0. So, now, this will tell me that the only solution that I have
+here is in fact, lambda 1 is equal to 0, lambda 2 is equal to 0, and lambda 3 is equal to 0.
+So, what would you say the definition of linear dependence was? We wanted a linear combination
+such that not all the lambdas are 0. We want lambda 1 to lambda 2 to be not all 0,
+and we want the sum to be 0. So, now, this tells us that these three vectors, which I denoted like
+E1, E2, and E3, these are linearly independent. So, what do you think would be the definition
+for the basis? So, just to give you some insight into it,
+Rn can be spanned. So, I will use the word spanned for the first time here by elementary vectors
+E1, E2, until En. So, just to make a distinction. So, this E1, E2, E3, and these E1, E2,
+En are different. So, these are over R3, and these are over Rn. That means these vectors have
+n locations. So, this and this are distinct set of vectors. Good. So, what else can we do?
+So, my first, so, what is my basis? So, one indication is it has something to do with
+so I will just summarize what we have been discussing so far, something to do with
+linear independence. So, what is linear independence? If the set of vectors are not
+dependent, then they are linearly independent. So, if they are
+not dependent, then they are independent, right? So, it is something to do with linear independence.
+And basis should generate the entire space.
+Good. So, now, so, what we get from the basis is, so, we are interested in, given a vector space,
+this basis is a set of linearly independent
+vectors
+that span the entire vector space, right? So, just to give you the definition of span,
+span of a set of vectors V1 till Vm is the set of vectors that are generated by linear combinations.
+For some alpha 1 till alpha m belong to some R to the n.
+So, now, what we mean here is, given a set of vectors, its span or in particular its
+linear span, so, let me make it even more, its linear span is the set of all possible linear
+combinations of these vectors, right? So, now, what I want from basis is that
+given a vector space V, basis spans, I mean, so, in the span of the basis,
+every vector in the vector space lies, right? So, what is the observation here? Observation is
+that this basis is a succinct representation or it is a succinct generator for the vector space.
+Right? So, now, there's a unique basis for a vector space. So, you don't have a unique basis
+for vector space. So, let's look at the example, which is 1, 0, 0, 1,
+1, 0, 1. They have 1, 0, 1. Right? So, let's look at these vectors. So, these are R3, right?
+Let's look at this lambda 1 plus lambda 2 plus lambda 3. Right? So, what this is going to be,
+I am going to get lambda 1 plus lambda 3. I have lambda 1 plus lambda 2. Then I have
+lambda 2 plus lambda 3. And I have each of them to be equal to 0, let's say.
+Right? So, what does this give me? So, this gives me, I have lambda 1 plus lambda 3 is 0.
+That means lambda 1 is equal to minus lambda 3. Then I have lambda 3 is equal to minus lambda 2,
+in which case both of these put together. So, I am looking at the first equation and the
+third equation. So, I would get lambda 1 is equal to lambda 2. But if I actually look at the second
+equation, from the second equation I get lambda 1 is equal to minus lambda 2.
+So, this is kind of a tricky situation and this can only happen. So, only true
+if lambda 1 is equal to lambda 2 is equal to lambda 3 is equal to 0. That means these three
+vectors that I have, this, this and this are linearly independent. Right? So, we have
+linear independence of these vectors. So, linear independence.
+So, let me call this vector u 1, let me call this vector u 2 and this vector u 3.
+So, you know that even u 2 and u 3 are independent. So, the second thing we can do is do this plan
+of the three. So, suppose I have a point that I am interested in, which is alpha, beta and gamma
+and I want them to be less. Let's say, I just want to use alpha, beta, gamma because I have
+eaten alpha and gamma. So, let's say I have d 1, d 2, d 3. This is this arbitrary terminal.
+Right? I want to generate that from 1, 1, 0 plus alpha 2 times
+0, 1, 1 plus alpha 3 times 0 plus 1, 0, 1.
+So, this is R H I have alpha 1 plus alpha 2, then I have alpha 1 plus alpha 2, then I have alpha 2
+plus alpha 3. Right? So, now, can I generate all possible d 1, d 2, d 3 by suitably setting alpha
+1, alpha 2 and alpha 3. So, that is what it means to say spanning the entire space.
+So, using only these three vectors by using some scalar multiples alpha 1, alpha 2, alpha 3,
+I should be able to generate any given point b 1, b 2, b 3 in R 3. So, this is an arbitrary point
+that we have picked. For an arbitrary point, we want to find out if there exist choices for alpha
+1, alpha 2, alpha 3. Right? So, that is what it means by spanning the entire space R 3 by just
+these three vectors. Right? You are generating the entire space because b 1, b 2, b 3 is an arbitrary
+point. So, for every choice of b 1, b 2, b 3, I want a choice of alpha 1, alpha 2, alpha 3.
+Right? So, then that means alpha 1. So, this u 1, u 2 and u 3 generate the entire space R 3.
+So, what is this? I have alpha 1 plus alpha 3 is equal to b 1. Then I have
+alpha 1 plus alpha 2 and alpha 2 plus alpha 3. Funnily enough, this is again a system of equations.
+Right? So, how do I? So, I can just, I have this, I will call this e 1, e 2 and e 3.
+So, then I will say, I am going to look at e 1 minus
+e 2 minus e 3. So, this is going to get me
+a 1 minus alpha 3 minus alpha 1 plus alpha 2 minus alpha 2 minus alpha 3 equal to b 1 plus b 2 minus
+b 3. So, this gets cancelled. Alpha 1 is given by b 1 plus b 2 plus b 3.
+Similarly, I can work out what is alpha 3. Alpha 3 is given b 1 minus
+b 1 plus b 2 plus b 3 by 2. On the other hand, I have alpha 2 is given by b 2 minus,
+sorry, there should be a minus over here. So, b 2 minus b 3 divided by 2.
+I can find if b 2 and b 3, all of them zero, I have. So, this is going to be half only like this.
+So, b 2 minus b 3 is 1 minus b 2 plus b 3 divided by 2. And this one will be b 2 minus b 3 divided
+by 2. So, we get all that we need.
+So,
+if at least one of b 1 to b 3 is non-zero, then at least one of this alpha 3 will be non-zero.
+Please work this claim out. If at least one of b 1 to b 3 is non-zero, then at least one of alpha 3 will be non-zero.
+So,
+now what does this tell us? This tells us that only this 1, 0, 0, 1, 0, 1, 0,
+0, 1, 0, 0, 1. So, not only this is the basis, even this is a basis for
+my R3.
+So, two distinct bases for R3. So, bases. So, I am just like using it as a plural for
+bases. It's a plural of bases.
+This tells us that given a vector space, you can have multiple bases for the vector space.
+The only properties that we ask of the bases is the bases be contained of
+linearly independent vectors and the bases spans the entire vector space. That means if you take
+linear combination of vectors in the bases, their linear combination
+will actually contain all the vectors in my vector space.
+So, here through the example, what we learned is linear combination of this
+will give me the entire space which is R3 and linear combination of this will give me the entire
+space R3. Fair enough? Good. So, the next question is,
+so what we say dimension of a vector space.
+So, what is the dimension of a vector space? The dimension of a vector space is,
+so in simple terms, it's equal to the size of the bases.
+So, dimension of the vector space. So, here we are talking about it in formal terms.
+So, let's make that formal in a bit. But so, when I say dimension 3 vector space here,
+so R3 is a dimension 3 vector space because it can be spanned by 3 vectors of this one.
+Good. So, the number of elements in this bases is 3.
+So, when I say dimension 3, then the number of elements in the bases is 3.

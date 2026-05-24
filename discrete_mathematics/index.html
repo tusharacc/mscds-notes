@@ -54,6 +54,7 @@ MathJax = {
   --week-accent-2: #7c3aed;
   --week-accent-3: #16a34a;
   --week-accent-4: #d97706;
+  --week-accent-5: #be123c;
 }
 
 html { scroll-behavior: smooth; font-size: 16px; }
@@ -172,6 +173,9 @@ main { flex: 1; max-width: 900px; padding: 3rem 2.5rem 6rem; }
 .week-section[data-week="6a"] .week-banner {
   background: linear-gradient(135deg, #dcfce7 0%, #f0fdf4 70%);
   border-color: var(--week-accent-3); color: #14532d;
+}
+.week-section[data-week="7"] .week-banner {
+  background: #fff1f2; border-color: var(--week-accent-5); color: #9f1239;
 }
 .week-section[data-week="6b"] .week-banner {
   background: linear-gradient(135deg, #fef3c7 0%, #fffbeb 70%);
@@ -508,6 +512,21 @@ mjx-container[jax="CHTML"][display="true"] {
     <ol>
       <li><a href="#vectors">Vectors</a></li>
       <li><a href="#matrices">Matrices &amp; Operations</a></li>
+    </ol>
+  </div>
+
+  <!-- ── Week 7 ── -->
+  <div class="toc-week">
+    <div class="toc-week-header">
+      <div class="toc-week-dot" style="background:var(--week-accent-5)"></div>
+      Week 7 · Linear Algebra: Vector Spaces
+    </div>
+    <ol>
+      <li><a href="#vector-spaces">Vector Spaces</a></li>
+      <li><a href="#linear-dependence">Linear Dependence &amp; Independence</a></li>
+      <li><a href="#basis-span">Span &amp; Basis</a></li>
+      <li><a href="#dimension">Dimension of a Vector Space</a></li>
+      <li><a href="#dual-space">Dual Space &amp; Linear Equations</a></li>
     </ol>
   </div>
 
@@ -1945,6 +1964,230 @@ mjx-container[jax="CHTML"][display="true"] {
 
 </section>
 <!-- END WEEK 6b ─────────────────────────────────────────────────────── -->
+
+<!-- ╔═══════════════════════════════════════════════════════════════════╗
+     ║  WEEK 7 · LINEAR ALGEBRA: VECTOR SPACES                          ║
+     ╚═══════════════════════════════════════════════════════════════════╝ -->
+<section class="week-section" id="week7" data-week="7">
+  <div class="week-banner">
+    <div>
+      <div class="week-tag">Week 7</div>
+      <h2>Linear Algebra: Vector Spaces</h2>
+      <div class="week-meta">5 concepts &nbsp;·&nbsp; 3 lectures &nbsp;·&nbsp; Vector spaces · Linear dependence · Basis · Dimension · Dual space</div>
+    </div>
+  </div>
+
+  <!-- §26 ─ VECTOR SPACES ─────────────────────────────────────────── -->
+  <section class="concept-section" id="vector-spaces">
+    <h3>26 · Vector Spaces</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Vector Space</div>
+      <p>A <strong>vector space</strong> \(V\) is a set of vectors (each an \(n\)-coordinate column vector in \(\mathbb{R}^n\)) satisfying two closure properties:</p>
+      <ul class="steps">
+        <li><strong>Closed under addition:</strong> for any \(\mathbf{u}, \mathbf{v} \in V\), we have \(\mathbf{u} + \mathbf{v} \in V\).</li>
+        <li><strong>Closed under scalar multiplication:</strong> for any \(\mathbf{v} \in V\) and any \(\alpha \in \mathbb{R}\), we have \(\alpha\mathbf{v} \in V\).</li>
+      </ul>
+      <p>These two properties together force the <strong>zero vector \(\mathbf{0}\)</strong> to be in \(V\): take any \(\mathbf{v} \in V\) and note \(\alpha \mathbf{v} + (-\alpha)\mathbf{v} = \mathbf{0}\), which must be in \(V\) by closure under addition.</p>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Examples</span>
+      <div class="block-title">Three Kinds of Vector Space in \(\mathbb{R}^n\)</div>
+      <ul class="steps">
+        <li><strong>The trivial (full) space:</strong> \(\mathbb{R}^n\) itself. Any sum or scalar multiple of real-valued vectors is still real-valued, so both closure properties hold immediately.</li>
+        <li><strong>A line through the origin:</strong> all scalar multiples of a single non-zero vector \(\mathbf{u}\) — i.e.\ \(\{\alpha\mathbf{u} \mid \alpha \in \mathbb{R}\}\). Geometrically, this is an infinite line in the direction of \(\mathbf{u}\).</li>
+        <li><strong>A plane through the origin:</strong> all linear combinations \(\alpha\mathbf{u} + \beta\mathbf{v}\) where \(\mathbf{v}\) is not a scalar multiple of \(\mathbf{u}\). When \(\mathbf{u}\) and \(\mathbf{v}\) are non-collinear, these combinations fill a 2-D plane.</li>
+      </ul>
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Concept</span>
+      <div class="block-title">Succinct Representation</div>
+      <p>A vector space may contain infinitely many vectors, but it can often be described by a <em>small</em> set of "generator" vectors. For the line example, the single vector \(\mathbf{u}\) generates the whole space. For the plane example, the pair \(\{\mathbf{u}, \mathbf{v}\}\) generates it. This quest for a minimal generating set leads to the notion of a <strong>basis</strong>.</p>
+    </div>
+  </section>
+
+  <!-- §27 ─ LINEAR DEPENDENCE & INDEPENDENCE ──────────────────────── -->
+  <section class="concept-section" id="linear-dependence">
+    <h3>27 · Linear Dependence &amp; Independence</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Linear Combination</div>
+      <p>A <strong>linear combination</strong> of vectors \(\mathbf{v}_1, \ldots, \mathbf{v}_m\) is any vector of the form</p>
+      \[\alpha_1 \mathbf{v}_1 + \alpha_2 \mathbf{v}_2 + \cdots + \alpha_m \mathbf{v}_m, \qquad \alpha_i \in \mathbb{R}.\]
+    </div>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Linearly Dependent vs. Independent</div>
+      <p>Vectors \(\mathbf{v}_1, \ldots, \mathbf{v}_m\) are <strong>linearly dependent</strong> if there exist constants \(\lambda_1, \ldots, \lambda_m\) — <em>not all zero</em> — such that</p>
+      \[\lambda_1 \mathbf{v}_1 + \lambda_2 \mathbf{v}_2 + \cdots + \lambda_m \mathbf{v}_m = \mathbf{0}.\]
+      <p>They are <strong>linearly independent</strong> if the only solution is \(\lambda_1 = \lambda_2 = \cdots = \lambda_m = 0\) (the <em>trivial</em> combination).</p>
+      <p>Intuitively, dependence means one vector in the set can be written as a linear combination of the others — it carries no new information.</p>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Dependent Vectors in \(\mathbb{R}^2\) and \(\mathbb{R}^3\)</div>
+      <p><strong>In \(\mathbb{R}^2\):</strong> \(\mathbf{v}_1 = (1,1)\) and \(\mathbf{v}_2 = (2,2)\).</p>
+      <p>Set \(\lambda_1 = 2, \lambda_2 = -1\): \(2(1,1) - 1(2,2) = (2,2)-(2,2) = \mathbf{0}\). Both \(\lambda\)s are non-zero, so the pair is <strong>dependent</strong>. (\(\mathbf{v}_2 = 2\mathbf{v}_1\) — one is a scalar multiple of the other.)</p>
+      <p><strong>In \(\mathbb{R}^3\):</strong> \(\mathbf{v}_1=(3,5,2),\ \mathbf{v}_2=(4,3,6),\ \mathbf{v}_3=(7,8,8)\).</p>
+      <p>Try \(\lambda_1=\lambda_2=1, \lambda_3=-1\):</p>
+      \[(3,5,2)+(4,3,6)-(7,8,8) = (0,0,0) = \mathbf{0}.\]
+      <p>Non-trivial combination gives \(\mathbf{0}\), so the three vectors are <strong>dependent</strong>. (\(\mathbf{v}_3 = \mathbf{v}_1 + \mathbf{v}_2\).)</p>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Standard Basis — Independent</div>
+      <p>Consider the standard unit vectors in \(\mathbb{R}^3\):</p>
+      \[\mathbf{e}_1 = (1,0,0),\quad \mathbf{e}_2 = (0,1,0),\quad \mathbf{e}_3 = (0,0,1).\]
+      <p>If \(\lambda_1\mathbf{e}_1 + \lambda_2\mathbf{e}_2 + \lambda_3\mathbf{e}_3 = \mathbf{0}\), then \((\lambda_1, \lambda_2, \lambda_3) = (0,0,0)\). No non-trivial combination works — these vectors are <strong>linearly independent</strong>.</p>
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Key Insight</span>
+      <div class="block-title">Dependence and Systems of Equations</div>
+      <p>When row-reducing a system of equations, a row of all zeros arises exactly when the corresponding equation is a linear combination of the others — i.e.\ the equation vectors are linearly <em>dependent</em>. This is the algebraic reason why dependent systems either have infinitely many solutions (if consistent) or no solution (if inconsistent).</p>
+    </div>
+  </section>
+
+  <!-- §28 ─ SPAN & BASIS ──────────────────────────────────────────── -->
+  <section class="concept-section" id="basis-span">
+    <h3>28 · Span &amp; Basis</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Span</div>
+      <p>The <strong>span</strong> (or <em>linear span</em>) of a set of vectors \(\{\mathbf{v}_1, \ldots, \mathbf{v}_m\}\) is the set of all their linear combinations:</p>
+      \[\operatorname{span}(\mathbf{v}_1,\ldots,\mathbf{v}_m) = \left\{\, \sum_{i=1}^{m} \alpha_i \mathbf{v}_i \;\middle|\; \alpha_i \in \mathbb{R} \,\right\}.\]
+      <p>The span is always a vector space (it is closed under addition and scalar multiplication).</p>
+    </div>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Basis</div>
+      <p>A <strong>basis</strong> of a vector space \(V\) is a set \(\mathcal{B} = \{\mathbf{v}_1, \ldots, \mathbf{v}_k\}\) that satisfies <em>both</em>:</p>
+      <ul class="steps">
+        <li><strong>Linear independence:</strong> no vector in \(\mathcal{B}\) is a linear combination of the others.</li>
+        <li><strong>Spanning:</strong> \(\operatorname{span}(\mathcal{B}) = V\) — every vector in \(V\) can be written as a linear combination of the basis vectors.</li>
+      </ul>
+      <p>A basis is the <em>most economical</em> description of a vector space: it generates everything while carrying no redundant information.</p>
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Theorem</span>
+      <div class="block-title">Bases Are Not Unique</div>
+      <p>A vector space \(V\) generally has infinitely many distinct bases. Any linearly independent spanning set is a valid basis. However, all bases of \(V\) have the same number of vectors — this common size is the <strong>dimension</strong> of \(V\).</p>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Two Bases for \(\mathbb{R}^3\)</div>
+      <p><strong>Standard basis:</strong> \(\{\mathbf{e}_1, \mathbf{e}_2, \mathbf{e}_3\} = \{(1,0,0),(0,1,0),(0,0,1)\}\). Independence is clear; any \((b_1,b_2,b_3) = b_1\mathbf{e}_1 + b_2\mathbf{e}_2 + b_3\mathbf{e}_3\).</p>
+      <p><strong>Non-standard basis:</strong> \(\mathbf{u}_1=(1,1,0),\ \mathbf{u}_2=(0,1,1),\ \mathbf{u}_3=(1,0,1)\).</p>
+      <p><em>Independence check:</em> solving \(\lambda_1\mathbf{u}_1+\lambda_2\mathbf{u}_2+\lambda_3\mathbf{u}_3=\mathbf{0}\) gives the system</p>
+      \[\lambda_1 + \lambda_3 = 0,\quad \lambda_1+\lambda_2=0,\quad \lambda_2+\lambda_3=0,\]
+      <p>whose only solution is \(\lambda_1=\lambda_2=\lambda_3=0\). Independent. ✓</p>
+      <p><em>Spanning check:</em> given any \((b_1,b_2,b_3)\), we need \(\alpha_1,\alpha_2,\alpha_3\) with</p>
+      \[\alpha_1+\alpha_3 = b_1,\quad \alpha_1+\alpha_2 = b_2,\quad \alpha_2+\alpha_3 = b_3.\]
+      <p>Solving (add all three equations, divide by 2, then subtract pairs):</p>
+      \[\alpha_1 = \frac{b_1+b_2-b_3}{2},\quad \alpha_2 = \frac{-b_1+b_2+b_3}{2},\quad \alpha_3 = \frac{b_1-b_2+b_3}{2}.\]
+      <p>A unique solution exists for every \((b_1,b_2,b_3)\), so the set spans \(\mathbb{R}^3\). ✓</p>
+    </div>
+  </section>
+
+  <!-- §29 ─ DIMENSION ─────────────────────────────────────────────── -->
+  <section class="concept-section" id="dimension">
+    <h3>29 · Dimension of a Vector Space</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Dimension</div>
+      <p>The <strong>dimension</strong> of a vector space \(V\), written \(\dim(V)\), is the number of vectors in any basis of \(V\). This is well-defined because every basis of the same vector space has the same cardinality.</p>
+      \[\dim(V) = |\mathcal{B}|\quad\text{for any basis }\mathcal{B}\text{ of }V.\]
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Examples</span>
+      <div class="block-title">Familiar Dimensions</div>
+      <ul class="steps">
+        <li>\(\dim(\mathbb{R}^n) = n\): the standard basis \(\{\mathbf{e}_1,\ldots,\mathbf{e}_n\}\) has \(n\) vectors.</li>
+        <li>\(\dim(\mathbb{R}^3) = 3\): confirmed by both the standard basis and the non-standard basis \(\{\mathbf{u}_1,\mathbf{u}_2,\mathbf{u}_3\}\) above — each has 3 elements.</li>
+        <li>A line through the origin in \(\mathbb{R}^n\) has dimension 1 (one generator suffices).</li>
+        <li>A plane through the origin in \(\mathbb{R}^n\) has dimension 2.</li>
+      </ul>
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Key Theorem</span>
+      <div class="block-title">Basis Size Is Invariant</div>
+      <p>Any two bases of the same vector space \(V\) contain exactly the same number of vectors. This means dimension is a genuine property of \(V\), not of the particular basis chosen. (The proof uses the fact that if you have more vectors than the dimension, they must be linearly dependent.)</p>
+      <p>Consequence: you <em>cannot</em> have two bases of different cardinalities for the same vector space.</p>
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Concept</span>
+      <div class="block-title">Dimension and Systems of Equations</div>
+      <p>Consider a system of \(m\) equations in \(n\) unknowns, viewed as \(m\) vectors in \(\mathbb{R}^n\):</p>
+      <ul class="steps">
+        <li>If the \(m\) equation-vectors are <strong>linearly dependent</strong>, the effective number of constraints is less than \(m\) — you have more degrees of freedom than constraints, giving <strong>infinitely many solutions</strong> (assuming consistency).</li>
+        <li>If \(m &lt; n\) and all \(m\) equations are independent, you still have \(n - m\) free variables — again infinitely many solutions.</li>
+        <li>Unique solution requires exactly \(n\) linearly independent equations in \(n\) unknowns — i.e.\ the equation vectors form a basis of \(\mathbb{R}^n\).</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- §30 ─ DUAL SPACE & LINEAR EQUATIONS ─────────────────────────── -->
+  <section class="concept-section" id="dual-space">
+    <h3>30 · Dual Vector Space &amp; Linear Equations</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Dual Vector Space</div>
+      <p>Given a vector space \(V\), its <strong>dual space</strong> \(V^*\) is the set of all <em>linear functionals</em> on \(V\) — functions \(f: V \to \mathbb{R}\) that are linear (i.e.\ \(f(\alpha\mathbf{u}+\beta\mathbf{v}) = \alpha f(\mathbf{u}) + \beta f(\mathbf{v})\)). A key fact is \(\dim(V^*) = \dim(V)\).</p>
+      <p>In the concrete setting of \(\mathbb{R}^n\), every linear functional has the form \(f(\mathbf{x}) = \mathbf{w}^T\mathbf{x}\) for some fixed vector \(\mathbf{w} \in \mathbb{R}^n\). Each <em>row</em> of a matrix is a linear functional acting on column vectors — this is precisely the dual perspective on matrix-vector multiplication.</p>
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Concept</span>
+      <div class="block-title">Equations as Vectors — Dependence Revisited</div>
+      <p>Returning to the system from §26 of Gaussian elimination:</p>
+      \[2x+4y+z=1,\quad 3x+6y+z=2,\quad 5x+10y+2z=3.\]
+      <p>View each equation as a coefficient vector in \(\mathbb{R}^3\): \(\mathbf{r}_1=(2,4,1)\), \(\mathbf{r}_2=(3,6,1)\), \(\mathbf{r}_3=(5,10,2)\).</p>
+      <p>With \(\lambda_1=\lambda_2=1, \lambda_3=-1\):</p>
+      \[(2,4,1)+(3,6,1)-(5,10,2) = (0,0,0) = \mathbf{0}.\]
+      <p>The three equation-vectors are <strong>linearly dependent</strong> (\(\mathbf{r}_3 = \mathbf{r}_1+\mathbf{r}_2\)), so the system has only 2 independent constraints on 3 unknowns — giving infinitely many solutions.</p>
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Key Question</span>
+      <div class="block-title">Can More Equations Than Unknowns All Be Independent?</div>
+      <p>Suppose we have \(n\) unknowns and \(m\) equations, with \(m &gt; n\). Can all \(m\) equation-vectors (each in \(\mathbb{R}^n\)) be linearly independent?</p>
+      <p><strong>Answer: No.</strong> Any set of more than \(n\) vectors in \(\mathbb{R}^n\) must be linearly dependent. This follows directly from the dimension theorem: a basis of \(\mathbb{R}^n\) has exactly \(n\) elements, so any collection of \(m &gt; n\) vectors must contain a redundant vector expressible as a combination of the others.</p>
+      <p>Practical consequence: if you have more equations than unknowns, at least \(m-n\) equations are "redundant" (linearly dependent on the rest) — they add no new information about the solution.</p>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Summary</span>
+      <div class="block-title">Linear Algebra — Connections</div>
+      <table>
+        <thead><tr><th>Scenario</th><th>Geometric picture</th><th>Solutions</th></tr></thead>
+        <tbody>
+          <tr><td>\(n\) eqns, \(n\) unknowns, all independent</td><td>Basis of \(\mathbb{R}^n\)</td><td>Unique</td></tr>
+          <tr><td>\(m\) eqns, \(n\) unknowns, \(m &lt; n\), all independent</td><td>\(n-m\) free variables</td><td>Infinitely many</td></tr>
+          <tr><td>Dependent equations (any \(m\))</td><td>Effective rank \(&lt; n\)</td><td>Infinitely many (if consistent)</td></tr>
+          <tr><td>\(m &gt; n\) equations</td><td>At least \(m-n\) redundant</td><td>Unique / ∞ / none depending on rank &amp; RHS</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</section>
+<!-- END WEEK 7 ──────────────────────────────────────────────────────── -->
 
 </main>
 </div>

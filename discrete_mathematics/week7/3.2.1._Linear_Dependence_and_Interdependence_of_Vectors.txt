@@ -1,0 +1,147 @@
+Welcome back. So, we are living at topics in linear algebra. So, what are we looking
+at? So, we are looking at vectors, we are looking at matrices and we were looking at
+of linear equations. So, this is what we were looking at in the last lecture. So, just to recall,
+we were interested in finding situations where you have unique solution, we do not have a unique
+solution, but many solutions or you have no solution at all. So, we were interested in
+looking at systems of linear equation and we try to gain more information about the system of
+linear equations using something called Gaussian elimination. So, we looked at what is called a
+Gaussian elimination. So, what was Gaussian elimination? So, we had a system of equations,
+let's say we call that 2x plus 3y plus z is equal to 5, let's say x plus 4y plus 2z is equal to 10,
+and then let's say I have 4x plus 3y plus 10z is equal to 45. I mean, these are some arbitrary
+equations that you could come up with without any thought behind how these equations are formed.
+And let's try to apply Gaussian elimination on the system. So, what did we do first? We started
+with 2, 3, 1 and 5 and then I have 1, 4, 2 and 10 and then 4, 3, 10, 45. So, this is the system
+that I have. And then what can we do in this? We can actually do some row and column transformations.
+So, what kind of row and column transformations can we do? So, let's nullify the third equation
+using the first equation or the other way around. Let's nullify the first equation using the second
+equation. I can do any of these. So, for the sake of this example, let's nullify the first
+equation from the second one. So, what do I want to do? I want to replace. So, I'll just number them
+as we did before. I'm going to call this R1, I'm going to call this R2 and I'm going to call this
+R3. Then I can have R1 given by R1 minus 2R2. So, this is what you want to do. So, what do I get?
+I get 0 over here and then I would have 3 minus 8. I would get a minus 5 over here. Then 1 minus 4,
+which is going to be minus 3 and then I have 5 minus 20, which is minus 15.
+And I can do this other operation, which is into minus 1. So, I can ignore this minus over here
+if that's the case. Now, the second equation is as it were, 1, 4, 2, 10, 4, 3, 10, 45.
+So, what can I do next? I can actually do the following. I can take R3 and I'm going to replace
+with R3 minus 4R2. I'm going to get 0, 5, 3, 15 as they were before. Then this one will be 1, 4,
+2, 10. Then what would I get here? So, this 4 minus 4 is 0. 3 minus 16, I'm going to have a minus 13
+over here. And then here I have 10 minus 8. I have 2. And then what I have left here is
+so 45 minus 40. I have 5. So, what is the next plan of action that I have?
+I need to nullify the second element of some row. It could be this. So, basically I'll look at this
+and I'll look at this and try to nullify one of these elements. So, what can I do?
+So, I'll look at the following. I'm going to look at R1 replaced by 13 times R1
+plus 5 times R3. So, what do I get? So, I have 0 and 0 here. So, these two terms don't really
+disturb each other. Then I have 5 and I have a minus 13 here. So, this will be into 5 and this
+will be into 13. And if I add both of these together, I'm going to get a 0. So, I'm going
+to get a 0 here. And what about the other parts? So, this part is going to be 13 into 3,
+which is 39. So, this is going to give me 39 plus 5 into 2, 10. So, I have 49 over here.
+And similarly, I have 13 into 15. So, what is 13 into 15?
+So, 13 into 15 is like 150 plus 45, it's 195, plus I have 5 into 5, I have 25 more. So, I'm adding
+this, I'm going to get 220. I'm going to get 220 here. And then I have 1, 4, 2, 10 as before,
+and I have 0, minus 13, 2, 5. So, this gives us a new system of equations.
+What is the new system of equation? So, just to make our reading better, so I'm going to
+recognize these rows. So, I have 1, 4, 2, 10. I have 0, minus 13, 2, 5. And I have 0, 0, 49,
+and 220. What do I get from here? I have 49z is equal to 220. That is one equation. I have
+minus 13y plus 2z is equal to 5. So, this gives me z is 220 divided by 49. And here I can get a
+value of y by substituting this value of z from this. And similarly, I can actually resolve the
+value of x from this equation. So, now, so what's happening here is we have,
+we can resolve equations by getting this matrix into an upper triangular matrix, sorry,
+an upper triangular matrix. So, below this triangle, below this diagonal, you have this
+triangle, which is all zeros. So, this is my upper triangle and these are my zeros.
+Make sense? Good. So, this is my system of linear equations.
+So, then let's consider the equation, which is 2x plus 4y plus z is equal to 1. And similarly,
+I can look at this equation, which is 3x plus 6y plus z is equal to 2. And I can look at this
+equation, which is 5x plus 10y plus 2z is equal to 3. This is the system of equations I have.
+And if I actually look at the corresponding matrix, which is 2, 4, 1, 1, and similarly, I have
+3, 6, 1, 2, and I have 5, 10, 2, and 3. So, what can be done? So, I can actually do the following
+here as well. So, I have R1, R2, R3. And I can do this transformation, which is
+R3 is replaced by R3 minus R1 plus R2. And as it turns out, what I end up getting is
+this equation, which is 2, 4, 1, 1, 3, 6, 1, 2, and I have 0, 0, 0, 0. This is the system that I get.
+It's slightly not satisfying because I have 3 equations.
+But what essentially is happening is these 3 equations are essentially
+2 equations because the third equation, if I call this equation E1, E2, and E3. So, I have E3 is
+given by E1 plus E2. So, the information that is encoded into E3 is already given by E1 and E2.
+So, I have 3 degrees of freedom
+and only 2 constraints.
+So, this is a philosophical way of looking at it. So, essentially what's happening here is that
+there is some sort of a dependence amongst the equations.
+So, there is a dependence among the equations and that is giving us. So, what does this give us?
+This gives us a system. This gives us infinitely many solutions to the system.
+So, what I have here is. So, let's say we are working over real numbers.
+So, I have infinitely many solutions to the system. So far, so good.
+So, now what else can we do? So, let's study the importance of what is called dependence
+of these equations. So, we will arrive at this notion of dependence amongst the equations
+by looking at dependence on the vectors. So, let's take a digression and let's look at
+what are called vector spaces. So, what are vector spaces here?
+So, vector spaces, they are nothing but, they are sets of vectors.
+So, let's consider we are looking at n dimensional vectors
+in the space R to the n. So, all it means is I have a set of vectors.
+I have my ambient space of vectors as in like I have n coordinates. So, rather we have been
+denoting our vectors in terms of columns. So, I have this column vector which is n cross 1 matrix
+and each of its entry is a real number. So, this is what we call an n dimensional vector.
+So, rather let me just. So, I am going to use this n dimensional to just at this point of time
+to just say that it has n coordinates. But pretty soon this word dimension cannot be used so
+freely as we just did. So, let's replace this by saying n locations or n coordinates.
+So, I have a set of vectors. So, this vector space is a set of vectors with some special properties.
+So, let me call this vector space with denote by a capital letter V. So, for any two vectors,
+this. So, U comma V belonging to the vector space V, we have the condition
+that U plus V also belongs to V. So, for any two vectors U and V, U plus V also is in the
+vector space V. Further, so we have the following. So, for any vector V,
+V. So, and a scalar alpha, alpha times V also belongs to
+V. For any alpha which is a real number. So, now this actually brings up an interesting question.
+So, if I have any alpha that belongs to the vector space, I can take two vectors which are given by
+alpha times V and I add up with another vector which is given by minus alpha times V.
+I know that since V is a part of my vector space, alpha times V is also part of my vector space.
+And for a different constant, which is, and here I should say any scalar.
+So, now I can take minus alpha as the other scalar. Then what would I get? I get 0 as a result. So,
+that means my 0 vector is also in V. So, what is a vector space? A vector space is nothing but
+it's a set of vectors following some special properties. So, this is what we want.
+So, like the entire space Rn is a vector space in itself. So, I can,
+some examples of the vector space are all vectors in Rn form a trivial vector space.
+So, the entire space Rn itself is a vector space because you have the first property which is
+for any vector U and V, where U and V take real values, their result is also going to be
+a vector of real values and this belongs to R to the n anyway. And for any vector U,
+if you look at a constant and any constant alpha, you have alpha times U
+belong to this real space, real vector space anyway.
+So, now and also 0 to the n, rather this vector, all zeros vector is part of my
+part of my space R to the n. This is a very trivial example of what is a vector space.
+And then, what else? I can actually have
+vectors with a multiple of, I can just have a vector 0 and I can have a vector U.
+Any scalar with a multiple of, forms a vector space. So, geometrically, what does it mean? So,
+I have space and I have a vector U in this direction. So, what does a constant
+multiple mean? Constant multiple means any vector on this line.
+Either in the positive direction, if you multiply with a scalar, positive scalar,
+you'll end up with a vector on this side. If you multiply with a negative, you'll get this.
+So, I'll call this U, then 2 times U will be 2 times the magnitude of this
+or minus U is going to be just the mirror image of this. Mirror image against
+a plane which is drawn perpendicularly to U. So, this is not to scale. So,
+just to illustrate the vector space that we have.
+So, now, just to give you an example of this vector space.
+So, it contains infinitely many vectors. Now, you ask, is there a short description of this
+vector space? Is there a very short description or succinct description of this space? So,
+that is what we want to understand. So, the question here is, is there a succinct representation
+to my vector space? So, if you studied this particular example, for me, all I need to do is
+just the vector and it describes the rest of the space. So, that is sufficient enough.
+So, my question to you is, what happens if my vector space has, take the form of U, I have V,
+and I have alpha times U plus beta times V for all alpha comma beta in R2.
+So, what is the specific interpretation of this particular vector space?
+So, I have, I can draw this, suppose I have a vector like this and suppose I have a vector V like this.
+So, what do they come? And let's say vector U and V are distinct.
+Or let's come to the point that I'll make the following statement. V is not dependent on U.
+That is, V is not a constant multiple of U. In which case, these two vectors, U and V,
+are not dependent on either, span the entire space with two dimensions.
+So, please see this example.
+So, please try to come up with all possible vector spaces that you can think of.
+So, now let's come to this notion of what is called
+a succinct representation of your vector space. So, which is called the basis.
+So, in simple terms, basis generates
+the entire vector space.
+So, you must have, you must have learned in coordinate geometry of what are called elementary
+vectors. So, what is known is, if I take any vector which is alpha beta, they can be generated
+by these elementary vectors which are 1, 0 and 0, 1.
+So, now how do you get alpha beta? I can just multiply 1, 0 with alpha and then beta which is
+0, 1. So, now I claim that if I'm given this vector space over R2,
+so here this alpha beta is 1, 0, I mean all other vectors in this R2 space.
+So, I claim that if I have, you can have a distance from each other.
+What is the possibility of generating all vectors which are based on R2?
+Please think about this and we'll come to this part to start up the session.
