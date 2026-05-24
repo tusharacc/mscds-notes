@@ -4,25 +4,39 @@ Course notes for the Master of Science in Data Science (MScDS) programme at IIIT
 Notes are generated from lecture transcripts, enriched with derivations and worked examples,
 and rendered as self-contained HTML documents.
 
-## Subjects
+**[Open Study Hub →](https://tusharacc.github.io/mscds-notes/)**
 
-| Subject | Notes | Coverage |
+## Notes
+
+| Subject | Link | Coverage |
 |---|---|---|
-| Discrete Mathematics | [View notes](https://tusharacc.github.io/mscds-notes/discrete_mathematics/) | Weeks 4–5: Probability theory |
-| Python | [View notes](https://tusharacc.github.io/mscds-notes/python/) | Weeks 4–5: Loops, reasoning, sorting, lists |
+| Discrete Mathematics | [View notes](https://tusharacc.github.io/mscds-notes/discrete_mathematics/) | Weeks 1–7: Probability, random variables, linear algebra |
+| Python | [View notes](https://tusharacc.github.io/mscds-notes/python/) | Weeks 1–5: Loops, sorting, lists |
+
+## Practice Problems
+
+| Booklet | Link | Content |
+|---|---|---|
+| Probability | [Open booklet](https://tusharacc.github.io/mscds-notes/practice/) | 40 solved problems — sample spaces, Bayes, expectations, variance, deviation bounds |
+| Linear Algebra | [Open booklet](https://tusharacc.github.io/mscds-notes/practice/linear-algebra.html) | 40 solved problems — matrices, inverses, linear systems, vector spaces, transformations |
+
+## Quiz
+
+| | Link | Content |
+|---|---|---|
+| Practice Quiz | [Open quiz](https://tusharacc.github.io/mscds-notes/quiz/) | 10-question sessions — MCQ with instant feedback + worked problems with self-marking. Covers Probability and Linear Algebra. |
 
 ## Structure
 
 ```
-subject_name/
-├── index.html        ← rendered notes (open in browser)
-├── week4/            ← transcripts for week 4
-├── week5/            ← transcripts for week 5
-└── weekN/            ← add future weeks here
+discrete_mathematics/   ← notes + transcripts
+python/                 ← notes + transcripts
+practice/               ← solved problem booklets
+quiz/                   ← interactive quiz module
 ```
 
-Each subject's `index.html` is a standalone file — no server required.
-It is also served via GitHub Pages at the link above.
+Each page is a standalone HTML file — no server required.
+All pages are served via GitHub Pages at the links above.
 
 ## Adding a new week
 
