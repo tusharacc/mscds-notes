@@ -1,33 +1,31 @@
 # Dev Framework Checkpoint
-**Date**: 2026-05-18
+**Date**: 2026-05-24
 **Workspace**: practice-problem-booklet
-**Phase**: developer (complete)
-**Branch**: feature/practice-problem-booklet
-**Workflow**: feature
+**Phase**: developer (completed — merged to main)
+**Branch**: main
+**Workflow**: full
 
 ## Done this session
-- Built `practice/index.html` — probability practice problem booklet
-  - 40 solved problems from MIT 6.042J Ch16-19 (pdftotext extraction via poppler)
-  - 7 topic sections: Sample Spaces, Conditional Probability, Bayes, Combinatorics, Random Variables, Variance, Deviation Bounds
-  - Each problem: source badge, collapsible hint, full step-by-step solution, confidence badge (✓/⚠/○)
-  - Print CSS: sidebar hidden, all <details> expanded, page-break-inside: avoid
-  - Mobile TOC drawer, IntersectionObserver active link, progress bar, back-to-top
-  - Committed: d3c5da6 on feature/practice-problem-booklet
-- ProbabilityChapter/probability_chapter_notes.pdf confirmed: continuous textbook prose (Ch12), no separate exercise sections — all 40 problems sourced from MIT notes
-- Workspace state.json updated: PO ✓, architect skipped, developer ✓
+- feat(discrete-maths): add Week 7 — Vector Spaces (§26–§30)
+- feat(practice): add linear algebra practice booklet (40 problems)
+- feat(discrete-maths): add §31 geometric intuition & abstract vector spaces
+- feat(quiz): add static practice quiz module
+- feat: add root landing page (index.html) linking all sections
+- feat(nav): add quiz link to TOC rail in notes pages
+- docs(readme): add links to practice booklets and quiz
 
 ## Where things stand
-feature/practice-problem-booklet is committed locally but NOT pushed to remote.
-practice/index.html is ready for browser verification and potential PR to main.
-
-**Pending from previous checkpoint** (still applies):
-- Python: list sorting, reversing, and copying — add when transcript arrives
-- python/week5/ folder: only transcripts/ subfolder staged, not video files
+All work is on main and pushed. The site now has: Discrete Maths notes
+(Weeks 1–7 incl. linear algebra), Python notes (Weeks 1–5), two practice
+booklets (Probability + Linear Algebra, 40 problems each), a static quiz
+module (25 question groups, MCQ + worked, topic filter), a root hub page,
+quiz links in all TOC sidebars, and updated README with GitHub Pages links.
 
 ## Pending decisions
-- [ ] Push feature/practice-problem-booklet to GitHub remote?
-- [ ] Open PR to merge into main?
-- [ ] Week 7+ discrete maths / Python Week 6 — when transcripts arrive
+- [ ] Week 8+ Discrete Maths — waiting on new transcripts
+- [ ] Quiz bank expansion — currently 25 groups (10 prob + 10 LA MCQ + 5 worked)
+- [ ] Python Week 7 confirmed NOT needed by user
 
 ## Next action
-Ask user: push to GitHub and merge to main? Or continue with Python/discrete maths content?
+No immediate action. When new week transcripts arrive, add content following
+the existing week section template in the relevant index.html.
