@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Linear Algebra — Practice Problems</title>
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    packages: {'[+]': ['ams']}
+  },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.min.js" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --blue-border: #2563eb;   --blue-bg: #eef4ff;   --blue-badge: #1d4ed8;
+  --amber-border: #d97706;  --amber-bg: #fefce8;  --amber-badge: #92400e;
+  --green-border: #16a34a;  --green-bg: #f0fdf4;  --green-badge: #14532d;
+  --violet-border: #7c3aed; --violet-bg: #f5f3ff; --violet-badge: #5b21b6;
+  --rose-border: #be123c;   --rose-bg: #fff1f2;   --rose-badge: #9f1239;
+  --teal-border: #0f766e;   --teal-bg: #f0fdfa;   --teal-badge: #134e4a;
+  --indigo-border: #4338ca; --indigo-bg: #eef2ff; --indigo-badge: #3730a3;
+  --grey-border: #78716c;   --grey-bg: #faf9f7;   --grey-badge: #44403c;
+  --page-bg: #faf6ef; --surface: #fffdf9; --border: #e5d9c8;
+  --text: #1c1410; --text-muted: #6b5f54; --gold: #92400e;
+  --toc-w: 270px; --radius: 10px;
+  --shadow-sm: 0 1px 3px rgba(28,20,16,.06);
+  --shadow-md: 0 4px 14px rgba(28,20,16,.10);
+  --t1: #0369a1; --t2: #7c3aed; --t3: #16a34a;
+  --t4: #d97706; --t5: #be123c; --t6: #0f766e; --t7: #4338ca;
+}
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: 'Lora', Georgia, serif; background: var(--page-bg); color: var(--text); line-height: 1.8; }
+.layout { display: flex; min-height: 100vh; }
+.toc-rail { width: var(--toc-w); flex-shrink: 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; background: var(--surface); border-right: 1px solid var(--border); padding: 1.8rem 1rem 2.5rem; }
+.toc-rail > .toc-title { font-family: 'Playfair Display', Georgia, serif; font-size: .68rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.4rem; padding: 0 .4rem; }
+.toc-week { margin-bottom: 1.2rem; }
+.toc-week-header { display: flex; align-items: center; gap: .5rem; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--text-muted); margin-bottom: .5rem; padding: 0 .4rem; }
+.toc-week-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.toc-week ol { list-style: none; padding: 0 .4rem; }
+.toc-week ol li { margin-bottom: .18rem; }
+.toc-week ol li a { font-size: .8rem; color: var(--text-muted); text-decoration: none; line-height: 1.5; display: block; padding: .15rem .5rem; border-radius: 5px; transition: background .15s, color .15s; }
+.toc-week ol li a:hover { background: var(--border); color: var(--text); }
+.toc-week ol li a.is-active { background: var(--blue-bg); color: var(--blue-badge); font-weight: 600; }
+main { flex: 1; min-width: 0; padding: 2.5rem 3rem 5rem; max-width: 900px; }
+.page-header { margin-bottom: 3rem; padding-bottom: 1.5rem; border-bottom: 2px solid var(--border); }
+.page-header h1 { font-family: 'Playfair Display', Georgia, serif; font-size: 2.2rem; font-weight: 800; color: var(--text); margin-bottom: .4rem; }
+.page-header .subtitle { font-size: .95rem; color: var(--text-muted); }
+.legend { display: flex; flex-wrap: wrap; gap: .5rem 1.4rem; margin-top: 1rem; }
+.legend-item { display: flex; align-items: center; gap: .4rem; font-size: .78rem; color: var(--text-muted); }
+.legend-dot { width: 10px; height: 10px; border-radius: 3px; }
+.topic-section { margin-bottom: 3rem; }
+.topic-banner { background: var(--surface); border-left: 4px solid var(--t1); border-radius: 0 var(--radius) var(--radius) 0; padding: 1.2rem 1.6rem; margin-bottom: 2rem; box-shadow: var(--shadow-sm); }
+.topic-section[data-t="1"] .topic-banner { border-color: var(--t1); background: #f0f7ff; }
+.topic-section[data-t="2"] .topic-banner { border-color: var(--t2); background: #f8f5ff; }
+.topic-section[data-t="3"] .topic-banner { border-color: var(--t3); background: #f0fdf4; }
+.topic-section[data-t="4"] .topic-banner { border-color: var(--t4); background: #fffbeb; }
+.topic-section[data-t="5"] .topic-banner { border-color: var(--t5); background: #fff1f2; }
+.topic-section[data-t="6"] .topic-banner { border-color: var(--t6); background: #f0fdfa; }
+.topic-section[data-t="7"] .topic-banner { border-color: var(--t7); background: #eef2ff; }
+.week-tag { font-size: .7rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: .3rem; }
+.topic-banner h2 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.45rem; font-weight: 700; color: var(--text); margin-bottom: .25rem; }
+.week-meta { font-size: .8rem; color: var(--text-muted); }
+.problem-block { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem 1.8rem; margin-bottom: 1.5rem; box-shadow: var(--shadow-sm); }
+.prob-header { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin-bottom: .9rem; }
+.prob-num { font-family: 'Playfair Display', Georgia, serif; font-size: 1rem; font-weight: 700; color: var(--text); }
+.source-tag, .type-exam, .type-hw, .type-theory { font-size: .72rem; font-weight: 600; padding: .2rem .55rem; border-radius: 4px; letter-spacing: .04em; }
+.source-tag { background: var(--grey-bg); color: var(--grey-badge); border: 1px solid var(--grey-border); }
+.type-exam { background: var(--rose-bg); color: var(--rose-badge); border: 1px solid var(--rose-border); }
+.type-hw { background: var(--blue-bg); color: var(--blue-badge); border: 1px solid var(--blue-border); }
+.type-theory { background: var(--violet-bg); color: var(--violet-badge); border: 1px solid var(--violet-border); }
+.prob-stmt { margin-bottom: 1rem; font-size: .95rem; line-height: 1.8; }
+.prob-stmt ol, .prob-stmt ul { padding-left: 1.4rem; margin-top: .4rem; }
+.prob-stmt li { margin-bottom: .3rem; }
+details { margin-top: .7rem; border-radius: 7px; border: 1px solid var(--border); }
+details + details { margin-top: .5rem; }
+summary { cursor: pointer; padding: .65rem 1rem; font-size: .85rem; font-weight: 600; letter-spacing: .03em; user-select: none; list-style: none; display: flex; align-items: center; gap: .5rem; border-radius: 7px; color: var(--text-muted); }
+summary::-webkit-details-marker { display: none; }
+summary::before { content: '▶'; font-size: .65rem; transition: transform .2s; }
+details[open] > summary::before { transform: rotate(90deg); }
+details[open] > summary { border-bottom: 1px solid var(--border); border-radius: 7px 7px 0 0; }
+.hint-d summary { background: #fffbeb; }
+.soln-d summary { background: #f0fdf4; }
+.hint-body { padding: .9rem 1.1rem; font-size: .88rem; line-height: 1.75; color: #3d3228; }
+.soln-body { padding: 1rem 1.1rem; font-size: .9rem; line-height: 1.85; }
+.soln-body p { margin-bottom: .7rem; }
+.soln-body ol, .soln-body ul { padding-left: 1.5rem; margin-bottom: .7rem; }
+.soln-body li { margin-bottom: .35rem; }
+.conf { display: inline-flex; align-items: center; gap: .4rem; margin-top: .9rem; padding: .3rem .75rem; border-radius: 5px; font-size: .78rem; font-weight: 600; }
+.conf-high { background: var(--green-bg); color: var(--green-badge); border: 1px solid var(--green-border); }
+.conf-partial { background: var(--amber-bg); color: var(--amber-badge); border: 1px solid var(--amber-border); }
+.conf-unver { background: var(--grey-bg); color: var(--grey-badge); border: 1px solid var(--grey-border); }
+table { border-collapse: collapse; width: 100%; font-size: .88rem; margin: .7rem 0; }
+th, td { border: 1px solid var(--border); padding: .45rem .75rem; text-align: left; }
+th { background: var(--page-bg); font-weight: 600; }
+#read-progress { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg,#0369a1,#7c3aed); width: 0; z-index: 200; transition: width .1s; }
+#back-top { position: fixed; bottom: 1.8rem; right: 1.8rem; width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--border); background: var(--surface); box-shadow: var(--shadow-md); cursor: pointer; display: none; align-items: center; justify-content: center; }
+#back-top.vis { display: flex; }
+#back-top svg { width: 18px; height: 18px; stroke: var(--text-muted); stroke-width: 2.5; fill: none; }
+#m-toc-btn { display: none; position: fixed; bottom: 1.8rem; left: 1.8rem; width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--border); background: var(--surface); box-shadow: var(--shadow-md); cursor: pointer; align-items: center; justify-content: center; z-index: 150; }
+#m-toc-btn svg { width: 20px; height: 20px; stroke: var(--text); stroke-width: 2; fill: none; }
+#m-toc-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.35); z-index: 160; }
+#m-toc-overlay.vis { display: block; }
+#m-toc-drawer { position: fixed; top: 0; left: -290px; width: 280px; height: 100vh; overflow-y: auto; background: var(--surface); border-right: 1px solid var(--border); z-index: 170; transition: left .25s ease; padding: 1.5rem 1rem 3rem; }
+#m-toc-drawer.open { left: 0; }
+.m-pill { width: 36px; height: 4px; border-radius: 2px; background: var(--border); margin: 0 auto .8rem; }
+.m-drawer-hd { font-family: 'Playfair Display', Georgia, serif; font-size: 1rem; font-weight: 700; margin-bottom: 1.2rem; padding: 0 .4rem; color: var(--text); }
+@media (max-width: 860px) {
+  .toc-rail { display: none; }
+  main { padding: 1.5rem 1.2rem 4rem; }
+  #m-toc-btn { display: flex; }
+}
+@media print {
+  .toc-rail, #m-toc-btn, #m-toc-overlay, #m-toc-drawer, #back-top, #read-progress { display: none !important; }
+  body { font-size: 10.5pt; line-height: 1.55; background: #fff; }
+  .topic-section { break-before: page; }
+  .problem-block { break-inside: avoid; page-break-inside: avoid; }
+  details { display: block !important; }
+  summary { font-style: italic; }
+  summary::before { display: none; }
+}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<nav class="toc-rail" aria-label="Table of contents">
+  <div class="toc-title">Linear Algebra — Practice</div>
+
+  <div class="toc-week">
+    <div class="toc-week-header">
+      <div class="toc-week-dot" style="background:var(--t1)"></div>
+      Topic 1 · Matrix Operations
+    </div>
+    <ol>
+      <li><a href="#q1">Q1 · Compute AB and BA</a></li>
+      <li><a href="#q2">Q2 · Verify Associativity</a></li>
+      <li><a href="#q3">Q3 · Bakery Matrix Problem</a></li>
+      <li><a href="#q4">Q4 · Powers of Diagonal Matrix</a></li>
+      <li><a href="#q5">Q5 · Scalar Distributivity</a></li>
+      <li><a href="#q6">Q6 · Dimension Check &amp; Product</a></li>
+    </ol>
+  </div>
+
+  <div class="toc-week">
+    <div class="toc-week-header">
+      <div class="toc-week-dot" style="background:var(--t2)"></div>
+      Topic 2 · Transpose &amp; Symmetry
+    </div>
+    <ol>
+      <li><a href="#q7">Q7 · (AB)ᵀ = BᵀAᵀ</a></li>
+      <li><a href="#q8">Q8 · A + Aᵀ is Symmetric</a></li>
+      <li><a href="#q9">Q9 · (A⁻¹)ᵀ = (Aᵀ)⁻¹</a></li>
+      <li><a href="#q10">Q10 · Non-Commutativity Example</a></li>
+    </ol>
+  </div>
+
+  <div class="toc-week">
+    <div class="toc-week-header">
+      <div class="toc-week-dot" style="background:var(--t3)"></div>
+      Topic 3 · Matrix Inverses
+    </div>
+    <ol>
+      <li><a href="#q11">Q11 · 2×2 Inverse Formula</a></li>
+      <li><a href="#q12">Q12 · Singular Matrix</a></li>
+      <li><a href="#q13">Q13 · Inverse of [2 -1; -1 2]</a></li>
+      <li><a href="#q14">Q14 · Upper-Triangular Inverse</a></li>
+      <li><a href="#q15">Q15 · Gauss-Jordan 3×3</a></li>
+      <li><a href="#q16">Q16 · Prove (AB)⁻¹ = B⁻¹A⁻¹</a></li>
+      <li><a href="#q17">Q17 · Solve AX = B</a></li>
+    </ol>
+  </div>
+
+  <div class="toc-week">
+    <div class="toc-week-header">
+      <div class="toc-week-dot" style="background:var(--t4)"></div>
+      Topic 4 · Linear Systems
+    </div>
+    <ol>
+      <li><a href="#q18">Q18 · 2×2 System</a></li>
+      <li><a href="#q19">Q19 · 3×3 Unique Solution</a></li>
+      <li><a href="#q20">Q20 · No Solution</a></li>
+      <li><a href="#q21">Q21 · Infinitely Many Solutions</a></li>
+      <li><a href="#q22">Q22 · Dependent Equations</a></li>
+      <li><a href="#q23">Q23 · Free Variable System</a></li>
+      <li><a href="#q24">Q24 · System to Matrix Form</a></li>
+      <li><a href="#q25">Q25 · Nutrition Word Problem</a></li>
+    </ol>
+  </div>
+
+  <div class="toc-week">
+    <div class="toc-week-header">
+      <div class="toc-week-dot" style="background:var(--t5)"></div>
+      Topic 5 · Vector Spaces
+    </div>
+    <ol>
+      <li><a href="#q26">Q26 · Verify ℝ² is a Vector Space</a></li>
+      <li><a href="#q27">Q27 · Subspace Test: x+y=1</a></li>
+      <li><a href="#q28">Q28 · Trace-Zero Matrices</a></li>
+      <li><a href="#q29">Q29 · Span as Subspace</a></li>
+      <li><a href="#q30">Q30 · First-Quadrant Not Subspace</a></li>
+    </ol>
+  </div>
+
+  <div class="toc-week">
+    <div class="toc-week-header">
+      <div class="toc-week-dot" style="background:var(--t6)"></div>
+      Topic 6 · Basis &amp; Independence
+    </div>
+    <ol>
+      <li><a href="#q31">Q31 · Test Linear Independence</a></li>
+      <li><a href="#q32">Q32 · Change of Basis</a></li>
+      <li><a href="#q33">Q33 · Column Space Basis</a></li>
+      <li><a href="#q34">Q34 · Two Bases for ℝ²</a></li>
+      <li><a href="#q35">Q35 · Dimension Bound</a></li>
+    </ol>
+  </div>
+
+  <div class="toc-week">
+    <div class="toc-week-header">
+      <div class="toc-week-dot" style="background:var(--t7)"></div>
+      Topic 7 · Linear Transformations
+    </div>
+    <ol>
+      <li><a href="#q36">Q36 · Scaling Matrix</a></li>
+      <li><a href="#q37">Q37 · Rotation by 45°</a></li>
+      <li><a href="#q38">Q38 · Shear Transformation</a></li>
+      <li><a href="#q39">Q39 · (A+B)² ≠ A²+2AB+B²</a></li>
+      <li><a href="#q40">Q40 · Matrix Power Series</a></li>
+    </ol>
+  </div>
+
+</nav>
+
+<main>
+<header class="page-header">
+  <h1>Linear Algebra — Practice Problems</h1>
+  <p class="subtitle">MScDS · IIIT Hyderabad · 40 solved problems from matrix algebra and vector spaces</p>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--green-badge)"></div> ✓ High confidence</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--amber-badge)"></div> ⚠ Partial</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--grey-badge)"></div> ○ Unverified</div>
+  </div>
+</header>
+
+<!-- ═══ TOPIC 1 ═══════════════════════════════════════════════════════ -->
+<section class="topic-section" id="topic-matrix-ops" data-t="1">
+  <div class="topic-banner">
+    <div class="week-tag">Topic 1</div>
+    <h2>Matrix Operations</h2>
+    <div class="week-meta">6 problems · Addition · Scalar multiplication · Matrix product · Powers</div>
+  </div>
+
+  <div class="problem-block" id="q1">
+    <div class="prob-header">
+      <span class="prob-num">Q1</span>
+      <span class="source-tag">DS §5.1</span>
+      <span class="type-hw">Computation</span>
+    </div>
+    <div class="prob-stmt">
+      Let \(A = \begin{pmatrix}1 & -1\\2 & 3\end{pmatrix}\) and \(B = \begin{pmatrix}0 & 1\\3 & -5\end{pmatrix}\).
+      <ol type="a">
+        <li>Compute \(AB\) and \(BA\).</li>
+        <li>Are \(AB\) and \(BA\) equal? What property of matrix multiplication does this illustrate?</li>
+      </ol>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">Use \((AB)_{ij} = \sum_k A_{ik}B_{kj}\). Compute each of the four entries of \(AB\) independently, then do the same for \(BA\). Expect the results to differ.</div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p><strong>(a)</strong> Computing \(AB\):</p>
+        \[AB = \begin{pmatrix}1\cdot0+(-1)\cdot3 & 1\cdot1+(-1)\cdot(-5)\\2\cdot0+3\cdot3 & 2\cdot1+3\cdot(-5)\end{pmatrix} = \begin{pmatrix}-3 & 6\\9 & -13\end{pmatrix}\]
+        <p>Computing \(BA\):</p>
+        \[BA = \begin{pmatrix}0\cdot1+1\cdot2 & 0\cdot(-1)+1\cdot3\\3\cdot1+(-5)\cdot2 & 3\cdot(-1)+(-5)\cdot3\end{pmatrix} = \begin{pmatrix}2 & 3\\-7 & -18\end{pmatrix}\]
+        <p><strong>(b)</strong> \(AB \neq BA\). This illustrates that matrix multiplication is <strong>not commutative</strong> in general. Even when both products are defined and have the same dimensions, reversing the order typically yields a different matrix.</p>
+        <div class="conf conf-high">✓ High — standard result from both source textbooks (DS §5.1, DM §13.3)</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="problem-block" id="q2">
+    <div class="prob-header">
+      <span class="prob-num">Q2</span>
+      <span class="source-tag">DS §5.1</span>
+      <span class="type-hw">Proof</span>
+    </div>
+    <div class="prob-stmt">
+      Let \(A = \begin{pmatrix}1&0\\1&1\end{pmatrix}\), \(B = \begin{pmatrix}2&1\\0&1\end{pmatrix}\), \(C = \begin{pmatrix}1&2\\3&0\end{pmatrix}\). Verify by direct computation that \((AB)C = A(BC)\).
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">Compute \(AB\) first, then multiply the result by \(C\). Separately compute \(BC\), then multiply \(A\) by that result. Both paths should give the same \(2\times2\) matrix.</div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p><strong>Left side:</strong> \(AB = \begin{pmatrix}2&1\\2&2\end{pmatrix}\), then</p>
+        \[(AB)C = \begin{pmatrix}2&1\\2&2\end{pmatrix}\begin{pmatrix}1&2\\3&0\end{pmatrix} = \begin{pmatrix}2+3&4+0\\2+6&4+0\end{pmatrix} = \begin{pmatrix}5&4\\8&4\end{pmatrix}\]
+        <p><strong>Right side:</strong> \(BC = \begin{pmatrix}5&4\\3&0\end{pmatrix}\), then</p>
+        \[A(BC) = \begin{pmatrix}1&0\\1&1\end{pmatrix}\begin{pmatrix}5&4\\3&0\end{pmatrix} = \begin{pmatrix}5&4\\5+3&4+0\end{pmatrix} = \begin{pmatrix}5&4\\8&4\end{pmatrix}\]
+        <p>Both equal \(\begin{pmatrix}5&4\\8&4\end{pmatrix}\). ✓ This confirms associativity: \((AB)C = A(BC)\). Associativity holds for all compatible matrices and is proved by expanding the double summation definition.</p>
+        <div class="conf conf-high">✓ High — associativity is a standard theorem in matrix algebra (DS §5.3, DM §13.3)</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="problem-block" id="q3">
+    <div class="prob-header">
+      <span class="prob-num">Q3</span>
+      <span class="source-tag">DS §5.1 Ex.8</span>
+      <span class="type-hw">Applied</span>
+    </div>
+    <div class="prob-stmt">
+      A bakery produces bread, cakes, and pies Monday–Friday. Daily production quantities (rows = days Mon–Fri, columns = bread/cakes/pies) are given by matrix \(D\):
+      \[D = \begin{pmatrix}25&5&5\\14&5&8\\20&4&15\\18&5&7\\35&10&9\end{pmatrix}\]
+      Ingredient requirements per unit (rows = products, columns = flour/sugar/eggs) are:
+      \[P = \begin{pmatrix}2&0.5&0\\1.5&1&2\\1&1&1\end{pmatrix}\]
+      <ol type="a">
+        <li>How many cups of flour are needed on Monday? How many eggs on Wednesday?</li>
+        <li>Compute the product \(DP\). What does each entry represent?</li>
+        <li>If ingredient costs are \$0.12/cup flour, \$0.15/cup sugar, \$0.19/egg, set up a matrix expression for the total daily ingredient cost.</li>
+      </ol>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">For part (a), multiply the Monday row of \(D\) by the flour column of \(P\). For (b), \(DP\) is a \(5\times3\) matrix where entry \((i,j)\) gives the total amount of ingredient \(j\) needed on day \(i\). For (c), multiply \(DP\) by a cost column vector.</div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p><strong>(a) Monday flour:</strong> Row 1 of \(D\) is \([25, 5, 5]\), flour column of \(P\) is \([2, 1.5, 1]^T\).</p>
+        \[25(2) + 5(1.5) + 5(1) = 50 + 7.5 + 5 = 62.5 \text{ cups}\]
+        <p><strong>Wednesday eggs:</strong> Row 3 of \(D\) is \([20, 4, 15]\), eggs column of \(P\) is \([0, 2, 1]^T\).</p>
+        \[20(0) + 4(2) + 15(1) = 0 + 8 + 15 = 23 \text{ eggs}\]
+        <p><strong>(b)</strong> \(DP\) is a \(5\times3\) matrix. The \((i,j)\) entry = total amount of ingredient \(j\) the bakery needs on day \(i\). For example, Monday row of \(DP\): flour = 62.5, sugar = \(25(0.5)+5(1)+5(1) = 22.5\), eggs = 23 (computed above for Wednesday — Monday eggs: \(25(0)+5(2)+5(1)=15\)).</p>
+        <p><strong>(c)</strong> Let \(\mathbf{c} = [0.12,\; 0.15,\; 0.19]^T\). The total daily cost vector is \((DP)\,\mathbf{c}\), a \(5\times1\) vector where entry \(i\) is the total ingredient cost on day \(i\).</p>
+        <div class="conf conf-high">✓ High — directly from DS §5.1 Exercise 8</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="problem-block" id="q4">
+    <div class="prob-header">
+      <span class="prob-num">Q4</span>
+      <span class="source-tag">DS §5.1 Ex.5</span>
+      <span class="type-hw">Computation</span>
+    </div>
+    <div class="prob-stmt">
+      Let \(A = \begin{pmatrix}1&0&0\\0&2&0\\0&0&3\end{pmatrix}\).
+      <ol type="a">
+        <li>Compute \(A^3\).</li>
+        <li>Write a formula for \(A^n\) for any positive integer \(n\).</li>
+        <li>What is \(A^{15}\)?</li>
+      </ol>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">For a diagonal matrix \(\operatorname{diag}(d_1, d_2, \ldots, d_n)\), the product of two diagonal matrices is \(\operatorname{diag}(d_1 d_1', d_2 d_2', \ldots)\). Use induction or direct computation to find the pattern for \(A^n\).</div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p>For a diagonal matrix \(A = \operatorname{diag}(1,2,3)\), multiplication of two diagonal matrices is entry-wise on the diagonal:</p>
+        \[A^2 = \operatorname{diag}(1^2, 2^2, 3^2) = \operatorname{diag}(1, 4, 9)\]
+        \[A^3 = \operatorname{diag}(1^3, 2^3, 3^3) = \operatorname{diag}(1, 8, 27) = \begin{pmatrix}1&0&0\\0&8&0\\0&0&27\end{pmatrix}\]
+        <p><strong>(b)</strong> By induction, \(A^n = \operatorname{diag}(1^n, 2^n, 3^n)\).</p>
+        <p><strong>(c)</strong> \(A^{15} = \operatorname{diag}(1,\; 2^{15},\; 3^{15}) = \operatorname{diag}(1,\; 32768,\; 14{,}348{,}907)\).</p>
+        <div class="conf conf-high">✓ High — standard result; directly from DS §5.1 Exercise 5</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="problem-block" id="q5">
+    <div class="prob-header">
+      <span class="prob-num">Q5</span>
+      <span class="source-tag">DS §5.1 Ex.1</span>
+      <span class="type-hw">Proof</span>
+    </div>
+    <div class="prob-stmt">
+      Using \(A = \begin{pmatrix}1&-1\\2&3\end{pmatrix}\), \(B = \begin{pmatrix}0&1\\3&-5\end{pmatrix}\), \(c = 3\): verify that \(c(A+B) = cA + cB\).
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">Compute \(A+B\) first, then scale by \(c\). Separately compute \(cA\) and \(cB\) and add. Show entry-wise equality.</div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        \[A + B = \begin{pmatrix}1&0\\5&-2\end{pmatrix},\qquad c(A+B) = 3\begin{pmatrix}1&0\\5&-2\end{pmatrix} = \begin{pmatrix}3&0\\15&-6\end{pmatrix}\]
+        \[cA + cB = \begin{pmatrix}3&-3\\6&9\end{pmatrix} + \begin{pmatrix}0&3\\9&-15\end{pmatrix} = \begin{pmatrix}3&0\\15&-6\end{pmatrix}\]
+        <p>Both sides equal \(\begin{pmatrix}3&0\\15&-6\end{pmatrix}\). ✓ This is the distributive law for scalars over matrix addition, valid entry-wise for any scalar \(c\) and matrices \(A, B\) of the same order.</p>
+        <div class="conf conf-high">✓ High — entry-wise verification of a fundamental matrix algebra law</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="problem-block" id="q6">
+    <div class="prob-header">
+      <span class="prob-num">Q6</span>
+      <span class="source-tag">DS §5.1</span>
+      <span class="type-hw">Computation</span>
+    </div>
+    <div class="prob-stmt">
+      Let \(A = \begin{pmatrix}1&0\\3&2\\-5&1\end{pmatrix}\) (\(3\times2\)) and \(B = \begin{pmatrix}6\\1\end{pmatrix}\) (\(2\times1\)).
+      <ol type="a">
+        <li>What is the order of \(AB\)? Is \(BA\) defined?</li>
+        <li>Compute \(AB\).</li>
+      </ol>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">The product of an \(m\times k\) matrix and a \(k\times n\) matrix is \(m\times n\). Check whether the inner dimensions match for both orders.</div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p><strong>(a)</strong> \(A\) is \(3\times2\), \(B\) is \(2\times1\). Inner dimensions both equal 2, so \(AB\) is defined and has order \(3\times1\). For \(BA\): \(B\) is \(2\times1\), \(A\) is \(3\times2\) — inner dimensions are 1 and 3, which don't match. \(BA\) is <strong>undefined</strong>.</p>
+        <p><strong>(b)</strong></p>
+        \[AB = \begin{pmatrix}1\cdot6+0\cdot1\\3\cdot6+2\cdot1\\(-5)\cdot6+1\cdot1\end{pmatrix} = \begin{pmatrix}6\\20\\-29\end{pmatrix}\]
+        <div class="conf conf-high">✓ High — dimension rule and matrix-vector product are standard</div>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ═══ TOPIC 2 ═══════════════════════════════════════════════════════ -->
+<section class="topic-section" id="topic-transpose" data-t="2">
+  <div class="topic-banner">
+    <div class="week-tag">Topic 2</div>
+    <h2>Transpose &amp; Symmetric Matrices</h2>
+    <div class="week-meta">4 problems · Transpose rules · Symmetric matrices · Identity properties</div>
+  </div>
+
+  <div class="problem-block" id="q7">
+    <div class="prob-header">
+      <span class="prob-num">Q7</span>
+      <span class="source-tag">DM §13.3</span>
+      <span class="type-hw">Proof</span>
+    </div>
+    <div class="prob-stmt">
+      Let \(A = \begin{pmatrix}1&2\\3&4\\-1&0\end{pmatrix}\) (\(3\times2\)) and \(B = \begin{pmatrix}2&0&1\\-1&3&2\end{pmatrix}\) (\(2\times3\)). Verify that \((AB)^T = B^T A^T\).
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">Compute \(AB\) (a \(3\times3\) matrix) and take its transpose. Then compute \(B^T\) (\(3\times2\)) and \(A^T\) (\(2\times3\)) and multiply \(B^T A^T\). Both should match.</div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        \[AB = \begin{pmatrix}0&6&5\\2&12&11\\-2&0&-1\end{pmatrix}, \qquad (AB)^T = \begin{pmatrix}0&2&-2\\6&12&0\\5&11&-1\end{pmatrix}\]
+        \[B^T A^T = \begin{pmatrix}2&-1\\0&3\\1&2\end{pmatrix}\begin{pmatrix}1&3&-1\\2&4&0\end{pmatrix} = \begin{pmatrix}0&2&-2\\6&12&0\\5&11&-1\end{pmatrix}\]
+        <p>Both equal the same \(3\times3\) matrix. ✓ The general rule \((AB)^T = B^T A^T\) follows from expanding both sides using the definition of matrix multiplication and transposition:
+        \[((AB)^T)_{ij} = (AB)_{ji} = \sum_k A_{jk}B_{ki} = \sum_k (B^T)_{ik}(A^T)_{kj} = (B^T A^T)_{ij}.\]</p>
+        <div class="conf conf-high">✓ High — standard matrix identity verified by computation and proof sketch</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="problem-block" id="q8">
+    <div class="prob-header">
+      <span class="prob-num">Q8</span>
+      <span class="source-tag">DM §13.3</span>
+      <span class="type-hw">Proof</span>
+    </div>
+    <div class="prob-stmt">
+      For any square matrix \(A\), prove that \(A + A^T\) is always symmetric. Illustrate with \(A = \begin{pmatrix}2&3\\1&4\end{pmatrix}\).
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">A matrix \(S\) is symmetric if \(S^T = S\). Use the identity \((A+B)^T = A^T + B^T\) and \((A^T)^T = A\).</div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p><strong>Proof:</strong> Let \(S = A + A^T\). Then</p>
+        \[S^T = (A + A^T)^T = A^T + (A^T)^T = A^T + A = S.\]
+        <p>Since \(S^T = S\), the matrix \(S\) is symmetric for every square \(A\). ✓</p>
+        <p><strong>Example:</strong></p>
+        \[A + A^T = \begin{pmatrix}2&3\\1&4\end{pmatrix} + \begin{pmatrix}2&1\\3&4\end{pmatrix} = \begin{pmatrix}4&4\\4&8\end{pmatrix}\]
+        <p>Check: entry \((1,2) = 4\) equals entry \((2,1) = 4\). ✓ Symmetric.</p>
+        <div class="conf conf-high">✓ High — standard proof using transpose algebra</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="problem-block" id="q9">
+    <div class="prob-header">
+      <span class="prob-num">Q9</span>
+      <span class="source-tag">DM §13.3</span>
+      <span class="type-theory">Theory</span>
+    </div>
+    <div class="prob-stmt">
+      Prove that for any invertible matrix \(A\), \((A^{-1})^T = (A^T)^{-1}\). (In words: the transpose of the inverse equals the inverse of the transpose.)
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">To show \(X = (A^T)^{-1}\), it suffices to show \(A^T X = I\). Try \(X = (A^{-1})^T\) and use the identity \((AB)^T = B^T A^T\).</div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p>We want to show \((A^{-1})^T\) is the multiplicative inverse of \(A^T\). It suffices to verify both products equal \(I\):</p>
+        \[A^T \cdot (A^{-1})^T = (A^{-1} \cdot A)^T = I^T = I. \quad\checkmark\]
+        \[(A^{-1})^T \cdot A^T = (A \cdot A^{-1})^T = I^T = I. \quad\checkmark\]
+        <p>Since \((A^{-1})^T\) is a two-sided inverse of \(A^T\), and inverses are unique (DS Theorem 5.2.6), we conclude \((A^{-1})^T = (A^T)^{-1}\). ✓</p>
+        <div class="conf conf-high">✓ High — DS §5.3 matrix identities; standard result</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="problem-block" id="q10">
+    <div class="prob-header">
+      <span class="prob-num">Q10</span>
+      <span class="source-tag">DM §13.3</span>
+      <span class="type-hw">Counterexample</span>
+    </div>
+    <div class="prob-stmt">
+      Find explicit \(2\times2\) matrices \(A\) and \(B\) such that \(AB \neq BA\), confirming that matrix multiplication is non-commutative. Then compute \((A+B)^2\) and \(A^2 + 2AB + B^2\) and check whether they are equal.
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">Try \(A = \begin{pmatrix}1&1\\0&1\end{pmatrix}\), \(B = \begin{pmatrix}1&-1\\1&1\end{pmatrix}\). For the expansion, \((A+B)^2 = A^2+AB+BA+B^2\); when \(AB\neq BA\) this differs from \(A^2+2AB+B^2\).</div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p>Take \(A = \begin{pmatrix}1&1\\0&1\end{pmatrix}\), \(B = \begin{pmatrix}1&-1\\1&1\end{pmatrix}\).</p>
+        \[AB = \begin{pmatrix}2&0\\1&1\end{pmatrix}, \qquad BA = \begin{pmatrix}1&0\\1&2\end{pmatrix}.\]
+        <p>Since \(AB \neq BA\), multiplication is non-commutative. ✓</p>
+        <p>For the expansion:</p>
+        \[(A+B)^2 = (A+B)(A+B) = A^2 + AB + BA + B^2.\]
+        <p>The formula \(A^2 + 2AB + B^2\) would require \(AB = BA\), which fails here. Explicitly:</p>
+        \[A^2 = \begin{pmatrix}1&2\\0&1\end{pmatrix},\ B^2 = \begin{pmatrix}0&-2\\2&0\end{pmatrix},\ A+B = \begin{pmatrix}2&0\\1&2\end{pmatrix}\]
+        \[(A+B)^2 = \begin{pmatrix}4&0\\4&4\end{pmatrix}, \quad A^2+2AB+B^2 = \begin{pmatrix}1&2\\0&1\end{pmatrix}+\begin{pmatrix}4&0\\2&2\end{pmatrix}+\begin{pmatrix}0&-2\\2&0\end{pmatrix} = \begin{pmatrix}5&0\\4&3\end{pmatrix}.\]
+        <p>They are not equal — the standard binomial identity fails for non-commuting matrices.</p>
+        <div class="conf conf-high">✓ High — DM §13.3 matrix oddities; DS §5.4</div>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ═══ TOPIC 3 ═══════════════════════════════════════════════════════ -->
+<section class="topic-section" id="topic-inverses" data-t="3">
+  <div class="topic-banner">
+    <div class="week-tag">Topic 3</div>
+    <h2>Matrix Inverses</h2>
+    <div class="week-meta">7 problems · 2×2 formula · Determinant · Gauss-Jordan · Uniqueness proof</div>
+  </div>
+
+  <div class="problem-block" id="q11">
+    <div class="prob-header">
+      <span class="prob-num">Q11</span>
+      <span class="source-tag">DS §5.2</span>
+      <span class="type-hw">Computation</span>
+    </div>
+    <div class="prob-stmt">
+      Find \(A^{-1}\) for \(A = \begin{pmatrix}1&3\\2&1\end{pmatrix}\) using the \(2\times2\) inverse formula, then verify \(AA^{-1} = I\).
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">For \(A = \begin{pmatrix}a&b\\c&d\end{pmatrix}\) with \(\det A = ad-bc \neq 0\): \(A^{-1} = \frac{1}{\det A}\begin{pmatrix}d&-b\\-c&a\end{pmatrix}\).</div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p>\(\det A = 1\cdot1 - 3\cdot2 = 1 - 6 = -5 \neq 0\), so \(A^{-1}\) exists.</p>
+        \[A^{-1} = \frac{1}{-5}\begin{pmatrix}1&-3\\-2&1\end{pmatrix} = \begin{pmatrix}-\tfrac{1}{5}&\tfrac{3}{5}\\\tfrac{2}{5}&-\tfrac{1}{5}\end{pmatrix}\]
+        <p><strong>Verification:</strong></p>
+        \[AA^{-1} = \begin{pmatrix}1&3\\2&1\end{pmatrix}\begin{pmatrix}-\tfrac{1}{5}&\tfrac{3}{5}\\\tfrac{2}{5}&-\tfrac{1}{5}\end{pmatrix} = \begin{pmatrix}-\tfrac{1}{5}+\tfrac{6}{5}&\tfrac{3}{5}-\tfrac{3}{5}\\-\tfrac{2}{5}+\tfrac{2}{5}&\tfrac{6}{5}-\tfrac{1}{5}\end{pmatrix} = \begin{pmatrix}1&0\\0&1\end{pmatrix} = I. \checkmark\]
+        <div class="conf conf-high">✓ High — directly from DS §5.2 Theorem 5.2.9</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="problem-block" id="q12">
+    <div class="prob-header">
+      <span class="prob-num">Q12</span>
+      <span class="source-tag">DS §5.2</span>
+      <span class="type-hw">Computation</span>
+    </div>
+    <div class="prob-stmt">
+      Let \(A = \begin{pmatrix}6&-3\\8&-4\end{pmatrix}\). Does \(A^{-1}\) exist? Justify fully.
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">Compute \(\det A = ad - bc\). If \(\det A = 0\), no inverse exists. Also look at whether the columns are proportional.</div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p>\(\det A = 6\cdot(-4) - (-3)\cdot8 = -24 + 24 = 0\).</p>
+        <p>Since \(\det A = 0\), \(A^{-1}\) does <strong>not exist</strong>. The matrix is singular.</p>
+        <p><strong>Geometric interpretation:</strong> The two columns \(\binom{6}{8}\) and \(\binom{-3}{-4}\) are proportional — \(\binom{-3}{-4} = -\tfrac{1}{2}\binom{6}{8}\). The column space is 1-dimensional (a line), not all of \(\mathbb{R}^2\), so the transformation \(A\) is not surjective and cannot be inverted.</p>
+        <div class="conf conf-high">✓ High — DS §5.2 Example 5.2.8</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="problem-block" id="q13">
+    <div class="prob-header">
+      <span class="prob-num">Q13</span>
+      <span class="source-tag">DS §5.2</span>
+      <span class="type-hw">Computation</span>
+    </div>
+    <div class="prob-stmt">
+      Find \(A^{-1}\) for \(A = \begin{pmatrix}2&-1\\-1&2\end{pmatrix}\). Verify the result.
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">Apply the 2×2 formula. Note the symmetric structure — the inverse of a symmetric matrix is also symmetric.</div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p>\(\det A = 2\cdot2 - (-1)(-1) = 4 - 1 = 3\).</p>
+        \[A^{-1} = \frac{1}{3}\begin{pmatrix}2&1\\1&2\end{pmatrix} = \begin{pmatrix}\tfrac{2}{3}&\tfrac{1}{3}\\\tfrac{1}{3}&\tfrac{2}{3}\end{pmatrix}\]
+        <p>Verify: \(AA^{-1} = \begin{pmatrix}2&-1\\-1&2\end{pmatrix}\begin{pmatrix}\tfrac{2}{3}&\tfrac{1}{3}\\\tfrac{1}{3}&\tfrac{2}{3}\end{pmatrix} = \begin{pmatrix}\tfrac{4}{3}-\tfrac{1}{3}&\tfrac{2}{3}-\tfrac{2}{3}\\\tfrac{-2}{3}+\tfrac{2}{3}&\tfrac{-1}{3}+\tfrac{4}{3}\end{pmatrix} = I\). ✓</p>
+        <div class="conf conf-high">✓ High — DS §5.2 Exercise 2a</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="problem-block" id="q14">
+    <div class="prob-header">
+      <span class="prob-num">Q14</span>
+      <span class="source-tag">DS §5.2</span>
+      <span class="type-hw">Computation</span>
+    </div>
+    <div class="prob-stmt">
+      Find \(A^{-1}\) for \(A = \begin{pmatrix}1&-3\\0&1\end{pmatrix}\). What structural property does this matrix have, and how does it affect finding the inverse?
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">This is an upper-triangular matrix with 1s on the diagonal. Apply the 2×2 formula and notice that the inverse has the same triangular structure.</div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p>\(\det A = 1\cdot1 - (-3)\cdot0 = 1\). So \(A^{-1} = \frac{1}{1}\begin{pmatrix}1&3\\0&1\end{pmatrix} = \begin{pmatrix}1&3\\0&1\end{pmatrix}\).</p>
+        <p>Verify: \(\begin{pmatrix}1&-3\\0&1\end{pmatrix}\begin{pmatrix}1&3\\0&1\end{pmatrix} = \begin{pmatrix}1&0\\0&1\end{pmatrix}\). ✓</p>
+        <p><strong>Structural observation:</strong> \(A\) is an <em>elementary shear matrix</em> (upper triangular, unit diagonal). Its inverse is the same type with sign-flipped off-diagonal entry. Such matrices represent elementary row operations and are always invertible with \(\det = 1\).</p>
+        <div class="conf conf-high">✓ High — DS §5.2 Exercise 2c</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="problem-block" id="q15">
+    <div class="prob-header">
+      <span class="prob-num">Q15</span>
+      <span class="source-tag">DM §13.3</span>
+      <span class="type-exam">Exam</span>
+    </div>
+    <div class="prob-stmt">
+      Use the Gauss-Jordan method to find the inverse of \(A = \begin{pmatrix}2&0&1\\1&0&1\\3&1&2\end{pmatrix}\).
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">Form the augmented matrix \([A\,|\,I]\) and apply row operations to reduce \(A\) to \(I\). The right block transforms into \(A^{-1}\). Watch for a zero on the diagonal that requires a row swap.</div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p>Start: \(\left[\begin{array}{ccc|ccc}2&0&1&1&0&0\\1&0&1&0&1&0\\3&1&2&0&0&1\end{array}\right]\)</p>
+        <p>\(R_1 \leftarrow R_1/2\): \(\left[\begin{array}{ccc|ccc}1&0&\frac12&\frac12&0&0\\1&0&1&0&1&0\\3&1&2&0&0&1\end{array}\right]\)</p>
+        <p>\(R_2 \leftarrow R_2 - R_1\), \(R_3 \leftarrow R_3 - 3R_1\): \(\left[\begin{array}{ccc|ccc}1&0&\frac12&\frac12&0&0\\0&0&\frac12&-\frac12&1&0\\0&1&\frac12&-\frac32&0&1\end{array}\right]\)</p>
+        <p>Swap \(R_2 \leftrightarrow R_3\): \(\left[\begin{array}{ccc|ccc}1&0&\frac12&\frac12&0&0\\0&1&\frac12&-\frac32&0&1\\0&0&\frac12&-\frac12&1&0\end{array}\right]\)</p>
+        <p>\(R_3 \leftarrow 2R_3\): \(\left[\begin{array}{ccc|ccc}1&0&\frac12&\frac12&0&0\\0&1&\frac12&-\frac32&0&1\\0&0&1&-1&2&0\end{array}\right]\)</p>
+        <p>\(R_1 \leftarrow R_1 - \frac12 R_3\), \(R_2 \leftarrow R_2 - \frac12 R_3\): \(\left[\begin{array}{ccc|ccc}1&0&0&1&-1&0\\0&1&0&-1&-1&1\\0&0&1&-1&2&0\end{array}\right]\)</p>
+        \[A^{-1} = \begin{pmatrix}1&-1&0\\-1&-1&1\\-1&2&0\end{pmatrix}\]
+        <p><strong>Verify (row 1 of \(A\) × columns of \(A^{-1}\)):</strong> \([2,0,1]\cdot[1,-1,-1]^T = 2-1 = 1\), \([2,0,1]\cdot[-1,-1,2]^T = -2+2=0\), \([2,0,1]\cdot[0,1,0]^T=0\). ✓</p>
+        <div class="conf conf-high">✓ High — Gauss-Jordan inverse from DM §13.3 worked example</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="problem-block" id="q16">
+    <div class="prob-header">
+      <span class="prob-num">Q16</span>
+      <span class="source-tag">DS §5.2 Ex.3b</span>
+      <span class="type-theory">Theory</span>
+    </div>
+    <div class="prob-stmt">
+      Let \(A\) and \(B\) be \(n\times n\) invertible matrices. Prove that \((AB)^{-1} = B^{-1}A^{-1}\). Why does the right-hand side reverse the order of \(A\) and \(B\)?
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">To prove \(C = (AB)^{-1}\), show both \((AB)C = I\) and \(C(AB) = I\). Substitute \(C = B^{-1}A^{-1}\) and use associativity.</div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p>Let \(C = B^{-1}A^{-1}\). We verify both products equal \(I\):</p>
+        \[(AB)\,C = AB\,B^{-1}A^{-1} = A(BB^{-1})A^{-1} = A\,I\,A^{-1} = AA^{-1} = I.\]
+        \[C\,(AB) = B^{-1}A^{-1}AB = B^{-1}(A^{-1}A)B = B^{-1}\,I\,B = B^{-1}B = I.\]
+        <p>Since \(C\) is a two-sided inverse of \(AB\), and inverses are unique, \((AB)^{-1} = B^{-1}A^{-1}\). ✓</p>
+        <p><strong>Why reversed?</strong> Matrix multiplication is non-commutative. To "undo" first \(A\) then \(B\), you must first undo \(B\) (apply \(B^{-1}\)) and then undo \(A\) (apply \(A^{-1}\)) — exactly like putting on and taking off socks and shoes.</p>
+        <div class="conf conf-high">✓ High — DS §5.2 Exercise 3b; DM §13.3</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="problem-block" id="q17">
+    <div class="prob-header">
+      <span class="prob-num">Q17</span>
+      <span class="source-tag">DM §13.3</span>
+      <span class="type-exam">Exam</span>
+    </div>
+    <div class="prob-stmt">
+      Solve the matrix equation \(AX = B\) where \(A = \begin{pmatrix}3&2\\1&1\end{pmatrix}\) and \(B = \begin{pmatrix}8\\3\end{pmatrix}\) by computing \(A^{-1}\) and then \(X = A^{-1}B\). Verify the solution.
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">Multiply both sides of \(AX = B\) on the left by \(A^{-1}\) to get \(X = A^{-1}B\). Compute \(\det A\) first to find the 2×2 inverse formula.</div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p>\(\det A = 3\cdot1 - 2\cdot1 = 1\), so \(A^{-1} = \frac{1}{1}\begin{pmatrix}1&-2\\-1&3\end{pmatrix} = \begin{pmatrix}1&-2\\-1&3\end{pmatrix}\).</p>
+        \[X = A^{-1}B = \begin{pmatrix}1&-2\\-1&3\end{pmatrix}\begin{pmatrix}8\\3\end{pmatrix} = \begin{pmatrix}8-6\\-8+9\end{pmatrix} = \begin{pmatrix}2\\1\end{pmatrix}\]
+        <p><strong>Verify:</strong> \(AX = \begin{pmatrix}3&2\\1&1\end{pmatrix}\begin{pmatrix}2\\1\end{pmatrix} = \begin{pmatrix}6+2\\2+1\end{pmatrix} = \begin{pmatrix}8\\3\end{pmatrix} = B\). ✓</p>
+        <p>The solution corresponds to the system \(3x+2y=8\), \(x+y=3\), giving \(x=2\), \(y=1\).</p>
+        <div class="conf conf-high">✓ High — matrix inverse method for linear systems; DM §13.3</div>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ═══ TOPIC 4 ═══════════════════════════════════════════════════════ -->
+<section class="topic-section" id="topic-systems" data-t="4">
+  <div class="topic-banner">
+    <div class="week-tag">Topic 4</div>
+    <h2>Systems of Linear Equations</h2>
+    <div class="week-meta">8 problems · Gauss-Jordan · Unique / no / infinite solutions · Free variables</div>
+  </div>
+
+  <div class="problem-block" id="q18">
+    <div class="prob-header">
+      <span class="prob-num">Q18</span>
+      <span class="source-tag">DS §5.1 Ex.7</span>
+      <span class="type-hw">Computation</span>
+    </div>
+    <div class="prob-stmt">
+      Express the following system in matrix form \(AX = B\), write the augmented matrix, and solve using Gauss-Jordan elimination:
+      \[2x_1 - x_2 = 4, \qquad x_1 + x_2 = 0.\]
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">Identify \(A\), \(X\), \(B\), form \([A|B]\), and row-reduce to echelon form. Aim for 1s on the diagonal and 0s above and below.</div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p>Matrix form: \(A = \begin{pmatrix}2&-1\\1&1\end{pmatrix}\), \(X = \begin{pmatrix}x_1\\x_2\end{pmatrix}\), \(B = \begin{pmatrix}4\\0\end{pmatrix}\).</p>
+        <p>Augmented matrix and row reduction:</p>
+        \[\begin{pmatrix}2&-1&4\\1&1&0\end{pmatrix} \xrightarrow{R_1\leftrightarrow R_2} \begin{pmatrix}1&1&0\\2&-1&4\end{pmatrix} \xrightarrow{R_2-2R_1} \begin{pmatrix}1&1&0\\0&-3&4\end{pmatrix}\]
+        \[\xrightarrow{R_2/-3} \begin{pmatrix}1&1&0\\0&1&-\tfrac43\end{pmatrix} \xrightarrow{R_1-R_2} \begin{pmatrix}1&0&\tfrac43\\0&1&-\tfrac43\end{pmatrix}\]
+        <p>Solution: \(x_1 = \tfrac{4}{3}\), \(x_2 = -\tfrac{4}{3}\). Verify: \(2\cdot\tfrac{4}{3}-(-\tfrac{4}{3})=\tfrac{8}{3}+\tfrac{4}{3}=4\) ✓; \(\tfrac{4}{3}+(-\tfrac{4}{3})=0\) ✓.</p>
+        <div class="conf conf-high">✓ High — DS §5.1 Exercise 7b</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="problem-block" id="q19">
+    <div class="prob-header">
+      <span class="prob-num">Q19</span>
+      <span class="source-tag">DS §12.1 Ex.12.1.3</span>
+      <span class="type-exam">Exam</span>
+    </div>
+    <div class="prob-stmt">
+      Solve using Gauss-Jordan elimination:
+      \[4x_1 + 2x_2 + x_3 = 1,\quad 2x_1 + x_2 + x_3 = 4,\quad 2x_1 + 2x_2 + x_3 = 3.\]
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">Form the \(3\times4\) augmented matrix. Use the largest pivot at each step (partial pivoting). A row swap will be needed — look for a zero where you need a pivot.</div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p>Augmented matrix \([A|b]\):</p>
+        \[\begin{pmatrix}4&2&1&1\\2&1&1&4\\2&2&1&3\end{pmatrix}\]
+        <p>Step 1 — pivot on column 1: \(R_1 \leftarrow R_1/4\):</p>
+        \[\begin{pmatrix}1&\frac12&\frac14&\frac14\\2&1&1&4\\2&2&1&3\end{pmatrix}\]
+        <p>\(R_2\leftarrow R_2-2R_1\), \(R_3\leftarrow R_3-2R_1\):</p>
+        \[\begin{pmatrix}1&\frac12&\frac14&\frac14\\0&0&\frac12&\frac72\\0&1&\frac12&\frac52\end{pmatrix}\]
+        <p>Step 2 — pivot on column 2: swap \(R_2\leftrightarrow R_3\):</p>
+        \[\begin{pmatrix}1&\frac12&\frac14&\frac14\\0&1&\frac12&\frac52\\0&0&\frac12&\frac72\end{pmatrix}\]
+        <p>\(R_1\leftarrow R_1-\frac12 R_2\):</p>
+        \[\begin{pmatrix}1&0&0&-1\\0&1&\frac12&\frac52\\0&0&\frac12&\frac72\end{pmatrix}\]
+        <p>Step 3 — pivot on column 3: \(R_3\leftarrow 2R_3\):</p>
+        \[\begin{pmatrix}1&0&0&-1\\0&1&\frac12&\frac52\\0&0&1&7\end{pmatrix}\]
+        <p>\(R_2\leftarrow R_2-\frac12 R_3\):</p>
+        \[\begin{pmatrix}1&0&0&-1\\0&1&0&-1\\0&0&1&7\end{pmatrix}\]
+        <p><strong>Solution: \(x_1 = -1,\; x_2 = -1,\; x_3 = 7\).</strong></p>
+        <div class="conf conf-high">✓ High — DS §12.1 Example 12.1.3</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="problem-block" id="q20">
+    <div class="prob-header">
+      <span class="prob-num">Q20</span>
+      <span class="source-tag">DS §12.1 Ex.12.1.7</span>
+      <span class="type-exam">Exam</span>
+    </div>
+    <div class="prob-stmt">
+      Determine whether the following system has solutions. If not, explain why.
+      \[x_1+3x_2+x_3=2,\quad x_1+x_2+5x_3=4,\quad 2x_1+2x_2+10x_3=6.\]
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">Look at rows 2 and 3 — is row 3 a multiple of row 2? Check whether the right-hand sides are consistent with this relationship. In the augmented matrix, a row of the form \([0\;0\;0\;|\;c]\) with \(c\neq0\) means no solution.</div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p>Augmented matrix, applying \(R_3\leftarrow R_3-2R_2\):</p>
+        \[\begin{pmatrix}1&3&1&2\\1&1&5&4\\2&2&10&6\end{pmatrix}\to\begin{pmatrix}1&3&1&2\\1&1&5&4\\0&0&0&-2\end{pmatrix}\]
+        <p>The last row in equation form: \(0x_1+0x_2+0x_3 = -2\), i.e., \(0 = -2\). This is a contradiction — no values of \(x_1,x_2,x_3\) can satisfy it.</p>
+        <p><strong>Conclusion: no solution.</strong> The third equation (\(2x_1+2x_2+10x_3=6\)) is twice the left-hand side of the second equation but the right-hand side \(6\neq 2\times4=8\), making the system inconsistent.</p>
+        <div class="conf conf-high">✓ High — DS §12.1 Example 12.1.7</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="problem-block" id="q21">
+    <div class="prob-header">
+      <span class="prob-num">Q21</span>
+      <span class="source-tag">DS §12.1 Ex.12.1.8</span>
+      <span class="type-exam">Exam</span>
+    </div>
+    <div class="prob-stmt">
+      Find all solutions to:
+      \[x_1+6x_2+2x_3=1,\quad 2x_1+x_2+3x_3=2,\quad 4x_1+2x_2+6x_3=4.\]
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">Row-reduce the augmented matrix. You should find a zero row, indicating dependence. The variable corresponding to the column with no pivot becomes the <em>free variable</em>, and the other variables are expressed in terms of it.</div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p>Augmented matrix and reduction (note row 3 = 2×row 2):</p>
+        \[\begin{pmatrix}1&6&2&1\\2&1&3&2\\4&2&6&4\end{pmatrix}\xrightarrow{R_2-2R_1,\,R_3-4R_1}\begin{pmatrix}1&6&2&1\\0&-11&-1&0\\0&-22&-2&0\end{pmatrix}\]
+        <p>\(R_3\leftarrow R_3-2R_2\): \(\begin{pmatrix}1&6&2&1\\0&-11&-1&0\\0&0&0&0\end{pmatrix}\). Row 3 is all zeros — free variable \(x_3=t\).</p>
+        <p>From row 2: \(-11x_2 - x_3 = 0 \Rightarrow x_2 = -\tfrac{1}{11}x_3 = -\tfrac{t}{11}\).</p>
+        <p>From row 1: \(x_1 = 1 - 6x_2 - 2x_3 = 1 + \tfrac{6t}{11} - 2t = 1 - \tfrac{16t}{11}\).</p>
+        <p><strong>Solution set</strong> (parametric, \(t\in\mathbb{R}\)):</p>
+        \[S = \left\{\left(1-\tfrac{16}{11}t,\;-\tfrac{1}{11}t,\;t\right)\;\middle|\; t\in\mathbb{R}\right\}\]
+        <p>Two specific solutions: \(t=0\) gives \((1,0,0)\); \(t=11\) gives \((1-16,-1,11) = (-15,-1,11)\).</p>
+        <div class="conf conf-high">✓ High — DS §12.1 Example 12.1.8</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="problem-block" id="q22">
+    <div class="prob-header">
+      <span class="prob-num">Q22</span>
+      <span class="source-tag">DM §27–§30</span>
+      <span class="type-exam">Exam</span>
+    </div>
+    <div class="prob-stmt">
+      Consider the system \(2x+4y+z=1,\; 3x+6y+z=2,\; 5x+10y+2z=3\). Without fully row-reducing, explain why the system has infinitely many solutions. Then find the general solution.
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">Check whether the coefficient vector of equation 3 equals the sum of the coefficient vectors of equations 1 and 2. If so — and the RHS is also consistent — the equations are linearly dependent, giving a free variable.</div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p><strong>Dependence check:</strong> Coefficient row vectors: \(\mathbf{r}_1=(2,4,1)\), \(\mathbf{r}_2=(3,6,1)\), \(\mathbf{r}_3=(5,10,2)\). We have \(\mathbf{r}_3 = \mathbf{r}_1+\mathbf{r}_2\). Right-hand sides: \(3=1+2\). ✓ So equation 3 is the sum of equations 1 and 2 — it carries no new information. The system effectively has only 2 independent constraints on 3 unknowns.</p>
+        <p><strong>General solution:</strong> Subtracting eq. 1 from eq. 2: \(x+2y=1\Rightarrow x=1-2y\). Let \(y=t\) (free). From eq. 1: \(2(1-2t)+4t+z=1\Rightarrow z=-1\). So:</p>
+        \[x = 1-2t,\quad y = t,\quad z = -1,\qquad t\in\mathbb{R}.\]
+        <div class="conf conf-high">✓ High — connects linear dependence of equation vectors to infinitely many solutions</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="problem-block" id="q23">
+    <div class="prob-header">
+      <span class="prob-num">Q23</span>
+      <span class="source-tag">DS §12.1 Ex.12.1.11</span>
+      <span class="type-exam">Exam</span>
+    </div>
+    <div class="prob-stmt">
+      Apply the Gauss-Jordan algorithm to solve:
+      \[5x_1+x_2+2x_3+x_4=2,\quad 3x_1+x_2-2x_3=5,\quad x_1+x_2+3x_3-x_4=-1.\]
+      Identify all free variables and write the general solution.
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">After row-reducing, any column in the coefficient matrix without a pivot corresponds to a free variable. Variables with pivots (basic variables) can be expressed in terms of the free ones.</div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p>The augmented matrix reduces (by partial-pivoting Gauss-Jordan) to:</p>
+        \[\begin{pmatrix}1&0&0&\frac12&\frac12\\0&1&0&-\frac32&\frac32\\0&0&1&0&-1\end{pmatrix}\]
+        <p>Column 4 has no pivot, so \(x_4\) is the <strong>free variable</strong>. Let \(x_4=t\):</p>
+        \[x_1 = \tfrac12 - \tfrac12 t,\quad x_2 = \tfrac32 + \tfrac32 t,\quad x_3 = -1,\quad x_4 = t,\qquad t\in\mathbb{R}.\]
+        <p>Verify with \(t=0\): \(x=(0.5, 1.5, -1, 0)\). Check eq. 1: \(5(0.5)+1.5+2(-1)+0=2.5+1.5-2=2\) ✓.</p>
+        <div class="conf conf-high">✓ High — DS §12.1 Example 12.1.11</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="problem-block" id="q24">
+    <div class="prob-header">
+      <span class="prob-num">Q24</span>
+      <span class="source-tag">DS §5.1 Ex.7b</span>
+      <span class="type-hw">Computation</span>
+    </div>
+    <div class="prob-stmt">
+      Express each of the following systems in matrix form \(AX = B\) and write the augmented matrix:
+      <ol type="i">
+        <li>\(x_1 + x_2 = 3,\quad x_2 = 5,\quad x_1 + 3x_3 = 6\)</li>
+        <li>\(x_1+x_2+2x_3=1,\quad x_1+2x_2-x_3=-1,\quad x_1+3x_2+x_3=5\)</li>
+      </ol>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">In system (i), the second equation has no \(x_3\) term and the third equation has no \(x_2\) term — their coefficient matrix entries are 0. Write all missing variables explicitly with coefficient 0.</div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p><strong>(i)</strong> \(A = \begin{pmatrix}1&1&0\\0&1&0\\1&0&3\end{pmatrix}\), \(X = \begin{pmatrix}x_1\\x_2\\x_3\end{pmatrix}\), \(B = \begin{pmatrix}3\\5\\6\end{pmatrix}\). Augmented: \(\left[\begin{smallmatrix}1&1&0&3\\0&1&0&5\\1&0&3&6\end{smallmatrix}\right]\).</p>
+        <p>This system has a unique solution. Back-substituting: \(x_2=5\), \(x_1=3-5=-2\), \(x_3=(6+2)/3=8/3\).</p>
+        <p><strong>(ii)</strong> \(A = \begin{pmatrix}1&1&2\\1&2&-1\\1&3&1\end{pmatrix}\), \(B = \begin{pmatrix}1\\-1\\5\end{pmatrix}\). Augmented: \(\left[\begin{smallmatrix}1&1&2&1\\1&2&-1&-1\\1&3&1&5\end{smallmatrix}\right]\).</p>
+        <div class="conf conf-high">✓ High — DS §5.1 Exercise 7; matrix formulation of linear systems</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="problem-block" id="q25">
+    <div class="prob-header">
+      <span class="prob-num">Q25</span>
+      <span class="source-tag">DS §12.1</span>
+      <span class="type-hw">Applied</span>
+    </div>
+    <div class="prob-stmt">
+      A dietary supplement uses two ingredients \(P\) and \(Q\). Each unit of \(P\) provides 3 g protein and 2 g fat; each unit of \(Q\) provides 1 g protein and 4 g fat. How many units of each ingredient give exactly 11 g protein and 14 g fat? Set up and solve as a matrix system.
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">Let \(p\) = units of \(P\) and \(q\) = units of \(Q\). Write two equations (one for protein, one for fat) in the form \(AX=B\), then solve using the 2×2 inverse or row reduction.</div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p>System: \(3p+q=11\), \(2p+4q=14\Rightarrow p+2q=7\).</p>
+        \[A = \begin{pmatrix}3&1\\1&2\end{pmatrix},\quad X = \begin{pmatrix}p\\q\end{pmatrix},\quad B = \begin{pmatrix}11\\7\end{pmatrix}.\]
+        <p>\(\det A = 6-1=5\), so \(A^{-1} = \tfrac15\begin{pmatrix}2&-1\\-1&3\end{pmatrix}\).</p>
+        \[X = A^{-1}B = \frac15\begin{pmatrix}2\cdot11-1\cdot7\\-1\cdot11+3\cdot7\end{pmatrix} = \frac15\begin{pmatrix}15\\10\end{pmatrix} = \begin{pmatrix}3\\2\end{pmatrix}\]
+        <p><strong>Answer: 3 units of \(P\) and 2 units of \(Q\).</strong> Verify: \(3(3)+1(2)=11\) ✓; \(2(3)+4(2)=14\) ✓.</p>
+        <div class="conf conf-high">✓ High — standard linear system word problem</div>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ═══ TOPIC 5 ═══════════════════════════════════════════════════════ -->
+<section class="topic-section" id="topic-vspaces" data-t="5">
+  <div class="topic-banner">
+    <div class="week-tag">Topic 5</div>
+    <h2>Vector Spaces &amp; Subspaces</h2>
+    <div class="week-meta">5 problems · Closure axioms · Subspace tests · Span</div>
+  </div>
+
+  <div class="problem-block" id="q26">
+    <div class="prob-header">
+      <span class="prob-num">Q26</span>
+      <span class="source-tag">DS §12.3 / DM §26</span>
+      <span class="type-theory">Theory</span>
+    </div>
+    <div class="prob-stmt">
+      Verify that \(\mathbb{R}^2\) is a vector space by checking the two fundamental closure axioms and deriving that the zero vector must be in any vector space.
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">A vector space needs closure under addition and scalar multiplication. Once you have closure under scalar multiplication, show that the zero vector follows automatically (use scalars \(\alpha\) and \(-\alpha\)).</div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p>Let \(\mathbf{u}=(u_1,u_2)\) and \(\mathbf{v}=(v_1,v_2)\) be any vectors in \(\mathbb{R}^2\), and let \(\alpha\in\mathbb{R}\).</p>
+        <p><strong>Closure under addition:</strong> \(\mathbf{u}+\mathbf{v}=(u_1+v_1,\,u_2+v_2)\). Since \(u_1+v_1\) and \(u_2+v_2\) are real numbers, the sum is still in \(\mathbb{R}^2\). ✓</p>
+        <p><strong>Closure under scalar multiplication:</strong> \(\alpha\mathbf{u}=(\alpha u_1,\,\alpha u_2)\in\mathbb{R}^2\). ✓</p>
+        <p><strong>Zero vector:</strong> Take any \(\mathbf{v}\in\mathbb{R}^2\). By scalar multiplication, \(\alpha\mathbf{v}\in\mathbb{R}^2\) and \(-\alpha\mathbf{v}\in\mathbb{R}^2\). Their sum is \(\alpha\mathbf{v}+(-\alpha\mathbf{v})=\mathbf{0}\), which must also be in \(\mathbb{R}^2\) by closure under addition. ✓</p>
+        <p>All eight vector space axioms (commutativity, associativity, additive identity, additive inverse, scalar distributivity, etc.) are inherited from the properties of the real numbers \(\mathbb{R}\).</p>
+        <div class="conf conf-high">✓ High — DM §13.2 abstract vector space definition; DS §12.3</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="problem-block" id="q27">
+    <div class="prob-header">
+      <span class="prob-num">Q27</span>
+      <span class="source-tag">DS §12.3 / DM §26</span>
+      <span class="type-exam">Exam</span>
+    </div>
+    <div class="prob-stmt">
+      Is the set \(W = \{(x,y)\in\mathbb{R}^2 : x+y=1\}\) a subspace of \(\mathbb{R}^2\)? Justify your answer using the subspace tests.
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">Check the three conditions: (1) the zero vector \((0,0)\) is in \(W\); (2) \(W\) is closed under addition; (3) \(W\) is closed under scalar multiplication. Failure of any one condition is enough to conclude \(W\) is not a subspace.</div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p><strong>\(W\) is NOT a subspace.</strong></p>
+        <p><strong>Failure at the zero vector:</strong> The zero vector \((0,0)\) satisfies \(0+0=0\neq1\), so \((0,0)\notin W\). Every subspace must contain the zero vector — since \(W\) does not, it cannot be a subspace.</p>
+        <p><strong>Additional failures (for completeness):</strong></p>
+        <ul>
+          <li><em>Not closed under addition:</em> Take \((1,0)\in W\) and \((0,1)\in W\). Their sum \((1,1)\) has \(1+1=2\neq1\), so \((1,1)\notin W\).</li>
+          <li><em>Not closed under scalar multiplication:</em> Take \((1,0)\in W\) and scalar \(c=2\). Then \(2(1,0)=(2,0)\) has \(2+0=2\neq1\), so \((2,0)\notin W\).</li>
+        </ul>
+        <p>Geometrically, \(W\) is the line \(x+y=1\), which does not pass through the origin.</p>
+        <div class="conf conf-high">✓ High — standard subspace counterexample</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="problem-block" id="q28">
+    <div class="prob-header">
+      <span class="prob-num">Q28</span>
+      <span class="source-tag">DS §12.3</span>
+      <span class="type-theory">Theory</span>
+    </div>
+    <div class="prob-stmt">
+      Let \(W\) be the set of all \(2\times2\) real matrices with trace zero (i.e., \(a_{11}+a_{22}=0\)). Show that \(W\) is a vector space (a subspace of \(M_{2\times2}(\mathbb{R})\)).
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">Check: (1) the zero matrix \(0_{2\times2}\) has trace 0; (2) if \(\text{tr}(A)=0\) and \(\text{tr}(B)=0\), does \(\text{tr}(A+B)=0\)?; (3) does \(\text{tr}(cA)=0\)?</div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p><strong>Zero matrix:</strong> \(\text{tr}(0_{2\times2})=0+0=0\), so \(0_{2\times2}\in W\). ✓</p>
+        <p><strong>Closed under addition:</strong> Let \(A,B\in W\), so \(\text{tr}(A)=a_{11}+a_{22}=0\) and \(\text{tr}(B)=b_{11}+b_{22}=0\). Then \(\text{tr}(A+B)=(a_{11}+b_{11})+(a_{22}+b_{22})=\text{tr}(A)+\text{tr}(B)=0+0=0\). So \(A+B\in W\). ✓</p>
+        <p><strong>Closed under scalar multiplication:</strong> Let \(A\in W\) and \(c\in\mathbb{R}\). Then \(\text{tr}(cA)=ca_{11}+ca_{22}=c(a_{11}+a_{22})=c\cdot0=0\). So \(cA\in W\). ✓</p>
+        <p>All subspace conditions are satisfied, so \(W\) is a subspace of \(M_{2\times2}(\mathbb{R})\) and hence a vector space. Its dimension is 3 — a basis is \(\left\{\begin{pmatrix}1&0\\0&-1\end{pmatrix},\begin{pmatrix}0&1\\0&0\end{pmatrix},\begin{pmatrix}0&0\\1&0\end{pmatrix}\right\}\).</p>
+        <div class="conf conf-high">✓ High — DS §12.3; trace is a linear functional so its kernel is a subspace</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="problem-block" id="q29">
+    <div class="prob-header">
+      <span class="prob-num">Q29</span>
+      <span class="source-tag">DM §26–§28</span>
+      <span class="type-hw">Proof</span>
+    </div>
+    <div class="prob-stmt">
+      Show that \(\text{span}\{(1,0,0),(0,1,0)\}\) is a proper subspace of \(\mathbb{R}^3\). What is its dimension? Give a vector in \(\mathbb{R}^3\) that is not in this subspace.
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">The span consists of all vectors of the form \(\alpha(1,0,0)+\beta(0,1,0) = (\alpha,\beta,0)\). Check: is this a subspace? Is it all of \(\mathbb{R}^3\)?</div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p>The span \(S = \text{span}\{(1,0,0),(0,1,0)\} = \{(\alpha,\beta,0)\mid\alpha,\beta\in\mathbb{R}\}\).</p>
+        <p><strong>\(S\) is a subspace:</strong> It contains \(\mathbf{0}=(0,0,0)\) ✓. If \((\alpha,\beta,0),(\alpha',\beta',0)\in S\), their sum \((\alpha+\alpha',\beta+\beta',0)\in S\) ✓. Scalar multiple \(c(\alpha,\beta,0)=(c\alpha,c\beta,0)\in S\) ✓.</p>
+        <p><strong>\(S\) is proper (not all of \(\mathbb{R}^3\)):</strong> The vector \((0,0,1)\notin S\), because every vector in \(S\) has third coordinate 0. So \(S\subsetneq\mathbb{R}^3\).</p>
+        <p><strong>Dimension:</strong> \(\{(1,0,0),(0,1,0)\}\) are linearly independent (neither is a multiple of the other), so they form a basis for \(S\). Thus \(\dim(S)=2\). Geometrically, \(S\) is the \(xy\)-plane.</p>
+        <div class="conf conf-high">✓ High — span and dimension from DM §28</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="problem-block" id="q30">
+    <div class="prob-header">
+      <span class="prob-num">Q30</span>
+      <span class="source-tag">DM §26</span>
+      <span class="type-exam">Exam</span>
+    </div>
+    <div class="prob-stmt">
+      Is the set \(W = \{(x,y)\in\mathbb{R}^2 : x\geq0,\, y\geq0\}\ \) (the first quadrant, including axes) a vector space? Justify.
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">Check closure under scalar multiplication. Multiplying a vector in the first quadrant by a negative scalar gives a vector in the third quadrant.</div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p><strong>\(W\) is NOT a vector space.</strong></p>
+        <p>It fails closure under scalar multiplication. Take \(\mathbf{v}=(1,1)\in W\) (both coordinates non-negative). Then \((-1)\cdot\mathbf{v}=(-1,-1)\). Since \(-1<0\), the vector \((-1,-1)\notin W\).</p>
+        <p>Equivalently, \(W\) contains no additive inverses: if \((x,y)\in W\) with \(x>0\) or \(y>0\), then \(-(x,y)=(-x,-y)\notin W\). A vector space requires every element to have an additive inverse.</p>
+        <p>The first quadrant is a valid <em>cone</em> but not a subspace.</p>
+        <div class="conf conf-high">✓ High — standard vector space non-example</div>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ═══ TOPIC 6 ═══════════════════════════════════════════════════════ -->
+<section class="topic-section" id="topic-basis" data-t="6">
+  <div class="topic-banner">
+    <div class="week-tag">Topic 6</div>
+    <h2>Linear Independence, Basis &amp; Dimension</h2>
+    <div class="week-meta">5 problems · Independence test · Change of basis · Column space · Dimension theorem</div>
+  </div>
+
+  <div class="problem-block" id="q31">
+    <div class="prob-header">
+      <span class="prob-num">Q31</span>
+      <span class="source-tag">DM §27–§28</span>
+      <span class="type-exam">Exam</span>
+    </div>
+    <div class="prob-stmt">
+      Determine whether the vectors \(\mathbf{u}_1=(1,1,0)\), \(\mathbf{u}_2=(0,1,1)\), \(\mathbf{u}_3=(1,0,1)\) in \(\mathbb{R}^3\) are linearly independent. If they are, confirm they form a basis for \(\mathbb{R}^3\).
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">Solve \(\lambda_1\mathbf{u}_1+\lambda_2\mathbf{u}_2+\lambda_3\mathbf{u}_3=\mathbf{0}\) — write out the three component equations and solve. If the only solution is \(\lambda_1=\lambda_2=\lambda_3=0\), the vectors are independent.</div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p>Setting \(\lambda_1(1,1,0)+\lambda_2(0,1,1)+\lambda_3(1,0,1)=(0,0,0)\) gives the system:</p>
+        \[\lambda_1+\lambda_3=0,\quad \lambda_1+\lambda_2=0,\quad \lambda_2+\lambda_3=0.\]
+        <p>From equations 1 and 3: \(\lambda_1=-\lambda_3\) and \(\lambda_2=-\lambda_3\). Substituting into equation 2: \(-\lambda_3+(-\lambda_3)=0\Rightarrow\lambda_3=0\). Hence \(\lambda_1=\lambda_2=\lambda_3=0\).</p>
+        <p>The only solution is trivial — the vectors are <strong>linearly independent</strong>. ✓</p>
+        <p><strong>Basis for \(\mathbb{R}^3\):</strong> We have 3 linearly independent vectors in a 3-dimensional space. Since \(\dim(\mathbb{R}^3)=3\), any set of 3 linearly independent vectors spans all of \(\mathbb{R}^3\) and thus forms a basis. ✓</p>
+        <div class="conf conf-high">✓ High — Week 7 notes §28; DM §13.5</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="problem-block" id="q32">
+    <div class="prob-header">
+      <span class="prob-num">Q32</span>
+      <span class="source-tag">DM §13.5 / Week 7 §28</span>
+      <span class="type-exam">Exam</span>
+    </div>
+    <div class="prob-stmt">
+      Express \(\mathbf{v}=(3,2,1)\) as a linear combination in:
+      <ol type="a">
+        <li>The standard basis \(\mathcal{B}_1=\{(1,0,0),(0,1,0),(0,0,1)\}\).</li>
+        <li>The non-standard basis \(\mathcal{B}_2=\{(1,1,0),(0,1,1),(1,0,1)\}\).</li>
+      </ol>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">For (b), solve the system \(\alpha_1(1,1,0)+\alpha_2(0,1,1)+\alpha_3(1,0,1)=(3,2,1)\). Add all three component equations to find \(\alpha_1+\alpha_2+\alpha_3\), then back-substitute.</div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p><strong>(a)</strong> By inspection: \((3,2,1)=3(1,0,0)+2(0,1,0)+1(0,0,1)\). Coordinates in \(\mathcal{B}_1\): \((3,2,1)\).</p>
+        <p><strong>(b)</strong> Solve \(\alpha_1+\alpha_3=3,\; \alpha_1+\alpha_2=2,\; \alpha_2+\alpha_3=1\).</p>
+        <p>Add all three: \(2(\alpha_1+\alpha_2+\alpha_3)=6\Rightarrow\alpha_1+\alpha_2+\alpha_3=3\).</p>
+        <ul>
+          <li>\(\alpha_3 = 3-(\alpha_1+\alpha_2)=3-2=1\)</li>
+          <li>\(\alpha_1 = 3-\alpha_3=3-1=2\)</li>
+          <li>\(\alpha_2 = 2-\alpha_1=2-2=0\)</li>
+        </ul>
+        <p>Check: \(2(1,1,0)+0(0,1,1)+1(1,0,1)=(2+1,\,2+0,\,0+1)=(3,2,1)\). ✓</p>
+        <p>Coordinates in \(\mathcal{B}_2\): \((2,0,1)\). The same vector has different representations in different bases.</p>
+        <div class="conf conf-high">✓ High — Theorem 13.5.1 (DM); Week 7 §28</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="problem-block" id="q33">
+    <div class="prob-header">
+      <span class="prob-num">Q33</span>
+      <span class="source-tag">DM §13.6</span>
+      <span class="type-exam">Exam</span>
+    </div>
+    <div class="prob-stmt">
+      Let \(A = \begin{pmatrix}1&2&1\\0&1&1\\1&3&2\end{pmatrix}\). Find a basis for the column space of \(A\) and state its dimension (the rank of \(A\)).
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">The column space is the span of the columns. Check whether the three columns are linearly independent. If one column can be written as a combination of the others, drop it. The remaining columns form a basis.</div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p>Columns: \(\mathbf{c}_1=(1,0,1)^T\), \(\mathbf{c}_2=(2,1,3)^T\), \(\mathbf{c}_3=(1,1,2)^T\).</p>
+        <p>Check dependence: Does \(\mathbf{c}_3 = a\mathbf{c}_1+b\mathbf{c}_2\)?</p>
+        \[a+2b=1,\quad b=1,\quad a+3b=2.\]
+        <p>From eq. 2: \(b=1\). From eq. 1: \(a=1-2=-1\). Check eq. 3: \(-1+3=2\). ✓</p>
+        <p>So \(\mathbf{c}_3 = -\mathbf{c}_1+\mathbf{c}_2\) — the third column is dependent on the first two.</p>
+        <p><strong>Basis for column space:</strong> \(\{(1,0,1)^T,\,(2,1,3)^T\}\). These two are independent (neither is a scalar multiple of the other).</p>
+        <p><strong>Rank:</strong> \(\text{rank}(A) = \dim(\text{col space}) = 2\).</p>
+        <div class="conf conf-high">✓ High — DM §13.6 column space and rank</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="problem-block" id="q34">
+    <div class="prob-header">
+      <span class="prob-num">Q34</span>
+      <span class="source-tag">DM §13.5</span>
+      <span class="type-hw">Computation</span>
+    </div>
+    <div class="prob-stmt">
+      In \(\mathbb{R}^2\), two bases are \(\mathcal{B}_1=\{(1,0),(0,1)\}\) (standard) and \(\mathcal{B}_2=\{(1,0),(1,-2)\}\). Express \(\mathbf{v}=(2,3)\) in both bases, and explain why the coordinates differ.
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">In \(\mathcal{B}_1\) the answer is immediate by inspection. For \(\mathcal{B}_2\), solve \(\alpha_1(1,0)+\alpha_2(1,-2)=(2,3)\).</div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p><strong>In \(\mathcal{B}_1\) (standard):</strong> \((2,3)=2(1,0)+3(0,1)\). Coordinates: \((2,3)\).</p>
+        <p><strong>In \(\mathcal{B}_2\):</strong> Solve \(\alpha_1+\alpha_2=2\) and \(-2\alpha_2=3\).</p>
+        <p>From eq. 2: \(\alpha_2=-3/2\). From eq. 1: \(\alpha_1=2+3/2=7/2\).</p>
+        <p>Check: \(\tfrac72(1,0)+(-\tfrac32)(1,-2)=(\tfrac72-\tfrac32,\,0+3)=(2,3)\). ✓</p>
+        <p>Coordinates in \(\mathcal{B}_2\): \(\left(\tfrac72,-\tfrac32\right)\).</p>
+        <p><strong>Why different?</strong> Coordinates are defined relative to a basis. The same point \(\mathbf{v}\) has different numerical representations when the measuring "rulers" (basis vectors) change. This is why choosing the right basis for a problem can dramatically simplify computations.</p>
+        <div class="conf conf-high">✓ High — DM §13.5 Theorem 13.5.1</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="problem-block" id="q35">
+    <div class="prob-header">
+      <span class="prob-num">Q35</span>
+      <span class="source-tag">DM §13.5 / Week 7 §29–§30</span>
+      <span class="type-theory">Theory</span>
+    </div>
+    <div class="prob-stmt">
+      Explain, using the dimension theorem, why any set of 4 or more vectors in \(\mathbb{R}^3\) must be linearly dependent. Then illustrate by showing that the four vectors \((1,0,0),(0,1,0),(0,0,1),(1,1,1)\) are dependent.
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">The dimension theorem states all bases of a vector space have the same size. A basis of \(\mathbb{R}^3\) has exactly 3 vectors. Use this to argue that a 4th vector must be expressible as a combination of the first three.</div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p><strong>Dimension argument:</strong> \(\dim(\mathbb{R}^3)=3\). Any basis of \(\mathbb{R}^3\) spans all of \(\mathbb{R}^3\) and contains exactly 3 vectors (Theorem 13.5.2). If we have \(m>3\) vectors in \(\mathbb{R}^3\), by this theorem no set of more than \(n=\dim\) vectors can be linearly independent — at least one must be expressible as a combination of the others.</p>
+        <p><strong>Illustration:</strong> The standard basis \(\{(1,0,0),(0,1,0),(0,0,1)\}\) already spans \(\mathbb{R}^3\). The fourth vector \((1,1,1)\) lies in this span:</p>
+        \[(1,1,1) = 1\cdot(1,0,0)+1\cdot(0,1,0)+1\cdot(0,0,1).\]
+        <p>So \(1\cdot(1,0,0)+1\cdot(0,1,0)+1\cdot(0,0,1)+(-1)\cdot(1,1,1)=\mathbf{0}\) with non-zero coefficients — the four vectors are linearly <strong>dependent</strong>.</p>
+        <div class="conf conf-high">✓ High — DM §13.5 Theorem 13.5.2; Week 7 §30</div>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ═══ TOPIC 7 ═══════════════════════════════════════════════════════ -->
+<section class="topic-section" id="topic-transforms" data-t="7">
+  <div class="topic-banner">
+    <div class="week-tag">Topic 7</div>
+    <h2>Linear Transformations &amp; Matrix Identities</h2>
+    <div class="week-meta">5 problems · Geometric transforms · Non-commutativity · Power series</div>
+  </div>
+
+  <div class="problem-block" id="q36">
+    <div class="prob-header">
+      <span class="prob-num">Q36</span>
+      <span class="source-tag">DM §13.6</span>
+      <span class="type-hw">Computation</span>
+    </div>
+    <div class="prob-stmt">
+      Write the matrix for the linear transformation that scales \(\mathbb{R}^2\) by factor 2 in the \(x\)-direction and by factor 3 in the \(y\)-direction. Apply it to the vectors \((1,0)\) and \((0,1)\) and to an arbitrary vector \((a,b)\).
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">A scaling (diagonal) transformation matrix has the scale factors on the diagonal and zeros elsewhere. The columns of the matrix tell you where the basis vectors are sent.</div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p>The scaling matrix is \(S = \begin{pmatrix}2&0\\0&3\end{pmatrix}\).</p>
+        \[S\begin{pmatrix}1\\0\end{pmatrix}=\begin{pmatrix}2\\0\end{pmatrix},\qquad S\begin{pmatrix}0\\1\end{pmatrix}=\begin{pmatrix}0\\3\end{pmatrix}.\]
+        <p>The \(x\)-axis is stretched by 2; the \(y\)-axis by 3. For an arbitrary vector:</p>
+        \[S\begin{pmatrix}a\\b\end{pmatrix}=\begin{pmatrix}2a\\3b\end{pmatrix}.\]
+        <p>This is a linear transformation because \(S(\mathbf{u}+\mathbf{v})=S\mathbf{u}+S\mathbf{v}\) and \(S(c\mathbf{u})=cS\mathbf{u}\), both verifiable entry-wise. The columns of \(S\) are exactly the images of the standard basis vectors — a general fact about all linear transformations (DM Theorem 13.6.1).</p>
+        <div class="conf conf-high">✓ High — DM §13.6 geometric interpretation of linear transformations</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="problem-block" id="q37">
+    <div class="prob-header">
+      <span class="prob-num">Q37</span>
+      <span class="source-tag">DM §13.6</span>
+      <span class="type-exam">Exam</span>
+    </div>
+    <div class="prob-stmt">
+      Write the \(2\times2\) rotation matrix \(R_\theta\) for a counterclockwise rotation by angle \(\theta\). Then:
+      <ol type="a">
+        <li>Apply \(R_{90°}\) to \((1,0)\) and \((0,1)\) and interpret geometrically.</li>
+        <li>Compute \(R_{45°}(1,0)\) and give the result in exact form.</li>
+        <li>Show that \(R_\theta R_\phi = R_{\theta+\phi}\) (rotation is additive).</li>
+      </ol>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">The rotation matrix is \(R_\theta = \begin{pmatrix}\cos\theta & -\sin\theta\\\sin\theta & \cos\theta\end{pmatrix}\). For (c), use the angle addition formulas: \(\cos(\theta+\phi)=\cos\theta\cos\phi-\sin\theta\sin\phi\), etc.</div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        \[R_\theta = \begin{pmatrix}\cos\theta & -\sin\theta\\\sin\theta & \cos\theta\end{pmatrix}\]
+        <p><strong>(a)</strong> For \(\theta=90°\): \(\cos90°=0\), \(\sin90°=1\), so \(R_{90°}=\begin{pmatrix}0&-1\\1&0\end{pmatrix}\).</p>
+        \[R_{90°}\begin{pmatrix}1\\0\end{pmatrix}=\begin{pmatrix}0\\1\end{pmatrix},\quad R_{90°}\begin{pmatrix}0\\1\end{pmatrix}=\begin{pmatrix}-1\\0\end{pmatrix}.\]
+        <p>The \(x\)-axis maps to the \(y\)-axis; the \(y\)-axis maps to the negative \(x\)-axis. ✓ (Counterclockwise 90°.)</p>
+        <p><strong>(b)</strong> \(\cos45°=\sin45°=\tfrac{1}{\sqrt{2}}\), so:</p>
+        \[R_{45°}\begin{pmatrix}1\\0\end{pmatrix}=\begin{pmatrix}\tfrac{1}{\sqrt{2}}\\[4pt]\tfrac{1}{\sqrt{2}}\end{pmatrix}.\]
+        <p>The unit vector pointing east rotates 45° to point northeast.</p>
+        <p><strong>(c)</strong> By matrix multiplication:</p>
+        \[R_\theta R_\phi = \begin{pmatrix}\cos\theta\cos\phi-\sin\theta\sin\phi & -\cos\theta\sin\phi-\sin\theta\cos\phi\\\sin\theta\cos\phi+\cos\theta\sin\phi & -\sin\theta\sin\phi+\cos\theta\cos\phi\end{pmatrix} = \begin{pmatrix}\cos(\theta+\phi)&-\sin(\theta+\phi)\\\sin(\theta+\phi)&\cos(\theta+\phi)\end{pmatrix} = R_{\theta+\phi}. \checkmark\]
+        <div class="conf conf-high">✓ High — DM §13.6 rotation matrix; standard result</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="problem-block" id="q38">
+    <div class="prob-header">
+      <span class="prob-num">Q38</span>
+      <span class="source-tag">DM §13.6</span>
+      <span class="type-hw">Computation</span>
+    </div>
+    <div class="prob-stmt">
+      A horizontal shear by factor \(c=2\) maps \((x,y)\mapsto(x+2y,\,y)\).
+      <ol type="a">
+        <li>Write the \(2\times2\) matrix \(H\) for this transformation.</li>
+        <li>Apply \(H\) to the unit square corners \((0,0),(1,0),(1,1),(0,1)\) and describe what happens geometrically.</li>
+        <li>Find \(H^{-1}\) and interpret it as another shear.</li>
+      </ol>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">The columns of the transformation matrix are the images of the standard basis vectors. For \(H^{-1}\), use the 2×2 formula or observe that undoing a shear by \(c\) is a shear by \(-c\).</div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p><strong>(a)</strong> \(H(1,0)=(1,0)\) and \(H(0,1)=(2,1)\). So:</p>
+        \[H = \begin{pmatrix}1&2\\0&1\end{pmatrix}.\]
+        <p><strong>(b)</strong> Corners transform as:
+        \((0,0)\to(0,0)\), \((1,0)\to(1,0)\), \((1,1)\to(3,1)\), \((0,1)\to(2,1)\). The unit square becomes a parallelogram — the base stays fixed while the top edge slides 2 units to the right.</p>
+        <p><strong>(c)</strong> \(\det H=1\), so \(H^{-1}=\begin{pmatrix}1&-2\\0&1\end{pmatrix}\). This is a horizontal shear by \(-2\): it maps \((x,y)\mapsto(x-2y,y)\), undoing the original shear. ✓</p>
+        <div class="conf conf-high">✓ High — DM §13.6 shear matrix</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="problem-block" id="q39">
+    <div class="prob-header">
+      <span class="prob-num">Q39</span>
+      <span class="source-tag">DS §5.4 / DM §13.3</span>
+      <span class="type-theory">Theory</span>
+    </div>
+    <div class="prob-stmt">
+      For \(A = \begin{pmatrix}0&1\\0&0\end{pmatrix}\):
+      <ol type="a">
+        <li>Compute \(A^2\) and \(A^3\). What do you notice?</li>
+        <li>Show that there exist non-zero matrices \(A,B\) with \(AB = 0\) (the zero matrix), which cannot happen with real scalars.</li>
+        <li>Explain why the "cancellation law" \(AB=AC\Rightarrow B=C\) fails for matrices in general.</li>
+      </ol>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">For (a), directly compute \(A^2=A\cdot A\). For (b), find a non-zero \(B\) such that \(AB=0\) — try vectors in the null space of \(A\). For (c), relate cancellation to the existence of \(A^{-1}\).</div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p><strong>(a)</strong> \(A^2 = \begin{pmatrix}0&1\\0&0\end{pmatrix}\begin{pmatrix}0&1\\0&0\end{pmatrix}=\begin{pmatrix}0&0\\0&0\end{pmatrix}=0\). So \(A^3=A^2\cdot A=0\cdot A=0\).</p>
+        <p>\(A\) is a <em>nilpotent</em> matrix — it is non-zero but some power of it equals zero. This is impossible for nonzero real scalars (\(x^n=0\Rightarrow x=0\)).</p>
+        <p><strong>(b)</strong> Take \(A=\begin{pmatrix}0&1\\0&0\end{pmatrix}\) and \(B=\begin{pmatrix}1&0\\0&0\end{pmatrix}\). Both are non-zero, yet:</p>
+        \[AB = \begin{pmatrix}0&0\\0&0\end{pmatrix} = 0.\]
+        <p>This is a zero divisor — a matrix analogue of multiplying by zero, but both factors are non-zero.</p>
+        <p><strong>(c)</strong> If \(AB=AC\), then \(A(B-C)=0\). For scalars, this forces \(B=C\) since multiplication is invertible for nonzero numbers. For matrices, if \(A\) is singular (non-invertible), \(A\mathbf{x}=\mathbf{0}\) can have non-trivial solutions, so \(B-C\) need not be zero. Cancellation holds only when \(A\) is invertible (multiply both sides by \(A^{-1}\)).</p>
+        <div class="conf conf-high">✓ High — DS §5.4 matrix oddities; DM §13.3</div>
+      </div>
+    </details>
+  </div>
+
+  <div class="problem-block" id="q40">
+    <div class="prob-header">
+      <span class="prob-num">Q40</span>
+      <span class="source-tag">DM §13.3</span>
+      <span class="type-theory">Theory</span>
+    </div>
+    <div class="prob-stmt">
+      The geometric series formula for matrices states that if \(S = I + A + A^2 + A^3 + \cdots\) converges, then \(S = (I-A)^{-1}\), provided \((I-A)\) is invertible.
+      <ol type="a">
+        <li>Prove this identity algebraically using matrix algebra (without assuming commutativity).</li>
+        <li>Verify numerically for \(A = \begin{pmatrix}\tfrac12&0\\0&\tfrac13\end{pmatrix}\).</li>
+      </ol>
+    </div>
+    <details class="hint-d">
+      <summary>Hint</summary>
+      <div class="hint-body">For (a), note that \((I-A)S = S - AS\). Multiply out the series. For (b), the geometric series formula applied to each diagonal entry gives \((I-A)^{-1} = \operatorname{diag}\!\left(\tfrac{1}{1-\frac12},\tfrac{1}{1-\frac13}\right)\).</summary></div>
+    </details>
+    <details class="soln-d">
+      <summary>Solution</summary>
+      <div class="soln-body">
+        <p><strong>(a)</strong> Starting from \(S = I + A + A^2 + A^3 + \cdots\), multiply on the left by \((I-A)\):</p>
+        \[(I-A)S = S - AS = (I+A+A^2+\cdots)-(A+A^2+A^3+\cdots) = I.\]
+        <p>Similarly, \(S(I-A) = S-SA = I\) (by the same telescoping). Since \((I-A)S = S(I-A) = I\), the matrix \(S\) is the inverse of \((I-A)\), i.e., \(S=(I-A)^{-1}\). ✓</p>
+        <p>This is exactly the algebraic step from the DM textbook identity \(IS - AS = I \Rightarrow (I-A)S=I\).</p>
+        <p><strong>(b)</strong> With \(A=\operatorname{diag}(\tfrac12,\tfrac13)\), all powers \(A^n=\operatorname{diag}((\tfrac12)^n,(\tfrac13)^n)\). The series:</p>
+        \[S = \sum_{n=0}^{\infty}A^n = \operatorname{diag}\!\left(\sum_{n=0}^\infty\tfrac{1}{2^n},\;\sum_{n=0}^\infty\tfrac{1}{3^n}\right) = \operatorname{diag}(2,\;\tfrac32).\]
+        <p>Check via formula: \(I-A=\operatorname{diag}(\tfrac12,\tfrac23)\), so \((I-A)^{-1}=\operatorname{diag}(2,\tfrac32)\). ✓</p>
+        <div class="conf conf-high">✓ High — DM §13.3 matrix identity \(S=(I-A)^{-1}\)</div>
+      </div>
+    </details>
+  </div>
+</section>
+
+</main>
+</div>
+
+<div id="read-progress"></div>
+<button id="back-top" aria-label="Back to top">
+  <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+<button id="m-toc-btn" aria-label="Open table of contents" aria-expanded="false">
+  <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="16" y2="12"/><line x1="3" y1="18" x2="12" y2="18"/></svg>
+</button>
+<div id="m-toc-overlay" role="presentation"></div>
+<nav id="m-toc-drawer" aria-label="Mobile table of contents">
+  <div class="m-pill"></div>
+  <div class="m-drawer-hd">Contents</div>
+</nav>
+
+<script>
+(function(){
+  var desktopToc=document.querySelector('.toc-rail');
+  var drawer=document.getElementById('m-toc-drawer');
+  if(desktopToc&&drawer){Array.from(desktopToc.children).forEach(function(n){if(n.classList&&n.classList.contains('toc-title'))return;drawer.appendChild(n.cloneNode(true));});}
+  var btn=document.getElementById('m-toc-btn');
+  var overlay=document.getElementById('m-toc-overlay');
+  function openDrawer(){drawer.classList.add('open');overlay.classList.add('vis');btn.setAttribute('aria-expanded','true');document.body.style.overflow='hidden';}
+  function closeDrawer(){drawer.classList.remove('open');overlay.classList.remove('vis');btn.setAttribute('aria-expanded','false');document.body.style.overflow='';}
+  btn.addEventListener('click',openDrawer);
+  overlay.addEventListener('click',closeDrawer);
+  drawer.addEventListener('click',function(e){if(e.target.closest('a'))closeDrawer();});
+  var bar=document.getElementById('read-progress');
+  window.addEventListener('scroll',function(){var s=window.scrollY,d=document.documentElement.scrollHeight-document.documentElement.clientHeight;bar.style.width=(d>0?(s/d)*100:0)+'%';},{passive:true});
+  var backTop=document.getElementById('back-top');
+  window.addEventListener('scroll',function(){backTop.classList.toggle('vis',window.scrollY>400);},{passive:true});
+  backTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+  var allLinks=Array.from(document.querySelectorAll('.toc-week a[href^="#"]'));
+  var sections=allLinks.map(function(a){return document.getElementById(a.getAttribute('href').slice(1));}).filter(Boolean);
+  function setActive(id){allLinks.forEach(function(a){a.classList.toggle('is-active',a.getAttribute('href')==='#'+id);});Array.from(drawer.querySelectorAll('a[href^="#"]')).forEach(function(a){a.classList.toggle('is-active',a.getAttribute('href')==='#'+id);});}
+  if('IntersectionObserver' in window){var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)setActive(e.target.id);});},{rootMargin:'-20% 0px -70% 0px'});sections.forEach(function(s){obs.observe(s);});}
+})();
+</script>
+</body>
+</html>
