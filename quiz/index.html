@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practice Quiz | MScDS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
+      options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.min.js" id="MathJax-script" async></script>
+  <style>
+    :root {
+      --bg: #fdf6ec;
+      --surface: #fffaf3;
+      --border: #e8d9c0;
+      --text: #2c1a0e;
+      --muted: #7a5c3a;
+      --accent: #c05e2e;
+      --accent-lt: #f9ebe0;
+      --prob: #1a5c8a;
+      --prob-bg: #e8f4fd;
+      --la: #4a7c3f;
+      --la-bg: #edf7ea;
+      --ok: #166534;
+      --ok-bg: #dcfce7;
+      --err: #991b1b;
+      --err-bg: #fee2e2;
+      --r: 10px;
+      --sh: 0 2px 12px rgba(44,26,14,.08);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Lora',Georgia,serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.7}
+    header{background:var(--surface);border-bottom:2px solid var(--border);padding:.9rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+    header h1{font-family:'Playfair Display',Georgia,serif;font-size:1.35rem;color:var(--accent)}
+    nav a{color:var(--muted);text-decoration:none;font-family:'Inter',sans-serif;font-size:.82rem;margin-left:1rem}
+    nav a:hover{color:var(--accent)}
+    main{max-width:740px;margin:2rem auto;padding:0 1rem}
+    .screen{display:none}.screen.active{display:block}
+
+    /* START */
+    .card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--r);padding:2.25rem;box-shadow:var(--sh)}
+    .card h2{font-family:'Playfair Display',Georgia,serif;font-size:1.9rem;margin-bottom:.4rem}
+    .subtitle{color:var(--muted);font-size:.95rem;margin-bottom:1.75rem}
+    .filters{display:flex;gap:.6rem;flex-wrap:wrap;justify-content:center;margin-bottom:1.75rem}
+    .fbtn{font-family:'Inter',sans-serif;font-size:.88rem;padding:.45rem 1.1rem;border-radius:2rem;border:2px solid var(--border);background:var(--surface);color:var(--muted);cursor:pointer;transition:all .18s}
+    .fbtn:hover{border-color:var(--accent);color:var(--accent)}
+    .fbtn.sel{background:var(--accent);border-color:var(--accent);color:#fff}
+    .fbtn[data-t="probability"].sel{background:var(--prob);border-color:var(--prob)}
+    .fbtn[data-t="linear-algebra"].sel{background:var(--la);border-color:var(--la)}
+    .info{background:var(--accent-lt);border-radius:var(--r);padding:.9rem 1.25rem;margin-bottom:1.75rem;font-size:.88rem;color:var(--muted)}
+    .info ul{list-style:none}.info li{padding:.2rem 0}.info li::before{content:"→ ";color:var(--accent);font-weight:600}
+    .btn-p{font-family:'Inter',sans-serif;font-weight:600;font-size:.95rem;padding:.65rem 2.25rem;background:var(--accent);color:#fff;border:none;border-radius:2rem;cursor:pointer;transition:opacity .18s}
+    .btn-p:hover{opacity:.88}
+
+    /* QUIZ */
+    .qhdr{display:flex;align-items:center;gap:.9rem;margin-bottom:1.1rem}
+    .pinfo{font-family:'Inter',sans-serif;font-size:.82rem;color:var(--muted);white-space:nowrap}
+    .pbar{flex:1;height:6px;background:var(--border);border-radius:3px;overflow:hidden}
+    .pfill{height:100%;background:var(--accent);transition:width .35s ease}
+    .badge{font-family:'Inter',sans-serif;font-size:.72rem;font-weight:600;padding:.18rem .6rem;border-radius:1rem;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}
+    .badge.probability{background:var(--prob-bg);color:var(--prob)}
+    .badge.linear-algebra{background:var(--la-bg);color:var(--la)}
+    .qlabel{font-family:'Inter',sans-serif;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:.65rem}
+    .qtext{font-size:1.02rem;line-height:1.78;margin-bottom:1.4rem}
+    .opts{list-style:none;display:flex;flex-direction:column;gap:.55rem}
+    .obtn{display:block;width:100%;text-align:left;padding:.7rem .95rem;border:1.5px solid var(--border);border-radius:8px;background:var(--bg);color:var(--text);font-family:'Lora',Georgia,serif;font-size:.93rem;cursor:pointer;transition:all .13s;line-height:1.6}
+    .obtn:hover:not(:disabled){border-color:var(--accent);background:var(--accent-lt)}
+    .obtn.ok{border-color:var(--ok);background:var(--ok-bg);color:var(--ok)}
+    .obtn.err{border-color:var(--err);background:var(--err-bg);color:var(--err)}
+    .obtn:disabled{cursor:default}
+    .expl{display:none;margin-top:1.1rem;padding:.9rem 1.1rem;background:var(--accent-lt);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;font-size:.93rem}
+    .expl.on{display:block}
+    details{border:1.5px solid var(--border);border-radius:8px;overflow:hidden;margin-top:1.1rem}
+    summary{padding:.65rem 1rem;background:var(--bg);cursor:pointer;font-family:'Inter',sans-serif;font-size:.88rem;font-weight:600;color:var(--muted);list-style:none;display:flex;align-items:center;gap:.45rem}
+    summary::-webkit-details-marker{display:none}
+    summary::before{content:"▶";font-size:.68rem;transition:transform .18s}
+    details[open] summary::before{transform:rotate(90deg)}
+    .solbody{padding:1.1rem;border-top:1px solid var(--border);font-size:.93rem;line-height:1.82}
+    .selfmark{display:flex;gap:.65rem;margin-top:1.1rem;flex-wrap:wrap}
+    .mkbtn{font-family:'Inter',sans-serif;font-size:.88rem;font-weight:600;padding:.45rem 1.1rem;border-radius:2rem;border:2px solid;cursor:pointer;transition:all .18s}
+    .mk-ok{border-color:var(--ok);color:var(--ok);background:transparent}.mk-ok:hover,.mk-ok.sel{background:var(--ok-bg)}
+    .mk-err{border-color:var(--err);color:var(--err);background:transparent}.mk-err:hover,.mk-err.sel{background:var(--err-bg)}
+    .qnav{display:flex;justify-content:flex-end;margin-top:.9rem}
+    .btn-n{font-family:'Inter',sans-serif;font-weight:600;font-size:.93rem;padding:.55rem 1.6rem;background:var(--accent);color:#fff;border:none;border-radius:2rem;cursor:pointer;transition:opacity .18s}
+    .btn-n:hover{opacity:.88}.btn-n:disabled{opacity:.38;cursor:not-allowed}
+
+    /* END */
+    .score-big{font-family:'Playfair Display',Georgia,serif;font-size:3.2rem;color:var(--accent);line-height:1;margin:.75rem 0}
+    .score-lbl{color:var(--muted);font-size:.95rem;margin-bottom:1.5rem}
+    .pills{display:flex;gap:1.1rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.5rem}
+    .pill{background:var(--bg);border:1.5px solid var(--border);border-radius:2rem;padding:.35rem 1.1rem;font-family:'Inter',sans-serif;font-size:.82rem;color:var(--muted)}
+    .rlist{text-align:left;margin:1.25rem 0}
+    .ritem{padding:.55rem 0;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:.65rem;font-size:.88rem}
+    .rico{font-size:.95rem;flex-shrink:0;margin-top:.1rem}
+    .end-acts{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap;margin-top:1.4rem}
+    .btn-s{font-family:'Inter',sans-serif;font-weight:600;font-size:.93rem;padding:.55rem 1.6rem;border:2px solid var(--accent);color:var(--accent);background:transparent;border-radius:2rem;cursor:pointer;transition:all .18s}
+    .btn-s:hover{background:var(--accent-lt)}
+
+    @media(max-width:580px){
+      header h1{font-size:1.1rem}
+      .card{padding:1.4rem}
+      .card h2{font-size:1.45rem}
+      .score-big{font-size:2.4rem}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>MScDS Quiz</h1>
+  <nav>
+    <a href="../index.html">Home</a>
+    <a href="../discrete_mathematics/index.html">Notes</a>
+    <a href="../practice/index.html">Practice</a>
+  </nav>
+</header>
+
+<main>
+
+  <!-- START -->
+  <div class="screen active" id="s-start">
+    <div class="card" style="text-align:center">
+      <h2>Practice Quiz</h2>
+      <p class="subtitle">Probability &amp; Linear Algebra · 10 questions per session</p>
+      <div class="filters">
+        <button class="fbtn sel" data-t="all">All Topics</button>
+        <button class="fbtn" data-t="probability">Probability</button>
+        <button class="fbtn" data-t="linear-algebra">Linear Algebra</button>
+      </div>
+      <div class="info">
+        <ul>
+          <li>Each session draws one variant at random from every question group</li>
+          <li>MCQ: click an option for instant feedback and explanation</li>
+          <li>Worked problems: reveal the solution, then self-mark</li>
+          <li>Score is tracked across both types at the end</li>
+        </ul>
+      </div>
+      <button class="btn-p" id="btn-start">Begin Quiz</button>
+    </div>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="screen" id="s-quiz">
+    <div class="qhdr">
+      <span class="pinfo" id="pinfo">1 / 10</span>
+      <div class="pbar"><div class="pfill" id="pfill" style="width:10%"></div></div>
+      <span class="badge" id="tbadge"></span>
+    </div>
+    <div class="card" id="qcard"></div>
+    <div class="qnav"><button class="btn-n" id="btn-next" disabled>Next →</button></div>
+  </div>
+
+  <!-- END -->
+  <div class="screen" id="s-end">
+    <div class="card" style="text-align:center">
+      <p style="color:var(--muted);font-size:.88rem">Session complete</p>
+      <div class="score-big" id="escore"></div>
+      <p class="score-lbl" id="elbl"></p>
+      <div class="pills" id="epills"></div>
+      <div class="rlist" id="rlist"></div>
+      <div class="end-acts">
+        <button class="btn-s" id="btn-retry">Same Topic Again</button>
+        <button class="btn-p" id="btn-new">New Quiz</button>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+// ─────────────────────────────────────────────────────────────
+// QUESTION BANK
+// Each MCQ group has two variants (A/B). Each worked problem is
+// its own group. A session picks one variant per group randomly.
+// ─────────────────────────────────────────────────────────────
+const BANK = [
+
+// ══ PROBABILITY MCQ ══════════════════════════════════════════
+
+{ id:"P1-A", g:"P1", topic:"probability", type:"mcq",
+  q:"A fair coin is flipped three times. How many outcomes are in the sample space?",
+  opts:["6","8","12","16"], ans:1,
+  exp:"Each flip has 2 outcomes. By the multiplication rule: \\(2^3 = 8\\)." },
+
+{ id:"P1-B", g:"P1", topic:"probability", type:"mcq",
+  q:"A standard six-sided die is rolled and a fair coin is flipped simultaneously. How many outcomes are in the sample space?",
+  opts:["8","10","12","14"], ans:2,
+  exp:"Die gives 6 outcomes, coin gives 2. Multiplication rule: \\(6 \\times 2 = 12\\)." },
+
+{ id:"P2-A", g:"P2", topic:"probability", type:"mcq",
+  q:"\\(P(A)=0.4\\), \\(P(B)=0.5\\), \\(P(A\\cap B)=0.2\\). Find \\(P(A\\mid B)\\).",
+  opts:["0.2","0.4","0.5","0.8"], ans:1,
+  exp:"\\(P(A\\mid B)=\\dfrac{P(A\\cap B)}{P(B)}=\\dfrac{0.2}{0.5}=0.4\\)." },
+
+{ id:"P2-B", g:"P2", topic:"probability", type:"mcq",
+  q:"Given \\(P(B\\mid A)=0.6\\) and \\(P(A)=0.3\\), what is \\(P(A\\cap B)\\)?",
+  opts:["0.9","0.5","0.18","0.2"], ans:2,
+  exp:"\\(P(A\\cap B)=P(B\\mid A)\\cdot P(A)=0.6\\times 0.3=0.18\\)." },
+
+{ id:"P3-A", g:"P3", topic:"probability", type:"mcq",
+  q:"Machine \\(M_1\\) makes 40% of parts (2% defective); \\(M_2\\) makes 60% (3% defective). A random defective part is found. Find \\(P(M_1\\mid D)\\).",
+  opts:["\\(\\frac{4}{13}\\)","\\(\\frac{1}{3}\\)","\\(\\frac{2}{5}\\)","\\(\\frac{2}{7}\\)"], ans:0,
+  exp:"\\(P(D)=0.4\\times0.02+0.6\\times0.03=0.008+0.018=0.026\\). Bayes: \\(\\frac{0.008}{0.026}=\\frac{4}{13}\\approx0.308\\)." },
+
+{ id:"P3-B", g:"P3", topic:"probability", type:"mcq",
+  q:"A box has 3 red and 2 blue balls. Two are drawn without replacement. Given the 2nd is red, what is \\(P(\\text{1st red})\\)?",
+  opts:["\\(\\frac{1}{2}\\)","\\(\\frac{3}{8}\\)","\\(\\frac{2}{5}\\)","\\(\\frac{1}{3}\\)"], ans:0,
+  exp:"\\(P(R_1)=\\frac{3}{5}\\), \\(P(R_2\\mid R_1)=\\frac{2}{4}\\). \\(P(R_2)=\\frac{3}{5}\\cdot\\frac{2}{4}+\\frac{2}{5}\\cdot\\frac{3}{4}=\\frac{12}{20}\\). Bayes: \\(\\frac{6/20}{12/20}=\\frac{1}{2}\\)." },
+
+{ id:"P4-A", g:"P4", topic:"probability", type:"mcq",
+  q:"\\(X\\) takes value 1 with prob \\(\\frac{1}{4}\\), value 2 with prob \\(\\frac{1}{2}\\), value 4 with prob \\(\\frac{1}{4}\\). Find \\(E[X]\\).",
+  opts:["2","2.25","2.5","3"], ans:1,
+  exp:"\\(E[X]=1\\cdot\\frac{1}{4}+2\\cdot\\frac{1}{2}+4\\cdot\\frac{1}{4}=0.25+1+1=2.25\\)." },
+
+{ id:"P4-B", g:"P4", topic:"probability", type:"mcq",
+  q:"\\(E[X]=4\\), \\(E[Y]=2\\). By linearity of expectation, find \\(E[2X+3Y-1]\\).",
+  opts:["11","13","14","15"], ans:1,
+  exp:"\\(E[2X+3Y-1]=2E[X]+3E[Y]-1=8+6-1=13\\)." },
+
+{ id:"P5-A", g:"P5", topic:"probability", type:"mcq",
+  q:"A Bernoulli random variable has success probability \\(p=0.3\\). What is its variance?",
+  opts:["0.09","0.21","0.3","0.7"], ans:1,
+  exp:"\\(\\mathrm{Var}(X)=p(1-p)=0.3\\times0.7=0.21\\)." },
+
+{ id:"P5-B", g:"P5", topic:"probability", type:"mcq",
+  q:"Independent \\(X,Y\\) have \\(\\mathrm{Var}(X)=2\\), \\(\\mathrm{Var}(Y)=1\\). Find \\(\\mathrm{Var}(3X-2Y)\\).",
+  opts:["10","14","18","22"], ans:3,
+  exp:"\\(\\mathrm{Var}(3X-2Y)=9\\,\\mathrm{Var}(X)+4\\,\\mathrm{Var}(Y)=18+4=22\\). Minus sign doesn't matter for variance." },
+
+{ id:"P6-A", g:"P6", topic:"probability", type:"mcq",
+  q:"A biased coin has \\(P(H)=\\frac{1}{4}\\). What is the probability the first head appears on the 3rd flip?",
+  opts:["\\(\\frac{9}{64}\\)","\\(\\frac{1}{16}\\)","\\(\\frac{3}{16}\\)","\\(\\frac{1}{8}\\)"], ans:0,
+  exp:"Geometric: \\(P(X=3)=(1-p)^2 p=\\left(\\frac{3}{4}\\right)^2\\cdot\\frac{1}{4}=\\frac{9}{64}\\)." },
+
+{ id:"P6-B", g:"P6", topic:"probability", type:"mcq",
+  q:"For Geometric\\((p=0.25)\\), what is the expected number of trials until the first success?",
+  opts:["2","3","4","5"], ans:2,
+  exp:"\\(E[X]=\\frac{1}{p}=\\frac{1}{0.25}=4\\)." },
+
+{ id:"P7-A", g:"P7", topic:"probability", type:"mcq",
+  q:"\\(X\\sim\\mathrm{Bin}(6,\\frac{1}{3})\\). What is \\(\\mathrm{Var}(X)\\)?",
+  opts:["\\(2\\)","\\(\\frac{4}{3}\\)","\\(1\\)","\\(\\frac{3}{2}\\)"], ans:1,
+  exp:"\\(\\mathrm{Var}(X)=np(1-p)=6\\cdot\\frac{1}{3}\\cdot\\frac{2}{3}=\\frac{4}{3}\\)." },
+
+{ id:"P7-B", g:"P7", topic:"probability", type:"mcq",
+  q:"A fair coin is flipped 4 times. What is the probability of exactly 2 heads?",
+  opts:["\\(\\frac{1}{4}\\)","\\(\\frac{5}{16}\\)","\\(\\frac{3}{8}\\)","\\(\\frac{1}{2}\\)"], ans:2,
+  exp:"\\(P(X=2)=\\binom{4}{2}\\left(\\frac{1}{2}\\right)^4=6\\cdot\\frac{1}{16}=\\frac{3}{8}\\)." },
+
+{ id:"P8-A", g:"P8", topic:"probability", type:"mcq",
+  q:"Non-negative \\(X\\) has \\(E[X]=6\\). Markov's inequality bounds \\(P(X\\geq 30)\\) by:",
+  opts:["\\(\\frac{1}{6}\\)","\\(\\frac{1}{5}\\)","\\(\\frac{1}{4}\\)","\\(\\frac{1}{3}\\)"], ans:1,
+  exp:"Markov: \\(P(X\\geq a)\\leq\\frac{E[X]}{a}=\\frac{6}{30}=\\frac{1}{5}\\)." },
+
+{ id:"P8-B", g:"P8", topic:"probability", type:"mcq",
+  q:"Which is the key requirement for applying Markov's inequality \\(P(X\\geq a)\\leq E[X]/a\\)?",
+  opts:["\\(X\\) must be normally distributed","\\(X\\) must be non-negative","\\(a < E[X]\\)","\\(X\\) must be discrete"], ans:1,
+  exp:"Markov's inequality requires \\(X\\geq 0\\) (so the bound is meaningful). It works for any non-negative RV — no distribution assumption needed." },
+
+{ id:"P9-A", g:"P9", topic:"probability", type:"mcq",
+  q:"\\(X\\) has \\(\\mu=10\\), \\(\\mathrm{Var}(X)=4\\). Chebyshev bounds \\(P(|X-10|\\geq 4)\\) by:",
+  opts:["\\(\\frac{1}{4}\\)","\\(\\frac{1}{2}\\)","\\(\\frac{1}{16}\\)","\\(\\frac{4}{10}\\)"], ans:0,
+  exp:"Chebyshev: \\(P(|X-\\mu|\\geq k)\\leq\\frac{\\sigma^2}{k^2}=\\frac{4}{16}=\\frac{1}{4}\\)." },
+
+{ id:"P9-B", g:"P9", topic:"probability", type:"mcq",
+  q:"How does Chebyshev's inequality improve on Markov's?",
+  opts:["It only applies to symmetric distributions","It uses variance — deviation from the mean — not just the mean","It gives exact probabilities","It requires fewer assumptions"], ans:1,
+  exp:"Chebyshev uses variance to bound the probability of deviating from the mean: \\(\\sigma^2/k^2\\). Markov only uses \\(E[X]\\) and applies to non-negative RVs. Chebyshev is tighter when you know the variance." },
+
+{ id:"P10-A", g:"P10", topic:"probability", type:"mcq",
+  q:"\\(P(A)=0.4\\), \\(P(B)=0.5\\), \\(P(A\\cap B)=0.2\\). Are \\(A\\) and \\(B\\) independent?",
+  opts:["Yes","No","Only if \\(A\\subset B\\)","Cannot determine"], ans:0,
+  exp:"Independence requires \\(P(A\\cap B)=P(A)P(B)=0.4\\times0.5=0.2\\). That matches, so yes — independent." },
+
+{ id:"P10-B", g:"P10", topic:"probability", type:"mcq",
+  q:"Two events \\(A\\) and \\(B\\) with \\(P(A)>0\\) and \\(P(B)>0\\) are mutually exclusive. Can they be independent?",
+  opts:["Yes, always","Yes, if \\(P(A)+P(B)=1\\)","No","Only if \\(P(A)=P(B)\\)"], ans:2,
+  exp:"Mutually exclusive: \\(P(A\\cap B)=0\\). Independence needs \\(P(A\\cap B)=P(A)P(B)>0\\). A contradiction — so they cannot be independent." },
+
+// ══ LINEAR ALGEBRA MCQ ═══════════════════════════════════════
+
+{ id:"L1-A", g:"L1", topic:"linear-algebra", type:"mcq",
+  q:"\\(A\\) is \\(3\\times4\\) and \\(B\\) is \\(4\\times2\\). What is the size of \\((AB)^T\\)?",
+  opts:["\\(3\\times2\\)","\\(2\\times3\\)","\\(4\\times3\\)","\\(2\\times4\\)"], ans:1,
+  exp:"\\(AB\\) is \\(3\\times2\\), so \\((AB)^T\\) is \\(2\\times3\\). Equivalently \\((AB)^T=B^TA^T\\) has size \\((2\\times4)(4\\times3)=2\\times3\\)." },
+
+{ id:"L1-B", g:"L1", topic:"linear-algebra", type:"mcq",
+  q:"Which identity correctly transposes a matrix product?",
+  opts:["\\((AB)^T=A^TB^T\\)","\\((AB)^T=B^TA^T\\)","\\((AB)^T=(BA)^T\\)","\\((AB)^T=AB\\)"], ans:1,
+  exp:"The transpose reverses order: \\((AB)^T=B^TA^T\\). Same logic as 'socks then shoes → remove shoes then socks'." },
+
+{ id:"L2-A", g:"L2", topic:"linear-algebra", type:"mcq",
+  q:"Is \\(A=\\begin{pmatrix}2&4\\\\1&2\\end{pmatrix}\\) invertible?",
+  opts:["Yes","No — det = 0","Only if scaled","Cannot determine"], ans:1,
+  exp:"\\(\\det(A)=2\\cdot2-4\\cdot1=0\\). Zero determinant means singular — not invertible." },
+
+{ id:"L2-B", g:"L2", topic:"linear-algebra", type:"mcq",
+  q:"Which is equivalent to a square matrix \\(A\\) being invertible?",
+  opts:["\\(\\mathrm{tr}(A)\\neq0\\)","All entries nonzero","\\(\\det(A)\\neq0\\)","\\(A\\) is symmetric"], ans:2,
+  exp:"A square matrix is invertible if and only if its determinant is nonzero. The other properties are neither necessary nor sufficient." },
+
+{ id:"L3-A", g:"L3", topic:"linear-algebra", type:"mcq",
+  q:"Are \\(\\mathbf{v}_1=(1,2,3)\\) and \\(\\mathbf{v}_2=(2,4,6)\\) linearly independent?",
+  opts:["Yes","No — \\(\\mathbf{v}_2=2\\mathbf{v}_1\\)","No — both in \\(\\mathbb{R}^3\\)","Need more vectors to decide"], ans:1,
+  exp:"\\(\\mathbf{v}_2=2\\mathbf{v}_1\\), so \\(\\mathbf{v}_2-2\\mathbf{v}_1=\\mathbf{0}\\) is a nontrivial zero combination — linearly dependent." },
+
+{ id:"L3-B", g:"L3", topic:"linear-algebra", type:"mcq",
+  q:"Which set is linearly independent in \\(\\mathbb{R}^2\\)?",
+  opts:["\\(\\{(1,2),(2,4)\\}\\)","\\(\\{(1,0),(0,1)\\}\\)","\\(\\{(1,1),(2,2)\\}\\)","\\(\\{(3,6),(1,2)\\}\\)"], ans:1,
+  exp:"\\(\\{(1,0),(0,1)\\}\\) is the standard basis — only \\(\\alpha=\\beta=0\\) gives \\(\\alpha(1,0)+\\beta(0,1)=\\mathbf{0}\\). All others are scalar multiples of each other." },
+
+{ id:"L4-A", g:"L4", topic:"linear-algebra", type:"mcq",
+  q:"Which of the following is a subspace of \\(\\mathbb{R}^3\\)?",
+  opts:["\\(\\{(x,y,z):x^2+y^2=1\\}\\)","\\(\\{(x,y,z):x+2y-z=0\\}\\)","\\(\\{(x,y,z):x>0\\}\\)","\\(\\{(x,y,z):xyz=1\\}\\)"], ans:1,
+  exp:"A subspace must contain \\(\\mathbf{0}\\) and be closed under addition and scaling. The plane \\(x+2y-z=0\\) passes through the origin and satisfies both. The others fail." },
+
+{ id:"L4-B", g:"L4", topic:"linear-algebra", type:"mcq",
+  q:"Is the set of all polynomials of degree exactly 3 a vector space?",
+  opts:["Yes","No — zero polynomial is missing","No — polynomials aren't vectors","Yes, over real coefficients only"], ans:1,
+  exp:"A vector space must contain the zero element. The zero polynomial has degree undefined (or \\(-\\infty\\)), not 3. Also, leading terms can cancel on addition. Not a vector space." },
+
+{ id:"L5-A", g:"L5", topic:"linear-algebra", type:"mcq",
+  q:"How many vectors are in every basis of \\(\\mathbb{R}^4\\)?",
+  opts:["3","4","5","Depends on the basis"], ans:1,
+  exp:"All bases of a vector space have the same size — the dimension. \\(\\dim(\\mathbb{R}^4)=4\\), so every basis has exactly 4 vectors." },
+
+{ id:"L5-B", g:"L5", topic:"linear-algebra", type:"mcq",
+  q:"Can two vectors span \\(\\mathbb{R}^3\\)?",
+  opts:["Yes, if chosen carefully","Yes, if orthogonal","No — at least 3 are needed","Only if both have norm 1"], ans:2,
+  exp:"\\(\\dim(\\mathbb{R}^3)=3\\). Two vectors span at most a 2-dimensional subspace (a plane). You need at least 3 linearly independent vectors to span \\(\\mathbb{R}^3\\)." },
+
+{ id:"L6-A", g:"L6", topic:"linear-algebra", type:"mcq",
+  q:"Can 4 vectors in \\(\\mathbb{R}^3\\) be linearly independent?",
+  opts:["Yes, if chosen carefully","No — more vectors than dimension forces dependence","Only if one is the zero vector","Yes, always"], ans:1,
+  exp:"In \\(\\mathbb{R}^n\\), any set of more than \\(n\\) vectors is linearly dependent. Since \\(\\dim(\\mathbb{R}^3)=3\\), any 4 vectors in \\(\\mathbb{R}^3\\) must be dependent." },
+
+{ id:"L6-B", g:"L6", topic:"linear-algebra", type:"mcq",
+  q:"Subspace \\(W\\subseteq\\mathbb{R}^5\\) has \\(\\dim(W)=3\\). A basis of \\(W\\) consists of:",
+  opts:["Any 5 vectors in \\(W\\)","Exactly 3 linearly independent vectors that span \\(W\\)","Any 3 vectors in \\(W\\)","5 orthonormal vectors"], ans:1,
+  exp:"Basis = linearly independent + spanning. Since \\(\\dim(W)=3\\) the basis has exactly 3 vectors. 'Any 3 vectors' may be dependent or fail to span." },
+
+{ id:"L7-A", g:"L7", topic:"linear-algebra", type:"mcq",
+  q:"After row-reducing a \\(3\\times3\\) system, one row becomes \\([0\\;0\\;0\\mid 5]\\). What does this mean?",
+  opts:["Infinitely many solutions","No solution","Exactly one solution","The system is homogeneous"], ans:1,
+  exp:"\\([0\\;0\\;0\\mid5]\\) encodes \\(0=5\\) — a contradiction. The system is inconsistent: no solution." },
+
+{ id:"L7-B", g:"L7", topic:"linear-algebra", type:"mcq",
+  q:"A consistent \\(3\\times3\\) system reduces to row echelon form with exactly 2 pivot columns. How many free variables?",
+  opts:["0","1","2","3"], ans:1,
+  exp:"Free variables = unknowns − pivots = \\(3-2=1\\). One free variable means infinitely many solutions (a 1-parameter family)." },
+
+{ id:"L8-A", g:"L8", topic:"linear-algebra", type:"mcq",
+  q:"What is the rotation matrix for 90° counterclockwise in \\(\\mathbb{R}^2\\)?",
+  opts:["\\(\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}\\)","\\(\\begin{pmatrix}0&1\\\\-1&0\\end{pmatrix}\\)","\\(\\begin{pmatrix}1&0\\\\0&-1\\end{pmatrix}\\)","\\(\\begin{pmatrix}-1&0\\\\0&1\\end{pmatrix}\\)"], ans:0,
+  exp:"Rotation matrix: \\(\\begin{pmatrix}\\cos\\theta&-\\sin\\theta\\\\\\sin\\theta&\\cos\\theta\\end{pmatrix}\\). At \\(\\theta=90°\\): \\(\\cos90°=0\\), \\(\\sin90°=1\\), giving \\(\\begin{pmatrix}0&-1\\\\1&0\\end{pmatrix}\\)." },
+
+{ id:"L8-B", g:"L8", topic:"linear-algebra", type:"mcq",
+  q:"A horizontal shear sends \\((x,y)\\mapsto(x+cy,y)\\). Which matrix represents this?",
+  opts:["\\(\\begin{pmatrix}1&c\\\\0&1\\end{pmatrix}\\)","\\(\\begin{pmatrix}1&0\\\\c&1\\end{pmatrix}\\)","\\(\\begin{pmatrix}c&1\\\\0&1\\end{pmatrix}\\)","\\(\\begin{pmatrix}c&0\\\\0&1\\end{pmatrix}\\)"], ans:0,
+  exp:"\\(\\begin{pmatrix}1&c\\\\0&1\\end{pmatrix}\\begin{pmatrix}x\\\\y\\end{pmatrix}=\\begin{pmatrix}x+cy\\\\y\\end{pmatrix}\\). The \\(y\\)-coordinate is unchanged; \\(x\\) shifts by \\(cy\\)." },
+
+{ id:"L9-A", g:"L9", topic:"linear-algebra", type:"mcq",
+  q:"The column space of a matrix \\(A\\) is the set of all:",
+  opts:["\\(A^T\\mathbf{x}\\) for any \\(\\mathbf{x}\\)","\\(A\\mathbf{x}\\) for any \\(\\mathbf{x}\\)","\\(A^{-1}\\mathbf{b}\\) for any \\(\\mathbf{b}\\)","\\(\\mathbf{x}^TA\\) for any \\(\\mathbf{x}\\)"], ans:1,
+  exp:"The column space (image) is \\(\\{A\\mathbf{x}:\\mathbf{x}\\in\\mathbb{R}^n\\}\\) — all linear combinations of the columns of \\(A\\). \\(A\\mathbf{x}=\\mathbf{b}\\) is solvable iff \\(\\mathbf{b}\\) is in the column space." },
+
+{ id:"L9-B", g:"L9", topic:"linear-algebra", type:"mcq",
+  q:"A \\(4\\times3\\) matrix has rank 2. What is the dimension of its column space?",
+  opts:["1","2","3","4"], ans:1,
+  exp:"\\(\\dim(\\text{col}(A))=\\mathrm{rank}(A)=2\\). Rank counts pivot columns, which equals the number of linearly independent columns." },
+
+{ id:"L10-A", g:"L10", topic:"linear-algebra", type:"mcq",
+  q:"For any matrix \\(A\\), is \\(A^TA\\) always symmetric?",
+  opts:["Yes","No","Only if \\(A\\) is square","Only if \\(A\\) is invertible"], ans:0,
+  exp:"\\((A^TA)^T=A^T(A^T)^T=A^TA\\). So \\(A^TA\\) equals its own transpose — always symmetric, regardless of the shape of \\(A\\)." },
+
+{ id:"L10-B", g:"L10", topic:"linear-algebra", type:"mcq",
+  q:"A matrix satisfies \\(A^T=-A\\). What type of matrix is it?",
+  opts:["Symmetric","Orthogonal","Skew-symmetric","Diagonal"], ans:2,
+  exp:"\\(A^T=-A\\) defines a skew-symmetric (anti-symmetric) matrix. Diagonal entries are always 0. Example: \\(\\begin{pmatrix}0&1\\\\-1&0\\end{pmatrix}\\)." },
+
+// ══ PROBABILITY WORKED PROBLEMS ══════════════════════════════
+
+{ id:"W-P1", g:"W-P1", topic:"probability", type:"worked",
+  q:`A medical test has sensitivity 99% (true positive rate) and false-positive rate 5%. The disease prevalence is 1%. A randomly chosen person tests positive. What is the probability they actually have the disease?`,
+  sol:`<strong>Events:</strong> \\(D\\) = has disease, \\(+\\) = positive test.<br><br>
+<strong>Given:</strong> \\(P(D)=0.01\\), \\(P(+\\mid D)=0.99\\), \\(P(+\\mid\\overline{D})=0.05\\).<br><br>
+<strong>Total probability of a positive test:</strong>
+\\[P(+)=P(+\\mid D)P(D)+P(+\\mid\\overline{D})P(\\overline{D})=0.99\\times0.01+0.05\\times0.99=0.0099+0.0495=0.0594\\]
+<strong>Bayes' theorem:</strong>
+\\[P(D\\mid+)=\\frac{P(+\\mid D)P(D)}{P(+)}=\\frac{0.0099}{0.0594}\\approx0.167\\]
+<strong>Answer: ~16.7%.</strong> Despite a 99% sensitive test, the rarity of the disease means most positives are false. This is the <em>base-rate neglect</em> paradox.` },
+
+{ id:"W-P2", g:"W-P2", topic:"probability", type:"worked",
+  q:`Two fair six-sided dice are rolled. Find (a) the expected sum and (b) the variance of the sum, using linearity of expectation and the independence of the dice.`,
+  sol:`Let \\(X_1,X_2\\) be outcomes of the two dice.<br><br>
+<strong>(a) Expected sum:</strong><br>
+Single fair die: \\(E[X_i]=\\frac{1+2+3+4+5+6}{6}=3.5\\)<br>
+By linearity: \\(E[X_1+X_2]=E[X_1]+E[X_2]=3.5+3.5=\\mathbf{7}\\)<br><br>
+<strong>(b) Variance of sum:</strong><br>
+\\(E[X_i^2]=\\frac{1+4+9+16+25+36}{6}=\\frac{91}{6}\\)<br>
+\\(\\mathrm{Var}(X_i)=E[X_i^2]-(E[X_i])^2=\\frac{91}{6}-\\frac{49}{4}=\\frac{182-147}{12}=\\frac{35}{12}\\)<br>
+Since \\(X_1,X_2\\) are independent:
+\\[\\mathrm{Var}(X_1+X_2)=\\mathrm{Var}(X_1)+\\mathrm{Var}(X_2)=\\frac{35}{12}+\\frac{35}{12}=\\frac{35}{6}\\approx5.83\\]` },
+
+// ══ LINEAR ALGEBRA WORKED PROBLEMS ═══════════════════════════
+
+{ id:"W-L1", g:"W-L1", topic:"linear-algebra", type:"worked",
+  q:`Find the inverse of \\(A=\\begin{pmatrix}3&1\\\\5&2\\end{pmatrix}\\) using the 2×2 formula, then verify by computing \\(AA^{-1}\\).`,
+  sol:`<strong>Formula:</strong> For \\(A=\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}\\),
+\\[A^{-1}=\\frac{1}{\\det(A)}\\begin{pmatrix}d&-b\\\\-c&a\\end{pmatrix}\\]
+<strong>Step 1 — determinant:</strong>
+\\[\\det(A)=3\\cdot2-1\\cdot5=6-5=1\\]
+<strong>Step 2 — inverse:</strong>
+\\[A^{-1}=\\frac{1}{1}\\begin{pmatrix}2&-1\\\\-5&3\\end{pmatrix}=\\begin{pmatrix}2&-1\\\\-5&3\\end{pmatrix}\\]
+<strong>Verification:</strong>
+\\[AA^{-1}=\\begin{pmatrix}3&1\\\\5&2\\end{pmatrix}\\begin{pmatrix}2&-1\\\\-5&3\\end{pmatrix}=\\begin{pmatrix}6-5&-3+3\\\\10-10&-5+6\\end{pmatrix}=\\begin{pmatrix}1&0\\\\0&1\\end{pmatrix}\\checkmark\\]` },
+
+{ id:"W-L2", g:"W-L2", topic:"linear-algebra", type:"worked",
+  q:`Are \\(\\mathbf{v}_1=(1,2,3)\\), \\(\\mathbf{v}_2=(0,1,1)\\), \\(\\mathbf{v}_3=(1,1,2)\\) linearly independent? If not, express one as a combination of the others.`,
+  sol:`<strong>Spot the relation:</strong> \\(\\mathbf{v}_2+\\mathbf{v}_3=(0+1,1+1,1+2)=(1,2,3)=\\mathbf{v}_1\\).<br><br>
+So \\(\\mathbf{v}_1-\\mathbf{v}_2-\\mathbf{v}_3=\\mathbf{0}\\) — a nontrivial zero combination.<br>
+<strong>Conclusion: linearly dependent.</strong> \\(\\mathbf{v}_1=\\mathbf{v}_2+\\mathbf{v}_3\\).<br><br>
+<strong>Row-reduction confirms:</strong>
+\\[\\begin{pmatrix}1&0&1\\\\2&1&1\\\\3&1&2\\end{pmatrix}\\xrightarrow{R_2-2R_1,\\;R_3-3R_1}\\begin{pmatrix}1&0&1\\\\0&1&-1\\\\0&1&-1\\end{pmatrix}\\xrightarrow{R_3-R_2}\\begin{pmatrix}1&0&1\\\\0&1&-1\\\\0&0&0\\end{pmatrix}\\]
+The zero row confirms dependence.` },
+
+{ id:"W-L3", g:"W-L3", topic:"linear-algebra", type:"worked",
+  q:`Solve the linear system using Gaussian elimination:
+\\[x+2y=4\\]
+\\[3x+5y=9\\]`,
+  sol:`<strong>Augmented matrix:</strong>
+\\[\\left[\\begin{array}{cc|c}1&2&4\\\\3&5&9\\end{array}\\right]\\]
+<strong>Row operation</strong> \\(R_2\\leftarrow R_2-3R_1\\):
+\\[\\left[\\begin{array}{cc|c}1&2&4\\\\0&-1&-3\\end{array}\\right]\\]
+<strong>Back-substitute:</strong><br>
+Row 2: \\(-y=-3\\Rightarrow y=3\\)<br>
+Row 1: \\(x+2(3)=4\\Rightarrow x=-2\\)<br><br>
+<strong>Solution: \\(x=-2,\\;y=3\\).</strong><br><br>
+<strong>Check:</strong> \\((-2)+2(3)=4\\;✓\\quad 3(-2)+5(3)=-6+15=9\\;✓\\)` }
+
+]; // end BANK
+
+// ─────────────────────────────────────────────────────────────
+// STATE
+// ─────────────────────────────────────────────────────────────
+let selectedTopic = "all";
+let session = [];
+let idx = 0;
+let results = [];
+let answered = false;
+
+// ─────────────────────────────────────────────────────────────
+// TOPIC FILTER
+// ─────────────────────────────────────────────────────────────
+document.querySelectorAll('.fbtn').forEach(b => {
+  b.addEventListener('click', () => {
+    document.querySelectorAll('.fbtn').forEach(x => x.classList.remove('sel'));
+    b.classList.add('sel');
+    selectedTopic = b.dataset.t;
+  });
+});
+
+// ─────────────────────────────────────────────────────────────
+// ROUTING
+// ─────────────────────────────────────────────────────────────
+function show(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+document.getElementById('btn-start').addEventListener('click', startQuiz);
+document.getElementById('btn-next').addEventListener('click', advance);
+document.getElementById('btn-retry').addEventListener('click', startQuiz);
+document.getElementById('btn-new').addEventListener('click', () => show('s-start'));
+
+// ─────────────────────────────────────────────────────────────
+// BUILD SESSION
+// ─────────────────────────────────────────────────────────────
+function buildSession() {
+  const groups = {};
+  BANK.forEach(q => {
+    if (selectedTopic === 'all' || q.topic === selectedTopic) {
+      (groups[q.g] = groups[q.g] || []).push(q);
+    }
+  });
+  const picks = Object.values(groups).map(vs => vs[Math.floor(Math.random() * vs.length)]);
+  // Fisher-Yates shuffle
+  for (let i = picks.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [picks[i], picks[j]] = [picks[j], picks[i]];
+  }
+  return picks.slice(0, 10);
+}
+
+function startQuiz() {
+  session = buildSession();
+  idx = 0;
+  results = [];
+  show('s-quiz');
+  render();
+}
+
+// ─────────────────────────────────────────────────────────────
+// RENDER QUESTION
+// ─────────────────────────────────────────────────────────────
+function render() {
+  const q = session[idx];
+  const total = session.length;
+  answered = false;
+
+  document.getElementById('pinfo').textContent = `${idx + 1} / ${total}`;
+  document.getElementById('pfill').style.width = `${((idx + 1) / total) * 100}%`;
+
+  const badge = document.getElementById('tbadge');
+  badge.textContent = q.topic === 'probability' ? 'Probability' : 'Linear Algebra';
+  badge.className = 'badge ' + q.topic;
+
+  const btn = document.getElementById('btn-next');
+  btn.disabled = true;
+  btn.textContent = idx === total - 1 ? 'Finish' : 'Next →';
+
+  const card = document.getElementById('qcard');
+
+  if (q.type === 'mcq') {
+    card.innerHTML = `
+      <div class="qlabel">Multiple Choice</div>
+      <div class="qtext">${q.q}</div>
+      <ul class="opts" id="opts">
+        ${q.opts.map((o, i) => `<button class="obtn" data-i="${i}">${o}</button>`).join('')}
+      </ul>
+      <div class="expl" id="expl"></div>`;
+    card.querySelectorAll('.obtn').forEach(b => b.addEventListener('click', () => answerMCQ(b, q)));
+  } else {
+    card.innerHTML = `
+      <div class="qlabel">Worked Problem</div>
+      <div class="qtext">${q.q}</div>
+      <details id="sol">
+        <summary>Reveal solution</summary>
+        <div class="solbody">${q.sol}</div>
+      </details>
+      <div class="selfmark" id="sm" style="display:none">
+        <button class="mkbtn mk-ok" id="mk-got">Got it ✓</button>
+        <button class="mkbtn mk-err" id="mk-miss">Missed it ✗</button>
+      </div>`;
+    document.getElementById('sol').addEventListener('toggle', function () {
+      if (this.open) {
+        document.getElementById('sm').style.display = 'flex';
+        MathJax.typesetPromise([this]).catch(() => {});
+      }
+    });
+    document.getElementById('mk-got').addEventListener('click', () => answerWorked(true, q));
+    document.getElementById('mk-miss').addEventListener('click', () => answerWorked(false, q));
+  }
+
+  MathJax.typesetPromise([card]).catch(() => {});
+}
+
+// ─────────────────────────────────────────────────────────────
+// ANSWER HANDLERS
+// ─────────────────────────────────────────────────────────────
+function answerMCQ(clicked, q) {
+  if (answered) return;
+  answered = true;
+  const chosen = parseInt(clicked.dataset.i);
+  const correct = chosen === q.ans;
+  document.querySelectorAll('.obtn').forEach((b, i) => {
+    b.disabled = true;
+    if (i === q.ans) b.classList.add('ok');
+    else if (i === chosen && !correct) b.classList.add('err');
+  });
+  const expl = document.getElementById('expl');
+  expl.innerHTML = `<strong>${correct ? '✓ Correct!' : '✗ Incorrect.'}</strong> ${q.exp}`;
+  expl.classList.add('on');
+  MathJax.typesetPromise([expl]).catch(() => {});
+  results.push({ q, correct, type: 'mcq' });
+  document.getElementById('btn-next').disabled = false;
+}
+
+function answerWorked(gotIt, q) {
+  if (answered) return;
+  answered = true;
+  document.getElementById('mk-got').classList.toggle('sel', gotIt);
+  document.getElementById('mk-miss').classList.toggle('sel', !gotIt);
+  document.getElementById('mk-got').disabled = true;
+  document.getElementById('mk-miss').disabled = true;
+  results.push({ q, correct: gotIt, type: 'worked' });
+  document.getElementById('btn-next').disabled = false;
+}
+
+function advance() {
+  idx++;
+  if (idx >= session.length) showEnd();
+  else render();
+}
+
+// ─────────────────────────────────────────────────────────────
+// END SCREEN
+// ─────────────────────────────────────────────────────────────
+function showEnd() {
+  show('s-end');
+  const scored = results.filter(r => r.correct).length;
+  const total  = results.length;
+  const pct    = Math.round((scored / total) * 100);
+
+  document.getElementById('escore').textContent = `${scored}/${total}`;
+  document.getElementById('elbl').textContent =
+    pct >= 80 ? 'Excellent work!' :
+    pct >= 60 ? 'Good effort — keep reviewing.' :
+                'Keep practising — revisit the explanations.';
+
+  const mcqR = results.filter(r => r.type === 'mcq');
+  const wrkR = results.filter(r => r.type === 'worked');
+  let pills = '';
+  if (mcqR.length) pills += `<span class="pill">MCQ: ${mcqR.filter(r=>r.correct).length}/${mcqR.length}</span>`;
+  if (wrkR.length) pills += `<span class="pill">Worked: ${wrkR.filter(r=>r.correct).length}/${wrkR.length}</span>`;
+  document.getElementById('epills').innerHTML = pills;
+
+  document.getElementById('rlist').innerHTML = results.map(r => {
+    const short = r.q.q.replace(/\\[\s\S]*?\\]/g,'[…]').replace(/\\\([\s\S]*?\\\)/g,'(…)').slice(0,95);
+    return `<div class="ritem"><span class="rico">${r.correct?'✅':'❌'}</span><span>${short}${r.q.q.length>95?'…':''}</span></div>`;
+  }).join('');
+}
+</script>
+</body>
+</html>
