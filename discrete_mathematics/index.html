@@ -527,6 +527,7 @@ mjx-container[jax="CHTML"][display="true"] {
       <li><a href="#basis-span">Span &amp; Basis</a></li>
       <li><a href="#dimension">Dimension of a Vector Space</a></li>
       <li><a href="#dual-space">Dual Space &amp; Linear Equations</a></li>
+      <li><a href="#intuition">Geometric Intuition &amp; Abstract Spaces</a></li>
     </ol>
   </div>
 
@@ -1973,7 +1974,7 @@ mjx-container[jax="CHTML"][display="true"] {
     <div>
       <div class="week-tag">Week 7</div>
       <h2>Linear Algebra: Vector Spaces</h2>
-      <div class="week-meta">5 concepts &nbsp;·&nbsp; 3 lectures &nbsp;·&nbsp; Vector spaces · Linear dependence · Basis · Dimension · Dual space</div>
+      <div class="week-meta">6 concepts &nbsp;·&nbsp; 3 lectures &nbsp;·&nbsp; Vector spaces · Linear dependence · Basis · Dimension · Dual space · Geometric intuition</div>
     </div>
   </div>
 
@@ -2183,6 +2184,101 @@ mjx-container[jax="CHTML"][display="true"] {
           <tr><td>\(m &gt; n\) equations</td><td>At least \(m-n\) redundant</td><td>Unique / ∞ / none depending on rank &amp; RHS</td></tr>
         </tbody>
       </table>
+    </div>
+  </section>
+
+  <!-- §31 ─ GEOMETRIC INTUITION & ABSTRACT SPACES ─────────────────── -->
+  <section class="concept-section" id="intuition">
+    <h3>31 · Geometric Intuition &amp; Abstract Vector Spaces</h3>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Concept</span>
+      <div class="block-title">Geometric Interpretation of Span</div>
+      <p>The span of a set of vectors is the set of all <em>locations reachable</em> by combining those vectors with any scalar weights:</p>
+      \[\text{span}(\mathbf{v}_1,\mathbf{v}_2,\ldots,\mathbf{v}_n) = \{a_1\mathbf{v}_1 + a_2\mathbf{v}_2 + \cdots + a_n\mathbf{v}_n \mid a_i \in \mathbb{R}\}\]
+      <p>Think of each basis vector as a "direction you can travel". Scalar multiplication controls how far; addition combines directions. The span is everywhere you can reach.</p>
+      <p><strong>Example:</strong> \(a(1,0)+b(0,1)=(a,b)\) — every point in the plane is reachable from two perpendicular unit steps, so \(\text{span}\{(1,0),(0,1)\}=\mathbb{R}^2\).</p>
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Concept</span>
+      <div class="block-title">What "New Direction" Means</div>
+      <p>A vector adds a <strong>new direction</strong> to a set only if it cannot be reached from the existing vectors. If it can, it is redundant — linearly dependent.</p>
+      <p><strong>Example:</strong> \((1,1) = 1\cdot(1,0)+1\cdot(0,1)\). The vector \((1,1)\) adds no new reachable direction because it is already in \(\text{span}\{(1,0),(0,1)\}\). Adding it to the set does not enlarge the span — and the set becomes linearly dependent.</p>
+      <p>The geometric question to ask is always: <em>"Can I reach this point from the vectors I already have?"</em></p>
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Vector Space Checklist</span>
+      <div class="block-title">Three Tests for a Vector Space</div>
+      <p>To verify a set \(W\) is a vector space (or subspace), check only:</p>
+      <ol class="steps">
+        <li><strong>Closed under addition:</strong> if \(\mathbf{u},\mathbf{v}\in W\) then \(\mathbf{u}+\mathbf{v}\in W\).</li>
+        <li><strong>Closed under scalar multiplication:</strong> if \(\mathbf{v}\in W\) and \(\alpha\in\mathbb{R}\) then \(\alpha\mathbf{v}\in W\).</li>
+        <li><strong>Contains the zero vector:</strong> \(\mathbf{0}\in W\).</li>
+      </ol>
+      <p>The remaining axioms (commutativity, associativity, etc.) are inherited from the ambient space.</p>
+
+      <div class="example-block" style="margin-top:1rem">
+        <span class="block-badge">Counterexample</span>
+        <div class="block-title">Invertible Matrices Are NOT a Vector Space</div>
+        <p>Intuitively it might seem natural to study "the set of all invertible \(n\times n\) matrices." But this set fails the checklist:</p>
+        <ul class="steps">
+          <li>The zero matrix \(0\) is not invertible, so the set does not contain the zero element. ✗</li>
+          <li>If \(A\) is invertible, \(A+(-A)=0\) is not invertible. Closure under addition fails. ✗</li>
+        </ul>
+        <p>Therefore, invertible matrices do <strong>not</strong> form a vector space — even though the set feels important.</p>
+      </div>
+    </div>
+
+    <div class="def-block">
+      <span class="block-badge">Key Insight</span>
+      <div class="block-title">Vectors Are Defined by Operations, Not by Shape</div>
+      <p>A <strong>vector</strong> is not just a tuple of numbers — it is any object that supports <em>addition</em> and <em>scalar multiplication</em> satisfying the vector space axioms. This means all of the following are valid vectors in appropriate spaces:</p>
+      <ul class="steps">
+        <li><strong>Tuples:</strong> \((a, b, c) \in \mathbb{R}^3\)</li>
+        <li><strong>Matrices:</strong> any \(m\times n\) matrix, where addition and scalar multiplication are entry-wise</li>
+        <li><strong>Polynomials:</strong> \(p(x) = a_0 + a_1 x + a_2 x^2 + \cdots\), added and scaled coefficient-wise</li>
+        <li><strong>Functions:</strong> \(f: \mathbb{R}\to\mathbb{R}\), with \((f+g)(x)=f(x)+g(x)\) and \((\alpha f)(x)=\alpha f(x)\)</li>
+      </ul>
+      <p>The power of the abstract definition is that everything proved about vector spaces (basis, dimension, linear maps) applies equally to all of these — not just \(\mathbb{R}^n\).</p>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Polynomial Spaces</div>
+      <p>The set \(P_2\) of all quadratic polynomials \(\{a+bx+cx^2 \mid a,b,c\in\mathbb{R}\}\) is a vector space of dimension 3. A natural basis is:</p>
+      \[\mathcal{B} = \{1,\; x,\; x^2\}\]
+      <p>Every quadratic polynomial is a unique linear combination of these basis vectors:</p>
+      \[a + bx + cx^2 = a\cdot(1) + b\cdot(x) + c\cdot(x^2)\]
+      <p>The "zero polynomial" \(0(x) = 0\) plays the role of the zero vector — it is the cancellation target. For example, \(x^2 - x^2 = 0(x)\).</p>
+      <p>Dimensions: \(\dim(P_0)=1\) (constants), \(\dim(P_1)=2\) (linear), \(\dim(P_2)=3\) (quadratic), \(\dim(P_n)=n+1\).</p>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Function Spaces</div>
+      <p>Let \(V\) be the set of all functions \(f:\mathbb{R}\to\mathbb{R}\). Define:</p>
+      <ul class="steps">
+        <li><strong>Addition:</strong> \((f+g)(x) = f(x)+g(x)\)</li>
+        <li><strong>Scalar multiplication:</strong> \((\alpha f)(x) = \alpha\, f(x)\)</li>
+      </ul>
+      <p>Then \(V\) is a vector space. For example, \(f(x)=x\) and \(g(x)=x^2\) are both vectors; their sum \((f+g)(x)=x+x^2\) is another vector; and \(2f(x)=2x\) is a scalar multiple.</p>
+      <p>The zero vector is the zero function \(0(x)=0\) for all \(x\).</p>
+      <p>Continuous functions, differentiable functions, and polynomials are all subspaces of \(V\) — they are closed under addition and scalar multiplication within their respective classes.</p>
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Thinking Framework</span>
+      <div class="block-title">Four Geometric Questions</div>
+      <p>When working with any vector space problem, anchor your intuition with these four questions:</p>
+      <ol class="steps">
+        <li><strong>What locations are reachable?</strong> — What is the span of the given set?</li>
+        <li><strong>Does this vector add a new direction?</strong> — Is it inside or outside the current span?</li>
+        <li><strong>Can one vector already be generated from others?</strong> — Is the set linearly dependent?</li>
+        <li><strong>What is the minimum generating set?</strong> — What is a basis, and what is the dimension?</li>
+      </ol>
+      <p>These questions work for \(\mathbb{R}^n\), polynomial spaces, function spaces, and matrix spaces equally — because the abstract axioms are the same in all cases.</p>
     </div>
   </section>
 
