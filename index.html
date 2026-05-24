@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MScDS — Study Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #fdf6ec;
+      --surface: #fffaf3;
+      --border: #e8d9c0;
+      --text: #2c1a0e;
+      --muted: #7a5c3a;
+      --accent: #c05e2e;
+      --accent-lt: #f9ebe0;
+      --r: 12px;
+      --sh: 0 2px 14px rgba(44,26,14,.09);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; }
+    body {
+      font-family: 'Lora', Georgia, serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+
+    header {
+      background: var(--surface);
+      border-bottom: 2px solid var(--border);
+      padding: 1.1rem 2rem;
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+    }
+    header h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.5rem;
+      color: var(--accent);
+    }
+    header span {
+      font-family: 'Inter', sans-serif;
+      font-size: .82rem;
+      color: var(--muted);
+    }
+
+    main {
+      max-width: 900px;
+      margin: 3rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .intro {
+      margin-bottom: 2.75rem;
+    }
+    .intro h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: .5rem;
+    }
+    .intro p {
+      color: var(--muted);
+      font-size: .95rem;
+      font-style: italic;
+    }
+
+    .section-label {
+      font-family: 'Inter', sans-serif;
+      font-size: .72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      padding-left: .1rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: var(--r);
+      padding: 1.5rem;
+      box-shadow: var(--sh);
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+      transition: border-color .18s, box-shadow .18s, transform .18s;
+    }
+    .card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 4px 20px rgba(192,94,46,.15);
+      transform: translateY(-2px);
+    }
+
+    .card-icon {
+      font-size: 1.5rem;
+      line-height: 1;
+      margin-bottom: .25rem;
+    }
+
+    .card-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .card-desc {
+      font-size: .88rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .card-tag {
+      display: inline-block;
+      font-family: 'Inter', sans-serif;
+      font-size: .7rem;
+      font-weight: 600;
+      padding: .18rem .55rem;
+      border-radius: 1rem;
+      background: var(--accent-lt);
+      color: var(--accent);
+      margin-top: auto;
+      align-self: flex-start;
+    }
+
+    /* quiz card gets a subtle highlight */
+    .card.featured {
+      border-color: #d97706;
+      background: #fffdf5;
+    }
+    .card.featured:hover { border-color: #b45309; }
+    .card.featured .card-tag { background: #fef3c7; color: #92400e; }
+
+    footer {
+      text-align: center;
+      padding: 2.5rem 1rem;
+      color: var(--muted);
+      font-family: 'Inter', sans-serif;
+      font-size: .8rem;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 500px) {
+      header { padding: .9rem 1.25rem; }
+      main { margin: 2rem auto; padding: 0 1rem; }
+      .intro h2 { font-size: 1.65rem; }
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>MScDS</h1>
+  <span>IIIT Hyderabad · Data Science</span>
+</header>
+
+<main>
+  <div class="intro">
+    <h2>Study Hub</h2>
+    <p>Lecture notes, practice problems, and quizzes — all in one place.</p>
+  </div>
+
+  <p class="section-label">Notes</p>
+  <div class="grid">
+    <a class="card" href="discrete_mathematics/index.html">
+      <div class="card-icon">∑</div>
+      <div class="card-title">Discrete Mathematics</div>
+      <div class="card-desc">Probability, random variables, linear algebra — Weeks 1–7 with worked examples.</div>
+      <span class="card-tag">7 weeks</span>
+    </a>
+    <a class="card" href="python/index.html">
+      <div class="card-icon">🐍</div>
+      <div class="card-title">Python for Data Science</div>
+      <div class="card-desc">NumPy, pandas, matplotlib, and data manipulation — Weeks 1–5.</div>
+      <span class="card-tag">5 weeks</span>
+    </a>
+  </div>
+
+  <p class="section-label">Practice</p>
+  <div class="grid">
+    <a class="card" href="practice/index.html">
+      <div class="card-icon">𝑃</div>
+      <div class="card-title">Probability Problems</div>
+      <div class="card-desc">40 solved problems from MIT 6.042J — sample spaces, Bayes, expectations, variance, deviation bounds.</div>
+      <span class="card-tag">40 problems</span>
+    </a>
+    <a class="card" href="practice/linear-algebra.html">
+      <div class="card-icon">𝐴</div>
+      <div class="card-title">Linear Algebra Problems</div>
+      <div class="card-desc">40 solved problems — matrix operations, inverses, linear systems, vector spaces, transformations.</div>
+      <span class="card-tag">40 problems</span>
+    </a>
+  </div>
+
+  <p class="section-label">Test Yourself</p>
+  <div class="grid">
+    <a class="card featured" href="quiz/index.html">
+      <div class="card-icon">✏️</div>
+      <div class="card-title">Practice Quiz</div>
+      <div class="card-desc">10-question sessions drawn from a pre-verified bank — MCQ with instant feedback and worked problems with self-marking. Covers both Probability and Linear Algebra.</div>
+      <span class="card-tag">Probability · Linear Algebra</span>
+    </a>
+  </div>
+</main>
+
+<footer>MScDS Study Hub · IIIT Hyderabad</footer>
+
+</body>
+</html>
