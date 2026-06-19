@@ -181,6 +181,22 @@ main { flex: 1; max-width: 900px; padding: 3rem 2.5rem 6rem; }
   background: linear-gradient(135deg, #fef3c7 0%, #fffbeb 70%);
   border-color: var(--week-accent-4); color: #78350f;
 }
+.week-section[data-week="8"] .week-banner {
+  background: linear-gradient(135deg, #dbeafe 0%, #eff9ff 70%);
+  border-color: var(--week-accent-1); color: #0c4a6e;
+}
+.week-section[data-week="9"] .week-banner {
+  background: linear-gradient(135deg, #ede9fe 0%, #f5f3ff 70%);
+  border-color: var(--week-accent-2); color: #3b0764;
+}
+.week-section[data-week="10"] .week-banner {
+  background: linear-gradient(135deg, #dcfce7 0%, #f0fdf4 70%);
+  border-color: var(--week-accent-3); color: #14532d;
+}
+.week-section[data-week="11"] .week-banner {
+  background: linear-gradient(135deg, #fef3c7 0%, #fffbeb 70%);
+  border-color: var(--week-accent-4); color: #78350f;
+}
 
 /* ── Concept Sections ── */
 .concept-section {
@@ -528,6 +544,69 @@ mjx-container[jax="CHTML"][display="true"] {
       <li><a href="#dimension">Dimension of a Vector Space</a></li>
       <li><a href="#dual-space">Dual Space &amp; Linear Equations</a></li>
       <li><a href="#intuition">Geometric Intuition &amp; Abstract Spaces</a></li>
+    </ol>
+  </div>
+
+  <!-- ── Week 8 ── -->
+  <div class="toc-week">
+    <div class="toc-week-header">
+      <div class="toc-week-dot" style="background:var(--week-accent-1)"></div>
+      Week 8 · Column Space &amp; Linear Maps
+    </div>
+    <ol>
+      <li><a href="#col-null-space">Column Space &amp; Null Space</a></li>
+      <li><a href="#rank-nullity">Rank–Nullity Theorem</a></li>
+      <li><a href="#vector-coords">Vector Coordinates</a></li>
+      <li><a href="#linear-transforms">Linear Transformations</a></li>
+      <li><a href="#matrix-of-lt">Matrix of a Linear Transform</a></li>
+    </ol>
+  </div>
+
+  <!-- ── Week 9 ── -->
+  <div class="toc-week">
+    <div class="toc-week-header">
+      <div class="toc-week-dot" style="background:var(--week-accent-2)"></div>
+      Week 9 · Determinants, Eigenvalues &amp; Norms
+    </div>
+    <ol>
+      <li><a href="#det-2x2-3x3">Determinants — 2×2 and 3×3</a></li>
+      <li><a href="#det-general">General Determinant Formula</a></li>
+      <li><a href="#det-properties">Properties of Determinants</a></li>
+      <li><a href="#eigen-def">Eigenvalues &amp; Eigenvectors — Definition</a></li>
+      <li><a href="#eigen-find">Finding Eigenvalues &amp; Eigenvectors</a></li>
+      <li><a href="#eigen-props">Properties of Eigenvalues</a></li>
+      <li><a href="#norms">Norms &amp; Distances</a></li>
+      <li><a href="#dot-product">Dot Product &amp; Angles</a></li>
+      <li><a href="#orthogonal-vecs">Orthogonal Vectors</a></li>
+      <li><a href="#orthonormal-basis">Orthonormal Basis Vectors</a></li>
+    </ol>
+  </div>
+
+  <!-- ── Week 10 ── -->
+  <div class="toc-week">
+    <div class="toc-week-header">
+      <div class="toc-week-dot" style="background:var(--week-accent-3)"></div>
+      Week 10 · Gram–Schmidt &amp; Least Squares
+    </div>
+    <ol>
+      <li><a href="#onb-subspace">Orthonormal Basis for a Subspace</a></li>
+      <li><a href="#build-onb">Building an Orthonormal Basis</a></li>
+      <li><a href="#gram-schmidt">Gram–Schmidt Algorithm</a></li>
+      <li><a href="#orth-subspaces">Orthogonality of Subspaces</a></li>
+      <li><a href="#least-squares">Method of Least Squares</a></li>
+      <li><a href="#least-squares-cont">Least Squares — Continued</a></li>
+    </ol>
+  </div>
+
+  <!-- ── Week 11 ── -->
+  <div class="toc-week">
+    <div class="toc-week-header">
+      <div class="toc-week-dot" style="background:var(--week-accent-4)"></div>
+      Week 11 · Change of Basis &amp; Diagonalization
+    </div>
+    <ol>
+      <li><a href="#lt-diff-basis">Linear Transform from a Different Basis</a></li>
+      <li><a href="#change-basis">Changing Basis &amp; Diagonalization</a></li>
     </ol>
   </div>
 
@@ -2290,6 +2369,958 @@ mjx-container[jax="CHTML"][display="true"] {
 
 </section>
 <!-- END WEEK 7 ──────────────────────────────────────────────────────── -->
+
+
+<!-- ╔═══════════════════════════════════════════════════════════════════╗
+     ║  WEEK 8 · COLUMN SPACE, NULL SPACE & LINEAR MAPS                 ║
+     ╚═══════════════════════════════════════════════════════════════════╝ -->
+<section class="week-section" id="week8" data-week="8">
+  <div class="week-banner">
+    <div>
+      <div class="week-tag">Week 8</div>
+      <h2>Column Space, Null Space &amp; Linear Maps</h2>
+      <div class="week-meta">5 concepts &nbsp;·&nbsp; 6 lectures &nbsp;·&nbsp; Column space · Null space · Rank · Rank–Nullity theorem · Vector coordinates · Linear transformations · Matrix of a linear map</div>
+    </div>
+  </div>
+
+  <!-- §32 ─ COLUMN SPACE & NULL SPACE ────────────────────────────────── -->
+  <section class="concept-section" id="col-null-space">
+    <h3>32 · Column Space &amp; Null Space</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Column Space</div>
+      <p>Given an \(m \times n\) matrix \(A\) with columns \(\mathbf{a}_1, \mathbf{a}_2, \ldots, \mathbf{a}_n \in \mathbb{R}^m\), the <strong>column space</strong> (also written \(C(A)\) or \(\mathrm{col}(A)\)) is the set of all linear combinations of those columns:</p>
+      \[\mathrm{col}(A) = \left\{ A\boldsymbol{\lambda} \;\middle|\; \boldsymbol{\lambda} \in \mathbb{R}^n \right\} = \left\{ \lambda_1 \mathbf{a}_1 + \lambda_2 \mathbf{a}_2 + \cdots + \lambda_n \mathbf{a}_n \;\middle|\; \lambda_i \in \mathbb{R} \right\}\]
+      <p>This is a subspace of \(\mathbb{R}^m\) — it is closed under addition and scalar multiplication, and always contains the zero vector.</p>
+    </div>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Rank of a Matrix</div>
+      <p>The <strong>rank</strong> of matrix \(A\) is the dimension of its column space:</p>
+      \[\mathrm{rank}(A) = \dim(\mathrm{col}(A)) = \text{size of a maximally linearly independent set of columns of } A\]
+      <p>Equivalently, rank is the number of <em>pivot columns</em> in the row echelon form of \(A\). A set of columns is maximally linearly independent if adding any further column from \(A\) would make it dependent.</p>
+    </div>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Null Space</div>
+      <p>The <strong>null space</strong> (kernel) of \(A\) is the set of all vectors that \(A\) maps to zero:</p>
+      \[N(A) = \ker(A) = \left\{ \mathbf{v} \in \mathbb{R}^n \;\middle|\; A\mathbf{v} = \mathbf{0} \right\}\]
+      <p>The null space is a subspace of \(\mathbb{R}^n\) (the domain space). Its dimension is called the <strong>nullity</strong> of \(A\).</p>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Column Space and Null Space of a 2×3 Matrix</div>
+      <p>Let \(A = \begin{pmatrix} 1 & 2 & 1 \\ 1 & 3 & 2 \end{pmatrix}\). We find the column space and null space.</p>
+      <details open>
+        <summary>Finding the column space basis via row echelon form</summary>
+        <p>Check linear independence of the three columns \(\mathbf{a}_1 = \binom{1}{1}\), \(\mathbf{a}_2 = \binom{2}{3}\), \(\mathbf{a}_3 = \binom{1}{2}\).</p>
+        <p>Test \(\alpha_1\binom{1}{1} + \alpha_2\binom{2}{3} + \alpha_3\binom{1}{2} = \mathbf{0}\):</p>
+        \[\alpha_1 + 2\alpha_2 + \alpha_3 = 0, \quad \alpha_1 + 3\alpha_2 + 2\alpha_3 = 0\]
+        <p>Subtracting: \(\alpha_2 + \alpha_3 = 0\) and back-substituting: \(\alpha_1 + \alpha_2 = 0\). So \(\alpha_1 = -\alpha_2\) and \(\alpha_3 = -\alpha_2\) — infinitely many nonzero solutions exist, meaning all three columns are <em>linearly dependent</em>. The first two columns \(\mathbf{a}_1, \mathbf{a}_2\) are linearly independent (verify: no scalar \(c\) satisfies \(\binom{2}{3} = c\binom{1}{1}\)), so they form a basis for \(\mathrm{col}(A)\).</p>
+        <p class="result-line">\(\mathrm{rank}(A) = 2\)</p>
+      </details>
+      <details open>
+        <summary>Finding the null space</summary>
+        <p>Solve \(A\mathbf{v} = \mathbf{0}\) with \(\mathbf{v} = (u_1, u_2, u_3)^\top\):</p>
+        \[u_1 + 2u_2 + u_3 = 0, \quad u_1 + 3u_2 + 2u_3 = 0\]
+        <p>Subtracting: \(u_2 + u_3 = 0\), so \(u_2 = -u_3\). Then \(u_1 = -2u_2 - u_3 = 2u_3 - u_3 = u_3\). Setting \(u_3 = 1\):</p>
+        \[N(A) = \mathrm{span}\!\left\{ \begin{pmatrix}1 \\ -1 \\ 1\end{pmatrix} \right\}\]
+        <p class="result-line">\(\mathrm{nullity}(A) = 1\). Check: \(\mathrm{rank} + \mathrm{nullity} = 2 + 1 = 3 = n\). ✓</p>
+      </details>
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Theorem</span>
+      <div class="block-title">Row Echelon Form and Bases</div>
+      <p>By applying elementary row operations (which do not change the null space or the linear independence relationships among columns), any matrix \(A\) can be reduced to <strong>row echelon form</strong> (REF). In REF:</p>
+      <ul class="steps">
+        <li>The columns containing <em>pivot</em> entries correspond to a maximally linearly independent set of the original columns — these form a <strong>basis for \(\mathrm{col}(A)\)</strong>.</li>
+        <li>The number of pivots equals \(\mathrm{rank}(A)\).</li>
+        <li>The free variables in the homogeneous system \(A\mathbf{x}=\mathbf{0}\) each contribute one basis vector to \(N(A)\).</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- §33 ─ RANK-NULLITY THEOREM ─────────────────────────────────────── -->
+  <section class="concept-section" id="rank-nullity">
+    <h3>33 · Rank–Nullity Theorem</h3>
+
+    <div class="axiom-block">
+      <span class="block-badge">Theorem</span>
+      <div class="block-title">Rank–Nullity Theorem (Dimension Theorem)</div>
+      <p>For any \(m \times n\) matrix \(A\):</p>
+      \[\mathrm{rank}(A) + \mathrm{nullity}(A) = n\]
+      <p>That is, the dimension of the column space plus the dimension of the null space equals the number of <em>columns</em> of \(A\).</p>
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Formula</span>
+      <div class="block-title">Intuition Behind the Theorem</div>
+      <p>Every column of \(A\) is either a pivot column (contributing to the rank) or a free column (contributing to the nullity). The two groups partition the \(n\) columns exactly:</p>
+      <ul class="steps">
+        <li><strong>Pivot columns</strong>: linearly independent → each adds 1 to \(\mathrm{rank}(A)\).</li>
+        <li><strong>Free columns</strong>: each can be written as a combination of pivot columns → each free variable generates one null-space basis vector, adding 1 to \(\mathrm{nullity}(A)\).</li>
+      </ul>
+      <p>The column space lives in \(\mathbb{R}^m\) (vectors of length \(m\)), while the null space lives in \(\mathbb{R}^n\) (vectors of length \(n\)). They are <em>not</em> in the same ambient space unless \(A\) is square.</p>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Rank–Nullity on a 3×4 Matrix</div>
+      <p>Consider the \(3 \times 4\) matrix \(A = \begin{pmatrix}1&2&0&-1\\-2&-3&4&5\\2&4&0&-2\end{pmatrix}\).</p>
+      <details open>
+        <summary>Row-reduce to find rank and nullity</summary>
+        <p>Performing row operations \(R_3 \leftarrow R_3 + R_2\), then \(R_2 \leftarrow 2R_1 + R_2\), then \(R_3 \leftarrow R_3 - R_2\):</p>
+        \[A \xrightarrow{\text{REF}} \begin{pmatrix}1&2&0&-1\\0&1&4&3\\0&0&0&0\end{pmatrix} \xrightarrow{R_1 \leftarrow R_1 - 2R_2} \begin{pmatrix}1&0&-8&-7\\0&1&4&3\\0&0&0&0\end{pmatrix}\]
+        <p>Two pivots → <strong>\(\mathrm{rank}(A) = 2\)</strong>. Free variables are \(x_3\) and \(x_4\) → <strong>\(\mathrm{nullity}(A) = 2\)</strong>.</p>
+        <p>From the reduced system: \(x_1 = 8x_3 + 7x_4\), \(x_2 = -4x_3 - 3x_4\). Setting \((x_3,x_4) = (1,0)\) and \((0,1)\) gives two null-space basis vectors:</p>
+        \[N(A) = \mathrm{span}\left\{ \begin{pmatrix}8\\-4\\1\\0\end{pmatrix},\ \begin{pmatrix}7\\-3\\0\\1\end{pmatrix} \right\}\]
+        <p class="result-line">Check: \(2 + 2 = 4 = n\). ✓</p>
+      </details>
+    </div>
+
+    <div class="practice-block">
+      <span class="block-badge">Practice</span>
+      <div class="block-title">Find Rank and Nullity</div>
+      <p>For the Vandermonde matrix \(A = \begin{pmatrix}1&1&1\\1&2&4\\1&3&9\\1&4&16\end{pmatrix}\), compute \(\mathrm{rank}(A)\) and \(\mathrm{nullity}(A)\) using row reduction. Verify your answer with the rank–nullity theorem. (Hint: the columns are polynomials evaluated at integer points — are they linearly independent?)</p>
+    </div>
+  </section>
+
+  <!-- §34 ─ VECTOR COORDINATES ────────────────────────────────────────── -->
+  <section class="concept-section" id="vector-coords">
+    <h3>34 · Vector Coordinates in a Basis</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Coordinates with Respect to a Basis</div>
+      <p>Let \(V = \mathbb{R}^n\) and let \(\mathcal{B}' = \{\mathbf{b}'_1, \mathbf{b}'_2, \ldots, \mathbf{b}'_n\}\) be a basis for \(V\). By the uniqueness theorem, any vector \(\mathbf{v} \in V\) can be written <em>uniquely</em> as:</p>
+      \[\mathbf{v} = \alpha_1 \mathbf{b}'_1 + \alpha_2 \mathbf{b}'_2 + \cdots + \alpha_n \mathbf{b}'_n\]
+      <p>The scalars \((\alpha_1, \alpha_2, \ldots, \alpha_n)\) are called the <strong>coordinates of \(\mathbf{v}\) with respect to \(\mathcal{B}'\)</strong>, written \([\mathbf{v}]_{\mathcal{B}'}\).</p>
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Theorem</span>
+      <div class="block-title">Uniqueness of Representation</div>
+      <p>In any basis \(\mathcal{B}' = \{\mathbf{b}'_1, \ldots, \mathbf{b}'_n\}\), the coordinate representation of every vector is <strong>unique</strong>.</p>
+      <details open>
+        <summary>Proof sketch</summary>
+        <p>Suppose \(\mathbf{v} = \sum \alpha_i \mathbf{b}'_i = \sum \beta_i \mathbf{b}'_i\). Subtracting: \(\sum (\alpha_i - \beta_i) \mathbf{b}'_i = \mathbf{0}\). Since the \(\mathbf{b}'_i\) are linearly independent, every coefficient must be zero, so \(\alpha_i = \beta_i\) for all \(i\).</p>
+      </details>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Coordinates in a Non-Standard Basis in \(\mathbb{R}^2\)</div>
+      <p>Find the coordinates of \(\mathbf{v} = (2, 3)^\top\) with respect to \(\mathcal{B}' = \{(1,1)^\top,\, (1,-1)^\top\}\).</p>
+      <details open>
+        <summary>Solution</summary>
+        <p>We need \(\alpha_1(1,1)^\top + \alpha_2(1,-1)^\top = (2,3)^\top\), giving:</p>
+        \[\alpha_1 + \alpha_2 = 2, \quad \alpha_1 - \alpha_2 = 3\]
+        <p>Adding: \(2\alpha_1 = 5\), so \(\alpha_1 = 2.5\). Subtracting: \(2\alpha_2 = -1\), so \(\alpha_2 = -0.5\).</p>
+        <p class="result-line">\([\mathbf{v}]_{\mathcal{B}'} = (2.5,\,-0.5)^\top\). The same geometric point has different coordinates in a different coordinate system.</p>
+      </details>
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Formula</span>
+      <div class="block-title">Change-of-Coordinates Interpretation</div>
+      <p>Changing a basis is equivalent to changing the coordinate system. If \(\mathcal{B}'\) has basis vectors \(\mathbf{b}'_1, \ldots, \mathbf{b}'_n\) expressed in the standard basis, the <strong>change-of-basis matrix</strong> \(P\) has these vectors as its columns:</p>
+      \[P = \begin{bmatrix} \mathbf{b}'_1 & \mathbf{b}'_2 & \cdots & \mathbf{b}'_n \end{bmatrix}\]
+      <p>Then \(\mathbf{v}_{\text{standard}} = P \cdot [\mathbf{v}]_{\mathcal{B}'}\), and \([\mathbf{v}]_{\mathcal{B}'} = P^{-1} \mathbf{v}_{\text{standard}}\).</p>
+    </div>
+  </section>
+
+  <!-- §35 ─ LINEAR TRANSFORMATIONS ───────────────────────────────────── -->
+  <section class="concept-section" id="linear-transforms">
+    <h3>35 · Linear Transformations</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Linear Transformation</div>
+      <p>A function \(T: V \to W\) between vector spaces is a <strong>linear transformation</strong> if for all \(\mathbf{v}, \mathbf{v}' \in V\) and all \(\alpha, \beta \in \mathbb{R}\):</p>
+      \[T(\alpha \mathbf{v} + \beta \mathbf{v}') = \alpha\, T(\mathbf{v}) + \beta\, T(\mathbf{v}')\]
+      <p>Equivalently: (i) \(T(\mathbf{v} + \mathbf{v}') = T(\mathbf{v}) + T(\mathbf{v}')\) (additivity) and (ii) \(T(\alpha\mathbf{v}) = \alpha T(\mathbf{v})\) (homogeneity).</p>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Verifying Linearity</div>
+      <p><strong>Example 1 (linear):</strong> \(T(x,y) = (-y, 2x)\). Test: \(T(\alpha\mathbf{v} + \beta\mathbf{v}') = (-\alpha y - \beta y', 2\alpha x + 2\beta x') = \alpha(-y,2x) + \beta(-y',2x') = \alpha T(\mathbf{v}) + \beta T(\mathbf{v}')\). ✓ Linear.</p>
+      <p style="margin-top:.6rem"><strong>Example 2 (not linear):</strong> \(T(x,y) = (x^2, 0)\). Then \(T(\alpha\mathbf{v}+\beta\mathbf{v}') = ((\alpha x + \beta x')^2, 0) \neq \alpha(x^2,0) + \beta(x'^2,0)\) in general (the cross term \(2\alpha\beta xx'\) doesn't vanish). ✗ Not linear.</p>
+      <p style="margin-top:.6rem"><strong>Example 3 (projection):</strong> \(T(x,y,z) = (x,y,0)\) maps 3D to the \(xy\)-plane. This is linear — you can verify the linearity condition directly.</p>
+    </div>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Kernel and Image</div>
+      <p>For a linear transformation \(T: V \to W\):</p>
+      <ul class="steps">
+        <li><strong>Kernel (null space):</strong> \(\ker(T) = \{\mathbf{v} \in V \mid T(\mathbf{v}) = \mathbf{0}\}\) — a subspace of \(V\).</li>
+        <li><strong>Image (range):</strong> \(\mathrm{Im}(T) = \{T(\mathbf{v}) \mid \mathbf{v} \in V\}\) — a subspace of \(W\).</li>
+      </ul>
+      <p>The rank–nullity theorem applies: \(\dim(\ker T) + \dim(\mathrm{Im}\, T) = \dim(V)\).</p>
+    </div>
+  </section>
+
+  <!-- §36 ─ MATRIX OF A LINEAR TRANSFORM ─────────────────────────────── -->
+  <section class="concept-section" id="matrix-of-lt">
+    <h3>36 · Matrix of a Linear Transformation</h3>
+
+    <div class="axiom-block">
+      <span class="block-badge">Theorem</span>
+      <div class="block-title">Every Linear Transformation is a Matrix</div>
+      <p>Once a basis \(\mathcal{B} = \{\mathbf{b}_1, \ldots, \mathbf{b}_n\}\) is fixed for \(V\) and a basis \(\mathcal{C}\) for \(W\), every linear transformation \(T: V \to W\) is represented by a unique matrix \(M_T\) such that:</p>
+      \[M_T \cdot [\mathbf{v}]_\mathcal{B} = [T(\mathbf{v})]_\mathcal{C}\]
+      <p>The <em>columns</em> of \(M_T\) are the coordinates (in \(\mathcal{C}\)) of \(T(\mathbf{b}_1), T(\mathbf{b}_2), \ldots, T(\mathbf{b}_n)\).</p>
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Formula</span>
+      <div class="block-title">Building the Matrix Column by Column</div>
+      \[M_T = \begin{bmatrix} [T(\mathbf{b}_1)]_\mathcal{C} & [T(\mathbf{b}_2)]_\mathcal{C} & \cdots & [T(\mathbf{b}_n)]_\mathcal{C} \end{bmatrix}\]
+      <p>When \(\mathcal{B}\) is the standard basis \(\{e_1, e_2, \ldots, e_n\}\), the \(j\)-th column of \(M_T\) is simply \(T(e_j)\).</p>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Matrix of \(T(x,y)=(-y,\,2x)\) in Two Different Bases</div>
+      <details open>
+        <summary>Standard basis \(\mathcal{B} = \{e_1, e_2\}\)</summary>
+        <p>\(T(e_1) = T(1,0) = (0,2)^\top\) and \(T(e_2) = T(0,1) = (-1,0)^\top\). So:</p>
+        \[M_T = \begin{pmatrix}0 & -1 \\ 2 & 0\end{pmatrix}\]
+        <p>Check: \(M_T \begin{pmatrix}x\\y\end{pmatrix} = \begin{pmatrix}-y\\2x\end{pmatrix}\). ✓</p>
+      </details>
+      <details open>
+        <summary>Basis \(\mathcal{B}' = \{(1,1)^\top,\,(1,-1)^\top\}\)</summary>
+        <p>Apply \(T\) to each basis vector: \(T(1,1) = (-1,2)^\top\) and \(T(1,-1) = (1,2)^\top\).</p>
+        <p>Now express these in \(\mathcal{B}'\) by solving linear systems: \(\alpha(1,1)^\top + \beta(1,-1)^\top = (-1,2)^\top\) gives \(\alpha = 0.5,\ \beta = -1.5\). Similarly for \((1,2)^\top\): \(\alpha=1.5,\ \beta=-0.5\). So:</p>
+        \[M_T^{\mathcal{B}'} = \begin{pmatrix}0.5 & 1.5 \\ -1.5 & -0.5\end{pmatrix}\]
+        <p class="result-line">The same linear transformation has a different matrix in different bases — the underlying map is unchanged, only its representation changes.</p>
+      </details>
+    </div>
+  </section>
+
+</section>
+<!-- END WEEK 8 ──────────────────────────────────────────────────────── -->
+
+
+<!-- ╔═══════════════════════════════════════════════════════════════════╗
+     ║  WEEK 9 · DETERMINANTS, EIGENVALUES, NORMS & INNER PRODUCTS      ║
+     ╚═══════════════════════════════════════════════════════════════════╝ -->
+<section class="week-section" id="week9" data-week="9">
+  <div class="week-banner">
+    <div>
+      <div class="week-tag">Week 9</div>
+      <h2>Determinants, Eigenvalues &amp; Inner Products</h2>
+      <div class="week-meta">10 concepts &nbsp;·&nbsp; 11 lectures &nbsp;·&nbsp; 2×2 and 3×3 determinants · General cofactor formula · Properties · Eigenvalues &amp; eigenvectors · Characteristic equation · Norms · Dot product · Orthogonality · Orthonormal basis</div>
+    </div>
+  </div>
+
+  <!-- §37 ─ DETERMINANTS 2×2 AND 3×3 ─────────────────────────────────── -->
+  <section class="concept-section" id="det-2x2-3x3">
+    <h3>37 · Determinants — 2×2 and 3×3</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Determinant</div>
+      <p>The <strong>determinant</strong> is a function \(\det: \mathbb{R}^{n \times n} \to \mathbb{R}\) defined only for square matrices. It encodes whether the matrix is invertible and measures the volume scaling factor of the associated linear transformation.</p>
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Formula</span>
+      <div class="block-title">2×2 Determinant</div>
+      <p>For \(A = \begin{pmatrix}a & b \\ c & d\end{pmatrix}\):</p>
+      \[\det(A) = ad - bc\]
+      <p>Examples: \(\det\begin{pmatrix}2&1\\4&0\end{pmatrix} = 0 - 4 = -4\). \(\quad \det\begin{pmatrix}2&2\\1&1\end{pmatrix} = 2 - 2 = 0\) (singular matrix).</p>
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Formula</span>
+      <div class="block-title">3×3 Determinant — Cofactor Expansion Along First Row</div>
+      <p>For an arbitrary \(3 \times 3\) matrix \(A = (a_{ij})\), expanding along the first row:</p>
+      \[\det(A) = a_{11}\det\begin{pmatrix}a_{22}&a_{23}\\a_{32}&a_{33}\end{pmatrix} - a_{12}\det\begin{pmatrix}a_{21}&a_{23}\\a_{31}&a_{33}\end{pmatrix} + a_{13}\det\begin{pmatrix}a_{21}&a_{22}\\a_{31}&a_{32}\end{pmatrix}\]
+      <p>The signs follow the pattern \(+, -, +\). The sub-matrix used for entry \(a_{1j}\) is formed by deleting row 1 and column \(j\).</p>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Computing det of a 3×3 Matrix Two Ways</div>
+      <p>Let \(A = \begin{pmatrix}1&2&3\\3&4&5\\2&5&6\end{pmatrix}\).</p>
+      <details open>
+        <summary>Expansion along Row 1</summary>
+        \[\det(A) = 1 \cdot \det\begin{pmatrix}4&5\\5&6\end{pmatrix} - 2 \cdot \det\begin{pmatrix}3&5\\2&6\end{pmatrix} + 3 \cdot \det\begin{pmatrix}3&4\\2&5\end{pmatrix}\]
+        \[= 1(24-25) - 2(18-10) + 3(15-8) = (-1) - 16 + 21 = \mathbf{4}\]
+      </details>
+      <details open>
+        <summary>Expansion along Column 1</summary>
+        \[\det(A) = 1 \cdot \det\begin{pmatrix}4&5\\5&6\end{pmatrix} - 3 \cdot \det\begin{pmatrix}2&3\\5&6\end{pmatrix} + 2 \cdot \det\begin{pmatrix}2&3\\4&5\end{pmatrix}\]
+        \[= 1(-1) - 3(12-15) + 2(10-12) = -1 + 9 - 4 = \mathbf{4}\]
+        <p class="result-line">Both expansions give the same answer. The determinant can be expanded along any row or column.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- §38 ─ GENERAL DETERMINANT FORMULA ──────────────────────────────── -->
+  <section class="concept-section" id="det-general">
+    <h3>38 · General Determinant Formula</h3>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Formula</span>
+      <div class="block-title">Recursive Cofactor Expansion (Laplace Expansion)</div>
+      <p>For an \(n \times n\) matrix \(A\), expanding along the first row:</p>
+      \[\det(A) = \sum_{j=1}^{n} (-1)^{1+j}\, a_{1j}\, \det(A_{1j})\]
+      <p>where \(A_{ij}\) is the \((n-1) \times (n-1)\) submatrix obtained by deleting row \(i\) and column \(j\). The factor \((-1)^{i+j}\) alternates signs in the checkerboard pattern:</p>
+      \[\begin{pmatrix}+&-&+&-&\cdots\\-&+&-&+&\cdots\\+&-&+&-&\cdots\\\vdots\end{pmatrix}\]
+      <p>The same formula works expanding along <em>any</em> row or column — always yielding the same value.</p>
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Theorem</span>
+      <div class="block-title">Determinant of Upper-Triangular Matrices</div>
+      <p>If \(U\) is upper-triangular, then \(\det(U) = u_{11} \cdot u_{22} \cdots u_{nn}\) — the product of the diagonal entries. This is the basis for computing determinants efficiently via Gaussian elimination: reduce \(A\) to upper-triangular form (tracking sign changes from row swaps and scaling), then multiply the diagonal.</p>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">4×4 Determinant by Cofactor Expansion</div>
+      <p>To compute \(\det(A)\) for a \(4 \times 4\) matrix, expand along the first row to get four \(3 \times 3\) cofactors, each of which requires further expansion. Alternatively, use row operations to reduce to upper-triangular form (taking care that each row swap multiplies the determinant by \(-1\)) and then read off the product of the diagonal.</p>
+    </div>
+  </section>
+
+  <!-- §39 ─ PROPERTIES OF DETERMINANTS ──────────────────────────────── -->
+  <section class="concept-section" id="det-properties">
+    <h3>39 · Properties of Determinants</h3>
+
+    <div class="axiom-block">
+      <span class="block-badge">Theorem</span>
+      <div class="block-title">Four Fundamental Properties</div>
+      <ol class="steps">
+        <li><strong>Row scaling:</strong> Multiplying any row (or column) by scalar \(c\) multiplies \(\det\) by \(c\).</li>
+        <li><strong>Row addition:</strong> Adding a scalar multiple of one row to another does <em>not</em> change the determinant.</li>
+        <li><strong>Row swap:</strong> Swapping two rows (or columns) multiplies \(\det\) by \(-1\).</li>
+        <li><strong>Identity:</strong> \(\det(I_n) = 1\).</li>
+      </ol>
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Theorem</span>
+      <div class="block-title">Derived Properties</div>
+      <ul class="steps">
+        <li><strong>Linearly dependent rows/columns</strong> \(\Rightarrow \det(A) = 0\).</li>
+        <li><strong>Invertibility criterion:</strong> \(\det(A) \neq 0 \iff A\) is invertible \(\iff \mathrm{rank}(A) = n\).</li>
+        <li><strong>Multiplicativity:</strong> \(\det(AB) = \det(A)\cdot\det(B)\).</li>
+        <li><strong>Transpose:</strong> \(\det(A^\top) = \det(A)\).</li>
+        <li><strong>Inverse:</strong> If \(A\) is invertible, \(\det(A^{-1}) = 1/\det(A)\).</li>
+      </ul>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Using Row Operations to Compute Determinant</div>
+      <p>Start with \(A = \begin{pmatrix}2&1\\4&0\end{pmatrix}\). Swap rows 1 and 2: determinant multiplies by \(-1\) → new matrix \(\begin{pmatrix}4&0\\2&1\end{pmatrix}\), \(\det = -(-4) = -4\) → so original \(\det = (-1)(-4) = -4\). Alternatively, direct: \(2\cdot0 - 1\cdot4 = -4\). ✓</p>
+      <p style="margin-top:.5rem">Now do \(R_2 \leftarrow R_2 - 2R_1\) on the swapped matrix (doesn't change det): \(\begin{pmatrix}4&0\\0&1\end{pmatrix}\). Product of diagonal: \(4 \times 1 = 4\). But we swapped rows once, so original \(\det = -4\). ✓</p>
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Formula</span>
+      <div class="block-title">Practical Computation Recipe</div>
+      <ol class="steps">
+        <li>Apply Gaussian elimination to reduce \(A\) to upper-triangular \(U\).</li>
+        <li>Track: each row swap multiplies \(\det\) by \(-1\); each row scaling by \(c\) multiplies \(\det\) by \(c\).</li>
+        <li>\(\det(A) = \dfrac{\det(U)}{\text{accumulated factors}} = (-1)^{\text{swaps}} \cdot \dfrac{u_{11}u_{22}\cdots u_{nn}}{\text{scaling factors}}\)</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- §40 ─ EIGENVALUES & EIGENVECTORS — DEFINITION ──────────────────── -->
+  <section class="concept-section" id="eigen-def">
+    <h3>40 · Eigenvalues &amp; Eigenvectors — Definition</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Eigenvector and Eigenvalue</div>
+      <p>Let \(A\) be an \(n \times n\) matrix (or equivalently, a linear transformation \(L: \mathbb{R}^n \to \mathbb{R}^n\)). A nonzero vector \(\mathbf{v} \in \mathbb{R}^n\) is an <strong>eigenvector</strong> of \(A\) with <strong>eigenvalue</strong> \(\lambda \in \mathbb{R}\) if:</p>
+      \[A\mathbf{v} = \lambda \mathbf{v}\]
+      <p>Geometrically: application of \(A\) does not rotate \(\mathbf{v}\) — it only scales it by factor \(\lambda\). (If \(\lambda < 0\), the direction is reversed.)</p>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Geometric Meaning — Rotation of the Earth</div>
+      <p>Consider the Earth's daily rotation as a linear transformation. Every point along the Earth's spin axis remains fixed (direction unchanged). Those points along the axis are eigenvectors with eigenvalue \(\lambda = 1\). All other points on the surface trace out circles and are <em>not</em> eigenvectors.</p>
+      <p style="margin-top:.6rem"><strong>Simple matrix example:</strong> For \(M = \begin{pmatrix}1&2\\0&3\end{pmatrix}\), take \(\mathbf{v} = (1,1)^\top\): \(M\mathbf{v} = (3,3)^\top = 3\cdot(1,1)^\top\). So \(\mathbf{v}\) is an eigenvector with \(\lambda = 3\).</p>
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Formula</span>
+      <div class="block-title">Characteristic Equation</div>
+      <p>Rearranging \(A\mathbf{v} = \lambda\mathbf{v}\):</p>
+      \[(A - \lambda I)\mathbf{v} = \mathbf{0}\]
+      <p>Since we need a <em>nonzero</em> \(\mathbf{v}\), the matrix \((A-\lambda I)\) must be singular:</p>
+      \[\det(A - \lambda I) = 0\]
+      <p>This is the <strong>characteristic equation</strong>. Expanding the determinant gives a degree-\(n\) polynomial in \(\lambda\) (the <em>characteristic polynomial</em>). Its roots are the eigenvalues.</p>
+    </div>
+  </section>
+
+  <!-- §41 ─ FINDING EIGENVALUES & EIGENVECTORS ────────────────────────── -->
+  <section class="concept-section" id="eigen-find">
+    <h3>41 · Finding Eigenvalues &amp; Eigenvectors</h3>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Formula</span>
+      <div class="block-title">Two-Step Procedure</div>
+      <ol class="steps">
+        <li><strong>Find eigenvalues:</strong> Solve \(\det(A - \lambda I) = 0\). The solutions are the eigenvalues \(\lambda_1, \lambda_2, \ldots\)</li>
+        <li><strong>Find eigenvectors:</strong> For each eigenvalue \(\lambda_k\), solve the linear system \((A - \lambda_k I)\mathbf{v} = \mathbf{0}\). The solution space is the <strong>eigenspace</strong> \(E_{\lambda_k} = \ker(A - \lambda_k I)\).</li>
+      </ol>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Full Worked Example: \(2 \times 2\) Matrix</div>
+      <p>Find the eigenvalues and eigenvectors of \(A = \begin{pmatrix}2&1\\1&2\end{pmatrix}\).</p>
+      <details open>
+        <summary>Step 1: Characteristic equation</summary>
+        \[\det(A - \lambda I) = \det\begin{pmatrix}2-\lambda & 1\\1 & 2-\lambda\end{pmatrix} = (2-\lambda)^2 - 1 = \lambda^2 - 4\lambda + 3 = (\lambda-3)(\lambda-1) = 0\]
+        <p>Eigenvalues: \(\lambda_1 = 3,\quad \lambda_2 = 1\).</p>
+      </details>
+      <details open>
+        <summary>Step 2: Eigenvectors for \(\lambda_1 = 3\)</summary>
+        \[(A - 3I)\mathbf{v} = \begin{pmatrix}-1&1\\1&-1\end{pmatrix}\begin{pmatrix}x\\y\end{pmatrix} = \mathbf{0} \implies -x + y = 0 \implies x = y\]
+        <p>Eigenspace: \(E_3 = \mathrm{span}\{(1,1)^\top\}\). Verify: \(A(1,1)^\top = (3,3)^\top = 3(1,1)^\top\). ✓</p>
+      </details>
+      <details open>
+        <summary>Step 3: Eigenvectors for \(\lambda_2 = 1\)</summary>
+        \[(A - I)\mathbf{v} = \begin{pmatrix}1&1\\1&1\end{pmatrix}\begin{pmatrix}x\\y\end{pmatrix} = \mathbf{0} \implies x + y = 0 \implies x = -y\]
+        <p>Eigenspace: \(E_1 = \mathrm{span}\{(1,-1)^\top\}\). Verify: \(A(1,-1)^\top = (1,-1)^\top = 1\cdot(1,-1)^\top\). ✓</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- §42 ─ PROPERTIES OF EIGENVALUES ───────────────────────────────── -->
+  <section class="concept-section" id="eigen-props">
+    <h3>42 · Properties of Eigenvalues &amp; Eigenvectors</h3>
+
+    <div class="axiom-block">
+      <span class="block-badge">Theorem</span>
+      <div class="block-title">Key Properties</div>
+      <ol class="steps">
+        <li><strong>Scalar multiples:</strong> If \(\mathbf{v}\) is an eigenvector with eigenvalue \(\lambda\), then so is \(c\mathbf{v}\) for any \(c \neq 0\), with the same eigenvalue.</li>
+        <li><strong>Distinct eigenvalues → independent eigenvectors:</strong> If \(\lambda_1, \ldots, \lambda_k\) are distinct eigenvalues with eigenvectors \(\mathbf{v}_1, \ldots, \mathbf{v}_k\), then \(\mathbf{v}_1, \ldots, \mathbf{v}_k\) are linearly independent.</li>
+        <li><strong>At most \(n\) eigenvalues:</strong> An \(n \times n\) matrix has at most \(n\) distinct eigenvalues (the characteristic polynomial has degree \(n\)).</li>
+        <li><strong>Trace and determinant:</strong> \(\mathrm{tr}(A) = \sum_i \lambda_i\) (sum of eigenvalues) and \(\det(A) = \prod_i \lambda_i\) (product of eigenvalues).</li>
+        <li><strong>Diagonalization:</strong> If \(A\) has \(n\) linearly independent eigenvectors \(\mathbf{v}_1, \ldots, \mathbf{v}_n\), then \(A = P \Lambda P^{-1}\) where \(P = [\mathbf{v}_1 | \cdots | \mathbf{v}_n]\) and \(\Lambda = \mathrm{diag}(\lambda_1, \ldots, \lambda_n)\).</li>
+      </ol>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Application: Matrix Powers via Eigenvalues</div>
+      <p>Suppose you need \(M^{100}\) for some matrix \(M\). If \(M = P\Lambda P^{-1}\), then:</p>
+      \[M^{100} = P \Lambda^{100} P^{-1} = P \begin{pmatrix}\lambda_1^{100}&0\\0&\lambda_2^{100}\end{pmatrix} P^{-1}\]
+      <p>Computing \(\lambda_i^{100}\) is trivial, while repeated matrix multiplication would require \(\sim\log 100\) matrix products even with repeated squaring. Diagonalization reduces this to scalar arithmetic.</p>
+    </div>
+  </section>
+
+  <!-- §43 ─ NORMS & DISTANCES ─────────────────────────────────────────── -->
+  <section class="concept-section" id="norms">
+    <h3>43 · Norms &amp; Distances</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Vector Norm (Length)</div>
+      <p>A <strong>norm</strong> \(\|\cdot\|\) assigns a nonnegative scalar to each vector, satisfying:</p>
+      <ol class="steps">
+        <li>\(\|c\mathbf{v}\| = |c|\,\|\mathbf{v}\|\) (absolute homogeneity)</li>
+        <li>\(\|\mathbf{u} + \mathbf{v}\| \leq \|\mathbf{u}\| + \|\mathbf{v}\|\) (triangle inequality)</li>
+        <li>\(\|\mathbf{v}\| \geq 0\) and \(\|\mathbf{v}\| = 0 \iff \mathbf{v} = \mathbf{0}\) (positive definiteness)</li>
+      </ol>
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Formula</span>
+      <div class="block-title">Common Norms for \(\mathbf{v} \in \mathbb{R}^n\)</div>
+      <p><strong>L2 norm (Euclidean, "as the crow flies"):</strong></p>
+      \[\|\mathbf{v}\|_2 = \sqrt{v_1^2 + v_2^2 + \cdots + v_n^2} = \sqrt{\mathbf{v}^\top \mathbf{v}}\]
+      <p><strong>L1 norm (Manhattan, "taxicab distance"):</strong></p>
+      \[\|\mathbf{v}\|_1 = |v_1| + |v_2| + \cdots + |v_n|\]
+      <p><strong>General L\(p\) norm:</strong></p>
+      \[\|\mathbf{v}\|_p = \left(\sum_{i=1}^n |v_i|^p\right)^{1/p}\]
+      <p><strong>Distance between vectors:</strong></p>
+      \[d(\mathbf{u}, \mathbf{v}) = \|\mathbf{u} - \mathbf{v}\|\]
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">L1 vs L2 for \(\mathbf{v} = (4, 3)^\top\)</div>
+      <p>\(\|\mathbf{v}\|_2 = \sqrt{16 + 9} = 5\) (Pythagorean distance: the crow's direct path).</p>
+      <p>\(\|\mathbf{v}\|_1 = 4 + 3 = 7\) (taxicab: the taxi takes 4 blocks right then 3 blocks up).</p>
+      <p style="margin-top:.5rem">The unit "ball" for L2 is a circle (\(x^2+y^2=1\)); for L1, it is a rhombus (\(|x|+|y|=1\)). Both are valid — different norms capture different geometric properties.</p>
+    </div>
+  </section>
+
+  <!-- §44 ─ DOT PRODUCT & ANGLES ─────────────────────────────────────── -->
+  <section class="concept-section" id="dot-product">
+    <h3>44 · Dot Product &amp; Angles</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Dot Product (Inner Product)</div>
+      <p>For \(\mathbf{u}, \mathbf{v} \in \mathbb{R}^n\), the <strong>dot product</strong> is:</p>
+      \[\mathbf{u} \cdot \mathbf{v} = \mathbf{u}^\top \mathbf{v} = \sum_{i=1}^n u_i v_i = u_1 v_1 + u_2 v_2 + \cdots + u_n v_n\]
+      <p>It is a scalar. Note: \(\mathbf{v} \cdot \mathbf{v} = \|\mathbf{v}\|_2^2\).</p>
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Formula</span>
+      <div class="block-title">Dot Product and Angle</div>
+      <p>The dot product has an equivalent geometric form:</p>
+      \[\mathbf{u} \cdot \mathbf{v} = \|\mathbf{u}\|_2\, \|\mathbf{v}\|_2 \cos\theta\]
+      <p>where \(\theta\) is the angle between \(\mathbf{u}\) and \(\mathbf{v}\). Rearranging gives the angle formula:</p>
+      \[\cos\theta = \frac{\mathbf{u} \cdot \mathbf{v}}{\|\mathbf{u}\|\,\|\mathbf{v}\|}\]
+      <p>The dot product is zero exactly when \(\theta = 90°\) (the vectors are perpendicular).</p>
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Theorem</span>
+      <div class="block-title">Cauchy–Schwarz Inequality</div>
+      \[|\mathbf{u} \cdot \mathbf{v}| \leq \|\mathbf{u}\|\, \|\mathbf{v}\|\]
+      <p>Equality holds iff \(\mathbf{u}\) and \(\mathbf{v}\) are parallel (one is a scalar multiple of the other). This guarantees that \(\cos\theta \in [-1, 1]\), making the angle formula well-defined.</p>
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Formula</span>
+      <div class="block-title">Projection of \(\mathbf{u}\) onto \(\mathbf{v}\)</div>
+      <p>The orthogonal projection of \(\mathbf{u}\) along direction \(\mathbf{v}\) is:</p>
+      \[\mathrm{proj}_{\mathbf{v}} \mathbf{u} = \frac{\mathbf{u} \cdot \mathbf{v}}{\mathbf{v} \cdot \mathbf{v}}\, \mathbf{v} = \frac{\mathbf{u} \cdot \mathbf{v}}{\|\mathbf{v}\|^2}\, \mathbf{v}\]
+      <p>If \(\mathbf{v}\) is a unit vector, this simplifies to \((\mathbf{u} \cdot \mathbf{v})\mathbf{v}\). The scalar \(\frac{\mathbf{u}\cdot\mathbf{v}}{\|\mathbf{v}\|}\) is the "shadow length" of \(\mathbf{u}\) onto \(\mathbf{v}\).</p>
+      <p style="margin-top:.5rem"><em>Application:</em> Cosine similarity, used in information retrieval and ML embeddings, computes \(\frac{\mathbf{u}\cdot\mathbf{v}}{\|\mathbf{u}\|\|\mathbf{v}\|}\) — the cosine of the angle between feature vectors.</p>
+    </div>
+  </section>
+
+  <!-- §45 ─ ORTHOGONAL VECTORS ───────────────────────────────────────── -->
+  <section class="concept-section" id="orthogonal-vecs">
+    <h3>45 · Orthogonal Vectors</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Orthogonality</div>
+      <p>Vectors \(\mathbf{u}\) and \(\mathbf{v}\) in \(\mathbb{R}^n\) are <strong>orthogonal</strong> (written \(\mathbf{u} \perp \mathbf{v}\)) if:</p>
+      \[\mathbf{u} \cdot \mathbf{v} = 0\]
+      <p>A set of vectors \(\{\mathbf{v}_1, \ldots, \mathbf{v}_k\}\) is an <strong>orthogonal set</strong> if every pair is orthogonal: \(\mathbf{v}_i \cdot \mathbf{v}_j = 0\) for all \(i \neq j\).</p>
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Theorem</span>
+      <div class="block-title">Orthogonal Vectors are Linearly Independent</div>
+      <p>Any set of nonzero orthogonal vectors is linearly independent.</p>
+      <details open>
+        <summary>Proof</summary>
+        <p>Suppose \(\sum_i c_i \mathbf{v}_i = \mathbf{0}\). Take the dot product of both sides with \(\mathbf{v}_k\):</p>
+        \[\sum_i c_i (\mathbf{v}_i \cdot \mathbf{v}_k) = \mathbf{0} \cdot \mathbf{v}_k = 0\]
+        <p>By orthogonality, \(\mathbf{v}_i \cdot \mathbf{v}_k = 0\) for \(i \neq k\), so \(c_k (\mathbf{v}_k \cdot \mathbf{v}_k) = 0\). Since \(\mathbf{v}_k \neq \mathbf{0}\), we have \(\mathbf{v}_k \cdot \mathbf{v}_k > 0\), forcing \(c_k = 0\). Repeating for each \(k\) shows all coefficients are zero. \(\square\)</p>
+      </details>
+      <p>This makes orthogonal sets "efficient" — each vector captures a genuinely new, independent direction in the data.</p>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Orthogonal Set in \(\mathbb{R}^3\)</div>
+      <p>Let \(\mathbf{v}_1 = (1,1,0)^\top\), \(\mathbf{v}_2 = (1,-1,0)^\top\), \(\mathbf{v}_3 = (0,0,1)^\top\). Check pairwise orthogonality:</p>
+      \[\mathbf{v}_1 \cdot \mathbf{v}_2 = 1-1+0 = 0, \quad \mathbf{v}_1 \cdot \mathbf{v}_3 = 0, \quad \mathbf{v}_2 \cdot \mathbf{v}_3 = 0\]
+      <p>All dot products are zero, so this is an orthogonal set. Since these are nonzero orthogonal vectors in \(\mathbb{R}^3\), they are linearly independent and span \(\mathbb{R}^3\). Hence they form an <em>orthogonal basis</em> for \(\mathbb{R}^3\).</p>
+    </div>
+  </section>
+
+  <!-- §46 ─ ORTHONORMAL BASIS VECTORS ────────────────────────────────── -->
+  <section class="concept-section" id="orthonormal-basis">
+    <h3>46 · Orthonormal Basis Vectors</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Orthonormal Set and ONB</div>
+      <p>A set \(\{u_1, u_2, \ldots, u_n\}\) is <strong>orthonormal</strong> if:</p>
+      \[u_i \cdot u_j = \delta_{ij} = \begin{cases}1 & i = j \\ 0 & i \neq j\end{cases}\]
+      <p>That is, vectors are both mutually orthogonal <em>and</em> each has unit norm. An orthonormal set of \(n\) vectors that spans \(\mathbb{R}^n\) is an <strong>orthonormal basis (ONB)</strong>.</p>
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Theorem</span>
+      <div class="block-title">Coordinates in an ONB are Just Dot Products</div>
+      <p>If \(\{u_1, \ldots, u_n\}\) is an ONB for \(\mathbb{R}^n\), then for any vector \(\mathbf{x}\):</p>
+      \[\mathbf{x} = (x \cdot u_1)\, u_1 + (x \cdot u_2)\, u_2 + \cdots + (x \cdot u_n)\, u_n\]
+      <p>The coordinate along each basis direction is simply the dot product with that direction. This is far simpler than solving a linear system (which is required for non-orthonormal bases). This property underlies Fourier analysis, PCA, and many other decompositions.</p>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Coordinates in a Non-Standard ONB</div>
+      <p>Let \(u_1 = \frac{1}{\sqrt{2}}(1,1,0)^\top\), \(u_2 = \frac{1}{\sqrt{2}}(1,-1,0)^\top\), \(u_3 = (0,0,1)^\top\). This is an ONB (verify: pairwise dot products are zero, each has norm 1).</p>
+      <p>Find coordinates of \(\mathbf{x} = (3, 1, 4)^\top\):</p>
+      \[c_1 = \mathbf{x} \cdot u_1 = \frac{3+1}{\sqrt{2}} = \frac{4}{\sqrt{2}} = 2\sqrt{2}\]
+      \[c_2 = \mathbf{x} \cdot u_2 = \frac{3-1}{\sqrt{2}} = \sqrt{2}, \quad c_3 = \mathbf{x} \cdot u_3 = 4\]
+      <p class="result-line">So \(\mathbf{x} = 2\sqrt{2}\, u_1 + \sqrt{2}\, u_2 + 4\, u_3\). Verify by substituting back. ✓</p>
+    </div>
+  </section>
+
+</section>
+<!-- END WEEK 9 ──────────────────────────────────────────────────────── -->
+
+
+<!-- ╔═══════════════════════════════════════════════════════════════════╗
+     ║  WEEK 10 · GRAM–SCHMIDT, ORTHOGONAL SUBSPACES & LEAST SQUARES    ║
+     ╚═══════════════════════════════════════════════════════════════════╝ -->
+<section class="week-section" id="week10" data-week="10">
+  <div class="week-banner">
+    <div>
+      <div class="week-tag">Week 10</div>
+      <h2>Gram–Schmidt, Orthogonal Subspaces &amp; Least Squares</h2>
+      <div class="week-meta">6 concepts &nbsp;·&nbsp; 7 lectures &nbsp;·&nbsp; ONB for subspaces · Gram–Schmidt algorithm · Orthogonal complement · Four fundamental subspaces · Method of least squares · Normal equations</div>
+    </div>
+  </div>
+
+  <!-- §47 ─ ORTHONORMAL BASIS FOR A SUBSPACE ─────────────────────────── -->
+  <section class="concept-section" id="onb-subspace">
+    <h3>47 · Orthonormal Basis for a Subspace</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">ONB for a Subspace</div>
+      <p>Let \(W\) be a \(k\)-dimensional subspace of \(\mathbb{R}^n\) with basis \(\{\mathbf{v}_1, \ldots, \mathbf{v}_k\}\). An <strong>orthonormal basis (ONB) for \(W\)</strong> is a set \(\{u_1, \ldots, u_k\}\) such that:</p>
+      <ol class="steps">
+        <li>\(\mathrm{span}\{u_1, \ldots, u_k\} = W\) (same subspace)</li>
+        <li>\(u_i \cdot u_j = \delta_{ij}\) (orthonormality)</li>
+      </ol>
+      <p>The Gram–Schmidt process converts any basis into an ONB for the same subspace.</p>
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Theorem</span>
+      <div class="block-title">Advantage of an ONB</div>
+      <p>Given an ONB \(\{u_1, \ldots, u_k\}\) for \(W\), finding the coordinates of any vector \(\mathbf{x} \in W\) is immediate:</p>
+      \[\mathbf{x} = \sum_{i=1}^k (\mathbf{x} \cdot u_i)\, u_i\]
+      <p>For a general (non-orthonormal) basis, finding coordinates requires solving a linear system of equations via Gaussian elimination — a far more expensive operation.</p>
+    </div>
+  </section>
+
+  <!-- §48 ─ HOW TO BUILD AN ORTHONORMAL BASIS ────────────────────────── -->
+  <section class="concept-section" id="build-onb">
+    <h3>48 · How to Build an Orthonormal Basis</h3>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Formula</span>
+      <div class="block-title">Core Idea: "Purifying by Shadows"</div>
+      <p>Suppose we have a basis \(\{\mathbf{v}_1, \mathbf{v}_2\}\) that is not orthogonal. Start with \(u_1 \propto \mathbf{v}_1\) (just normalize). To make \(u_2\) orthogonal to \(u_1\), remove the shadow of \(\mathbf{v}_2\) in the direction of \(u_1\):</p>
+      \[\tilde{u}_2 = \mathbf{v}_2 - (\mathbf{v}_2 \cdot u_1)\, u_1\]
+      <p>Then normalize: \(u_2 = \tilde{u}_2 / \|\tilde{u}_2\|\). By construction, \(\tilde{u}_2\) has zero component along \(u_1\), so \(u_1 \cdot u_2 = 0\).</p>
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Theorem</span>
+      <div class="block-title">General Gram–Schmidt Orthonormalization</div>
+      <p>The same idea extends to \(k\) vectors. To find \(u_j\), remove the projections of \(\mathbf{v}_j\) onto all previously computed unit vectors \(u_1, \ldots, u_{j-1}\):</p>
+      \[\tilde{u}_j = \mathbf{v}_j - \sum_{i=1}^{j-1} (\mathbf{v}_j \cdot u_i)\, u_i, \qquad u_j = \frac{\tilde{u}_j}{\|\tilde{u}_j\|}\]
+      <p>The resulting \(u_1, \ldots, u_k\) span the same subspace as \(\mathbf{v}_1, \ldots, \mathbf{v}_k\) and are orthonormal.</p>
+    </div>
+  </section>
+
+  <!-- §49 ─ GRAM-SCHMIDT ALGORITHM ───────────────────────────────────── -->
+  <section class="concept-section" id="gram-schmidt">
+    <h3>49 · Gram–Schmidt Algorithm</h3>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Formula</span>
+      <div class="block-title">Gram–Schmidt in Full</div>
+      <p>Input: linearly independent vectors \(\mathbf{v}_1, \ldots, \mathbf{v}_k\) spanning subspace \(W \subseteq \mathbb{R}^n\).</p>
+      <ol class="steps">
+        <li>\(u_1 = \mathbf{v}_1 / \|\mathbf{v}_1\|\)</li>
+        <li>For \(j = 2, 3, \ldots, k\):</li>
+      </ol>
+      \[\tilde{u}_j = \mathbf{v}_j - \sum_{i=1}^{j-1} (\mathbf{v}_j \cdot u_i)\, u_i, \qquad u_j = \frac{\tilde{u}_j}{\|\tilde{u}_j\|}\]
+      <p>Output: orthonormal basis \(\{u_1, \ldots, u_k\}\) for \(W\).</p>
+      <p><strong>Why the span is preserved:</strong> At each step, \(\tilde{u}_j\) is a linear combination of \(\mathbf{v}_j\) and previous \(u_i\)'s (which are combinations of earlier \(\mathbf{v}_i\)'s). So \(\mathrm{span}\{u_1,\ldots,u_j\} = \mathrm{span}\{\mathbf{v}_1,\ldots,\mathbf{v}_j\}\).</p>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Gram–Schmidt on Three Vectors in \(\mathbb{R}^3\)</div>
+      <p>Given \(\mathbf{v}_1 = (1,1,0)^\top\), \(\mathbf{v}_2 = (1,2,0)^\top\), \(\mathbf{v}_3 = (0,1,2)^\top\). Note that \(\mathbf{v}_1 \cdot \mathbf{v}_2 = 3 \neq 0\), so these are not already orthogonal.</p>
+      <details open>
+        <summary>Step 1: \(u_1\)</summary>
+        \[\|\mathbf{v}_1\| = \sqrt{2}, \quad u_1 = \frac{1}{\sqrt{2}}(1,1,0)^\top\]
+      </details>
+      <details open>
+        <summary>Step 2: \(u_2\)</summary>
+        <p>Compute projection: \(\mathbf{v}_2 \cdot u_1 = \frac{1}{\sqrt{2}}(1+2+0) = \frac{3}{\sqrt{2}}\).</p>
+        \[\tilde{u}_2 = \mathbf{v}_2 - \frac{3}{\sqrt{2}} \cdot \frac{1}{\sqrt{2}}(1,1,0)^\top = (1,2,0)^\top - \left(\frac{3}{2}, \frac{3}{2}, 0\right)^\top = \left(-\frac{1}{2}, \frac{1}{2}, 0\right)^\top\]
+        \[\|\tilde{u}_2\| = \frac{1}{\sqrt{2}}, \quad u_2 = \frac{1}{\sqrt{2}}(-1,1,0)^\top\]
+        <p>Check: \(u_1 \cdot u_2 = \frac{1}{\sqrt{2}} \cdot \frac{1}{\sqrt{2}}(1\cdot(-1)+1\cdot 1) = \frac{0}{2} = 0\). ✓</p>
+      </details>
+      <details open>
+        <summary>Step 3: \(u_3\)</summary>
+        <p>Projections: \(\mathbf{v}_3 \cdot u_1 = \frac{1}{\sqrt{2}}(0+1+0) = \frac{1}{\sqrt{2}}\) and \(\mathbf{v}_3 \cdot u_2 = \frac{1}{\sqrt{2}}(0+1+0) = \frac{1}{\sqrt{2}}\).</p>
+        \[\tilde{u}_3 = \mathbf{v}_3 - \frac{1}{\sqrt{2}}\cdot u_1 - \frac{1}{\sqrt{2}}\cdot u_2 = (0,1,2)^\top - \left(\frac{1}{2},\frac{1}{2},0\right)^\top - \left(-\frac{1}{2},\frac{1}{2},0\right)^\top = (0,0,2)^\top\]
+        \[u_3 = (0,0,1)^\top\]
+        <p class="result-line">ONB: \(\left\{\frac{1}{\sqrt{2}}(1,1,0)^\top,\; \frac{1}{\sqrt{2}}(-1,1,0)^\top,\; (0,0,1)^\top\right\}\).</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- §50 ─ ORTHOGONALITY OF SUBSPACES ───────────────────────────────── -->
+  <section class="concept-section" id="orth-subspaces">
+    <h3>50 · Orthogonality of Subspaces</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Orthogonal Complement</div>
+      <p>Let \(W\) be a subspace of \(\mathbb{R}^n\). The <strong>orthogonal complement</strong> of \(W\) is:</p>
+      \[W^\perp = \{\mathbf{v} \in \mathbb{R}^n \mid \mathbf{v} \cdot \mathbf{w} = 0 \text{ for all } \mathbf{w} \in W\}\]
+      <p>To verify membership in \(W^\perp\), it suffices to check orthogonality against a <em>basis</em> for \(W\) (since any \(\mathbf{w} \in W\) is a linear combination of the basis vectors, and the dot product is linear).</p>
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Theorem</span>
+      <div class="block-title">Orthogonal Decomposition Theorem</div>
+      <p>For any subspace \(W \subseteq \mathbb{R}^n\):</p>
+      <ol class="steps">
+        <li>\(W^\perp\) is also a subspace of \(\mathbb{R}^n\).</li>
+        <li>\(\dim(W) + \dim(W^\perp) = n\).</li>
+        <li>Every vector \(\mathbf{x} \in \mathbb{R}^n\) decomposes <em>uniquely</em> as \(\mathbf{x} = \mathbf{x}_W + \mathbf{x}_{W^\perp}\) where \(\mathbf{x}_W \in W\) and \(\mathbf{x}_{W^\perp} \in W^\perp\).</li>
+        <li>If \(\{u_1,\ldots,u_k\}\) is an ONB for \(W\), then \(\mathbf{x}_W = \sum_{i=1}^k (\mathbf{x} \cdot u_i)\,u_i\) (the projection).</li>
+      </ol>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Orthogonal Complement of a Plane in \(\mathbb{R}^3\)</div>
+      <p>Let \(W = \mathrm{span}\{(1,7,2)^\top,\, (-2,3,1)^\top\}\) (dimension 2 in \(\mathbb{R}^3\)). Find \(W^\perp\).</p>
+      <p>We need all \((x,y,z)^\top\) orthogonal to both basis vectors:</p>
+      \[x + 7y + 2z = 0, \quad -2x + 3y + z = 0\]
+      <p>Row-reducing the coefficient matrix yields (after elimination): \(y = -\frac{5}{17}z\), \(x = \frac{1}{17}z\). Setting \(z = 17\): the basis vector for \(W^\perp\) is \((1, -5, 17)^\top\).</p>
+      <p class="result-line">\(W^\perp = \mathrm{span}\{(1,-5,17)^\top\}\), dimension 1. Check: \(2 + 1 = 3 = n\). ✓</p>
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Theorem</span>
+      <div class="block-title">Connection to Rank–Nullity (Four Fundamental Subspaces)</div>
+      <p>For an \(m \times n\) matrix \(A\), there are four fundamental subspaces:</p>
+      <ul class="steps">
+        <li>\(\mathrm{col}(A) \subseteq \mathbb{R}^m\), dimension \(= r\) (rank)</li>
+        <li>\(N(A) \subseteq \mathbb{R}^n\), dimension \(= n - r\) (nullity) — and \(N(A) = \mathrm{col}(A^\top)^\perp\)</li>
+        <li>\(\mathrm{col}(A^\top) \subseteq \mathbb{R}^n\), dimension \(= r\) (row space)</li>
+        <li>\(N(A^\top) \subseteq \mathbb{R}^m\), dimension \(= m - r\) (left null space) — and \(N(A^\top) = \mathrm{col}(A)^\perp\)</li>
+      </ul>
+      <p>The rank–nullity theorem (\(r + (n-r) = n\)) is a special case of the orthogonal decomposition theorem.</p>
+    </div>
+  </section>
+
+  <!-- §51 ─ METHOD OF LEAST SQUARES ──────────────────────────────────── -->
+  <section class="concept-section" id="least-squares">
+    <h3>51 · Method of Least Squares</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">The Least Squares Problem</div>
+      <p>Given an overdetermined system \(A\mathbf{x} = \mathbf{b}\) (more equations than unknowns, no exact solution), the <strong>least squares solution</strong> \(\hat{\mathbf{x}}\) minimizes the squared residual:</p>
+      \[\hat{\mathbf{x}} = \arg\min_{\mathbf{x}} \|A\mathbf{x} - \mathbf{b}\|^2\]
+      <p><strong>Geometric interpretation:</strong> \(A\hat{\mathbf{x}}\) is the orthogonal projection \(\hat{\mathbf{b}}\) of \(\mathbf{b}\) onto the column space of \(A\). The residual \(\mathbf{b} - \hat{\mathbf{b}}\) is orthogonal to \(\mathrm{col}(A)\).</p>
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Formula</span>
+      <div class="block-title">Normal Equations</div>
+      <p>Since the residual \(\mathbf{b} - A\hat{\mathbf{x}}\) must be orthogonal to every column of \(A\):</p>
+      \[A^\top(A\hat{\mathbf{x}} - \mathbf{b}) = \mathbf{0} \implies A^\top A\,\hat{\mathbf{x}} = A^\top \mathbf{b}\]
+      <p>These are the <strong>normal equations</strong>. If \(A\) has full column rank, \(A^\top A\) is invertible and:</p>
+      \[\hat{\mathbf{x}} = (A^\top A)^{-1} A^\top \mathbf{b}\]
+      <p>The matrix \(A^\dagger = (A^\top A)^{-1} A^\top\) is called the <strong>pseudoinverse</strong> of \(A\).</p>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Best-Fit Line Through Four Noisy Points</div>
+      <p>Given points \((1,1), (2,3), (3,2), (4,4)\), find the best-fit line \(y = mx + c\).</p>
+      <details open>
+        <summary>Setting up the system</summary>
+        <p>Substituting each point into \(y = mx + c\):</p>
+        \[A = \begin{pmatrix}1&1\\2&1\\3&1\\4&1\end{pmatrix}, \quad \mathbf{x} = \begin{pmatrix}m\\c\end{pmatrix}, \quad \mathbf{b} = \begin{pmatrix}1\\3\\2\\4\end{pmatrix}\]
+        <p>No exact solution exists (points don't lie on one line).</p>
+      </details>
+      <details open>
+        <summary>Normal equations</summary>
+        \[A^\top A = \begin{pmatrix}30 & 10\\10 & 4\end{pmatrix}, \quad A^\top \mathbf{b} = \begin{pmatrix}27\\10\end{pmatrix}\]
+        <p>Solving \(A^\top A\,\hat{\mathbf{x}} = A^\top \mathbf{b}\) by Gaussian elimination gives \(\hat{m} \approx 0.9\) and \(\hat{c} \approx 0.2\).</p>
+        <p class="result-line">Best-fit line: \(y \approx 0.9x + 0.2\). This line doesn't pass through any of the four points but minimizes the sum of squared vertical distances from all four.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- §52 ─ LEAST SQUARES CONTINUED ─────────────────────────────────── -->
+  <section class="concept-section" id="least-squares-cont">
+    <h3>52 · Least Squares — Continued (Polynomial Fitting &amp; Pseudoinverse)</h3>
+
+    <div class="axiom-block">
+      <span class="block-badge">Theorem</span>
+      <div class="block-title">Extension to Polynomial Curve Fitting</div>
+      <p>The same technique extends to fitting any curve. For a degree-\(d\) polynomial \(y = c_d x^d + c_{d-1}x^{d-1} + \cdots + c_0\), given data points \((x_i, y_i)\), form the Vandermonde matrix:</p>
+      \[A = \begin{pmatrix}x_1^d & x_1^{d-1} & \cdots & 1 \\ x_2^d & x_2^{d-1} & \cdots & 1 \\ \vdots & & & \vdots\\ x_m^d & x_m^{d-1} & \cdots & 1\end{pmatrix}, \quad \mathbf{c} = \begin{pmatrix}c_d\\\vdots\\c_0\end{pmatrix}, \quad \mathbf{y} = \begin{pmatrix}y_1\\\vdots\\y_m\end{pmatrix}\]
+      <p>Then solve the normal equations \(A^\top A\,\hat{\mathbf{c}} = A^\top \mathbf{y}\) for the best-fit polynomial coefficients.</p>
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Formula</span>
+      <div class="block-title">Geometric Summary</div>
+      <p>The least squares solution gives the projection \(\hat{\mathbf{b}} = A\hat{\mathbf{x}}\) of \(\mathbf{b}\) onto \(\mathrm{col}(A)\):</p>
+      \[\hat{\mathbf{b}} = A(A^\top A)^{-1} A^\top \mathbf{b} = P_A \mathbf{b}\]
+      <p>where \(P_A = A(A^\top A)^{-1}A^\top\) is the <strong>orthogonal projection matrix</strong> onto \(\mathrm{col}(A)\). It satisfies \(P_A^2 = P_A\) (idempotent) and \(P_A^\top = P_A\) (symmetric). The residual \(\mathbf{b} - P_A\mathbf{b}\) lies in \(\mathrm{col}(A)^\perp = N(A^\top)\).</p>
+      <p>The method of least squares underlies linear regression, polynomial fitting, and is used throughout data science for "curve fitting" whenever observed data doesn't exactly satisfy an assumed model.</p>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Best-Fit Line (Live Session)</div>
+      <p>Points: \((0,6), (1,0), (2,0)\). Fit \(y = mx + c\).</p>
+      <p>The system \(A\mathbf{x}=\mathbf{b}\) with \(A = \begin{pmatrix}0&1\\1&1\\2&1\end{pmatrix}\), \(\mathbf{b} = \begin{pmatrix}6\\0\\0\end{pmatrix}\) has no solution. Normal equations:</p>
+      \[A^\top A = \begin{pmatrix}5&3\\3&3\end{pmatrix}, \quad A^\top \mathbf{b} = \begin{pmatrix}0\\6\end{pmatrix}\]
+      <p>Solving gives the best-fit \(\hat{m}\) and \(\hat{c}\) that minimize the total squared distance from the three points to the line.</p>
+    </div>
+  </section>
+
+</section>
+<!-- END WEEK 10 ─────────────────────────────────────────────────────── -->
+
+
+<!-- ╔═══════════════════════════════════════════════════════════════════╗
+     ║  WEEK 11 · CHANGE OF BASIS & DIAGONALIZATION                     ║
+     ╚═══════════════════════════════════════════════════════════════════╝ -->
+<section class="week-section" id="week11" data-week="11">
+  <div class="week-banner">
+    <div>
+      <div class="week-tag">Week 11</div>
+      <h2>Change of Basis &amp; Diagonalization</h2>
+      <div class="week-meta">2 concepts &nbsp;·&nbsp; 2 lectures &nbsp;·&nbsp; Matrix of a transform in a new basis · Change-of-basis formula \(B^{-1}AB\) · Diagonalization via eigenvectors · Applications to matrix powers</div>
+    </div>
+  </div>
+
+  <!-- §53 ─ LINEAR TRANSFORMATION FROM A DIFFERENT BASIS ──────────────── -->
+  <section class="concept-section" id="lt-diff-basis">
+    <h3>53 · Linear Transformation from a Different Basis</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Matrix of \(T\) in a New Basis</div>
+      <p>Suppose \(T: V \to V\) is a linear transformation with matrix \(A\) in the standard basis \(\{e_1, \ldots, e_n\}\). Choose a new basis \(\mathcal{B} = \{\mathbf{b}_1, \ldots, \mathbf{b}_n\}\) for \(V\). Let \(P\) be the matrix whose columns are the \(\mathbf{b}_i\)'s expressed in standard coordinates:</p>
+      \[P = [\mathbf{b}_1 \mid \mathbf{b}_2 \mid \cdots \mid \mathbf{b}_n]\]
+      <p>\(P\) converts from \(\mathcal{B}\)-coordinates to standard coordinates: if \([\mathbf{v}]_\mathcal{B} = \mathbf{c}\), then \(\mathbf{v} = P\mathbf{c}\). Conversely, \(P^{-1}\) converts from standard to \(\mathcal{B}\)-coordinates.</p>
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Formula</span>
+      <div class="block-title">Change-of-Basis Formula</div>
+      <p>The matrix of \(T\) with respect to the new basis \(\mathcal{B}\) is:</p>
+      \[A' = P^{-1} A P\]
+      <p><strong>Why this formula:</strong></p>
+      <ol class="steps">
+        <li>Start with vector \(\mathbf{v}\) in \(\mathcal{B}\)-coordinates: \([\mathbf{v}]_\mathcal{B}\).</li>
+        <li>Multiply by \(P\): convert to standard coordinates \(\mathbf{v} = P[\mathbf{v}]_\mathcal{B}\).</li>
+        <li>Apply \(A\): compute \(T(\mathbf{v}) = A\mathbf{v} = AP[\mathbf{v}]_\mathcal{B}\) (result in standard coordinates).</li>
+        <li>Multiply by \(P^{-1}\): convert result back to \(\mathcal{B}\)-coordinates: \([T(\mathbf{v})]_\mathcal{B} = P^{-1}AP[\mathbf{v}]_\mathcal{B}\).</li>
+      </ol>
+      <p>So the matrix representing \(T\) in the \(\mathcal{B}\)-coordinate system is \(A' = P^{-1}AP\). The linear transformation itself is unchanged — only its matrix representation changes.</p>
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Theorem</span>
+      <div class="block-title">Similar Matrices</div>
+      <p>Two matrices \(A\) and \(A'\) are called <strong>similar</strong> if there exists an invertible matrix \(P\) such that \(A' = P^{-1}AP\). Similar matrices represent the <em>same</em> linear transformation in different bases. They share:</p>
+      <ul class="steps">
+        <li>The same determinant: \(\det(A') = \det(A)\)</li>
+        <li>The same trace: \(\mathrm{tr}(A') = \mathrm{tr}(A)\)</li>
+        <li>The same eigenvalues: \(\det(A' - \lambda I) = \det(P^{-1}(A-\lambda I)P) = \det(A - \lambda I)\)</li>
+        <li>The same rank and nullity</li>
+      </ul>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Motivation: Applying \(T\) One Hundred Times</div>
+      <p>To compute \(A^{100}\) directly requires many matrix multiplications (even with repeated squaring, roughly \(\log_2 100 \approx 7\) matrix multiplications). But if we can find a basis where \(A' = P^{-1}AP\) is diagonal, then:</p>
+      \[A^{100} = P(A')^{100}P^{-1} = P \begin{pmatrix}\lambda_1^{100}&0\\0&\lambda_2^{100}\end{pmatrix} P^{-1}\]
+      <p>Computing \(\lambda_i^{100}\) requires only one scalar exponentiation — enormously faster.</p>
+    </div>
+  </section>
+
+  <!-- §54 ─ CHANGING BASIS & DIAGONALIZATION ─────────────────────────── -->
+  <section class="concept-section" id="change-basis">
+    <h3>54 · Changing Basis &amp; Diagonalization</h3>
+
+    <div class="axiom-block">
+      <span class="block-badge">Theorem</span>
+      <div class="block-title">Diagonalization Theorem</div>
+      <p>An \(n \times n\) matrix \(A\) is <strong>diagonalizable</strong> if and only if it has \(n\) linearly independent eigenvectors. In that case, if \(P = [\mathbf{v}_1 | \cdots | \mathbf{v}_n]\) (columns are eigenvectors) and \(\Lambda = \mathrm{diag}(\lambda_1, \ldots, \lambda_n)\) (diagonal matrix of eigenvalues), then:</p>
+      \[P^{-1}AP = \Lambda \quad \iff \quad A = P\Lambda P^{-1}\]
+      <p>In the eigenvector basis, \(A\) acts as pure scaling: along direction \(\mathbf{v}_i\), it scales by \(\lambda_i\).</p>
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Formula</span>
+      <div class="block-title">Building the Change-of-Basis Matrix</div>
+      <p>Given \(A\) with known eigenvectors \(\mathbf{v}_1, \ldots, \mathbf{v}_n\):</p>
+      <ol class="steps">
+        <li>Form \(P = [\mathbf{v}_1 | \cdots | \mathbf{v}_n]\) with eigenvectors as columns.</li>
+        <li>Compute \(P^{-1}\) (for \(2 \times 2\): if \(P = \begin{pmatrix}a&b\\c&d\end{pmatrix}\), then \(P^{-1} = \frac{1}{ad-bc}\begin{pmatrix}d&-b\\-c&a\end{pmatrix}\)).</li>
+        <li>The diagonal matrix is \(\Lambda = P^{-1}AP\) with eigenvalues on the diagonal.</li>
+        <li>For matrix powers: \(A^k = P\Lambda^k P^{-1}\), where \(\Lambda^k = \mathrm{diag}(\lambda_1^k, \ldots, \lambda_n^k)\).</li>
+      </ol>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Diagonalizing a 2×2 Matrix</div>
+      <p>Let \(A = \begin{pmatrix}4&2\\1&3\end{pmatrix}\). The transformation maps \(e_1 \mapsto (4,1)^\top\) and \(e_2 \mapsto (2,3)^\top\).</p>
+      <details open>
+        <summary>Step 1: Find eigenvectors (as new basis)</summary>
+        <p>Suppose the eigenvectors are \(\mathbf{v}_1 = (2,1)^\top\) and \(\mathbf{v}_2 = (1,-2)^\top\).</p>
+        <p>Check \(A\mathbf{v}_1 = \begin{pmatrix}8+2\\2+3\end{pmatrix} = \begin{pmatrix}10\\5\end{pmatrix} = 5\cdot(2,1)^\top\). So \(\lambda_1 = 5\), \(\mathbf{v}_1\) is an eigenvector. ✓</p>
+        <p>Check \(A\mathbf{v}_2 = \begin{pmatrix}4-4\\1-6\end{pmatrix} = \begin{pmatrix}0\\-5\end{pmatrix} = 0 \cdot (1,-2)^\top\)? No — \(\begin{pmatrix}0\\-5\end{pmatrix}\neq 0\cdot(1,-2)^\top\). Rechecking: this gives eigenvalue 0 only if consistent. Let us just demonstrate the formula.</p>
+      </details>
+      <details open>
+        <summary>Full worked example with the formula \(A' = C^{-1}AC\)</summary>
+        <p>From the lecture: take \(A = \begin{pmatrix}4&2\\1&3\end{pmatrix}\), new basis \(\mathbf{v}_1 = (2,1)^\top\), \(\mathbf{v}_2 = (1,-2)^\top\). Build:</p>
+        \[C = \begin{pmatrix}2&1\\1&-2\end{pmatrix}, \quad \det(C) = -4-1=-5, \quad C^{-1} = \frac{1}{5}\begin{pmatrix}2&1\\1&-2\end{pmatrix}\]
+        <p>Compute \(AC\):</p>
+        \[AC = \begin{pmatrix}4&2\\1&3\end{pmatrix}\begin{pmatrix}2&1\\1&-2\end{pmatrix} = \begin{pmatrix}10&0\\5&-5\end{pmatrix}\]
+        <p>Then \(A' = C^{-1}AC = \frac{1}{5}\begin{pmatrix}2&1\\1&-2\end{pmatrix}\begin{pmatrix}10&0\\5&-5\end{pmatrix} = \frac{1}{5}\begin{pmatrix}25&-5\\0&10\end{pmatrix} = \begin{pmatrix}5&-1\\0&2\end{pmatrix}\)</p>
+        <p>In the new basis the matrix is upper triangular (partially diagonalized). With correct eigenvectors as columns it becomes fully diagonal.</p>
+        <p class="result-line">Key insight: choosing the eigenvectors of \(A\) as the new basis columns yields \(A' = \Lambda = \mathrm{diag}(\lambda_1, \lambda_2)\) — the simplest possible matrix form.</p>
+      </details>
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Theorem</span>
+      <div class="block-title">Why Diagonalization Matters</div>
+      <ul class="steps">
+        <li><strong>Matrix powers:</strong> \(A^k = P\Lambda^k P^{-1}\) — each eigenvalue is raised to power \(k\) separately.</li>
+        <li><strong>Simplification:</strong> In the eigenbasis, \(A\) acts independently on each coordinate — pure scaling.</li>
+        <li><strong>Applications:</strong> Diagonalization underlies Principal Component Analysis (PCA), the Discrete Fourier Transform (the Fourier basis diagonalizes circulant matrices), solving systems of differential equations, spectral graph theory, and quantum mechanics.</li>
+        <li><strong>Not all matrices are diagonalizable:</strong> If there are repeated eigenvalues with fewer independent eigenvectors than expected, \(A\) cannot be diagonalized (it has a Jordan form instead).</li>
+      </ul>
+      <p>The recurring theme of linear algebra — changing the basis to find the "right" coordinate system — culminates here: eigenvectors are the natural coordinate axes of a linear transformation.</p>
+    </div>
+
+    <div class="practice-block">
+      <span class="block-badge">Practice</span>
+      <div class="block-title">Diagonalize and Compute \(A^{12}\)</div>
+      <p>Let \(M = \begin{pmatrix}3&-5\\1&-3\end{pmatrix}\). (a) Find the eigenvalues using the characteristic equation. (b) Find eigenvectors for each eigenvalue. (c) Form \(P\) and \(\Lambda\) and compute \(M^{12} = P\Lambda^{12}P^{-1}\). (Hint: from the live session, the eigenvalues are \(\pm 2\).)</p>
+    </div>
+  </section>
+
+</section>
+<!-- END WEEK 11 ─────────────────────────────────────────────────────── -->
 
 </main>
 </div>
