@@ -3,33 +3,37 @@
   "type": "feature",
   "workflowType": "full",
   "created": "2026-06-22T00:00:00Z",
-  "currentPhase": "reviewer",
+  "currentPhase": "executor",
   "status": "active",
   "branch": "feature/mcq-quiz-for-python-course",
   "roles": {
-    "po": { "status": "complete", "completed": "2026-06-22T00:00:00Z" },
-    "architect": { "status": "complete", "completed": "2026-06-22T00:00:00Z" },
-    "developer": { "status": "complete", "completed": "2026-06-22T00:00:00Z" },
-    "reviewer": { "status": "complete", "completed": "2026-06-22T00:00:00Z" },
-    "tester": { "status": "complete", "completed": "2026-06-22T00:00:00Z" },
-    "executor": { "status": "pending", "completed": null },
-    "po-approval": { "status": "pending", "completed": null }
+    "po":          { "status": "complete",     "completed": "2026-06-22T00:00:00Z" },
+    "architect":   { "status": "complete",     "completed": "2026-06-22T00:00:00Z" },
+    "developer":   { "status": "complete",     "completed": "2026-06-22T00:00:00Z" },
+    "reviewer":    { "status": "complete",     "completed": "2026-06-22T00:00:00Z" },
+    "tester":      { "status": "complete",     "completed": "2026-06-22T00:00:00Z" },
+    "executor":    { "status": "in-progress",  "completed": null },
+    "po-approval": { "status": "pending",      "completed": null }
   },
   "artifacts": {
-    "po": "artifacts/mcq-quiz-for-python-course.po.md",
-    "architect": "artifacts/mcq-quiz-for-python-course.architect.md",
-    "developer": "artifacts/mcq-quiz-for-python-course.developer.md",
-    "reviewer": "artifacts/mcq-quiz-for-python-course.reviewer.md",
-    "tester": "artifacts/mcq-quiz-for-python-course.tester.md",
-    "executor": null,
+    "po":          "artifacts/mcq-quiz-for-python-course.po.md",
+    "architect":   "artifacts/mcq-quiz-for-python-course.architect.md",
+    "developer":   "artifacts/mcq-quiz-for-python-course.developer.md",
+    "reviewer":    "artifacts/mcq-quiz-for-python-course.reviewer.md",
+    "tester":      "artifacts/mcq-quiz-for-python-course.tester.md",
+    "executor":    "artifacts/mcq-quiz-for-python-course.executor.md",
     "po-approval": null
   },
   "timelines": {
-    "po_complete": "2026-06-22T00:00:00Z",
-    "architect_start": "2026-06-22T00:00:00Z",
+    "po_complete":        "2026-06-22T00:00:00Z",
+    "architect_start":    "2026-06-22T00:00:00Z",
     "architect_complete": "2026-06-22T00:00:00Z",
-    "developer_start": "2026-06-22T00:00:00Z",
+    "developer_start":    "2026-06-22T00:00:00Z",
     "developer_complete": "2026-06-22T00:00:00Z",
-    "reviewer_start": "2026-06-22T00:00:00Z"
+    "reviewer_start":     "2026-06-22T00:00:00Z",
+    "reviewer_complete":  "2026-06-22T00:00:00Z",
+    "tester_start":       "2026-06-22T00:00:00Z",
+    "tester_complete":    "2026-06-22T00:00:00Z",
+    "executor_start":     "2026-06-22T00:00:00Z"
   }
 }
