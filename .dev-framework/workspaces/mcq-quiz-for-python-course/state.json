@@ -10,8 +10,8 @@
     "po": { "status": "complete", "completed": "2026-06-22T00:00:00Z" },
     "architect": { "status": "complete", "completed": "2026-06-22T00:00:00Z" },
     "developer": { "status": "complete", "completed": "2026-06-22T00:00:00Z" },
-    "reviewer": { "status": "in-progress", "completed": null },
-    "tester": { "status": "pending", "completed": null },
+    "reviewer": { "status": "complete", "completed": "2026-06-22T00:00:00Z" },
+    "tester": { "status": "complete", "completed": "2026-06-22T00:00:00Z" },
     "executor": { "status": "pending", "completed": null },
     "po-approval": { "status": "pending", "completed": null }
   },
@@ -20,7 +20,7 @@
     "architect": "artifacts/mcq-quiz-for-python-course.architect.md",
     "developer": "artifacts/mcq-quiz-for-python-course.developer.md",
     "reviewer": "artifacts/mcq-quiz-for-python-course.reviewer.md",
-    "tester": null,
+    "tester": "artifacts/mcq-quiz-for-python-course.tester.md",
     "executor": null,
     "po-approval": null
   },
