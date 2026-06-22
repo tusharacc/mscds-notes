@@ -1,11 +1,14 @@
 {
-  "next_id": "BUG-007",
+  "next_id": "BUG-010",
   "bugs": [
     { "id": "BUG-001", "severity": "low", "status": "open", "file": "bugs/bug-001.md" },
     { "id": "BUG-002", "severity": "low", "status": "open", "file": "bugs/bug-002.md" },
     { "id": "BUG-003", "severity": "low", "status": "open", "file": "bugs/bug-003.md" },
     { "id": "BUG-004", "severity": "low", "status": "fixed", "file": "bugs/bug-004.md" },
     { "id": "BUG-005", "severity": "low", "status": "open", "file": "bugs/bug-005.md" },
-    { "id": "BUG-006", "severity": "low", "status": "open", "file": "bugs/bug-006.md" }
+    { "id": "BUG-006", "severity": "low", "status": "open", "file": "bugs/bug-006.md" },
+    { "id": "BUG-007", "severity": "low", "status": "open", "file": "bugs/bug-007.md" },
+    { "id": "BUG-008", "severity": "low", "status": "open", "file": "bugs/bug-008.md" },
+    { "id": "BUG-009", "severity": "low", "status": "open", "file": "bugs/bug-009.md" }
   ]
 }

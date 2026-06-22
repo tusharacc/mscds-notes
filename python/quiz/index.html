@@ -1,0 +1,1734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Python Core &amp; Applied Concepts — MCQ Practice Quiz. MScDS IIIT Hyderabad.">
+<title>Python Quiz — MCQ Practice</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,600&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --blue-border: #2563eb;   --blue-bg: #eef4ff;   --blue-badge: #1d4ed8;
+  --amber-border: #d97706;  --amber-bg: #fefce8;  --amber-badge: #92400e;
+  --green-border: #16a34a;  --green-bg: #f0fdf4;  --green-badge: #14532d;
+  --violet-border: #7c3aed; --violet-bg: #f5f3ff; --violet-badge: #5b21b6;
+  --grey-border: #78716c;   --grey-bg: #faf9f7;   --grey-badge: #44403c;
+  --page-bg: #faf6ef;
+  --surface: #fffdf9;
+  --border: #e5d9c8;
+  --text: #1c1410;
+  --text-muted: #6b5f54;
+  --gold: #92400e;
+  --radius: 10px;
+  --shadow-sm: 0 1px 3px rgba(28,20,16,.06), 0 1px 2px rgba(28,20,16,.04);
+  --shadow-md: 0 4px 14px rgba(28,20,16,.10), 0 2px 4px rgba(28,20,16,.06);
+  --correct: #16a34a;
+  --correct-bg: #f0fdf4;
+  --wrong: #dc2626;
+  --wrong-bg: #fef2f2;
+  --code-bg: #1e1a16;
+  --code-border: #3d3028;
+}
+
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: 'Lora', Georgia, serif;
+  background: var(--page-bg);
+  color: var(--text);
+  line-height: 1.8;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1.2rem 4rem;
+}
+
+/* ── Page header ── */
+.page-header {
+  width: 100%; max-width: 700px;
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+.page-header::after {
+  content: '';
+  position: absolute; bottom: -3px; left: 0;
+  width: 3rem; height: 3px;
+  background: var(--gold); border-radius: 2px;
+}
+.page-header h1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.9rem; font-weight: 800; line-height: 1.2;
+}
+.page-header .back-link {
+  font-size: .8rem; color: var(--text-muted); text-decoration: none;
+  display: flex; align-items: center; gap: .3rem;
+  transition: color .2s;
+  white-space: nowrap;
+}
+.page-header .back-link:hover { color: var(--gold); }
+
+/* ── Quiz card ── */
+#quiz-root {
+  width: 100%; max-width: 700px;
+}
+
+/* ── Start screen ── */
+.start-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  box-shadow: var(--shadow-md);
+}
+.start-card .quiz-icon {
+  font-size: 2.8rem; margin-bottom: 1rem;
+}
+.start-card h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.6rem; font-weight: 700; margin-bottom: .5rem;
+}
+.start-card .desc {
+  color: var(--text-muted); font-size: .9rem; margin-bottom: 1.8rem; line-height: 1.6;
+}
+.week-pills {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: .4rem;
+  margin-bottom: 1.8rem;
+}
+.week-pill {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: .65rem; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase;
+  background: var(--amber-bg); color: var(--amber-badge);
+  border: 1px solid #fde68a; border-radius: 999px;
+  padding: .2rem .7rem;
+}
+
+/* ── Buttons ── */
+.btn {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700; font-size: .88rem; letter-spacing: .04em;
+  border: none; border-radius: 8px; cursor: pointer;
+  padding: .75rem 2rem;
+  transition: transform .15s, box-shadow .15s, background .15s;
+}
+.btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.btn-primary {
+  background: var(--gold); color: #fff;
+  box-shadow: 0 2px 8px rgba(146,64,14,.3);
+}
+.btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(146,64,14,.4); }
+.btn-primary:active { transform: translateY(0); }
+.btn-secondary {
+  background: var(--surface); color: var(--text);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+.btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ── Question card ── */
+.q-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+}
+
+/* Progress */
+.q-progress {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 1.4rem;
+}
+.q-progress-label {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: .7rem; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--text-muted);
+}
+.q-dots { display: flex; gap: .4rem; }
+.q-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--border); transition: background .25s;
+}
+.q-dot.filled { background: var(--gold); }
+.q-dot.correct { background: var(--correct); }
+.q-dot.wrong { background: var(--wrong); }
+
+/* Week badge */
+.q-week-badge {
+  display: inline-block;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: .62rem; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase;
+  background: var(--violet-bg); color: var(--violet-badge);
+  border: 1px solid #ddd6fe; border-radius: 999px;
+  padding: .18rem .65rem; margin-bottom: .9rem;
+}
+
+/* Question text */
+.q-text {
+  font-size: 1.05rem; font-weight: 500; line-height: 1.65;
+  margin-bottom: 1.4rem;
+}
+.q-text code {
+  font-family: 'Menlo', 'Monaco', 'Consolas', monospace;
+  font-size: .84em; background: rgba(28,20,16,.07);
+  padding: .1em .35em; border-radius: 3px; color: #6b3e1f;
+}
+
+/* Code block inside question */
+.q-code {
+  margin: .6rem 0 1rem;
+  border-radius: 10px; overflow: hidden;
+  box-shadow: 0 2px 8px rgba(28,20,16,.14);
+}
+.q-code pre {
+  background: var(--code-bg); color: #d4c5b0;
+  font-family: 'Menlo', 'Monaco', 'Consolas', monospace;
+  font-size: .8rem; line-height: 1.7;
+  padding: .9rem 1.1rem; margin: 0;
+  overflow-x: auto; tab-size: 4;
+}
+.q-code pre .kw  { color: #e06c75; }
+.q-code pre .fn  { color: #61afef; }
+.q-code pre .st  { color: #98c379; }
+.q-code pre .cm  { color: #7a6a58; font-style: italic; }
+.q-code pre .nu  { color: #d19a66; }
+.q-code pre .op  { color: #c6a0f6; }
+
+/* Options */
+.options { display: flex; flex-direction: column; gap: .65rem; margin-bottom: 1.4rem; }
+.option-btn {
+  display: flex; align-items: flex-start; gap: .75rem;
+  width: 100%; text-align: left;
+  background: var(--page-bg); border: 1.5px solid var(--border);
+  border-radius: 10px; padding: .75rem 1rem;
+  font-family: 'Lora', Georgia, serif; font-size: .9rem;
+  color: var(--text); cursor: pointer;
+  transition: border-color .18s, background .18s, transform .12s;
+}
+.option-btn:hover:not(:disabled) {
+  border-color: var(--gold); background: var(--amber-bg);
+  transform: translateX(3px);
+}
+.option-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.option-btn.selected:not(.revealed) {
+  border-color: var(--gold); background: var(--amber-bg);
+}
+.option-btn .opt-label {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700; font-size: .78rem; letter-spacing: .06em;
+  min-width: 1.4rem; color: var(--text-muted);
+  flex-shrink: 0; margin-top: .08rem;
+}
+.option-btn code {
+  font-family: 'Menlo', 'Monaco', 'Consolas', monospace;
+  font-size: .82em; background: rgba(28,20,16,.07);
+  padding: .1em .3em; border-radius: 3px; color: #6b3e1f;
+}
+
+/* Revealed states */
+.option-btn.correct-ans {
+  border-color: var(--correct); background: var(--correct-bg);
+  color: #14532d;
+}
+.option-btn.correct-ans .opt-label { color: var(--correct); }
+.option-btn.wrong-ans {
+  border-color: var(--wrong); background: var(--wrong-bg);
+  color: #7f1d1d;
+}
+.option-btn.wrong-ans .opt-label { color: var(--wrong); }
+.option-btn:disabled { cursor: default; transform: none; }
+
+/* Submit row */
+.submit-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+}
+.submit-row .hint {
+  font-size: .78rem; color: var(--text-muted); font-style: italic;
+}
+
+/* Explanation */
+.explanation {
+  margin-top: 1.2rem;
+  background: var(--amber-bg);
+  border-left: 4px solid var(--amber-border);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: .9rem 1.1rem;
+  font-size: .9rem; line-height: 1.7;
+  animation: fadeUp .3s ease both;
+}
+.explanation .exp-label {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: .62rem; font-weight: 700; letter-spacing: .13em;
+  text-transform: uppercase; color: var(--amber-badge);
+  margin-bottom: .35rem;
+}
+.explanation code {
+  font-family: 'Menlo', 'Monaco', 'Consolas', monospace;
+  font-size: .83em; background: rgba(28,20,16,.07);
+  padding: .1em .3em; border-radius: 3px; color: #6b3e1f;
+}
+
+/* Result badge */
+.result-badge {
+  display: inline-flex; align-items: center; gap: .4rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: .72rem; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; padding: .3rem .8rem;
+  border-radius: 999px; margin-bottom: .8rem;
+}
+.result-badge.correct { background: var(--correct-bg); color: var(--correct); border: 1px solid #bbf7d0; }
+.result-badge.wrong   { background: var(--wrong-bg);   color: var(--wrong);   border: 1px solid #fecaca; }
+
+/* ── Summary screen ── */
+.summary-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+}
+.summary-score {
+  text-align: center;
+  padding: 1.5rem 0 1.8rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 1.5rem;
+}
+.score-ring {
+  width: 90px; height: 90px; border-radius: 50%;
+  border: 5px solid var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto .9rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.5rem; font-weight: 800; color: var(--gold);
+}
+.summary-score h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.3rem; font-weight: 700; margin-bottom: .3rem;
+}
+.summary-score .score-msg {
+  font-size: .88rem; color: var(--text-muted); font-style: italic;
+}
+.summary-breakdown { display: flex; flex-direction: column; gap: .7rem; margin-bottom: 1.8rem; }
+.breakdown-item {
+  display: flex; align-items: flex-start; gap: .75rem;
+  padding: .75rem 1rem;
+  border-radius: 10px; border: 1px solid var(--border);
+  font-size: .88rem; line-height: 1.55;
+}
+.breakdown-item.pass { background: var(--correct-bg); border-color: #bbf7d0; }
+.breakdown-item.fail { background: var(--wrong-bg);   border-color: #fecaca; }
+.breakdown-icon { font-size: 1rem; flex-shrink: 0; margin-top: .1rem; }
+.breakdown-item .bd-q { font-weight: 600; margin-bottom: .2rem; }
+.breakdown-item .bd-ans { font-size: .82rem; color: var(--text-muted); }
+.breakdown-item .bd-ans code {
+  font-family: 'Menlo', 'Monaco', 'Consolas', monospace;
+  font-size: .82em; background: rgba(28,20,16,.07);
+  padding: .1em .3em; border-radius: 3px; color: #6b3e1f;
+}
+.summary-actions {
+  display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap;
+}
+
+/* ── Animations ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.q-card { animation: fadeUp .35s ease both; }
+.summary-card { animation: fadeUp .35s ease both; }
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  body { padding: 1.2rem .8rem 3rem; }
+  .page-header h1 { font-size: 1.4rem; }
+  .q-card, .start-card, .summary-card { padding: 1.4rem 1.1rem; }
+  .submit-row { flex-direction: column; align-items: stretch; }
+  .submit-row .hint { display: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="page-header">
+  <h1>Python MCQ Quiz</h1>
+  <a class="back-link" href="../index.html">← Notes</a>
+</header>
+
+<div id="quiz-root"></div>
+
+<script>
+(function () {
+'use strict';
+
+/* ═══════════════════════════════════════════════════════════
+   QUESTION BANK  (94 questions, Weeks 1–10)
+   ═══════════════════════════════════════════════════════════ */
+const QUESTIONS = [
+
+  /* ── WEEK 1 · Python Foundations (12 questions) ─────────── */
+  {
+    week: 1,
+    q: 'What is the primary purpose of a high-level programming language like Python?',
+    options: [
+      'To write instructions that map directly to CPU machine code',
+      'To provide an abstraction layer so programmers reason about <em>what</em> to compute, not how hardware computes it',
+      'To prevent the programmer from making runtime errors',
+      'To compile programs into binary before execution'
+    ],
+    answer: 'To provide an abstraction layer so programmers reason about <em>what</em> to compute, not how hardware computes it',
+    explanation: 'High-level languages abstract hardware details. One Python statement may generate dozens of machine instructions — the language implementation (interpreter/compiler) handles the translation, freeing the programmer to think about logic rather than registers.'
+  },
+  {
+    week: 1,
+    q: 'Which type of programming error is the hardest to detect?',
+    options: [
+      'Syntax error — caught before the program runs',
+      'Runtime error — program crashes with an exception',
+      'Semantic error — program runs without crashing but produces wrong results',
+      'Import error — a required module is missing'
+    ],
+    answer: 'Semantic error — program runs without crashing but produces wrong results',
+    explanation: 'Semantic errors are silent. The interpreter never complains — the program happily returns incorrect output. Detecting them requires reasoning about the specification and comparing intended vs actual behaviour, which is entirely the programmer\'s responsibility.'
+  },
+  {
+    week: 1,
+    q: 'What does Python\'s <code>id()</code> function return?',
+    options: [
+      'The value stored in a variable',
+      'A unique integer identity of an object (its memory address in CPython)',
+      'The type name of an object as a string',
+      'The reference count of an object'
+    ],
+    answer: 'A unique integer identity of an object (its memory address in CPython)',
+    explanation: '<code>id(x)</code> returns an integer that is unique and constant for the object\'s lifetime. In the CPython implementation this happens to be the memory address, but that is an implementation detail — the guarantee is only uniqueness and constancy during the object\'s lifetime.'
+  },
+  {
+    week: 1,
+    q: 'Python is described as "strongly typed." What does this mean?',
+    options: [
+      'Every variable must be declared with a type before use',
+      'Python never implicitly converts one type to another to satisfy an operation',
+      'Python only allows one type per variable throughout the program',
+      'Type hints are mandatory and enforced at runtime'
+    ],
+    answer: 'Python never implicitly converts one type to another to satisfy an operation',
+    explanation: 'Strong typing means <code>"hello" + 5</code> raises a <code>TypeError</code> rather than silently coercing <code>5</code> to <code>"5"</code> (as JavaScript would). You must explicitly convert: <code>"hello" + str(5)</code>. This surfaces type mismatches as explicit errors.'
+  },
+  {
+    week: 1,
+    q: 'What will <code>"hello" + 5</code> produce in Python?',
+    options: [
+      '<code>"hello5"</code>',
+      '<code>TypeError</code>',
+      '<code>SyntaxError</code>',
+      '<code>"hello 5"</code>'
+    ],
+    answer: '<code>TypeError</code>',
+    explanation: 'Python is strongly typed and refuses to implicitly coerce an <code>int</code> to a <code>str</code>. The correct approach is explicit conversion: <code>"hello" + str(5)</code>.'
+  },
+  {
+    week: 1,
+    q: 'Which statement about Python type hints (PEP 484) is correct?',
+    options: [
+      'Type hints are enforced at runtime and raise errors when violated',
+      'Type hints are optional annotations ignored at runtime, used by static analysers and IDEs',
+      'Type hints replace dynamic typing and make Python statically typed',
+      'Type hints can only be applied to function parameters, not return values'
+    ],
+    answer: 'Type hints are optional annotations ignored at runtime, used by static analysers and IDEs',
+    explanation: 'PEP 484 type hints are purely advisory. Python\'s runtime does not check them — the interpreter runs code regardless. Static tools like mypy or Pyright read hints to surface potential type errors before runtime, bridging dynamic Python with the safety of static typing.'
+  },
+  {
+    week: 1,
+    q: 'What happens when you write <code>b = a</code> where <code>a</code> is a list?',
+    options: [
+      'A new independent copy of the list is created and assigned to <code>b</code>',
+      '<code>b</code> becomes an alias — both <code>a</code> and <code>b</code> refer to the same list object',
+      'Python raises an error because lists cannot be assigned to multiple variables',
+      '<code>b</code> receives a shallow copy of <code>a</code>'
+    ],
+    answer: '<code>b</code> becomes an alias — both <code>a</code> and <code>b</code> refer to the same list object',
+    explanation: 'In Python, assignment copies the reference, not the object. After <code>b = a</code>, <code>a is b</code> is <code>True</code> — they point to the identical list. Mutating through <code>b</code> is visible through <code>a</code> and vice versa.'
+  },
+  {
+    week: 1,
+    q: 'What is the Zen of Python (PEP 20) principle most directly concerned with code readability?',
+    options: [
+      'Errors should never pass silently',
+      'Readability counts',
+      'Simple is better than complex',
+      'There should be one obvious way to do it'
+    ],
+    answer: 'Readability counts',
+    explanation: '"Readability counts" directly states that code is written once but read many times. Python\'s design consistently prioritises clarity — enforced indentation, meaningful keywords, and a clean syntax all stem from this principle.'
+  },
+  {
+    week: 1,
+    q: 'Python uses approximately how much more energy than equivalent C code according to benchmark studies?',
+    options: [
+      '2×',
+      '10×',
+      '76×',
+      '500×'
+    ],
+    answer: '76×',
+    explanation: 'Benchmark studies comparing energy usage across programming languages show Python consuming roughly 76 times more energy than C for equivalent computations. This is a significant disadvantage for large-scale or power-constrained workloads, driving use of Numba, Cython, or C extensions in performance-critical paths.'
+  },
+  {
+    week: 1,
+    q: 'Which of the following is NOT a valid Python variable name?',
+    options: [
+      '<code>_private_var</code>',
+      '<code>CamelCase</code>',
+      '<code>return</code>',
+      '<code>score2</code>'
+    ],
+    answer: '<code>return</code>',
+    explanation: '<code>return</code> is one of Python\'s 35 reserved keywords and cannot be used as an identifier. Reserved keywords have special syntactic roles and the parser will raise a <code>SyntaxError</code> if you try to assign to one.'
+  },
+  {
+    week: 1,
+    q: 'Python is described as "dynamically typed." Which behaviour demonstrates this?',
+    options: [
+      'Variables must be declared with a type annotation before use',
+      'The type of a variable is fixed at the time it is first assigned and cannot change',
+      'A variable can be rebound to an object of a completely different type at any time',
+      'Python checks types at compile time before running the program'
+    ],
+    answer: 'A variable can be rebound to an object of a completely different type at any time',
+    explanation: 'In Python, type lives with the object, not the variable. After <code>x = 42</code>, you can write <code>x = "hello"</code> — <code>x</code> now refers to a string object. There is no type declaration; the interpreter simply updates the binding.'
+  },
+  {
+    week: 1,
+    q: 'What is CPython?',
+    options: [
+      'A Python library for C interoperability',
+      'The reference implementation of Python, written in C',
+      'A just-in-time compiler for Python',
+      'A static type checker for Python'
+    ],
+    answer: 'The reference implementation of Python, written in C',
+    explanation: 'CPython is the standard, canonical Python interpreter maintained by the Python Software Foundation. It defines Python\'s observable semantics. Other implementations (PyPy, Jython, MicroPython) must match CPython\'s behaviour to be considered compliant Python.'
+  },
+
+  /* ── WEEK 2 · Expressions & Anonymous Functions (8 questions) ── */
+  {
+    week: 2,
+    q: 'What distinguishes the walrus operator <code>:=</code> from the assignment operator <code>=</code>?',
+    options: [
+      '<code>:=</code> creates immutable bindings; <code>=</code> creates mutable ones',
+      '<code>:=</code> is an expression (has a value); <code>=</code> is a statement (has no value)',
+      '<code>:=</code> only works inside function bodies; <code>=</code> works anywhere',
+      '<code>:=</code> performs deep copy; <code>=</code> performs shallow copy'
+    ],
+    answer: '<code>:=</code> is an expression (has a value); <code>=</code> is a statement (has no value)',
+    explanation: 'The walrus operator both assigns and evaluates to the assigned value, so it can be embedded inside conditions, comprehensions, and other expressions. Regular <code>=</code> is a statement — it performs an action but cannot appear where a value is expected (e.g., <code>result = (x = 5)</code> is a <code>SyntaxError</code>).'
+  },
+  {
+    week: 2,
+    q: 'What does <code>result = (x := 5)</code> do?',
+    options: [
+      'Raises a SyntaxError',
+      'Assigns 5 to <code>x</code>, then assigns <code>x</code>\'s value (5) to <code>result</code>',
+      'Assigns 5 to <code>result</code> only; <code>x</code> is not changed',
+      'Creates a tuple <code>(x, 5)</code> and assigns it to <code>result</code>'
+    ],
+    answer: 'Assigns 5 to <code>x</code>, then assigns <code>x</code>\'s value (5) to <code>result</code>',
+    explanation: 'The walrus expression <code>x := 5</code> assigns 5 to <code>x</code> and evaluates to 5. The outer assignment then binds <code>result</code> to that value. After this line, both <code>x</code> and <code>result</code> equal 5.'
+  },
+  {
+    week: 2,
+    q: 'What is the result of <code>7 // 2</code> in Python?',
+    options: [
+      '<code>3.5</code>',
+      '<code>3</code>',
+      '<code>4</code>',
+      '<code>3.0</code>'
+    ],
+    answer: '<code>3</code>',
+    explanation: '<code>//</code> is floor (integer) division — it divides and rounds down to the nearest integer. <code>7 // 2 = 3</code> (not 3.5). The result type mirrors the operands: int // int → int. Note: <code>7 / 2 = 3.5</code> (true division).'
+  },
+  {
+    week: 2,
+    q: 'Which of the following is a valid lambda expression that returns the square of its argument?',
+    options: [
+      '<code>lambda x: return x**2</code>',
+      '<code>lambda x: x**2</code>',
+      '<code>lambda(x): x**2</code>',
+      '<code>lambda x => x**2</code>'
+    ],
+    answer: '<code>lambda x: x**2</code>',
+    explanation: 'Lambda syntax is <code>lambda parameters: expression</code>. The expression is implicitly returned — no <code>return</code> keyword is used or allowed. Parentheses around parameters are not required.'
+  },
+  {
+    week: 2,
+    q: 'What does <code>list(map(lambda x: x*2, [1, 2, 3]))</code> return?',
+    options: [
+      '<code>[1, 2, 3]</code>',
+      '<code>[2, 4, 6]</code>',
+      '<code>[1, 4, 9]</code>',
+      '<code>[[2], [4], [6]]</code>'
+    ],
+    answer: '<code>[2, 4, 6]</code>',
+    explanation: '<code>map(func, iterable)</code> applies <code>func</code> to every element. The lambda doubles each value: 1→2, 2→4, 3→6. <code>list()</code> materialises the lazy map iterator into a list.'
+  },
+  {
+    week: 2,
+    q: 'What does <code>list(filter(lambda x: x % 2 == 0, [1,2,3,4,5]))</code> return?',
+    options: [
+      '<code>[1, 3, 5]</code>',
+      '<code>[2, 4]</code>',
+      '<code>[False, True, False, True, False]</code>',
+      '<code>[0, 0, 0, 0, 0]</code>'
+    ],
+    answer: '<code>[2, 4]</code>',
+    explanation: '<code>filter(func, iterable)</code> keeps only the elements for which <code>func</code> returns truthy. The lambda returns <code>True</code> for even numbers, so only 2 and 4 survive.'
+  },
+  {
+    week: 2,
+    q: 'In Python, what does <code>not (True and False)</code> evaluate to?',
+    options: [
+      '<code>False</code>',
+      '<code>True</code>',
+      '<code>None</code>',
+      '<code>0</code>'
+    ],
+    answer: '<code>True</code>',
+    explanation: '<code>True and False</code> evaluates to <code>False</code> (both must be truthy for <code>and</code> to return truthy). <code>not False</code> is <code>True</code>.'
+  },
+  {
+    week: 2,
+    q: 'What does a function factory lambda return?',
+    options: [
+      'A primitive value computed from its arguments',
+      'Another function, specialised with the outer argument captured in its closure',
+      'A list of partially applied values',
+      'A class instance'
+    ],
+    answer: 'Another function, specialised with the outer argument captured in its closure',
+    explanation: 'In <code>multiplier = lambda factor: lambda x: x * factor</code>, calling <code>multiplier(3)</code> returns a new lambda that multiplies its argument by 3. The outer <code>factor</code> is captured in the inner lambda\'s closure. This is the function factory pattern.'
+  },
+
+  /* ── WEEK 3 · Reasoning About Code (8 questions) ────────── */
+  {
+    week: 3,
+    q: 'What are the two steps of every assignment statement in Python?',
+    options: [
+      'Allocate memory, then write the value',
+      'Evaluate the right-hand side to produce a value, then bind the left-hand name to that value',
+      'Check the type, then copy the object',
+      'Create a new variable, then delete the old one'
+    ],
+    answer: 'Evaluate the right-hand side to produce a value, then bind the left-hand name to that value',
+    explanation: 'Python always fully evaluates the RHS first, producing a value. Only then does it update the LHS binding. This is why <code>x, y = y, x</code> correctly swaps — both <code>y</code> and <code>x</code> are read before either is updated.'
+  },
+  {
+    week: 3,
+    q: 'After executing <code>x = 5; x = 10</code>, what happened to the value 5?',
+    options: [
+      'It is still accessible through a hidden backup reference',
+      'It is still stored in <code>x</code>\'s original memory slot',
+      'The binding of <code>x</code> to 5 is gone (destructive assignment) — 5 may be garbage-collected',
+      'It is moved to a history stack'
+    ],
+    answer: 'The binding of <code>x</code> to 5 is gone (destructive assignment) — 5 may be garbage-collected',
+    explanation: 'Assignment is destructive: the old binding is overwritten. Once no variable refers to the integer object 5, Python\'s reference-counting garbage collector may reclaim it. There is no implicit history or undo.'
+  },
+  {
+    week: 3,
+    q: 'What is a "ghost variable" in the context of program reasoning?',
+    options: [
+      'A variable that holds <code>None</code>',
+      'An auxiliary variable used in a specification to capture the initial value before it is overwritten',
+      'A variable that is declared but never assigned',
+      'A variable visible only inside a loop body'
+    ],
+    answer: 'An auxiliary variable used in a specification to capture the initial value before it is overwritten',
+    explanation: 'Ghost variables (sometimes called logical or specification variables) exist only in the assertion/reasoning layer, not in the running code. They let you write post-conditions like "the new value of x equals the old value plus 1" by naming the pre-state.'
+  },
+  {
+    week: 3,
+    q: 'Which assertion is both <em>correct</em> and <em>stronger</em> after executing <code>x = 5</code>?',
+    options: [
+      '<code>assert x >= 0</code>',
+      '<code>assert x > 0</code>',
+      '<code>assert x == 5</code>',
+      '<code>assert isinstance(x, int)</code>'
+    ],
+    answer: '<code>assert x == 5</code>',
+    explanation: 'All four assertions are correct (they all hold). But <code>x == 5</code> is strongest — it captures the full information we know. <code>x >= 0</code> and <code>x > 0</code> are correct but weak (they throw away the fact that x is exactly 5). A strong specification maximises what is provable.'
+  },
+  {
+    week: 3,
+    q: 'When does Python enter the <code>else</code> branch of an if/elif/else chain?',
+    options: [
+      'Always, regardless of previous conditions',
+      'When the <code>if</code> condition is <code>True</code>',
+      'When every prior condition in the chain was <code>False</code>',
+      'When the <code>elif</code> condition is <code>True</code>'
+    ],
+    answer: 'When every prior condition in the chain was <code>False</code>',
+    explanation: 'Python evaluates conditions top-to-bottom and enters the first branch whose condition is <code>True</code>. Reaching <code>else</code> guarantees that the <code>if</code> condition was <code>False</code> and all <code>elif</code> conditions were <code>False</code>. This is the implicit compound pre-condition of the else branch.'
+  },
+  {
+    week: 3,
+    q: 'In a three-way <code>if/elif/else</code> that finds the maximum of a, b, c — when you reach the <code>elif b >= c</code> branch, which of the following is implicitly known?',
+    options: [
+      'b is definitely the largest',
+      'a < b or a < c (the first condition failed), AND b >= c',
+      'c is the largest',
+      'a == b'
+    ],
+    answer: 'a < b or a < c (the first condition failed), AND b >= c',
+    explanation: 'The <code>elif</code> is only reached when the preceding <code>if a >= b and a >= c</code> was <code>False</code> — meaning a is not simultaneously ≥ both b and c. Combined with the <code>elif</code>\'s own condition <code>b >= c</code>, we can prove b is the maximum without an explicit check against a.'
+  },
+  {
+    week: 3,
+    q: 'What is the purpose of encoding a loop invariant as a Python <code>assert</code> statement inside the loop body?',
+    options: [
+      'To make the code run faster by short-circuiting unnecessary iterations',
+      'To verify the invariant holds on every iteration and every input, giving stronger correctness evidence than test cases',
+      'To prevent the loop from running if the invariant is initially false',
+      'To document the code for other developers'
+    ],
+    answer: 'To verify the invariant holds on every iteration and every input, giving stronger correctness evidence than test cases',
+    explanation: 'A finite test suite checks a finite number of inputs. An assertion embedded in the loop checks the invariant for every execution path on every input that reaches it. If no assertion ever fires in testing, it provides much stronger — though not absolute — confidence in correctness.'
+  },
+  {
+    week: 3,
+    q: 'Which swap is correct in Python without a temporary variable?',
+    options: [
+      '<code>a = b; b = a</code>',
+      '<code>a, b = b, a</code>',
+      '<code>swap(a, b)</code>',
+      '<code>a ^= b ^= a ^= b</code>'
+    ],
+    answer: '<code>a, b = b, a</code>',
+    explanation: 'Python\'s tuple unpacking evaluates the entire right-hand side first (producing the current values of b and a as a tuple), then assigns simultaneously to a and b. This correctly swaps without a temporary. The first option is wrong — after <code>a = b</code>, the original value of a is lost before it can be assigned to b.'
+  },
+
+  /* ── WEEK 4 · Loops & Reasoning (10 questions) ───────────── */
+  {
+    week: 4,
+    q: 'What causes an infinite loop in a while loop?',
+    options: [
+      'The loop body contains more than one statement',
+      'The condition variable is never updated inside the body, so the condition never becomes False',
+      'The loop runs more than 1000 times',
+      'The loop uses a floating-point condition'
+    ],
+    answer: 'The condition variable is never updated inside the body, so the condition never becomes False',
+    explanation: 'A while loop exits only when its condition evaluates to <code>False</code>. If the variables referenced in the condition are never modified inside the loop body, the condition remains permanently <code>True</code> and the loop runs forever.'
+  },
+  {
+    week: 4,
+    q: 'What are the three required components of every correct loop?',
+    options: [
+      'Condition, body, increment',
+      'Initialisation (establish invariant), maintenance (preserve invariant each iteration), termination (loop must eventually exit)',
+      'Pre-condition, body, post-condition',
+      'Declaration, execution, return'
+    ],
+    answer: 'Initialisation (establish invariant), maintenance (preserve invariant each iteration), termination (loop must eventually exit)',
+    explanation: 'These three correspond to the three obligations in a loop correctness proof: (1) the invariant holds before the first iteration, (2) if it holds at the start of an iteration and the body executes, it holds again, (3) the condition eventually becomes false so the loop exits.'
+  },
+  {
+    week: 4,
+    q: 'What does <code>range(2, 10, 3)</code> generate?',
+    options: [
+      '<code>2, 3, 4, 5, 6, 7, 8, 9</code>',
+      '<code>2, 5, 8</code>',
+      '<code>2, 5, 8, 11</code>',
+      '<code>3, 6, 9</code>'
+    ],
+    answer: '<code>2, 5, 8</code>',
+    explanation: '<code>range(start, stop, step)</code> generates start, start+step, start+2*step, … while the value is < stop. So: 2, 2+3=5, 5+3=8, 8+3=11 (≥ 10, stop). Result: 2, 5, 8.'
+  },
+  {
+    week: 4,
+    q: 'For <code>findMax</code>, which loop invariant correctly describes what holds at the start of iteration <code>i</code>?',
+    options: [
+      '<code>maximum_so_far == numbers[i]</code>',
+      '<code>maximum_so_far</code> is the maximum of <code>numbers[0..i-1]</code>',
+      '<code>maximum_so_far >= numbers[i]</code>',
+      '<code>i < len(numbers)</code>'
+    ],
+    answer: '<code>maximum_so_far</code> is the maximum of <code>numbers[0..i-1]</code>',
+    explanation: 'At the start of iteration i, we have already processed elements at indices 0 through i−1. The invariant states that <code>maximum_so_far</code> holds the maximum of exactly that prefix. When the loop exits (i == n), the invariant gives us maximum of numbers[0..n-1] — the entire list.'
+  },
+  {
+    week: 4,
+    q: 'Why does <code>isSorted</code> use <code>range(len(numbers) - 1)</code> rather than <code>range(len(numbers))</code>?',
+    options: [
+      'To skip the first element, which is always considered sorted',
+      'Because the last element is never an inversion',
+      'To avoid an out-of-bounds access when reading <code>numbers[i+1]</code>',
+      'For performance — the last element does not need to be checked'
+    ],
+    answer: 'To avoid an out-of-bounds access when reading <code>numbers[i+1]</code>',
+    explanation: 'Inside the loop we compare <code>numbers[i]</code> with <code>numbers[i+1]</code>. If i reached the last valid index (len-1), then i+1 would be out of bounds. Stopping one short guarantees i+1 is always a valid index.'
+  },
+  {
+    week: 4,
+    q: 'When should you prefer a <code>for</code> loop over a <code>while</code> loop?',
+    options: [
+      'When the number of iterations is unknown at the time the loop starts',
+      'When the number of iterations is known upfront or expressible as a range',
+      'When the loop must be able to exit early based on a data condition',
+      'When the loop body contains nested loops'
+    ],
+    answer: 'When the number of iterations is known upfront or expressible as a range',
+    explanation: 'For loops are count-driven: you know (or can express) how many times to iterate before starting. While loops are condition-driven: you keep going until a runtime condition changes. A for loop also guarantees termination since the sequence is finite; a while loop may loop infinitely if not written carefully.'
+  },
+  {
+    week: 4,
+    q: 'What is a loop invariant?',
+    options: [
+      'A variable that is never modified inside the loop',
+      'A property P that holds before the first iteration, after every iteration, and whose combination with the exit condition proves correctness',
+      'The condition that controls whether the loop runs',
+      'The initial value assigned before the loop starts'
+    ],
+    answer: 'A property P that holds before the first iteration, after every iteration, and whose combination with the exit condition proves correctness',
+    explanation: 'A loop invariant is a logical property that is preserved by each execution of the loop body. It describes what has been computed so far. When combined with the negation of the loop condition (the exit condition), it yields the post-condition — the proof that the loop computed the right answer.'
+  },
+  {
+    week: 4,
+    q: 'A for loop iterating over <code>range(n)</code> is guaranteed to terminate. Why?',
+    options: [
+      'Python enforces a maximum iteration count',
+      'The sequence generated by range(n) is finite — once all values are consumed, the loop exits automatically',
+      'Python detects infinite loops and breaks them',
+      'The loop variable is automatically incremented until overflow'
+    ],
+    answer: 'The sequence generated by range(n) is finite — once all values are consumed, the loop exits automatically',
+    explanation: 'A for loop iterates over a sequence. When the sequence is exhausted, the loop ends. <code>range(n)</code> produces exactly n values. Unlike a while loop, there is no possibility of an infinite loop — the termination is structural.'
+  },
+  {
+    week: 4,
+    q: 'What is the output of this code?\n<div class="q-code"><pre><span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="nu">0</span>, <span class="nu">10</span>, <span class="nu">3</span>):\n    <span class="fn">print</span>(i, end=<span class="st">" "</span>)</pre></div>',
+    options: [
+      '<code>0 3 6 9 12</code>',
+      '<code>0 3 6 9</code>',
+      '<code>0 1 2 3 4 5 6 7 8 9</code>',
+      '<code>3 6 9</code>'
+    ],
+    answer: '<code>0 3 6 9</code>',
+    explanation: '<code>range(0, 10, 3)</code> generates 0, 3, 6, 9. The next value would be 12, which is ≥ 10 (the stop), so it is excluded. The stop value is always excluded from range output.'
+  },
+  {
+    week: 4,
+    q: 'After a while loop exits, what can you conclude about its condition?',
+    options: [
+      'The condition is still True',
+      'The condition evaluated to False at the start of the last iteration',
+      'The condition just evaluated to False (causing the exit)',
+      'The condition was never evaluated'
+    ],
+    answer: 'The condition just evaluated to False (causing the exit)',
+    explanation: 'A while loop evaluates its condition before each potential iteration. When the condition is False, the loop body is skipped and execution continues after the loop. The exit point guarantees ¬condition, which combined with the loop invariant gives the post-condition.'
+  },
+
+  /* ── WEEK 5 · Sorting & Lists (10 questions) ─────────────── */
+  {
+    week: 5,
+    q: 'After one complete pass of bubble sort over an array of length n, which element is guaranteed to be in its final position?',
+    options: [
+      'The smallest element (at index 0)',
+      'The largest element (at index n−1)',
+      'The median element',
+      'The first element that was swapped'
+    ],
+    answer: 'The largest element (at index n−1)',
+    explanation: 'During a left-to-right pass, any element larger than its right neighbour bubbles rightward. By the end of the pass, the overall maximum has bubbled all the way to the last position. After k passes, the k largest elements occupy their final positions at the right end.'
+  },
+  {
+    week: 5,
+    q: 'The optimised bubble sort uses a <code>swapped</code> flag. What is the early termination condition?',
+    options: [
+      'The outer loop variable i reaches n/2',
+      'A pass completes with no swaps — the list is already sorted',
+      'The largest element reaches the last position',
+      'The number of swaps in a pass exceeds a threshold'
+    ],
+    answer: 'A pass completes with no swaps — the list is already sorted',
+    explanation: 'If an entire pass finds zero adjacent pairs out of order, every adjacent pair is in order — the list is sorted. The <code>swapped</code> flag detects this: it starts <code>False</code> each pass and is set <code>True</code> only when a swap occurs. If still <code>False</code> after the pass, <code>break</code> exits early.'
+  },
+  {
+    week: 5,
+    q: 'What is the outer loop invariant for bubble sort after <code>i</code> passes?',
+    options: [
+      'The first i elements are in their final sorted positions',
+      'The last i elements are in their final sorted positions',
+      'The array is fully sorted',
+      'No element has moved more than i positions'
+    ],
+    answer: 'The last i elements are in their final sorted positions',
+    explanation: 'After each pass, one more element reaches its final position at the right end. After i passes, the i largest elements occupy indices n−i through n−1 in sorted order. This is the outer invariant; the inner loop invariant for each pass states the running maximum has been moved to the current position j.'
+  },
+  {
+    week: 5,
+    q: 'What does <code>my_list[-1]</code> return?',
+    options: [
+      'A list with one empty element',
+      'The element at index 0',
+      'The last element of the list',
+      'Raises an IndexError'
+    ],
+    answer: 'The last element of the list',
+    explanation: 'Negative indices count from the end: <code>-1</code> is the last element, <code>-2</code> is second-to-last, etc. Python treats <code>-k</code> as <code>len(list) - k</code> internally.'
+  },
+  {
+    week: 5,
+    q: 'Given <code>data = [5, 3, 8, 1, 3, 7]</code>, what does <code>data.count(3)</code> return?',
+    options: [
+      '<code>1</code>',
+      '<code>2</code>',
+      '<code>3</code>',
+      '<code>[1, 4]</code>'
+    ],
+    answer: '<code>2</code>',
+    explanation: '<code>list.count(x)</code> returns the number of times <code>x</code> appears in the list. The value 3 appears at indices 1 and 4, so the count is 2.'
+  },
+  {
+    week: 5,
+    q: 'What does <code>data.pop(2)</code> do to <code>data = [10, 20, 30, 40]</code>?',
+    options: [
+      'Removes the element with value 2',
+      'Removes and returns the element at index 2 (value 30), shortening the list',
+      'Returns the element at index 2 without removing it',
+      'Removes the last element'
+    ],
+    answer: 'Removes and returns the element at index 2 (value 30), shortening the list',
+    explanation: '<code>list.pop(i)</code> removes the element at index i, returns it, and shifts all subsequent elements left. After <code>data.pop(2)</code>, <code>data</code> becomes <code>[10, 20, 40]</code> and the return value is 30.'
+  },
+  {
+    week: 5,
+    q: 'Which list operation creates a NEW list and leaves the original unchanged?',
+    options: [
+      '<code>my_list.append(x)</code>',
+      '<code>my_list.extend([x, y])</code>',
+      '<code>my_list + [x, y]</code>',
+      '<code>my_list.insert(0, x)</code>'
+    ],
+    answer: '<code>my_list + [x, y]</code>',
+    explanation: 'The <code>+</code> concatenation operator creates and returns a new list; the originals are untouched. <code>append</code>, <code>extend</code>, and <code>insert</code> all modify the list <em>in place</em> and return <code>None</code>.'
+  },
+  {
+    week: 5,
+    q: 'What will <code>data.index(3, 2)</code> return for <code>data = [5, 3, 8, 1, 3, 7]</code>?',
+    options: [
+      '<code>1</code>',
+      '<code>2</code>',
+      '<code>4</code>',
+      '<code>ValueError</code>'
+    ],
+    answer: '<code>4</code>',
+    explanation: '<code>list.index(x, start)</code> searches for <code>x</code> starting from index <code>start</code>. The first 3 is at index 1, but that is before the start of 2. Searching from index 2 onward, the first 3 is at index 4.'
+  },
+  {
+    week: 5,
+    q: 'What does <code>my_list[1:4]</code> return for <code>my_list = [10, 20, 30, 40, 50]</code>?',
+    options: [
+      '<code>[10, 20, 30]</code>',
+      '<code>[20, 30, 40]</code>',
+      '<code>[20, 30, 40, 50]</code>',
+      '<code>[10, 20, 30, 40]</code>'
+    ],
+    answer: '<code>[20, 30, 40]</code>',
+    explanation: 'Slicing <code>[start:stop]</code> returns elements at indices start, start+1, …, stop−1. The stop index is excluded. So <code>[1:4]</code> gives indices 1, 2, 3 → values 20, 30, 40.'
+  },
+  {
+    week: 5,
+    q: 'What is the swap idiom in Python for adjacent elements in a list, without a temporary variable?',
+    options: [
+      '<code>arr[j] = arr[j+1]; arr[j+1] = arr[j]</code>',
+      '<code>arr[j], arr[j+1] = arr[j+1], arr[j]</code>',
+      '<code>swap(arr[j], arr[j+1])</code>',
+      '<code>arr[j] ^= arr[j+1]; arr[j+1] ^= arr[j]; arr[j] ^= arr[j+1]</code>'
+    ],
+    answer: '<code>arr[j], arr[j+1] = arr[j+1], arr[j]</code>',
+    explanation: 'Python evaluates the entire right-hand side as a tuple first (reading both current values), then assigns simultaneously. This correctly swaps without any temporary variable. The first option is wrong — after the first assignment, the original value of arr[j] is lost.'
+  },
+
+  /* ── WEEK 6 · Lists II & Functions (10 questions) ────────── */
+  {
+    week: 6,
+    q: 'What is the key difference between <code>list.sort()</code> and <code>sorted()</code>?',
+    options: [
+      '<code>sort()</code> returns a new sorted list; <code>sorted()</code> modifies in place',
+      '<code>sort()</code> modifies the list in place and returns <code>None</code>; <code>sorted()</code> returns a new sorted list and leaves the original unchanged',
+      'Both modify in place, but <code>sorted()</code> is faster',
+      '<code>sorted()</code> only works on strings; <code>sort()</code> works on any list'
+    ],
+    answer: '<code>sort()</code> modifies the list in place and returns <code>None</code>; <code>sorted()</code> returns a new sorted list and leaves the original unchanged',
+    explanation: '<code>list.sort()</code> is a mutating method — it rearranges the list and returns <code>None</code>. A common bug is writing <code>x = my_list.sort()</code> — x will be <code>None</code>. <code>sorted(iterable)</code> always returns a new list and works on any iterable, not just lists.'
+  },
+  {
+    week: 6,
+    q: 'What sorting algorithm does Python 3.11+ use by default?',
+    options: [
+      'Quicksort',
+      'Heapsort',
+      'Timsort',
+      'Powersort'
+    ],
+    answer: 'Powersort',
+    explanation: 'Python 3.11 replaced Timsort with Powersort, an adaptive merge sort with better worst-case guarantees while retaining adaptiveness to existing runs in the data. Both are O(n log n) and stable.'
+  },
+  {
+    week: 6,
+    q: 'Which of the following creates a <em>shallow copy</em> of a list?',
+    options: [
+      '<code>copy2 = original</code>',
+      '<code>copy2 = original[:]</code>',
+      '<code>import copy; copy2 = copy.deepcopy(original)</code>',
+      '<code>copy2 = list(map(lambda x: x, original))</code>'
+    ],
+    answer: '<code>copy2 = original[:]</code>',
+    explanation: 'Slicing <code>[:]</code> creates a new list object containing the same element references as the original — a shallow copy. <code>original</code> alone is an alias (not a copy). <code>deepcopy</code> creates a full independent clone. The map version also creates a shallow copy but is unnecessarily verbose.'
+  },
+  {
+    week: 6,
+    q: 'Given <code>original = [1, [2, 3], 4]; shallow = original.copy(); shallow[1].append(99)</code> — what is <code>original</code>?',
+    options: [
+      '<code>[1, [2, 3], 4]</code> — unchanged because it\'s a copy',
+      '<code>[1, [2, 3, 99], 4]</code> — the nested list is shared',
+      '<code>[1, [2, 3], 4, 99]</code>',
+      'Raises an error'
+    ],
+    answer: '<code>[1, [2, 3, 99], 4]</code> — the nested list is shared',
+    explanation: 'A shallow copy creates a new outer list but its elements are still references to the same objects. The nested list <code>[2, 3]</code> is shared between <code>original</code> and <code>shallow</code>. Appending to it through <code>shallow[1]</code> mutates the single shared list object, which is visible through <code>original[1]</code> as well.'
+  },
+  {
+    week: 6,
+    q: 'What does <code>import copy; deep = copy.deepcopy(original)</code> guarantee?',
+    options: [
+      'The outer list is new but nested objects are still shared',
+      'A fully independent copy — mutating any part of <code>deep</code> cannot affect <code>original</code>',
+      'Only immutable elements are copied; mutable ones are shared',
+      'The copy is sorted'
+    ],
+    answer: 'A fully independent copy — mutating any part of <code>deep</code> cannot affect <code>original</code>',
+    explanation: '<code>deepcopy</code> recursively duplicates every object in the tree. The result is a completely independent clone — there are no shared references between <code>deep</code> and <code>original</code>, however deeply nested the structure is.'
+  },
+  {
+    week: 6,
+    q: 'What are the three pillars of functions as a programming abstraction?',
+    options: [
+      'Input, processing, output',
+      'Reusability, decomposition, abstraction',
+      'Correctness, efficiency, readability',
+      'Declaration, definition, invocation'
+    ],
+    answer: 'Reusability, decomposition, abstraction',
+    explanation: 'Functions provide: (1) Reusability — write once, call many times. (2) Decomposition — break complex problems into smaller solvable sub-problems. (3) Abstraction — callers use the interface (name + docstring), not the implementation. These three together are why functions are the fundamental unit of code organisation.'
+  },
+  {
+    week: 6,
+    q: 'What happens if you pass both positional and keyword arguments and the positional argument comes AFTER a keyword argument?',
+    options: [
+      'Python silently ignores the order',
+      'A <code>SyntaxError</code> is raised — positional arguments must precede keyword arguments',
+      'The positional argument takes priority',
+      'Python uses the positional argument\'s name to match it'
+    ],
+    answer: 'A <code>SyntaxError</code> is raised — positional arguments must precede keyword arguments',
+    explanation: 'Python\'s syntax rule: positional arguments must appear before keyword arguments in a function call. <code>f(name="Alice", "dog")</code> is a <code>SyntaxError</code>. Once you switch to keyword form, all remaining arguments must also be keyword.'
+  },
+  {
+    week: 6,
+    q: 'Which statement about Python\'s <code>sorted()</code> is correct?',
+    options: [
+      'It only works on lists',
+      'It works on any iterable (list, tuple, string, etc.) and always returns a list',
+      'It sorts in descending order by default',
+      'It raises an error if the input contains duplicates'
+    ],
+    answer: 'It works on any iterable (list, tuple, string, etc.) and always returns a list',
+    explanation: '<code>sorted()</code> accepts any iterable and always returns a new list. <code>list.sort()</code> is a method and only works on lists. <code>sorted("hello")</code> returns <code>[\'e\', \'h\', \'l\', \'l\', \'o\']</code> — each character sorted alphabetically.'
+  },
+  {
+    week: 6,
+    q: 'The abstraction pillar of functions means callers should…',
+    options: [
+      'Read the function implementation to understand what it does',
+      'Use the function\'s name and docstring as a black-box interface, without needing to know the implementation',
+      'Always pass all arguments by keyword for clarity',
+      'Avoid functions with more than one return path'
+    ],
+    answer: 'Use the function\'s name and docstring as a black-box interface, without needing to know the implementation',
+    explanation: 'Abstraction means hiding implementation details behind an interface. A well-named function with a clear docstring lets callers use it correctly without reading its body. This separation allows the implementation to change without affecting callers, as long as the interface (input/output contract) is preserved.'
+  },
+  {
+    week: 6,
+    q: 'When should you use <code>copy.deepcopy()</code> instead of a shallow copy?',
+    options: [
+      'Always — deep copy is always safer',
+      'When the list contains only integers',
+      'When the list contains mutable nested objects (inner lists, dicts) and you need a fully independent clone',
+      'When you want to sort the copy'
+    ],
+    answer: 'When the list contains mutable nested objects (inner lists, dicts) and you need a fully independent clone',
+    explanation: 'Shallow copy is sufficient for flat lists of immutables (ints, strings, tuples) — there are no nested mutable objects to worry about. Deep copy is needed when the structure contains mutable containers that you intend to modify independently. Deep copy is slower and uses more memory, so use it only when necessary.'
+  },
+
+  /* ── WEEK 7 · Function Deep Dive (10 questions) ──────────── */
+  {
+    week: 7,
+    q: 'When are default argument values evaluated in Python?',
+    options: [
+      'Each time the function is called',
+      'Once, when the function is defined',
+      'When the function is first called with a missing argument',
+      'At module import time, before any function definitions are processed'
+    ],
+    answer: 'Once, when the function is defined',
+    explanation: 'Python evaluates default values exactly once at function definition time. For immutables (int, str, tuple) this is fine — they cannot be mutated. For mutables (list, dict), the same object is reused on every call that uses the default, leading to the infamous accumulating-default bug.'
+  },
+  {
+    week: 7,
+    q: 'What is wrong with this function definition?\n<div class="q-code"><pre><span class="kw">def</span> <span class="fn">add_item</span>(item, lst=[]):\n    lst.<span class="fn">append</span>(item)\n    <span class="kw">return</span> lst</pre></div>',
+    options: [
+      'Nothing — it is perfectly correct',
+      'The default list <code>[]</code> is shared across all calls that omit <code>lst</code>, so items accumulate between calls',
+      'Lists cannot be used as default arguments',
+      'The function should use <code>*args</code> instead'
+    ],
+    answer: 'The default list <code>[]</code> is shared across all calls that omit <code>lst</code>, so items accumulate between calls',
+    explanation: 'The empty list is created once when the function is defined. Every call that omits <code>lst</code> receives the same list object and appends to it. After <code>add_item(1)</code> → <code>[1]</code> and <code>add_item(2)</code> → <code>[1, 2]</code>. The fix is <code>lst=None</code> with <code>if lst is None: lst = []</code> inside the body.'
+  },
+  {
+    week: 7,
+    q: 'What is the canonical fix for the mutable default argument pitfall?',
+    options: [
+      'Use a tuple as the default instead of a list',
+      'Use <code>None</code> as the default, then create a fresh mutable object inside the function body if the argument is absent',
+      'Declare the variable as global before the function definition',
+      'Use <code>copy.deepcopy</code> on the default inside the function'
+    ],
+    answer: 'Use <code>None</code> as the default, then create a fresh mutable object inside the function body if the argument is absent',
+    explanation: 'The None sentinel pattern: <code>def f(lst=None): if lst is None: lst = []</code>. Since <code>None</code> is immutable and a singleton, using it as the default is safe. A new list is created on each call that omits the argument, preventing accumulation.'
+  },
+  {
+    week: 7,
+    q: 'What does a function return if it has no <code>return</code> statement?',
+    options: [
+      'Raises a <code>ReturnError</code>',
+      'Returns <code>0</code>',
+      'Returns <code>None</code>',
+      'Returns the last evaluated expression'
+    ],
+    answer: 'Returns <code>None</code>',
+    explanation: 'In Python, every function returns a value. If there is no explicit <code>return</code> statement (or a bare <code>return</code> with no value), Python implicitly returns <code>None</code>. This is a common source of bugs when calling a mutating method like <code>result = my_list.sort()</code> — <code>result</code> will be <code>None</code>.'
+  },
+  {
+    week: 7,
+    q: 'How can a Python function return multiple values?',
+    options: [
+      'It cannot — Python functions can only return a single value',
+      'By returning a tuple; the caller unpacks it with tuple assignment',
+      'By using global variables to communicate multiple results',
+      'By returning a list with exactly the right number of elements'
+    ],
+    answer: 'By returning a tuple; the caller unpacks it with tuple assignment',
+    explanation: '<code>return a, b, c</code> is syntactic sugar for <code>return (a, b, c)</code>. The caller can unpack: <code>x, y, z = my_func()</code>. This is a clean, idiomatic pattern for functions that naturally compute several related values (e.g., mean, max, min).'
+  },
+  {
+    week: 7,
+    q: 'Why are default arguments useful for backward compatibility?',
+    options: [
+      'They make functions run faster',
+      'New parameters with defaults can be added without breaking existing callers that don\'t pass them',
+      'They prevent the caller from passing wrong types',
+      'They document the function\'s expected input'
+    ],
+    answer: 'New parameters with defaults can be added without breaking existing callers that don\'t pass them',
+    explanation: 'If you add a new optional parameter with a sensible default, all existing call sites continue to work unchanged. Only callers that want the new behaviour need to pass the new argument. This is the primary mechanism for backward-compatible API evolution in Python.'
+  },
+  {
+    week: 7,
+    q: 'What is an early return (guard clause)?',
+    options: [
+      'A return statement at the beginning of a module',
+      'A return statement that immediately exits the function when an edge case is detected, avoiding deep nesting',
+      'A return that sends a value back to the caller before the loop finishes',
+      'A return that always returns <code>None</code>'
+    ],
+    answer: 'A return statement that immediately exits the function when an edge case is detected, avoiding deep nesting',
+    explanation: 'Guard clauses check for invalid or edge-case conditions at the top of a function and return immediately: <code>if b == 0: return None</code>. This keeps the main logic at the top level of indentation, avoiding a deep if/else nest. Multiple return statements are perfectly valid in Python.'
+  },
+  {
+    week: 7,
+    q: 'What does this function return when called as <code>f()</code>?\n<div class="q-code"><pre><span class="kw">def</span> <span class="fn">f</span>(x=<span class="nu">1</span>):\n    <span class="kw">return</span> x + <span class="nu">1</span></pre></div>',
+    options: [
+      '<code>None</code>',
+      '<code>1</code>',
+      '<code>2</code>',
+      'Raises <code>TypeError</code>'
+    ],
+    answer: '<code>2</code>',
+    explanation: 'When called with no arguments, <code>x</code> takes its default value of 1. The function returns <code>1 + 1 = 2</code>. Immutable defaults like integers are completely safe — each call gets the same value (1), but since integers are immutable there is no accumulation risk.'
+  },
+  {
+    week: 7,
+    q: 'What does <code>return</code> (with no value) do?',
+    options: [
+      'Raises a <code>SyntaxError</code>',
+      'Returns <code>0</code>',
+      'Returns <code>None</code> and exits the function immediately',
+      'Continues to the next statement'
+    ],
+    answer: 'Returns <code>None</code> and exits the function immediately',
+    explanation: 'A bare <code>return</code> is equivalent to <code>return None</code>. It immediately exits the function at that point, returning <code>None</code> to the caller. It is commonly used in void-like functions (those called for side effects) when an early exit is needed.'
+  },
+  {
+    week: 7,
+    q: 'A function has two <code>return</code> statements. How many will execute per call?',
+    options: [
+      'Both — all return statements execute in order',
+      'The last one only',
+      'Exactly one — the first one reached during execution',
+      'It depends on the Python version'
+    ],
+    answer: 'Exactly one — the first one reached during execution',
+    explanation: 'A return statement immediately terminates the function and returns control (and a value) to the caller. Only one return executes per call — the first one whose control-flow path is reached. Multiple returns are useful for guard clauses and different outcome branches.'
+  },
+
+  /* ── WEEK 8 · Dictionaries (8 questions) ─────────────────── */
+  {
+    week: 8,
+    q: 'Which of the following can be used as a dictionary key?',
+    options: [
+      '<code>[1, 2, 3]</code> (list)',
+      '<code>{"a": 1}</code> (dict)',
+      '<code>(1, 2, 3)</code> (tuple of ints)',
+      '<code>[1, [2, 3]]</code> (nested list)'
+    ],
+    answer: '<code>(1, 2, 3)</code> (tuple of ints)',
+    explanation: 'Dictionary keys must be hashable (immutable). Tuples containing only immutable elements are hashable and valid keys. Lists and dicts are mutable and therefore unhashable — using one as a key raises <code>TypeError: unhashable type: \'list\'</code>.'
+  },
+  {
+    week: 8,
+    q: 'What is the difference between <code>d["key"]</code> and <code>d.get("key")</code>?',
+    options: [
+      'No difference — they always return the same value',
+      '<code>d["key"]</code> raises <code>KeyError</code> if key is absent; <code>d.get("key")</code> returns <code>None</code> (or a specified default)',
+      '<code>d.get("key")</code> modifies the dictionary; <code>d["key"]</code> does not',
+      '<code>d["key"]</code> is faster for large dictionaries'
+    ],
+    answer: '<code>d["key"]</code> raises <code>KeyError</code> if key is absent; <code>d.get("key")</code> returns <code>None</code> (or a specified default)',
+    explanation: 'Bracket access crashes on a missing key with <code>KeyError</code>. <code>.get(key)</code> is safe — it returns <code>None</code> if the key is absent (or a custom default: <code>d.get("key", 0)</code>). Use <code>.get()</code> whenever the key might not be present.'
+  },
+  {
+    week: 8,
+    q: 'How do you iterate over both keys and values in a dictionary simultaneously?',
+    options: [
+      '<code>for k in d: v = d[k]</code>',
+      '<code>for k, v in d.items():</code>',
+      '<code>for k, v in d:</code>',
+      '<code>for k, v in d.keys():</code>'
+    ],
+    answer: '<code>for k, v in d.items():</code>',
+    explanation: '<code>d.items()</code> returns a view of (key, value) tuples. Unpacking each tuple into <code>k</code> and <code>v</code> gives simultaneous access to both. The other options either iterate keys only or are syntactically invalid for dicts.'
+  },
+  {
+    week: 8,
+    q: 'What does <code>d.pop("key")</code> do?',
+    options: [
+      'Returns the value without removing the key',
+      'Removes the key-value pair and returns the value',
+      'Removes all key-value pairs from the dictionary',
+      'Raises an error if called on a non-empty dict'
+    ],
+    answer: 'Removes the key-value pair and returns the value',
+    explanation: '<code>dict.pop(key)</code> removes the specified key from the dictionary and returns its associated value. This is the idiomatic way to both remove and capture a value in one operation. If the key is absent, it raises <code>KeyError</code> (unless a default is supplied as a second argument).'
+  },
+  {
+    week: 8,
+    q: 'What does <code>d.update({"age": 31, "city": "Hyd"})</code> do?',
+    options: [
+      'Creates a new dictionary with the merged keys',
+      'Replaces the entire dictionary with the argument',
+      'Adds new keys and updates existing keys in <code>d</code> in place',
+      'Raises an error if any key already exists'
+    ],
+    answer: 'Adds new keys and updates existing keys in <code>d</code> in place',
+    explanation: '<code>dict.update()</code> merges the argument into the dictionary in place. Existing keys get their values overwritten; new keys are inserted. It does not create a new dictionary.'
+  },
+  {
+    week: 8,
+    q: 'When should you prefer a dictionary over a list?',
+    options: [
+      'When you need to store items in sorted order',
+      'When you access elements by numeric position',
+      'When elements have meaningful labels and you access by name/key rather than position',
+      'When memory efficiency is critical'
+    ],
+    answer: 'When elements have meaningful labels and you access by name/key rather than position',
+    explanation: 'Dictionaries are self-documenting: <code>person["age"]</code> is clearer than <code>person[2]</code>. Use a list when order and numeric indexing matter; use a dict when data has natural named attributes or when lookup by a meaningful key (name, ID, code) is the primary access pattern.'
+  },
+  {
+    week: 8,
+    q: 'What is the time complexity of dictionary key lookup in Python on average?',
+    options: [
+      'O(n) — must scan all keys',
+      'O(log n) — keys are stored in a balanced tree',
+      'O(1) — hash table lookup',
+      'O(n²) — depends on number of collisions'
+    ],
+    answer: 'O(1) — hash table lookup',
+    explanation: 'Python dicts are implemented as hash tables. Looking up a key involves computing its hash, finding the bucket, and (usually) a single comparison — O(1) on average. This is why dicts are preferred over lists when looking up by a meaningful identifier.'
+  },
+  {
+    week: 8,
+    q: 'What does iterating <code>for k in d:</code> yield when <code>d</code> is a dictionary?',
+    options: [
+      'The values of the dictionary',
+      'The (key, value) tuples',
+      'The keys of the dictionary',
+      'The indices 0, 1, 2, …'
+    ],
+    answer: 'The keys of the dictionary',
+    explanation: 'Iterating directly over a dictionary (<code>for k in d:</code>) yields its keys — equivalent to <code>for k in d.keys():</code>. Use <code>d.values()</code> for values and <code>d.items()</code> for (key, value) pairs.'
+  },
+
+  /* ── WEEK 9 · Recursion & BSTs (12 questions) ────────────── */
+  {
+    week: 9,
+    q: 'What is the BST ordering property?',
+    options: [
+      'All left children are greater than the node; all right children are smaller',
+      'All values in the left subtree are less than the node\'s value; all in the right subtree are greater',
+      'The tree is complete — all levels are fully filled',
+      'No two nodes have the same value and the tree is balanced'
+    ],
+    answer: 'All values in the left subtree are less than the node\'s value; all in the right subtree are greater',
+    explanation: 'The BST property applies recursively to every node: the entire left subtree has values strictly less than the node, and the entire right subtree has values strictly greater. This ordering enables O(log n) search, insert, and delete on a balanced tree.'
+  },
+  {
+    week: 9,
+    q: 'In the BST insert function, what does the base case (<code>if root is None</code>) do?',
+    options: [
+      'Returns <code>None</code> to indicate failure',
+      'Creates and returns a new leaf node with the given value',
+      'Raises a <code>ValueError</code> if the tree is empty',
+      'Searches for the correct insertion position'
+    ],
+    answer: 'Creates and returns a new leaf node with the given value',
+    explanation: 'When the recursive descent reaches a <code>None</code> position, that is exactly where the new value belongs. The base case creates <code>{"value": val, "left": None, "right": None}</code> and returns it. The caller\'s recursive case then assigns this node to the correct child pointer.'
+  },
+  {
+    week: 9,
+    q: 'Why must <code>bst_insert</code> return <code>root</code> even when it only modifies a subtree?',
+    options: [
+      'For debugging purposes only',
+      'So the parent call can re-assign the child pointer after the recursive call returns',
+      'Because Python passes dicts by value, so the original dict is not modified',
+      'To enable tail-call optimisation'
+    ],
+    answer: 'So the parent call can re-assign the child pointer after the recursive call returns',
+    explanation: 'The recursive call returns the (possibly new) root of the subtree. The parent does <code>root["left"] = bst_insert(root["left"], val)</code>. If the subtree root didn\'t change, this is a no-op. If it was <code>None</code> (base case), it now gets the new node. Returning <code>root</code> is what threads the new node into the tree.'
+  },
+  {
+    week: 9,
+    q: 'What happens to the call stack when <code>bst_insert</code> recurses?',
+    options: [
+      'The current call is reused with updated arguments',
+      'The current call is suspended on the stack and a new stack frame is created for the recursive call',
+      'All previous calls are garbage collected',
+      'Python optimises the recursion into a loop automatically'
+    ],
+    answer: 'The current call is suspended on the stack and a new stack frame is created for the recursive call',
+    explanation: 'Each function call in Python gets its own stack frame holding its local variables and the return address. When a function calls itself, the current frame is pushed onto the call stack and a fresh frame is created. When the deepest call returns, frames are popped in reverse order (LIFO).'
+  },
+  {
+    week: 9,
+    q: 'What problem does inserting values in sorted order into a plain BST cause?',
+    options: [
+      'The tree becomes too wide — all values end up at the same level',
+      'The tree becomes a skewed chain (like a linked list), making height O(n) and destroying O(log n) search',
+      'Duplicate values are silently rejected',
+      'The BST ordering property is violated'
+    ],
+    answer: 'The tree becomes a skewed chain (like a linked list), making height O(n) and destroying O(log n) search',
+    explanation: 'Inserting 1, 2, 3, 4, 5 into a BST always adds each new value to the right child of the current rightmost node. The result is a right-skewed chain of height n. Searching for the last element requires n comparisons — no better than a linear scan.'
+  },
+  {
+    week: 9,
+    q: 'What does the AVL balance factor measure?',
+    options: [
+      'The number of nodes in the left subtree minus the right subtree',
+      'The height of the left subtree minus the height of the right subtree',
+      'The depth of the node minus the height of the tree',
+      'The ratio of left children to right children'
+    ],
+    answer: 'The height of the left subtree minus the height of the right subtree',
+    explanation: 'Balance factor = height(left subtree) − height(right subtree). The AVL invariant requires every node to have a balance factor in {−1, 0, +1}. A factor of +2 means the left subtree is too tall (LL or LR case); −2 means the right is too tall (RR or RL case).'
+  },
+  {
+    week: 9,
+    q: 'What rotation(s) fix the LL imbalance case in an AVL tree?',
+    options: [
+      'A single left rotation on the unbalanced node',
+      'A single right rotation on the unbalanced node',
+      'A left rotation on the left child, then a right rotation on the unbalanced node',
+      'A right rotation on the right child, then a left rotation on the unbalanced node'
+    ],
+    answer: 'A single right rotation on the unbalanced node',
+    explanation: 'The LL case: the unbalanced node is left-heavy (balance factor +2) and its left child is also left-heavy (balance factor ≥ 0). A single right rotation on the unbalanced node restores balance. The LR case (left-heavy, left child right-heavy) requires two rotations: first a left rotation on the left child, then a right rotation on the root.'
+  },
+  {
+    week: 9,
+    q: 'What is the AVL tree invariant?',
+    options: [
+      'The tree is a complete binary tree — all leaves are at the same level',
+      'Every node\'s balance factor is in {−1, 0, +1}',
+      'The height of the tree is always exactly ⌊log₂ n⌋',
+      'No node has more than one child'
+    ],
+    answer: 'Every node\'s balance factor is in {−1, 0, +1}',
+    explanation: 'The AVL invariant guarantees the tree remains height-balanced after every insertion or deletion. A balance factor outside {−1, 0, +1} triggers one or two rotations to restore balance. This invariant ensures O(log n) height and therefore O(log n) search, insert, and delete.'
+  },
+  {
+    week: 9,
+    q: 'Every recursive function requires at least one base case. Why?',
+    options: [
+      'To make the code more readable',
+      'To prevent a stack overflow by providing a stopping condition that does not make a recursive call',
+      'To satisfy Python\'s syntax requirements',
+      'To handle the case where the input is zero'
+    ],
+    answer: 'To prevent a stack overflow by providing a stopping condition that does not make a recursive call',
+    explanation: 'Without a base case, recursion continues indefinitely — each call creates a new stack frame until Python\'s recursion limit is hit (<code>RecursionError: maximum recursion depth exceeded</code>). The base case returns directly without calling the function again, allowing the call stack to unwind.'
+  },
+  {
+    week: 9,
+    q: 'In a BST, to find whether a value exists, which direction do you go if the target is greater than the current node?',
+    options: [
+      'Left subtree',
+      'Right subtree',
+      'Either — check both subtrees',
+      'Go up to the parent'
+    ],
+    answer: 'Right subtree',
+    explanation: 'The BST ordering property guarantees that all values greater than a node live in its right subtree. So if target > node.value, the target can only be in the right subtree — no need to check the left. This binary decision at each level gives O(log n) search on a balanced tree.'
+  },
+  {
+    week: 9,
+    q: 'What does "height-balanced" mean for an AVL tree?',
+    options: [
+      'All paths from root to leaves have the exact same length',
+      'The height of the left and right subtrees at every node differ by at most 1',
+      'The tree has the minimum possible height for n nodes',
+      'Every internal node has exactly two children'
+    ],
+    answer: 'The height of the left and right subtrees at every node differ by at most 1',
+    explanation: 'Height-balanced (AVL) means at every node, the heights of the two subtrees differ by at most 1. This local constraint globally bounds tree height to O(log n), ensuring efficient operations. It does not require every leaf to be at the same level.'
+  },
+  {
+    week: 9,
+    q: 'Which of the following is the correct recursive definition of BST insert?',
+    options: [
+      'If val == root: return; if val < root: add to end of left; else add to end of right',
+      'If root is None: return new node; if val < root.value: root.left = insert(root.left, val); else root.right = insert(root.right, val); return root',
+      'Find the smallest None leaf and replace it with the new value',
+      'Add the new value at the root and push existing values down'
+    ],
+    answer: 'If root is None: return new node; if val < root.value: root.left = insert(root.left, val); else root.right = insert(root.right, val); return root',
+    explanation: 'This is the exact recursive structure: base case creates a leaf, recursive case descends left or right depending on the comparison, and the result is linked back by assigning to the child pointer. Returning root at every level threads the new node into the tree.'
+  },
+
+  /* ── WEEK 10 · Spectral Soil Modeler (6 questions) ──────── */
+  {
+    week: 10,
+    q: 'Why is hyperspectral imaging useful for predicting Soil Organic Carbon (SOC)?',
+    options: [
+      'It directly measures chemical composition via radiation absorption',
+      'Different soil chemicals have unique spectral fingerprints — they absorb and reflect different wavelengths — which ML models learn to map to SOC values',
+      'Hyperspectral cameras emit radiation that chemically reacts with organic carbon',
+      'It replaces the need for any lab measurements entirely'
+    ],
+    answer: 'Different soil chemicals have unique spectral fingerprints — they absorb and reflect different wavelengths — which ML models learn to map to SOC values',
+    explanation: 'Organic matter, minerals, and water absorb light differently at different wavelengths. A pixel\'s spectral signature encodes indirect evidence about its chemical composition. Supervised ML learns the mapping: spectral reflectance vector → SOC concentration, using lab measurements as training targets.'
+  },
+  {
+    week: 10,
+    q: 'In the Spectral Soil Modeler pipeline, what is "feature engineering"?',
+    options: [
+      'Selecting which regression algorithm to use',
+      'Spectral preprocessing steps — atmospheric correction, normalisation, derivative features, spectral indices — that transform raw band values into more useful model inputs',
+      'Splitting data into train and test sets',
+      'Evaluating model performance with R² and RMSE'
+    ],
+    answer: 'Spectral preprocessing steps — atmospheric correction, normalisation, derivative features, spectral indices — that transform raw band values into more useful model inputs',
+    explanation: 'Raw hyperspectral reflectance values are affected by atmospheric interference, sensor noise, and scale. Feature engineering transforms these into representations that better expose the signal relevant to SOC prediction — for example, first/second derivatives amplify subtle absorption features that are otherwise hard to detect.'
+  },
+  {
+    week: 10,
+    q: 'What is "spectral mixing" and why is it a challenge?',
+    options: [
+      'When two spectral bands have identical values, causing redundancy',
+      'When a single pixel covers multiple soil types or land-cover classes, making the spectral signature a blend that doesn\'t represent any single pure material',
+      'When the hyperspectral camera mixes RGB channels with infrared',
+      'When atmospheric conditions reverse the wavelength order'
+    ],
+    answer: 'When a single pixel covers multiple soil types or land-cover classes, making the spectral signature a blend that doesn\'t represent any single pure material',
+    explanation: 'Satellite imagery pixels cover a ground area (e.g., 10×10 m). If that area contains multiple soil types, vegetation, and bare rock, the pixel\'s spectrum is a mixture of all their individual signatures. This makes it harder for a model trained on pure-soil lab measurements to generalise accurately.'
+  },
+  {
+    week: 10,
+    q: 'Why is high dimensionality (200+ spectral bands) a challenge in the Spectral Soil Modeler?',
+    options: [
+      'Pandas cannot handle more than 100 columns',
+      'The curse of dimensionality — too many features relative to samples makes models prone to overfitting; correlated bands also add noise without information',
+      'Numpy arrays are limited to 200 elements',
+      'Python slows down exponentially with more than 100 features'
+    ],
+    answer: 'The curse of dimensionality — too many features relative to samples makes models prone to overfitting; correlated bands also add noise without information',
+    explanation: 'With 200+ features but potentially limited labelled samples (each requiring expensive lab analysis), models can memorise training data rather than learning generalisable patterns. Adjacent spectral bands are also highly correlated — they carry redundant information. Dimensionality reduction (PCA) or band selection is typically needed.'
+  },
+  {
+    week: 10,
+    q: 'What is the purpose of <code>train_test_split</code> in the ML pipeline?',
+    options: [
+      'To sort the data before training',
+      'To separate data into a training set (model learns from it) and a test set (held out to evaluate generalisation on unseen data)',
+      'To normalise feature values to [0, 1]',
+      'To remove duplicate samples'
+    ],
+    answer: 'To separate data into a training set (model learns from it) and a test set (held out to evaluate generalisation on unseen data)',
+    explanation: 'If you evaluate a model on the same data it trained on, you get an overly optimistic estimate of performance. Holding out a test set ensures the evaluation reflects how the model performs on new, unseen examples — the real measure of generalisation.'
+  },
+  {
+    week: 10,
+    q: 'What does feature importance analysis reveal in the Spectral Soil Modeler?',
+    options: [
+      'Which training samples contributed most to model accuracy',
+      'Which wavelength bands are most predictive of SOC — connecting ML findings to domain knowledge about chemical absorption peaks',
+      'How many parameters the model learned',
+      'Whether the model is overfitting'
+    ],
+    answer: 'Which wavelength bands are most predictive of SOC — connecting ML findings to domain knowledge about chemical absorption peaks',
+    explanation: 'Feature importance (from Random Forests or similar) ranks spectral bands by their contribution to predictions. Agronomists can then check whether the important wavelengths align with known absorption peaks of organic matter, bridging the ML result with soil science knowledge and building trust in the model.'
+  }
+
+];
+
+/* ═══════════════════════════════════════════════════════════
+   UTILITY FUNCTIONS
+   ═══════════════════════════════════════════════════════════ */
+
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function pickSession(bank, n) {
+  const shuffled = shuffle(bank);
+  return shuffled.slice(0, Math.min(n, shuffled.length)).map(q => {
+    const opts = shuffle(q.options);
+    return { ...q, options: opts };
+  });
+}
+
+function scoreMsg(n, total) {
+  const pct = n / total;
+  if (pct === 1)   return 'Perfect score! Outstanding work.';
+  if (pct >= 0.8)  return 'Excellent — you have a strong grasp of the material.';
+  if (pct >= 0.6)  return 'Good effort. Review the explanations for the ones you missed.';
+  return 'Keep studying — re-read the relevant sections and try again.';
+}
+
+const LABELS = ['A', 'B', 'C', 'D'];
+
+/* ═══════════════════════════════════════════════════════════
+   STATE
+   ═══════════════════════════════════════════════════════════ */
+let session = [];
+let current = 0;
+let answers = [];   // { chosen, correct }[]
+
+const root = document.getElementById('quiz-root');
+
+/* ═══════════════════════════════════════════════════════════
+   RENDERERS
+   ═══════════════════════════════════════════════════════════ */
+
+function renderStart() {
+  const weekSet = [...new Set(QUESTIONS.map(q => q.week))].sort((a,b)=>a-b);
+  root.innerHTML = `
+    <div class="start-card">
+      <div class="quiz-icon">📝</div>
+      <h2>Python Course MCQ Quiz</h2>
+      <p class="desc">
+        ${QUESTIONS.length} questions across all 10 weeks.<br>
+        Each session picks <strong>5 random questions</strong>.<br>
+        You'll see the explanation after every answer.
+      </p>
+      <div class="week-pills">
+        ${weekSet.map(w => `<span class="week-pill">Week ${w}</span>`).join('')}
+      </div>
+      <button class="btn btn-primary" id="start-btn">Start Quiz</button>
+    </div>`;
+  document.getElementById('start-btn').addEventListener('click', startQuiz);
+}
+
+function renderQuestion() {
+  const q = session[current];
+  const dots = session.map((_, i) => {
+    let cls = 'q-dot';
+    if (i < current) cls += answers[i].chosen === answers[i].correct ? ' correct' : ' wrong';
+    else if (i === current) cls += ' filled';
+    return `<div class="${cls}"></div>`;
+  }).join('');
+
+  root.innerHTML = `
+    <div class="q-card">
+      <div class="q-progress">
+        <span class="q-progress-label">Question ${current + 1} of ${session.length}</span>
+        <div class="q-dots">${dots}</div>
+      </div>
+      <span class="q-week-badge">Week ${q.week}</span>
+      <p class="q-text">${q.q}</p>
+      <div class="options" id="options">
+        ${q.options.map((opt, i) => `
+          <button class="option-btn" data-idx="${i}">
+            <span class="opt-label">${LABELS[i]}</span>
+            <span>${opt}</span>
+          </button>`).join('')}
+      </div>
+      <div class="submit-row">
+        <span class="hint">Select an answer, then submit</span>
+        <button class="btn btn-primary" id="submit-btn" disabled>Submit Answer</button>
+      </div>
+    </div>`;
+
+  let selected = null;
+
+  document.querySelectorAll('.option-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      selected = parseInt(btn.dataset.idx);
+      document.getElementById('submit-btn').disabled = false;
+    });
+  });
+
+  document.getElementById('submit-btn').addEventListener('click', () => {
+    if (selected === null) return;
+    submitAnswer(selected);
+  });
+}
+
+function submitAnswer(chosenIdx) {
+  const q = session[current];
+  const correct = q.answer;
+  const chosen  = q.options[chosenIdx];
+  answers.push({ chosen, correct });
+
+  const isCorrect = chosen === correct;
+  const correctIdx = q.options.indexOf(correct);
+
+  document.querySelectorAll('.option-btn').forEach((btn, i) => {
+    btn.disabled = true;
+    btn.classList.add('revealed');
+    btn.classList.remove('selected');
+    if (i === correctIdx) btn.classList.add('correct-ans');
+    else if (i === chosenIdx && !isCorrect) btn.classList.add('wrong-ans');
+  });
+
+  const badge = isCorrect
+    ? '<span class="result-badge correct">✓ Correct</span>'
+    : '<span class="result-badge wrong">✗ Incorrect</span>';
+
+  const expDiv = document.createElement('div');
+  expDiv.innerHTML = `
+    ${badge}
+    <div class="explanation">
+      <div class="exp-label">Explanation</div>
+      ${q.explanation}
+    </div>
+    <div style="text-align:right;margin-top:1rem">
+      <button class="btn btn-primary" id="next-btn">
+        ${current < session.length - 1 ? 'Next Question →' : 'See Results'}
+      </button>
+    </div>`;
+
+  document.querySelector('.q-card').appendChild(expDiv);
+  document.querySelector('.submit-row').style.display = 'none';
+
+  document.getElementById('next-btn').addEventListener('click', () => {
+    current++;
+    if (current < session.length) renderQuestion();
+    else renderSummary();
+  });
+}
+
+function renderSummary() {
+  const total   = session.length;
+  const correct = answers.filter(a => a.chosen === a.correct).length;
+
+  const breakdown = session.map((q, i) => {
+    const pass = answers[i].chosen === answers[i].correct;
+    return `
+      <div class="breakdown-item ${pass ? 'pass' : 'fail'}">
+        <div class="breakdown-icon">${pass ? '✓' : '✗'}</div>
+        <div>
+          <div class="bd-q">Q${i+1} (Week ${q.week}) — ${pass ? 'Correct' : 'Incorrect'}</div>
+          <div class="bd-ans">${q.q.replace(/<[^>]+>/g,'').substring(0,80)}…</div>
+          ${!pass ? `<div class="bd-ans" style="margin-top:.2rem">Correct: <code>${answers[i].correct.replace(/<[^>]+>/g,'')}</code></div>` : ''}
+        </div>
+      </div>`;
+  }).join('');
+
+  root.innerHTML = `
+    <div class="summary-card">
+      <div class="summary-score">
+        <div class="score-ring">${correct}/${total}</div>
+        <h2>${scoreMsg(correct, total)}</h2>
+        <p class="score-msg">${correct} correct out of ${total} questions</p>
+      </div>
+      <div class="summary-breakdown">${breakdown}</div>
+      <div class="summary-actions">
+        <button class="btn btn-primary" id="retake-btn">Retake Quiz</button>
+        <a class="btn btn-secondary" href="../index.html">← Back to Notes</a>
+      </div>
+    </div>`;
+
+  document.getElementById('retake-btn').addEventListener('click', startQuiz);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ENTRY POINT
+   ═══════════════════════════════════════════════════════════ */
+
+function startQuiz() {
+  session = pickSession(QUESTIONS, 5);
+  current = 0;
+  answers = [];
+  renderQuestion();
+}
+
+renderStart();
+
+})();
+</script>
+
+</body>
+</html>
