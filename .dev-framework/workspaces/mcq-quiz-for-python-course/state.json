@@ -3,14 +3,14 @@
   "type": "feature",
   "workflowType": "full",
   "created": "2026-06-22T00:00:00Z",
-  "currentPhase": "developer",
+  "currentPhase": "reviewer",
   "status": "active",
   "branch": "feature/mcq-quiz-for-python-course",
   "roles": {
     "po": { "status": "complete", "completed": "2026-06-22T00:00:00Z" },
     "architect": { "status": "complete", "completed": "2026-06-22T00:00:00Z" },
     "developer": { "status": "complete", "completed": "2026-06-22T00:00:00Z" },
-    "reviewer": { "status": "pending", "completed": null },
+    "reviewer": { "status": "in-progress", "completed": null },
     "tester": { "status": "pending", "completed": null },
     "executor": { "status": "pending", "completed": null },
     "po-approval": { "status": "pending", "completed": null }
@@ -19,7 +19,7 @@
     "po": "artifacts/mcq-quiz-for-python-course.po.md",
     "architect": "artifacts/mcq-quiz-for-python-course.architect.md",
     "developer": "artifacts/mcq-quiz-for-python-course.developer.md",
-    "reviewer": null,
+    "reviewer": "artifacts/mcq-quiz-for-python-course.reviewer.md",
     "tester": null,
     "executor": null,
     "po-approval": null
@@ -28,6 +28,8 @@
     "po_complete": "2026-06-22T00:00:00Z",
     "architect_start": "2026-06-22T00:00:00Z",
     "architect_complete": "2026-06-22T00:00:00Z",
-    "developer_start": "2026-06-22T00:00:00Z"
+    "developer_start": "2026-06-22T00:00:00Z",
+    "developer_complete": "2026-06-22T00:00:00Z",
+    "reviewer_start": "2026-06-22T00:00:00Z"
   }
 }
