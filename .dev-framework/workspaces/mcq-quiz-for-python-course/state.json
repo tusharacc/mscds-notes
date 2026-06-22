@@ -7,7 +7,7 @@
   "status": "active",
   "branch": "feature/mcq-quiz-for-python-course",
   "roles": {
-    "po": { "status": "in-progress", "completed": null },
+    "po": { "status": "completed", "completed": "2026-06-22" },
     "architect": { "status": "pending", "completed": null },
     "developer": { "status": "pending", "completed": null },
     "reviewer": { "status": "pending", "completed": null },
