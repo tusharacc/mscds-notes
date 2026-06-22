@@ -9,7 +9,7 @@
   "roles": {
     "po": { "status": "complete", "completed": "2026-06-22T00:00:00Z" },
     "architect": { "status": "complete", "completed": "2026-06-22T00:00:00Z" },
-    "developer": { "status": "in-progress", "completed": null },
+    "developer": { "status": "complete", "completed": "2026-06-22T00:00:00Z" },
     "reviewer": { "status": "pending", "completed": null },
     "tester": { "status": "pending", "completed": null },
     "executor": { "status": "pending", "completed": null },
