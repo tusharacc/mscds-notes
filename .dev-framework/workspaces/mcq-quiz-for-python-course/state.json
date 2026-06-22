@@ -3,12 +3,12 @@
   "type": "feature",
   "workflowType": "full",
   "created": "2026-06-22T00:00:00Z",
-  "currentPhase": "po",
+  "currentPhase": "architect",
   "status": "active",
   "branch": "feature/mcq-quiz-for-python-course",
   "roles": {
-    "po": { "status": "completed", "completed": "2026-06-22" },
-    "architect": { "status": "pending", "completed": null },
+    "po": { "status": "complete", "completed": "2026-06-22T00:00:00Z" },
+    "architect": { "status": "in-progress", "completed": null },
     "developer": { "status": "pending", "completed": null },
     "reviewer": { "status": "pending", "completed": null },
     "tester": { "status": "pending", "completed": null },
@@ -17,12 +17,15 @@
   },
   "artifacts": {
     "po": "artifacts/mcq-quiz-for-python-course.po.md",
-    "architect": null,
+    "architect": "artifacts/mcq-quiz-for-python-course.architect.md",
     "developer": null,
     "reviewer": null,
     "tester": null,
     "executor": null,
     "po-approval": null
   },
-  "timelines": {}
+  "timelines": {
+    "po_complete": "2026-06-22T00:00:00Z",
+    "architect_start": "2026-06-22T00:00:00Z"
+  }
 }
