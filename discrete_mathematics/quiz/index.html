@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Discrete Mathematics — MCQ Practice Quiz. Weeks 1–3: Sets, Relations, Functions, Counting, Permutations, Graphs, Trees, Algorithms, Probability. MScDS IIIT Hyderabad.">
+<title>Discrete Math Quiz — MCQ Practice</title>
+
+<!-- MathJax 3 -->
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    packages: {'[+]': ['ams']}
+  },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.min.js" crossorigin="anonymous"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,600&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --blue-border: #2563eb;   --blue-bg: #eef4ff;   --blue-badge: #1d4ed8;
+  --amber-border: #d97706;  --amber-bg: #fefce8;  --amber-badge: #92400e;
+  --green-border: #16a34a;  --green-bg: #f0fdf4;  --green-badge: #14532d;
+  --violet-border: #7c3aed; --violet-bg: #f5f3ff; --violet-badge: #5b21b6;
+  --grey-border: #78716c;   --grey-bg: #faf9f7;   --grey-badge: #44403c;
+  --page-bg: #faf6ef;
+  --surface: #fffdf9;
+  --border: #e5d9c8;
+  --text: #1c1410;
+  --text-muted: #6b5f54;
+  --gold: #92400e;
+  --radius: 10px;
+  --shadow-sm: 0 1px 3px rgba(28,20,16,.06), 0 1px 2px rgba(28,20,16,.04);
+  --shadow-md: 0 4px 14px rgba(28,20,16,.10), 0 2px 4px rgba(28,20,16,.06);
+  --correct: #16a34a;
+  --correct-bg: #f0fdf4;
+  --wrong: #dc2626;
+  --wrong-bg: #fef2f2;
+}
+
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: 'Lora', Georgia, serif;
+  background: var(--page-bg);
+  color: var(--text);
+  line-height: 1.8;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1.2rem 4rem;
+}
+
+.page-header {
+  width: 100%; max-width: 700px;
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+.page-header::after {
+  content: '';
+  position: absolute; bottom: -3px; left: 0;
+  width: 3rem; height: 3px;
+  background: var(--gold); border-radius: 2px;
+}
+.page-header h1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.9rem; font-weight: 800; line-height: 1.2;
+}
+.page-header .back-link {
+  font-size: .8rem; color: var(--text-muted); text-decoration: none;
+  display: flex; align-items: center; gap: .3rem;
+  transition: color .2s;
+  white-space: nowrap;
+}
+.page-header .back-link:hover { color: var(--gold); }
+
+#quiz-root { width: 100%; max-width: 700px; }
+
+.start-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  box-shadow: var(--shadow-md);
+}
+.start-card .quiz-icon { font-size: 2.8rem; margin-bottom: 1rem; }
+.start-card h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.6rem; font-weight: 700; margin-bottom: .5rem;
+}
+.start-card .desc {
+  color: var(--text-muted); font-size: .9rem; margin-bottom: 1.8rem; line-height: 1.6;
+}
+.week-pills {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: .4rem;
+  margin-bottom: 1.8rem;
+}
+.week-pill {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: .65rem; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase;
+  background: var(--amber-bg); color: var(--amber-badge);
+  border: 1px solid #fde68a; border-radius: 999px;
+  padding: .2rem .7rem;
+}
+
+.btn {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700; font-size: .88rem; letter-spacing: .04em;
+  border: none; border-radius: 8px; cursor: pointer;
+  padding: .75rem 2rem;
+  transition: transform .15s, box-shadow .15s, background .15s;
+}
+.btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.btn-primary {
+  background: var(--gold); color: #fff;
+  box-shadow: 0 2px 8px rgba(146,64,14,.3);
+}
+.btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(146,64,14,.4); }
+.btn-primary:active { transform: translateY(0); }
+.btn-secondary {
+  background: var(--surface); color: var(--text);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+.btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+.q-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+}
+
+.q-progress {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 1.4rem;
+}
+.q-progress-label {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: .7rem; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--text-muted);
+}
+.q-dots { display: flex; gap: .4rem; flex-wrap: wrap; max-width: 340px; }
+.q-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--border); transition: background .25s;
+}
+.q-dot.filled { background: var(--gold); }
+.q-dot.correct { background: var(--correct); }
+.q-dot.wrong { background: var(--wrong); }
+
+.q-week-badge {
+  display: inline-block;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: .62rem; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase;
+  background: var(--violet-bg); color: var(--violet-badge);
+  border: 1px solid #ddd6fe; border-radius: 999px;
+  padding: .18rem .65rem; margin-bottom: .9rem;
+}
+
+.q-text {
+  font-size: 1.05rem; font-weight: 500; line-height: 1.65;
+  margin-bottom: 1.4rem;
+}
+
+.options { display: flex; flex-direction: column; gap: .65rem; margin-bottom: 1.4rem; }
+.option-btn {
+  display: flex; align-items: flex-start; gap: .75rem;
+  width: 100%; text-align: left;
+  background: var(--page-bg); border: 1.5px solid var(--border);
+  border-radius: 10px; padding: .75rem 1rem;
+  font-family: 'Lora', Georgia, serif; font-size: .9rem;
+  color: var(--text); cursor: pointer;
+  transition: border-color .18s, background .18s, transform .12s;
+}
+.option-btn:hover:not(:disabled) {
+  border-color: var(--gold); background: var(--amber-bg);
+  transform: translateX(3px);
+}
+.option-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.option-btn.selected:not(.revealed) {
+  border-color: var(--gold); background: var(--amber-bg);
+}
+.option-btn .opt-label {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700; font-size: .78rem; letter-spacing: .06em;
+  min-width: 1.4rem; color: var(--text-muted);
+  flex-shrink: 0; margin-top: .08rem;
+}
+
+.option-btn.correct-ans {
+  border-color: var(--correct); background: var(--correct-bg);
+  color: #14532d;
+}
+.option-btn.correct-ans .opt-label { color: var(--correct); }
+.option-btn.wrong-ans {
+  border-color: var(--wrong); background: var(--wrong-bg);
+  color: #7f1d1d;
+}
+.option-btn.wrong-ans .opt-label { color: var(--wrong); }
+.option-btn:disabled { cursor: default; transform: none; }
+
+.submit-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+}
+.submit-row .hint {
+  font-size: .78rem; color: var(--text-muted); font-style: italic;
+}
+
+.explanation {
+  margin-top: 1.2rem;
+  background: var(--amber-bg);
+  border-left: 4px solid var(--amber-border);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: .9rem 1.1rem;
+  font-size: .9rem; line-height: 1.7;
+  animation: fadeUp .3s ease both;
+}
+.explanation .exp-label {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: .62rem; font-weight: 700; letter-spacing: .13em;
+  text-transform: uppercase; color: var(--amber-badge);
+  margin-bottom: .35rem;
+}
+
+.result-badge {
+  display: inline-flex; align-items: center; gap: .4rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: .72rem; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; padding: .3rem .8rem;
+  border-radius: 999px; margin-bottom: .8rem;
+}
+.result-badge.correct { background: var(--correct-bg); color: var(--correct); border: 1px solid #bbf7d0; }
+.result-badge.wrong   { background: var(--wrong-bg);   color: var(--wrong);   border: 1px solid #fecaca; }
+
+.summary-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+}
+.summary-score {
+  text-align: center;
+  padding: 1.5rem 0 1.8rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 1.5rem;
+}
+.score-ring {
+  width: 90px; height: 90px; border-radius: 50%;
+  border: 5px solid var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto .9rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.5rem; font-weight: 800; color: var(--gold);
+}
+.summary-score h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.3rem; font-weight: 700; margin-bottom: .3rem;
+}
+.summary-score .score-msg {
+  font-size: .88rem; color: var(--text-muted); font-style: italic;
+}
+.summary-breakdown { display: flex; flex-direction: column; gap: .7rem; margin-bottom: 1.8rem; }
+.breakdown-item {
+  display: flex; align-items: flex-start; gap: .75rem;
+  padding: .75rem 1rem;
+  border-radius: 10px; border: 1px solid var(--border);
+  font-size: .88rem; line-height: 1.55;
+}
+.breakdown-item.pass { background: var(--correct-bg); border-color: #bbf7d0; }
+.breakdown-item.fail { background: var(--wrong-bg);   border-color: #fecaca; }
+.breakdown-icon { font-size: 1rem; flex-shrink: 0; margin-top: .1rem; }
+.breakdown-item .bd-q { font-weight: 600; margin-bottom: .2rem; }
+.breakdown-item .bd-ans { font-size: .82rem; color: var(--text-muted); }
+.summary-actions {
+  display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.q-card { animation: fadeUp .35s ease both; }
+.summary-card { animation: fadeUp .35s ease both; }
+
+@media (max-width: 600px) {
+  body { padding: 1.2rem .8rem 3rem; }
+  .page-header h1 { font-size: 1.4rem; }
+  .q-card, .start-card, .summary-card { padding: 1.4rem 1.1rem; }
+  .submit-row { flex-direction: column; align-items: stretch; }
+  .submit-row .hint { display: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="page-header">
+  <h1>Discrete Math Quiz</h1>
+  <a class="back-link" href="../index.html">← Notes</a>
+</header>
+
+<div id="quiz-root"></div>
+
+<script>
+(function () {
+'use strict';
+
+/* ═══════════════════════════════════════════════════════════
+   QUESTION BANK  (30 questions, Weeks 1–3)
+   ═══════════════════════════════════════════════════════════ */
+const QUESTIONS = [
+
+  /* ── WEEK 1 · Sets, Relations, Functions & Counting ──────── */
+  {
+    week: 1,
+    q: 'Which of the following is true about the set \\(\\{1, 2, 4\\}\\) and the set \\(\\{4, 1, 2\\}\\)?',
+    options: [
+      'They are different sets because the element order differs',
+      'They are the same set — sets are unordered collections',
+      'They are different sets because the cardinality is different',
+      'They are sequences, not sets'
+    ],
+    answer: 'They are the same set — sets are unordered collections',
+    explanation: 'A set is an unordered collection. The notation \\(\\{1,2,4\\}\\) and \\(\\{4,1,2\\}\\) denote the same mathematical object. Unlike sequences (where order matters), sets carry no ordering information.'
+  },
+  {
+    week: 1,
+    q: 'If \\(A = \\{1, 2, 4\\}\\), what is \\(|\\mathcal{P}(A)|\\), the cardinality of the power set of \\(A\\)?',
+    options: [
+      '3',
+      '6',
+      '8',
+      '9'
+    ],
+    answer: '8',
+    explanation: 'The power set \\(\\mathcal{P}(A)\\) is the set of all subsets of \\(A\\). For a set of size \\(n\\), \\(|\\mathcal{P}(A)| = 2^n\\). Here \\(|A| = 3\\), so \\(|\\mathcal{P}(A)| = 2^3 = 8\\). The subsets are: \\(\\emptyset, \\{1\\}, \\{2\\}, \\{4\\}, \\{1,2\\}, \\{1,4\\}, \\{2,4\\}, \\{1,2,4\\}\\).'
+  },
+  {
+    week: 1,
+    q: 'The empty set \\(\\emptyset\\) is a subset of which sets?',
+    options: [
+      'Only of itself',
+      'Only of infinite sets',
+      'Every set, by definition',
+      'Only of sets that contain at least one element'
+    ],
+    answer: 'Every set, by definition',
+    explanation: 'By definition, \\(\\emptyset \\subseteq C\\) for every set \\(C\\). This holds vacuously: there is no element in \\(\\emptyset\\) that fails to belong to \\(C\\), so the subset condition is trivially satisfied.'
+  },
+  {
+    week: 1,
+    q: 'How do sequences differ from sets?',
+    options: [
+      'Sequences are always finite; sets can be infinite',
+      'In sequences, order matters and elements can repeat; in sets, order is irrelevant and elements are distinct',
+      'Sequences use curly brackets; sets use round brackets',
+      'Sequences can only contain numbers; sets can contain anything'
+    ],
+    answer: 'In sequences, order matters and elements can repeat; in sets, order is irrelevant and elements are distinct',
+    explanation: 'A sequence \\((a, b, c)\\) differs from \\((b, a, c)\\). Also, \\((a, a, b)\\) is a valid length-3 sequence. By contrast, the sets \\(\\{a,b,c\\}\\) and \\(\\{b,a,c\\}\\) are identical, and \\(\\{a, a, b\\} = \\{a, b\\}\\) has cardinality 2.'
+  },
+  {
+    week: 1,
+    q: 'If \\(|A| = 3\\) and \\(|B| = 4\\), what is \\(|A \\times B|\\)?',
+    options: [
+      '7',
+      '12',
+      '81',
+      '64'
+    ],
+    answer: '12',
+    explanation: 'The Cartesian product \\(A \\times B\\) is the set of all ordered pairs \\((a, b)\\) with \\(a \\in A\\) and \\(b \\in B\\). By the multiplicative rule, \\(|A \\times B| = |A| \\cdot |B| = 3 \\times 4 = 12\\).'
+  },
+  {
+    week: 1,
+    q: 'For a function \\(f : A \\to B\\), what is the <em>range</em> of \\(f\\)?',
+    options: [
+      'The set \\(A\\) (the domain)',
+      'The set \\(B\\) (the codomain)',
+      'The subset of \\(B\\) actually mapped to by some element of \\(A\\)',
+      'The set of all ordered pairs \\((a, f(a))\\)'
+    ],
+    answer: 'The subset of \\(B\\) actually mapped to by some element of \\(A\\)',
+    explanation: 'The codomain \\(B\\) is the declared output set. The range (or image) is \\(\\{f(a) : a \\in A\\}\\), which is a subset of \\(B\\). For example, \\(f : \\mathbb{N} \\to \\mathbb{N}\\) defined by \\(f(x) = 3x\\) has codomain \\(\\mathbb{N}\\) but range \\(\\{3, 6, 9, \\ldots\\}\\).'
+  },
+  {
+    week: 1,
+    q: 'A function \\(f : A \\to B\\) is bijective if and only if it is…',
+    options: [
+      'Injective (one-to-one) but not necessarily surjective',
+      'Surjective (onto) but not necessarily injective',
+      'Both injective and surjective',
+      'Neither injective nor surjective but defined for all inputs'
+    ],
+    answer: 'Both injective and surjective',
+    explanation: 'A bijection is simultaneously injective (each element of \\(B\\) is mapped to by at most one element of \\(A\\)) and surjective (every element of \\(B\\) is mapped to by at least one element of \\(A\\)). Bijections guarantee \\(|A| = |B|\\) for finite sets.'
+  },
+  {
+    week: 1,
+    q: 'A restaurant offers 3 soups, 3 main courses, and 2 desserts. How many distinct package meals (one of each) are possible?',
+    options: [
+      '8',
+      '18',
+      '27',
+      '36'
+    ],
+    answer: '18',
+    explanation: 'By the multiplicative rule, the number of ordered selections is \\(|\\text{soups}| \\times |\\text{mains}| \\times |\\text{desserts}| = 3 \\times 3 \\times 2 = 18\\). Each meal is an element of \\(\\text{Soups} \\times \\text{Mains} \\times \\text{Desserts}\\).'
+  },
+  {
+    week: 1,
+    q: 'How many binary strings of length \\(n\\) exist?',
+    options: [
+      '\\(n\\)',
+      '\\(2n\\)',
+      '\\(n^2\\)',
+      '\\(2^n\\)'
+    ],
+    answer: '\\(2^n\\)',
+    explanation: 'Each position in the string independently takes one of 2 values (0 or 1). By the multiplicative rule applied \\(n\\) times: \\(\\underbrace{2 \\times 2 \\times \\cdots \\times 2}_{n} = 2^n\\).'
+  },
+  {
+    week: 1,
+    q: 'Is the natural-numbers subset relation \\(\\mathbb{N} \\subseteq \\mathbb{Z}\\) true?',
+    options: [
+      'No — \\(\\mathbb{Z}\\) contains negative integers, so the sets are incomparable',
+      'Yes — every natural number is also an integer',
+      'No — because \\(\\mathbb{N}\\) and \\(\\mathbb{Z}\\) have different cardinalities',
+      'Yes — and additionally \\(\\mathbb{Z} \\subseteq \\mathbb{N}\\)'
+    ],
+    answer: 'Yes — every natural number is also an integer',
+    explanation: '\\(A \\subseteq B\\) means every element of \\(A\\) also belongs to \\(B\\). Every natural number \\(1, 2, 3, \\ldots\\) is an integer, so \\(\\mathbb{N} \\subseteq \\mathbb{Z}\\). The converse fails because \\(-1 \\in \\mathbb{Z}\\) but \\(-1 \\notin \\mathbb{N}\\).'
+  },
+
+  /* ── WEEK 2 · Permutations, Binomial Coefficients & Graphs ── */
+  {
+    week: 2,
+    q: 'A permutation on the set \\(\\{1, 2, \\ldots, n\\}\\) is best described as…',
+    options: [
+      'Any function from \\(\\{1,\\ldots,n\\}\\) to \\(\\{1,\\ldots,n\\}\\)',
+      'A bijective function from \\(\\{1,\\ldots,n\\}\\) to \\(\\{1,\\ldots,n\\}\\)',
+      'An injective function whose codomain may differ from its domain',
+      'A surjective function from \\(\\{1,\\ldots,n\\}\\) to any set of size \\(n\\)'
+    ],
+    answer: 'A bijective function from \\(\\{1,\\ldots,n\\}\\) to \\(\\{1,\\ldots,n\\}\\)',
+    explanation: 'A permutation is precisely a bijection of a set to itself. For \\(n = 4\\), the number of permutations is \\(4 \\times 3 \\times 2 \\times 1 = 4! = 24\\): the first element has 4 choices, the second 3 (the chosen element excluded), and so on.'
+  },
+  {
+    week: 2,
+    q: 'What does \\(n!\\) (\\(n\\) factorial) count?',
+    options: [
+      'The number of subsets of an \\(n\\)-element set',
+      'The number of ways to arrange \\(n\\) distinct objects in a sequence',
+      'The number of ways to choose \\(k\\) objects from \\(n\\)',
+      'The number of binary strings of length \\(n\\)'
+    ],
+    answer: 'The number of ways to arrange \\(n\\) distinct objects in a sequence',
+    explanation: '\\(n! = n \\times (n-1) \\times \\cdots \\times 1\\). The first position has \\(n\\) choices, the second \\((n-1)\\), etc. For a 52-card deck, there are \\(52!\\) possible orderings.'
+  },
+  {
+    week: 2,
+    q: 'The notation \\(P(n, k)\\) (or \\(nPk\\)) gives the number of ways to arrange \\(k\\) objects chosen from \\(n\\) distinct objects. Which formula is correct?',
+    options: [
+      '\\(\\dfrac{n!}{k!}\\)',
+      '\\(\\dfrac{n!}{(n-k)!}\\)',
+      '\\(\\dfrac{n!}{k!(n-k)!}\\)',
+      '\\(n^k\\)'
+    ],
+    answer: '\\(\\dfrac{n!}{(n-k)!}\\)',
+    explanation: 'The first choice has \\(n\\) options, the second \\((n-1)\\), …, the \\(k\\)-th has \\((n-k+1)\\) options. The product \\(n(n-1)\\cdots(n-k+1) = \\frac{n!}{(n-k)!}\\). Dividing cancels the \\((n-k)\\) lower factorial.'
+  },
+  {
+    week: 2,
+    q: 'What is the key difference between \\(P(n,k)\\) and \\(\\binom{n}{k}\\) (\\(nCk\\))?',
+    options: [
+      '\\(P(n,k)\\) counts unordered selections; \\(\\binom{n}{k}\\) counts ordered arrangements',
+      '\\(P(n,k)\\) counts ordered arrangements; \\(\\binom{n}{k}\\) counts unordered selections (sets)',
+      'They are always equal for all \\(n\\) and \\(k\\)',
+      '\\(\\binom{n}{k}\\) only applies when \\(k = 2\\)'
+    ],
+    answer: '\\(P(n,k)\\) counts ordered arrangements; \\(\\binom{n}{k}\\) counts unordered selections (sets)',
+    explanation: 'In a permutation, the order matters: picking cards A, B, C differs from B, A, C. A combination (\\(\\binom{n}{k}\\)) counts only which \\(k\\) items are chosen, not their order. Hence \\(\\binom{n}{k} = \\frac{P(n,k)}{k!}\\) — we divide out the \\(k!\\) orderings of the chosen items.'
+  },
+  {
+    week: 2,
+    q: 'Pascal\'s identity states:',
+    options: [
+      '\\(\\binom{n}{k} = \\binom{n}{n-k}\\)',
+      '\\(\\binom{n}{k} = \\binom{n-1}{k-1} + \\binom{n-1}{k}\\)',
+      '\\(\\binom{n}{k} = \\binom{n-1}{k} + \\binom{n-1}{k+1}\\)',
+      '\\(\\binom{n}{k} = \\binom{n}{k-1} \\cdot \\dfrac{n-k+1}{k}\\)'
+    ],
+    answer: '\\(\\binom{n}{k} = \\binom{n-1}{k-1} + \\binom{n-1}{k}\\)',
+    explanation: 'Consider all binary strings of length \\(n\\) with exactly \\(k\\) ones. Those starting with 1 number \\(\\binom{n-1}{k-1}\\) (remaining \\(n-1\\) positions need \\(k-1\\) ones); those starting with 0 number \\(\\binom{n-1}{k}\\). These two disjoint groups partition all \\(\\binom{n}{k}\\) strings.'
+  },
+  {
+    week: 2,
+    q: 'In the binomial expansion \\((x + y)^n = \\sum_{i=0}^{n} \\binom{n}{i} x^i y^{n-i}\\), what is the coefficient of \\(x^3 y^2\\) in \\((x+y)^5\\)?',
+    options: [
+      '6',
+      '10',
+      '5',
+      '20'
+    ],
+    answer: '10',
+    explanation: 'The coefficient of \\(x^3 y^2\\) in \\((x+y)^5\\) is \\(\\binom{5}{3} = \\frac{5!}{3! \\, 2!} = 10\\). This counts the number of ways to choose which 3 of the 5 brackets contribute an \\(x\\) (the remaining 2 contribute \\(y\\)).'
+  },
+  {
+    week: 2,
+    q: 'Which property of \\(\\binom{n}{k}\\) is proved by a "bit-flip" bijection (mapping each binary string with \\(k\\) ones to the string with those bits inverted)?',
+    options: [
+      'Pascal\'s identity: \\(\\binom{n}{k} = \\binom{n-1}{k-1} + \\binom{n-1}{k}\\)',
+      'Symmetry: \\(\\binom{n}{k} = \\binom{n}{n-k}\\)',
+      'The binomial theorem expansion',
+      '\\(\\binom{n}{0} = 1\\) for all \\(n\\)'
+    ],
+    answer: 'Symmetry: \\(\\binom{n}{k} = \\binom{n}{n-k}\\)',
+    explanation: 'Flipping every bit (0↔1) maps each length-\\(n\\) string with \\(k\\) ones bijectively to a length-\\(n\\) string with \\(n-k\\) ones. Since a bijection preserves set size, both sets have the same cardinality: \\(\\binom{n}{k} = \\binom{n}{n-k}\\).'
+  },
+  {
+    week: 2,
+    q: 'A directed graph \\(G = (V, E)\\) is represented by an adjacency matrix \\(M\\). What does \\(M[u][v] = 1\\) signify?',
+    options: [
+      'There is an undirected edge between \\(u\\) and \\(v\\)',
+      'There is a directed edge from \\(u\\) to \\(v\\)',
+      'Vertex \\(u\\) has higher degree than vertex \\(v\\)',
+      'Vertices \\(u\\) and \\(v\\) are in the same connected component'
+    ],
+    answer: 'There is a directed edge from \\(u\\) to \\(v\\)',
+    explanation: 'The adjacency matrix \\(M\\) is a binary \\(n \\times n\\) matrix. \\(M[u][v] = 1\\) if and only if \\((u, v) \\in E\\), meaning there is a directed edge from \\(u\\) to \\(v\\). For undirected graphs the matrix is symmetric: \\(M[u][v] = M[v][u]\\).'
+  },
+  {
+    week: 2,
+    q: 'An undirected graph corresponds to which type of relation on the vertex set?',
+    options: [
+      'A reflexive relation',
+      'A transitive relation',
+      'A symmetric relation',
+      'An antisymmetric relation'
+    ],
+    answer: 'A symmetric relation',
+    explanation: 'In an undirected graph, edges have no direction: if \\((u,v)\\) is an edge, then \\((v,u)\\) is also an edge. This is precisely the definition of a symmetric relation. Railway connections are a classic example — if there is a track from A to B there is one from B to A.'
+  },
+  {
+    week: 2,
+    q: 'A Directed Acyclic Graph (DAG) is defined as…',
+    options: [
+      'A directed graph where every vertex has equal in-degree and out-degree',
+      'A directed graph that contains no directed cycles',
+      'An undirected graph with no cycles',
+      'A directed graph where every pair of vertices is connected'
+    ],
+    answer: 'A directed graph that contains no directed cycles',
+    explanation: 'A DAG is a directed graph with no directed cycles. Note that all non-empty undirected graphs have cycles (an undirected edge \\(\\{u,v\\}\\) already forms a 2-cycle in the directed sense: \\(u \\to v \\to u\\)). DAGs appear frequently in computer science — e.g., dependency graphs, scheduling.'
+  },
+
+  /* ── WEEK 3 · Trees, Algorithms & Probability ─────────────── */
+  {
+    week: 3,
+    q: 'In a rooted tree, what are <em>leaf nodes</em>?',
+    options: [
+      'Nodes with exactly one child',
+      'Nodes with no children',
+      'Nodes at depth 1 (direct children of the root)',
+      'The root node and its siblings'
+    ],
+    answer: 'Nodes with no children',
+    explanation: 'Leaf nodes (or leaves) have no children — they are the "endpoints" of the tree. Internal nodes have at least one child. In a prefix tree of depth \\(n\\), the leaves are exactly all binary strings of length \\(n\\).'
+  },
+  {
+    week: 3,
+    q: 'What is the <em>depth</em> of a rooted tree?',
+    options: [
+      'The number of vertices in the tree',
+      'The number of leaf nodes',
+      'The length of the longest path from the root to any leaf',
+      'The total number of edges in the tree'
+    ],
+    answer: 'The length of the longest path from the root to any leaf',
+    explanation: 'Depth (sometimes called height) is the maximum number of edges on any root-to-leaf path. A single-node tree has depth 0. A prefix tree containing all binary strings of length \\(n\\) has depth \\(n\\).'
+  },
+  {
+    week: 3,
+    q: 'In the family-tree analogy, who are the <em>ancestors</em> of a node \\(v\\)?',
+    options: [
+      'The children and grandchildren of \\(v\\)',
+      'The siblings of \\(v\\)',
+      'All nodes on the path from \\(v\\) up to (and including) the root',
+      'All nodes at the same depth as \\(v\\)'
+    ],
+    answer: 'All nodes on the path from \\(v\\) up to (and including) the root',
+    explanation: 'Ancestors of \\(v\\) are its parent, the parent\'s parent, and so on up to the root. Descendants are the opposite: children, grandchildren, etc. Siblings share the same parent.'
+  },
+  {
+    week: 3,
+    q: 'How many nodes does a complete prefix tree of depth \\(n\\) contain (including the root and all internal nodes)?',
+    options: [
+      '\\(2^n\\)',
+      '\\(n^2\\)',
+      '\\(2^{n+1} - 1\\)',
+      '\\(2n\\)'
+    ],
+    answer: '\\(2^{n+1} - 1\\)',
+    explanation: 'At depth \\(d\\) there are \\(2^d\\) nodes (each binary prefix of length \\(d\\)). Summing over \\(d = 0, 1, \\ldots, n\\): \\(\\sum_{d=0}^{n} 2^d = 2^{n+1} - 1\\). The \\(2^n\\) leaves are just the bottom level.'
+  },
+  {
+    week: 3,
+    q: 'The divisibility relation on \\(\\mathbb{N}\\) (\\(a \\mid b\\) if \\(b\\) is a multiple of \\(a\\)) is:',
+    options: [
+      'Reflexive, symmetric, and transitive (an equivalence relation)',
+      'Reflexive and transitive, but not symmetric',
+      'Symmetric and transitive, but not reflexive',
+      'Reflexive and symmetric, but not transitive'
+    ],
+    answer: 'Reflexive and transitive, but not symmetric',
+    explanation: 'Every number divides itself (reflexive). If \\(a \\mid b\\) and \\(b \\mid c\\) then \\(a \\mid c\\) (transitive). But \\(1 \\mid 2\\) yet \\(2 \\nmid 1\\), so it is not symmetric. It is a partial order (like \\(\\leq\\)), not an equivalence relation.'
+  },
+  {
+    week: 3,
+    q: 'When we write \\(a = qb + r\\) (Euclidean division of \\(a\\) by \\(b\\)), what is guaranteed about the remainder \\(r\\)?',
+    options: [
+      '\\(r > 0\\)',
+      '\\(0 \\leq r < b\\)',
+      '\\(0 < r \\leq b\\)',
+      '\\(r < a\\)'
+    ],
+    answer: '\\(0 \\leq r < b\\)',
+    explanation: 'The remainder \\(r\\) satisfies \\(0 \\leq r < b\\). If \\(r \\geq b\\), then \\(qb\\) was not the largest multiple of \\(b\\) that fits in \\(a\\), contradicting the definition of quotient \\(q\\). \\(r = 0\\) is possible (when \\(b \\mid a\\)).'
+  },
+  {
+    week: 3,
+    q: 'A prime number is a natural number that…',
+    options: [
+      'Is divisible by exactly two distinct natural numbers: 1 and itself (excluding 1 from primality)',
+      'Is even and greater than 2',
+      'Has no divisors at all',
+      'Is divisible by all natural numbers less than itself'
+    ],
+    answer: 'Is divisible by exactly two distinct natural numbers: 1 and itself (excluding 1 from primality)',
+    explanation: 'Primes have exactly two divisors: 1 and the number itself. By convention, 1 is not considered prime (it has only one divisor). In the divisibility graph, prime nodes have only two incoming edges — from 1 and from themselves.'
+  },
+  {
+    week: 3,
+    q: 'Breadth-First Search (BFS) uses which data structure to track vertices to visit?',
+    options: [
+      'A stack (LIFO)',
+      'A queue (FIFO)',
+      'A priority queue (min-heap)',
+      'A set'
+    ],
+    answer: 'A queue (FIFO)',
+    explanation: 'BFS inserts newly discovered neighbours at the back of a queue and processes vertices from the front (First-In First-Out). This ensures all vertices at distance \\(d\\) are visited before any at distance \\(d+1\\), giving BFS its "level-by-level" exploration pattern.'
+  },
+  {
+    week: 3,
+    q: 'In probability, the <em>sample space</em> \\(S\\) is defined as:',
+    options: [
+      'The set of outcomes we are interested in',
+      'The set of all possible outcomes of an experiment',
+      'The probability assigned to each outcome',
+      'A subset of outcomes with non-zero probability'
+    ],
+    answer: 'The set of all possible outcomes of an experiment',
+    explanation: 'The sample space \\(S\\) is the universal set of all possible outcomes. For a coin toss \\(S = \\{H, T\\}\\); for a six-sided die \\(S = \\{1,2,3,4,5,6\\}\\). Events are subsets of \\(S\\).'
+  },
+  {
+    week: 3,
+    q: 'For a fair six-sided die, what is \\(P(\\text{outcome divisible by 2})\\)?',
+    options: [
+      '\\(\\dfrac{1}{6}\\)',
+      '\\(\\dfrac{1}{3}\\)',
+      '\\(\\dfrac{1}{2}\\)',
+      '\\(\\dfrac{2}{3}\\)'
+    ],
+    answer: '\\(\\dfrac{1}{2}\\)',
+    explanation: 'The sample space is \\(\\{1,2,3,4,5,6\\}\\), each with probability \\(\\frac{1}{6}\\). The event "divisible by 2" is \\(\\{2, 4, 6\\}\\). By the axiom \\(P(E) = \\sum_{v \\in E} P(v)\\): \\(P(E) = \\frac{1}{6} + \\frac{1}{6} + \\frac{1}{6} = \\frac{3}{6} = \\frac{1}{2}\\).'
+  },
+  {
+    week: 3,
+    q: 'Which of the following is an <em>event</em> in the probability sense, for a single coin toss with sample space \\(S = \\{H, T\\}\\)?',
+    options: [
+      'The number \\(0.5\\)',
+      'The function \\(P\\)',
+      'The subset \\(\\{H\\}\\)',
+      'The Cartesian product \\(S \\times S\\)'
+    ],
+    answer: 'The subset \\(\\{H\\}\\)',
+    explanation: 'Events are subsets of the sample space. \\(\\{H\\}\\) is a valid subset of \\(\\{H, T\\}\\) representing "the coin lands heads". The empty set \\(\\emptyset\\) and \\(S\\) itself are also events (with probabilities 0 and 1, respectively).'
+  }
+
+];
+
+/* ═══════════════════════════════════════════════════════════
+   QUIZ ENGINE
+   ═══════════════════════════════════════════════════════════ */
+const root = document.getElementById('quiz-root');
+let shuffled = [];
+let cur = 0;
+let selected = null;
+let revealed = false;
+let results = [];
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function scoreMsg(n, total) {
+  const pct = n / total;
+  if (pct === 1)   return 'Perfect score — flawless!';
+  if (pct >= 0.85) return 'Excellent — nearly there!';
+  if (pct >= 0.7)  return 'Good work — keep revising.';
+  if (pct >= 0.5)  return 'Fair attempt — revisit the notes.';
+  return 'Keep studying — you\'ve got this!';
+}
+
+function renderStart() {
+  const weeks = [...new Set(QUESTIONS.map(q => q.week))].sort();
+  const pills = weeks.map(w => `<span class="week-pill">Week ${w}</span>`).join('');
+  root.innerHTML = `
+    <div class="start-card">
+      <div class="quiz-icon">∑</div>
+      <h2>Discrete Mathematics — Weeks 1–3</h2>
+      <p class="desc">Sets · Relations · Functions · Counting · Permutations · Binomial Coefficients · Graphs · Trees · Algorithms · Probability</p>
+      <div class="week-pills">${pills}</div>
+      <p class="desc">${QUESTIONS.length} questions · select an answer then submit · explanations after each</p>
+      <button class="btn btn-primary" id="start-btn">Start Quiz</button>
+    </div>`;
+  document.getElementById('start-btn').addEventListener('click', startQuiz);
+}
+
+function startQuiz() {
+  shuffled = shuffle(QUESTIONS);
+  cur = 0; results = [];
+  renderQuestion();
+}
+
+function renderQuestion() {
+  const q = shuffled[cur];
+  selected = null; revealed = false;
+  const opts = shuffle(q.options);
+  const labels = ['A', 'B', 'C', 'D'];
+  const dots = shuffled.map((_, i) => {
+    let cls = 'q-dot';
+    if (i < cur) cls += results[i] ? ' correct' : ' wrong';
+    else if (i === cur) cls += ' filled';
+    return `<span class="${cls}"></span>`;
+  }).join('');
+
+  root.innerHTML = `
+    <div class="q-card">
+      <div class="q-progress">
+        <span class="q-progress-label">Question ${cur + 1} / ${shuffled.length}</span>
+        <div class="q-dots">${dots}</div>
+      </div>
+      <div class="q-week-badge">Week ${q.week}</div>
+      <p class="q-text">${q.q}</p>
+      <div class="options" id="options">
+        ${opts.map((o, i) => `
+          <button class="option-btn" data-opt="${o}" data-idx="${i}">
+            <span class="opt-label">${labels[i]}</span>
+            <span>${o}</span>
+          </button>`).join('')}
+      </div>
+      <div class="submit-row">
+        <span class="hint">Select an answer above</span>
+        <button class="btn btn-primary" id="submit-btn" disabled>Submit</button>
+      </div>
+      <div id="exp-area"></div>
+    </div>`;
+
+  document.querySelectorAll('.option-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (revealed) return;
+      document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      selected = btn.dataset.opt;
+      document.getElementById('submit-btn').disabled = false;
+    });
+  });
+
+  document.getElementById('submit-btn').addEventListener('click', revealAnswer);
+
+  if (window.MathJax) MathJax.typesetPromise([root]).catch(() => {});
+}
+
+function revealAnswer() {
+  if (!selected || revealed) return;
+  revealed = true;
+  const q = shuffled[cur];
+  const correct = selected === q.answer;
+  results[cur] = correct;
+
+  document.querySelectorAll('.option-btn').forEach(btn => {
+    btn.disabled = true;
+    btn.classList.add('revealed');
+    if (btn.dataset.opt === q.answer) btn.classList.add('correct-ans');
+    else if (btn.dataset.opt === selected && !correct) btn.classList.add('wrong-ans');
+  });
+
+  const badge = correct
+    ? '<span class="result-badge correct">✓ Correct</span>'
+    : '<span class="result-badge wrong">✗ Incorrect</span>';
+
+  document.getElementById('exp-area').innerHTML = `
+    ${badge}
+    <div class="explanation">
+      <div class="exp-label">Explanation</div>
+      ${q.explanation}
+    </div>`;
+
+  const row = document.querySelector('.submit-row');
+  const isLast = cur === shuffled.length - 1;
+  row.innerHTML = `
+    <span class="hint">${correct ? 'Well done!' : 'Correct answer highlighted above.'}</span>
+    <button class="btn btn-primary" id="next-btn">${isLast ? 'See Results' : 'Next →'}</button>`;
+  document.getElementById('next-btn').addEventListener('click', () => {
+    if (isLast) renderSummary();
+    else { cur++; renderQuestion(); }
+  });
+
+  if (window.MathJax) MathJax.typesetPromise([root]).catch(() => {});
+}
+
+function renderSummary() {
+  const score = results.filter(Boolean).length;
+  const breakdown = shuffled.map((q, i) => {
+    const pass = results[i];
+    return `
+      <div class="breakdown-item ${pass ? 'pass' : 'fail'}">
+        <span class="breakdown-icon">${pass ? '✓' : '✗'}</span>
+        <div>
+          <div class="bd-q">Q${i+1} (Week ${q.week}) — ${pass ? 'Correct' : 'Incorrect'}</div>
+          <div class="bd-ans">${q.q.replace(/<[^>]+>/g,'').slice(0,80)}…</div>
+        </div>
+      </div>`;
+  }).join('');
+
+  root.innerHTML = `
+    <div class="summary-card">
+      <div class="summary-score">
+        <div class="score-ring">${score}/${shuffled.length}</div>
+        <h2>Quiz Complete</h2>
+        <p class="score-msg">${scoreMsg(score, shuffled.length)}</p>
+      </div>
+      <div class="summary-breakdown">${breakdown}</div>
+      <div class="summary-actions">
+        <button class="btn btn-primary" id="retry-btn">Retry Quiz</button>
+        <a class="btn btn-secondary" href="../index.html">← Notes</a>
+      </div>
+    </div>`;
+
+  document.getElementById('retry-btn').addEventListener('click', startQuiz);
+  if (window.MathJax) MathJax.typesetPromise([root]).catch(() => {});
+}
+
+renderStart();
+})();
+</script>
+</body>
+</html>
