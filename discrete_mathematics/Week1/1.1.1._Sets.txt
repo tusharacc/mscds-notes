@@ -1,0 +1,248 @@
+So, the first lecture is going to be about sets you know. So, what is a set? Let us see
+that. So, a set is a collection of elements. So, there are some elements and it is a collection
+of things. The important thing is it is unordered. So, what do you mean by unordered? So, let
+us take a set. So, let A be the set 1, 2, 4. It is like 4 numbers. I put them in a set
+together, it becomes a set and this is the notation for a set. You have 2 I mean curly
+brackets and yeah. So, if I write these numbers in another order for example, 1, 4, 2 that
+is also the same set. It does not become a different set. So, a set is an unordered collection.
+There is no ordering inside the set. So, the things inside the set, the inside the curly
+brackets are called the elements of the set. So, 1 is an element of the set and the way
+you write down mathematically is 1 belongs to the set A. Similarly, 4 also belongs to
+the set A. Similarly, 2 also belongs to the set A. Now, how do you say something does
+not belong to the set? You say we just yeah we use that symbol with yeah this symbol is
+called does not belong to yeah. So, given sets yeah so there are some very natural sets
+that you might have encountered yeah. So, what are the natural sets that you have encountered?
+For example, yeah natural numbers is the first set that you always encounter yeah. It is
+1, 2, 3 and so on yeah. So, the previous set A is a finite set yeah. It consists of 3 elements
+yeah but this set of natural numbers is a infinite set. You cannot assign a I mean size
+to it. It is a infinite set. So, this is a infinite set yeah while this set A is a finite
+set. So, yeah there are several other sets. For example, there is a set of integers which
+is denoted by set yeah which can which is also includes the like negative numbers. So,
+it is let us say minus 2, minus 1, 0, 1, 2, 3 and so on yeah. So, yeah there are real numbers,
+there are complex numbers you are familiar with all these things. So, given sets so one thing
+that you notice between natural numbers and integers is then set of natural numbers is
+contained inside the set of integers. The set of natural numbers is contained in the set of integers.
+So, how do you expect that mathematically? You say that set of natural numbers is a subset of
+integers. So, this is the simple that you use to say that one set is contained in the other set.
+What does that mean? It means that it means that what does this mean? It means that take
+any elements in natural numbers, it also belongs to the set z yeah. That means for every A belonging
+to the natural numbers yeah, A also belongs to the integers. That is what belongs means yeah.
+Every integer in the smaller set is also contained in the bigger set okay. So, yeah so is this true?
+Is natural numbers, is integers contained in the natural numbers? No. Why? Because if you take the
+element minus 1, it is contained in the integers but it is not contained in the natural numbers yeah.
+So, this is not true yeah. So, when you when the set N is not a subset of the set z yeah,
+the way to express this mathematically is to use the sub set notation and make a cross just like
+we did with the belongs to relation yeah. So, this is the belongs to relation and this is the
+subset notation yeah. So, yeah so you have yeah so we have gone through what a subset is and what
+the belongs to relation is. If a set is finite yeah, so you the sets like natural numbers,
+integers and all are infinite yeah. For finite sets yeah, finite sets have cardinality yeah.
+So, what do you mean by cardinality? So, given a set for example the set A we saw. So, A is the set
+1, 2 and 4 yeah. The cardinality of the set is denoted by mode A. You put 2 vertical lines in
+left and right side of A and it is just the number of elements in A yeah. So, the cardinality of the
+set is just the number of elements in A yeah. So, yeah so let us say you have the set. So,
+let us say B is the set yeah 1, 3, 6 yeah 9 up to up to let us say 3 times n yeah. So,
+n is some number and let us say B is the set yeah. So, what is the cardinality of B yeah. So,
+how many elements are there in B yeah. So, yeah so if you look at it. So, there is yeah 3 is there,
+6 is there. So, let us substitute n is equal to 1 yeah. If I substitute n equal to 1 I get only
+the set 3 yeah. So, in some sense yeah I mean if n equal to 1 the set is of size 1 right. So,
+if n equal to so I think I should start with 0 yeah. So, if n equal to 0 it is set is of size
+1 n is equal to 1 the set is of size 2 yeah. So, the size of the set is nothing but n plus 1 yeah.
+The cardinality of the set is the set of elements in the I mean in the set yeah okay. So, yeah so
+we have understood yeah subsets cardinality and belongs to yeah. So, yeah so there are 2 special
+sets yeah corresponding to any set. So, you have the set A yeah A is again 1 2 4 yeah. There is a
+special subset of A yeah actually there is a special subset which is a subset of all sets yeah.
+So, there is what is called the empty set yeah. Empty set is a set with no elements at all. It
+does not have any elements yeah and by definition empty set is a subset of any set yeah. So,
+empty set is denoted by the symbol this symbol yeah and for any set for any set let us say C yeah
+empty set is a subset of C yeah. So, empty set is a set which is a subset of any set yeah because
+it contains no elements. So, it has to be a subset of any set yeah. So, yeah so that is the empty
+set. The second important set that we need to look at is what is called the power set yeah. So,
+the power set is denoted by P of the set let us say you have the set A and the power set of a set
+is denoted by P of A yeah power set of A. This is the set of old subsets of the set A yeah.
+So, it is a set it is a set. So, what should I write inside? It is a set of all old subsets yeah.
+So, what are all the subset of the set A? There is definitely the empty set yeah. There is
+definitely the set A itself yeah. The set A itself is a subset of it yeah. So, it is an important
+thing. So, for example, set is a subset of set itself yeah. A set by definition is a subset of
+itself yeah. A power set is a set of old subsets. So, it contains the empty set I mean the actual
+set itself as well as old subsets of it. So, what are all the subsets of it? The set 1,
+the set 2, the set 4 yeah and there are several other sets yeah. So, I will write down. So,
+maybe I will just erase the little bit and to make space yeah. So, you have the set 1,
+2. You have the set 2, 4. You have the set 1, 4 yeah. So, that is those are all the two
+elements subsets yeah and what are the three elements subsets? It is 1, 2, 4 yeah. So,
+how we cover old subsets of the set A yeah. So, we have covered all the zero size subset
+of set A which is only the empty set yeah. So, this set has a cardinality 0. These sets
+have cardinality 1 each right. These sets have cardinality 2 each and this is a cardinality 3.
+So, any subset of a set has cardinality less than or equal to the cardinality of a set yeah. So,
+the cardinality of a subset of A has to be 0, 1, 2 or 3 and we have looked at all the possibilities
+yeah. So, if you look at it if you add them up yeah how many sets are there? So, we have 3 plus
+3, 6 plus 2, 8 yeah. So, the power set of A yeah has size 8 yeah. More generally yeah suppose if
+you take the set to be 1 to n. So, let us take the set A to be 1, 2, 3 up to n yeah. So, the
+cardinality of A is 2 raise to n sorry the cardinality of A is n yeah and what is the
+cardinality of power set of a yeah. So, each element can be there or not yeah so, this
+element can be there or not there are 2 possibilities, this element can be there or not there are
+2 possibilities, this element can be there or not there are 2 possibilities. So, there
+2 into 2 into 2 n times. So, the power set of A has size 2 raise to n. The power set
+has always size 2 raise to n. So, we have discussed what the power set is. So, let us
+come to what is called operation zone sets. So, suppose you are given different sets.
+What can you do with it? So, let us say you have one set. Let us say you have the set
+1, 3, 5, 6, 7 and you have another set B which is 2, 3, 4, 6, 8. So, you have 2 sets. So,
+both have the same cardinality. Both have cardinality equal to 5. So, one thing you
+can do is you can take A union B. So, union is a operation which takes 2 sets and gives you a
+bigger set. So, what is the set A union B? It is a set of all elements in A and B together. So,
+what are those elements? 1, 2, 3, 4, 5, 6, 7 and 8. So, all the elements in A and B put
+together is called the union of the sets. So, this is called the union and so, similarly,
+there is what is called the intersection. So, the intersection of 2 sets, this is called
+the intersection. This is the set of all elements that are common in A and B. So,
+what are the set of elements that are common in A and B? It is 3, it is 6. So, 3 is common,
+4 is not common, 6 is common. So, there is only 2 elements that are in common. So, given 2 sets,
+you can take the union which is set of all elements together or the intersection which
+is the set of common elements. So, one way to understand these operations is in terms of
+a picture and this picture is called the Venn diagram. So, if you take the set A,
+I can represent it by a circle like this. All the elements inside the circle represents the
+set A. Similarly, I can represent the set B by another circle. All the area inside the B
+belongs to a set B. Now, A intersection B is nothing but so, first A union B. So,
+what is A union B? Basically, this whole area. The whole area of A and B together is A union
+B. So, this is A union B and what is A intersection B? So, this is A, this is B and this area is
+A intersection B. So, this is A intersection B. So, is there some relations between A,
+B and this A intersection B and A union B? So, let us look at the cardinality of A union
+B. So, if you look at the cardinality of A union B, now in A union B, you have all the
+elements of A. So, you can count all the elements of A there. You also have all the elements
+of B. So, I can add the elements of B to that count. But there is a problem here. The problem
+is the area in this intersection has been counted twice. So, we need to subtract the
+intersection from it because that intersection area has been counted twice both in A as well
+as B. So, this is an important relation between the cardinality of A union B and the A intersection
+B. So, another important fact because of the same is the size of A union B is less than
+or equal to size of A plus size of B. Because if there is no intersection, it is just size
+of A plus size of B. If there is an intersection, you have to subtract it once. Similarly, if
+you look at the size of A intersection B, remember that A intersection B is a subset
+of A as well as subset of B. So, this is a subset of A as well as subset of B. So, size
+of A intersection B is less than or equal to size of A and size of A intersection B
+is less than or equal to size of B. So, A intersection B has size less than size of
+A and size of B okay. So yeah, so we understand yeah union and intersection yeah. So there
+is another important yeah another important operation which is complement yeah.
+To understand complement yeah, so you need another set called a universal set yeah. So
+universal set. So typically whichever problem that you work in yeah whichever problem that
+you work in there is what is called a universal set which is the set of all elements yeah.
+For example let us say I am looking at all the integers from 1 to 10 yeah.
+Then the universal set typically denoted by omega is the set of numbers 1, 2, 3, 4,
+5, 6, 7, 8, 9, 10 that is a universal set yeah. Now A is a so every set that you consider
+like all your sets so universal set has basically all the elements in the problem that you consider
+yeah. So any set the sets A and B yeah for example the A and B defined here yeah are
+subsets of this universal set yeah and yeah. So given a universal sets and subsets of this
+universal sets you can define what is called the complement yeah. What is a complement?
+So A complement is a set of all elements in the universal sets that is not there in A yeah.
+So what are all the elements in the universal set yeah that is already not there in A. So 1
+is there in A so that is not there in A complement. 2 is not there in A but it is there in the
+universal set. So 2 is there in the complement and yeah 3 4 is there in the complement yeah.
+5 is already there in A 6 is already there in A 7 is already there in A 8 is there in the complement
+because it is not there in A and 9 is not there in A and 10 is not there in A yeah.
+So yeah the complement is the set of elements which is not there in the set A yeah and you
+have to define a complement with respect to a universal set yeah.
+So naturally yeah the size of A complement yeah is nothing but the size of omega minus
+size of A yeah.
+So if you look at size of A it is 1, 2, 3, 4, 5 yeah and size of omega is 10 and so size
+of A complement is also 5 yeah.
+So yeah so that is what the complement is yeah.
+So yeah so important thing to consider is a complement always is with respect to some
+universal set yeah.
+So there should be some universal set in mind before you take complement yeah and how do
+you pictorially represent the complement?
+So we need to have a universal set which is yeah which is given by this rectangular box
+There is a set A, there is a set B yeah and yeah what is A complement?
+So A complement is yeah A complement is all the area outside A yeah.
+So it is this area all the area outside A is A complement yeah.
+So yeah so this is A complement and yeah so what is B complement yeah so B complement
+is similarly all the area outside B yeah yeah.
+So yeah so let us now think about this what is A complement intersection A what is A complement
+intersection A?
+So A complement has all the elements outside A, A has A is the set A itself there is no
+intersection between them yeah.
+So A complement intersection A there are no elements there so it is the empty set yeah
+so this is nothing but the empty set.
+Similarly A complement union A yeah so A has all the elements inside A, A complement has
+all the elements outside A so if you take the union of them you will get the entire
+universal set omega yeah.
+So yeah so it is good to remember these relations yeah so yeah what else do we have so yeah
+if you look at this union and intersection yeah so there is a interesting property between
+unions and intersection yeah.
+So now let us take 3 sets instead of 2 sets we have 3 sets yeah so you have the set A
+to be equal to let us say 1 3 5 yeah and you have the set B which is equal to 2 4 5 yeah
+and let us say we have the set C which is equal to 5 6 7 yeah let us say we have these
+yeah.
+Now yeah so now let us consider what is A union B intersection C yeah so you would first
+you do B intersection C and then take union with A yeah so the claim is yeah this is equal
+to so this is just A union B intersection A union C yeah.
+So if you take first intersection and then the union you can do the union first and then
+take the intersection yeah that is what this equality means how do you prove this yeah
+so let us look at the left hand side and right hand side for this particular example right.
+So what is B intersection C here so B intersection C is nothing but there is only one element
+in common between B and C which is 5 yeah and what is A union B intersection C yeah
+so B intersection C is 5 and if you add it to A you get A itself actually yeah and similarly
+if you do A union B yeah you will get yeah so A union B is 1 2 3 4 5 yeah and A union
+C is 1 3 5 6 7 yeah and if you take the intersection you will get 5 yeah so this yeah so if you
+take the intersection this is nothing but 5 and this is also nothing but 5 yeah yeah
+you mean A union B intersection C sorry this is 1 3 5 sorry this is 1 3 5 yeah thanks so both are
+1 3 and 5 yeah so this is the important identity yeah that you can take the union if you take the
+intersection first and then take the union so what does bracket means is you have to first take the
+intersection of B and C and then take that set and take the union with A yeah that is similar to
+first taking the union of both sides with A and then doing the intersection yeah so similarly you
+can do the other way also which is A intersection B union C is equal to A intersection B union C
+A intersection C yeah so yeah how do we like yeah verify this is true you can look at the
+picture and verify that is one approach yeah so let us look at let us draw the picture so we have
+the let us say yeah this is the universal set yeah and you have A here there is B here and there
+is C here this is A this is B and this is C yeah let us try to identify yeah which are the areas
+corresponding to the left side of the equation and the right side of the equation yeah so let
+me shade the left side with yellow so the left side I will shade with yellow yeah so A union B
+intersection C so what is B intersection C it is this area yeah and you have to take union with
+A yeah so so B intersection C is this area and that is the A area yeah so it is basically this
+area and this area together yeah so that area is A union B intersection C yeah now let us look at
+this also so A union B is basically this two together yeah and A union C yeah is these two
+together yeah and the intersection of this so A union B is these two together yeah which also
+include this whole area A union C is also includes A as well as this area so if you take the intersection
+you will get exactly this yellow portion yeah yeah so again let us verify this claim also using
+the picture yeah so you have yeah so you have A there is B and there is C A B and C yeah so what
+is the set on the left hand side yeah so yeah so you have B union C so B union C is this entire
+big area yeah which contains both B and C yeah and A intersection B union C is this area only
+yeah so A intersection B union C is that area now let us look at the right hand side yeah so
+A intersection B A intersection B is this just to this side yeah and A intersection C is just
+this side and you take the union of it you will get exactly this yellow area yeah so that is how
+you prove yeah those two identities yeah yeah so now we understand yeah so yeah so some important
+identities which relates sets yeah yeah now finally well it is come out come to a important
+result yeah which is let us look at what happens when you take A union B yeah and then take the
+complement of it yeah what happens when you take A union B and take the complement of it so if you
+take the picture it looks like this so you have a set A you have the set B yeah A union B this
+entire area the complement of it yeah with respect to the universal set so it will be all the area
+outside both the sets it is all the area outside both the sets yeah now yeah so now let us look
+at another set which is A complement intersection B complement yeah so let us look at A complement
+intersection B complement and let us draw it in the picture so that is A that is B so A complement
+is everything outside A and B complement is everything outside B yeah so what is the
+intersection of A complement out intersection B complement yeah that is nothing but this area
+this area is outside A as well as outside B that is what A complement intersection B
+B complement means yeah note that these two are exactly equal yeah so we have the proof
+that A union B the whole complement is nothing but A complement intersection B complement yeah
+and yeah so similarly if you yeah think about it A intersection B the whole complement is
+nothing but A complement union B complement yeah again yeah so you can draw a picture and
+convince yourself for example yeah so A intersection B is basically this middle portion the whole
+complement is the entire outer area outside it yeah so yeah and this is also equal to
+B complement so yeah it yeah it actually is a equality yeah so yeah so what have we seen
+in today's lecture let us just recap yeah so yeah we saw what is a set yeah a set is
+a collection of unordered elements yeah so yeah a set is denoted by this curly bracket
+and there is a belongs to a relation which says that whether an element belongs to a set or not
+yeah if it belongs to you yeah use the this simple it does not belong to you use that simple yeah
+and yeah you have sets you have familiar with and there is a subset relation yeah what is a subset
+relation if one set is contained in the set another set that means all the elements in the
+first set also belongs to a second set then it is a subset yeah naturally any set is a subset of
+itself yeah so that is a subset relation we also looked at cardinality of a set yeah so what is
+the cardinality of a set so cardinality of a set is only defined if it is finite yeah so it is not
+the defined for infinite set like integers or anything yeah it is only defined for finite set
+it is the number of elements in there is inside the set yeah and we discussed what is empty set
+which is a subset of all sets yeah and the power set yeah a set of n elements has 2 raised to n
+elements in the power set yeah and we discussed various operations that you can do on sets which
+is union intersection complement yeah and finally we also looked at certain relations yeah between
+when you do multiple operations together for example A union B intersection B is A union B
+intersection A union C and how did we convince ourselves that this equalities are true we just
+drew the picture yeah the Venn diagram we drew and we looked at the area and we could convince
+ourselves yeah yeah finally this is a very important relation that yeah relates complement
+and union and intersection which is A union B the whole complement is A complement intersection
+B complement and the second identity as well yeah so that is all for yeah this part of the
+lecture yeah thank you.

@@ -1,0 +1,219 @@
+Okay, so last 2 videos we looked at sets and then we looked at relations and in this video
+we will look at what is called functions.
+So what is functions?
+Functions are a form of relation itself.
+So a function is a relation where every element, suppose you have a relation R, subset of
+the cross product of 2 sets.
+Suppose that relation has to be called a function, if for every element of the set A, you should
+have a unique element B to which it is related.
+For every element of A, every element of capital A, it should be related to a unique element
+of B. So in a relation, every element of A has to be related to a unique element of B.
+So you could have, so this is the set A and this is the set B. So this element might be
+related to this element here.
+This element might be related to that element there.
+This element maybe is again related to this same element here.
+So let us say this is A, B, C and this is 0 and 1.
+So this is a function because every element of A is related to some element of B and it
+is a unique element of B.
+So if I have another element D here which is not related to anything in B, it is not
+a function because every element of A has to be related to some element of B. But if
+this D is related to some, let us say there is a new element 2 here, then it is a function.
+But it is also important that there should be unique relation.
+So if B is both related to 0 and 1, it is no longer become a function.
+B has to be related to 0 only.
+So if you have a function which is a subset of A cross B, then it is typically written
+in this form.
+F is a function from A to B. So B can have more elements.
+For example, there could be element 3 sitting here which is not related to anything.
+That is fine.
+So if F is a function from A to B, then every element of A has to be related to a unique
+element of B. So given this function, the set A is called the domain of the function.
+The set B is called the co-domain of the function.
+If you look at this picture, you will see that there is a set element 3 which is not
+related to anything.
+So you have this set of elements which is 0, 1, 2, which is related to something in
+the domain.
+So this subset of B, so this red set is called the range of the function.
+The range of the function is a subset of B. It is a subset of the co-domain such that
+some element in the domain is mapped to that element and that is called the co-domain of
+the function.
+So let us see some examples.
+F is a function from natural numbers to natural numbers, set of all natural numbers to natural
+numbers and one way to define a function is by means of an equation, Fx equal to 3x.
+For every x, you multiply by 3 that is the output of the function.
+So what is the domain of this function?
+Domain is natural numbers.
+What is co-domain?
+Co-domain is also natural numbers, so output gives a natural number but are all elements
+in the co-domain related to something in the domain, not really.
+So what is the range?
+Range is a subset of natural numbers.
+So what is the range?
+So range is the set of natural numbers which are divisible by 3.
+So it is set of numbers which is 1, 3, so actually it starts with 3 only.
+So because 3, 6, 9, 12 and so on.
+The co-domain is the entire set of natural numbers but the range is a subset of it only.
+So that is one example.
+Let us see another example.
+So let us say you have a function g and the domain is let us say 1, 2, 3 and the range
+is a, b, c.
+The domain is 1, 2, 3 and the range is a, b, c and let us say g of 1 is equal to b,
+g of 2 is equal to c and g of 3 is equal to a and I have defined the function.
+So typically this is defined in a table, when you have functions like this you can write
+like this 1, 2, 3, 1 is mapped to b and 2 is mapped to c and 3 is mapped to a.
+So that is one way of defining a function, you can write down what is called the table
+of the function.
+Another way is just like we do it for a relation.
+So you have 1, 2 and 3 and you have another a, b and c and 1 is mapped to b, so there
+is a line like that and 2 is mapped to c, so there is another line like that and 3 is
+mapped to a, so there is another line like that.
+So that is the way of drawing a function pictorially.
+So there are different types of functions just like we had different types of relations
+like reflexive, symmetric, transitive, equivalence and everything.
+We have different types of functions, so some type of specific type of functions we need
+to know and what that is called as surjective functions.
+So surjective, so another name for it which is called onto, so a function is called surjective
+or onto if the co-domain is equal to the range.
+The co-domain of the function is equal to range that means you take the co-domain and
+suppose there are no elements in the co-domain which is not related to anything in a from
+the domain, then it is a surjective function.
+So whenever you have a surjective function, you can have there are elements here and some
+element is always mapped there.
+So some element there is at least one element from there which maps here, so that is a surjective
+function.
+There is no like elements sitting in the range, sitting in the co-domain which is isolated
+which is not connected to anything in the domain, then it is called a surjective or
+onto function.
+So for example the example 2 is a onto function, a, b, c all the elements in the co-domain,
+the co-domain is equal to the range.
+So another important type of functions you need to understand is injective functions.
+So injective functions is also called one-one functions.
+So injective functions are functions where I mean there is for every 2 elements of the
+domain, the range values should also be different.
+So you have, so this is not a one-one function, why?
+Because these 2 elements, because these and this element match the same element here.
+In a one-one function, you should have that every element here should map to some other
+element there and of course this place could have, the range could have, the co-domain
+could have additional elements.
+So every element, every element of domain maps to a distinct element of the range of
+the co-domain or range.
+So this function that you see here is I mean a one-one function because every element of
+the domain is mapping to a different element of the co-domain but it is not surjective
+because there is this isolated, there are 2 isolated elements here and here which makes
+the co-domain not equal to the range.
+So if a function is both injective and surjective, so for example you can see this function,
+this function, this example that we saw is a function which is both injective and surjective.
+So if a function is both injective and surjective, it is called bijective.
+Both injective and surjective, so a bijective function is a function which is both injective
+and surjective that means every element of the domain maps to a distinct element of the
+range and the range is equal to the co-domain, there are no isolated elements in the co-domain.
+So a function can be only surjective, a function can be only injective and it can be both together
+and we saw examples on this.
+So what else, so finally we will also come to what is called the inverse of a function.
+So inverse of a function, so first we will define inverse for a bijective functions.
+So inverses are typically defined for bijective functions.
+First we will define it for bijective function and then we will see how to generalize it
+for all functions.
+So for bijective functions, so if you have a function from A to B, so A is the domain,
+B is the co-domain and if it is a bijective function, the range is equal to the co-domain.
+Now for a bijective function, inverse of a function is another function.
+So inverse divided by F inverse is just another function and what is that function?
+The domain of the inverse function would be B and the co-domain of the inverse function
+would be A. So for a bijective function, just you need to interchange the domain and co-domain
+and what is that function?
+So let us see an example.
+So we already saw this particular example.
+So 1, 2, 3 is mapped to, so we had this function G where 1, 2, 3 is mapped to BCA.
+So this is the function F and what is F inverse?
+F inverse is just you need to interchange.
+So BCA, so the domain is B and the range is this capital A. So basically, so these
+are the elements of B and these are the elements of A. So it becomes 1, 2, 3.
+So inverse is nothing but the reverse mapping and you can easily do it for a bijective function.
+So for any bijective function, the picture looks like this.
+You have a set A, you have a set B and there is, yeah for every element in the left hand
+side, there is a unique element on the right hand side and there are also no isolated elements
+in B. So we can, so when you have F, these arrow marks were from left to right.
+When you have the inverse, the arrow mark will be from right to left, that is it.
+You just need to invert the arrow marks.
+This you can do because there is no isolated elements in B. So what happens when you want
+to define inverse for nonbijective functions.
+So inverse for nonbijective functions.
+So how do you define inverse for nonbijective functions?
+So what all things can happen?
+So if it is a nonbijective function, so you might have a function from let us say this
+is A, this is B and there is some elements in A, there is some elements in B and there
+might be like multiple things might be mapping to the same element here and this guy is mapping
+to there and so this guy is mapping to here.
+So you have multiple elements mapping to the same element.
+Let us number it also.
+Let us say this is 1, 2, 3, 4 and this is A, B, C, D, E.
+So what can we say about the inverse?
+So let us say you have, we want to do F inverse of A. So F inverse of A is, there is nothing
+to worry about because there is only a unique element which maps to A, which is 3.
+You can say it is 3 and be happy about it.
+But if you do F inverse of B, there are 2 elements, 1 and 2 both maps to B. So if you
+want to define F inverse, should I define it to 1 or 2?
+Now it is not clear what to define it to.
+So F inverse, when you have a nonbijective function, B is, F inverse of B is mapped to
+the set of 1 and 2.
+So F inverse might give you a set of elements in a nonbijective function.
+So strictly speaking, I should write set here also.
+If it is a singleton, then it is well and good, otherwise it might be a set of more
+than 1 elements.
+So what is F inverse of E?
+There is no element which maps to E. So F inverse of E is nothing but the empty set.
+And you can also generalize inverse for a subset of elements of B.
+So for example, we can say F inverse of B, E. So this is nothing but, this is defined
+as F inverse of B union F inverse of E. F inverse of E happened to be the empty set.
+So this is nothing but 1, 2.
+So what is F inverse of A and B?
+So F inverse of A and B is F inverse of A which is 3 and F inverse of B which is 1 and
+2.
+It will be 1, 2, 3.
+So now we can generalize F inverse to subsets also.
+So F inverse strictly speaking is a function from the power set of B to the power set of
+A. Take any subset of B, I can construct the inverse by looking at all the elements which
+is connected to these elements in B. So that is all.
+That is all we are closing the first subsection of the course.
+So in this video, we looked at functions.
+Functions are just relations which has a particular property that every element of the left hand
+side is mapped to some element on the right hand side.
+So we saw a few examples.
+So a function can be surjective that is codomain equal to range.
+It can be injective that is it is one to one.
+If every element is mapped to some element on the right, it is one to one or it can be
+bijective.
+Bijective, it has to be both injective and surjective.
+So then we looked at the inverse of the function.
+So I just forgot to include one more part as part of the video.
+So finally I want to include one more topic which is composition of functions.
+So given functions, you can do what is called the composition of functions.
+So what do you mean by composition of functions?
+So suppose you have a function F from A to B. There is a set A and there is a set B is
+the codomain and there is a function G which is a function from set B to set C. So you
+have two functions.
+So the way to think about it is there is a set A, there is a set B and there is this
+I mean there is this.
+So F has for every element in A, there is some arrow mark going to B. There is some
+line going to B. So every element there is some line going to B. So there might be some
+extra elements in B which I mean no element in A maps to and G is another function which
+maps from.
+So this is A, this is B and this is C. So G might map this thing to some other elements.
+So for example let us say this is 1, 2, 3. This is A, B, C, D. This is P, Q, R, S. So
+A is nothing but the function 1, 2, 3, A, B, C. So 2 is mapped to A. So 1 is mapped
+to C. So 1 is mapped to C, 2 is mapped to A and 3 is mapped to D.
+So C is this element. And what is this function G? It maps A, B, C, D to, so A is mapped to
+R, B is mapped to P, C is mapped to Q and D is mapped to S. So these are the two functions
+A and F and G. So given these two functions, we can define a function called G of F. So
+G of F is a new function. It is a function from A to C. And what is the function G of
+F? It is take any element of A, follow the lines. There is a unique line going from A
+to C in this picture. So it is nothing but, so what will be the table of that function?
+to C and C is mapped to Q. So 1 is mapped to Q, 2 is mapped to A and A is mapped to
+R. 3 is mapped to D and D is mapped to S. So this is the function G of F. So it is exactly
+so G of F of a particular input x is nothing but G of F of x. So that is exactly the function.
+So given two functions, you can compose it. And the interesting thing that you might notice,
+if you compose bijective functions, you will get bijective functions. So composing bijective
+functions, so that is if F and G are bijective, then the G of F will also be bijective, gives
+bijective functions. So that is the important thing to note. And you can just look at the
+figure and convince yourself about that. So we looked at inverse and finally we also looked
+at function composition. So that is all for this video. Thank you.

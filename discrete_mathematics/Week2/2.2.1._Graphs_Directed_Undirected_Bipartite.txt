@@ -1,0 +1,177 @@
+So, in the last 2 lectures, we looked at sets, relations and functions and later we looked
+at counting objects, counting the size of sets. We looked at various different counting
+problems. In this lecture, we will look at graphs. So, what is graphs? So, let us graphs
+is very much similar to relations. So, just let us recall what a relation is, right. So,
+we had a relation. Relation is defined on a set A. So, what is a relation set on defined
+on a set A? A relation is nothing but a subset of A cross A, that is what we said. And let
+us say we had one example relation. So, let us say your set is 1, 2, 3, 4. So, one of
+the relations that we discussed is what is called the less than relation. So, what is
+the less than relation? So, the less than relation. So, we drew it like this. So, you
+drew a figure where you had A and A here. So, there is 1, 2, 3 and 4. Similarly, there
+is 1, 2, 3 and 4 here. And you put an arrow mark if one is less than the other. So, there
+is an arrow mark from 1 to 2, there is an arrow mark from 1 to 3, there is an arrow
+mark from 1 to 4. Similarly, there is an arrow mark from 2 to 3 and 2 to 4 and 3 to 4. So,
+there is no arrow mark from 4 because 4 is the largest number.
+And how did they see this relation? So, this relation was basically the set 1, 2, 2, 3,
+4 and 2, 4, 1, 3 and 1, 4. So, there is 1, 2, 3, 4, 5, 6. So, there are 6 elements here.
+So, that is what the relation is. It is a set of ordered tuples. It is a ordered tuples
+of size 2, both from A. So, a graph is exactly the same thing. Just that graph has little
+more terminology associated with it. So, we use the word graphs in various specific real
+world situations and we will come to in a minute. So, first I will define what a graph
+is. A graph G is given by 2 things. It is a tuple of 2 things. What is called a vertex
+set? So, V is called a vertex set. So, this is called a vertex set, vertex set. And E
+is called the edge set. So, a graph consists of 2 things, typically called V called a vertex
+set and E called the edge set. And in this case, the vertex set is nothing but the set
+of elements A. 1, 2, 3, 4 is the vertex set. And what is the edge set? Edge set is nothing
+but the relation itself. So, edge set is nothing but this relation itself. And that is what
+a graph is. A graph consists of 2 things, V which is a vertex set, which is the underlying
+set of the relation and E which is the set of ordered tuples, which is called the edge
+set. So, let us see another example graph. So,
+let us say you have. So, when you have a graph, you do not draw it like this picture. You
+draw it slightly differently. So, when you have a graph, the picture of the graph looks
+like this. You will have vertices drawn like this. You will have the name of the vertex
+and you will have a circle around it and that is how. And then you put arrow marks
+like this. 1 is less than 2, 2 is less than 3, 3 is less than 4, 2 is less than 4 and
+1 is less than 3. And finally, 1 is also less than 4.
+So, typically when you talk about relations, we draw a picture like this. But when you
+talk about graphs, you typically draw a picture like this. So, that is what a graph is. Let
+us see some very common examples. So, a very common example in practical use cases of a
+graph is what is called the WWW graph. What is the WWW graph? It is the graph which represents
+the entire internet. So, this is a very commonly used graph, whichever very large companies,
+especially search engines use it, but there are several other applications of this.
+There are several other companies internally use it. So, they index the whole entire internet.
+And they will have the graph they represent. The vertex set is the set of all web pages.
+Or URLs. It is a set of all web pages and URLs. So, you can imagine this is going to be a very
+huge set. And what is the edge set? So, suppose there is a vertex u and there is a vertex v.
+You put an edge from u to v if the web page u links to the web page v.
+Whenever there is a link from one web page to another, you put an edge. And it is a huge graph.
+We cannot draw it in this notebook and represent it or anything. But nevertheless,
+this graph is very important and frequently used. Another example is a social network graph.
+So, take a social network, let us say Facebook or LinkedIn or any such thing. So,
+vertex set is the set of all users. V is the set of all users. And what is the edge set?
+So, we will put an edge from u to v if v is in the friend list of u. Or if u follows v,
+I will put an edge from u to v. So, this is the social network graph. And you can analyze
+this graph and see various things. For example, how many people are following this particular
+news. And analyzing these graphs allows you to find out what are the important web pages,
+allows them to rank web pages, allows you to find interesting users, allows you to suggest,
+allows these social network companies to suggest friends and so on. And this has enormous application
+in advertising and many other areas. For example, Google news relies a lot on how
+much news is important and how it links to other things. So, that is what a graph is.
+So, you might, so all these graphs are extremely large. So, you can imagine these graphs which
+will have many millions of web pages in the internet or there are millions of users,
+maybe in the order of billions maybe. So, then how do you represent graphs? So,
+how to represent graphs? How do you represent graph in a computer? It is represented as a
+matrix called the adjacency matrix. So, what is the adjacency matrix? It is a matrix. So,
+suppose there are n vertices, n is the number of vertices. So, let us say n is the number of the
+size of the vertex set is n. So, let us say there are billion users in the social network,
+then your n is 1 billion. So, you will have a two dimensional array or a matrix which is a square
+matrix. There are n rows and n columns. And suppose there is, so it is a matrix,
+the two dimensional array. The matrix M, there is a mean, there is, so it is a binary matrix of 0
+and 1. It has only 0 and values. So, the matrix, the value of the matrix at the u, the u-th row
+and v-th column, the u-th row and v-th column is 1 if u, v is there in the edge set and 0 otherwise.
+For example, let us look at this particular example. So, there is 1, 2, 3, 4, 1, 2, 3,
+4 in this example. So, 1 is less than 2. So, 1 is not related to 1 at all. So, 1 is less than 2,
+less than 3, it is less than 4. 2 is not related to 1, 2 is not related to 2 and so 3 is not,
+3 is only related to 4 and 4 is not related to anything. So, that is the adjacency matrix
+of this particular graph. So, you need this big huge two dimensional array, but it is a binary
+two dimensional array. It is a binary matrix to store all these edges. So, what next? So,
+there are different types of graphs. So, there are different types of graphs. So,
+let us see a few types of graphs, types of graphs. So, the graphs, so far what we have
+been talking about is what is called the directed graphs. So, far any general graph is called a
+directed graph. It is called a directed graph because there are arrow marks. Every line from
+here one node to another has a arrow mark also associated with it and that is called a directed
+graph. But not all graphs are directed. So, there is what is called the undirected graph.
+So, I will give you some examples first so that this is clear. So, let us have an example. Let
+us say you have a map of rail connectivity. So, you will put a, so you have some cities. So,
+I mean there is Delhi, there is hermandabad, let us say there is Kolkata, there is Hyderabad,
+there is Mumbai, there is Chennai, there is Bangalore, there is Trivandrum. So,
+and we are drawing the railway map. So, let us say there is, so hermandabad,
+there is a railroad between hermandabad and Delhi. So, I will put a line like that. But if there is
+a route from hermandabad to Delhi, then it is also a route from Delhi to hermandabad. So, if I put a
+line like this, it is obvious that there is another line coming back. There is a route,
+there is a route both ways. So, if A, D belongs to the edge set, it is already implied, it already
+means that D, A belongs to the edge set. There is always, if there is a edge from U to V,
+there is another edge from V to U. So, this pairs is called a edge in the graph,
+it corresponds to one line. So, in a railway network, it does not mean to have this arrow
+hertz because it is obvious that if there is a edge from A to B, there is always a edge from
+B to V. And this type of relations, we had a name, that is, it is a symmetric relation. So,
+the relation underlying the graph, if it is symmetric, that is, if U, V belongs to the
+relation, V U also belongs to the relation, then in the picture, we do not need to put this arrow
+marks. And such a relation is called a undirected, such a graph corresponding symmetric relation
+is called a undirected graph. So, let us say this is the railway map, railway map. So, this is the
+railway graph. So, we do not need to put this arrow marks. In fact, we do not need to put both
+the edges. You only need to put A to D, that implies that there is a D to A. And maybe there
+is things like this. So, maybe the map looks like this. I am just giving an example. So,
+such graphs are called undirected graphs. And there are several examples. For example,
+there is, you have your network, let us say LAN network. So, you have a LAN network. So,
+typically in a local LAN network, you have a connectivity from every vertex. So, you have,
+I mean, you will have individual terminals. You might have a router. And the routers might be
+connected to other routers. And you might have connection to others. And if there is a connection,
+there is a connection which is both ways. So, that is a LAN network. Of course, you can configure
+routers as only one way communication. But assume that is not the case. It is undirected. So, those
+are called undirected graphs. So, in undirected graphs, so let us look at this particular graph.
+So, what is the vertex set here? The vertex set are the spaces. So, there is Delhi, Kolkata,
+Ahmedabad, Mumbai, Hyderabad, Bangalore, Trivandrum, Chennai. So, that is the vertex set. And what is
+the edge set? So, when you have a directed graph, so there is actually edge A, D and D, A. So,
+edge set consists of ordered tuples. It is a sequence of length 2, each element is. But
+when you have A, D, it is understood that there is D, A. So, instead of putting order tuple,
+we can put a set of size 2. So, when you have undirected graph, it is a set of subsets of
+vertices of size 2. The edge set are basically sets. So, there is D, K, there is A, M. You do
+not need to specify an order, M, edge and so on. So, the edge set in undirected graphs,
+the each element, each edge is a set of size 2 of the vertex set, because you do not need
+to specify the. So, every undirected graph is also a directed graph by like. So, take the set
+and make, add a 2 tuples, A, D and D, A. You will make it in a directed graph. So, that, so also let
+us look at the adjacency matrix of a directed graph. So, if you have a undirected graph,
+sorry adjacency matrix of a undirected graph. So, adjacency matrix of undirected graph. So,
+how does it look like? So, yeah. So, the thing is if there is a edge from a particular vertex
+to another vertex, there is also edge from that vertex back to original vertex. So, actually
+if you look at it, yeah. So, let us say I mean you have, yeah. Let us give one example. So,
+let us say you have 1, 2, 3, 4 and let us say you have undirected graph like this.
+This is undirected graph. So, you have 1, 2, 3, 4, 1, 2, 3, 4, yeah. 1 to 2 there is a edge,
+1 to 1 there is no edge, yeah. So, 2 to 4 and yeah. So, yeah. So, remember that there is yeah,
+1 to 2 edge is there. So, 2 to 1 edge is also there, yeah. And there is a edge to 3 and 4,
+yeah. 3 has a edge only to 2 and 4, yeah. And 4 has a edge only to 2 and 3, yeah. So,
+note that, yeah, the matrix, yeah. If you look at these entries, the top entries, they
+completely differ. So, if you look at these bottom entries and those top entries, yeah,
+they have to be exactly the same. They have to be symmetric, yeah. So, yeah. So, you strictly
+speaking when you have a mean directed graph, you only need to specify the upper triangular
+portion of it, yeah. And the lower triangular part is exactly the same, yeah. So, finally,
+we will come to one more type of graph called bipartite graph. So, what is a bipartite graph,
+yeah. So, we will see again an example, yeah. Suppose, you have a like yeah,
+a marriage website, it is a matchmaking website, yeah. So, in a matchmaking website, yeah,
+again you can have something like a social network, yeah. But here the vertex at V, yeah,
+is partitioned into two different set, yeah. So, the vertex at V is consist of a set of
+U and a set of W, where U is the men users, yeah, and W is the women users, yeah. So,
+you in a, yeah. And when do you put a edge, yeah. So, yeah, there are actually two type of edges,
+yeah. So, you can have, yeah. So, you can have, yeah. So, there is, yeah. So, there is actually
+mean two bipartite graphs in such a setting, yeah. So, the men specify, yeah. So, let us say there
+is, yeah. So, the men specify, yeah, the women they like. And let us say there is some, yeah,
+preference like this. And then, so, this is U and this is W. And yeah, there again there is a
+preference list for the women also, yeah. And possibly what the, yeah, the website is trying
+to do is if there is a, yeah, arrow both ways, yeah, between people and they try to find a match,
+yeah. So, yeah, in this kind of graph, so, actually there are, you know, let us look at
+only one part of it, only the, let us say, women's preferences or only the men's preferences, yeah.
+So, these, yeah, this kind of graph, the vertex set has two parts, yeah. And your edge set consists
+of only edges from the first part to the second part, yeah. So, U, V, U, W belongs to the edge,
+yeah, only if U belongs to U and W belongs to W, you know. There are only edges from one set to
+another set, yeah, assuming we are only interested in that kind of relations, okay. So, yeah, I mean
+just an example, yeah. So, if you take the, let us look at the adjacency matrix of this graph,
+yeah. So, you have, yeah. So, let us say, I will note down all the U vertices in the top side,
+yeah. Let us say, this is A, B, C, D and this is 1, 2, 3, 4 and this is, yeah. So, there is one more,
+yeah. And there is again A, B, C, D and, okay, sorry. So, vertices of W is 1, 2, 3, 4 and this is A,
+B, C, D, yeah. So, you will have, yeah, A, B, C, D here, yeah, 1, 2, 3, 4. Again, this is U and this
+is W. So, A, B, C, D here, 1, 2, 3, 4 here, yeah. And note that all the edges are going from U to W,
+yeah. So, there is no edges going from U to U. So, this entire part of the matrix would be 0,
+yeah. Similarly, there is no edge going from W to W. So, this entire part would be 0, yeah.
+And yeah. So, from A to W, there is a edge, yeah. So, from A to 1 and 2, there is a edge. So,
+there is 1, 1 here, yeah, and 0, 0 here, yeah. And B, there is only edge to 3, yeah. And yeah,
+from C, there is a edge to 2 and 4, yeah. And from D, there is only edge to 4, yeah. And similarly,
+the edge from W to, I mean, U can be expressed here, right. So, from 1, there is a edge to A
+and C, yeah. From 2, there is a edge to B and D, yeah. From 3, there is a edge to A and D.
+And from 4, there is a edge to B and D, yeah. So, that is the adjacency matrix of the bipartite
+graph. So, there is 2 huge blocks of zeros there, yeah, which you can ignore, yeah, okay. So,
+that is all for this part of the video. So, what all did we cover? So, we covered, yeah,
+what is graphs, which is just another name for regulation. We saw few examples of a graph,
+which is the WWW graph or the social network graphs, yeah. We looked at different types
+of graphs, the directed graph, undirected graph and finally, the bipartite graph, yeah.
+That is all. Thank you.

@@ -1,0 +1,216 @@
+Welcome everyone, welcome to today's class. So last time we saw sets, relations and functions
+and in this lecture we will look at counting, basics of counting and later on permutations
+and combinations. So let us start with counting.
+Counting is something that looks very obvious to us, but it can become tricky. So we will
+understand the basic rules of counting and we will solve few problems only. So what is counting?
+So counting is about finding the size of a set. So counting is finding the size of a set. But
+typically a set is composed of smaller sets by using this operations. We saw various set
+operations like intersection, union, complement, cross product and so on. So counting is finding
+the size of a set from some basic component sets, from its components. So typically you
+might have complicated set which is obtained by intersection, union, complement, cross product
+of simpler sets and the question is the simpler sets we know how to compute the size and everything.
+But then question is how do you compute, find the size of this complicated set and we will
+find the basic rules for doing this in today's lecture. The first rule of counting is called
+the multiplicative law. So what is the multiplicative rule? So multiplicative rule says that if
+you take two sets A and B and take the cross product of it, the size of the cross product
+is nothing but the size of the first set into size of the second set. So multiplicative rule
+says that the size of the cross product is always the size of the first set into size of the second
+set. Let us see an example where this we commonly use. So let us say you are going to a restaurant
+and you are ordering. So the restaurant gives you a packaged meal where you have a appetizer,
+let us say a soup, a main course and a dessert. So you have some choices for your soup. Let us
+say for the soup you have a choice of tomato, let us say corn soup and let us say there is a chicken
+soup. So you have these three options for the soup and you have, let us say for the main course,
+so you have let us say pasta, let us say rice and let us say roti.
+And let us say for the dessert you have only two options.
+Let us say some cake or there is some other sweet let us say.
+Now question is, so for the package you need to choose one from each. So question is how many
+ways you can choose. So let us say this is the set A, this is the set B, this is the set C.
+So you need to choose one element each from the set A, B and C to order with the package.
+So you need to choose one of these things here and then you need to choose another thing here
+and then you need to choose another thing here. So you need to choose these three things.
+First element is for my soup, second element from the main course and third element dessert.
+So you can choose any, so the first choice is any from this, second choice is any of these options,
+third choice is any of these options and you have to make a, so you are mean,
+meal is not, order is not complete if you only choose a soup and a main course.
+You have to choose a dessert also. So how many ways you can do it? So very naturally you will
+say it is, so the size of, basically we are looking at the size of the cross product of A,
+B, C. So basically any order is kind of same as a cross product of A, B, C. So it is a sequence
+of three elements, first element coming from A, second element coming from B and a third element
+coming from C and size of this is nothing but by the above multiplicative rule, it is nothing but
+size of A into size of B into size of C, which in this case is 3 into 3 into 2, which is 18.
+So that is the multiplicative rule. If you want to, I mean if you want to choose two things and
+the first thing should be this from the set A and second thing should be from the set B,
+then you have to find the size of the cross product.
+So this looks like a very simple thing but let us see few more examples.
+Let us see few more examples. Let us say you want to find how many strings are there. So last time
+we looked at strings. How many binary strings are there of a particular length n? So what is the set
+that we are interested in? So it is a binary string. So every element is 0 or 1 and we are
+looking at a sequence of length n. So you have to take n cross products.
+And we are looking at there are n cross products here. So we are looking at size of this set and
+size of this set is by the multiplicative rule is nothing but 2 into 2 into 2 into up to n times
+which is equal to 2 raise to n. It sounds very nice and simple.
+So now let us look at a little more involved example. Suppose you have a function. So how
+many functions are there with domain let us say A, B, C and co-domain
+1, 2, 3, 4. What domain and co-domain of a function is and what a function is? Question
+is how many functions are there with domain A, B, C and co-domain this 1, 2, 3, 4.
+So how do you find this? So let us again see what this means. So remember the way you write
+a function is you have this. So again it looks like a similar diagram but actually it is very
+different. So it is 1, 2, 3, 4. So and how do you draw a function? For every element in the left
+hand side. So for every element in the set in this set A, we need to choose an element in the
+right hand side set. So I could map A to any of the 1, 2, 3, 4. I had 4 choices. So I had 4
+choices for A. Let us say I choose this and for a complete function, I have to choose something
+for B also. Let us say I have chose this and I have to choose something for C also. C can be
+again any of the 4 things. So now how many functions are there from A, B, C to 1, 2, 3,
+4? I need to choose a value for A. I need to choose a value for F of A which can be any of
+the 4 things. I need to choose a value for B which can be any of the 4 things and I need to
+choose a value for C which is any of these 4 things. So in total, so I need to make a choice
+for A which is among the set 1, 2, 3, 4. I need to make a choice for, so F of A should belong to
+1, 2, 3, 4 and F of B should again belong to 1, 2, 3, 4 and F of C should again belong to 1,
+2, 3, 4. You have to make all these 3 choices to define a function and there could be any of
+these choices. There is no constraints on these choices. The total number of functions is again
+by multiplicative rule will be 4 into 4 into 4. So total number of functions is,
+so 4 into 4 into 4. That is 4 raise to 3. So this is how you count functions. So for every element
+in the domain, we need to choose an element in the code domain. There are 4 elements in the code
+domain. So I have to choose it. There are 4 possibilities for each element in the domain
+and there are only 3 elements in the domain. So we have to do 4 raise to 3.
+That is again a simple application of multiplicative rule. Now let us see the next rule of counting.
+The next rule of counting is called the additive rule.
+So what is the additive rule of counting? Additive rule of counting involves finding the
+size of the set A union B when A and B are disjoint.
+So when A and B are disjoint, we want to find the size of A union B and that is nothing but
+size of A plus size of B. So size of A union B is size of A plus size of B.
+So let us again go back to the previous question. There was this, I mean you are ordering in a
+restaurant and you had, so earlier we said the order has to consist of a soup as well as a main
+course as well as a dessert. But let us say, I mean the restaurant has a special offer.
+If you choose any one item in the menu, there is a special discount. So in how many ways can
+you get that discount? You are only allowed to choose one item in the menu. It can be a soup,
+main course or a dessert. In how many ways can you choose one item in the menu?
+So let us call this question 1. Let us say this is example 1.
+How many ways to choose
+a single item from the menu?
+In example 1.
+Now I could choose a soup which can be chosen in any of the three ways.
+Or I could choose a main course which can be chosen in any of the three ways, so 3 plus 3 is 6.
+Or I could choose a dessert which can be chosen in any of the two ways.
+So the total number of ways I mean you can choose is size of A plus size of B
+plus size of C which is 3 plus 3 plus 2 which is 8. So notice the difference.
+Earlier in the first deal, you had to choose a soup, a main course as well as a dessert.
+You need to make all these three choices. And then the number of possibilities was 3 into 3 into 2.
+But now in this new deal, you only need to choose one item in the menu.
+And menu has soups, main course and dessert. So you need to add. So there is a very different
+calculation happening here. So let us see another example.
+Let us say you have taken a quiz in the previous lecture. So let us say you are given a quiz.
+And there is a question 1 which is a true or false answer. And question 2 is a MCQ questions
+with A, B, C, D as answers. So you have a question 1 which is a true or false questions.
+And question 2 is A, B, C, D answers. Now I can ask in how many, suppose you need to answer
+question 1 and question 2. How many ways can you answer the quiz? If you need to answer both,
+if you need to attempt both questions, Q1 and Q2, how many ways to answer?
+So question 1 can be answered in 2 ways. Question 2 can be answered in 4 ways. So it is 2 into 4,
+which is 8. But suppose I am giving you an option. You only need to answer the first question or the
+second question. Not both. Only the first question or only the second question. So how many ways can
+you attempt? If you need to attempt only one question, then the first question can be answered
+true or false. The second question can be answered A, B, C, D. There are 6 ways to answer the quiz.
+So that is the additive rule. So you do not need to choose element from A and B. Either you choose
+from A or choose from B. And the important point to notice, here the sets A and B are disjoint.
+It is a very important thing that you need to note. For all this to work,
+the sets should be disjoint. So what happens when the sets are not disjoint?
+So what happens when the sets are not disjoint? Then we need to come
+to what is a rule called the principle of inclusion exclusion.
+So what is the principle of inclusion exclusion? Suppose you want to find the size of A union B.
+So you have the set A, you have the set B, and you have to find the size of the set A union B.
+Now A and B are not disjoint. So maybe you will write size of A plus size of B.
+This answer is not correct because this intersection area is counted twice.
+That intersection area is counted twice. So what do you do? You subtract it once.
+And this is what is called inclusion exclusion. But there are only two sets here.
+But the thing is it will get little more complicated when you have three sets.
+Suppose you have three sets here. You have one set here, two sets here, and a third set here.
+Suppose you want to find the size of A union B union C.
+There are three sets. Now let us try to find out the mean size of A union B union C.
+Again we can write, let us say add up the sides A and B and C. That definitely covers the size
+of A union B union C. That is the upper bound. At most, I mean if they are disjoint, it will be
+size of A plus size of B plus size of C. But they have this intersection. So it has to be less than
+that. So we need to subtract something from this. What do we need to subtract? We have to subtract
+A intersection B. We will subtract B intersection C. And we will subtract C intersection A.
+Let us do that. Minus A intersection B minus B intersection C minus C intersection A.
+We have subtracted. So the intersections were added up twice. So we have subtracted it
+out once. But there is a problem here. If you look at this region, which is the intersection of all
+three, when you added A, B and C, that region was added thrice. And when you subtracted A intersection
+B, it was removed once. When you subtracted B intersection C, it was removed the second time.
+When you subtracted C intersection A, it was removed the third time. So when you added up A,
+B, C, you added it three times. And then you subtracted it also three times. So it is not
+appearing in this right hand side. So we need to add it back. So let us add it back plus
+A intersection B intersection C.
+And that is what inclusion-exclusion says. If you take the union of multiple sets,
+which may not be disjoint, if you want to find the size of it, we need to do this alternating
+summation. You need to add all the sets together first. Then you need to subtract the intersections,
+pairwise intersection, like two-wise intersections. Then you need to add back the three-wise
+intersections. If there are multiple sets, you have to keep doing it alternatively.
+So you will add back the three-wise. Then you will subtract back the four-wise and so on. So
+we are only doing it for three-wise. And typically, you will only see it for three-wise maximum.
+So let us see an example of this. So suppose you want to find the number of strings of length 4.
+So how many
+binary strings? Binary strings are there
+where of length 4 that has two consecutive ones. So you need to find the number of length,
+number of strings of length 4, 0, 1 strings of length 4 such as it has two consecutive ones.
+How do you count this? One way is you write down all the 2 raised to 4 strings. The total number
+of strings is 2 into 2 into 2 into 2, 2 raised to 4 strings. That is 16 strings you write down
+and figure out which one has consecutive ones or not and just count it like normally.
+But let us use these principles to count this. You will use the principle of inclusion exclusion
+to count this. So we have these four positions. So there is the first position, second position,
+third position, fourth position. Here it can be 0 over 1, here it can be 0 over 1,
+here it can be 0 over 1, here it can be 0 over 1.
+Now A1, let it be the set of strings where there the first and second position together was 1.
+So A1 is the set of strings where these two were ones and we do not care what happened here.
+The first two elements are ones. All those kinds of strings is a set A1. Now A2 is the set of
+strings where these two elements are ones. The other two places we do not care. And A3
+is the set of strings where the first two places we do not care what the value is.
+The last two places it is ones. So if the two consecutive ones occurred, it is either in the
+first two positions or the second and third position or the third and fourth position.
+So the set of strings we want. So this set, this set the answer, so S is let us say is the answer
+or A is the answer. The set we want to count A is basically A1 union A2 union A3. The set we want
+to find that is the set of all strings which has this property is basically A1 union A2 union A3.
+And what is the size of that set? So if you take the size of A by principle of inclusion exclusion
+is size of A1 plus size of A2 plus size of A3. And you will have all these things coming in.
+So you will have A1 intersection A2 intersection. So you will have A1 intersection A2 minus A2
+intersection A3 minus A3 intersection A1 and plus A1 intersection A2 intersection A3.
+What is the size of A1? And two positions it is one. The other two positions we do not care.
+Other two positions the value can be 0 or 1. So there are two into two. The size of A1 is
+basically so the size of A1 is equal to the size of A2 is equal to the size of A3. Why? In each of
+the three situations there are two positions which are which we need to fill in. Which can be any of
+the two possibilities which is two into two. We have to choose a value for here as well as here.
+Here and here here and here. So each of this is basically it is four. What is the A1 intersection
+A2? When you do A1 intersection A2 what are we saying? The first two positions it should be one.
+So that is a set of strings where the first two positions it is one. But A2 also says the third
+position also should be one. There is only one place we can fill in a 0 or 1. So the size of
+A1 intersection A2 is only equal to two. And you can verify by similarity using the same principle
+A2 intersection A3 as well as A3 intersection A1 is also two. Because in three places the value
+one is filled in and the other place we can choose 0 or 1. And what is the size of A1 intersection
+A2 intersection A3? So what is that set A1 intersection A2 intersection A3?
+A1 says first two positions should be one. A2 says second and third position should be one.
+A3 says the third and fourth position should be one. The only way all these conditions are satisfied
+is everything is a one. All the four positions has to be one. The size of A1 intersection
+A2 intersection A3 is only equal to one. There is only one string which satisfies all the three
+conditions. Now let us come back here. So what is the size of A now? It is basically
+four, three into four. Three times you need to add four. And then you need to three times
+subtract two and then you need to add back one. So that is 12 minus 6 which is 6 plus 1 is 7.
+There are seven strings which has two consecutive ones.
+Yeah the seven out of the 16 strings has two consecutive ones. So yeah so yeah three fourths
+are 12 minus 6 yeah that is right 7. So yeah so now we also know so we saw in this lecture
+yeah how to count. So if we first show the multiplicative rule so when we need to choose
+one element from the set A and another element from the set B
+then we are interested in finding a cross product size of the cross product which is
+size of A into size of B. When we are interested in yeah when you are required to choose
+an element from A or an element from B yeah where A and B are disjoint sets yeah the number of
+ways you can choose that element is size of A plus size of B yeah. And it is very important
+that it has to be disjoint yeah and these two numbers are very different are doing adding to
+numbers and multiplying to numbers are very different. So you need to be careful whether
+yeah you have to do the addition or multiplication yeah so and finally when comes the principle of
+inclusion exclusion and this happens when you have two sets yeah and you are allowed to choose
+from the first set or the second set yeah but unfortunately these sets have an intersection
+yeah in general there will be multiple sets yeah and then how do you find the size of A union B
+union C yeah you are you need to choose an element from A or B or C yeah and they have
+a intersection yeah and then we need to compute yeah we need to compute the intersections
+two wise intersection the three wise intersection yeah the two wise intersection should be
+subtracted three wise intersection should be added yeah and yeah the single size should be
+simply added yeah and then we can compute yeah and we used it compute the number of
+strings with two consecutive ones yeah so yeah that is all for this video thank you.

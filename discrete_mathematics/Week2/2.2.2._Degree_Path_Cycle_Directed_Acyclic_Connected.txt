@@ -1,0 +1,178 @@
+Welcome again and in the previous lecture we got introduced to graphs, yeah.
+Today we will in this video we will explore more about graphs, yeah.
+So, let us see one example graph that we drew last time, yeah. So, let us say we have this
+graph. So, you have 1, 2, you have 3 and you have 4, yeah. And let us say there is a edge
+between 1 and 2, there is a edge between 2 and 3, there is a edge between 1 and 3 and
+there is a edge between 4 and 2, yeah. And this is the undirected graph, yeah. Let us
+say there is a edge, there is a edge both ways, yeah. This is the undirected graph,
+yeah. So, this is the undirected graph, undirected graph where the vertex set is 1, 2, 3, 4, yeah.
+And the edge set is the set 1, 2, the set 2, 3, the set 3, 1, the set 4, 2, yeah. So,
+there are 1, 2, 3, 4 edges here and you saw 4 edges there, okay. That is the undirected
+graph, yeah. So, yeah. So, these are called the edges of the graph, yeah. So, given this
+undirected graph, so, we will say that the neighbors, the neighbors of the vertex 1,
+yeah, is nothing but, yeah, it is the other edges it is connected to, yeah. It is 2, 3,
+yeah. And suppose I will just introduce one more vertex, yeah. Suppose there is one more vertex 5,
+yeah. And this 5 is not connected to anybody, okay. Let us just assume that, yeah. So, it might be
+like the railway graph where there is, yeah, and 5 is somewhere in Sri Lanka, let us say, okay. So,
+5 is not connected to 1, 2, 3, 4. So, what is the neighbor set of, yeah, let us say 2. So,
+2 is connected to 1. So, directly connected to 1, 3 and 4, yeah. And what is the neighbor
+set of 5, yeah. In this graph, 5 does not have any neighbors, yeah. 5 is like a isolated vertex,
+yeah. It is the empty set, yeah. And that is the neighbor set. It is a set of all immediate other
+vertices to which it has a direct connection, yeah, and that is called the neighbors, yeah.
+Now, yeah, the next important thing we need to understand is called the degree of a vertex.
+The degree of the vertex 1, yeah, is nothing but the size of its neighbor set. So, it is the size
+of 2, 3, yeah, which is equal to 2. Yeah, similarly the degree of 2 is nothing but 3,
+yeah. And what is the degree of 4, yeah. So, 4 is only connected to 1 vertex here, yeah.
+The degree of 4 is 1, yeah. So, that is neighbors and degree, yeah. So, yeah, let us, yeah. So,
+let us again draw the, I mean, map, yeah, of the railway connections, yeah. So, let us say there
+is Madhubath, Delhi, Kolkata. So, let us say there is Mumbai, Hyderabad. So, there is Bangalore,
+Chennai and Trivandrum, let us say, yeah. So, let us say we have, yeah, connections like this,
+yeah, and yeah. So, this is the graph, yeah. Let us say this is the railway graph that we have,
+yeah. So, let us say, so, this is the railway graph, yeah. So, typically we are not just
+interested in like this graph, but we are also interested in the distance travelled, yeah. So,
+you might have a distance also, yeah. So, this might be some, yeah, I mean, there might be some
+distance here, yeah. So, there will be some distance between A, B and so on, yeah. So,
+typically corresponding to every edge, there is also a distance associated with it, yeah,
+and then it is called a, what is called a weighted graph, yeah, okay.
+Now, I want to go from Ahmedabad to Chennai, yeah. Let us say I want to travel from Ahmedabad to
+Chennai, yeah. So, how can I go from A to C, yeah? So, I can go from, yeah, I can first take the
+edge, yeah, A to M, then I can, yeah, go from M to Bangalore and then I can go from B to C,
+yeah. That is one way to reach Chennai, yeah. So, I can again, another way to reach Chennai
+might be okay. I might go from Ahmedabad to Delhi to Delhi to Kolkata, Kolkata to Hyderabad
+and Hyderabad to Chennai. That is another way to reach Chennai from Ahmedabad, yeah. Obviously,
+you would prefer the first route because the distance travelled is much less, yeah.
+So, any way you can reach from one vertex to another vertex through these edges is called
+a path, yeah. So, these are called paths, yeah. These are called paths in a graph, yeah.
+And typically when you have a path, you do not need to keep repeating this vertex. So,
+instead of this, yeah, we can just say Ahmedabad, Mumbai, Bangalore, Chennai and instead of
+this I can simply say Ahmedabad, Delhi, Kolkata, Hyderabad, Chennai, yeah. So, when you specify
+a path, yeah, you need to specify a sequence of the nodes and between every consecutive
+nodes there should be edge, yeah. Sequence of paths, it is a sequence of edge, sequence
+of vertices such that between a very consecutive vertex there is a edge, yeah. So, this is
+a path only if there is a edge a d, d k, k h and h c, otherwise it is not a path, yeah.
+If I write a h, yeah, so a h, a h c is not a path. Why? Because there is no edge directly
+from a to h, okay, yeah. So, that is called a path, yeah. Obviously, there are there can
+be multiple path between vertices, yeah. So, then what we, yeah, so another important
+term in graph that we need to understand is what is called cycles, yeah.
+Suppose I want to go from Ahmedabad to Chennai and return back, yeah, a round trip, yeah.
+So, how do I specify a round trip? So, yeah, these two vertices kind of gives you a round
+trip, right. So, I go from Ahmedabad to Mumbai to Bangalore to Chennai and from Chennai I
+go to Hyderabad, Kolkata, Delhi and back to Ahmedabad, yeah. So, a cycle, so this is
+called a cycle. Cycle is again a sequence of vertices, yeah, but it cannot be just any
+sequence of vertices. The first and last vertex should be the same. First
+and last should be equal, yeah, and it should also satisfy the condition of path. That is
+between every consecutive vertices, there should be a edge. Between every consecutive
+vertex, there is an edge, yeah. So, cycle is again like a path, it is a sequence of
+vertices where there is a starting vertex, ending vertex is also the same and between
+every consecutive vertex, there is a edge, yeah. So, yeah, so that is what a cycle is,
+yeah. So, suppose you have a graph which does not have any cycles, yeah. So, yeah, so there
+is suppose you have a graph without any cycles. So, directed acyclic graphs, yeah. So, directed
+acyclic graphs or DACs which also comes up very often in computer science, yeah, is a
+cycle. A graph without any cycle is called a directed acyclic graph, yeah. So, the first
+thing you should ask is when you hear about no cycle is, yeah, can a undirected graph
+be a directed acyclic graph? Unfortunately, no. Why? Because the moment you have a, I
+mean, a undirected edge from A to D, I immediately have a cycle. I can go from A to D and come
+back, yeah. I can go from A to D and come back. So, no undirected graph unless there
+is no edges in it, yeah, is a, I mean, directed acyclic graph, yeah.
+All non-empty undirected graphs have a cycle, yeah. All non-empty undirected graphs have
+a cycle. Why? Because if I have a edge from U to V, then I have another edge from V to
+U also. So, that forms a cycle, yeah, okay. So, let us see an example of undirected acyclic
+graph, yeah. So, you had this earlier graph of less than, yeah. So, you have this graph.
+So, 1 is less than 2, 2 is less than 3, 3 is less than 4, 2 is less than 4, 1 is less
+than 3 and 1 is less than 4, yeah. So, this is, I mean, yeah, a directed acyclic graph.
+1 is less than 2 and 2 is less than 3. If you are only climbing up the ladder of less
+than's, yeah, from finally, you cannot go from a greater number to a smaller number
+in this graph, yeah. So, yeah, this particular graph is a directed acyclic graph, yeah, okay.
+So, let us see another type of graphs. Another type of graph is called the connected graph.
+So, what is a connected graph? A connected graph is a graph where there is a path from
+every vertex to every other vertex. There is a path from every vertex to every other
+vertex, yeah. There is a path from every vertex to every other vertex, then the graph is called
+connected, yeah. So, let us see an example, yeah. So, this particular railway graph that
+we drew, yeah, this particular railway graph is drew, is connected, yeah. There is a path,
+yeah. So, these are all in cities in, yeah, in India and this graph is connected because
+there is a path, there is a railway path you can go from one, there is a way of rail lines
+where you can go from every one city or any other city, yeah.
+But if I included a city in Sri Lanka into this, yeah, then immediately it is not connected
+because there is no railway line between, yeah, a city in India to a city in Sri Lanka,
+yeah. There is, yeah, you will need to travel over the sea at some point, yeah. So, that
+is a disconnected graph, yeah. So, yeah. So, let us see another example, yeah. So, this
+is a very common example that appears in computer science, yeah. This is what is called the
+hypercube graph, yeah. So, what is the hypercube graph? In a hypercube graph, the vertex set
+is a set of binary strings, yeah. It is a set of all binary strings of length n and
+the edge set, yeah, is the set, is basically u, v, yeah, is a edge. So, there is a edge
+between u, v, yeah, if u and v differ in exactly one position and v differ in exactly one position
+, yeah. So, let us see an example. Let us set n equal
+to 3 and let us draw this graph, yeah. So, you have the string 0, 0, 0, yeah. Then there
+is a string 0, 0, 1. There is a string 0, 1, 0. There is a string 0, 0, 1. There is
+the string 1, 1, 0, 1, 0, 1, 1. So, I think I repeated one thing multiple times, yeah.
+So, there is 1, 0, 0, yeah. So, I will write 0, 1, 1, yeah and then there is 1, 1, 1, yeah.
+So, how many elements are there in the vertex set, yeah. It is 2 into 2 into 2, yeah. This
+is how we counted and this is 8 elements and if you see there are 8 vertices in this graph,
+yeah. And when is there a edge? So, if is there a edge between 0, 0, 0 and 1, 1, 0?
+Why? I had to change 2 bits to get this go from 0, 0, 0 to 1, 1, 0, yeah. I had to make
+this 1 and this 1. That is the only way I can go from here to here, yeah. So, they had
+to different only exactly one bit, yeah, if there is a edge in this hypercube, yeah. So,
+between these two there is a edge because only one bit flip I can, yeah, go from here
+to here. Similarly, there is a edge here. Similarly, there is a edge here. Similarly,
+there is a edge from all ones to these two, yeah, because the number of ones is exactly
+one less and I can flip one bit reach there. What about these edges, yeah? So, I if I flip
+this 1 to a 0, I will get this particular, yeah, vertex. Similarly, if I flip this 1
+to a 0, yeah, I will get this particular vertex, yeah. If I flip this 1 to a 0, I will get
+this vertex, yeah, and if I flip this 1 to a 0, I will get that vertex. Remember that
+this hypercube graph is an undirected graph, yeah. If you flip one vertex, you will go
+from one vertex to other. If you flip the same vertex, same bit again, you can come
+back from that vertex to the next vertex, yeah. So, this is a good example of an undirected
+graph. This is an undirected graph, yeah, because, yeah, if I go from a, if I flip a
+bit in this string to get this string, I will flip the same bit again. I can go from this
+string to this string, yeah, okay, good. So, yeah, what are the edges corresponding
+to these? If I flip this bit, yeah, I will get this vertex, and if I flip the last bit,
+I will get this vertex, okay. So, that is the hypercube graph, yeah, okay, good, yeah.
+So, yeah, and if you look at a hypercube graph, it is always connected, yeah. Take any pair
+of vertices, there is a path, yeah. So, how do you go from one, let us say, I want to
+go from 0, 0, 0 to 1, 1, 1. What should I do? Let us flip the first bit, make 0 to 1,
+I will go here, yeah. Now, I will flip the second bit, yeah. If I flip the second bit,
+I will go from here to here, yeah, and I will flip the third bit, I will reach here, yeah.
+So, I can always go from 0, 0, 0 to 1, 1, 1 by flipping one bit at a time, yeah. Even
+if you are looking at the end, so, the hypercube with over n bit strings, we could do the same.
+We could flip the first bit, second bit, third bit, fourth bit and so on, and I go from 0,
+0, 0 to 1, 1, 1, yeah, and the same argument can go from any vertex to any other vertex,
+yeah. So, why is there a edge from x to y, yeah?
+Why is there a path from x to y, yeah? For all x and y belong to 0, 1 raise to n, yeah,
+there is a path, yeah. How do you get the path, yeah? Let us say the string is 0, 1,
+1, 1, 0, 0, yeah, and there is another string 0, 0, 0, 1, 0, 1, 1, 1, yeah. How can I go
+from this string to this string? So, first I will look at the first bit, they are the
+same, I do not need to flip. Now, look at the second bit here, yeah, in my destination
+the second bit is 0, yeah. So, I need to flip that bit. So, I will flip that first, yeah.
+So, I will flip one bit at a time, yeah. So, I will go till there, there is a edge, these
+two only different exactly one position, yeah. Next, I will compare, yeah. So, this bit is
+already flipped, this bit is same, this bit is same and this bit position there is a difference,
+yeah. So, I need to flip this bit, yeah. So, I can now flip,
+yeah, and there is a edge between these two because these two only different exactly one bit,
+yeah. So, okay. So, we flip that bit, this bit is same and we need to flip this bit now, yeah.
+So, I can flip, yeah. So, between these two strings there is a only one bit position difference,
+yeah. So, yeah. So, just to, yeah, and finally, yeah, I can flip this last portion, yeah, and
+I will get this string. So, let me just highlight which are the first we flipped this bit to reach
+here, yeah. Then we flipped, yeah, this bit, yeah, to reach here and then we flipped this bit to
+reach here and finally, we flipped this bit to reach there, yeah. So, just to flip the places
+one by one, yeah, to go from one string to another string, yeah. So, you can, there is always a path
+in the hypercube graph from one string to another string, okay. Okay. So, that is all in this video.
+So, let us just recap, yeah. So, we looked at different types of graphs, yeah, what is called
+the undirected graph, yeah, where, yeah, you, whether, where the, I mean, the relation underlying
+the graph is a symmetric relation, yeah. We discussed what is neighbors, what is the
+degree of a node, yeah. We looked at what is called paths in the graph, yeah. So, paths in
+the graph are, yeah, I mean, sequence of vertices, yeah, such that every consecutive vertex is a no
+edge in the graph, yeah. Similarly, we looked at cycles, yeah, which was like round trips in
+the graph, yeah. Again, this sequence of vertices, first and last vertex has to be the same and
+consecutive vertex has to be an edge, yeah. We looked at directed or cyclic graphs, yeah,
+which are graphs, directed graphs, where there are no cycles, yeah. An undirected graph, a
+non-empty undirected graph always has a cycle, yeah, because, I mean, a symmetric relation,
+you can go from A to B and then come back from B to A, yeah, okay. And finally, we looked at what
+is called the connected graph, yeah. A connected graph, yeah, is a graph where there is a path
+from every vertex to every other vertex, yeah. And specifically, we looked at what is called the
+hypercube graph, yeah, which is a graph with 2 raise to n vertices, yeah, if you are looking
+at n bit strings, yeah. And edge, if the 2 strings differ in exactly 1 bit position, yeah. We saw
+this example and we show a, we gave an argument why there is a path from every vertex to every
+other vertex. Why? If the, if you take 2 different strings, let us say, they differ in certain
+positions, you can flip 1 bit at a time, yeah. And you can go from one vertex to another vertex,
+such that, I mean, between every consecutive vertex, there is an edge, yeah, okay. That is all,
+thank you.

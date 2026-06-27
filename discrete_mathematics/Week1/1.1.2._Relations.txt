@@ -1,0 +1,320 @@
+So welcome everyone, so last lecture we looked at sets and in the next lecture we will look
+at sequences and relations.
+So what is a sequence?
+So in the last lecture when you looked at set we said a set is an unordered collection
+of objects.
+So you have a set a, b, c that is the same as the set b, c, a or in the order in which
+these elements are written does not matter.
+But when you look at the sequence, the sequence is typically denoted by round brackets, the
+of a, b, c.
+Now this sequence is not the same as the sequence b, c and a, these are two different sequences.
+So sequences in the order matters, the order matters here.
+And another thing that is interesting with sequences is, so you could have a sequence
+where some of the elements repeat.
+For example you could have a sequence which is a, a, b, a, c, this is a sequence.
+This is a sequence of length 5, so has length equal to 5, sequence of length 5.
+But if you look at the corresponding set, if you look at the set a, a, b, a, c, in every
+element in a set has to be distinct.
+So this is nothing but the same set as a, b, c.
+So in sequences the length matters, but in sets even if you have repeating elements is
+the same set.
+So this set has size 3 only.
+So these are two things that you need to remember about the differences between sets and sequences.
+In sequences order matters, secondly in sequences elements can repeat and that is a new sequence
+and the number of repetition counts in the length while the repetition does not matter
+in a set.
+So once we understand sequences, next thing for us to understand is what is called the
+Cartesian product.
+So given a set, suppose you are given this set a equal to a, b, c and you are given another
+set b is equal to 0, 1.
+So these are two different sets.
+Now we can define what is called the Cartesian product.
+The Cartesian product of a cross b is denoted by a cross b is a set where you have a length
+to sequences where the first element is from a and the second element is from b.
+So in this case it will be a, 0, a, 1, b, 0, b, 1, c, 0 and c, 1.
+So that is a cross b.
+What about b cross a?
+So let us write down b cross a.
+So when you do b cross a, the first element should be from b and the second element should
+be from a.
+So you should have 0, a, 1, a, 0, b, 1, b, 0, c and 1, c.
+So the first element should be from b and second element should be from a and clearly
+these two sets are not equal.
+So a cross b is not equal to b cross a.
+So these are two different sets and this is something that you need to remember.
+So compared to set operations which were you could interchange the operands, here you cannot.
+It matters.
+So you can not just do cross products of sets, you can do cross products of more elements.
+So you can do cross products of more sets together.
+For example I can do a cross product of b cross b and I could again do another cross
+product with b.
+And what is that?
+So if you substitute b, you will get 0, 1, cross 0, 1, cross 0, 1.
+And what is the cross product?
+These are lengthy sequences where the first element comes is 0, 1, second element is 0,
+1, third element is 0, 1.
+So let us write that down.
+is 0 0 0, 0 0 1, 0 1 0, 0 1 1, 1 0 0, 1 0 1, 1 1 0 and 1 1 1.
+So you have 8 elements which are all length 3 sequences of 0 and 1, these are binary sequences.
+So there is actually short form notation for the set which is 0 1 cube, when you say 0
+1 cube it is the cross product of 0 1 with itself 3 times.
+Similarly, you can write 0 1 raise to n.
+So let us say n is some number, then you say 0 1 raise to n, what is it?
+It is a set of whole length n binary sequences.
+It is a set of whole length n binary sequences.
+So typically these are also called strings.
+In computer science these are also called strings and it is a very important set in
+computer science.
+We will work on a lot of problems where the underlying set is a set of strings of length
+n.
+So that is what a Cartesian product is and there are many other examples.
+So if R is the set of real numbers, then we can talk about R cross R and typically
+it is denoted as R square.
+And what is R square?
+It is the set of all points in this plane, set of all points in the 2D plane, 2 dimensional
+plane.
+The set of all points for example in this tablet, pixels in this tablet is elements
+of this set.
+Similarly you can say R3 which is a set of all 3D points.
+So you will have x, y and c and these are all examples of cross product.
+So let us also prove important relation, important identity for cross products which is suppose
+you have a set A and you are taking a cross product with B union C. So you have 3 sets
+A, B and C and you are taking the cross product of A with B union C. How is this related with
+A cross B union A cross C?
+Is there any relation between these 2 sets?
+The claim is they are equal.
+So every element in the left set is also there in the right set and every element in the
+right hand side set is also there in the left hand side set.
+So we will just prove this by means of pictures.
+So let us just draw the picture of both sides.
+So here what is this picture?
+So you have the set A, this is the set A and there is a set called B and there is a set
+called C. And what is A cross B?
+So A cross B you will have all pairs where the first element comes from A and second
+element comes from B. In a such pair I will draw by a line.
+So I will use a different color.
+Let us say you have all these points.
+So all pairs of points where the first element comes from A, second element comes from B
+is there in A cross B. So this green is the A cross B.
+Similarly, so what is A cross C?
+It is all elements where the first element comes from A and second element comes from
+C. So it is this element is there, this element is there, this element is there, this element
+is there, all these elements are there in A cross C.
+And let us again draw the left hand side as a picture.
+So you have a set A here which is the same set and then you have the set B union C. So
+there is B here and C here and they might have some intersection.
+So you have C might be up till here.
+So C might be up till here and B might be up till here.
+So this is basically B intersection C. So this part is B, this part is C and that is
+B intersection C.
+And what are the edges here?
+So you have all pairs of vertices where the first element comes from A and second element
+comes from B union C. So you have all these edges here, all these pairs of tuples are
+going to be there.
+Now take any of the green lines, the green lines is going to be there in the left hand
+side.
+If there is a line here, that line is also there in the left hand side.
+All the red lines are also there in the left hand side.
+In fact the green line or the red line might repeat twice.
+So it might be appearing twice in the right hand side but it might be appearing only once
+here because in the intersection there might be only exactly one time.
+So but we are only considering sets, even if you repeat basically you can erase all
+the repetitions.
+It is the same collection of elements as a set.
+So every green and red arrow, red line is also there as a blue line here.
+And similarly take any blue line, if the right hand side of that blue line is only there
+in B, it is a green line appearing as green line in the right hand side.
+If it is only there in C, it is appearing as a red line in the right hand side.
+If it is an element of B intersection C, it will appear as both a blue line, both a green
+line and both as a red line.
+So from this picture we can show that this identity holds.
+Similarly you can work out various identities where you have a mixture of union, intersection
+and cross product happening.
+So you will see more examples in the tutorials and quizzes.
+So another important thing that you need to understand is suppose you take a cross product
+of a set with the empty set.
+Suppose we take the cross product of a set with the empty set.
+So what is it?
+It is a set of pairs where the first element comes from A and the second element comes
+from the empty set.
+But there are no elements in the empty set.
+So effectively what will happen is this set is nothing but again this is an empty set.
+This cross product does not have any elements because the right hand side did not have any
+elements.
+So that is these 2 things you need to remember.
+So let us come to what is called a relation.
+So a relation R
+is a subset of, so a relation is defined on a set A is a subset of A cross A. Any subset
+of A cross A is called a relation.
+So that is R is a subset of A cross A.
+So in A cross A there will be all elements.
+The first element can be any element in A, second element can be any element in A. But
+a relation might have only a subset of edges.
+So you might have let us say the set A was let us say mean 0, 1.
+So let us say you had 0 and 1 in the set A. So basically you had all the 4 combinations
+in A cross A.
+So this is basically 0, 1 square.
+But you might have a relation which is a subset of that only.
+So you might have a relation which is 0, 1, 0, 0.
+So you might have a relation which is only the subset for example.
+So this might be your R. R is a subset of 0, 1 square.
+And this relation what is called the not equal to relation.
+If A and B are related, if A is not equal to B. This is the not equal to relation.
+So let us see few other examples.
+So let us say you have the set A to be equal to A, B, C. And you can have the relation
+R to be equal to the set A, A, B, B and C, C. That is a relation.
+So in A cross A there will be like 9 elements.
+But in this R it is a subset which has only the 3 elements.
+And this is nothing but the equality of relation.
+So A is related to B only if A equal to B. So A, B belongs to R if and only if.
+So another way of writing A, B belongs to R is A related to B. We might use this notation
+sometimes.
+Instead of writing A, B related to R we might write A related to B. This is only if A equal
+to B and that is what the equality relation is.
+So let us see some other relation.
+So let us say you have some relation R prime. R prime is A, B, B, C and let us say C, D.
+So this is another relation.
+And let us look at the set B which is the set of let us say 1, 2, 3.
+Instead of A, B, C I will have 1, 2, 3.
+So I can have another relation called R double prime which is again 1, 2, 2, 3 and 1, 3.
+So you have this relation.
+So what does this relation tell you?
+It says that A is related to B if A is less than B. So this is the less than relation.
+So we had equality relation where it consists of only equal elements.
+You have less than relation in terms of numbers which is only if it is less than that relation
+holds.
+So similarly, so you can have a less than or equal to relation.
+So what is the less than or equal to relation do?
+So let us say in this set of 1, 2, 3, so 1 is less than or equal to 1, 2 is less than
+or equal to 2, 3 is less than or equal to 3 and 1 is also less than or equal to 2.
+2 is also less than or equal to 3 and 1 is also less than or equal to 3.
+So you have yeah this is the less than or equal to relation yeah.
+So every element is less than or equal to itself and of course the higher elements yeah.
+So yeah so let us so these relations you can also draw as a picture yeah.
+So for example yeah let us draw a picture for the first relation yeah.
+So you have A, you have B, you have C, you have D yeah.
+So every element of the set A you yeah I mean write down as points yeah and then all the
+related elements you put an arrow mark yeah.
+So A is related to itself in the equality relation yeah.
+So let us say this is the relation R yeah.
+So A is related to itself so you put a loop like this yeah.
+So that is R yeah everything is related to itself yeah.
+So what about the relation yeah let us say yeah let us give yeah so C is also related
+to A. So let us so let us draw R prime yeah.
+So you have A, B, C, D yeah.
+So A is related to B and B is related to C and C is related to A yeah.
+So actually there is no D at all here I am sorry yeah so there is only yeah so that is
+the picture corresponding to relation R prime yeah.
+So yeah similarly you can yeah draw this kind of pictures for every relation yeah.
+So yeah there are relations of which has some specific properties also yeah.
+So we need to understand few properties, few types of relation yeah.
+So first is what is called a reflexive relation yeah when is a relation called a reflexive?
+A relation is called reflexive if for all elements A belonging to that underlying set
+A yeah A, A should belong to the relation yeah.
+So for all the elements in the set A, A belongs to the relation it is called reflexive yeah.
+So example the equality relation is reflexive yeah the equality relation is reflexive yeah.
+If you look at the less than relation yeah so the less than relation is it reflexive
+yeah there is no 1, 1 or 2, 2 sitting there yeah.
+So the less than relation is not reflexive but let us look at the less than or equal
+to relation.
+So 1, 1, 2, 2, 3, 3 all of them are there yeah.
+So the less than or equal to are reflexive but the less than relation is not.
+So equal to and less than or equal to relations are reflexive but the less than relation is
+not a reflexive relation.
+Second type of relation that you need to understand is symmetric relations symmetric yeah.
+So when is a relation called symmetric yeah.
+So suppose there is a arrow from A to B yeah there is a A is related to B then B should
+also be related to A yeah.
+For all yeah A, B belonging to the relation yeah B, A should also belongs to the relation
+yeah.
+For all A, B if A, B is there in the relation then B, A should also be there yeah.
+So if I mean equality yeah is this relation symmetric yeah.
+So if the only elements in the relation are A, A, B, B, C, C. So A, A is there A, A is
+still there this condition does not imply anything yeah.
+But there is no A and B which are different such that A, B is there in the relation.
+If there was a arrow mark across two points then the reverse arrow mark should also be
+there but there is no arrow mark to begin with between two distinct A and B yeah.
+So equality relation is trivially mean symmetric yeah.
+So equality relation is symmetric yeah.
+What about the less than or equal to relation yeah.
+So what about the less than relation 1, 2 is there in the relation but 2 is not less
+than 1.
+If 1 is less than 2, 2 is not less than 1 yeah.
+So less than is not symmetric less than and less than or equal to are not symmetric.
+Finally we should also understand what is called the transitive relation.
+So a relation is said to be transitive yeah.
+Suppose there is a A to B arrow yeah.
+Suppose A to B belongs to a relation yeah.
+And similarly B to C arrow mark is also there in the relation yeah.
+Then so if these two are there then A to C should also be in the relation yeah.
+If A, B is there and B, C is there then A, C should be there in the relation yeah.
+If A, B and B, C are not there then there is no condition to do.
+If A, B is there and B, C is there then A, C should be there yeah.
+So yeah is equality a transitive relation yeah.
+So there is no A, B for A and B distinct yeah.
+So only there is A, B where B will be equal to A and yeah so there is equality is trivially
+transitive yeah by trivial yeah of the nature of the relation it is actually transitive
+yeah.
+What about I mean less than relation is it transitive yeah.
+So 1, 2 is there and 2, 3 is there then 1, 3 is always going to be there.
+1 is less than 2 and 2 is less than 3 then 1 has to be less than 3 yeah.
+So similarly for the less than or equal to relation yeah.
+So less than and less than or equal to are transitive yeah or old transitive relations
+yeah okay.
+So finally we need to we will close with what is called equivalence relation yeah.
+So what is the equivalence relation if the relation satisfies 1, 2 and 3 reflexive, symmetric
+and transitive then it is equivalence relation yeah.
+It should be reflexive, symmetric and transitive all 3 properties should hold.
+Then it is equivalence all 3 properties holds a relation satisfies all these 3 properties
+then it is called a equivalence relation yeah.
+So let us see one examples of equivalence relation and yeah stop at there.
+So let us say example so let us look at yeah I mean yeah.
+So let us say you have the set of I mean natural numbers yeah.
+So let us say let us look at the set of integers yeah.
+So let us say you have the set of integers set of integers yeah.
+So that is 0 all the positive numbers all the negative numbers yeah all integer numbers
+only.
+So that is yeah denoted by the set z yeah and we will say that a is related to b given
+2 integers a and b a is related to b if yeah a is equivalent to b modulo 3 yeah.
+So you take the remainder after dividing by 3 if they are equal in a and b case then it
+is yeah it is they are equivalent a is related to b yeah.
+So is it reflexive is 1 satisfied yeah.
+So a is related to itself yeah.
+So if you take a and a of course modulo 3 they will have the same remainder yeah for
+all a.
+So it is actually reflexive.
+Suppose yeah a is equivalent to b mod 3 yeah.
+So a is equivalent to b mod 3 yeah then what does this mean?
+This means that 3 divides a – b you take a – b you can actually divide by 3 yeah
+because the remainders cancel off and whatever remaining will be a multiple of 3 yeah that
+is what yeah a is equivalent to b mod 3 means yeah.
+So if a divides a 3 divides a – b then 3 also divides b – a b – a is just nothing
+but the negative of the number a – b yeah if 3 divides a – b then 3 should also divide
+b – a it will be just the negative number yeah.
+So this implies yeah b is also equivalent to a mod 3 yeah.
+So if a is related to b then b is also related to a yeah.
+So the second symmetric condition is also satisfied.
+Finally let us look at transitivity that is the third condition yeah.
+Suppose a is equivalent to b mod 3 yeah what does that mean?
+That means 3 divides a – b that is what it means.
+If b is equivalent to c mod 3 what does this mean?
+That means 3 divides b – c yeah.
+Now these 2 together imply that 3 divides a – b plus b – c yeah if you have 2 numbers
+which are divisible by 3 if you add them it will still be divisible by 3 yeah.
+This implies that 3 divides a – c yeah because b cancelled out.
+This implies that a is equivalent to c mod 3 yeah that a and c has the same remainder
+when divided by 3 yeah.
+So if a is related to b and b is related to c then a has to be related to c yeah if the
+relation is the mode relation yeah.
+So I mean this modulo relation this modulo relation yeah this actually equivalence relation
+yeah okay thank you.
+So what did we cover in today's lecture yeah we looked at what is called sequences where
+order matters and repetition also matters yeah and we looked at what is called the Cartesian
+product yeah which is not symmetric yeah you cannot do the other way and it will not be
+the same set yeah.
+We looked at the set of real number set of binary sequences set of 3D points yeah we
+looked at relations which are subsets of the Cartesian product yeah and yeah we saw how
+to pictorially represent the relation yeah and we saw relations of 3 types yeah called
+the reflexive, symmetric and transitive and if you have all these 3 properties together
+it is called a equivalence relation yeah.
+So that is all from today's lecture yeah and thanks.

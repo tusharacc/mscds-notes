@@ -1,0 +1,113 @@
+Okay, welcome again. So next, so the last video we looked at the basics of counting,
+the multiplicative rule, the additive rule and the principle of inclusion exclusion.
+In this lecture, we will continue with more interesting problems in counting. And first
+is about permutations. So permutations and factorial. Permutation and factorial. Yeah,
+so let us start with a problem. We want to know, so we already looked at bijective functions in
+a previous video. We want to know how many bijective functions are there from let us say
+1, 2, 3, 4 to another set A, B, C, D. Remember that can a function be bijective if the size
+of the domain and the size of the range are different. Size of the co-domain are different.
+It cannot. You cannot have a bijective function if the size of the domain and size of the
+co-domain are different. Both of them, a bijective functions ensure that the size of the domain will
+be equal to the size of the co-domain. But then how many bijective functions are there?
+Well, let us apply the principles of counting that we discussed so far to get this number.
+So you have this set 1, 2, 3, 4 and you have this other set A, B, C, D. 1, 2, 3, 4 is the
+domain and A, B, C, D is the co-domain. Now the function might map. So the function has to map 1,
+2, 3 and 4. There is no option. All the four things it has to map. So we have to take the
+product of four numbers. Now 1 has to map. 1, there are four choices. 1 could map. So F of 1
+has four choices. It can be A, B, C or D. So I need to pick one in a set of size 4. So there
+are four choices there. And I have to pick a choice for 2. So let us say 1 was chosen. 1 was
+it was mapped to B. F of 1 was equal to B. Now the choice for 2 should not include B. If 2 also
+maps to B, then it does not become a bijective function. It does not become a one-one function.
+Multiple elements are mapping to the same. It is not a one-one function. So 2 has to map to
+something else other than B. So how many choices are there? 1, 2, 3. There are 3 choices for 2.
+Let us say 2 was mapped to A. It could have been mapped to any of the things, but let us say 2 was
+mapped to A. Now 3 cannot map to A or B because A and B are taken. If 3 maps to A or B, then you
+have a problem. It is not a one-to-one function. So there are only 2 choices, which is C and D.
+So there are only 2 possibilities for 3. And finally for the 4, there is only one possibility,
+whichever is remaining. So this is how you count the number of bijective functions,
+which is remember that the domain and the codomain should have the same size for a bijective
+function. And this fact we will use again in the next video. And the way to count it is first make
+the choice for the first element. There are 4 choices. Then the choice for second element is
+only 3. If you remove whatever was chosen for the first element in the codomain, there is only 3
+and so on. It keeps on decreasing by 1. So this bijective functions have another name.
+So permutations is nothing but a bijective function. A permutation is nothing but a
+bijective function. Only typically a permutation, the way you say it is, a permutation is a function
+from 1 to n to 1 to n. I could have renamed this A, B, C, D to 1, 2, 3, 4 also. And it is a same
+function. I am just relabeling A, B, C, D to be 1, 2, 3, 4. And typically whenever you talk about
+permutation, it is a bijective function from 1 to n to 1 to n. In this case n was equal to 4.
+So that is what a permutation is. And how many permutations are there? How many permutations
+on the set 1, 2, 3 up to n? Let us find the number of permutations for the set 1, 2, 3 up to n.
+And n equal to 4 would be a special case that we discussed just now. And what would be it? Again the
+same argument. The element 1 could be mapped to any of the 1 to n. There are n possibilities. Now
+the element 2 could be mapped to any of the things except to the one that f of 1 was mapped to. So it
+is n minus 1 possibilities are there. Similarly for the third element, we have to remove the choices
+for f of 1 and f of 2. So there are n minus 2 choices and so on up to 1. Finally there will
+be only one choice because all the n minus 1 elements are taken. So the number of permutations
+from 1 to n or the 1, 1, 1, 2 functions from 1 to n to 1 to n has this value. And for n equal to 4,
+you got the special case that is written there. So this number comes up again and again in various
+places. When we go through this course, it comes up many, many places in computer science. So there
+is a special notation for this. So this number is called n factorial. An exclamation mark means you
+have to do this operation. n into n minus 1 into n minus 2 up to all the way to 1. This is called
+the factorial. And the factorial of 4 is 4 into 3 into 2 into 1, which is 6 4s are 24. And that
+is what a permutation is nothing but a bijective function from 1 to n to itself. And the factorial
+of n is basically the number of permutations. So another way to think about permutation is
+of arranging n objects. Let us understand that. So suppose you are playing a card game. There
+are 52 cards in a deck. So you have 52 cards. And you are arranging these cards from left to
+right. I am arranging this on the table. I am just arranging this on the table one by one. So
+how many ways can I keep the cards on the table? So the first I pick a card and arrange it and keep
+it there. And then I will keep the next one. The first there was 52 possibilities. The next there
+are 52 minus 1 possibilities and so on. So the number of ways of arranging n objects from left
+to right is nothing but n factorial. I should say factorial. Factorial is also the number of
+ways of arranging n objects. So if you have cards, so you can say the first card in the bottom is the
+card number 1 and card number 2 and card number 3. So how many ways can you get a deck of cards of 52?
+There are 52 factorial ways because you are just counting the number of functions from 1 to 52 to
+1 to 52. That is another way of looking at arranging cards in a deck. It is just 52 factorial. So that
+is what a permutation is. Now let us look at little more involved counting. Suppose you are
+taking this 52 deck cards and suppose you are keeping only some cards on the table. I am just
+taking some part of that card and keeping it on the table from left to right. I pick one card
+from anywhere and keep it in the left side. Another card keep it in the left side. And let
+us say I keep some 13 cards there. I pick some 13 cards and keep it on the table from out of
+this 52 cards. Keep it on the table from left to right. Again let us try to count. How many ways
+how many ways of arranging 13 cards from a deck of 52 cards? It is very important that all the
+cards in a deck are different. In the 52 cards in a deck that you play in the card game is all
+are different cards. There is no two identical cards. So I have to pick the one card and keep
+it in the left side. So I could choose any of the 52 cards. So the first element is any of the 52.
+The second element the deck that one card has removed. Only 51 cards are left. So the next
+element is one of the 51 choices. Again now I mean 2 has been removed. So now there are only 50
+choices and so on. So we are arranging 13 cards. So 13 cards will come up to how much? So 42 and
+it will be 39. So 52, 51 up to 39 it will be. So 52 minus 13 is 42 minus 3 which is 39. So the
+final card when you pick there are only 39 possibilities. Only 39 cards are remaining.
+Initially there were 52 cards. It could be any of the 52 cards and so on. So is it 39 or 39 plus
+1? Just a second. So it is n minus k. So this is one card removed and this should be actually
+39 plus 1 if you count it properly which is 40. Because we are starting from in the first number
+we are not subtracting anything. So there are total of 13 numbers here. So you can verify that
+there are total of 13 numbers here. So that is the number of ways of arranging 13 cards.
+So in general how many ways are there, how many ways of arranging k objects
+from a set of n objects. So let us assume that now the set has now that you have a card of n
+different cards where n is some number and all these cards are different and now you need to
+arrange only k cards where k is the number of cards that you need to arrange. Of course k has
+to be less than or equal to n. So first you can pick any of the n things, second you can pick any
+of the n minus 1 things and similarly you have to do it k times. So if you do it k times you will
+get up to n minus k plus 1. That is the number of ways of arranging k objects from a set of n
+objects. So we can write this simply in terms of the factorial notation if you think a little
+bit. So this is nothing but it looks like there is n factorial sitting there but you are not going
+all the way till 1. So we are not going all the way till 1 but we are stopping at one particular
+point. So this is n factorial. So what do you need to divide by? If you look at it you need to
+divide by n minus k factorial. So you can verify. So n minus k is a number less than n. All the
+numbers from 1 to n minus k is missing from here. So that has to be cancelled out and then you will
+get this expression. So this expression has to be n factorial by n minus k factorial. So just to be
+clear n up to n minus k plus 1 you have and then there is so let me write in the next line so that
+it is more clear. So you have n minus 1 up to n minus k plus 1 and then there is n minus k and
+then there is all the way to 2 and finally 1. And what is the denominator? It is n minus k into n
+minus k minus 1 all the way to 2 and 1 and all these things need to be cancelled out and that is
+what the left hand side is. So there is another common notation that is used for this particular
+number. It is called n p k. So if you say n p k anywhere it is just this number on the left
+hand side. These notation will be very commonly used throughout the course. So it is very
+important that you remember this that these 3 things are exactly the same. So n p k is the
+number of ways of arranging k objects from a set of n objects. And as you can easily see so n p
+n if you are arranging all the n objects from the set of n objects it has to be n factorial.
+That is what we said before. We are arranging all the elements. It has to be n factorial and
+that is obvious right n minus n. So if you substitute k equal to n it is actually n,
+n factorial that you get. And what about n p 1? Suppose we are only arranging one object
+and there are only n possibilities which is what this formula also gives you. So it should be
+pretty much clear that is what it is. So that is all for this video.

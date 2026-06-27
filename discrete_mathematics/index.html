@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Discrete Mathematics course notes — MScDS IIIT Hyderabad. Weeks 4–6: Probability theory, distributions, variance, and linear algebra (vectors &amp; matrices).">
+<meta name="description" content="Discrete Mathematics course notes — MScDS IIIT Hyderabad. Weeks 1–11: Sets, relations, functions, counting, graphs, probability, linear algebra.">
 <title>Discrete Mathematics — Course Notes</title>
 
 <!-- MathJax 3 -->
@@ -55,6 +55,8 @@ MathJax = {
   --week-accent-3: #16a34a;
   --week-accent-4: #d97706;
   --week-accent-5: #be123c;
+  --week-accent-6: #0f766e;
+  --week-accent-7: #4338ca;
 }
 
 html { scroll-behavior: smooth; font-size: 16px; }
@@ -165,6 +167,14 @@ main { flex: 1; max-width: 900px; padding: 3rem 2.5rem 6rem; }
 }
 .week-banner .week-meta {
   font-size: .8rem; opacity: .6; margin-top: .3rem; font-style: italic;
+}
+.week-section[data-week="1"] .week-banner {
+  background: linear-gradient(135deg, #ccfbf1 0%, #f0fdfa 70%);
+  border-color: var(--week-accent-6); color: #134e4a;
+}
+.week-section[data-week="2"] .week-banner {
+  background: linear-gradient(135deg, #e0e7ff 0%, #f5f3ff 70%);
+  border-color: var(--week-accent-7); color: #312e81;
 }
 .week-section[data-week="4-5"] .week-banner {
   background: linear-gradient(135deg, #dbeafe 0%, #eff9ff 70%);
@@ -466,6 +476,34 @@ mjx-container[jax="CHTML"][display="true"] {
 <nav class="toc-rail" aria-label="Table of contents">
   <div class="toc-title">Contents</div>
 
+  <!-- ── Week 1 ── -->
+  <div class="toc-week">
+    <div class="toc-week-header">
+      <div class="toc-week-dot" style="background:var(--week-accent-6)"></div>
+      Week 1 · Sets, Relations &amp; Functions
+    </div>
+    <ol>
+      <li><a href="#sets">Sets</a></li>
+      <li><a href="#relations">Sequences, Cartesian Products &amp; Relations</a></li>
+      <li><a href="#functions">Functions</a></li>
+      <li><a href="#counting-basics">Counting Basics</a></li>
+    </ol>
+  </div>
+
+  <!-- ── Week 2 ── -->
+  <div class="toc-week">
+    <div class="toc-week-header">
+      <div class="toc-week-dot" style="background:var(--week-accent-7)"></div>
+      Week 2 · Counting &amp; Graphs
+    </div>
+    <ol>
+      <li><a href="#permutations">Permutations &amp; Factorial</a></li>
+      <li><a href="#binomial">Binomial Coefficients</a></li>
+      <li><a href="#graphs-intro">Graphs — Introduction</a></li>
+      <li><a href="#graph-properties">Graph Properties</a></li>
+    </ol>
+  </div>
+
   <!-- ── Week 4 ── -->
   <div class="toc-week">
     <div class="toc-week-header">
@@ -623,7 +661,7 @@ mjx-container[jax="CHTML"][display="true"] {
 
 <header class="page-header">
   <h1>Discrete Mathematics</h1>
-  <p class="subtitle">MScDS &nbsp;·&nbsp; IIIT Hyderabad &nbsp;·&nbsp; Complete concept reference with worked derivations</p>
+  <p class="subtitle">MScDS &nbsp;·&nbsp; IIIT Hyderabad &nbsp;·&nbsp; Weeks 1–11 &nbsp;·&nbsp; Complete concept reference with worked derivations</p>
   <div class="legend">
     <div class="legend-item"><div class="legend-dot" style="background:var(--blue-badge)"></div> Definition</div>
     <div class="legend-item"><div class="legend-dot" style="background:var(--amber-badge)"></div> Axiom / Theorem</div>
@@ -632,6 +670,569 @@ mjx-container[jax="CHTML"][display="true"] {
     <div class="legend-item"><div class="legend-dot" style="background:var(--grey-badge)"></div> Practice Problem</div>
   </div>
 </header>
+
+<!-- ╔═══════════════════════════════════════════════════════════════════╗
+     ║  WEEK 1 · SETS, RELATIONS &amp; FUNCTIONS                            ║
+     ╚═══════════════════════════════════════════════════════════════════╝ -->
+<section class="week-section" id="week1" data-week="1">
+  <div class="week-banner">
+    <div>
+      <div class="week-tag">Week 1</div>
+      <h2>Sets, Relations &amp; Functions</h2>
+      <div class="week-meta">4 lectures &nbsp;·&nbsp; Sets · Relations · Functions · Counting basics · Inclusion–Exclusion</div>
+    </div>
+  </div>
+
+  <!-- §1 ─ SETS ─────────────────────────────────────────────────────── -->
+  <section class="concept-section" id="sets">
+    <h3>1 · Sets</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Set</div>
+      A <strong>set</strong> is an <em>unordered</em> collection of distinct elements. Notation: \(\{1, 2, 4\}\).
+      The order of listing does not matter: \(\{1, 4, 2\} = \{1, 2, 4\}\).
+      <ul class="steps" style="margin-top:.6rem">
+        <li>\(x \in A\): element \(x\) <em>belongs to</em> set \(A\).</li>
+        <li>\(x \notin A\): element \(x\) does <em>not</em> belong to \(A\).</li>
+      </ul>
+    </div>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Common Number Sets</div>
+      <ul class="steps">
+        <li>\(\mathbb{N} = \{1, 2, 3, \ldots\}\) — natural numbers (infinite)</li>
+        <li>\(\mathbb{Z} = \{\ldots, -2, -1, 0, 1, 2, \ldots\}\) — integers; \(\mathbb{N} \subseteq \mathbb{Z}\)</li>
+        <li>\(\mathbb{R}\) — real numbers &nbsp;·&nbsp; \(\mathbb{C}\) — complex numbers</li>
+      </ul>
+    </div>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Subset</div>
+      \(A \subseteq B\) iff every element of \(A\) is also in \(B\):
+      \[\forall\, x \in A \;\Rightarrow\; x \in B\]
+      Every set is a subset of itself. \(A \not\subseteq B\) means \(\exists\, x \in A\) such that \(x \notin B\).
+    </div>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Cardinality</div>
+      For a <em>finite</em> set \(A\), the <strong>cardinality</strong> \(|A|\) is the number of elements in \(A\).
+      If \(B = \{3, 6, 9, \ldots, 3n\}\) then \(|B| = n\).
+    </div>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Empty Set &amp; Power Set</div>
+      <strong>Empty set</strong> \(\emptyset\): the unique set with no elements. By definition \(\emptyset \subseteq C\) for every set \(C\).<br><br>
+      <strong>Power set</strong> \(\mathcal{P}(A)\): the set of <em>all</em> subsets of \(A\), including \(\emptyset\) and \(A\) itself.
+      For \(A = \{1, 2, 4\}\):
+      \[\mathcal{P}(A) = \bigl\{\emptyset,\{1\},\{2\},\{4\},\{1,2\},\{1,4\},\{2,4\},\{1,2,4\}\bigr\}\]
+      <div class="result-line">In general: \(|\mathcal{P}(A)| = 2^{|A|}\). Each element is independently included or excluded.</div>
+    </div>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Set Operations</div>
+      Given sets \(A\), \(B\) with universal set \(\Omega\):
+      <ul class="steps" style="margin-top:.6rem">
+        <li><strong>Union</strong>: \(A \cup B = \{x \mid x \in A \text{ or } x \in B\}\)</li>
+        <li><strong>Intersection</strong>: \(A \cap B = \{x \mid x \in A \text{ and } x \in B\}\)</li>
+        <li><strong>Complement</strong>: \(A^c = \{x \in \Omega \mid x \notin A\}\); &nbsp; \(|A^c| = |\Omega| - |A|\)</li>
+      </ul>
+      Key identity: \(|A \cup B| = |A| + |B| - |A \cap B|\)
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Theorem</span>
+      <div class="block-title">De Morgan's Laws</div>
+      \[(A \cup B)^c = A^c \cap B^c\]
+      \[(A \cap B)^c = A^c \cup B^c\]
+      Proof strategy: draw Venn diagrams — the complement of the union leaves everything outside both circles, which equals the intersection of the individual complements.
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Theorem</span>
+      <div class="block-title">Distributive Laws</div>
+      \[A \cup (B \cap C) = (A \cup B) \cap (A \cup C)\]
+      \[A \cap (B \cup C) = (A \cap B) \cup (A \cap C)\]
+      Verified by shading the corresponding Venn-diagram regions on both sides.
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Complement and Identity Check</div>
+      For any set \(A\):
+      <ul class="steps">
+        <li>\(A^c \cap A = \emptyset\) &nbsp;(no element can both belong and not belong to \(A\))</li>
+        <li>\(A^c \cup A = \Omega\) &nbsp;(every element is either in \(A\) or outside it)</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- §2 ─ RELATIONS ─────────────────────────────────────────────────── -->
+  <section class="concept-section" id="relations">
+    <h3>2 · Sequences, Cartesian Products &amp; Relations</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Sequences vs Sets</div>
+      A <strong>sequence</strong> (written with round brackets) is an <em>ordered</em> list where repetition is allowed and counted:
+      \[(a, a, b, a, c) \neq (a, b, c)\]
+      The corresponding set \(\{a, a, b, a, c\} = \{a, b, c\}\) (size 3). Key contrasts:
+      <ul class="steps" style="margin-top:.5rem">
+        <li>In sequences: order matters, repetitions count toward length.</li>
+        <li>In sets: order is irrelevant, repeated elements collapse to one.</li>
+      </ul>
+    </div>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Cartesian Product</div>
+      \(A \times B\) is the set of all length-2 sequences with first element from \(A\) and second from \(B\):
+      \[A \times B = \{(a,b) \mid a \in A,\; b \in B\}\]
+      <strong>Note:</strong> \(A \times B \neq B \times A\) in general (order of the pair matters).
+      \(|A \times B| = |A| \cdot |B|\). &nbsp; \(A \times \emptyset = \emptyset\).
+      <br><br>
+      Generalisation: \(\{0,1\}^n\) — all length-\(n\) binary strings; \(\mathbb{R}^2\) — all 2D points.
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Identity</span>
+      <div class="block-title">Cross-Product Distributivity</div>
+      \[A \times (B \cup C) = (A \times B) \cup (A \times C)\]
+      Proof: any pair \((a, x)\) with \(x \in B \cup C\) is either in \(A \times B\) or \(A \times C\) (or both).
+    </div>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Relation</div>
+      A <strong>relation</strong> \(R\) on a set \(A\) is any subset of \(A \times A\):
+      \[R \subseteq A \times A\]
+      We write \(a \mathrel{R} b\) (or \((a,b) \in R\)) to mean \(a\) is related to \(b\).
+      A relation is visualised as a directed graph: vertices are elements of \(A\), arrows are pairs in \(R\).
+      <br><br>
+      Examples: equality relation \(\{(a,a),(b,b),(c,c)\}\); less-than relation on \(\{1,2,3\}\) = \(\{(1,2),(1,3),(2,3)\}\).
+    </div>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Properties of Relations</div>
+      <ul class="steps">
+        <li><strong>Reflexive</strong>: \(\forall\, a \in A,\; (a,a) \in R\). Example: \(=\), \(\leq\) (yes); \(&lt;\) (no).</li>
+        <li><strong>Symmetric</strong>: \((a,b) \in R \Rightarrow (b,a) \in R\). Example: \(=\) (yes); \(&lt;\), \(\leq\) (no).</li>
+        <li><strong>Transitive</strong>: \((a,b) \in R\) and \((b,c) \in R \Rightarrow (a,c) \in R\). Example: \(=\), \(&lt;\), \(\leq\) (all yes).</li>
+      </ul>
+    </div>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Equivalence Relation</div>
+      A relation that is reflexive, symmetric, <em>and</em> transitive is called an <strong>equivalence relation</strong>.
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Modulo Equivalence</div>
+      On \(\mathbb{Z}\): define \(a \sim b\) iff \(3 \mid (a - b)\) (i.e., \(a \equiv b \pmod{3}\)).
+      <ul class="steps" style="margin-top:.5rem">
+        <li><em>Reflexive</em>: \(3 \mid (a-a) = 0\). ✓</li>
+        <li><em>Symmetric</em>: if \(3 \mid (a-b)\) then \(3 \mid (b-a)\). ✓</li>
+        <li><em>Transitive</em>: if \(3 \mid (a-b)\) and \(3 \mid (b-c)\) then \(3 \mid (a-c)\). ✓</li>
+      </ul>
+      Hence \(\equiv \pmod{3}\) is an equivalence relation.
+    </div>
+  </section>
+
+  <!-- §3 ─ FUNCTIONS ─────────────────────────────────────────────────── -->
+  <section class="concept-section" id="functions">
+    <h3>3 · Functions</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Function</div>
+      A <strong>function</strong> \(f: A \to B\) is a relation \(R \subseteq A \times B\) such that every element of \(A\) is related to <em>exactly one</em> element of \(B\).
+      <ul class="steps" style="margin-top:.6rem">
+        <li><strong>Domain</strong>: the set \(A\).</li>
+        <li><strong>Codomain</strong>: the set \(B\).</li>
+        <li><strong>Range</strong>: \(\{f(a) \mid a \in A\} \subseteq B\) — only the elements actually reached.</li>
+      </ul>
+    </div>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Types of Functions</div>
+      <ul class="steps">
+        <li><strong>Surjective (onto)</strong>: range equals codomain — every \(b \in B\) is hit by some \(a \in A\).</li>
+        <li><strong>Injective (one-to-one)</strong>: distinct inputs give distinct outputs — \(f(a_1)=f(a_2) \Rightarrow a_1=a_2\).</li>
+        <li><strong>Bijective</strong>: both surjective and injective. Domain and codomain must have equal cardinality.</li>
+      </ul>
+    </div>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Inverse Function</div>
+      <strong>Bijective case:</strong> if \(f: A \to B\) is bijective, its inverse \(f^{-1}: B \to A\) is defined by reversing all arrows. It is also bijective.<br><br>
+      <strong>General (non-bijective) case:</strong> \(f^{-1}\) maps each \(b \in B\) to the <em>set</em> of pre-images:
+      \[f^{-1}(b) = \{a \in A \mid f(a) = b\}\]
+      If nothing maps to \(b\), \(f^{-1}(b) = \emptyset\). This makes \(f^{-1}: \mathcal{P}(B) \to \mathcal{P}(A)\).
+    </div>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Function Composition</div>
+      Given \(f: A \to B\) and \(g: B \to C\), their <strong>composition</strong> \(g \circ f: A \to C\) is:
+      \[(g \circ f)(x) = g(f(x))\]
+      If \(f\) and \(g\) are both bijective, then \(g \circ f\) is also bijective.
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Counting Functions</div>
+      How many functions \(f: \{A,B,C\} \to \{1,2,3,4\}\) exist?
+      Each of the 3 domain elements can independently map to any of the 4 codomain elements.
+      By the multiplicative rule: \(4 \times 4 \times 4 = 4^3 = 64\).
+    </div>
+  </section>
+
+  <!-- §4 ─ COUNTING BASICS ────────────────────────────────────────────── -->
+  <section class="concept-section" id="counting-basics">
+    <h3>4 · Counting Basics</h3>
+
+    <div class="axiom-block">
+      <span class="block-badge">Rule</span>
+      <div class="block-title">Multiplicative Rule</div>
+      If you must make a choice from set \(A\) <em>and</em> a choice from set \(B\), the total number of ways is:
+      \[|A \times B| = |A| \cdot |B|\]
+      Generalises to \(k\) independent choices: \(|A_1 \times A_2 \times \cdots \times A_k| = |A_1| \cdot |A_2| \cdots |A_k|\).
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Rule</span>
+      <div class="block-title">Additive Rule</div>
+      If you must make a choice from set \(A\) <em>or</em> a choice from set \(B\) (not both), and \(A \cap B = \emptyset\):
+      \[|A \cup B| = |A| + |B|\]
+      The disjointness condition is essential. "And" → multiply; "Or" (disjoint) → add.
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Theorem</span>
+      <div class="block-title">Principle of Inclusion–Exclusion</div>
+      For two sets (possibly overlapping):
+      \[|A \cup B| = |A| + |B| - |A \cap B|\]
+      For three sets:
+      \[|A \cup B \cup C| = |A|+|B|+|C| - |A\cap B| - |B\cap C| - |C\cap A| + |A\cap B\cap C|\]
+      The alternating pattern continues for more sets.
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Restaurant Ordering</div>
+      A set-menu has 3 soups, 3 main courses, 2 desserts. You <em>must</em> choose one from each category.
+      Total orders \(= 3 \times 3 \times 2 = 18\) (multiplicative rule).
+      <br><br>
+      If instead you pick <em>exactly one item</em> from anywhere on the menu (3+3+2 distinct items):
+      Total choices \(= 3 + 3 + 2 = 8\) (additive rule — the categories are disjoint).
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Binary Strings with Two Consecutive Ones</div>
+      Count length-4 binary strings containing at least one occurrence of "11".
+      <br>Define:
+      <ul class="steps" style="margin-top:.5rem">
+        <li>\(A_1\) = strings with positions 1,2 both 1. \(|A_1|=4\)</li>
+        <li>\(A_2\) = strings with positions 2,3 both 1. \(|A_2|=4\)</li>
+        <li>\(A_3\) = strings with positions 3,4 both 1. \(|A_3|=4\)</li>
+      </ul>
+      Pairwise intersections each fix 3 positions, leaving 1 free: \(|A_1\cap A_2|=|A_2\cap A_3|=|A_3\cap A_1|=2\).
+      Triple intersection forces all 4 positions to 1: \(|A_1\cap A_2\cap A_3|=1\).
+      \[|A_1 \cup A_2 \cup A_3| = 12 - 6 + 1 = 7\]
+      <div class="result-line">7 out of 16 length-4 binary strings contain two consecutive ones.</div>
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Formula</span>
+      <div class="block-title">Summary of Counting Principles</div>
+      <table style="border-collapse:collapse;font-size:.88rem;width:100%">
+        <thead>
+          <tr style="background:rgba(124,58,237,.1)">
+            <th style="border:1px solid #c4b5fd;padding:.4rem .7rem;text-align:left">Situation</th>
+            <th style="border:1px solid #c4b5fd;padding:.4rem .7rem;text-align:left">Rule</th>
+            <th style="border:1px solid #c4b5fd;padding:.4rem .7rem;text-align:left">Formula</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="border:1px solid #c4b5fd;padding:.4rem .7rem">Choose one from each of \(k\) sets</td>
+            <td style="border:1px solid #c4b5fd;padding:.4rem .7rem">Multiplicative</td>
+            <td style="border:1px solid #c4b5fd;padding:.4rem .7rem">\(\prod_i |A_i|\)</td>
+          </tr>
+          <tr>
+            <td style="border:1px solid #c4b5fd;padding:.4rem .7rem">Choose one from one of \(k\) disjoint sets</td>
+            <td style="border:1px solid #c4b5fd;padding:.4rem .7rem">Additive</td>
+            <td style="border:1px solid #c4b5fd;padding:.4rem .7rem">\(\sum_i |A_i|\)</td>
+          </tr>
+          <tr>
+            <td style="border:1px solid #c4b5fd;padding:.4rem .7rem">Union of overlapping sets</td>
+            <td style="border:1px solid #c4b5fd;padding:.4rem .7rem">Inclusion–Exclusion</td>
+            <td style="border:1px solid #c4b5fd;padding:.4rem .7rem">\(|A|+|B|-|A\cap B|\)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</section>
+
+<!-- ╔═══════════════════════════════════════════════════════════════════╗
+     ║  WEEK 2 · COUNTING &amp; GRAPHS                                       ║
+     ╚═══════════════════════════════════════════════════════════════════╝ -->
+<section class="week-section" id="week2" data-week="2">
+  <div class="week-banner">
+    <div>
+      <div class="week-tag">Week 2</div>
+      <h2>Counting &amp; Graphs</h2>
+      <div class="week-meta">4 lectures &nbsp;·&nbsp; Permutations · Factorial · Binomial coefficients · Pascal's identity · Bijective counting · Graph types · Paths · Cycles · DAGs · Hypercube</div>
+    </div>
+  </div>
+
+  <!-- §1 ─ PERMUTATIONS ───────────────────────────────────────────────── -->
+  <section class="concept-section" id="permutations">
+    <h3>1 · Permutations &amp; Factorial</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Permutation</div>
+      A <strong>permutation</strong> on \(\{1, 2, \ldots, n\}\) is a bijective function \(f: \{1,\ldots,n\} \to \{1,\ldots,n\}\).
+      Equivalently, it is an arrangement of all \(n\) elements in a specific order.
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Formula</span>
+      <div class="block-title">Counting Permutations — Factorial</div>
+      The number of permutations of \(n\) elements:
+      \[n! = n \times (n-1) \times (n-2) \times \cdots \times 2 \times 1\]
+      <div class="block-label">Why:</div>
+      The first element has \(n\) choices; after fixing it, the second has \(n-1\); and so on. Each choice eliminates one option for all subsequent positions (bijectivity constraint).
+      <div class="result-line">Special cases: \(4! = 24\), &nbsp; \(0! = 1\) by convention.</div>
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Formula</span>
+      <div class="block-title">Partial Arrangements — \(nPk\)</div>
+      The number of ways to arrange \(k\) objects chosen from \(n\) distinct objects (order matters):
+      \[nPk = n \times (n-1) \times \cdots \times (n-k+1) = \frac{n!}{(n-k)!}\]
+      <div class="block-label">Intuition:</div>
+      There are \(n\) choices for the 1st position, \(n-1\) for the 2nd, …, \(n-k+1\) for the \(k\)th position.
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Card Arrangements</div>
+      Arranging all 52 cards in a deck: \(52!\) ways.
+      Arranging just 13 chosen cards from a 52-card deck (order matters): \(52P13 = \dfrac{52!}{39!}\).
+    </div>
+  </section>
+
+  <!-- §2 ─ BINOMIAL COEFFICIENTS ─────────────────────────────────────── -->
+  <section class="concept-section" id="binomial">
+    <h3>2 · Binomial Coefficients</h3>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Formula</span>
+      <div class="block-title">Binomial Coefficient — \(\binom{n}{k}\)</div>
+      The number of ways to <em>choose</em> \(k\) elements from \(n\) (order does not matter):
+      \[\binom{n}{k} = \frac{nPk}{k!} = \frac{n!}{k!\,(n-k)!}\]
+      Also written \(nCk\). Dividing \(nPk\) by \(k!\) removes the over-counting of different orderings of the same subset.
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Property</span>
+      <div class="block-title">Symmetry</div>
+      \[\binom{n}{k} = \binom{n}{n-k}\]
+      <div class="block-label">Proof (bijective counting):</div>
+      Flipping all bits in a binary string maps a string with \(k\) ones to one with \(n-k\) ones. This is a bijection between the two sets, so they have equal size.
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Theorem</span>
+      <div class="block-title">Pascal's Identity</div>
+      \[\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}\]
+      <div class="block-label">Proof:</div>
+      Let \(A\) = all length-\(n\) binary strings with exactly \(k\) ones. Split \(A\) into:
+      <ul class="steps" style="margin-top:.4rem">
+        <li>\(A_1\): strings where the first bit is 1 — the remaining \(n-1\) positions must contain \(k-1\) ones. \(|A_1| = \binom{n-1}{k-1}\).</li>
+        <li>\(A_0\): strings where the first bit is 0 — the remaining \(n-1\) positions must contain \(k\) ones. \(|A_0| = \binom{n-1}{k}\).</li>
+      </ul>
+      Since \(A_1\) and \(A_0\) are disjoint and \(A = A_0 \cup A_1\), by the additive rule: \(|A| = |A_0| + |A_1|\).
+    </div>
+
+    <div class="def-block">
+      <span class="block-badge">Method</span>
+      <div class="block-title">Counting via Bijections</div>
+      If two sets \(A\) and \(B\) admit a bijection \(f: A \to B\), then \(|A| = |B|\).
+      <br><br>
+      <strong>Characteristic vector:</strong> any subset \(S \subseteq \{1,\ldots,n\}\) of size \(k\) corresponds to a unique binary string of length \(n\) with 1s exactly at positions in \(S\). This bijection proves:
+      \[\text{\# of }k\text{-element subsets of an }n\text{-element set} = \text{\# of length-}n\text{ binary strings with exactly }k\text{ ones} = \binom{n}{k}\]
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Theorem</span>
+      <div class="block-title">Binomial Theorem</div>
+      \[(x + y)^n = \sum_{i=0}^{n} \binom{n}{i} x^i y^{n-i}\]
+      <div class="block-label">Intuition:</div>
+      Expanding \((x+y)^n\) produces \(2^n\) terms. The term \(x^i y^{n-i}\) appears once for each way of choosing \(x\) from \(i\) of the \(n\) factors — exactly \(\binom{n}{i}\) ways.
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Quick Computations</div>
+      \[\binom{5}{2} = \frac{5 \times 4}{2 \times 1} = 10, \qquad \binom{n}{0} = 1, \qquad \binom{n}{1} = n, \qquad \binom{n}{n} = 1\]
+      Count length-5 binary strings with exactly 2 ones: \(\binom{5}{2} = 10\).
+    </div>
+  </section>
+
+  <!-- §3 ─ GRAPHS INTRODUCTION ───────────────────────────────────────── -->
+  <section class="concept-section" id="graphs-intro">
+    <h3>3 · Graphs — Introduction</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Graph</div>
+      A <strong>graph</strong> \(G = (V, E)\) consists of:
+      <ul class="steps" style="margin-top:.5rem">
+        <li><strong>Vertex set</strong> \(V\) — the elements (nodes).</li>
+        <li><strong>Edge set</strong> \(E \subseteq V \times V\) — ordered pairs of vertices (in a directed graph).</li>
+      </ul>
+      A graph is essentially a relation on \(V\) with specialised terminology.
+    </div>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Adjacency Matrix</div>
+      For a graph with \(n\) vertices, the <strong>adjacency matrix</strong> \(M\) is an \(n \times n\) binary matrix:
+      \[M[u][v] = \begin{cases} 1 & \text{if } (u,v) \in E \\ 0 & \text{otherwise} \end{cases}\]
+    </div>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Types of Graphs</div>
+      <ul class="steps">
+        <li><strong>Directed graph</strong>: edges are ordered pairs \((u,v)\). Arrow from \(u\) to \(v\) does not imply one from \(v\) to \(u\).</li>
+        <li><strong>Undirected graph</strong>: the underlying relation is symmetric — if \((u,v) \in E\) then \((v,u) \in E\). Each edge is represented as a 2-element set \(\{u,v\}\). The adjacency matrix is symmetric.</li>
+        <li><strong>Bipartite graph</strong>: vertex set \(V = U \cup W\) (disjoint). All edges go from \(U\) to \(W\) only. Adjacency matrix has two large blocks of zeros on the diagonal.</li>
+      </ul>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Real-World Graphs</div>
+      <ul class="steps">
+        <li><strong>WWW graph</strong>: \(V\) = all web pages; \((u,v) \in E\) iff page \(u\) links to page \(v\). Directed, enormous. Used by search engines for ranking.</li>
+        <li><strong>Social network</strong>: \(V\) = users; \((u,v) \in E\) iff \(u\) follows \(v\). Used for friend suggestions, ad targeting.</li>
+        <li><strong>Railway network</strong>: \(V\) = cities; \(\{u,v\} \in E\) iff there is a direct rail line. Undirected (travel is possible both ways).</li>
+        <li><strong>Matchmaking (bipartite)</strong>: \(U\) = one group, \(W\) = another group; edges express preferences between groups.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- §4 ─ GRAPH PROPERTIES ──────────────────────────────────────────── -->
+  <section class="concept-section" id="graph-properties">
+    <h3>4 · Graph Properties</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Neighbours &amp; Degree</div>
+      In an undirected graph, the <strong>neighbourhood</strong> of vertex \(v\) is:
+      \[N(v) = \{u \in V \mid \{u,v\} \in E\}\]
+      The <strong>degree</strong> of \(v\) is \(\deg(v) = |N(v)|\). An isolated vertex has degree 0.
+    </div>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Path</div>
+      A <strong>path</strong> from vertex \(v_1\) to vertex \(v_k\) is a sequence of vertices \(v_1, v_2, \ldots, v_k\) such that each consecutive pair \((v_i, v_{i+1}) \in E\). Multiple paths can exist between the same pair.
+    </div>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Cycle</div>
+      A <strong>cycle</strong> is a path where the first and last vertex are the same: \(v_1 = v_k\).
+      <br><br>
+      <strong>Observation:</strong> every non-empty undirected graph has a cycle — the undirected edge \(\{u,v\}\) encodes both \((u,v)\) and \((v,u)\), forming a 2-cycle.
+    </div>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Directed Acyclic Graph (DAG)</div>
+      A <strong>DAG</strong> is a directed graph containing no cycles. Since undirected graphs always have cycles, DAGs must be directed.
+      <br><br>
+      Example: the "less-than" relation on \(\{1,2,3,4\}\) — you can only traverse edges "upward," so no cycle is possible.
+    </div>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Connected Graph</div>
+      A graph is <strong>connected</strong> if there exists a path between every pair of vertices. Adding a vertex with no edges immediately disconnects the graph.
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Hypercube Graph \(Q_n\)</div>
+      <ul class="steps">
+        <li><strong>Vertex set:</strong> \(V = \{0,1\}^n\) — all binary strings of length \(n\). \(|V| = 2^n\).</li>
+        <li><strong>Edge set:</strong> \(\{u,v\} \in E\) iff \(u\) and \(v\) differ in exactly one bit position.</li>
+        <li><strong>Connectivity proof:</strong> given any two strings \(x, y\), look at the positions where they differ. Flip those bits in \(x\) one at a time — each flip moves along one edge — until \(y\) is reached. So a path always exists.</li>
+      </ul>
+      \(Q_3\) has \(2^3 = 8\) vertices and each vertex has degree 3 (one edge per bit position).
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Formula</span>
+      <div class="block-title">Graph Concept Summary</div>
+      <table style="border-collapse:collapse;font-size:.88rem;width:100%">
+        <thead>
+          <tr style="background:rgba(124,58,237,.1)">
+            <th style="border:1px solid #c4b5fd;padding:.4rem .7rem;text-align:left">Concept</th>
+            <th style="border:1px solid #c4b5fd;padding:.4rem .7rem;text-align:left">Directed?</th>
+            <th style="border:1px solid #c4b5fd;padding:.4rem .7rem;text-align:left">Key Property</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="border:1px solid #c4b5fd;padding:.4rem .7rem">Directed graph</td>
+            <td style="border:1px solid #c4b5fd;padding:.4rem .7rem">Yes</td>
+            <td style="border:1px solid #c4b5fd;padding:.4rem .7rem">Edges are ordered pairs</td>
+          </tr>
+          <tr>
+            <td style="border:1px solid #c4b5fd;padding:.4rem .7rem">Undirected graph</td>
+            <td style="border:1px solid #c4b5fd;padding:.4rem .7rem">No</td>
+            <td style="border:1px solid #c4b5fd;padding:.4rem .7rem">Symmetric edges; always has cycles</td>
+          </tr>
+          <tr>
+            <td style="border:1px solid #c4b5fd;padding:.4rem .7rem">DAG</td>
+            <td style="border:1px solid #c4b5fd;padding:.4rem .7rem">Yes</td>
+            <td style="border:1px solid #c4b5fd;padding:.4rem .7rem">No cycles; topological ordering exists</td>
+          </tr>
+          <tr>
+            <td style="border:1px solid #c4b5fd;padding:.4rem .7rem">Bipartite graph</td>
+            <td style="border:1px solid #c4b5fd;padding:.4rem .7rem">Either</td>
+            <td style="border:1px solid #c4b5fd;padding:.4rem .7rem">Vertex set split in two; edges only cross sides</td>
+          </tr>
+          <tr>
+            <td style="border:1px solid #c4b5fd;padding:.4rem .7rem">Connected graph</td>
+            <td style="border:1px solid #c4b5fd;padding:.4rem .7rem">Either</td>
+            <td style="border:1px solid #c4b5fd;padding:.4rem .7rem">Path between every pair of vertices</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</section>
 
 <!-- ╔═══════════════════════════════════════════════════════════════════╗
      ║  WEEKS 4–5 · PROBABILITY THEORY                                  ║

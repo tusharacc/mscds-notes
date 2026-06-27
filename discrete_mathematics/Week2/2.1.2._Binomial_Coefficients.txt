@@ -1,0 +1,268 @@
+Okay, so in the last lecture, yeah, we looked at permutations, yeah, how to count bijections,
+number of bijections. And yeah, in this lecture, we will come to what is called the binomial
+coefficient. Last lecture, we saw specific notation that we introduced, right, number of
+permutations, yeah, on a set of size n is n factorial. And we also introduced the notation
+called NPK, yeah, which is, yeah, I mean, when you want to only arrange k items. Finally,
+we also introduced the, I mean, notation for, yeah, so we introduced n factorial and NPK,
+yeah, good, yeah. So, now, let us come to finding, yeah, finding subsets, yeah.
+So, let us say how many subsets, how many subsets are there of 1, 2, 3, 4, 5.
+How many subsets are there of a set of, let us say, size 5. The first element can be there or
+not, second element can be there or not. So, there are 5 choices to be made, each is 0, 1,
+it is 2 raise to 5. And yeah, this was covered in the first video itself in this section.
+Now, the question here is little bit more different, yeah, how many subsets
+of size 2. We are not interested in all the subsets, we are only interested in subsets
+of size 2, yeah. So, let us try to count, yeah. So, any subset of size 2, yeah, is of the form
+A comma B, yeah, the set is of size 2, right. So, there is one element and the second element
+is A comma B, yeah. Now, A is any element of this 1 to 5, yeah. So, this any element of 1 to 5,
+A can be any element of 1, 2, 3, 4, 5, yeah. So, there are 5 possibilities that we need to,
+yeah, account for. And what is B? So, B, yeah, B can it be any element of 1 to 5, B has to be
+different from A, yeah. So, it is any element of 1, 2, 3, 4, 5, yeah, with A removed, yeah.
+So, this notation is a new notation I am introducing, yeah. So, this is saying that
+you take the set 1, 2, 3, 4, 5 with A remote and that is this notation, yeah. So, how many
+possibilities? So, the number of ways is there are 5 possibilities for A, yeah, and there is
+4 possibilities for B. So, you might think this is the answer, yeah, but there is a problem here,
+yeah. This is not the answer. So, this is actually wrong because if you took A is equal to,
+let us say 1 and let us say I took B equal to 5, this was counted, yeah, I could set A equal to 1
+and I removed A equal to 1 here and then B equal to 5 was chosen, yeah. But what if
+A was chosen to be 5? A was chosen to be 5, that was another possibility, yeah, and B could have
+been chosen to be 1. Remember that when we did this accounting earlier, yeah, this counting,
+yeah, which accounted for these two separately, both was accounted separately.
+Both of these two cases were accounted separately, yeah, but this particular two cases
+was exactly accounted two times, yeah. So, every situation AB, a BA was also accounted
+separately, yeah. So, the right answer, yeah, the correct answer for the number of ways,
+yeah, of choosing a two element subset from a 5 element set is nothing but 5 cross 4 divided by
+2, yeah. So, that is 20 divided by 2 which is equal to 10, yeah. So, that is the, yeah,
+so that is the number of ways you choose a 5 element set, 2 element set from a 5 element set,
+yeah. So, what happens in general, yeah, so this is what we did previously also.
+We saw an example and we want to find it for an arbitrary set, yeah. So, how many subsets
+how many subsets of size k for an n element set,
+yeah. So, obviously n has to be greater or equal to k for this to work,
+you have a large set of size n and you are picking k elements subset from it, yeah.
+So, again what do we do, yeah. So, I will pick some k elements, yeah. I can arrange k elements
+from a, I mean, yeah, n element subset in NPK ways, yeah. NPK is arrangements
+of k elements from n elements.
+That was what was NPK that we discussed in the last video, yeah. But in arrangements,
+the order of the elements matter, yeah. So, how many elements, how many different
+arrangements are there of k elements? There are k factorial arrangements, yeah. So, number of ways,
+yeah, that is the answer for this question should be NPK, yeah. But in NPK, it is the
+number of arrangements, the order matters. Each element in NPK was repeated k factorial times
+because there are k factorial different arrangements, yeah. So, you have to divide this by k factorial,
+yeah. So, let us say in this case, we had only a and b, yeah. There are two different arrangements
+for a and b, a, b and b, a, and it was counted twice. So, we had to divide by 2 here, yeah.
+In this case, there is a subset of size k. So, there might be a, let us say k equal to 3,
+then you will have a, b, c. Let us say if k equal to 3, yeah, we will have the set a, b, c,
+it might be come up in a different order b, a, c and it might come up in a different order c, b, a,
+yeah. So, actually more. How else it will come? So, it will be a, c, b, yeah. There will be
+b, c, a and then there will be c, a, b, yeah. So, when you, you could have chosen the mean,
+you have. So, for every arrangement, there is actually 5 more arrangements which correspond
+to the same set, yeah. So, you need to divide by 3 factorial, so that we remove this over counting,
+yeah. So, the number of ways you can choose a k element subset from a n element subset
+is n p k divided by k factorial, yeah. So, there is another way to write it, yeah.
+So, if you remember n p k was nothing but n factorial divided by n minus k factorial,
+yeah. And then there is a new k factorial sitting for this particular mean counting, yeah.
+So, another way to write it is if you remember this n factorial by n minus k factorial was
+nothing but n into n minus 1 into n minus 2 into up to n minus k plus 1, yeah. This was this much
+part of it, yeah. And then you have k factorial in the bottom which is k into k minus 1 into
+k minus 2 into up to let us say 2 into 1, yeah. So, this is another way to write, yeah,
+the number of subsets of size k from a n element set, yeah. So, another way to think about it
+is that this is the number of ways of choosing
+k elements from n elements.
+The number of ways of choosing k elements from n elements, we are only choosing, yeah. So, let us
+say you are doing a card game, yeah, and I had to give you mean 13 cards. I will just pick 13
+cards and give you. The arrangement of the cards that you got does not matter. You might arrange
+in different ways in your hand, yeah, but that does not matter, yeah. You only need to choose
+the k cards, yeah. So, different arrangements of your hand corresponding to the same hand only,
+yeah. So, here we are not interested in the arrangement because it is only interested in
+the set of cards that you got, yeah. So, this is the number of ways of choosing k elements from
+n elements, yeah. So, yeah. So, this also has a notation to it, yeah. So, another notation for
+writing this is called n c k, yeah. So, n p k is the number of permutations of n elements of
+k elements from n elements and n c k is the number of ways of choosing k elements from n elements
+without arranging it, yeah. And, yeah. So, this is again some textbooks use a different notation
+which is, yeah, this, yeah. So, if you have a big round bracket with n on top and k on bottom,
+it just means n c k, yeah, which in turn just means this particular formula, yeah. So,
+these formulas are very important because they come very often, yeah, in computer science and,
+yeah, in many of the portion that is covered later in the other courses, okay.
+So, let us come to, yeah. So, some examples, yeah. So, let us count something, yeah. So,
+we will use a slightly different technique for counting, yeah. This is called counting using
+bijections, counting using bijections. Let us illustrate with the example and that will make
+it clear what this method is, yeah. Suppose we want to find how many binary strings,
+so we already discussed what a binary string is, a 0 1 string of length n
+with exactly k ones, yeah. So, let us set n to be equal to, yeah, initially we will set n to be
+equal to let us say 5, exactly k equal to 2 ones. There are how many binary strings of length n
+equal to 5 with exactly k equal to 2 ones, yeah. So, yeah, how do we solve this, yeah. So,
+the claim is we actually already solved this problem, yeah. We can already solve,
+mean map this problem to the previous problem that we discussed. How do we map it, yeah.
+Let, yeah. So, let the set of all binary strings, yeah. So, let us call this set B, yeah. Let B be
+the set of all such strings, let B be the set of all such strings. Let B be the set of all such
+strings, yeah, of length of 5 and exactly 2 ones, yeah. And let A be the set of all,
+yeah, 2 element subsets of 1, 2, 3, 4, 5. So, B is the set of all such strings of length 5
+and 2 ones and A is the set of all 2 element subsets of 1, 2, 3, 4, 5, yeah. We already know
+how to count A, yeah. So, if we somehow we can relate A to B, then maybe we can also count B,
+yeah, the count size of B, yeah. So, what we will do is we will give a bijection between B and A,
+yeah. So, the method is give a bijection between A and B, yeah. How does it help us?
+If we give a bijection, how does it help us? Remember in the previous video we discussed,
+if you have a bijection, then the size of the domain and the size of the core domain has to
+be the same, yeah. For a bijection, size of the domain, yeah, has to be equal to the size of the
+core domain, yeah. There is no other option. It is injective and surjective, yeah. For a bijection,
+the size of the domain has to be equal to the size of the core domain, yeah.
+And yeah, so the size of the domain is A, size of the core domain is B and the size of A has to
+be equal to size of B and we already know how to count A, which is just phi choose 2, yeah. Now,
+to give a bijection, yeah. So, let us say you have a string, yeah. So, you have a string of length 5,
+yeah. So, there is length 5 string, yeah. So, this is the first position,
+this is the second position, this is the third position, this is the fourth position,
+this is the fifth position. So, there are five positions, yeah.
+And there is exactly 2 1s, yeah. So, let us say the one is sitting here and there is another one
+one sitting here and these two are zeros. This is one such string. Let us map the string
+to a set. So, this string is being mapped to the set. So, there is exactly two positions
+where the string is 1 which is 2 and 5. So, we will map it to a set 2, 5. The claim is,
+given any string, take any string, any of the 5 chose 2 strings which has 5 positions and
+exactly 2 ones, I can map it to a corresponding 2 element set. How? I look at the 2 positions
+where the 1 is there and make it into a set. This is a subset of 1, 2, 3, 4, 5.
+And so, there is a function from the set B to the set A. So, we have defined a function
+from the set B to the set A. The claim is, this function is a bijective function. Why?
+So, given any string, I am getting a set, right? And from this set, I can take any string
+and I can recover the string. Why? I know the two positions where the 1 needs to be
+put and all the other position, I can put 0. So, from this 2, 5, I can recover the string.
+How? I just write down a string with 5 length where ones are there only in the positions
+which is there included in the set. This will give you a string of length 2. So, if I take
+a string, apply that function, I am actually able to invert. So, the F inverse which is
+a function from B to A also exists. So, given this function F, the inverse of the function
+is easy to compute which is just given a set of 2 elements, just put ones in those 2 places
+and 0 otherwise. So, given a function, there is a inverse mapping
+from B to A and remember, inverse mapping is only possible for bijections. So, F inverse
+from B to A is only exists for bijections, only exists for bijections. That means, if
+the function F is bijective, it is 1, 1 and 1, 2. If it is 1, 1 and 1, 2, then the size
+of A has to be equal to size of B which is equal to n choose k which in this case is
+5 choose 2 which if you apply the formula, it is just 5 into 4 divided by 1 into 2 which
+is 10. So, this is an interesting way of counting which is suppose you want to count the size
+of a set and suppose you can come up. So, you want to count the size of the set B which
+is we do not know, but suppose there is another set A which you can easily count and suppose
+there is a bijection from B to A, then the size of the set B is equal to size of the
+set A and that is what we did here. So, this mapping between sets and strings
+is a very important mapping and it is very, very common in computer science. So, this
+mapping from the set to the string is called a characteristic vector mapping. So, this
+mapping, so you will see this mapping in many other places when you go through algorithms
+course even in machine learning courses you will see this. So, any set can be represented
+by a corresponding binary string where you put only ones in the places for the elements
+in the set and zeros in the other elements. So, we know how to what is the number of k
+element sets I mean from n element sets also the number of strings, binary strings with
+exactly k ones and both are equal to n choose k.
+So, let us see some properties of this binomial coefficient. So, this n choose k is called
+the binomial coefficient. So, this is also called the binomial coefficient. So, this
+is a number which comes up in many places as you will see soon. So, let us see some
+properties of this binomial coefficient. So, the first important property of the binomial
+coefficient. So, the first important property of the binomial coefficient is you choose
+n choose k. What is n choose k? So, one example one interpretation that we just gave this
+it is the number of binary strings of length n with exactly k ones. Now, if you take a
+binary string and if you take a binary string and if you take a binary string and if you
+take any string with exactly k ones and make all the zeros to ones and ones to zeros you
+flip all the bits what you get. So, suppose you are given a string with some zeros and
+some ones let us say there are k ones here if you flip all the bits what you get you
+will get another string with n minus k ones you will get another string with n minus k
+ones and given this flip the string you flip it again you can go back to the original string.
+So, you do a flip you will get the string you do again a flip of zero one you will get
+back the original string. Take the string flip zeros to ones you will get and ones to
+zeros you will get the string take the string flip all the ones to zeros and zeros to one
+you will get back the original string. So, this map so you have found a biject you have
+found a bijection from the set of all strings with k ones and the set of all strings with
+n minus k ones. So, this is a bijective mapping that means the set of all strings with exactly
+k ones should be equal to the size of that set should be equal to the set of all strings
+with exactly n minus k ones. So, this property is true. So, set of all strings with exactly
+one one is equal to the set of all strings with exactly n minus one ones how we just
+flip the any string of with one one to zero and once you flip you will get another string
+with exactly n minus one ones. So, this is the important property of binomial coefficient.
+So, if you choose from a n element set if you choose all the n elements there is only
+one way of doing it. So, this is equal to one and if you choose from a n element set
+a one element set there are only n ways to do it. So, these are very obvious though the
+first property is little bit tricky again you have to use the bijective property the
+counting using bijection using this flip method. So, this was obtained using this flip bijection
+bijective counting. Now, there is another very important property of binomial coefficient
+which is Pascal's equality Pascal's identity.
+So, the Pascal's identity says that take the binomial coefficient n choose k that is
+equal to n minus one choose k minus one plus n minus one choose k. So, this is the binomial
+coefficient. So, let us try to I mean kind of prove this identity. So, how why is this
+identity true? So, let a be the set of all set of all strings of length n.
+Then all strings of length n binary strings whenever I say strings if it is not specified
+it is binary strings. The set of all length n with exactly k ones and we know the size
+of A is n choose k. Let A1 is a subset of A be subset of A with the first bit to be
+one. So, let A1 be a subset of A with the first bit to be one. So, let A1 be a subset
+there is a set of elements in A some strings in A has the first bit the first element of
+the sequence to be 0 some has the first element of the first bit to be one. If the first bit
+is one then we will put it in A1. So, A1 is a subset of A similarly A0 be the subset of
+A with the first bit to be 0. So, the first position you have this bits there are total
+of n bits this first position if it is 0 it is in A0. If the first bit is 0 it is in A0.
+First bit is one if it is in A1 and remember both A1 and A0 are subsets of A. Note that
+A1 and A0 are disjoint A1 and A0 are disjoint. What do you mean? A1 intersection A0 is the
+empty set. Why? The first bit has to be either 0 or 1 it cannot be both. A1 says it has to
+be one A0 says it has to be 0. So, they are disjoint there is no way a string can be there
+where the first bit is both 0 and 1 it has to be either 1 or 0. So, they are disjoint.
+So, size of A is nothing but the size of A1 plus size of A0 this was one of the additive
+principles of counting that is size of a set if it is a union of two disjoint set it is
+just a sum of size of those sets. And what is size of A1? So, size of A we already know
+is n choose k we made a bijection between this set A and the set of subsets of size
+k of a n element set.
+So, what is the size of A1? So, A1 you have so A1 basically is the set you know it removes
+remember A1 is the set where you have this n positions yeah there are strings with n
+positions and the first bit is 1 yeah and totally there are k ones totally there are
+k ones that means this n minus 1 positions yeah should have k minus 1 ones. So, this
+the first bit is 1 and then there is this n minus 1 positions which will have exactly
+k minus 1 ones yeah. So, this set size of this set is n minus 1 choose k minus 1 yeah
+how do you get the set A1? You choose a set of a string of length k mean n minus 1 with
+k minus 1 ones and put a 1 in the front you will get a size any element of A1 yeah. So,
+this means size of the set A1 is nothing but was the number of strings yeah of length n
+minus 1 with k minus 1 ones yeah similarly A2 yeah if you look at A2 again it has n positions
+yeah if you look at A2 again it has n positions and the first element is 0 totally there are
+n positions yeah with the first element 0 we still need to have k ones in this n minus
+1 positions yeah there should be k ones in this n minus 1 positions yeah. So, in this
+n minus 1 positions we should have k ones how many ways you can choose k ones how many
+strings are there of length n minus 1 with exactly k ones it is n minus 1 choose k yeah.
+So, substituting this in this equation we get that n choose k is equal to n minus 1
+choose k minus 1 plus n minus 1 choose k yeah. So, and that is called the Pascal's identity
+and this is also very commonly comes up yeah in various places in computer science yeah.
+So, finally I just want to cover one more thing a binomial coefficient comes up in few
+other places yeah yeah so let us take yeah the following thing.
+Let us say you take x plus y the whole square yeah. So, if you expand it you will get yeah
+so you will need to take all sorts of products yeah. So, you will have yeah so you will need
+to this is nothing but x plus y into x plus y yeah. So, you can take all the there are
+four terms yeah you can choose any of the two from here any of the two from there so
+there are four terms yeah. So, you will have x squared plus x y plus y x plus y squared
+yeah and yeah normal multiplication x y and y x is the same. So, you get that x squared
+plus 2 x y plus y squared yeah okay. So, 2 comes up there yeah. So, y square
+what is x plus y the whole cube yeah again you have to do it three times yeah. So, you
+will get that yeah so you will get x cube plus 3 x squared y plus 3 x y squared plus
+y cube yeah the number 3 came in there yeah.
+So, what is happening so can we write the expansion of x plus y whole raise to n yeah.
+So, apparently the expansion of x plus y whole raise to n is summation over i equal to yeah
+0 to n yeah n choose i yeah. So, the binomial coefficient n choose i x raise to i y raise
+to n minus i yeah and these two examples are examples with setting n equal to just 2 and
+3 yeah. So, 2 choose 1 is 2 that is why this comes here 3 choose 1 and 3 choose 2 are exactly
+3 yeah. So, that is why those terms comes there yeah and yeah so and it is not hard
+to prove this also yeah if you just think about it for a minute it is becomes very clear
+yeah. So, how many times this term x raise to i
+y raise to n minus i will appear in this expansion there will be a total of 2 raise to n terms
+in this expansion yeah. So, I can choose x or y in each of the in from each of the
+bracket and you will get a term in this huge summation yeah. So, if you choose x i times
+yeah and i of this products yeah. So, you will have this yeah I mean n products if you
+choose x i times and y n minus i times you will have this term yeah and how many ways
+are of ways are there of choosing x i times you need to choose I mean an i element subset
+of n yeah. So, this is a common yeah thing that yeah this is a expansion that you will
+need to know yeah and it can be logically argued yeah if you understand the concept
+of binomial coefficient being the number of subsets number of n k element subset of n
+element set yeah. So, yeah that is all from this video. So, I will just recap what we
+did yeah. So, we looked at what a binomial coefficient is which is the number of ways
+of choosing a k element subset from a n element set for number of ways of I mean so the number
+of ways of choosing k element set from a n element set that is what the binomial coefficient
+is. So, there is a notation for it yeah there are
+few formulas for it that you need to remember yeah and yeah. So, another thing important
+thing that we covered is we can count using bijections yeah the set of strings there is
+a bijection between the set of n element strings of length n yeah binary strings of length
+n and the set of all subsets of a given set of a given set of size n yeah there is a bijection
+and we use this bijection yeah to count the number of binary strings yeah of length n
+with exactly k ones yeah which also happen to be equal to the binomial coefficient yeah
+and we looked at few properties of binomial coefficients yeah in particular n choose k
+is equal to n choose n minus k which we again proved using this bijective principle yeah
+and finally we also looked at the Pascal's identity which is the important relation connecting
+binomial coefficient n choose k and n minus 1 choose k minus 1 and n minus 1 choose k
+yeah again we gave a proof of it here yeah finally we said that yeah binomial coefficient
+appear yeah in expansions of x plus y raise to n yeah that is all from this video yeah
+thank you.
