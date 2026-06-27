@@ -1,0 +1,146 @@
+Welcome everyone. So, we come to the fourth lecture and this lecture we will be focusing
+on the basics of algorithms. Specifically in this video we will look at what is called
+the Euclid's GCD algorithm. So, before we come to that algorithm we need to revise a
+few things about numbers that we know. So, we saw in the initial lectures there is a
+set of natural numbers denoted by this symbol and this is the set of natural numbers 1,
+2, 3, 4, 5 and so on. It is a infinite set. So, you cannot define a size to it is a infinite
+set. An important relation of which is defined on this natural numbers is the divisibility
+relation. So, what is the divisibility relation? So, natural number A is related to B if A divides
+B and this A divides B will be writing very often. So, we will use this notation A divides
+B to say the same thing. So, A divides B meaning B is a multiple of A and that is the divisibility
+relation. So, let us write down this divisibility relation. So, divisibility relation is a subset
+of n cross n and let us write down that the divisibility relation. So, what does it consist
+of? So, we know that 1 divides 1. So, 1 1 is there, 1 divides 2, 1 also divides 3. In
+fact, 1 divides any natural number. So, you will have first you will have all the natural
+numbers. 1 will be divide any of the natural numbers. All those things will be there here.
+Then let us come to 2. 2 divides itself. Any number actually divides itself. The next number
+that 2 divides is 4. 2 divides 4, 2 divides 6 and so on. Then we will come to 3. So, all
+the multiples of 2 will be in this second row. Now, we will come to 3. 3 again divides
+itself, 3 divides 6, 3 divides 9 and so on. Then we will come to 4. 4 again divides itself,
+4 divides 8, 4 divides 12 and so on. Again, you will have a row corresponding to every
+natural number. So, you can think of this as like a matrix. There is a rows and columns.
+Rows correspond to every natural numbers. Columns are there and they correspond to multiples
+of that particular row, the particular first column, the multiples of it. So, this is the
+divisibility relation. So, let us draw the graph of the divisibility relation. So, there
+is the node 1, there is the node 2 is there. 1 divides itself. So, we need to put an arrow
+mark like that. 1 divides 2. So, we need to put an arrow mark like that and 2 divides
+itself. So, we need to put an arrow mark like this. So, then there is 3. 1 divides 3 and
+3 divides itself. Then we will come to 4. So, I will write down 4 little bit below here.
+1 divides 4. 4 divides itself, but 2 also divides 4. So, you need to put an arrow mark
+like that and let us come back to 5. 5 again 1 divides 5 and 5 divides itself. Then let
+us come to 6. So, 1 divides 6, 6 divides itself, 3 divides 6, also 2 divides 6. So, 2 also
+divides 6. Then let us come to 7. 1 divides 7, 7 divides itself and that is all. And let
+us let me just finally, write 8 also and be done with it. So, 1 divides 8, 8 divides itself
+and 2 divides 8. And similarly, I can draw it is a infinite graph. There are infinite
+number of nodes. We cannot draw everything. So, we will just stop here. So, this is called
+the divisibility graph. So, if you look at this relation, every number divides itself.
+So, this relation is reflexive. Every number divides itself. So, it is reflexive. Is it
+symmetric? 1 divides 2, but 2 does not divide 1. So, it is not symmetric. Is it transitive?
+Let us say 2 divides 6, 6 divides 12, then 2 also has to divide 12. So, a divides b that
+means b is a multiple of a and c is a multiple of b, then it can also be represented as a
+multiple of a. So, it is actually transitive. So, it is a reflexive, non-symmetric, but
+transitive relation. So, good. So, we understand this relation.
+So, another important thing about divisibility is suppose you have these numbers a and b.
+So, let us say a is greater than b and suppose it is 2 numbers. They might not divide each
+other, but what you can do is you can write a as a quotient times b plus a remainder where
+this q is called the quotient and this r is called the remainder. So, what we will do?
+We will divide a by b as much as possible. So, q times b is the largest multiple of b
+closest to a and then there is some remainder which you need to add, but the important thing
+to notice the remainder is a number between 0 to b. Remainder cannot be greater than b.
+Then if the remainder is greater than b, then q b was not the closest multiple of b to a.
+So, remainder has to be less than b and this is an important fact. This is an important
+that we will use in many algorithms. So, it is good to recall that. So, there is one more
+thing that we need to understand which is what is called the prime numbers.
+Prime numbers are the set of numbers which is only divisible by 1 and itself. a belong
+to natural numbers a is only divisible by 1 and itself. If a is only divisible by 1 and itself,
+it is a prime number. So, let us see the prime number in this figure. Strictly speaking 1 is
+also a prime number, but typically people do not consider 1 a prime number. So, 2 is a prime
+number. The 2 is only divisible by 1 or itself. There is no other incoming arrows to 2. Let us
+see 3. What are the incoming arrows to 3? There is a self-loop and there is an arrow coming from
+1. So, 3 is a prime number. What about 4? There is an arrow self-loop. There is an arrow coming from
+1, but there is also an arrow coming from 2. That means 4 is not a prime number. It can be
+divided by something else which is not 1 or itself. 5 has an arrow from 1 as well as only a self-loop.
+So, it is a prime number. 6 is not a prime number because 2 and 3 divides it. 7 is a
+prime number and 8 is not and so on. So, prime numbers are numbers which is only divisible by
+1 and itself and prime numbers is a very like important tool for solving many problems because
+of what is called the prime number theorem. What does this theorem say? It says that any number
+can be written as a product of prime numbers. Any number can be decomposed into a product
+of prime numbers. What that means is take any a belong to natural numbers. Then we can write
+a as there is a prime p 1. You might do p 1 multiple times. Let us say p 1 is taken k 1 times.
+You might take another p 2. You might raise it to the power k 2 and you might go up to p t. There
+might be t prime numbers that we need to take and each with its own power k 1 to k t. So,
+any prime number any number can be written as a product of prime numbers and that is what
+this theorem says. So, typically when you want to prove something, if you prove it for the prime
+numbers using this theorem, we can extend it to any numbers. So, now let us come to what is
+called the greatest common divisor, the GCD. So, given two numbers, let us say you are given
+two numbers a and b. Now, a has a set of numbers which divides it and b has a set of numbers which
+divides it. GCD of a b is the number which divides both of them, but this is the largest number.
+It is the largest number that divides both a, b. That is called the greatest common divisor.
+So, you can verify a few properties. So, if p and q are primes, the GCD of p and q. So,
+only thing a prime number is divisible by is itself for 1. So, only common GCD that they can
+have is 1. Let us say it is follows from the definition of prime numbers. So, now let us come
+to the Euclid's GCD algorithm. So, you will later code this algorithm in programming languages
+and everything and we will look at it more slowly, but here I just want to introduce the
+algorithm so that you will get a feel of what is going to happen. So, suppose you are given
+the numbers a and b and we want to find out the goal is to find GCD of a and b we need to find.
+Now, what we do that? So, we will take a and we will divide by b and find the quotient and
+remainder and remember the remainder is a number between 0 and b. So, we will also assume that a
+is a number greater than b. So, a is a number greater than b and we will do this division and
+get the quotient and remainder. What Euclid observed was if you take the GCD of a and b,
+the GCD of a and b is the same as the GCD of b and r. So, you take this large number a divide
+it by b and get the quotient and remainder and if you want to find the GCD of a and b,
+it is the same as finding the GCD of b and r and what I am saying is this has simplified the
+problem. Why? Because a was a very large number, but when we come to b and r, b is strictly smaller
+than a and r is also strictly smaller than b. So, we have reduced the problem of taking GCD
+with one large number to two smaller numbers. So, we can keep on. Now, I can take the I mean
+I can divide b. Let us say I take b and if I divide by r and get something else. So,
+let us call this r 1. So, I might have some q 2 times r 1 plus r 2. I take b divided by r 1
+and get the quotient and remainder and let that be q 2 and r 2. Then this same GCD,
+the same equation I can apply again. GCD of b, r is again the GCD of r 1. So, this is r 1.
+Let us call this q 1 also r 1 and r 2 and I can again do this operation. So,
+let us say I mean. So, r 2. So, let us say r 1 is q 3 times r 2 plus r 3. I take r 1 again divide
+by r 2. I take the first number divide by second number. Find the quotient and the remainder and
+this GCD is going to be equal. So, you will have r 2 and r 3 and each time remember this r 2 is a
+number between. So, r 2 is a number between is strictly less than r 1 and this r 3 is strictly
+less than r 2. So, each time when we do this, when we do this division and take the GCD,
+reduce the GCD, we are actually reducing the size of the numbers and finally, it has to hit
+a prime number or 1. Finally, it has to hit a prime number or 1 or it is a proper division.
+It is the two numbers are divisible with each other and then we can stop. Let us see a couple
+of examples. So, let us take the GCD of two small numbers first. So, let us say we take the GCD of
+26 and 21. So, we can divide 26 by 21 the quotient will be only 1 and the remainder would be 5. So,
+it is the same as the GCD of 21 and 5. So, if I divide 26 by 21, I will get a quotient of 1
+and the remainder of 5 and what is the GCD of 21 and 5? Remember 5 is a prime number. So,
+I mean the only thing that divides 5 is 1 and 5 only and is 21 a multiple of 5? No,
+it is not a multiple of 5. So, we again need to divide and get the quotient and remainder.
+So, it is same as the GCD of 5 and 1 because the quotient is 4 and the remainder is 1 and the GCD
+of 5 and 1, we know the GCD of 5 and 1 is I mean the only I mean divisors of 5 is 5 and 1. So,
+the only GCD is this going to be 1. So, let us take a bigger example so that we get more
+comfortable. Let us take the I mean I have a written down example here which is 1147 and 899
+let us say. Now, if I want to find the GCD of these two large numbers, first I will divide,
+get the quotient and remainder. So, the quotient is clearly 1. You can only do a multiple of 1
+of 899 to get 1147 and what is the remainder? You will have 101 plus 147 which is 248. So,
+this is same as the GCD of 899 and 248. Now, let us look at so now let us divide 899 with 248. So,
+you can divide it and you will get a quotient of 3. So, maximum you can get is 746 sorry 744. 744
+is the nearest multiple of 248 of 899. So, this becomes the GCD of 248 and what is going
+to be the remainder? So, 899 minus 744. So, 744 it will be 155. So, again this GCD would
+become there is only the quotient is 1. So, it is only 155 and if you subtract you will get 93
+and you can take the GCD. So, 93 will come here and then it is a single multiple of 93 and if
+you subtract you will get 62 right 62 and this will be the GCD of again 62 will come here and
+then if you divide what will you get? You will get 31 and now 62 is a multiple of 31. So,
+the greatest common divisor of 62 and 31 is 31 itself and we can stop there the remainder is
+0. When the remainder is 0 we stop. So, you already have a multiple. So, we started with
+two large numbers and slowly the numbers are decreasing and it became some simple numbers
+and we could compute the GCD and this is what is called the GCD's Euclid's GCD algorithm.
+So, let us recap what we did in this lecture. So, let us recap what we did in this lecture. So,
+we looked at the divisibility relation. So, the what is called the divisibility relation and we
+looked at the graph of it and found that this reflective non-symmetric and transitive and we
+so that any number can be divided by another number and you can get a quotient and the reminder
+and the important thing is the remainder has to be less than b and then we looked at primes and
+the prime number theorem which is any number can be decomposed as a product of prime numbers.
+Then we looked at what is called the greatest common divisor and we looked at what is the
+Euclid's GCD algorithm. What does the Euclid's GCD algorithm do? If you want to take the GCD of
+two big numbers, divide the bigger number with the smaller number, get the quotient and reminder
+and the GCD of a b is nothing but the GCD of b and the remainder and we can keep on doing this
+again and again. So, you got a smaller numbers b and r 1 and then you got even smaller numbers
+r 1 and r 2, r 2 and r 3 and so on. So, we so example run of this two example run of this
+and see how you can compute GCD by doing this. That is all from today's video. Thank you.

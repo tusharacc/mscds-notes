@@ -1,0 +1,142 @@
+So, we are going to start a new module for this course and this module is about probability
+right. So, we actually talk about events which are uncertain using the word probability.
+So now, let us suppose. So, what are we concerned with? Let us suppose we are considering processes
+with no definite outcomes. So, for example, so we have a coin toss. So, if you have a
+coin toss, it is not very clear a priori whether the result the outcome of toss is going to
+be either heads or tails right and the other thing which you see more often is a dice.
+So, if you had played any of these games or board games while you were growing up, you
+would have seen a six sided dice and the outcome of the six sided dice was not certain before
+this before the dice was rolled right. So, we are interested in processes without definite
+outcomes when starting the experiment right. So, towards this we let us get some mathematical
+definitions laid out which will help us understand these processes. So, the first thing is what
+I call a sample space. A simple way to think about this is a sample space is a set of all
+possible outcomes. So, I am just going to write it here a set of all possible outcomes
+right. So, if you have the random process or the
+process that we are interested in right now has a coin toss, the sample space is heads
+or tails. So, heads is one possible outcome and tails is the other possible outcome right.
+So, if our experiment or a process is a six sided die for that I have these as a possible
+outcomes right and this happens to be my state space for a six sided dice and this is for
+a two sided coin. So, we can actually keep listing the sample space with more examples.
+For example, instead of one coin. So, further examples, instead of one coin if I had two
+coins. So, if I have two coins then my sample space is going to be all set of outcomes that
+is I have heads and heads, heads and tails, then I have tails and heads and tails and
+tails. So, this is a case when I have two coins that are distinguishable. So, in this
+case I am marking the outcomes for distinguishable coins.
+So, for two. So, now considering the fact that you have already seen the set of lectures
+on counting. So, I will leave it as an example or an exercise where I ask you to list out
+the sample space for two indistinguishable coins right. So, I can also like list this
+out for if I have two dice as it is very common in many of the games while growing up. So,
+I could have my state space listed as i comma j where both i and j are between 1 and 6 right.
+So, these are coins and dice, but my state space could also be dependent my state space
+could also be defined for things like what is the life cycle of this pencil right. So,
+it could be it is not very certain from the time I started using this pencil how long
+this would survive. So, it depends on a lot of things during the life cycle of this pencil.
+So, I could actually write it as t for some number for where t belongs to real values
+and t is greater than 0 right. So, let me state them more carefully for a pair of distinguishable
+dice and this is for a pair of indistinguishable dice.
+So, this is the life cycle of my apple pencil right. So, these are this is the state space
+which discusses all the possible outcomes of a process. So, this can be. So, we are
+going to interchangeably use the word either process or experiment. So, this is the state
+space. So, now I have discussed what is called a sample space right. So, then we will now
+discuss what is called events. So, events the way they define mathematically are subsets
+of sample space. So, let us take first trivial example which is I have one coin for a coin
+coin. So, my sample space what is this my sample space is heads and tails. Now, what
+possible subsets could I have. So, for the subsets of this are H, T, X, Y,
+and the empty set right. So, now one event I can define event where. So, I have the coin
+toss the coin turns up as heads. The other event I can define is the event
+is the coin turns up as tails. So, these are two different events. So, each subset of my
+sample space I am going to call it an event right. So, let us take slightly non-trivial
+example. So, I can say for two coins. So, let us take
+so an example of an event. It is all outcomes where the first coin turns up head. So, this
+is the event. So, what is that event? The event actually is it corresponds to the subset
+H, H and H, T. So, similarly I can actually come up with the events which are more subsets.
+So, another example is going to be all outcomes. So, all outcomes are going to be the same
+where the all outcomes where the coin tosses turn up equal. In which case my event is represented
+by these elements H, H and T, T right. So, now, what we have so far is the event
+we have a sample space and we have what are called events right. So, let us look at it
+in terms of what we understand from high school Venn diagrams right.
+Then I have. So, now, let this be my universe or the event
+of my sample space right. So, now, I have an event is a subset of it. So, I have event
+E then I kind of have an event F right. So, let us just use the word sample space. So,
+I am going to represent it using the letter S right. So, from the diagram we know that
+E is a subset of S, F is a subset of S right and in this picture I am actually notifying
+that. So, from the intersection of E and F is not empty.
+So, what are possible examples of this. So, let us call let us look at the example that
+we have done before. Let us call this event E1. So, let us call this event E and let us
+call this event F right. So, now, if you make it explicit this event E was H, H and then
+H, T and event F was H, H and T, T right and this intersection is given by this element
+which is H, H and this sample space if I have to write it again. So, the sample space is
+nothing but H, H, T, T, H and T, T right. So, this is my sample space and these events
+are my subsets right. So, each of them is a subset. So, as it turns out this intersection
+also is an event because it is a subset of my sample space right. So, since we are actually
+dealing with elements and sets we can naturally define intersections and unions.
+So, since we are dealing with elements and sets we can naturally define intersections
+dealing with sets. So, we can invoke unions and intersections right. So, above we have
+I can also define what is called E union F and that is given by H, H, H, T and T, T
+right. So, this is the definition of what are events and what is a sample space right.
+So, now, we would like to say so far we have not used the word probability anywhere right.
+So, we have defined what are possible outcomes and we actually looked at sets of possible
+outcomes. So, rather subsets of my entire set of possible outcomes. So, what semantics
+do these hold right. So, when I have a union here. So, I have these two events for example,
+let us again discuss with the examples. So, I have a union of events over here. So, here
+I was looking at union of events E and F right. So, E was an event where the outcome of the
+first coin turns up to be heads and F was an event where the coin turns up the both
+the coins turn up with equal value right. So, if I have a union. So, what am I saying
+verbally? Verbally I am saying either I am looking at outcomes which where the first
+coin toss is heads or I am looking at outcomes where both the coin tosses are equal right.
+So, I am using this word or right. So, it is a union of objects and there is a intersection
+I have this if I have to state this for the same example. So, I have I am looking at all
+outcomes where the first coin turns up as heads and at the same time I want the coin
+tosses to be equal. So, here we have an emphasis on the word and. So, the intersection we had
+an emphasis on I mean with union we had an emphasis on the word or here we have an emphasis
+on the word and right. So, the most simple thing that you can do is if you have a process
+if you have an experiment please list out all this all the possible outcomes that becomes
+your sample space and any subset of that becomes an event right.
+So, here in this example note that I have not really spoken about this empty set right
+even that is an event it is an event where you do nothing in terms of coin tosses. So,
+far so good. So, now what is probability about right. So, you have some outcomes and you
+have some events right to make our life simpler let us look at events which are single turns
+in your sample space right. So, let us again go back to our first example
+our simplest example which is coin tosses rather one coin toss right. So, as we discussed
+before the outcomes are. So, what are the outcomes either it is heads or it is heads
+or tails right and what are the possible events. So, possible events let us make it
+more explicit. So, it is H T. So, you might have noticed that I am not taking the entire
+sample space itself. So, you know that a set is a subset of itself. I am not actually
+talking about this set when I am talking about events I mean ideally I should right,
+but we will slowly see that it is actually redundant to talk about that.
+So, now so far we said these are the outcomes and these are the possible events and we
+need to quantify what is what is the. So, when does an event H happen and when does
+an event T happen. So, suppose I am doing one coin toss I will have one result I will
+do another coin toss I will have some other result right. So, now, if I have if I keep
+on doing this coin tosses what kind of result can I expect right.
+So, now, the whole notion of probability rather mathematically we will call it the axiom of
+probability axioms of probability is. So, for each element for each element in the sample
+space S we assign a weight we assign a value let us say. So, for each element in the sample
+so value right. So, for example, if I have. So, let us say some value V some sorry some
+element V in S we have a corresponding value which is PV and for each. So, this is true
+and let me just erase this the second point that we have is for empty set sorry empty
+set. So, let us say for each event E. So, what do we have? So, we have the weight or
+the value of that particular event is given by the sum of elements in that set E right
+and we have this property that for all elements V in S this value sorry this value sums up
+to 1. At the same time what we have here is probability
+of this empty set is 0. So, that is that is implicit in this definition right. So, what
+we call probability or assigning a probability is an axiomatic approach right. So, for each
+outcome we are assigning a value right. So, naturally for a coin toss with two sided coin.
+So, we say it is a fair coin if it turns up head with half the time and tails half the
+time right. So, this is the probability of the coin toss
+so for a fair coin for a coin rather we can assign probability of H rather probability
+of H is equal to half and probability of H is equal to half. So, this is the probability
+tails is half. So, this probability of half and half it does not come naturally it is
+an axiomatic way of assigning values for we say coin is fair if it has probabilities half
+and half it is not necessary that every coin that you pick up has this property that it
+turns up heads half the time and tails half the time right.
+So, this is an axiomatic thing. So, you are assigning values to the sides. So, it is not
+something which is very natural there is something weak build up. So, axioms are those which
+are some ground rules that you work with right. So, based on these ground rules we build
+up further structures. So, similarly for a six sided dice. So, we decide the probability
+of each of these things to be equal to half. So, this is the probability of each of these
+one by six right. So, let us call let us number these axioms.
+So, let us call this 1, 2 and 3. So, for right. So, now, let us call this 1, 2 and 3. So,
+this tells us that probability is a value that is assigned for every possible outcome
+right. And axiom 2 tells us that for event the probability of an event is given by the
+sum of probabilities of each of its constituent outcomes.

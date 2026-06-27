@@ -1,0 +1,318 @@
+So, welcome back, so what have we seen so far?
+We have seen the concept of sample space, so just to recall sample space is a set of
+all possible outcomes and then we have also seen what is called events, right.
+So, what were events?
+Events were subsets of the sample space, just for an example, so what did we have?
+A sample space for a coin, a single coin toss was H, T and for a pair of coins it was H,
+H, H, T, T, H and T, T in no particular order, right, so this is the sample space for a coin
+and pair of coins, right.
+Events were subsets of sample space, so what is an event in the coin turning up head in
+a single coin toss is an event, so that corresponds to the subset H and then the coin turning
+up as tails is the event T, so both of these are subsets of H, T, right.
+Further we have for this the examples of events are the following, the first coin turns
+up as, coin turns up as heads, right, so these are examples of events and then what we saw
+were axioms of probability, so what did axioms of probability say?
+The axioms of probability said the following, for each outcome in your sample space you
+are going to have a value assigned to it, so how is that value assigned?
+It adheres to a particular set of rules, right, so what did we have?
+For every element V belong to the sample space we defined a value P of V and then for an
+event E, so what is this?
+This is defined to be the sum of all the elements that belong to the event E, so this is for
+any event E, so this is what we defined.
+So essentially what we are doing is overloading the definition of P for both an element and
+a set, right and what else did we have?
+We had this property that summation of P, we belong to, so we belong to the entire sample
+space S, so what was this?
+We wanted this to be equal to 1, right, so just let me remind you E is a subset of S,
+so these are the axioms of probability that we had and further what did we get?
+This also gave us the fact that P of an empty set is 0, right, these were the axioms of
+probability that we discussed.
+So let us see some more examples, so suppose, so let us deal with the 6 sided dice, suppose
+a 6 sided dice is rolled, so now we ask what is the probability
+that the outcome is divisible by 2, right, so let us work this out from the basics.
+So what did we have?
+What was the sample space?
+The sample space was 1, 2, 3, 4, 5 and 6, right, so now what is the event here?
+The event is the outcome is divisible by 2, right, so what are the possible elements in
+the set S that are divisible by 2?
+So what are those?
+2, 4 and 6, right, now further I add this information that each outcome is equally likely.
+So this is a premise that we are working with, it is not always true that a given dice when
+you roll it each outcome is equally likely, but for the fairness what we need is all the
+outcomes are equally likely.
+So this is an assignment that we make to this value P, for each of these elements what does
+this mean by each outcome is equally likely?
+So for each of these elements, so we have that P of 1 is equal to P of 2 is equal to
+so on until P of 6 all of them are equal to 1 by 6, right.
+So now let us work these things out.
+So what is P of E here?
+P of E is nothing but summation of P of 2 plus P of 4 plus P of 6, right and each of
+which is equal to 1 by 6.
+So what I have here is 3 times 1 by 6.
+So to make it more explicit let me write this as 1 by 6 plus 1 by 6 plus 1 by 6 and this
+gives us 3 by 6 which is half.
+Now again I am going to say the following.
+So let us consider another event.
+So what is the probability of the outcome being prime, right.
+So what prime numbers do we have in the set S?
+So let me number this by E1, I am going to call this E2.
+So what is this?
+So what are the prime numbers?
+I am going to, so 1 is neither prime nor composite so I am not going to use that.
+So 2 is prime, 3 is prime and 5 is prime, right.
+So for this what do we have?
+So we have probability of E2 using similar logic is going to give you half, right.
+So now I ask another question.
+So what is the probability that the outcome is divisible by 3?
+So what are those numbers in our sample space that we have?
+given by, so 3 is divisible by 3 and 6 is divisible by 3, right.
+So now again what is the probability of E3?
+So this is going to be probability of 3 plus probability of 6.
+So this is going to be, so 1 by 6 plus 1 by 6 which is going to be 1 by 3, right.
+So what we have done so far is we have taken 3 different events, right.
+So there are these 3 different events and for this we have actually worked out what
+are their probabilities.
+Now so let us mark a Venn diagram for this, right.
+So I am going to have 1, 2, right.
+So I have this Venn diagrams.
+So let us call this E1, let us call this E2 and let us call this E3, right.
+So now I am going to list the elements out.
+So what did E1 have?
+E1 had 2, 4 and 6, right.
+I am going to have, so 2 and 4 are here.
+So let me just work this out.
+So 4 is here, so 2 is here, 3 is here, then 6 is here, 2, 4, 6.
+Then I have E3 is 3 and 6 and E2 is 5.
+And there is 1 that is outside, right.
+So these are Venn diagram.
+So what do we have?
+So we have E1 intersection E2 is 2.
+We have E2 intersection E3 to be 3.
+We have E3 intersection E1 to be 6, right.
+So now what we have here is E1 intersection E2 intersection E3 is empty.
+So now what we observe is the probability of E1 union E2 rather.
+So let us write this as a sets.
+So I have E1 union E2 union E3.
+So what is this given by E1?
+So let us do this.
+So my claim is that E1 union E2 union E3 can be written as P of E1 plus P of E2 plus P
+of E3 minus P of E1 intersection E2 minus P of E2 intersection E3 minus P of E3 intersection
+E1 plus P of E1 intersection E2 intersection E3, right.
+So now I am going to leave it to you to work this out and verify this.
+But let us work out as very simple example.
+So let us just work with P of E1 intersection E3 or let us say union.
+So I claim that it is equal to P of E1 plus P of E3 minus P of E1 intersection E3, right.
+So what is this going to be?
+So what do I have here?
+So the set E1 union E3 is, so what do I have E1 union E3 is 2, 4, 3 and 6, it is 2, 4,
+3 and 6.
+And what is E1?
+So E1 was a set 2, 4 and 6 and E3 was 3 and 6 and the intersection contains only 6, right.
+So now let us work this out.
+So what is this?
+This summation of P2 plus P4 plus P3 plus P6.
+What is this?
+So I am just going to draw a line to separate these two.
+This is going to be P2 plus P4 plus P6 and what do I have here?
+I have P3 plus P6 and I have P6 here, right.
+So what is happening here?
+So we have P2, P4, P3 and P6 being added.
+So let us say I have for P2 here I have a P2 here.
+For P4 here I have a P4 here.
+For a P3 here I have a P3 here.
+For a P6 I have a P6 here, but I have an extra one, so that is the reason I am subtracting
+it out.
+So if you actually look at this Venn diagram, so I have this and this, right, I have added
+these two parts, but then this part is being added twice, so that is the reason I am subtracting
+it once, right.
+So if I take it to three sets, you can verify the same thing holds.
+So now for a general N, suppose I have N events, E1, E2 and so on until EN, what I can say
+about this is P of E1 union E2 union EN can be written as summation over i from 1 to N,
+I have P of EI plus rather, okay, I am going to write as minus 1 times I have i less than
+J between 1 to N, I have P of EI intersection EJ plus for a general term, for a general
+rth intersection I am going to write as P of minus 1 to the power of r plus 1, that
+is the reason I have written this as this.
+So this is going to be summation over all i1, i2, let us say in an increasing order
+until IR, so I have N here, I have P of EI1 intersection PEI2 and so on until EIR.
+And so on until minus 1 to the N plus 1 of summation over, oh here anyway, so since
+I have N elements here, I am just going to have E1 intersection E2.
+So there is only one choice of i1 to iN where each of them is distinct and they are between
+1 to N, so which is why I ignore the summation over here, right.
+So this is a set theoretic interpretation of writing your unions, right, so far so good.
+So now let us work out some basic problems and let us see where it takes us.
+So I have a following question, if three balls are drawn from a bowl randomly where the bowl
+contains 6 white balls and 5 black balls, right.
+So what is the probability that one of the balls is white and the rest of them, right.
+So this is a question which is very much basic and it is related to the counting problems
+that you have seen before.
+So let us work this problem out from the first principles, right.
+So the first principle tells us, so what is your sample space?
+So there are three balls which are being drawn.
+So for these three balls, we want to figure out what are the possible outcomes, right.
+So I am going to list the outcomes out, so I can have white, white, black, I have white,
+black, white, I can have black, white, white, then I can have white, black, black, then
+I can have black, white, black, then I can have black, black and white and then I can
+have white and I can have white.
+So again, so here the premise again is each ball is equally likely.
+So let us make that expressed as well, uniformly, rather each ball is equally likely, right.
+So good.
+So this is our sample space.
+So now what would the event look like?
+So what is the subset that you are interested in?
+You want one white ball and two black balls, right.
+So what is my event look like?
+So my event looks like the following.
+So I have white, black, black, then I have black, white and black and then I have, what
+do I have?
+Then black, black and white, right, this is my event.
+So this says I have one white ball and two black balls, right, this is my event.
+Now I want to figure out what is the probability of probability of E, right.
+So what would that be?
+That would be nothing but probability of WB B plus probability of B WB plus probability
+of B B W, right.
+So now let us look at each of them individually, right.
+So what do I have here?
+So let us look at probability of W B and B. So what would this be?
+I have, how many white balls do I have?
+I have 6 white balls, right.
+So the first ball I am picking is I am picking a white ball from, how many balls are there?
+11 balls, right, I have this, right.
+So I am going to revisit why it is going to be 6 by 11.
+So then I have 5 black balls and how many balls are left?
+I have 10 balls which are left.
+So it is 5 by 10.
+And then what I have?
+So I have 4 black balls left, sorry.
+So I had 6 black balls left, sorry 6 white balls left and I picked up one of them, right.
+And the 5 black balls remain intact.
+So I have 4 by 9.
+So let us see this.
+So I had 6 white balls and 11 balls overall.
+So what we did was we picked one of the 6 balls out of the 11 balls available, right.
+And then what we do next?
+For the second ball that we are picking, we want that to be black ball.
+For that to be a black ball, what did we have?
+There are 5 black balls left and there are 10 balls left overall.
+So now we have 5 by 10.
+And then after this, there are 4 black balls left and there are 9 overall balls left.
+So that gives us this probability of 4 by 9 for that event.
+And these are independent events.
+So let us, we will come to this why I am calling this independent.
+So what we have here is the probability of picking white and then black and then black
+is the following, right.
+So then what about the rest of them?
+So what about probability of picking black, white and black?
+So this is going to be something similar.
+So what I would have is I would have, I have 5 black balls.
+So I have 5 divided by 11, right.
+And then I have 6 white balls.
+I am going to have 6 by 10.
+And then I have 4 black balls.
+So I am going to have 4 by 9, right.
+Similarly what I am going to have is probability of B B W, right.
+So this is going to be, so what is going to be 5 by 11 into 4 by 10 into 6 by 9.
+So this is what we have, right.
+So each of this is going to give us 120 by 990.
+So what is more interesting here is that the way you get this number 120 by 990 is different
+for each of these individual elements of my sample space, right.
+So for each of these outcomes the way I obtain this number is different, right.
+So please be careful about what, when you are working out examples of this form, please
+be careful about how you get the outcome, right.
+So if I put this all together, so what I would have is 3 times 120 by 990.
+So what I would get is 12 by 33, it is roughly 4 by 11, right.
+So it is with this probability that I would have one of the balls being white and the
+rest are black, right.
+So this is working out your probabilities from the first principles.
+So one, you may actually do it much more simply by doing the following, right.
+So what would you do?
+I have 6 white balls and I am choosing one of them.
+And then I have 5 black balls, I am choosing two of them.
+Then I have 11 balls out of which I am choosing 3, right.
+So what is this number?
+So I have 6 factorial by 5 factorial into, I have 5 factorial by 3 factorial into 2 factorial
+divided by 11 factorial by 8 factorial times 3 factorial, right.
+If I work this out, if I write it as it is going to be 6, so this quantity is going to
+give me 6, right, and this quantity, so what do I get?
+So this quantity is going to give me 5 into 4, right, and then this quantity is going
+to give me 11 into 10 into 9, right.
+And I have this left and I have this left.
+So what is that going to be?
+So that is going to give me 3 factorial by 2 factorial is going to give me 3, which is
+essentially the same number that we got above, right.
+So what this is doing, what this formula is doing is it is implicitly considering the
+ordering of when the white is being picked, right.
+So when you do this formula, it does not give you as much insight as working things
+out using events and sample spaces, right.
+So but this formula is more explicit, right.
+I have, so I have 11 balls, I am picking 3 balls, out of which I want one of them to
+be white and the rest 2 to be black, right.
+But inherently you have this ordering term also that is helping you out.
+So good.
+So this is the following example.
+So now we ask slightly more complicated question, not very complicated but slightly more complicated.
+So we ask the following.
+So what is the probability that at least one white ball is picked, right.
+So what is the probability that at least one white ball is picked?
+So let us call this event F, right.
+So what, now I am going to stare at my sample space.
+I am just going to copy it here to make my life easier.
+So I am going to keep it here, yeah.
+So now what is my, so I have this.
+So I can take everything except this, right.
+So I am just going to call this.
+So now this is the probability, I mean so this is the event where you have at least
+one white ball, right.
+So we have already considered, so what did we consider?
+We consider the cases where you have 2 black balls and a white ball, right.
+Now we need to compute these 3.
+So what are those?
+So let us work it out again.
+So just to give you more practice about how to work these things out.
+So this is going to be, I have a first white ball.
+So I have the probability of picking that is 6 by 11 and then I have a white ball again.
+So there are 5 white balls left and there are totally 10 balls left and then I have
+one black ball.
+So how do I pick this one black ball?
+So what is that going to be?
+So it is going to be I have 5 black balls left and I have overall 9 balls left, right.
+Similarly I have P of, so what is next WBW, right.
+So this is going to be 6 by 11 times 5 by 9.
+Similarly what I have here is P of BWW, it is going to be 5 by 11 into 6 by 10 into 5
+by 9, right.
+here is nothing but in each of these cases I am going to get 150 by 990, right.
+So now what do you have?
+The other thing is I have 3 white balls.
+So what is this going to be?
+I have 6 by 11, 5 by 10 into 4 by 9 and this is going to give me same thing as before 120
+by 990, right.
+If I actually do this, if I actually sum it up, so I had 360 by 990 before.
+So what I would have is, so if I put them all together, so I have, so from before I
+have 120 by 990 plus 120 by 990 plus 120 by 990 from before plus I have 150 by 990 thrice
+here plus 150 by 990 here plus I have 120 by 990, good.
+So what is the value that we get?
+So we get 120 into 4 plus 150 into 3 divided by 990.
+So this is the probability of event F, right.
+So the interesting part here is we are just working things out step by step from the basics,
+right.
+However, we can do this much more simply.
+So when you just stare at this event, so you have F and it is easy to see that F complement
+is nothing but, so I am going to write F complement is nothing but the event which is all black,
+right.
+So the last time what we said was probability of this event F is nothing but 1 minus probability
+of event F complement, right.
+So now what is this?
+It is nothing but 1 minus, what do I have here?
+I have probability of the event which is B, B, B.
+So which is nothing but 1 minus, so I have 5 black balls, out of which, so I am picking
+then I have 4 black balls and then I am left with 3 black balls, right.
+Does it make sense?
+So what do I get here?
+Sorry, it is not, it is going to be 10 and 9, right.
+So what I am going to, the denominator is 990 and what do I get here?
+I have 60 over here, right.
+So now, so this is what we have.
+So I actually leave it to you to verify that this quantity is same as this quantity, right.
+So now you do not have to work out everything rigorously, so you can use this prepositions
+that we discussed before in the last session and make your life much simple.
+So sometimes it helps to think in terms of complements of the events than the event itself.
+So this will help us get what we want.

@@ -1,0 +1,195 @@
+Welcome everyone and let us continue our yeah I mean discussion on algorithms. And in this
+video, we will look at some graph algorithms, specifically graph traversal algorithms. Again,
+this is not a thorough introduction to algorithms that will come much later. So, but it is good
+to have a idea of these things, so that it might be covered in the later some of the programs can
+be looked at in the later courses. So, what is let us look at a graph. So, this is a interesting
+graph. So, let us look at this. So, let us number this and then there is some vertices
+here also and you have a edges like this. So, edges not there. So, 6, 7, 8, 9, 10,
+so and there is also these edges. So, this is a graph which comes at various place in
+computer science. We will come to maybe we will see it later I mean in one of the other
+courses. So, this is a yeah graph and let us just quickly see the I mean the adjacency
+matrix of this graph. So, let us just quickly recall the adjacency matrix. So, there is
+a column and a row for every vertex. So, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, again there is
+a row for 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 and in the first row you will have. So, one has
+neighbors 4, 3 and 6. So, at 4, 3 and 6 there will be a 1 and 0 everywhere else that is
+the adjacency matrix the first row of the adjacency matrix of similarly, if you look
+at the 2, 5, 4 and 7 are neighbors. So, for 2, 5, 4 and 7 are neighbors everywhere else
+there is zeros. For 3, 1, 5 and 8 are neighbors. So, 1, 5 and 8 are neighbors. For 4, 1, 2
+and 9 are neighbors 1, 2 and 9 are the neighbors and so on I want to write the entire matrix
+yeah and the interesting thing to notice this is a undirected graph right. So, if you look
+at the 1, 3 entry it is the same as 3, 1 entry yeah it is a symmetric matrix yeah. So, that
+graph that we will use in this lecture yeah and the first algorithm that we want to look
+at the traversal algorithm we want to look at is called the breadth first search breadth
+first search for traversal yeah. So, typically yeah we show different graphs
+yeah real world graphs in the yeah previous lecture yeah. So, you could have a graph of
+railway networks you could have a graph of routes you could have a graph of the internet
+yeah where the where you have a edge if one website is linked to the other website yeah
+and then the question is yeah whether I mean is there a way to go from one website to another
+website yeah is one person is there a connection between one person and another person through
+some intermediate fronts yeah. So, all these questions we want to ask and
+typically the solution is through one of these algorithms yeah. So, let us see what the breadth
+first search is. So, to introduce breadth first search you also need yeah yeah a what
+is called a data structure yeah called queue yeah queue is also called first in first out
+first in first out or FIFO yeah. So, what does it mean yeah. So, let us start a breadth
+first search yeah at the starting in the node 1 yeah. So, when you run this algorithm intermediately
+it will keep some what is called a queue in memory yeah. So, initially at the step 1 yeah
+at the step 1 yeah the queue would be empty yeah and when you start then we will add the
+vertex 1 into it yeah. So, you will have the vertex. So, this is the queue and you will
+put the vertex 1 into it. So, you have the vertex 1 yeah and then what you will do is
+at each step of the algorithm you will take yeah element out from the right side yeah
+you will put the element from the yeah from this side and you will take the element from
+the right side yeah and you will take the element and look at all these neighbors and
+add it into the queue yeah. So, in the second step yeah what are the neighbors
+of 1 it is 4 3 and 6 yeah it is 4 3 and 6 and you will add it into the queue yeah. So,
+yeah. So, 1 went out and now the queue looks like this 4. So, let us keep the convention
+that smallest numbers appears first yeah. So, 3 4 and 6 yeah. So, we put these numbers
+yeah in the order 3 4 and 6 into this queue yeah we put it like this and next step we
+will take the first that one that was in the first in the queue is 3 yeah I will take that
+yeah just a second sorry yeah. So, we will take out 3 and yeah. So, we will take out 3
+yeah. So, what are the neighbors of 3 the neighbors of 3 is 1 5 and 8 yeah 1 is already
+visited yeah after this step 1 is already visited we already had a look at 1 yeah. So,
+so 1 went out here. So, the 1 went out here here 3 went out yeah. So, 1 and 3 is already
+visited. So, we do not need to do anything about it. So, if we take it 3 neighbors that
+is already not visited it is 5 and 8 yeah. So, we need to add 5 and 8 to the queue yeah.
+So, you will have 8 5 6 4 and 3 already went out in the previous step. So, we do not need
+to add that yeah next we will take out 4 we will take out 4 look at the neighbors of 4
+it is 1 2 and 9 yeah. So, 1 is already visited it earlier yeah. So, only 2 and 9 are remaining
+yeah. So, in the 4 step yeah we will add 2 and 9 to the queue yeah. So, you will have
+9 2 8 5 6 yeah yeah. So, again 6 comes out yeah. So, 6 comes out and what are the neighbors
+of 6 it is 1 7 and 10 yeah. So, 7 and 10 has not been looked at so far yeah. So, in the
+5th step you will have 10 we will put in 10 and 7 here and we will keep whatever was there
+earlier yeah. So, now we will take out 5 yeah. So, 5 is in the yeah beginning of the queue
+now yeah 5 we will take out yeah and what happens 5 neighbors are what 5 neighbors are
+10 2 and 3 yeah. So, 3 is already visited. So, we do not need to consider it 2 is already
+in the queue yeah. So, 2 is already in the queue. So, we do not again need to add it
+yeah. So, only 10 needs to be added. So, neighbors of 5 was 10 and actually already 10 is also
+in the queue already yeah. So, 10 is also in the queue already because earlier we had
+a look at 6. So, 10 is already in the queue yeah. So, we do not need to add anything to
+the queue because all the numbers either has been visited or it is already in the queue
+yeah. So, you will have 10 7 9 2 8 yeah. Now, 8 comes out yeah what are the neighbors
+of 8 it is 3 9 and 7 yeah. So, 3 is already visited 9 and 7 is already there yeah. So,
+there is nothing you need to add into a queue yeah. So, in the 7 step yeah just now the
+queue keeps on reducing yeah. So, you have 2 here 9 here 7 here and 10 here yeah and
+step in the 8 step again 2 comes out yeah. So, I think all the numbers is either in the
+queue or it is visited right because 1 2 3 4 5 6 7 8 9 10. So, there is nothing remaining
+yeah. So, there is nothing you need to add. So, now the mean the stack the queue keeps
+on decreasing which is now 9 comes here 7 comes here 10 comes here yeah and then you
+will have the 9 step where the 9 goes out and 7 and 10 remains here yeah and in the
+10 step yeah again all the neighbors of 7 is either in this list yeah. So, there is
+9 and 7 yeah or it has its 10 is already in the queue and finally, again you tend to look
+all the neighbors of 10 has been visited and we can stop yeah.
+So, yeah. So, this sequence of numbers this sequence of numbers that is 1 3 4 6 5 8 2
+9 7 10 yeah this sequence of numbers is called the breadth first traversal yeah and if you
+keep on doing this we will eventually reach all the vertices which are connected to the
+vertex 1 yeah we will eventually reach all the vertex we are connected to the vertex
+1 yeah. So, if you want to find all the yeah check if 2 friends are connected or not yeah
+2 people are connected or not in a social network I can start from the first vertex
+keep on doing this and each time check if the person currently that is being yeah visited
+yeah that is the vertex here is the second person yeah and we can stop once you reach
+that vertex yeah and this is called a breadth first traversal.
+So, there is a second type of traversal that is typically used in graphs yeah which is
+called the depth first traversal yeah. So, before coming to depth first traversal let
+us yeah just recall one thing about breadth first traversal yeah. So, this was the initial
+picture that we drew of the graph yeah this was the initial picture that we drew of the
+graph yeah. So, based on breadth first traversal you can actually do a different picture of
+the graph yeah. So, what is that picture you started at the vertex 1 yeah and then yeah
+I found that it has these neighbors 3 4 and 6 yeah. So, I will put 3 4 and 6 here 3 4
+and 6 yeah and then yeah I looked at 3 yeah and found that it has neighbors 8 and 5 yeah.
+So, I will write 8 and 5 here. So, let me write 5 first because yeah. So, I will keep
+the smallest number first yeah and then I looked at 4 yeah and found that it has yeah
+neighbors 2 and 9 yeah then I looked at 6 and found that it has neighbors 7 and 10 yeah
+yeah and then I looked at I mean what was the next number to look at 5 yeah 5 I looked
+at now the neighbors of 5 the neighbors of 5 were 10 3 and 2 yeah. So, 10 3 and 2 so
+the 5 already has 3. So, 5 had a neighbor of 2 and 5 had a neighbor of 10 yeah.
+So, if you look at 8. So, 8 had 9 and 7 as neighbors yeah. So, 8 had in this graph 8
+had 9 and 7 as neighbors yeah 9 7 and 3. So, 3 is already here. So, 9 and 7 yeah what about
+2. So, 2 had 5 4 and what was the other neighbor of 2 yeah 5 4 and 7 yeah. So, I had to put
+arrow mark like this yeah what about 9 9 had 4 and 8. So, 9 had 4 and 8 as well as 10 as
+neighbors. So, I had to put 9 to 10 one arrow mark like this yeah 7 had as. So, if you look
+at every vectors in the graph has the same degree 3 has exactly 3 neighbors in this graph
+yeah. So, if you. So, all the 3 neighbors of 7 is already represented here all the neighbors
+of 10 is already represented here yeah. So, this is another way of drawing the same
+graph yeah. So, a graph could be drawn in multiple ways and the way this BFS traversal
+work you can actually draw it in this particular way yeah and then you will see that if you
+ignore these yeah these edges yeah actually it forms a tree yeah and this is called the
+BFS tree of the graph yeah. So, you can ignore the last edges yeah which is the known tree
+edges yeah, but all the other edges yeah order in which we came through the yeah graph yeah
+that is called the BFS tree this is called the BFS tree of corresponding to the traversal
+okay good. So, now let us come to what is called the depth first traversal yeah. So,
+what is the depth first traversal yeah in depth first traversal we will have what is
+called as stack yeah. So, in the mean depth first traversal we had what is called a queue
+yeah where you have first in first out whatever was put in first yeah will be come out first
+yeah in a depth first traversal we will have what is called as stack yeah which is last
+in first out yeah or it is called LIFO yeah. So, what happens in a stack yeah. So, in the
+first step yeah you will have a stack where only the element 1 is there yeah and yeah.
+So, the interesting thing in a stack is you put in from this side only and take out from
+the same side yeah in a queue you are putting in things from the left side and taking out things
+from the right side yeah, but in a stack you put in things as well as take out things from the same
+side only yeah. So, initially we will put in 1 yeah 1 has neighbors 3 4 and 6 yeah. So, in the
+second step yeah so 1 was taken out and its neighbors 3 4 and 6 was added into a stack.
+So, let us add that into a stack yeah. So, you will have let us say 6 4 and 3 yeah that was
+added into a stack now the top of the stack is 3 yeah now 3 is taken out yeah 3 is taken out what
+are the neighbors of 3 it is 5 8 and 1 yeah and 1 is already visited. So, you do not need to do
+anything about 1 yeah. So, it is only 5 and 8. So, in the third step yeah you will have 6 and 4
+will remain here yeah and 8 and 5 will be put in the same side yeah from the top yeah. So,
+this is the top side you will say again the top of the stack will is 5. So, we will take 5 out yeah
+and yeah you will have 6 4 8 already there what are the neighbors of 5 it is 2 and 10 it is 2
+and 10 yeah. So, you will put 10 and 2 here yeah and in the this step we take the top of the stack
+out which is 2 yeah and you will have the stack as yeah. So, what are the neighbors of 2 it is 5
+and 7 5 7 and 4 for fold is already in the stack. So, we do not need to add it again yeah it is 5
+and 7 yeah. So, 6 4 8 10 yeah. So, 5 is also already previous visited yeah. So, only thing we need to
+add back is 7 yeah. Now, what is the top of the stack it is 7 yeah. So, what are the neighbors of
+7 it is 6 2 and 8 yeah. So, 2 and 8 and 6 all of them is already in the stack. So, we do not need
+to add anything yeah. So, in the sixth step yeah only 7 went out nothing happened nothing else
+happened yeah. So, because all the neighbors of 7 which is 6 2 and 8 already were visited here
+also already in the stack yeah. So, now we take out 10 yeah. So, if we take out 10 is the top
+of most entry in the stack yeah. So, we take out 10 yeah and what happens what are the neighbors
+of 10 it is 6 9 and 5 yeah. So, 6 9 and 5. So, 9 is not there 6 and 5 is already we visited yeah. So,
+9 has to be put back yeah. So, 6 4 8 9 yeah and now 9 is taken out yeah. So, you will have 8
+step would be what are the neighbors of 9 the neighbors of 9 is 4 8 and 10 yeah. So,
+4 is already in the stack 8 is already in the stack 10 was already visited yeah. So,
+there is you just need to yeah remove 9 from the stack. So, it is 6 4 and 8 yeah and I think by
+now all the numbers is either you visited was already there in the stack. So, 1 2 is there 3
+is there yeah 4 is in the stack 5 is here 6 is there in the stack 7 is here 8 is there in the
+stack yeah 9 and 10 are visited yeah. So, now I mean there is nothing yeah new need to be added
+in the stack because either everything is visited or it is already there yeah. So, you will have 4
+now taken out yeah and you will have 6 yeah and you have 6. So, this is called the depth first
+traversal yeah. So, this sequence of numbers 1 3 5 2 7 10 9 8 4 6 yeah this is called the depth
+first traversal yeah. So, in the I mean yeah. So, in the depth first traversal we used this
+stack yeah for doing this. So, if you actually draw the picture corresponding to this it looks
+very different yeah. So, you had the I mean vertex 1 yeah and yeah. So, you had the vertex
+1 and we found that it has yeah neighbors yeah I mean 3 4 and 6 yeah. So, it found we found that
+it had neighbors 3 4 and 6 yeah. So, but then we only looked at the vertex 3 yeah. So, we only
+looked at the vertex 3 yeah then we looked at the first neighbor of 3 yeah. So, the neighbors
+of 3 yeah where 8 and 5 yeah and we only looked at the vertex 5 first yeah and then the neighbors
+of 5 was where 10 and 2 yeah. So, and we only looked at 2 yeah. So, this is this was the order
+in which we went yeah and then from 2 yeah the neighbors were only 7 yeah. So, we went to 7. So,
+one had other neighbors which was yeah one had a 3 4 and 6 as neighbors yeah. So,
+but we did not go there that is still in the stack yeah this is the way we came yeah and 3 had
+neighbors 8 and 5 and 2 had neighbors yeah. So, from 7 where did we go from 7 yeah 7 all the
+neighbors were already there yeah. So, from 7 you go went back to 10. So, how did we reach 10. So,
+so 2 had neighbors yeah. So, 5 had neighbors 2 and 10 yeah. So, 5 had neighbors 2 and 10 yeah. So,
+from the 7 we went to 10 which was the nearest thing that needed to be taken care of yeah and
+then from 10 we got 9 yeah. So, from 10 we got to 9 yeah and from 9 we just jumped back
+to 4 and finally, 6 okay. So, I mean I will draw the I mean the edges of the original tree yeah
+also in the side yeah. So, there was these edges was there and these edges was never used.
+So, yeah. So, we are going this way yeah. So, we have a very skewed tree here yeah in BFS we have
+a like I mean proper tree which keeps on dividing dividing dividing we are going through each of
+the neighbors yeah in a this order yeah in a depth first search you are traversing all the I mean
+notes in the last in first out order yeah it is a different order in which things are taken.
+So, yeah. So, if you look at the depth first search it will go through farther and farther
+vertices much faster compared to I mean breadth first search breadth first search first we will
+look at all the nearby vertices to a node yeah it will first look at all the nearby
+vertices to a node before it will look at the next level vertices yeah to the node.
+But in DFS yeah it is a it is a deep search where you go to farther and farther yeah vertices from
+the node and only once you cannot find any more vertices you will come back to a previous vertex
+yeah and so on yeah. So, these two algorithms are heavily used yeah and yeah in later courses
+you will actually be implementing it yeah you will be studying this in more detail how fast
+they run and everything you will be studying. But at this point it is good to know what these
+algorithms are. So, again let us just recall. So, we were looking at graph traversal algorithms
+yeah and yeah. So, we looked at this particular graph and we looked at the adjacency matrix we
+looked at breadth first search yeah and we saw how to implement it using a queue yeah and we looked
+at yeah the depth first traversal yeah and to implement it using a stack and finally,
+yeah we looked at the breadth first tree also yeah the tree in. So, the breadth first traversal yeah
+naturally forms a tree when it go through all the nodes and that is called the breadth first tree
+yeah. So, that is all from this video thank you.

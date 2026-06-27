@@ -1,0 +1,90 @@
+So, welcome again yeah and yeah. So, we have been discussing graphs in the last two videos
+yeah and in the in today's lecture in this part of the lecture we will cover yeah another
+type of graphs specific graphs called trees yeah. So, what is tree? A tree is a graph
+where the neighbor set of every vertex are disjoint yeah take the neighbor set of any
+pair of vertices yeah that does not have any intersection yeah then it is called a tree
+yeah. So, let us see an example then it will become a clear yeah. So, yeah it is like the
+branches of a tree right you can you go and you go from one branch to another there yeah
+the sub branches of it cannot intersect every time you have a new branch yeah. So, typically
+this comes yeah example that you take is a family tree yeah and when I say a family tree
+I am kind of assuming that yeah nobody within a family marries yeah even yeah extended family
+the extended family marries yeah there is yeah in yeah. So, that is what so there might be yeah
+so there might be yeah there might be a great grandfather yeah that person might have had
+yeah several children and so let us call the children 2 3 4 5 yeah and let us say yeah this
+person might have let us say had 2 children yeah 6 and 7 yeah and 3 might have had yeah 1
+children 8 4 let us say did not have children at all yeah and 5 had 3 children yeah and yeah let
+us say further yeah 6 had 2 children yeah let us say 2 let us call them 12 and 13 yeah and yeah
+8 had 2 children 14 and 15 and 10 had a children 16 yeah. So, just okay so that is a family tree
+yeah families who is yeah when you put an arrow mark from U to V yeah when V is a child of U okay
+and we are assuming that yeah there is no intermarriage within the family yeah. So,
+given a tree like this yeah there is typically some yeah the terminology that you are familiar
+with and in any tree any graph which can be drawn like a tree the same terminology is used yeah.
+So, who are ones children who was who are the children of one yeah so the children of one yeah
+is the set 2, 3, 4, 5 they are the children of one yeah who is the siblings of 2 siblings of 2
+the siblings of 2 or 3 4 and 5 yeah they are the siblings of 2 yeah in this family tree yeah and
+whenever so your tree might be coming from some other domain completely nothing to do with the
+family tree but you can think it think of it as a picture like this and yeah you can specify the
+children of a node the siblings of a node yeah for example yeah another sibling might be okay
+who is 8 siblings of 8 the siblings of 8 so 8 does it have any siblings no yeah the 8 siblings
+is a empty set 8 does not have any siblings yeah who is 2's descendants so the descendants of 2
+who are the descendants of 2 it is 6, 7, 12, 13 yeah who are 8's ancestors ancestors yeah of 8
+it is 3 and 1 yeah who is the parent of 10 parent of 10 is 5 yeah so there these are natural I mean
+terminology derived from the family tree but we apply to any tree yeah and you will regularly see
+it yes we discuss various problems yeah okay so here the node 1 is called the root of the
+tree yeah the root of the tree is the node 1 yeah and there is also called the leaves of the tree
+the leaves of the tree yeah what is the leaves of the tree 12 and 13 it is a set of all nodes
+it does not have any further children yeah so 12 and 13 does not have children 7 does not have
+children 14 and 15 doesn't have children 4 doesn't have children 9 11 and 16 yeah so these are called
+the leaves you know the leaves of the tree these are called the leaf nodes yeah and there is finally
+something called the depth of the tree yeah the depth of the tree is the longest path from a root
+node to a leaf node length of the longest path from root to a leaf node any leaf node yeah so
+the longest path so this is so the longest path will be of 1 2 and 3 yeah in length yeah so yeah
+this particular node is yeah only length 1 but if you look at the longest it is yeah 1 to 12 or 1
+to 30 one question yeah that you might think about is yeah so in this tree it is directed yeah so
+clearly a mean a tree does not have any cycles yeah a tree does not have yeah why because if
+the tree had a cycle that means there was one node yeah which was yeah yeah so the yeah there
+is yeah so it is disjoint yeah so yeah this is not the only condition for a tree yeah so a tree
+like this which so there and the root node root node in the tree should not have any incoming
+edges yeah yeah so that is also another condition root node should not have incoming edges yeah so
+I will write down here no incoming edges yeah a tree does not have any cycles yeah because the
+root node does not have any incoming edges yeah so yeah so there cannot never be a edge bit from
+a like a child back to a parent yeah so either you go towards a child yeah and yeah finally
+some somehow the child cannot become a grandfather of yeah you are yeah so you cannot have a cycle
+in a tree so let us see one more example tree and then stop yeah so one very common tree that
+comes up in computer science is called a prefix tree yeah so what is a prefix tree yeah so prefix
+tree the mean nodes in a prefix tree are nothing but binary strings yeah so you start with the
+special binary string called the empty string yeah and if you take a left turn yeah you will
+basically I mean prefix a 0 to it yeah so it is a empty string you can prefix only a 0 or 1 yeah
+and I can have 0 0 and 0 1 yeah so you could have 1 0 yeah and 1 1 again further yeah 0 0 1 sorry
+0 0 0 and 0 0 1 0 1 0 0 0 1 1 yeah 1 0 0 1 0 1 1 1 0 1 1 1 yeah so this is this kind of tree
+is called a prefix tree so I have only gone till depth 3 yeah so this is a prefix tree with depth
+3 with depth 3 yeah you can keep on going up till depth n yeah so if there are so if you look at
+yeah the leaves of the tree tree so if you go till depth n the leaves of the tree are nothing
+but binary strings yeah of length n where n is the depth yeah so the in a prefix tree yeah the
+leaves of the tree is nothing but the set of all binary strings of a particular length n where n is
+the depth of the tree yeah and what is the root node it is the empty string yeah which is epsilon
+yeah and yeah so yeah so how many nodes are there what is the size of the vertex set yeah it is so
+there is the empty string which is 1 then there is 2 nodes 2 squared there are 2 squared nodes at
+this level yeah yeah and there is next level there is 2 cube nodes and so on up to 2 raise
+2 let us say we are going up till depth n there will be 2 raise 1 plus up to 2 raise 10 nodes
+in the yeah last level yeah so that is what I called a prefix tree is and this kind of
+prefix tree comes up very often in computer science okay so yeah that is all from today's
+video let us just recall yeah what we covered today yeah so yeah we looked at trees yeah trees
+yeah you say graph where the neighbor set of every vertex is disjoint yeah and also there is a special
+vertex called root which does not have any incoming edges yeah so we gave the example of a family tree
+yeah and we assume that nobody in the family yeah yeah there is no intermarriage within the family
+yeah and then there is a standard terminology that we introduced yeah with respect to that there
+is children's there is siblings there is descendants there is ancestors and this parent yeah and this
+will often comes up in various problems in computer science yeah and yeah we introduce
+what is called the depth what is called a leaf and what is called the root of the tree yeah now
+you can think of a family tree where the intermarriage is allowed yeah and then it will be a won't be a
+tree but it will be a directed acyclic graph yeah so you could have a situation yeah there yeah for
+example you could have a dag yeah so there is one person yeah so you could have a tree like that
+this is a dag like that yeah so that is a dag which is not a tree yeah and yeah if in this
+situation if intermarriage is allowed then you will have a situation of a dag yeah so yeah yeah
+so that's a tree and yeah the dag is a tree where yeah I mean you hear the neighbor set of
+two and tree intersect so it's not a tree yeah okay so and we finally looked at prefix tree which
+is this tree consists of binary strings yeah the leaves of the tree are all length and
+binary strings yeah and you if you are looking at the I mean prefix tree of length that yeah
+so these will come up very often and we will see more about it in the coming lectures yeah
+that's all from today's video thank you
