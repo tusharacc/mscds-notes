@@ -1,0 +1,245 @@
+start	end	text
+0	14560	Hello and welcome back to Python Core and Applied Concepts.
+14560	20560	So in today's lecture, we will be talking about expression which is the most natural
+20560	26200	next big concept in any programming language.
+26200	34080	So yeah, so let's begin the description by recapping what we just know recapping what
+34080	41400	we discussed in the previous lecture, let me go to the slide here.
+41400	46400	So this is a quick recap from our previous lecture, so what we discussed till now was you
+46400	49680	know about the syntax and semantics of any programming language.
+49680	55360	We said that no matter what programming language you want to study, you should always
+55360	62120	focus on all these two big concepts of syntax and semantics and try to learn the language
+62120	63840	by learning syntax and semantics.
+63840	69320	So that's what we will be doing today also, we will start with how to write and build
+69320	74920	correct expression inside Python and then we will talk about what these expressions actually
+74920	75920	mean.
+75920	83640	So no, how what they evaluate to, but we also talked about in the last lecture the concept
+83640	89680	of variables and type systems which are again the starting point in any programming language
+89680	97080	if you want to store values and manipulate them to compute something meaningful, then
+97080	100080	you need to have this concept of variable.
+100080	106480	So this concept of variable is very quote to any imperative programming language, though
+106560	115160	in functional programming language as we don't have the notion of variable as it is in imperative
+115160	121080	programming language, at least I mean variable don't help you change the state of the machine
+121080	122080	there.
+122080	128240	So this is a distinctive thing in an imperative programming language.
+128240	135120	So we have seen it in the last lecture and we also saw how variable can point to objects
+135120	140840	of different types or you know data types of which are you know essentially of different
+140840	147000	types like integer string, Boolean values, etc.
+147000	153920	So let's now take this forward today and try to build some more complex expression
+153920	160640	or complex entities in our programming language which is very much useful if you want to do
+160720	167200	any you know complex computation or computing if you want to write a function to compute any
+167200	174200	complex function, then you know these variables and this basic data type cannot or may not
+174200	176560	help you to a larger extent.
+176560	182560	So that's why I mean the notion of expression is important because this gives you a method
+182560	187320	to build more complex things out of these variables and type system.
+187320	192280	So this is what we will be doing today, let me put to the next slide.
+192280	198640	So this is in a nutshell what expression is, okay so this is no part of the grammar
+198640	205600	to form from simple value complex logic, okay so we want to know you know form complex
+205600	213200	logic, no complex thing which represent you know some let's say value when you compute
+213200	214200	them.
+214200	216560	So that's for that reason we need no expression.
+216560	222200	So an expression is a combination of values variables and operators that can be evaluated
+222200	224760	to produce a single resultant value.
+224760	231600	So this is important I mean expression will always you know evaluate to some value, okay
+231600	238680	so and you know this is very important as we will see I mean in letter today in the
+238680	245560	lecture that statements and other you know statement in programming language need not
+245560	252720	always you know evaluate to some value but when we talk about this concept of expression
+252720	257760	the semantics of expression comes from what value it actually evaluates to, okay so
+257760	262240	the meaning of expression is only in the value.
+262240	267800	So if the expression evaluates to some value then we can assign you know that value as
+267800	275640	the meaning to the expression, okay so let's know so yeah this is what we I said just
+275640	281440	know that no so in contrast with statement I mean these things will always have value.
+281440	288040	So this is the rough you know progression that we will follow in today's lecture so
+288040	294160	we will start with basic you know expression and how to define them we'll learn about operators
+294480	300000	different type of operator that is available there in Python and then we will talk about
+300000	306960	a very special kind of expression which we call assignment expression and finally we will
+306960	312640	conclude this lecture with the discussion around lambda expression so lambda expressions are
+312640	319040	also very interesting and the origin can be you know trace to functional programming languages
+319040	325120	so we'll very briefly look at what these lambda expressions are and how they can be useful
+325120	331680	in certain you know instances, okay so now without knowing any further delay let's move to
+331680	347520	the Jupyter Notebook and begin our discussion of expressions, okay so we are on our Jupyter Notebook
+348480	355280	so you know let me begin by giving you some very small example of what an expression will look like
+355280	364560	so for example I mean let's start with very basic mathematical operator and how to build
+364560	370480	you know small mathematical expressions out of you know simple data types like you know integer,
+370480	376240	okay so for to begin with let's you know start with these arithmetic operators and we know
+376240	381360	from mathematics that now there are so many arithmetic operators that we can use to combine
+381360	386000	no natural numbers or you know real numbers right I mean for example no addition is one
+386800	392480	arithmetic operator, subtraction is another arithmetic operator multiplication no division
+393120	398480	flow division model and exponent so these are also available in Python so if you want to you know
+398480	403600	mimic these let's say mathematical operations and somehow implement them inside Python you can
+403600	410800	actually use these you know operator to you know build expressions mathematical expressions in
+410800	417680	inside Python so let me write some simple mathematical expressions for example let me you know
+417680	428400	use this addition to so let's write it so let's try to no print what will happen if I let's say
+429040	438240	no add 10 and 3 okay so we just want to see whether I mean this is accepted by Python or not so
+438240	444640	is it a valid so right now what we are checking is is it a valid expression at all I mean
+444640	449680	does this plus is recognized in the same way as we understand it mathematics or it has some
+449680	456880	no different semantics so if you know I can you know run this then I know it's clear that Python
+456880	462640	accept this as a you know correct syntax and if you get the intended value so what you can
+462640	469520	infer is that the meaning is also same as you understand no addition to be so when we print
+469520	476160	this what do we get so let me print it is 30 right so Python accepted this syntax and also give a
+476160	483040	response which is 13 which closely matches you know your understanding of the addition right so
+483680	490800	so what about now if I want to let's say or use this maybe division operator
+493440	500240	is this division operator same as we expect or it's some different division operator so
+500240	508400	what do you know in guess here I mean if I so this is exact division operator right which
+508400	517360	you maybe want to use at this moment so this symbol actually represented division operator okay
+518240	528000	so what about the no but the similar looking operator which I have written here so let's say
+528000	535840	if I do the same division but now if I use this one which I call flow division so
+536400	544800	or what do you expect what shall we get at this moment so you see there is a no clear difference
+544800	550960	and this is exactly what we call flow division right I mean you know forget everything which
+551680	556400	is after this no floating point okay so so after decimal I mean we forget everything so
+558400	563360	right so if when you try to evaluate this expression the meaning is that you get the flow
+564000	573600	no division so similarly can we go and do some more just let's no experiment with a few more
+574400	579520	arithmetic expression to see whether we understand them properly so what about
+581760	590160	this modular division so okay so what will with the result when you divide 10 by 3 so what
+590160	596560	will be the final you know remainder that you get okay so that's what we can expect here right
+596560	605520	so this this represent no modular division and you see when you divide 10 by 3 so the remainder
+605520	613120	that you get is 1 right okay so so it's very you know important to you know keep in mind the
+613120	618080	distinction between these two these three so first one is no normal division operator the second
+618080	624560	one is flow division and the third one which you know uses you know this symbol actually builds
+624560	632720	an expression that evaluates to remainder okay so what about this exponent so so let's not
+632720	644880	try to see if you use this exponent so if I want to raise 1 to 2 get set 3
+651360	658960	so this is also accepted right so what we saw just now was that no all the arithmetic
+659680	667280	operation that we are used to in any mathematical computation are also available in Python
+667280	672960	and these are the you know precise syntax and they're corresponding semantics so semantics matches
+672960	680080	the semantic that we have in mind and the syntax is you know accepted by this programming language
+680080	687440	which is Python so now let's move to some you know other type of you know expressions you know
+687440	693440	which are you know for logical expressions okay so logical expression may not you know makes
+693440	699520	sense to you know many of you who has not come from programming background because you know you
+699520	706240	normally don't need them when you do you know mathematical computation or calculation because
+706240	713840	we mostly you know we are confined to functions which calculate over natural number and
+714080	720640	those you know can be easily captured using expressions that we have you know discussed
+720640	725600	still now I mean these are arithmetic expression but this you know Boolean expressions are very
+725600	731680	essential if you want to automate the process of computing so what do I mean by automating the
+731680	738240	process of computing so let's say I mean your complex you know chain of computation that you want
+738960	744320	mimic by writing a program if you have to decide at certain you know point or you have to take
+744320	751200	a call at a particular place in the computation that which brands I sell go I sell I so if some
+751200	757200	condition is true you may want to you know execute a set of instruction but if that condition is
+757200	762480	not true in the other case you may want to no execute some other type of you know instructions
+762480	768000	so this is called you know conditional and we'll come to it in the upcoming legend so to decide
+768640	773520	so what will you decide based on right so you will decide based on what is the state of
+773520	780080	computation okay and for taking this decision this you know logical expression this expression which
+780080	787520	contain this or they have this logical you know connectives or operator will be very useful okay
+787520	794080	so there are you know two you know primitive Boolean values which is available inside Python
+794160	799840	which are called true and false and we'll see that we we can combine these you know kind of
+799840	807520	Boolean values in meaningful ways to obtain more let's say complex you know unit for reasoning
+807520	812880	or deciding at a particular time what we want to do okay so these are called AND or and not
+812880	818240	operator they actually combine these no Boolean values to give you some you know output value so
+818240	824800	for example no we have already seen right this type of true is bull it means I mean true is a
+824800	830720	Boolean value okay so true similarly you know if false is also Boolean value but we can also
+830720	837280	combine you know true and false using some Boolean operator or logical operator okay so one of them
+837280	842720	is like I mean AND okay so let me now print so what will happen if I let's say
+843200	850720	try to do this so so remember that I mean this will not be accepted by you know Python
+850720	857360	interpreter if either syntax is you know wrong so if the syntax is wrong certainly it will not
+857360	864640	be you know accepted so if say it passes this interpreter it means the syntax is correct and if
+864640	870320	you get the same result as you know you want then you will you can be assured that the
+870320	878320	semantics is also what you understand it okay so for example if I try to combine this true
+878320	890080	and false let's say using AND operator so what will what do you expect so and operator combines
+890080	896400	no two logical expression and it will evaluate to true only if you know both of them are true
+896480	902480	otherwise if even if you know one of these bull logical expressions is let's say evaluates to
+902480	910480	false then this thing will certainly give you a false right so when we try to evaluate it what do
+910480	918560	we get we get a false value right which is you know what we know expected so but what about
+918640	930640	this or operator so if we let's say to the same thing let me copy it
+930720	950640	so when we you know just combine these two Boolean values with or you you get a true value
+950640	958560	right and this is the this is the intuition that we have in mind about or right so when we say
+958640	964880	either this or this so I will be happy if either this or this is true it means that you are
+964880	971200	know ready to accept true value whenever one of these things you know become true right so this
+971200	979360	exactly matches you know our you know intuition of or so what about not so if you know apply now
+979360	1000000	let's say let me get this and then so what if we you know to print let me use not of false
+1001440	1008240	so what do you expect here I mean if you want to you know negate a false so what can I expect
+1008240	1015760	so negation of a fault will naturally give us a true right so do we get exactly yeah so this is
+1015760	1021200	what we get here right so so everything you know matches our intuition and our understanding
+1021200	1026560	semantics of you know these true and false and how these logical connectives can be used to
+1026560	1032960	you know combine them to get what you expect okay but no the question come that comes at this
+1033040	1041200	particular point in time is that how will we even you know get this true and false I mean because
+1041200	1046400	we don't explicitly want to write maybe true and false inside our program okay at a particular
+1046400	1054480	place if you want to check some conditions and then decide whether we should not take one set of
+1054480	1060800	action or another set of action most probably we will we would be interested in you know a condition
+1060800	1067040	which are you know derived from comparing the variables or the value of variable that is
+1067040	1073760	no present at particular point of time okay so at that point of time so for that you you need
+1073760	1080320	this comparison operator okay so the comparison operator are actually the reason or you know
+1080320	1087360	the primary way to you know get this you know true or false value okay so you don't get true
+1087360	1092880	and false by just writing not true and false you know normally we don't want to use you know
+1092880	1099920	these logical expression in that way we would like to derive these logical expression from
+1099920	1105520	variables which are existing in the program and by comparing their value okay so this comparison
+1105520	1110880	operator then you know turns out to be very useful so what a comparison operator they help us
+1110880	1116880	compare the state of you know this variable or the values of the variable with each other
+1116880	1123600	and then figure out whether you know our condition is true or not okay so so let me you know
+1123600	1129200	and discuss some of the comparison operator that is available in Python programming language the
+1129200	1134240	the very first one is this equality so if you want to check whether the value of one variable is
+1134240	1140240	equal to value of you know another variable most probably we will be using this equality okay so
+1141120	1143280	how to let me
+1146560	1150720	and do some easy checks for you here
+1152880	1157840	so you can know directly also you know compare some where we can
+1161520	1167760	so no for example let me keep some value in this variable let's say no x
+1168480	1179120	and then we go to another variable which is let's say no value 20 and now if I say x is equal
+1179120	1193760	to is equal to y and let's say if I want to print this thing so what do you expect at this
+1193760	1199920	particular no in this particular no code block what we have done is we instantiated x with
+1199920	1206560	value 10 and the variable y be instantiated with value 20 and then we are checking whether their values
+1206560	1212240	are same or not so so what is now our expected you know result at this point of time so
+1213200	1218640	it's false right because the value of x and y are not same so remember you know this this is
+1219200	1225360	you know comparison operator and not an assignment operator so some of you who have never done
+1225360	1233840	programming I mean you may be confused at this point of time so in mathematics when we do
+1233840	1240000	mathematics normally we we are always you know comparing things with you know each other when
+1240000	1244960	we okay so so there is nothing called you know an assignment in mathematics this is very unique
+1245120	1249440	to programming so because you want to store values you know somewhere in your memory so that's why
+1249440	1256080	you are doing assignment but when we use this you know are two equal to science together we what
+1256080	1263760	we mean is that we this becomes a logical expression this is you know no more a normal statement okay
+1263760	1269280	but on the other hand side have any if you look at this this is a you know a statement proper
+1269280	1275920	statement in programming language this is also an statement and both of this actually changes the
+1275920	1282240	you know state of machine no so so your first statement this changes the state of your abstract
+1282240	1287280	machine where the variables value you know gets changed to 10 whatever it was before you don't
+1287280	1293440	care I mean at this after execution of this you know instruction it gets changed to 10 similarly
+1293520	1301040	the you know assignment instruction y is equal to 20 changes the state of machine and makes it to
+1301920	1308880	you know 20 without changing the value of x okay so but here I mean when you you know print this
+1308880	1314000	this does not changes the state of machine okay so this is just so what is the effect of this
+1314000	1319040	you will evaluate this particular expression and the value that you you are getting is you know
+1319040	1323840	printed on the console so okay so this is a distinction between this
+1325840	1335920	combat let me yeah let me show what we so so the another one is not equal to okay and not
+1335920	1341360	equal to returns you true when both the numbers are not equal to so so let me you know again use this
+1342000	1353120	second so we knew here that x was not equal to the height y so what answers I
+1353120	1361360	as a line I expected this particular you know point so if I you know executed what do you expect
+1362240	1367120	so the previous ones was false right because x and y was not equal so when you said x equal to
+1367600	1377360	y it returns false but what if I say x not equal to y shall be printed see you get just the opposite
+1377360	1384240	no you get true right because this is true now this is no this expression this logical expression
+1384880	1392160	that we have written here boolean expression that is true because x and y is values are not same
+1392320	1401280	so can we check the other so let me you know or check the next one so what if we write x
+1402400	1409040	less than y so these are some you know like I mean you can assume that when you write x less than
+1409040	1415040	y you're claiming that x is less than y but if this is not true no considering the current value
+1415040	1422000	of your variables then the expression will evaluate to false right so in this example since x is
+1422000	1428880	actually less than y so what do you expect if I again you know print this one what is the last
+1428880	1435680	value that you have seen since x is less than you know y you see a value true okay so let me comment
+1435680	1444880	the previous one so that there is no confusion okay so let's see if you print only you know this
+1444880	1452880	one you see or you get a true value okay so again greater than is just opposite so you can just
+1452880	1460320	change this to greater than in you see the answer should flip okay so it returns you a false value
+1460320	1470000	okay so what about no less than equal to so in this case let's say if I have another
+1470560	1481520	now very full set which again has the same value let's say 10 so what do you expect in print
+1483440	1494400	so what shall I expect you know if I say x is less than equal to g let me comment out the
+1494400	1502400	previous one just so if I you know print this what do you expect I mean will we get true or false at
+1502400	1511440	this place true right because less than equal to means I mean either it should be less than or equal
+1511440	1518480	to and here it written true because of no the you know equality thing right not to do less than
+1519120	1524880	okay because when we say so if you print no x less than g let's say what do you think
+1527760	1531280	you get a false right so this is not less than this but this is less than equal to
+1532000	1537600	no less than or equal to g because of the no second thing being true that this is equal to j
+1538560	1543520	so similarly I know you have no greater than equal to so we'll not know in the interest of time
+1543520	1550240	we'll not just print it so you can just experiment with these things and now in all since you know
+1550240	1556080	you know you can combine these things you know that you can combine and you know for you know complex
+1556080	1561280	things also right because we know that you know these true and false can be combined using this
+1561280	1569120	and an odd thing so now for just one more example I mean maybe let me comment this out
+1569360	1586720	so what do you expect if I write you know print let's say x is less than equal to g or x is less than
+1586960	1593520	g or y is
+1598000	1604640	greater than g so what if we combine you know both these things so what we'll know this
+1604640	1612720	evaluate to you know that this will no evaluate to false right because x is not less than g
+1613600	1619440	but on the other hand you know that the right hand side of or y greater than g
+1621440	1627360	in this case will evaluate to true and you know from our previous discussion right that if one
+1627360	1634880	of no left hand side or right hand side of or is true then you know you get the value true right
+1634960	1643200	so what you can expect here is a true value you see so this is how we can actually you know compare
+1643200	1650000	the values of variable inside our program at a given point of time and we can also build complex
+1650000	1656560	logic by you know comparing multiple things and combining them using these logical operators so
+1656560	1663040	this is the advantage of having logical operator and comparison operator inside your programming
+1663760	1669600	or language so that at any point of time if you want to take decision or if you know want to
+1671440	1676000	you know create multiple branches at that particular point of time for executing different
+1676000	1682160	some sort of things and you want to you know decide all of this based on some condition which
+1682160	1687600	is complex condition on variable values then you can use this comparison operator as well as
+1687680	1694160	logical operator to combine them effectively to get what you want okay more of it you know we will
+1694160	1701120	see when we are come to or discuss these things okay so with this we know I would stop
+1702080	1708400	you know this lecture we'll continue in the discussion of expression in the next video thank you
+1708400	1710400	we'll see you in the next video

@@ -1,0 +1,1340 @@
+WEBVTT
+
+00:00.000 --> 00:14.680
+Hello and welcome back to Python core and applied concepts for reliable data science workflows.
+
+00:14.680 --> 00:22.160
+So today we will be continuing our discussion on assignment and no conditionals.
+
+00:22.160 --> 00:48.160
+So in in the last few lectures we discussed about how to build expressions inside Python or you know programming language and we have also seen the very basic statement in Python programming language which is called assignment statement and assignment statement or you know nothing new to Python it's almost no present in every other imperative programming language.
+
+00:48.160 --> 01:15.160
+We looked a little deeply into the semantics of assignment operator and we have seen you know with careful you know reasoning we can write correct programs which involves assignments right so we talked about a swap program where we use a temporary variable and we have also tried to write down some meaningful specification for those program using assertions.
+
+01:15.160 --> 01:31.160
+This was our discussion in the previous few lecture so today we will continue our discussion and we'll talk about something called conditionals so every programming so let me you know go to the exact place.
+
+01:32.160 --> 01:37.160
+So this is no model three which we have which we have been discussing you know in the last two three.
+
+01:38.160 --> 02:00.160
+Video so we talked about this program and then you know we tried to we attempted at writing down correct specification this is what I was talking about so we can use assertions you know assertions of you know this crime where we can use some you know ghost variable and then try to write down interesting property of you know this program.
+
+02:00.160 --> 02:29.160
+For example this program was a swap program and we captured the initial state of variable X and Y in this no ghost variable X original and Y origin and then when the program no wants to exit just before that we want to assert something which is in a sense to confirm that the program is doing what it was intended to do right so here what we are saying is now we want you know into X the original value of.
+
+02:30.160 --> 02:57.160
+Y and into Y the original value of X so you don't recall this lecture please go back to the lecture and see how we can use ghost variable like this to you know state properties of functions or program that changes the state of machine right because assignment statement whenever you write an assignment statement it it always changes the state of you know the abstract machine on which your program will run.
+
+02:57.160 --> 03:26.160
+For example here I mean you can see I mean you have destroyed the previous value of 10 when you do this no particular execute this particular line of code similarly you know these two line of code destroy the previous value of X and Y so if you want to stay meaningful property about you know the input and output of our program then most of the time we would need this kind of ghost variable which can help us capture the initial state when the function now started and.
+
+03:27.160 --> 03:56.160
+We can utilize these initial state to say something meaningful about the final state of the program okay so for that purpose we have seen we need no ghost variable and we can use assertions to do this kind of chop so so this one you know one new thing that we discussed in the last lecture the python and like python other programming languages also provide you know some way for you to assert you know some property of program.
+
+03:57.160 --> 04:14.160
+You know inside the program itself so that you know when you run this program the compiler or interpreter will check whether these assertions are true or not if the certain is true then you know it goes to the next instruction if it is false then you can optionally print something to indicate what went.
+
+04:14.160 --> 04:31.160
+No wrong at that particular point and then you know the ground program will exit so this is how not certain works and it is a very useful tool as a programmer to do defensive programming so this is what we emphasize in the last lecture we have you know seen several attempt.
+
+04:31.160 --> 04:42.160
+Art at listening you know correctly about this for function and you know this is nowhere we can create a last lecture so we continue this lecture you know with the discussion on branching.
+
+04:42.160 --> 04:47.160
+You know which is also called you know if then else kind of construct in any programming language.
+
+04:47.160 --> 05:11.160
+Now branching are very important why because as we discuss our program whatever you know what we want to calculate we can only you know communicate to machines using this programming language and normally what we do is we write instructions for doing you know a small you know set of you know what and then we join these instruction using sequence.
+
+05:11.160 --> 05:26.160
+Operator to let's execute all of these work you know in this particular order to achieve our computation but most of the time if you want to compute some you know meaningful function.
+
+05:26.160 --> 05:40.160
+We can't always go with a straight line you know sequence of execution of instructions so many of the interesting computation would require you to select one block of code.
+
+05:40.160 --> 06:09.160
+Over either depending upon some no situation okay so most of the we have to take some intermediate decision that whether we want to execute the next set of three four lines or we want to skip that and execute some other set of line for achieving what we want okay so this kind of you know branching you know kind of logic or you know this you know branching behavior is what is captured by this if then else when you don't want to do.
+
+06:09.160 --> 06:38.160
+You don't want to do the same set of action depending upon your state of machine you want some you know feature in programming language which can help you decide what you want to do next depending upon certain condition that you evaluated that particular point of time and no when the programming is executing so this is why we use this if then else so normal syntax of if then else you know construct is you know given in this form where you write if.
+
+06:38.160 --> 07:04.160
+You write if and then condition based on which you want to maybe decide whether you want to know execute certain piece of code so if the condition is true you want you know certain piece of code to be you know executed if the condition is false then you go to the L if branch and there can be multiple else if branch where again you you can actually say what condition you want to be true before you execute you know this particular piece of code.
+
+07:04.160 --> 07:24.160
+And let's say if none of these you know conditions you know are true then by default you would also maybe want to execute some piece of code which you write under this else so this is the know syntax of or L know if then else construct inside python programming language and the
+
+07:24.160 --> 07:49.160
+semantics is what we discussed just now so we evaluate the condition expression this is the condition expression after if keyword the result you know so this results I mean so you can only write down here you know Boolean expressions which can evaluate to either true or false right because you want to decide based on whether this condition is true or not so this has to be you know of the form.
+
+07:49.160 --> 08:18.160
+This condition has to be some expression which evaluates to either true or false so at that particular point in time when your program is executed this condition of this expression will be evaluated if the condition is true then you take certain branch if the condition is not true then it takes some other because this is what is summarized in the second point if the condition evaluates to true execute the intended block of code under the if statement for example I mean let's try to understand this with one.
+
+08:19.160 --> 08:48.160
+Small example very trivial example but no nice example to say for example let's say temperature is one variable right in your whole program I mean I need it actually let's say stores the temperature of that day so let's say you initialize to 30 I mean we can change this value to different value now depending upon what the temperature is you may want to do you know certain set of you know accents for example if your temperature is greater than 25.
+
+08:48.160 --> 09:03.160
+Then what we want to maybe print is it's hot and maybe you know you want to go for a no shape so no your activity should be so assume that you know these are the set of actions that you want to perform if this condition is true.
+
+09:03.160 --> 09:17.160
+So then you should write a piece of code which looks similar to this one okay so what was the condition here I mean if you have to just match to the syntax of what we discuss about if the nails so this is the condition right so this is exactly.
+
+09:17.160 --> 09:46.160
+You know this condition that you can see here right so this is the condition which no comes after it and before this no colon so if this condition is true then what is the piece of code that you want to execute so this you know indented piece of code which you know involved this print and then assigning activity is equal to swim is what you want to execute okay so if this condition is true then these two lines.
+
+09:46.160 --> 10:04.160
+These two line of code will be executed okay and after this two line of code is no executed you will simply you know go to the you know end of this if the nails block so you will not execute any of the L if or else branch so this is what the exact same.
+
+10:04.160 --> 10:15.160
+For example in this case when you want to execute you know this piece of course in temperature is 30 which is clearly no greater than 25 so this expression which comes
+
+10:15.160 --> 10:43.160
+after if immediately becomes true and you will only you know you will execute these two line of code and you will not execute anything from this point on to this point okay so this is no semantics of running if the nails branch so again I mean tell me I mean what will happen if we you know right here 20 instead of you know temperature initializing it to 25 if I write 20 then what should happen.
+
+10:46.160 --> 11:12.160
+Again you know following the semantics or the meaning of this if the nails branch what we will do is given this initial state of the program where temperature is initialized to 20 I would first try to evaluate whether this particular condition is true or not so you know your evaluation always start from the very first condition right so there may be multiple conditions so if may have one condition then L there may be several else if.
+
+11:12.160 --> 11:23.160
+Which have which will have no one again I mean different condition and then at last there will be an else if nothing is true then you just simply execute this else block and.
+
+11:23.160 --> 11:41.160
+In the if the nails construct okay so the first thing that is no done here is we will check whether with this current value of temperature can we can this expression be evaluated to true or false so if you substitute for temperature 20 is clearly see that this.
+
+11:41.160 --> 12:09.160
+Not true right this is false so I will not execute this piece of code okay so I have executed this you know I have evaluated this you know condition but then I will not execute this piece of code why because you know the condition was not true okay so if the condition is not true for for the first condition then I go to the second condition okay and what is the second condition second condition
+
+12:09.160 --> 12:28.160
+now ask me to evaluate this expression is a temperature is greater than 15 now if you substitute your 20 here you will see that this is true right so in the first no case the first condition was not
+
+12:28.160 --> 12:40.160
+so let's call it condition also condition was not true but then condition to become true since condition to become true when I run this program what shall I expect.
+
+12:40.160 --> 12:57.160
+I shall expect no these two line of code to be executed okay and hence if you run this program you know with this initial state what you get is no this print this being no printed out that it's a pleasant weather and you can go for a walk.
+
+12:57.160 --> 13:23.160
+So so this is the activity that you have decided for no condition when this is true the temperature is no greater than 15 so remember I mean when you reach this particular point in the if then else look you have some condition true right so what is the condition that is true when you reach at this particular point so certainly your temperature should be greater than when you know 15.
+
+13:23.160 --> 13:43.160
+Which is you know explicitly present here but the condition should also include that temperature is not greater than 25 right because if temperature would have been greater than 25 then you know you would have no gone to this piece of code and executed this.
+
+13:44.160 --> 14:12.160
+So no this is something that you should keep in mind I mean when we're talking about no this else if no condition we will go to this only if your first condition is not true okay so since you're executing this piece of code what so you you're in a condition where you know your condition to is true but your condition one evaluated to false.
+
+14:12.160 --> 14:40.160
+Okay so what you see explicitly as a you know condition before this L if is not the actual condition when you enter this no branch of the if then else construct okay so keep this in mind so you so this is certainly this has to be true otherwise you cannot enter even this branch of the loop this branch of the if then else no conditional but there is there are some additional you know
+
+14:40.160 --> 14:55.160
+expressions which has become true for you to enter this particular no branch in if then else condition okay so similarly let's say if you're you do not qualify the first two and that's your temperature is 10.
+
+14:57.160 --> 15:06.160
+So in this case what happened I mean when your temperature is 10 certainly I mean this condition is not true so you will not enter and execute this piece of code.
+
+15:06.160 --> 15:35.160
+Then we go to check whether my condition to which is you know for this else if is true or not I evaluated this condition you know again when I say I evaluated this condition means I evaluated this bullion expression again with the current state of machine and it returned me false again so since no I could not know encounter a true value in you know previous two branches I now move to the last branch
+
+15:35.160 --> 15:39.960
+which says that, you know, if none of your condition is true, then you simply execute
+
+15:39.960 --> 15:44.440
+this thing, that it's cold. Okay, so your temperature is 10, it's cold, so you can
+
+15:45.080 --> 15:50.600
+do some, you know, in how it's staying like reading. Okay, so I hope, you know, this simple example,
+
+15:51.400 --> 15:57.800
+you know, illustrates the way this if-then-else works, or to be more precise, this,
+
+15:57.800 --> 16:01.960
+you know, some, this illustration in a nice, with the semantics of how this if-then-else
+
+16:01.960 --> 16:07.160
+construct work in any programming language, and specifically Python. So the only thing,
+
+16:07.160 --> 16:13.480
+not to note here, from syntax point of view, is that you separate the actual block of code from
+
+16:14.200 --> 16:19.800
+the condition using this colon, right? And you've seen this colon, you know, separating even,
+
+16:19.800 --> 16:25.720
+I know, the input parameter from the actual expression in lambda expressions, right? So this is
+
+16:25.880 --> 16:32.120
+the syntax part that you need to, you know, keep in mind, even if you forget, I mean, the compiler
+
+16:32.120 --> 16:37.720
+will tell you what's wrong in it, but the semantic part is more important that you should know,
+
+16:37.720 --> 16:44.840
+when will you execute the piece of code under, you know, given branch? So you should be able to
+
+16:44.840 --> 16:50.040
+calculate the exact condition under which you reach that particular branch, of course, okay?
+
+16:50.680 --> 16:57.000
+So with this small brief introduction of the syntax and semantics of
+
+17:00.120 --> 17:06.440
+branching, let's now come to a real problem where we want to maybe, you know, use this if-then-else
+
+17:06.440 --> 17:12.440
+branch. Again, I mean, this is a very small example, but very illustrative example to tell you how
+
+17:12.440 --> 17:19.720
+you can maybe use if-then-else in for solving some real problems, okay? So the problem that we are
+
+17:20.760 --> 17:27.800
+considering right now is finding out the maximum of three numbers. So let's say we want to write down
+
+17:27.800 --> 17:32.440
+a function which we want to say, you know, max of three. Let's say we want to write down a function
+
+17:32.440 --> 17:38.600
+with name, max of three, and the argument to this function are three, let's say integer. No,
+
+17:38.600 --> 17:45.800
+ABC or XYZ, whatever, I mean, and then you want to return the maximum of all, you know,
+
+17:45.880 --> 17:51.560
+these three numbers. So you want to always return the maximum of three numbers, and we want to write
+
+17:51.560 --> 17:59.320
+down a function for this. Now we'll see how we can use if-then-else two write down or implement a
+
+17:59.320 --> 18:11.160
+logic. So before we go to the code, let me show you the block diagram of how this, you know,
+
+18:11.160 --> 18:17.320
+function should work, okay? So what you get in the very beginning here is three number ABC,
+
+18:17.320 --> 18:24.040
+assume that, you know, A is the first B, C. So in this order, I give you three number ABC, okay?
+
+18:24.040 --> 18:29.720
+And so this may be, you know, one of the possible logic. So there may be multiple ways in which you
+
+18:29.720 --> 18:34.760
+can write down this function to calculate maximum of, you know, three numbers, but this, you know,
+
+18:34.760 --> 18:39.800
+maybe one of the most trivial way, which will come to your mind when you start thinking about
+
+18:39.800 --> 18:47.160
+this function. So what I do is I take the first two number A and B and I compare them. I say that
+
+18:47.160 --> 18:53.640
+I will check whether A is greater than equal to B or not. So if A is greater than equal to B,
+
+18:53.640 --> 18:59.000
+means if this condition evaluates to true, I know for sure that A is, you know, bigger than B.
+
+18:59.640 --> 19:04.680
+Now what I need to do is, no, so the, so when you go to the left hand side, you know, towards this
+
+19:04.680 --> 19:09.800
+branch, it's sure that A is no greater than B. So you don't need to not talk about B anymore
+
+19:09.800 --> 19:16.680
+because you, among A and B is, you know, maximum. So B cannot be maximum of ABC, you know, all this
+
+19:16.680 --> 19:21.320
+three, right? So, so when you go to the left hand side, whether that indicates when, you know,
+
+19:21.320 --> 19:26.280
+this condition is true. We want to do another check, maybe, right? We know that, no, A is bigger,
+
+19:26.280 --> 19:32.760
+certainly, no, than B. So in that case, what would you do? The next obvious step would be to compare A
+
+19:32.840 --> 19:40.360
+with C, right? And if you get an answer, which is yes, means if you evaluate this and it comes out
+
+19:40.360 --> 19:47.160
+to be true, in that case, you know that no A is on disputed champion. I mean, the maximum value is
+
+19:47.160 --> 19:52.520
+A because it was no greater than B as well as greater than C. So that's how you reach this
+
+19:52.520 --> 19:56.920
+particular point, right? So remember, again, I mean, as I said in the previous case, when you reach
+
+19:57.000 --> 20:03.560
+this particular, you know, segment of code or now the segment of action, you have already, you know,
+
+20:03.560 --> 20:08.680
+evaluated two expressions, right? The first expression was this one and the second expression was
+
+20:08.680 --> 20:15.800
+this one and then you reach to this point. So you being at this place, no, in a way, implies that
+
+20:15.800 --> 20:20.040
+both these conditions were true. That's how you could reach this place. And if both these
+
+20:20.040 --> 20:27.640
+conditions are true, then you know that you want to return a value, which is A, right? And you
+
+20:27.640 --> 20:31.800
+also know that it's new, why you want to return A? Because you know, these two conditions being
+
+20:31.800 --> 20:37.400
+true implies that A is the maximum of all these three numbers. So this is how, you know, we can
+
+20:37.400 --> 20:44.600
+reason about branching kind of statement inside a program. So this is a very simple program. So
+
+20:45.160 --> 20:50.920
+logic may be very, you know, may seem very trivial to you, but if you practice this enough,
+
+20:50.920 --> 20:55.880
+then even in the complex setting, you can reason in a correct way. Okay? So we'll see that if you don't
+
+20:55.880 --> 21:01.160
+practice properly or if you don't think about behavior of branching in the context of simple
+
+21:01.160 --> 21:06.440
+program, carefully, it's very natural that you will, you know, make mistake and I will come to
+
+21:06.440 --> 21:12.040
+some of those type of mistakes immediately now after discussing this example. So
+
+21:13.000 --> 21:18.040
+so, so this is no what should happen when your A is greater than B and A is greater than C.
+
+21:18.040 --> 21:23.960
+But what happens if A is greater than B and you know, A, this evaluates to false. So you already
+
+21:23.960 --> 21:33.400
+knew that no, your A is no greater than B. So you don't need to talk about B now. And when you
+
+21:33.400 --> 21:37.720
+compare A and C, it turns to the C is bigger. And that's how you know this, you will enter this
+
+21:37.720 --> 21:43.720
+branch. So when you enter this branch, you know that C is bigger than A and A was bigger than B.
+
+21:43.720 --> 21:50.360
+So what you want to know return is the value of C, right? So this makes perfect sense,
+
+21:50.360 --> 21:56.520
+right? This left hand side, you know, you know, tree that you get from this, by checking this
+
+21:56.520 --> 22:02.440
+condition, makes sense, right? I mean, these two results are no valid according to our reasoning
+
+22:02.440 --> 22:07.480
+till now. So what if, you know, so we can apply, you know, similar or symmetric reasoning for
+
+22:07.480 --> 22:12.600
+the right hand side also, right? If the this left's expression evaluates to, you know,
+
+22:13.160 --> 22:18.280
+let's say false. In that case, you know that B is greater than A. And then you maybe want to check
+
+22:18.280 --> 22:23.560
+one small B with C. We want to compare, you know, B with C as well before we can say anything.
+
+22:23.560 --> 22:28.120
+If no B is greater than C, then of course, you want to return B. Otherwise, you want to return
+
+22:28.920 --> 22:35.320
+C, okay? So this, this is a very simple logic by which we would naturally, let's say,
+
+22:35.320 --> 22:40.040
+compare three given numbers, right? When the three numbers are given to us, we mostly compared,
+
+22:40.040 --> 22:44.920
+you know, using some logic, which looks similar to this one. And whatever, you know,
+
+22:44.920 --> 22:50.040
+is the result, you have stored in each of these cases, you just return that, okay? So you will,
+
+22:50.040 --> 22:55.800
+you know, hit only one of these, you know, code, right? You will either hit this piece of code or
+
+22:56.280 --> 23:01.000
+this or this or this. You cannot hit, you know, multiple together in any of them, you know,
+
+23:01.000 --> 23:05.800
+else kind of, you know, branching kind of situation, okay? So now, whatever,
+
+23:07.240 --> 23:12.600
+no condition you evaluated to, you will hit the code corresponding to that condition. And
+
+23:13.160 --> 23:17.720
+whatever be your, you know, calculation of result, finally, we want to return that result.
+
+23:17.720 --> 23:21.720
+And that's how the problem is written. So this is a simple block diagram to show you,
+
+23:22.280 --> 23:28.200
+however, if then else function, you know, can be used to figure out something, you know,
+
+23:28.200 --> 23:33.720
+meaningful, like, no, maximum or three numbers. So can we go and now, you know, implement, you know,
+
+23:33.720 --> 23:38.600
+this, you know, try to write down a correct, you know, function, which can, you know, implement
+
+23:39.240 --> 23:43.800
+the logic that we have seen just now, okay? So let me, you know, use the same, you know,
+
+23:43.800 --> 23:52.360
+function names, let me call it maximum of three. So what we are going to do now is to,
+
+23:53.720 --> 23:58.200
+realize this, you know, block diagram or, you know, this control flow graph that I have
+
+23:58.200 --> 24:05.240
+shown you are using a function inside Python, okay? So let's call it, call them a function. So,
+
+24:05.240 --> 24:10.200
+before we start writing function, you know, we have to write this def to indicate that we are
+
+24:10.200 --> 24:14.520
+going to write a function. And the function name I give the same as what we discuss,
+
+24:15.160 --> 24:20.120
+max of let's say three number that is what we are trying to calculate. And
+
+24:22.120 --> 24:28.760
+let me take the numbers to be same as ABC. So that you know, you can relate to the flow chart that
+
+24:28.760 --> 24:34.520
+I have shown you just above. And then we need to give a colon to separate the function body.
+
+24:34.520 --> 24:39.320
+And when you go inside the function body, the first thing that we may, you know,
+
+24:39.320 --> 24:44.280
+want to do is to compare A and B, right? So this is what we did here, right? Let me go up and
+
+24:44.280 --> 24:50.120
+slide. This is what we did, right? Which compare this? And depending upon whether it was true or false,
+
+24:50.120 --> 24:55.640
+we do something, okay? So we do a second check whether, you know, if it is true, then we do something,
+
+24:55.640 --> 25:02.840
+if it is false, then we do something different. Let me write it down. So what do I want to write?
+
+25:02.840 --> 25:17.080
+I want to write, if let's say my condition A is greater than equal to B, I will do something,
+
+25:17.080 --> 25:25.880
+right? So, you know, let me write down, you know, maybe, you know, do something, something.
+
+25:26.440 --> 25:32.920
+So we will, you know, try to insert actual piece of code here, but for you to,
+
+25:34.600 --> 25:39.080
+you know, think clearly about the code, I mean, it's good to start with a, you know, top-down
+
+25:39.080 --> 25:43.720
+approach where you write down the logic in this way, like, you know, if this is true, then I
+
+25:43.720 --> 25:49.480
+want to maybe do something here. Or, you know, in the other case, when this is not true, let's say,
+
+25:50.120 --> 25:57.240
+oh, let's say, when this is not true, okay? In that case, also, I want to do something, right?
+
+25:58.040 --> 26:03.000
+What I want to do again, let me know copy past this and we will replace this with actual commands,
+
+26:03.000 --> 26:14.040
+but first let me, okay. So, you know, we will just write a placeholder, which we will replace later on,
+
+26:14.040 --> 26:22.040
+no, with the actual code. So, when, when I want to, when this condition evaluates to true,
+
+26:22.040 --> 26:26.200
+we want to do certain set of, no, accents, maybe we want to do another check, right? This is what,
+
+26:26.760 --> 26:34.200
+we wanted to do here, right? When A is greater than, no, equal to B, it evaluated to, when
+
+26:34.200 --> 26:39.480
+this evaluated to true, we wanted to do another check immediately, right? After, after this point.
+
+26:39.480 --> 26:45.320
+So, can we do, you know, that check and write code for that? Okay. So, the, where cell that come,
+
+26:45.320 --> 26:51.080
+that cell come here, right? We shall do another check and depending upon the value of that check,
+
+26:51.080 --> 26:55.800
+we will do certain set of accents. This is what, no, we, we discuss this now. So,
+
+26:57.160 --> 27:01.880
+now, let me, you know, replace, you know, do something, so we will maybe finally remove this,
+
+27:01.880 --> 27:07.320
+but for the time being, what is the, this do something for this branch? So, maybe, you know,
+
+27:07.320 --> 27:13.480
+what we want to do is, since I know that my A is greater than equal to B, I want to further compare A
+
+27:13.480 --> 27:23.640
+with C, right? Maybe greater than equal to C. Okay? And now, if, again, I mean, so, if you,
+
+27:23.640 --> 27:28.600
+you know, this condition is true, you want to do something, right? Again, let me, I know,
+
+27:29.320 --> 27:40.200
+right here. Maybe you want to do something, something, okay? And if this condition is not true,
+
+27:41.240 --> 27:44.120
+then, then also you, you want to do something, right?
+
+27:49.480 --> 27:53.960
+So, let me write down this structure, you know, first and then maybe we will fill
+
+27:54.760 --> 28:00.440
+and replace, you know, this placeholder with the actual piece of code that makes sense for
+
+28:01.240 --> 28:10.440
+each of this, no branches. Okay? So, you agree? I mean, so this, this is what was happening inside
+
+28:10.440 --> 28:16.280
+this one. Okay, we have not, we did not, you know, fill in the actual code, but at least the
+
+28:16.280 --> 28:21.320
+structure should be clear to you, right? That, now, if your A is greater than B, then you want to do
+
+28:21.320 --> 28:26.280
+something and what is that? Do something. So, do something is this piece of code, which again
+
+28:26.280 --> 28:30.760
+has some holes, which we want to fill, but then, no, this should be the structure of the code,
+
+28:30.760 --> 28:36.600
+at least looking at the structure of the flow chart or, no, this, no, control flow graph,
+
+28:36.600 --> 28:42.040
+that I have shown you. Okay? Now, can we go and, you know, fill all of this, no, thing? So,
+
+28:42.040 --> 28:49.080
+when, when A was greater than equal to B and when A is greater than equal to C. So, when you
+
+28:49.080 --> 28:55.000
+reach this particular point, what is, no, that's something you want to do at this, you know,
+
+28:55.000 --> 29:02.440
+face in time. When the, your program is executing. Right? So, so where are you in the actual,
+
+29:02.440 --> 29:09.160
+you know, code block? So, this condition evaluated to true, and this is also true. Now, we are at
+
+29:09.160 --> 29:15.560
+this particular moment in time or in the execution of our program, and we certainly want our result
+
+29:15.560 --> 29:20.440
+to be A, right? So, so this is what we can, you know, write on here explicitly that, you know,
+
+29:20.440 --> 29:26.520
+at this point of time, I want to, you know, store the maximum value in result. And if the,
+
+29:26.520 --> 29:31.560
+both these conditions are true, then I know for sure that, no, this is my final output.
+
+29:33.640 --> 29:39.400
+And what, if this is not true? So, so, if you are, if you have come to this point to this else,
+
+29:39.400 --> 29:45.400
+what does it means? Now, that this condition was true for sure, but the second condition that
+
+29:45.400 --> 29:52.040
+you check this is not true. So, if this is not true, where are you in the block diagram?
+
+29:52.040 --> 29:57.320
+We're certainly at this point. Right? Because, you know, this condition was true, but this
+
+29:57.320 --> 30:03.640
+evaluated to false, and hence you read this point. And at this point, you know that C is greater than
+
+30:03.640 --> 30:11.560
+A, and A was greater than B. So, maybe you want to know output the value of C as a final result,
+
+30:11.560 --> 30:16.440
+right? So, this is what, maybe we want to do at this particular moment in time. So, let me write
+
+30:16.440 --> 30:22.360
+it down for you. And then, maybe now we start replacing these two something. So, maybe I can
+
+30:22.360 --> 30:32.040
+directly write out here, result is equal to C, okay, at this particular point in time. And we
+
+30:32.040 --> 30:36.040
+can also now replace this thing, right? Because we have done whatever we wanted to do, you know,
+
+30:36.520 --> 30:44.280
+we did it properly, right? At this particular point in time. And now, since the set of action that we
+
+30:44.280 --> 30:51.320
+wanted to do, when this condition was true, we have already written that you can also safely maybe
+
+30:51.320 --> 30:56.760
+remove, you know, this do something, you know, this. So, I have written, you know, this way,
+
+30:56.760 --> 31:01.320
+just to help you figure out the overall logic, but you know, you can maybe you feel comfortable,
+
+31:01.320 --> 31:05.880
+you can directly write this piece of code, right? Because this is a simple piece of code. So, now,
+
+31:07.080 --> 31:13.880
+so once we have completed, you know, the if the condition is true part of code, we should also
+
+31:13.880 --> 31:19.240
+know think about what should come as here. Because, you know, I mean, can you trace? I mean,
+
+31:21.000 --> 31:26.840
+when you reach at this particular moment, what, what was your condition, right? So, we reach here,
+
+31:26.920 --> 31:32.840
+when our first condition that we check is not true, right? It means, I mean, you're going through
+
+31:32.840 --> 31:37.400
+to the right hand side of this, you know, branching, right? If A is not greater than B, then again,
+
+31:37.400 --> 31:42.520
+you want to do something, right? You maybe want to check this second condition again. So,
+
+31:42.520 --> 31:47.880
+so, again, another if will come. And depending upon what you know, get as your, you know,
+
+31:48.600 --> 31:54.520
+final value for this Boolean expression, you will do either this or this, okay? So, for the second
+
+31:54.520 --> 32:01.240
+branch, let me not, you know, do it that way, but directly, maybe write down what we want to do.
+
+32:01.240 --> 32:07.720
+So, let me write down what we want to do here. So, since I have reached at this particular point
+
+32:07.720 --> 32:14.600
+in, you know, execution, I want to check whether now, you know, B. So, since, you know, A, get
+
+32:14.600 --> 32:19.560
+other than B, return false. And hence, I, it is there. I know that, you know, B is greater than A.
+
+32:19.560 --> 32:24.600
+So, I now want to maybe compare with B the remaining, you know, number and not the A.
+
+32:24.600 --> 32:34.680
+So, what we do is check with B, B greater than equal to C, okay? And if the result is true,
+
+32:34.680 --> 32:41.640
+let's say, if this condition is, you know, no correct, evaluated to no correct, then what we say
+
+32:41.720 --> 32:48.120
+is we store in the result, what shall I store? I shall store the value of B, right?
+
+32:50.440 --> 32:55.960
+And if this is not true, let's say, then in that case, we are keep in mind that, you know,
+
+32:55.960 --> 32:59.640
+this indentation should, you know, match properly. So, if you know, the
+
+33:00.440 --> 33:06.280
+else for corresponding if should, you know, start at the same, you know, margin, okay? So,
+
+33:06.280 --> 33:12.840
+you can see, I mean, for this, if the matching else appears here with the same indentation, okay?
+
+33:12.840 --> 33:19.560
+Similarly, for this particular if the matching else appears at this place. So, this is also a very
+
+33:19.560 --> 33:26.280
+nice feature of, you know, Python, Python, you know, reads this indentation and tries to, you know,
+
+33:26.280 --> 33:31.080
+match this, you know, code. So, this is also kind of, you know, giving partial semantics to your
+
+33:31.080 --> 33:35.640
+code by just looking at the structure, you can make sense which of the, you know,
+
+33:35.640 --> 33:40.520
+quotient matches to which other, no, portion, for example, you know, all of, you know, this if
+
+33:41.640 --> 33:47.080
+thing matches with this else. Similarly, you know, for this if the corresponding else is this one,
+
+33:47.080 --> 33:52.200
+otherwise, I mean, if you are, you know, left with only curly braces and those kind of thing,
+
+33:52.200 --> 33:56.280
+then it becomes really, you know, difficult and you have to manually match each curly brace to,
+
+33:56.280 --> 34:01.240
+know, make sure that, you know, your thinking or your reasoning is correct. And when,
+
+34:01.240 --> 34:05.800
+when things goes nested, it becomes really difficult. But, you know, with the indentation proper
+
+34:05.800 --> 34:10.840
+indentation, you can say in Python, it is very easy to, you know, if I ask you, what is the if
+
+34:10.840 --> 34:15.640
+corresponding to this else? You can immediately tell me looking at the indentation that this is the,
+
+34:15.640 --> 34:19.480
+if, because this is the if that comes at the same indentation and before the cells.
+
+34:19.720 --> 34:26.680
+Okay, so let me, you know, just quickly write them. So if B is greater than equal to C, then,
+
+34:26.680 --> 34:31.960
+of course, we want to return B, but what otherwise, I mean,
+
+34:34.440 --> 34:43.480
+in the else case, what you want is, you want to result in the value of C, right? So we have stored
+
+34:43.960 --> 34:51.880
+the value, what that we want to finally return in the variable result, whatever be our, you know,
+
+34:51.880 --> 34:58.200
+circumstances. And then finally, what we want to do is, you know, maybe we want to return it.
+
+34:58.200 --> 35:06.040
+So one of the return statements should be somewhere here. So return, so what we want to return is
+
+35:06.040 --> 35:12.920
+the result that we have calculated, you know, for various branches. Now, this looks like, you know,
+
+35:12.920 --> 35:18.120
+correct logic. We have discussed the flow chart as well as we have written code carefully.
+
+35:18.120 --> 35:24.440
+So we expect it to run properly and, you know, produce a correct result for any three number that
+
+35:24.440 --> 35:30.600
+you give to this, you know, program. So now, let us do the check-outs. Okay, so let me compile this
+
+35:30.600 --> 35:40.040
+piece of code. What is the problem? You see, I mean, we did, since I made a, you know, syntax error,
+
+35:40.040 --> 35:45.880
+I mean, it immediately pointed out that I missed a colon somewhere, right? And the colon is here.
+
+35:47.480 --> 35:56.600
+So let me write on this and then if we run again, now this time there is no syntax error and the
+
+35:56.600 --> 36:03.480
+interpreted accepts the code as it is. Now, we are happy and we would want to not test our
+
+36:04.440 --> 36:10.120
+code on some input, maybe max of three, give three number. No, think of any three number that you
+
+36:10.120 --> 36:18.520
+want to pass to this, maybe, you know, small numbers like two, two, three, and maybe zero.
+
+36:19.080 --> 36:26.760
+There is three number. So what is the result? So maximum is certainly three. So you can expect,
+
+36:27.080 --> 36:33.960
+you know, they answer to be three. So this is something, since we did not, you know, omit this
+
+36:33.960 --> 36:42.440
+placeholder, we got this printed, let me, you know, omit for the clarity. So that our code is not
+
+36:42.440 --> 36:51.080
+neglected. So now, let me compile it again and maybe now we run it. So we just get the number three.
+
+36:51.160 --> 36:57.400
+This is what we wanted. So what about, no, will this same thing work for negative number,
+
+36:57.400 --> 37:03.160
+positive numbers? So many times, you know, we miss this boundary cases, if we don't write our
+
+37:03.160 --> 37:09.320
+functions properly. And so maybe, you know, we want to check whether this thing works well with
+
+37:10.200 --> 37:17.560
+that's a negative numbers. So what about this? Okay, so in this case, I mean, when you run,
+
+37:17.560 --> 37:22.920
+you get zero, which is the correct, right? Because zero is the number, greatest number among all
+
+37:22.920 --> 37:30.040
+this three number. So, so program seems to know what now properly, right? But since we have written
+
+37:30.040 --> 37:36.120
+the code from scratch, we know it's correct because we have also reasoned while writing this code.
+
+37:37.640 --> 37:42.920
+But I mentioned in the very first class that nowadays we are not writing code. So we mostly rely on
+
+37:43.080 --> 37:49.240
+LLM and other agents and, you know, any third party in Oracle that will give us code and then we
+
+37:49.240 --> 37:55.320
+want to believe that code, right? So, but before we believe the code, at least, no, so one way is
+
+37:55.320 --> 37:59.960
+you go through the code again and then do the analysis or try to convince yourself that the
+
+37:59.960 --> 38:05.800
+semantics or the meaning, intention of the code is exactly what the code is doing. Another way is,
+
+38:05.800 --> 38:10.600
+you write down some meaningful assertions. Okay, so let's say if the code block is very big and you
+
+38:10.600 --> 38:17.000
+don't want to get into the exact detail of how things are computed, the least you can do is write
+
+38:17.000 --> 38:23.320
+down some meaningful assertions or, you know, in another word, you can write down some meaningful
+
+38:23.320 --> 38:29.160
+properties about this functions or the return value and then check whether that no property is big
+
+38:29.160 --> 38:35.480
+true or not in most of the cases. If those properties are not violated, then you know, get to have
+
+38:35.560 --> 38:42.120
+more belief on the code. Okay, so this is, you know, one way to ensure that the code behaves as intended.
+
+38:42.120 --> 38:48.440
+So in this case, if I have to write down a meaningful, let's say, property for this function.
+
+38:49.880 --> 38:56.760
+So what can we, let me first copy this thing or the same piece of code. So what we are trying to
+
+38:56.760 --> 39:01.480
+write down is a correct specification. So we have, we understood the problem, right? We wanted to
+
+39:01.480 --> 39:05.880
+find out the maximum of three numbers. We have understood the logic also. We have written a code
+
+39:05.880 --> 39:09.480
+also, but let's say you don't want to, you know, go through this logic and code and you ask
+
+39:09.480 --> 39:14.440
+Chatgipiti to produce this piece of code. So Chatgipiti can give you, you know, a correct code or a
+
+39:14.440 --> 39:22.200
+wrong code or, you know, minimal, you know, maybe a little bit of with error. So how will you
+
+39:22.200 --> 39:27.400
+ensure that the code is correct and will you, you know, accept the code as it is? So we are trying
+
+39:27.480 --> 39:33.160
+to answer that question. So for the best way to, you know, ensure trust in the code generated by
+
+39:33.160 --> 39:41.160
+any third party is to ensure that the property that I wanted to, you know, the output to have is
+
+39:41.160 --> 39:45.720
+still correct, okay, irrespective of whether I build the code or someone else. So we don't know
+
+39:45.720 --> 39:51.080
+maybe. So this time assume that the code is not written by you, someone else, and you still want to
+
+39:51.080 --> 39:56.760
+verify whether the code works as you intended. So that's the purpose, you know, so we want to come
+
+39:56.920 --> 40:01.960
+up with a correct specification. So this is, you know, what we saw in the last class also, right,
+
+40:01.960 --> 40:06.760
+for the swap function, we have written a specification where we related the final value with the original
+
+40:06.760 --> 40:12.760
+value or initial state. So here also we, we can we do something similar. So let me copy this code
+
+40:12.760 --> 40:19.320
+and then paste here. So what I'm asking you here is, let's say this time, you know, this function,
+
+40:19.320 --> 40:23.320
+although we know that this function is correct, but assume that, you know, the code for this function
+
+40:23.320 --> 40:28.120
+is not generated by you. Let's say this piece of code has been generated by LLM or someone,
+
+40:28.120 --> 40:34.680
+no else. Now can we write down a correct specification for this function, which should always be,
+
+40:34.680 --> 40:40.360
+you know, true, no matter how it is, you know, implemented. So there can be multiple implementers,
+
+40:40.360 --> 40:45.400
+right? I can change the order in which I have, maybe, you know, compared this element, right?
+
+40:45.400 --> 40:52.120
+So someone else may say that, okay, let me first, you know, compare C with no other numbers,
+
+40:52.120 --> 40:57.800
+and then, you know, depending upon my, you know, result, I will compare, you know, something,
+
+40:57.800 --> 41:04.280
+you know, different. So like here, we started with no A comparison of A and B, right? One can also
+
+41:04.280 --> 41:10.360
+start with no A and C, right? I mean, so that that's a perfectly valid way. So there can be multiple
+
+41:10.360 --> 41:15.560
+correct implementation of the function, but whatever be the implementation, I don't care. I don't
+
+41:15.560 --> 41:20.840
+want to see this code piece of code, maybe, but I want to ensure that the final result is what we want.
+
+41:21.560 --> 41:28.520
+Okay? So can we write on a simple correct specification? And as I discussed, right? So what we are
+
+41:28.520 --> 41:34.680
+going to do is now, let me see, write a correct specification for this function.
+
+41:35.960 --> 41:45.320
+Okay? So we want to do a correct specification for this function. Now, we have seen, so you can
+
+41:45.320 --> 41:51.320
+guess at least that we are going to use assert, right? So assert statements are what can help us
+
+41:51.320 --> 41:57.400
+at this particular moment in time. So let me write down this, you know, assert, and what, what, what
+
+41:58.840 --> 42:04.840
+property you want to, you know, maybe say here, which, which if it is not true, then you can believe
+
+42:04.840 --> 42:09.480
+this piece of code. So you're returning something, right? Your program is returning something,
+
+42:09.480 --> 42:14.920
+and you want to maybe talk about the, you know, relationship between what you're returning and what
+
+42:14.920 --> 42:20.760
+you got as input, right? So you wanted to calculate the maximum value. And the final result that you
+
+42:20.760 --> 42:27.560
+are returning is in this result variable, right? And then input or ABC. So maybe, you know, it's a good
+
+42:27.560 --> 42:34.680
+time to compare whether the value in the result is, you know, greater than equal to each of them or
+
+42:34.680 --> 42:38.920
+not, okay? So if it is not greater than equal to each of them, then certainly the implementation
+
+42:39.000 --> 42:45.320
+may be, you know, somewhere wrong, right? So very immediate thing that comes to my mind at least is,
+
+42:45.320 --> 42:51.880
+you know, I would, you know, just compare my output, which is no result. With all these three,
+
+42:51.880 --> 42:56.360
+no input that was given to me, and if it turns out to be, you know, greater than equal to all
+
+42:56.360 --> 43:01.400
+these three, then no, I can say, maybe, or I may have more confidence in this piece of code,
+
+43:01.400 --> 43:08.520
+okay? So the very first condition that, you know, we can write down here is it then equal to A.
+
+43:10.120 --> 43:23.240
+And I also want my result to be no greater than equal to B. And my result to be no greater than
+
+43:23.240 --> 43:30.520
+equal to C, okay? So let's say, I mean, if this is not true, okay? So if this is not true,
+
+43:30.520 --> 43:38.040
+then what we can say is no result is not the maximum. Maybe, you know, we just print something here,
+
+43:38.040 --> 43:46.040
+which indicates that our assertions, assertion is violated by, you know, at this point. So maybe,
+
+43:46.040 --> 43:55.480
+no result is not maximum, okay? So remember that this will be printed only if this assertions,
+
+43:55.480 --> 44:01.400
+you know, before this is not true, okay? So in this case, certainly, you know, we know that
+
+44:01.400 --> 44:08.040
+no result is not maximum. So whatever you stored in the result is not the maximum among ABC, okay?
+
+44:08.040 --> 44:15.720
+So this looks like a correct specification, right? For this piece of code. So let me now run,
+
+44:15.720 --> 44:20.360
+so we have modified this function, right? With an assert, we have instrumented this function by
+
+44:20.360 --> 44:25.480
+writing an assert. We have not changed anything, right? In the code, we just copied from the previous,
+
+44:25.480 --> 44:31.240
+so this would return as the correct thing. So let me compile it. So it compiled properly, right? So
+
+44:31.240 --> 44:43.880
+now let me write down maybe, we have written it right. So what we can do is just check it.
+
+44:46.440 --> 44:54.040
+So now let me just check on some of the input, let's say, call it, call this function multiple times.
+
+44:56.920 --> 45:02.840
+Three. So this is what we want to do. Check whether now this is returning, you know,
+
+45:02.840 --> 45:08.680
+whether this is violating this assertions at any, for any given input or not, okay? So max of three,
+
+45:08.680 --> 45:15.320
+and then let's say again pass the string into comma three comma zero maybe, okay? And then try to run it.
+
+45:17.160 --> 45:21.240
+And it returns the correct value, okay? So what about if I change, let me copy it,
+
+45:22.680 --> 45:30.520
+once again, what if I call this with the value here, the last thing being 10? So what do you expect
+
+45:30.520 --> 45:37.720
+a minute should return? 10, right? So the value that it returns is 10 and 10 is certainly
+
+45:37.720 --> 45:43.000
+not greater than all these three. So there is no issue in the, you know, so there is no assertion
+
+45:43.000 --> 45:49.080
+violation. We know everything, you know, when, well, what about, so we have seen maximum value in
+
+45:49.080 --> 45:54.520
+the middle position, we have seen maximum in the last position. So why not check another thing that
+
+45:54.520 --> 46:02.600
+if, what if we, let's say put maximum value in the first position, let's say, in this case,
+
+46:02.600 --> 46:10.200
+also it's no behaving properly, right? So we have seen, I mean, multiple cases where the answer
+
+46:10.200 --> 46:18.200
+is correct, right? So in this case, so, so somehow now we believe, you know, start believing that
+
+46:18.200 --> 46:24.200
+this is correct. And see, an advantage of writing this kind of assertion is that if by mistake,
+
+46:24.200 --> 46:30.600
+something is wrong inside your code or implementation, then these assertions may help you as that
+
+46:31.000 --> 46:37.560
+bug. So for simplicity, let me try to make this implementation a little bit incorrect. So we know
+
+46:37.560 --> 46:42.280
+this is correct. So that's why, you know, our assertion is not, you know, failing. But what if I,
+
+46:42.280 --> 46:48.680
+let me copy and paste this again, the whole code here, let me try to introduce some, you know,
+
+46:49.800 --> 46:58.200
+subtle box in this piece of code. So let me think of a very, you know,
+
+47:00.840 --> 47:06.680
+you know, subtle bug like, I mean, let's say, I mean, by mistake, I mean, if this result is no
+
+47:06.680 --> 47:12.440
+hundred, okay? So since we don't want to see the code, so there can be mistake of different kinds
+
+47:12.440 --> 47:17.240
+inside the code. So you cannot believe that the code is always correct. So assume that there is
+
+47:17.240 --> 47:21.320
+some mistake and in this case, I have introduced intentionally some mistake, right? So what is the
+
+47:21.320 --> 47:26.760
+mistake you can see? I've introduced, you know, in this case, what I'm saying is no result is
+
+47:26.760 --> 47:35.320
+equal to hundred. And I want to check whether my, so, so, so what I want to check is whether,
+
+47:36.440 --> 47:42.680
+this can help me identify whether there is a bug, okay? So in this case, I'm returning something,
+
+47:42.680 --> 47:51.320
+which is, we should know. So what's the return here? I mean, in this case, what was I returning in the
+
+47:51.320 --> 48:00.760
+previous, so I should return B, right? Because I was in this branch where B is greater than C,
+
+48:01.400 --> 48:07.080
+and you knew that no B is greater than A. So in that case, I should return B. But instead of
+
+48:07.080 --> 48:13.320
+returning B, I'm returning plenty of value 10. So 100. So this is certainly, I know, a wrong
+
+48:13.320 --> 48:21.720
+implementation, right? So now, if we go on, let's check in this particular thing. So
+
+48:23.560 --> 48:26.040
+can this detect it now?
+
+48:27.000 --> 48:45.880
+So what about, let me again, copy paste some of the values that we have already used, maybe here.
+
+48:46.840 --> 48:57.560
+Or let me write it down. So max of, max of three, I want to call this, maybe your
+
+48:59.400 --> 49:06.360
+two comma, that's a minus three. So what's the value that you're getting here?
+
+49:06.360 --> 49:19.480
+Okay. So this is correct, right? Because not two is the maximum of all this. So what about
+
+49:24.680 --> 49:33.880
+maximum of, you see, I mean, in this case, there is no error because you don't hit that particular
+
+49:33.880 --> 49:40.120
+branch, right? Your first value is no greater. So you only execute the first block of code,
+
+49:40.120 --> 49:46.680
+which corresponds to the if. So you could not encounter that. So what about the other kind of,
+
+49:46.680 --> 49:54.760
+you know, input that you may get where, you know, this is, you're forced to go to the last branch,
+
+49:54.760 --> 50:01.000
+right? In that case, also, you will see, since no nothing is wrong, you get the correct thing.
+
+50:01.000 --> 50:10.280
+But what about max of three? And then in this case,
+
+50:13.240 --> 50:16.920
+again, if I want to maybe,
+
+50:24.120 --> 50:29.640
+so let me now cook up a case where I want to actually hit that particular branch. So maybe 20,
+
+50:29.640 --> 50:35.560
+I pass and then I pass 30 and then I pass 10. So in this case, certainly, I wanted to return,
+
+50:36.120 --> 50:41.400
+you know, 30, right? Because 30 is the maximum thing. So if I run it now,
+
+50:44.280 --> 50:48.440
+so did I not run this piece of code? I think I did not run this piece of code. So that's why,
+
+50:49.400 --> 50:52.600
+okay. So when I run this piece of code, and then if you,
+
+50:52.920 --> 51:00.040
+see, so in this case, there is no issue. In this case, again, there is no issue. So you get 10.
+
+51:00.040 --> 51:04.120
+But when you, you know, run this piece of code, what you get is 100, right?
+
+51:05.640 --> 51:12.440
+Which is certainly not the, you know, maximum of the three numbers that we, you know, wanted to return.
+
+51:13.640 --> 51:17.960
+So there is a, you know, error in the code, certainly, right? I mean, we have seen that,
+
+51:17.960 --> 51:23.320
+you know, this 100 is a error in the code. But the specification or, you know, the correct
+
+51:23.320 --> 51:30.120
+behavior that you have written could not be violated, right? Here, can you see the reason why?
+
+51:30.840 --> 51:39.160
+So, so since there is an error, ideally, I should have, you know, so the purpose of writing this
+
+51:39.160 --> 51:44.680
+assertion was to, you know, figure out whether there is an error or not, okay? So what we are
+
+51:44.680 --> 51:49.880
+seeing right now is no, this assertion is no passing without, so it's not getting violated.
+
+51:50.440 --> 51:56.200
+No, even though the final outcome that I'm getting here is something wrong, right? I should have,
+
+51:56.920 --> 52:03.240
+I should have got some, some hint with this assertion. So, so what went wrong was our assertion
+
+52:03.960 --> 52:09.640
+incorrect or something that we missed actually to capture in our assertion.
+
+52:10.520 --> 52:15.960
+So, the assertion is certainly correct, right? Because so this is not an incorrect specification
+
+52:15.960 --> 52:20.760
+for a result. So, results should always be greater than equal to A, B, and C.
+
+52:21.640 --> 52:26.040
+But this is not a complete specification. This is not as strong enough specification.
+
+52:26.040 --> 52:30.600
+So this should certainly be true, but there, I mean, we want something else to be true also,
+
+52:30.600 --> 52:35.480
+which we should include in the assertion to make it a, you know, a complete specification or
+
+52:35.480 --> 52:40.600
+a strong specification for this function, okay? So, certainly assertion is not, you know,
+
+52:40.600 --> 52:46.120
+a assertion is correct. This assertion should be true for the correct result,
+
+52:46.120 --> 52:50.760
+but something more should be true for the correct result also, right? So, we need to maybe
+
+52:50.760 --> 52:55.960
+specify a little tightly what this function is intended to do. And you can see, you know,
+
+52:55.960 --> 53:01.080
+this example shows you clearly what is, what are we missing? Although we claim that the final
+
+53:01.080 --> 53:07.400
+value that we are returning is greater than equal to all the value that has been given as input,
+
+53:07.400 --> 53:13.320
+but we are not ensuring in the assertion that the result should be one among these three value
+
+53:13.320 --> 53:17.320
+that has been given as input, okay? So, although this specification is correct,
+
+53:18.120 --> 53:21.960
+but this is not useful, this is not helping us to figure out this kind of error,
+
+53:21.960 --> 53:26.840
+because this is not a strong enough, okay? So, maybe we need to add something, you know,
+
+53:26.920 --> 53:32.680
+more strong to this assertion to make it a complete specification or a strong specification,
+
+53:32.680 --> 53:38.040
+which can, you know, cache this kind of bug. So, that's why, I mean, now let's, no, let me,
+
+53:38.040 --> 53:44.440
+no copy this piece of code again, okay? And go to this, you know, section, and then maybe
+
+53:46.120 --> 53:53.400
+copy and paste this piece of code here. And the additional line up assertion that we
+
+53:53.480 --> 53:59.640
+talk just now, maybe we want to write it here, okay? So, it's, it's a correct specification,
+
+53:59.640 --> 54:05.160
+so initially it was a correct specification, but you also need a strong specification,
+
+54:05.160 --> 54:11.720
+is what I want to emphasize at this point in time. So, we also need a strong specification.
+
+54:12.680 --> 54:17.400
+This, it was correct, but it was not strong enough to cache this kind of, you know, error.
+
+54:17.480 --> 54:23.240
+So, what we can say in the next line is, let me copy, copy this thing.
+
+54:27.960 --> 54:37.320
+Well, let me copy the whole thing and then paste it. And what I want to check here is,
+
+54:37.320 --> 54:43.480
+so that result should be no one among ABC, right? So, result should be either equal to A,
+
+54:43.480 --> 54:56.680
+let's change this and to R, or the result should be no equal to equal to B, or the result should
+
+54:56.680 --> 55:05.880
+be equal to equal to C. So, result is, no, maximum result. So, this, this check, the second
+
+55:05.960 --> 55:16.600
+assessment tells us this result is among the inputs, this is what maybe we want to claim at this
+
+55:16.600 --> 55:22.040
+point in time, okay? So, if we, you know, make this, you know, additional check that, no,
+
+55:22.040 --> 55:27.800
+result should be greater than certainly equal to all three, but the result should also be among one
+
+55:27.800 --> 55:34.120
+of these three, right? And the, no, best way to represent this criteria, this additional criteria,
+
+55:34.120 --> 55:39.800
+which makes our specification not only correct, but also strong, is to maybe write this kind of
+
+55:39.800 --> 55:45.240
+assertion, okay? So, if you understand your, you know, function behavior properly, you should
+
+55:45.240 --> 55:50.280
+be able to write out correct and strong specification. And this also gives a chance for you to think
+
+55:50.280 --> 55:55.320
+about the function behavior that you actually intend, right? Because many of you might have accepted
+
+55:55.320 --> 56:00.360
+the very first line itself to be a complete and strong, you know, correct and strong specification,
+
+56:00.360 --> 56:05.960
+but that was not right. We turned out, when we were checking on some example, we turned out, we
+
+56:05.960 --> 56:12.360
+returned, you know, wrong, no output, but is still satisfying the assertion. So, so this is also
+
+56:12.360 --> 56:18.040
+an, you know, kind of art, the more you think about functions and the more you write meaningful
+
+56:18.040 --> 56:22.680
+assertions about the functions, you become perfect at it, and you tend to write correct
+
+56:22.680 --> 56:28.120
+specification and strong specification, which can help you, you know, find or, you know, catch
+
+56:28.120 --> 56:33.160
+this kind of bugs, okay? So, now, when we have written this piece of code, let me, you know,
+
+56:33.160 --> 56:39.880
+compile this piece of code now. And once we compile this code, let me now write down again, a
+
+56:39.880 --> 56:51.400
+similar, you know, kind of some max of three. And then, let me pass it. Now, the buggy case,
+
+56:52.280 --> 56:58.280
+which one, which will happen if you hit the branch corresponding to be, right? So, where be,
+
+56:58.280 --> 57:04.280
+you want to output bn? So, I want my middle number to be the, this one, and this one, okay?
+
+57:05.880 --> 57:15.240
+Now, if you try to run this, can you see? So, now, this time, you know, my assertion failed,
+
+57:15.960 --> 57:21.080
+right? And it's telling you why the assertion failed because no assertions second condition is
+
+57:21.080 --> 57:28.360
+why I like it now. So, result is not among the inputs. So, I'm sorry. So, I should have written
+
+57:28.360 --> 57:37.400
+here, result is not among the inputs for it to be correct, right? Because this is printed only
+
+57:37.400 --> 57:43.880
+if your assertion is not true. So, if this is not true, you know, this piece of code, which is an
+
+57:43.880 --> 57:48.680
+expression, Boolean expression is not true, then I want to maybe print this thing, okay? And
+
+57:48.680 --> 57:53.880
+this, this, this is also, you know, help me catch certain type of, you know, errors. So,
+
+57:53.880 --> 57:58.120
+so this is, let's say, I mean, if we do not have access to this piece of code,
+
+58:00.520 --> 58:05.480
+okay, what I mean, I mean, this piece of code is very complex or somehow not accessible to you,
+
+58:05.480 --> 58:10.360
+but it has been produced by someone and you still want to verify whether the function is
+
+58:10.360 --> 58:15.000
+working as it is or not. So, maybe we can write down, you know, these two set of assertions
+
+58:15.960 --> 58:20.200
+and figure out whether the code is correct or not, okay? So, this is, you know, the power of
+
+58:20.200 --> 58:27.320
+a specification that will turn out to be most useful when we go ahead and we use LLM in software
+
+58:27.320 --> 58:32.600
+development, okay? So, with this, I would like to conclude today's lecture on conditional,
+
+58:32.600 --> 58:38.680
+we will continue in the next lecture with a discussion of loops. So, till then, goodbye,
+
+58:38.680 --> 58:40.680
+I will see you in the next video. Thank you.
+

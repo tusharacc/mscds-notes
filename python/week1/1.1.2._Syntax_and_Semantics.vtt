@@ -1,0 +1,389 @@
+WEBVTT
+
+00:00.000 --> 00:09.720
+Hello and welcome back to Python, core and applied concepts.
+
+00:09.720 --> 00:16.480
+In this video we will be exploring how do we define a programming language.
+
+00:16.480 --> 00:22.960
+To be more precise we want to answer what is syntax and semantics for a given programming
+
+00:22.960 --> 00:25.000
+language.
+
+00:26.000 --> 00:32.000
+It gives us a rule to frame the correct structure of a valid program.
+
+00:32.000 --> 00:39.000
+It is just like a grammar in our natural languages where the grammar rule tells us how to
+
+00:39.000 --> 00:44.000
+frame a correct sentence and then how to join those sentences properly to make paragraphs.
+
+00:44.000 --> 00:51.000
+Similarly, in formal languages like programming languages also, we have certain rules which
+
+00:51.000 --> 00:58.000
+can precisely tell us what will be accepted as a valid program and what will be not accepted
+
+00:58.000 --> 00:59.000
+as a valid program.
+
+00:59.000 --> 01:05.000
+So these rules are called syntax rules and they guide us to write correct programs which
+
+01:05.000 --> 01:16.000
+can then be interpreted by compilers or interpreters and translated into machine languages.
+
+01:16.000 --> 01:23.000
+Now as we know there can be infinitely many possible valid programs in any given languages.
+
+01:23.000 --> 01:30.000
+So a natural question that comes in our mind is that how can a reference manual or any one
+
+01:30.000 --> 01:37.000
+manual which defines the programming languages can describe all these infinite set of valid Python
+
+01:37.000 --> 01:38.000
+programs.
+
+01:38.000 --> 01:45.680
+Since a number of programs are infinite and normally these grammar or syntax rules should
+
+01:45.680 --> 01:52.680
+be finite to make any sense, how can this finite number of rules help us define this infinite
+
+01:52.680 --> 01:53.680
+number of valid programs.
+
+01:53.680 --> 02:00.680
+So this is what may intrigue you to most of the learners, how can we even define this infinite
+
+02:00.680 --> 02:03.680
+set with this finite number of rules.
+
+02:03.680 --> 02:10.680
+So the answer is if you are familiar with any inductive type of definition which occur more
+
+02:11.680 --> 02:16.680
+often in computer science then you will know that an infinite set can always be defined using
+
+02:16.680 --> 02:19.680
+finite number of rule in an inductive way.
+
+02:19.680 --> 02:26.680
+So the trick is we start with very basic notions and define clear rules of forming those
+
+02:26.680 --> 02:35.680
+kinds of concepts like characters, terms, expressions and then we keep on building this hierarchy
+
+02:36.680 --> 02:37.680
+to define programs.
+
+02:37.680 --> 02:39.680
+So we do not do all in one step.
+
+02:39.680 --> 02:46.680
+So if you divide the definition or the act of defining the correct syntax of programming
+
+02:46.680 --> 02:52.680
+language in this hierarchical way then it is possible to inductively define the whole set
+
+02:52.680 --> 02:57.680
+of valid program inside the programming language.
+
+02:58.680 --> 03:04.680
+For instance in most of the languages normally these syntax are given using back a snore
+
+03:04.680 --> 03:07.680
+fork.
+
+03:07.680 --> 03:14.680
+So this is a very common progression of concepts that is defined in a programming language.
+
+03:14.680 --> 03:21.680
+For example we start with something called character, we define first how to describe characters
+
+03:21.680 --> 03:26.680
+properly and then using those definition of character we then describe what is token,
+
+03:27.680 --> 03:30.680
+how to form valid tokens in the program.
+
+03:30.680 --> 03:35.680
+Again building on the notion or correct definition of token we can define what is an expression
+
+03:35.680 --> 03:42.680
+or valid expression that can be accepted by the compiler of the language and then using
+
+03:42.680 --> 03:48.680
+this again notion of expression we go to a statement and hence we come by in many statements
+
+03:48.680 --> 03:49.680
+to form a program.
+
+03:49.680 --> 03:56.680
+So this is very natural progression of defining program formally inside a programming language
+
+03:56.680 --> 04:02.680
+which is not very specific to Python but very common to different programming languages.
+
+04:02.680 --> 04:08.680
+And this back a snore form is a popular form which most of these language reference manual
+
+04:08.680 --> 04:14.680
+uses for precisely describing these language constructs like character tokens, expression,
+
+04:14.680 --> 04:16.680
+statements and programs.
+
+04:16.680 --> 04:23.680
+So in back a snore form normally you will see symbols like this which is nothing but how
+
+04:23.680 --> 04:25.680
+to replace left hand side with the right hand side.
+
+04:25.680 --> 04:34.680
+For example if you want to define digits I mean digits are nothing but 0 or 1 or 2 or something
+
+04:34.680 --> 04:35.680
+like this.
+
+04:35.680 --> 04:44.680
+So this is a quick review of some frequently occurring notations when you define a back a snore
+
+04:44.680 --> 04:51.680
+form and so we will have something like this which tells us how to define a particular notion
+
+04:51.680 --> 04:57.680
+like token expression statement and then we have abstract concepts which are nothing but
+
+04:57.680 --> 05:02.680
+I mean again token expression and statement and we will have definition for each of them.
+
+05:02.680 --> 05:11.680
+Then we can actually define concrete tokens as terminals I mean these are some terminals
+
+05:11.680 --> 05:20.680
+in this whole grammar and you have combining operators like this or to combine multiple primitive objects
+
+05:20.680 --> 05:22.680
+to form a complex objects.
+
+05:22.680 --> 05:28.680
+This is a normal very popular way of describing a programming language as you can see in Python
+
+05:28.680 --> 05:34.680
+we have digits defined like this and once you define digits you can actually see defined integers
+
+05:34.680 --> 05:40.680
+because integers can be formed by just concatenating digits after each other.
+
+05:40.680 --> 05:45.680
+So this is the rule that tells you how to form an integer from a digit.
+
+05:45.680 --> 05:51.680
+Any digit can be an integer and then if you have formed a simple integer you can concatenate it
+
+05:51.680 --> 05:53.680
+with another digit to form an integer.
+
+05:53.680 --> 05:59.680
+So you can keep enlarging your integer as long as you want.
+
+05:59.680 --> 06:02.680
+I mean by just depending a digit to its end.
+
+06:02.680 --> 06:05.680
+So this is how to read these kind of rules in programming languages.
+
+06:05.680 --> 06:09.680
+Similarly as another example you can see this is a variable name.
+
+06:09.680 --> 06:15.680
+So what are the possible let's say valid variable name that can be accepted by Python programming language.
+
+06:15.680 --> 06:25.680
+So for that I mean we can again say so any letter is a valid variable name and you can form more complex variable name
+
+06:25.680 --> 06:30.680
+by keeping concatenating different letters at the end of it.
+
+06:30.680 --> 06:39.680
+So this gives you a way to say that I can form variable name of larger lengths from this smaller length.
+
+06:39.680 --> 06:45.680
+So these kind of definitions are normally called inductive definitions in mathematics and computer science
+
+06:45.680 --> 06:52.680
+and it is good to have some familiarity with them because then in the cases of ambiguity or any doubt
+
+06:52.680 --> 06:59.680
+you can refer to the language reference manual and figure out on your own what is syntactically correct program or not.
+
+07:00.680 --> 07:08.680
+Although you will not need it most often because compiler will you know warden you if you don't write a correct syntax.
+
+07:08.680 --> 07:14.680
+So you know mostly get a warning or you know error message syntax message syntax error message from the compiler.
+
+07:14.680 --> 07:21.680
+So you don't need to memorize it but it's a good idea to be familiar with this.
+
+07:21.680 --> 07:30.680
+So in a nutshell what is syntax for a given programming language syntax is nothing but the grammar that governs the code structure.
+
+07:30.680 --> 07:35.680
+So it tells us what can be right as a valid program inside this programming language okay.
+
+07:35.680 --> 07:47.680
+This is nothing but no like grammar for a natural language and it can help us identify what is considered as a correct or valid program and what is not a valid program.
+
+07:51.680 --> 08:14.680
+Now coming to the second concept which concerns about the semantics of you know programming language.
+
+08:14.680 --> 08:25.680
+So what is the semantics of a programming language? Semantics you know unless syntax which you know tells you what can be accepted as a valid program you know looking at the structure of the program.
+
+08:25.680 --> 08:35.680
+Semantics tells you about the meaning of a program when we write a program as we discuss in the very you know first lecture that we write program with some intention right.
+
+08:35.680 --> 08:41.680
+So so that intention is what we are calling you know meaning or semantics here.
+
+08:41.680 --> 08:49.680
+So so what will be the you know effect of let's executing this piece of code let if it is a varied piece of code that's what we are calling semantics.
+
+08:49.680 --> 08:57.680
+And unlike you know syntax you know defining semantics is a little harder because we are talking about meaning and not the structure.
+
+08:57.680 --> 09:07.680
+Now syntactically correct or structurally correct or valid programs may produce you know results which are not intended.
+
+09:07.680 --> 09:12.680
+So that's why it's very you know important to understand the meaning of a program properly okay.
+
+09:12.680 --> 09:21.680
+And when we see the meaning of a program and normally when we talk about meaning of anything we talk or we try to describe the meaning in terms of whatever we know.
+
+09:21.680 --> 09:34.680
+Right about some other things or you know some primitive things but here the scenario is a little difficult because we are describing a programming language which is a no artificial thing which has been described by us.
+
+09:34.680 --> 09:46.680
+And then describing meaning in terms of simpler things become you know difficult so normally the process which we adopt to describe the meaning of a program is where the effect of code execution.
+
+09:46.680 --> 09:58.680
+So what is the meaning of a program so meaning of the program can be you know defined in terms of what will be the effect of running this piece of code on a let's a real machine okay.
+
+09:58.680 --> 10:05.680
+So this is what we you know called effect of executing this code so normally meanings are defined you know in terms of effect of execution.
+
+10:05.680 --> 10:19.680
+And when we know again I mean when we talk about effect of execution of code on the you know machine then naturally there is no real machines comes in mind but these programming languages gives you a very nice abstraction of over this real machine.
+
+10:19.680 --> 10:28.680
+And what we say is we don't talk about the effect of execution of this you know program on real machine but on abstract machine which is far more simpler.
+
+10:28.680 --> 10:48.680
+Where all our let's say no conception of memory of the real machine are abstracted by these variables and how these you know register value or these things are changing or the data is moving between one component of this computing device to the other component is you know captured by these instructions which manipulate this variable okay.
+
+10:48.680 --> 11:08.680
+So understanding semantics for a high level programming language is very important and we do it via you know understanding the notion of variables no statement that manipulate those variable values and how different statement manipulate the values of these variable in a different way.
+
+11:09.680 --> 11:33.680
+As a very simple example I mean if I want to talk about you know the semantics of a simple program which is let's say you know these you know these instructions like I mean you assign some value to a variable and then you assign very some other value to another variable and then you add those two variables to get a third variable and then want to print it.
+
+11:33.680 --> 11:50.680
+So what will be the you know effect of executing these instructions in sequence is what will be the meaning of this program okay for example I mean what will be the effect of executing the very fast instruction which which is assigning a value five to the variable X okay.
+
+11:50.680 --> 11:58.680
+So do you think I mean by you know assigning this value of five to X you are changing the value of Y or Z.
+
+11:58.680 --> 12:27.680
+The answer is no right I mean in this case we are only changing the value of you know X so what what we can say is the value of you know our abstract machine in our abstract machine only variable which is you know changing value after execution of this particular instruction is no the variable X and I don't need to care about what what are the other variables you know if we are concerned about the execution of this particular statement but again in the next statement we see the value of variable Y is being changed to 10 okay.
+
+12:27.680 --> 12:52.680
+And similarly I mean if you are thinking in terms of you know our abstract machine so till now we have been established only two variable X and Y and the second statement does not change the value of X instead it changes the value of Y so what will be there you know effect of the second instruction if we have to talk you know in isolation the effect of the second instruction is only changing variable you know Y value and not the X value.
+
+12:52.680 --> 13:15.680
+So this is how you know abstracting away this Mori and registers in the more variable helps us you know reason very cleanly about the effect of program execution okay other way it will be really difficult to you know understand the effect of this on the exact machine because exact machine you don't know where these variables are being installed which register is not taking care of this variable.
+
+13:15.680 --> 13:36.680
+Okay so always when we talk about semantics of a programming language and specifically if we are dealing with high level programming languages we talk in terms of these variable and how the instructions are changing the set of variable that the program has initialized this is what we call you know semantics of a programming language in a nutshell.
+
+13:36.680 --> 14:05.680
+So now that we understand what is syntax and semantics so what can be or what is a you know most authoritative or definitive source for these definition like you know for a given programming language we know that we need to define the correct rule for forming is structurally correct program which we know syntax.
+
+14:05.680 --> 14:33.680
+And also we have to describe what will be the effect of execution of let's say those correct program you know on the state of abstract machine but then what is the ultimate source of or where do we write these definitions or we describe these two aspects of programming languages normally every programming language has you know reference manual and these references manual these reference manuals are the most definitive source of you know these definitions of syntax and semantics.
+
+14:33.680 --> 14:59.680
+So in case of doubt we we can always refer back to these reference manual and learn more about the exact syntax and semantics for this programming language although there are you know many popular books for every programming language is but in case of you know doubt and you know any scope of ambiguity we should always refer back to the python reference language manual.
+
+14:59.680 --> 15:25.680
+Now once we know that you know python's language reference manual is the definitive source for you know the correct understanding of syntax and semantics we should also ask what is the correct implementation of these definitions let's say I mean the language reference manual only define the programming languages but what about implementing it right someone has to write a compiler based on these definition of syntax and semantics.
+
+15:25.680 --> 15:50.680
+So there are you know many popular implementation or you know standard implementation of these definitions of syntax and semantics in form of compiler and interpreted but the most widely used and original implementation is see python which is you know implementation of this compiler in see programming languages and which is referred as the most trusted implementation of these definitions.
+
+15:55.680 --> 16:11.680
+So once let's say we know about the ultimate source of definition of these things and implementation of these things we would also like to know what are the most you know popular python programming you know IDs.
+
+16:11.680 --> 16:39.680
+Okay so let's say if someone has implemented the compiler then but then you don't work directly with the compiler you need normally a nice ID for working or for working with this programming languages so there are a couple of nice ID available for python programming language which are popular among programmers now some of them are pie charm VS code Jupiter notebook and Google call app.
+
+16:39.680 --> 17:08.680
+So my you know favorite is Jupyter notebook because it gives you a very nice markdown integrated with the python code blocks and you can not only you know so this is a very good you know development environment where you can put comments and you know you can you know you can build nice tutorial in this Jupyter notebook so I will be following Jupyter notebook throughout this course but feel free to explore other you know more advanced.
+
+17:09.680 --> 17:14.680
+ID like pie charm and VS code which are very popular among python programmers.
+
+17:22.680 --> 17:34.680
+So again I mean to summarize what we discussed was that python language reference manual is the ultimate source for defining syntax as well as the course semantics for python programming language.
+
+17:34.680 --> 17:50.680
+But you know there may exist some ambiguities in these python language reference manual because they are certainly the most definitive source for any you know getting rid of any ambiguity but it's not the case that these programming language reference manual don't have ambiguities.
+
+17:50.680 --> 18:08.680
+For from the syntax point of view more or less you can believe that these language reference manual are more or less formal and precise so there is no scope of ambiguity but semantics is where these language manual may also get wrong or they may leave some room for ambiguities.
+
+18:08.680 --> 18:21.680
+Okay so since these you know effect of running a program on the abstract machine for these programming languages are normally described in English language we may know different people may interpret those.
+
+18:21.680 --> 18:36.680
+Description of effect in different ways and that may cause a lot of you know ambiguity so there is no formal in a specification of semantics for you know python programming language and all that we
+
+18:36.680 --> 18:56.680
+has to rely is on a natural language like English so you know always you know be ready to you know pace and ambiguities but again I mean in the most you know to be you know most assured about the understanding of any concept you have to refer to python language reference manual.
+
+18:57.680 --> 19:24.680
+So here I have just copied some you know bits and pieces from python language reference manual some experts from there so the very first thing I was saying about this ambiguity what I mentioned just now so here I mean the authors are saying that while I'm trying to be as precise as possible I choose to use English rather than formal specification for everything except syntax and lexical analysis.
+
+19:24.680 --> 19:49.680
+This should make document more understandable to average reader but will leave room for ambiguity so what I mentioned is not something that authors are hiding I mean they're accepting that there can be room for ambiguity but then I mean English description is given you know with a purpose so that you know they can reach a larger audience and you know make them understand the overall semantics of the programming language.
+
+19:50.680 --> 20:15.680
+The other statement talks about the completeness that it somehow you know tries to ensure you that you will be able to find answer to your question from this no reference man manual and the third comment is very interesting to read it says that if you would like to see a more formal definition of the language maybe you could volunteer your time and you know describe this thing in a more formal sense.
+
+20:15.680 --> 20:30.680
+So this is you know not a theoretical or you know abstract idea many people in programming language research and nowadays trying to use formal tools to describe even the semantics of programming language but unfortunately we are not there for the python programming language.
+
+20:30.680 --> 20:58.680
+So coming back to our you know objective of this class we we our core objective of you know these lectures will be to learn you know the foundational skill surrounding the idea of programming and in particular we will be interested in python programming language and our you know way of
+
+20:58.680 --> 21:27.680
+learning in depth about python programming language will be why the root of syntax and semantics where more or less I mean you can learn about syntax by you know just looking at multiple programs and you can be a little you know guaranteed that whenever do you do a mistake in this domain I mean you will be caught by compiler but then we will focus most of our time to clearly understand the meaning of program that we write because this is the most important part no I don't know what you are doing.
+
+21:28.680 --> 21:33.680
+In verifying or writing a code that meets the intention of the programmer.
+
+21:38.680 --> 21:48.680
+So just a quick recap of what we discussed today so we discussed about the syntax and semantics of programming language syntax tells us about the valid program structure.
+
+21:49.680 --> 22:12.680
+On the other and semantics helps us decide the meaning or you know if a tough execution of this syntactically you know correct program and python reference language manual is the most let's a definitive source for any ambiguity if we have you know during understanding of syntax or semantics whenever in need you should in refer to this python language reference manual.
+
+22:12.680 --> 22:21.680
+So please take your time to reflect on the ideas that we discussed in today's lecture I will see you in the next video till then goodbye.
+

@@ -1,0 +1,189 @@
+Hello and welcome back to Python core and applied concepts for reliable data sense workflow.
+In today's video we are going to look into the minute details of Python's type system,
+which are often neglected by beginner programmers in Python.
+Without further delay let's get into the slides.
+So this is in a nutshell what we are going to discuss in some detail.
+We are going to talk about Python's type system, which has these three interesting property,
+which are called dynamic typing, strong typing and optionally static typing.
+So the first two features, dynamic typing and strong typing somehow helps us get the program
+developed very fast. So it somehow helps us in developing program very fast because Python is
+flexible in how you can instantiate variable and how you can change type of those variables
+dynamically. Many of the programming languages does not have this feature. Once you define a type
+or associated type to a variable, you cannot change it later on. But unlike them, Python,
+for example, in this case, dynamic typing can see you can instantiate a variable with
+integer type and then let it happily assign it a string type. This is possible because Python
+compiler and interpreter allows that since Python developer thought this will help in speeding
+up the development of program quickly. So another feature which we will talk about is strong
+typing. Although I mean Python allows dynamic typing, it does not mean that Python is weekly type.
+I mean in the sense that it will not allow different types or incompatible type of object to be
+joined by some operator which expects some different types. So type is not checked strongly at the
+time when you are making complicated expression out of simple expression using some operator.
+And then there is a third option which we call optionally static typing which is present again
+in Python which one can use to the benefit of writing a reliable code. And also to help
+fear some static analysis tool to figure out some possible errors that it can hint you and then
+you can recover early on. So now it's time to again move to Jupyter notebook and see some
+hands on exploration around this topic to understand these things in a more clear way because
+these things are real. So let's move to the Jupyter notebook and try to observe the slight differences
+between these concepts surrounding Python's type system. So let us now go to the
+Jupyter notebook and this is the section that we are on Jupyter notebook. So let me
+take you through this Jupyter notebook to explain this silent feature of Python's type system.
+The very first one is called dynamic typing. So dynamic typing gives you the freedom of
+late binding. I mean you should not be worried about the type of variable or you should not
+bind the type of variables too tightly with the variable itself. So a variable is just a label
+that can be attached to any type of object. So this is what this dynamic typing means. So the
+type is associated with object and not with no variable. So variables are associated to these
+objects and objects that type. So if you let's associate a variable to a different object it
+types automatically changes. So the variable is just a name tag that can reference different type.
+So for instance I mean let me write a very simple code where I say instantiate this variable x
+with value 5. So in this case I mean you can see if you do this instantiation that x is an
+integral right. So if you print x you will get x as an integer if you print the type of
+x you will get no let me know. You see when we assign x value 5 and when print we say
+we get the type of x no as integer. But you know immediately after this statement we can also
+we are allowed to write this kind of statement where I assign a string value to this no variable.
+So now x is no string which is a perfectly valid thing to do in Python. Initially you started
+x with a value which has no type integer and now you are reassigning another type of object to
+the same variable x and after this if you again try to go through this print
+type of x. So compiler does not complain and what you get is the new type that is associated with
+the object to which this variable x no reference to. So we can easily reassign different objects
+to the same variable and once you reassign a different object then its type no is the type of
+the variable. So this is very important thing the type checking happens at runtime not at compile
+time and it enables rapid prototyping and polymorphic codes. So these are some of the pros that you
+can build code very quickly without worrying about the type. Otherwise in programming language like
+you have to think in a very big what type you are going to assign a particular variable and then
+you cannot change that run. So these things are not so easy to do in other programming languages
+but here in Python you can see you can this is a perfectly valid thing to do. But the
+columns are that type related errors can only be discovered when the specific line of code is
+being done. So it may cause also problems and some errors in the code which will not be
+easy to detect when you are developing the code it can only be caught when you are running the code
+because this type checking happens or type assignment happens only at the runtime. So this is
+a very important thing to keep in mind. So then there is this another concept of strong typing.
+Although Python allows you to assign different types of object to the same variable when you
+go along the program but it always ensures that the types are checked properly. So operations on
+objects are checked strictly. For instance here I mean you cannot so if you see this
+if you see this a particular expression where I am trying to add and string to integer Python
+will not do any implicit conversion of integers to string or string to integer and then accept
+this kind of ill form expressions. So this will cause a type error and it will say that
+string can only be concatenated to string. Python does not silently convert either string 5 to
+integer 5 or the integer 5 to string 5. Unlike weekly type language example in JavaScript that
+perform implicit conversion Python doesn't allow this. So the key distinction between dynamic and
+strong typing is that dynamic means flexible in what a variable can be. So that's why we begin
+call dynamic that the type of the variable can later on change depending upon what object it is
+referencing to. But strong here when we say strong typing is strong means rigid in what operations
+are allowed on those objects. So for example if you just copy paste the same thing if you want to
+run this program here inside Python. So if you try to run I mean so this is the error that you
+can only concatenate string not into the string. So this is what we call strong typing although
+it allows you flexibility of changing the type but at any moment of time when you are building
+a complex operation using simpler expression of different type then the operator should respect
+that. I mean if operator does not expect different types as input to build complex expression then
+you cannot give like I mean this no plus operator you know expect either both be string or both be
+you know integer. So it you know complains you so this is what we call strong typing.
+So this is the core principle that objects have a defined type okay and operations are checked
+for compatibility between types. So while defining operation you normally define what type of
+object it will not take as input to produce what type of no other object. So there is no implicit
+type no conversion that you know occurs in Python okay. So so this prevents you know hidden silent
+bugs the program fails you know fast and loudly when types are mixed incorrectly forcing the
+programmer to explicitly state their intent. So this is no this is strong typing is very you know
+interesting because it will not let this kind of you know error go down you know go unnoticed.
+It will the compiler will complain early on. So that's why you know this is strong typing is a very
+nice feature to have. Now the third very important property that I want to talk today is optional
+aesthetic typing although Python does not enforce you to assign a type for a variable or a function
+you can optionally do it okay. And the advantage of you know assigning types to any variable
+you know early on is that it can help compiler optimize in certain ways okay. So it can allow
+compiler to do a lot of optimizations which will not be possible otherwise. So that's why these
+optional typing are important. So and we should do it whenever we feel we are certain about the type
+and you know we want the program to only restrict to input or values of this variable of a certain type
+okay. For example I mean in this case you know you can actually let's say you know if you are
+declaring a name I mean a variable name which will have this value as a string you can also
+say explicitly here that you are expecting a string value here okay. Similarly for count I mean
+no this int is optional but we can tell the compiler that we are going to keep here an int okay.
+So this is not mandatory that's why we are calling it optional aesthetic typing you know even if
+you don't provide it no compile can figure out what is the type of this variable by just looking
+at the object which is being assigned. No last object that has been assigned to the variable but
+you can do it additionally here I mean if you feel I mean you are going to use this you know
+variable in this certain way then you can actually assign it. And then I mean let's say
+if you know put a string into the name variable which also has a type you know a string
+explicitly my mentioned here and similarly count has a type int explicitly mentioned here with
+a value of 42 now what if I define a function of this form no I am defining a function which is
+no greeting someone with this whole purpose of this function is to print you know this line that
+hello whatever name you give us you know input and in the name you expect a string right so this
+is how we can say or annotate type information in the argument also right this is a function
+definition and this you know name is the argument so the optional type that I have mentioned here
+is this you know this is string I could have left it but here let's say for this particular example
+I'm saying that it will take a string as an input and you know written as a string as an output
+why because you know you can see the 10 type is you know again a string okay so we can define
+something you know like this here but defining something like this at this place no does not
+ensure that you know Python compiler wait let's say or is you know bound to follow your
+optional typing I mean this is what you are telling I mean your intention but it is not bound to
+you know follow this for example let me you know try to you know run this same piece of code that
+we are trying to okay so let me copy and paste this definitions here no in the code block so if
+in the code block if I copy so I have defined name variable count variable and the function greet
+not all all here right I mean so so we so no so we know normal understanding you know let's say
+if I want to now execute this greet function okay if I want to know execute no greet function
+and if I pass you know my name let's say to this greet function my name is
+Abyssaic so what do I expect so so this is what I expect right hello we say so this is what
+we were printing okay so it took a string and it returned a string but I mean this you know
+remember I mean this is optional in Python so what if what do you expect if I let's say pass
+the same function greet instead of a string what if I you know pass it a number like say you know
+42 the select you know complain with a type error or syntax error something like this or
+especially except this and print something so what's your guess okay so let's try to know run it
+and see what's the real so you see I mean Python does not complain right so this is this might
+look surprising to some people know if it does not you know complain then what's the point of
+you know giving it a type right I mean I have declared it as a the argument to be a string type
+right I mean in this example if you look at the greet functions argument which is name which I
+want to be string but here I have no past 42 and we just saw that no Python does not do implicit
+conversion so it's not also the case that 42 has been converted into a string and then this function
+greet has accepted this as a you know valid input it's not you know it's not the case actually
+here okay so so why it still runs because Python ignores type hints during execution if it
+you know finds that the argument is not not of the type that was you know mentioned so then also
+it will accept it okay and dynamically it will try to you know assign type and you know use it okay
+so so this is why I mean we are calling it you know optional typing so this is not not only
+no optional from our side so always I mean giving type is always optional from our side but Python is
+all compiler is also you know free to ignore this type hints during execution if it finds you know
+if it can infer some no let's say valid type for the no argument that can let the function go
+with that type then it will actually allow it okay so my Python is not bound to follow this no
+optional type information that you provide okay so then I mean as we said I mean compiler gets
+benefit of some kind sort of optimization and also some static analysis tool which now just look
+at the structure of the code and tries to tell you whether there can be some chances of error
+or not or can they can there be some sort of you know error or probable error in the program
+they can also infer a lot of information from this you know optional typing so that's very
+although I mean this is not a mandatory thing for compiler to follow we normally advocate using
+these optional type as much as possible so that you get you know good hints you know very early
+on about possible errors in or bugs in your program okay so the static analysis tools which are
+you know most of which are you know embedded in most of the ID and they can help you figure out some
+you know runtime error or some other sort of error by using this no type hints so these are hints
+for these you know linters and ID but these are not something mandatory for the compiler to follow
+and Python interpreter you know or compiler ignores them not runtime so but I mean again I mean
+using this you know types also is you know helping us validate the code right our intention to
+some extent right because if you are writing code if you know what this particular input or this
+particular variable is intended to do so assigning a type to a variable is also like assigning
+partial meaning to another program okay although we have not assigned full meaning to the program
+but we are assigning you know partial meaning or somehow we are conveying our partial
+intention by assigning these optional types to this variable so this is also you know very much
+alliance with our intention in this program in this lecture series that we should have this
+you know validator mindset and we should try to employ that always I mean and whenever possible
+use tools and techniques available in the language that can help us you know validate either
+fully or partially the correctness of our program okay so this is all so in the nutshell
+no Python combines dynamic typing with the strong typing while offering optional static
+type hints for development you know tooling so these optional static types are more useful for
+compiler and these you know linters this is static analysis tool which can figure out many you
+know error in the code early on if you provide enough type information as no optional types
+so Python remains so just to summarize you know Python remains dynamically type
+better on time so you can you know build code very fast okay but it also gives you you know this
+optional static typing for development now this maintains both the flexibility of building code
+fast while enabling reliability whenever let's say we want you know our code to be not trustworthy
+and you know we are dealing with a critical code then we would love to write as many optional
+type as possible so that it can help static analysis tool figure out some of the program error
+and convey it to us in no so that we can repair those error or you know debug those error earlier
+but type hints are you know like formula specification of your you know you know functions
+contract so you know although you're not telling what is the exact nature of you know input
+output or the relationship between input output of the function that you're expecting at least
+you're not telling some partial information about what are the types of the input and output that
+is expected by this function so although this is not a complete you know formula specification
+this is a partial you know specification of your intention of computing something you know by
+this functions okay so so you know these type hints are like formula specification in some sense
+okay so with this I think we have covered enough regarding you know the types in Python system
+and please take your time to reflect on this idea these are very important idea
+and there are very subtle differences with you know most many of you may get confused if you
+you know don't pay attention to these things so please pay attention to you know these things and go
+back to through this script to family to familiarize yourself with these no ideas so I will see you
+in the next video till then goodbye

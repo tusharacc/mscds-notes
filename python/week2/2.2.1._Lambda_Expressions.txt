@@ -1,0 +1,604 @@
+Welcome back to our discussion on Python's expression hierarchy.
+So if you recall from our last video, we have already discussed these three bottom layer
+of expressions. So the first one, we define very primitive expressions using different types
+of operator in Python programming language. And then we also talked about something called
+assignment expression, which is also called Walrus operator. And we saw that it is distinct
+from the assignment statement. And that distinction was very much important for writing
+semantically correct program. So syntax error are not a problem again to re-emphasize.
+If you do some syntax error with these Walrus operator, so somehow compiler or interpreter will
+catch this and report you bug. But we have to be very careful about the semantics of these
+Walrus operator or assignment expression when we are using it inside any complex,
+let's expression. So but again, I mean the status of these assignment or Walrus operator is
+expression. So they are valid expression and you can use it at any place where an expression can
+be used. Now in our progression of this hierarchy of Python expressions, the last remaining
+block is about lambda expression. So in today's video, we will talk about lambda expressions. I mean,
+water lambda expressions and what is its relevance and how to use it properly inside Python code.
+So without no further delay, let's move to our Jupyter Notebook and we'll continue our
+discussion from there. I hope you can see my Jupyter Notebook. So this is the place, if you recall,
+we concluded our last discussion. So we discussed this great assignment ambiguity where the
+similar looking expressions on which involve assignment statement as well as this Walrus operators,
+we have quite differently. We saw that while this second statement was
+happily accepted by the interpreter, the last statement that we have written could not be accepted.
+And the reason for that was that Python expected something here, whatever was present here to be an
+expression, but this is not an expression unlike this thing. So this was the reason why it did not
+accept this, but it happily accepted this one. So this kind of difference is a very subtle
+and you need to be careful with the semantics to figure out why one is accepted and why another
+one is not accepted. So now let's move on to the topic of today's discussion, which is lambda
+expressions. So what are lambda expressions? So you can see my cursor. So lambda expressions are
+no a way to create small anonymous functions, functions without name as an expression. So
+although we did not talk about function to this point, but since lambda expressions are also
+expressions, I find it justified to mention it at this point. So if you don't follow some of the
+concepts that we discussed in today's video, don't worry. I mean we are going to come back to
+the discussion of lambda expression again when we discuss, you know, function in detail. So at that
+point of time, you might be able to make sense of, you know, few things that may not be
+relatable in this video. Okay. So please, you know, just bear with me and continue the whole video,
+watching the whole video. It will make sense mostly, but if you don't follow everything, then I mean
+just wait for the lectures on functions and we will revisit these things in much more detail.
+So, so just in short, I mean, what is, you know, lambda expressions, they are a way to
+implement functions inside, you know, Python without giving functions any name. So that's why
+we are calling it anonymous functions. Okay. So, you know, think of it as, you know, quick one time
+use functions that you can create on the spot. So normally what happens, if you, if some,
+no piece of code in your program, you find it to be very relevant and maybe reusable at
+multiple times. We try to define functions, you know, using those course and we say that,
+we give it a name. I mean, this block of code, we normally assign a name, which is the function name.
+And then we can use those, you know, set of, you know, lines or collection of line at multiple
+places, wherever we need that kind of reasoning on, you know, logical calculation, not to happen.
+So that's, you know, overall, you know, agenda of defining functions in any programming language,
+that if you feel that your code is reusable, normally we give it a name and we use it at multiple,
+you know, different places. Okay. But I mean, lambda expression, you know,
+just the opposite purpose. I mean, let's say, I mean, if you want to define, you know,
+some functions or some set of expressions, which might not be that useful at multiple places,
+it may be, you know, used in just one or two, it's a multiple places in the same, you know,
+file, maybe. And it's very simple. The logic is very simple. Then in that case, we don't go ahead
+and define the whole, you know, function, you know, using and give it a name because that name
+may clutter the name space for your whole, you know, Python development environment. You also don't
+want to write lots of, you know, names or variables so that I mean, things are available for future
+use, right? And there is no conflict between, you know, names. So lambda expressions are, you know,
+one such a way where you don't assign normally names to functions, but then functions are defined.
+And this thing is called an expression instead of, you know, programming statement, we call,
+you know, these are the expression inside, you know, programming language like Python.
+So the basic syntax for the lambda expression is, you know, something like this,
+where you see, I mean, we write lambda to indicate that we are, you know, going to write a lambda,
+no function, which Python should accept as an expression itself. So the whole thing from,
+you know, from the beginning to the end is actually an expression, okay? And what's the,
+you know, way the exact syntax is you write lambda, which indicates to the compiler that we are
+going to, you know, write a lambda function. And then we pass all the parameters for the function,
+right? So function always does some computation. And to start the computation, it needs some input
+from you, but those inputs are nothing called parameters. So you may have one parameter, you may
+have two parameters, you may have multiple parameters, you may pass, you know, more than two
+parameters in list or dictionary inside of function. So all of these things again, we will come to
+the function discussion and there, we will be very detailed about, you know, this parameter,
+but for the time being, I just wanted to highlight the, you know, intention of passing parameter,
+because you want to compute something based on some initial value that the user will provide you.
+So that's what we call parameter. And then the expression is actually what computes the, you know,
+this, you know, complex value or, you know, complicated, you know, value that you want to calculate
+for your purpose, let's say. So this is the expression, okay? So let's try to define some very,
+very, very easy lambda functions for very simple functions.
+For example, one, let's say, you know, we try to, you know, create a lambda function,
+which tries to mimic this function, which calculates the square of any given number, okay?
+So if you have to, let's say, write a simple function in Python, which calculates the square of,
+you know, number, then, let me show you, I think it's visible. So you can see my
+Jupyter notebook. So what we have here is, we have defined a very simple, you know, function.
+So this is how we define a function, okay? So we said definition. So this deaf indicates that
+we are going to write a function. And then we give the name of the function that we are going to,
+you know, define right now, so which is, you know, our square function. So we say it squared.
+So square is the name that we have chosen, okay? So you can use any name. I mean, you want
+to use here to, let's say, name this function. So since square, you know, resembles the intention of
+the, or the purpose of the function. So we kept the name square here. And this is the argument.
+So inside parenthesis, what you pass is the argument. So normally, when we want to calculate a
+square, what do you want? We want to pass one number. And then we want to get the square of that
+number, okay? So this is how that, you know, a simple function, like, you know, square is defined,
+can be defined inside Python. So do you say deaf square and then pass argument. And in the return
+value, so what should you return? You should return X, no, raise to two, right? So you remember,
+I mean, this was our notation for exponentiation that we discussed in our last lecture. So
+if we define, you know, this function, you will see that this function will appropriately
+calculate the square of numbers. So for instance, I mean, let me just copy paste this code
+in the code block. So let us copy and paste this in the code block and, you know, try to run it.
+So when we run, we see there is no error. So syntactically, you know, this is a valid definition
+of a square function that we just now define a very simple function which computes a square of,
+you know, any number. So we are sure at this point, since this code block, you know,
+run properly, we know that there is no syntax error. But what about the semantics? And we also
+check this function, let's say on some simple input, like, what if I call this function on,
+let's say, two. So if we call this function on two, should you see, I mean, this is what we should
+get, right? I mean, when we compute the square of two, it raised two to the power, you know,
+two and which is four. So what about if I change it to, you know, square of, let's say eight,
+it returns 64, right? So, so semantically also, this function looks to be a correct implementation
+of the square function that we intended to, let's say, implement. So this, you know, one,
+no, simple way to define a square function and give it a name. So the square is the name,
+right? Whenever I want to apply this function to any argument, I use the, you know, this keyword
+square, right? Here I know what, this identified name out, this, you know, function in this square.
+Okay. So you can, you know, use it at multiple, you know, places, I mean, wherever, now you want,
+you can actually just to calculate a square of any number that you want. Okay. So a square of,
+let's say, you know, no, three, what about square of three, square of three? No.
+So, now lambda coming back to the, you know, there's lambda expression. So lambda expression
+gives you a way to not give this name square to this square function and still be able to calculate
+square. So how to define that? So let me know, you know, I mean, we may not, so we may want to,
+let's say, give name, but this expression itself, I can be used, you know, as a mean to compute
+this square without giving it a name. For the timing, let me, you know, show you in another,
+so let me add one code block here and let me know now define our lambda. So we can also,
+let's say, this is a alternate, you know, way to define the square function. So what we say is
+the square is nothing but lambda and then we pass x and what we return is, you know,
+two. Okay. So this is an alternate way to define the same, you know, square function and still
+give it a name. Okay. So we have given the square function a name, but instead of, you know,
+this kind of syntax where we use dev and then, you know, this return, what we say is, we use
+this expression and remember an expression can appear on the right hand side of an assignment,
+right? So this is a simple assignment statement that we were not talking in the previous class,
+right? Where square is a, you know, a variable that we have created, a name that we have created,
+and what we have assigned to it is an expression and what this expression resembles is a, you know,
+function. So what's the effect of this expression? So this expression is, you know, defining a function
+which takes as an input. So everything before this colon, you can see a colon, right? So between,
+you know, lambda and this colon, so everything between lambda and this colon are arguments of the
+function. Okay. And whatever you wanted to return, like here, you wanted to return this particular
+value, right? Or this expression. So that expression, we want to write here. Note that we don't,
+you know, write now this, you know, return keyword. No, that is a result by Python for defining
+your function in this particular way. Okay. So you don't need that. So this lambda expression,
+you know, is a concise expression also, right? You just write lambda x colon. Okay. So input and
+output, no, input parameter and the output expressions are just separated by a simple colon.
+And this expression itself is nothing but no function. Okay. So now if you define square in this
+way, which is a assignment expression, I don't know, simply said, where left hand side is a,
+you know, name that you have defined square and the right hand side is an expression. Okay.
+So you will see this will have the same effect. Okay. So now let's say if I,
+first let me check whether this is accepted or not. So when we run, you see this is accepted.
+So Python does not show any syntax error. So now let's, you know, create a next code block and try
+to again apply the same function square to maybe that's the same values. If you want to apply
+square to eight, you can see the values 64 and what about no square of two before? Now you might
+be confused that I mean we have defined two square, right? I mean one square here and one square
+here. So which one Python knows? So since no, this is the last code block we have run. So this is
+the value that or this is no meaning of the square that Python considered at this particular
+moment of time when I run this no code block. So you know, just remove this confusion. What I can
+say is I can know instead of saying square, I can say it's square one. Let's say this definition
+and then try to now apply square one to two. So that there is no scope of confusion. So now,
+you know, we have only square one and if you, sorry, so you have to run this code block for Python
+to know that what is square one? Once we have run this code block and if you now run this
+in the square one or two, then this is right. Okay. And similarly, I mean, we again, let's say
+run this code black block for Python to remember that the square is no, we find in this way.
+And then a square one is again doing the same job as a square, but just for a different name,
+we have defined a new, given a new name, but you see, schematically, both functions are same.
+You can run it on any number of input and check. I mean, they give you the same, you know,
+output because the meaning or semantics of this expression exactly resemble the meaning of a
+function. Okay. Okay. So, so now that we have discussed the basic, you know,
+the most, you know, elementary way in which, you know, these lambda expressions can be used for,
+you know, defining these functions. I mean, we can see some complicated, you know, functions.
+So, I mean, here instead of maybe, you know, defining a square one also, let me, let me,
+I mean, create another code block. And so what I want to emphasize here is, and if you just use
+this expression, okay, and then, you know, you apply, let's say, the value,
+because this should come now inside. Okay. So, if you should see, this was an expression,
+I, you know, put it inside a parenthesis, and then if I apply value to this expression,
+this will give you the same result. I mean, so instead of, you know, defining and giving it a name,
+a priority, you can directly also use the same lambda expression to say that, hey, see,
+here is an expression. No, that is nothing but a function. And I want to evaluate this expression
+with this argument too, because, no, you need to pass some argument to a function too. No,
+evaluate it. Okay. So, so when you pass this argument to it, it will directly return you force.
+So, you don't even need to give this name square one when you are using this lambda kind of
+expression. So, what about, you know, let's check it on one more input before we go ahead.
+You see, I mean, we get the same things. So, you know, this gives the, the motivation of using,
+you know, this lambda expression that you don't actually need to give any name to the function.
+So, you can directly use them. Now, let's try to write some, you know, simple function.
+Let's say with multiple input, like, for example, if you want to, now, add, let's say, two numbers,
+okay. And I mean, define a function, which is, you know, add function. But now you want to use,
+you know, lambda expressions instead of, you know, the normal syntax for function definition. So,
+what shall be? So, so, what we want is, let me write down. Now, we want to write,
+function to add two numbers. And we want to maybe use, you know, lambda expressions to do that,
+lambda to add, no, two numbers is what we want. Okay. So, how to write down a simple function,
+which, let's say, takes two numbers as input and then, you know, it returns the addition of those
+two numbers. So, we know what operator actually corresponds to addition, right? This is what we
+discuss in the last class. But now, instead of writing, you know, function, in this format,
+we want to use something like, but this. Now, clearly, there is a difference that you can
+initially, our number of arguments were only one. Now, we have to pass two arguments, right?
+So, how to pass two arguments? This is what, you know, we want to emphasize, let's say,
+no, in this example. So, let me, I know, again, give it a name to the function, let's say, add.
+And what we want is to define a lambda expression. Okay. And now, the inputs are not, you know,
+input is not only one parameter, but two parameters. So, let me say input to my case is A and B.
+And I, you know, separate inputs from output using a Poland. And what is the output that I am
+willing to generate here in this case? A plus B, right? So, remember, this, this was, you know,
+arithmetic expression to calculate the sum of two numbers, right? So, if we write a simple
+statement like this and try to run it, so Python accepts it without, you know, either. So,
+you know, so the new syntax that we learned was this no comma. So, we can separate multiple
+parameters or input to function by this no comma and pass it to the function and then use a
+Poland to separate it from, you know, the output value that you want to generate and the output
+value is represented by this expression. So, remember, this is an expression what I have highlighted
+here, okay? And, you know, these are the, you know, input values that you pass to this lambda,
+okay? Now, we have, you know, successfully defined this, you know, function add using lambda
+expression. So, can we, you know, also define another function or let's actually test, you know,
+this function once. I mean, if let's say I have to run this function on, so let me, you know,
+print and then what if I'm, let's say, adding these numbers, let's say, let's say I want to pass
+five, no, I'm plus three, okay? And I want to, you know, see whether I get what I expected,
+okay? So, you know, five plus three should be equal to what do we get exactly that when I,
+you know, use my, sorry, add function. So, if I pass to this add, now five comma three,
+so select the value eight here, if I run it, you see? So, so this is, you know, how we're
+sprinting. So, adding five plus three, you know, printing this, you know, resulted in, you know,
+this is string, okay? And then this add five plus three, you know, is what it, you know,
+so how, what is the definition of this add? This definition is, you know, same as this one,
+and it is nothing but a function, which we define using lambda, okay? So, when this, you know,
+add is, you know, called with the argument five comma three, you know, which are separated by comma
+remember, then it returns the, you know, value a plus b, which is eight. So, this is true, right?
+So, that's how, I mean, we know that the function is working properly. So, now can we add, you know,
+again, I mean, one simple another example, instead of, you know, add, can you now, you know, quickly
+write down, you know, let's say multiply function, okay? Can you take, let's say two input
+and multiply them and define a function without using the function syntax, but rather, you know,
+using lambda syntax. So, just give it a try, okay? So, if you have to start and define something,
+like, you know, let's say multiply, okay? So, multiply is again a function that I want to define,
+and I want to take now, let's say two input, which I say X comma Y, you can, could have said,
+no, A, B, I'm just using a different variable name for this purpose. And how to make, you know,
+valid expression, which represents your, you know, multiplication of these two numbers X into Y,
+right? So, this is how we can write, right? And what is the way to check? Just run it and then see,
+okay? So, so now, now, comment this line so that, you know, we don't see any other output then just,
+okay? So, so this is, you know, well accepted. So, this definition is also accepted. So,
+similar to this, we can also print and then see. So, let me copy and paste it, you know,
+let's say, you know,
+multiply, five, no, into three, maybe here, now gives you what? So, what have we defined right now?
+Multiply, right? So, this is the name of the function that we have, you know, given to the
+lambda expression, okay? So, this no works as a valid function. So, you can actually use this name
+and then pass five comma three and see whether you're getting the same result or not.
+Okay? So, so this is, you know, valid result. And hence, we can be, you know, partially sure that
+our program is, you know, semantically correct. It's performing exactly what we wanted it to perform.
+So, so what we saw right now is how to use lambda expression and, you know, use,
+you know, and define, you know, function which takes, you know, multiple arguments, okay?
+Again, I mean, as I said, we'd be already discussed that we don't always, you know, need to,
+you know, define these, you know, add or multiply kind of name for functions. If you're using
+lambda expressions, you can maybe, you know, directly use lambda expression without, you know,
+defining these things. Okay? So, for example, I mean, you may mean directly, you know, calculate
+these things without even, you know, defining these things. For, for example, let me add a simple,
+you know, lambda expression which takes X as input and, you know, gives you the two times X as
+our output and directly apply it to some, let's say, number and then print the result. So, we
+have done, you know, something like this earlier, but let me do it again. What if, let's say,
+I say that I want to, you know, calculate some, you know, value, which I want to store in,
+you know, let's say, the result one where I don't want to, so maybe this calculation, I want to do
+only for once, you know, we, we are not interested in defining these functions, I mean, and keeping
+that at some place. So, what we are saying is we can say, lambda, so we can, you know, first,
+so define this nameless function, which is X multiplied by two. So, you now understand what this
+function will do, right? This function, this expression, you know, which is in, you know,
+indirectly defining a function and what the, the effect of the function is, I mean, it takes
+as input X and gives you two times X, okay. Now, what if I apply this function by using this
+expression directly to five. So, remember, I mean, you, you, you are, you know, applying this function
+by writing, you know, this expression and then followed by, you know, passing the arguments,
+which is, you know, only one argument in this case, okay. So, so if we do this, and then if you
+let's say, you know, print, if you print the result one, which I have stored here, so what do you
+expect, right? So, this is, you know, how you can directly use this expression. Now, without,
+you know, we may be defining a double order triple kind of function using this expression,
+okay. Another quick, you know, use of this may be, you know, we define, let me just,
+for more practice, let me define another value, you know, try to
+obtain this result to by again, applying some lambda expression, which is maybe, you know,
+maybe adding two numbers, okay. And then passing two numbers directly to it, okay. So,
+so,
+and when you know, since you have defined this function expression using two arguments,
+which are separated by comma, when you pass, you also need to separate them by the comma and then
+passing in this order, okay. And what if I print in this case, you know, print the value of, let's
+So it is all to what we expect 10 plus 15 should return mid 25 for it to be correct, right? So
+you see this is no what we got. So this is just to highlight that you can use Lambda directly also,
+okay. Now we go to the next concept which maybe slightly now complicated concept for many of
+you who are not so familiar with you know functions, but you know let me give it a try and you
+also focus on these you know particular examples which I know I'm trying to discuss under this example
+4. Lambda's with higher order function. So the concept of higher order function is that you know
+functions can be passed as an argument to functions. So it's not like till now I mean we were
+defining some no primitive functions we were always passing some data or variable as argument
+to functions, but no in Python functions are like first class citizens and they can be placed
+anywhere where a simple argument or a variable can be placed, okay. So this is called higher order
+functions. Again we are going to come back to this thing in much more detail when we talk about
+but just to highlight I mean how Lambda expressions can be used in different ways we will just take you
+know maybe one or two example of these map function and filter function which are already know
+available inside Python library. So map is you know one function which works on lists and tries to
+apply you know similar kind of operation on all the elements of a list, okay. So so map is very
+frequently used to you know function available in the standard library of Python to transform the
+values in a list in a certain way, okay. So if you want to let's say transform a multiple values
+so all the values inside the list in a particular way let's say your list has multiple number and maybe
+you want to compute the square of those numbers. So instead of going to each of these locations and
+doing this square applying this square function this MAC function at once I mean can apply this
+kind of you know square to all the values in the available in the list. So you know this helps you
+get rid of multiple you know looping and that kind of construct we will discuss you know later on
+but it's a very simple and you know elegant way to implement you know many list operations which
+require you know similar kind of operations to be applied on different you know elements in a list.
+For example I mean without getting into the detail of how you know this map is implemented let me know
+try to work out some example which will give you no again partial semantics of where this map and
+how maybe no lambda can be used effectively in combination with this map operator. So for
+example let me you know create a list of let's say numbers, okay. So let me you know begin with
+the clicking very simple list where the list has you know numbers like one two three four maybe five,
+okay. So let's have the list has you know this five number and you know using the you know
+map now I want to so what what we do is first let's say define a simple you know transformation on
+these numbers let's say I want to add or maybe five to each of these numbers, okay.
+In a sense so we define a simple function maybe without using let's say lambda first do it so
+we define a function whose job is to just add five let's say this is the job of the function, okay.
+So the function takes an argument x, okay. And what it returns is returns is
+five, okay. So this is a simple function that we have you know define, okay. So when you
+use this ad function and you know pass it an argument x what will it return it will return x plus
+five. So now using the map you know function which is an inbuilt function inside Python,
+you can actually add five to all the element of this list that we have defined by using one line
+of you know command. So let me write down this one one line of command. So let's say if I want
+result of not this map applying you know the map function on this list to be you know stored here.
+So what I say is I know I say I will apply I will know map all the values in the list two new
+values using a function, okay. So first you know map has to be you know passed. So there are two
+arguments to map that normally we pass. And the first argument is the function or the operation that
+you want to apply on each of the elements on off list. And the second argument will be the list
+itself, okay. So you have to give pass both these things, right. What kind of operation you want to
+apply on each element on the list and what is the list, okay. So there are two elements that you
+want to you know provide to this you know map function. So the very first thing is you know
+add five is what we want, right. So this is the kind of transformation we want to make on each
+of the element of the list. So we pass here you know add five. And then we also need to you know
+provide you know what are the what is the list on which we want to apply this, okay. And just
+no for no to be sure that whatever we you know or get is again a list finally I mean I just write
+this no thing. You can check you know even without writing this list but let's say for safety I want
+to ensure that no whatever I return and finally get is also a list, okay. So if I run this piece of
+code what happens. I mean there is no syntax error, okay. So it's of the no interpreter has
+accepted this code. But again I want to check whether what I have defined right now gives me
+correct results, okay. So I would like to print what is this no result map that I have calculated
+using you know this map function and that for I had five function and this number list.
+So let me not do that. Let us try to print and see whether know what we just calculated makes
+sense or not. So when you are going through these videos I mean please try to make sure that you
+open the Jupyter Notebook and then play around with the code. So this will give you no confidence
+writing code on your own and you know getting the correct semantics of what we are discussing
+right now, okay. So what we are saying is we want to
+do. Okay, so sorry, so this is what we want to be a print and see whether so what do you expect.
+I mean so what is our expectation can we write our expectation before we run this piece of code.
+So we wanted to add write something to all the number in the list right. We wanted to add
+five to all the number in the list. So what should be our expected result? We would like six.
+No, seven, eight, nine and ten. This is our expectation and now we should try to run it and see
+whether our expectation meets the actual computation or not. Okay, so let me run this
+piece of code and you see this is what no we get. So you know, cementically the code looks to be
+correct. Okay, so this is how you know you can use the map function. So what we discuss just now
+is only you know the map function and how it works. But now can we get rid of this function name
+not define a no complete no function name here by using lambda expressions and is still be able to
+do the same sort of job. Okay, so can we do that? So let's actually try to know write another
+statement which again, you know, calculates the same, same, you know, no resulting list. But
+you know, without maybe using these function add five and maybe using, you know, just lambda.
+So let me call it with a different name, let's call it result map and this time what I want is
+to use lambda. So that's why I have given I know meaningful name to indicate that this time
+we are not using the add five function that we have defined initially to calculate this kind of
+know things or transformation on a list. So what I want is I mean, let me copy the code from here.
+I mean this exact thing we want to copy from here and maybe paste here. And what we want to do
+is to get rid of this no add five. Okay, so this is our goal. Let's say we don't want to use now
+this add five instead of add five because add five is a function right which can be represented
+using a lambda expression we have seen right in previous cases how to not write a function name
+and it's still be able to compute the you know, effect of a function using this lambda expression.
+So can we get rid of add five here and write some meaningful lambda expression which will have
+same effect. Okay, so so let me now help you with some, you know, hence so how to write a
+no lambda expression which takes as an input x and returns to x plus five that should do the job
+right because that's what we want to do here. Okay, so how to do that so let me so we certainly
+need to bypass the second you know number but here in the first one we can be a little you know
+creative and what we can say is instead of you know passing the function my
+way directly pass you know this expression which is no lambda x colon x plus five.
+Okay, so you see this expression.
+If you try no use this expression instead of you know this name right add five and applying
+on this number. So first let's see I mean whether Python except is as a correct syntax or not.
+So let me run this piece up. So when we you know run so let me also you know comment out this
+code so that you don't see anything else. So now you see I mean this code is you know so this
+is well accepted right so Python accepted the you know previous code modified by this lambda
+expression. So this is a perfectly valid syntax but then what about the you know mini semantics
+LV also check by applying again on the same no same thing whether I'm this thing work. Okay,
+so let me copy and paste no the same thing here.
+So let me copy paste this thing.
+Okay, now in this case so what we're saying the map result may be you know
+with lambda may be lambda. Okay, so what we have applied is in this case lambda and we are not
+outputting result map but result map that I calculated using lambda right. So this is what
+we have calculated it now and we expect again I mean the same thing right. So shall we print it and say
+let us know or run this thing and you can see we get exactly same result right. So when you know
+uncomment let's the previous print also maybe here and then run both now it will be not clear.
+So you see so the map result is 6, 7, 8, 9 and you know map result with lambda is also
+so in a nutshell what we have seen is that you can use this map functions very efficiently
+with lambda expression and without you know using this add 5 because this add 5 was only
+for this temporary purpose maybe. Okay, so if that's the case why to define a new function and give
+it a name not only for this no purpose. So instead of doing that what we do is we don't define it
+if we don't define this thing.
+So let's continue with the lecture.
+Okay so
+So that's what we wanted to discuss here that we can use and very cleverly with
+a map to this kind of thing. Now let me go to another very commonly used, again I mean standard
+library function which is called filter which we again use on a list. So the job of filter is to
+filter out some of the elements of a list based on some condition let's say. We know how to
+write condition like we have seen some expressions, these Boolean expressions, logical expressions we
+can help us write down some to check some conditions. So here in this case again I'm maybe I just
+no copy paste the same number list. Okay and maybe just enlarge it with six, seven, now eight,
+maybe nine and ten, put some more numbers so that we when we filter we get some number at least.
+And let's say in this case I want to filter only the even numbers okay so we want to only filter
+even number and how to do that I mean again a very simple way to do that will be to define a
+you know is even function and use that function or with this filter okay and get the filter done.
+So so let's say I mean first attempt again we give using a name function. So in this case I mean
+if I have to define some function meaningful function which is the same job then I would most
+write the name as is even and then we take the value x and when we return what we return is
+you know x it was a you know modular division I think so we define by two right so modular division
+two gives you zero if it is even right so we return now can you make sense of this expression
+that I'm returning it this is modular division by two and modular division by two will return
+you zero only if the number is even right so the the whole expression that you are you know
+returning here is actually a Boolean expression right so finally you will return either true or
+false okay so if you don't recall I mean please go back to the previous know video and check
+what this expression means I mean this expression finally will evaluate to either true or false
+and it will evaluate to true in the cases where your no modular division gives you
+zero and that will be true only when it is even okay so we already have a you know function which
+takes you know any x and it turns true or false based on whether that x is even or not okay so this
+is a very simple you know implementation of function using a no Boolean which returns a Boolean
+kind of thing and now I can actually use this function to let's say collect maybe all the
+even numbers which is you know present in this you know initial list so what I say is I want to
+apply this filter and what is the filter that I want to apply so my filter is is even function okay
+and what I pass is this no list of numbers so when I do this I collect all the you know even
+number in this one and again just to make sure that I you know finally get a list I write here list
+okay so when I when I apply this again the first argument is the filter function which is
+you know is even which will tell us whether the number is you know no true or false no number
+whether this no check returns true or false and the second one is the whole list of numbers on
+which we want to apply this check okay so finally we get is no set of even numbers okay now
+now let me no copy paste to see whether
+so we have already applied this and what we want is to check whether this thing is correct or
+no the semantics of this should let me a print or even numbers and no which are you know in this
+even happy
+now can you see I mean when we run this code we get to 468 and 10 and all of them are even number okay
+now what what about now applying the same thing with you know lambda so let's know
+attempt to do this without defining a new or you know function is even but instead you know
+I want to use now lambda expression to do the same the option what I am intending to do is that
+I am trying to implement this filter with lambda so what shall be the code so can we write down
+the code for just opposite maybe maybe you know let's just calculate odd now instead of
+even if I have to calculate now or I mean this return all the odd numbers so how to
+know return it so maybe you know write this no odds here all the odds want to return
+and what about know the filter let's say apply filter and we will write something you know
+here right in the beginning we will write something and then finally we will apply you know
+this check function to and you have be a number okay so this is what we want so we have to
+fill this gap I mean what shall we write here so this should be a check now which we should
+be able to check whether given number x is odd or not so what shall we return if a number is odd
+so moderate division should return of 1 right instead of a 0 if it has to be odd can we write
+you know lambda expression for that so so if we write lambda let's say x is my input and then
+what I want to return is whether x modular division you know 2 is equal to is equal to 1
+remember I mean here I mean in case of even we wanted this to be 0 right but here in case of
+odd number I want it to be 1 okay so I return now this thing and just again to make sure that I
+get a list I just know or app it in this list thing and what if I you know run this so even numbers
+is you know we got printed from the previous one but if you know print again you know these odd
+numbers let's say whatever we have collected in this now odds if we again print it here let's say
+let me write down this now if you print all the odd numbers which is not collected in odds what do
+we get here you see we got the same you know we know 1 1 3 5 7 9 these numbers which are actually
+odd number so everything is no working as intended so we we have seen how to use a map and filter
+together with these lambda expressions and they're very you know convenient to use whenever you
+have something like this now I will conclude today's lecture with a slightly you know maybe you know
+complicated you know lambda expression but it's good to think about it because this will make
+the semantics of this lambda expression far more clear for you on the other hand if you don't
+follow this please no don't get demotivated we'll come back to it when we discuss again functions
+so what we are going to discuss now is no something what we call a function factory okay so now what
+I want to do is I want to define a function which will return functions okay so this is in
+different than what we have been doing till now so I want to define a function which you know
+returns different functions based on what we want let's say I want to create you know many
+functions which you know jobs are to multiply a given number with some number so let's say I
+want to create a function with a name double which I whenever given a number creates develop that
+but no I also want to you know create a number which let's say no triples number so so let's say
+name that number as triple so that number give whenever given as an argument creates no triple
+of that similarly I may want to create no one function for each of these kind of no thing I mean
+this may look very artificial to you but no I for example to be very simple let's say keep our
+function also to be very simple so I want to maybe you know create you know this you know
+multiplier functions maybe and I want to do it using a function itself so okay so I want to
+maybe write a function whose name I may want to give create multiplier and I have to give no by
+what factor you know this you know new function that I return should multiply a given number so
+that should be the factor one argument to this multiplier function and the final output that
+this multiplier function gives is a function itself okay which will return the you know function
+which is you know it useful for me to you know multiply a given number using that factor so so
+let me I mean write down you know in a very you know if you know first attempt of writing such a
+function so what we want to do is we want to maybe you know define a create multiplier
+multiplier function which takes a factor as an you know input okay and the whole job of this
+no function is to define a function okay so inside this function what we do what we want to
+actually do is we define another function which we are calling let's say let's say multiply here
+okay and multiply x okay so what the multiplier x does is it just returns
+it just returns x multiplied by this factor okay and what my you know original function returns
+is just this multiplier okay so what is multiplier so where did we you know so how can we return
+something like this because that thing has been already defined inside my function okay so what
+this create multiplier takes from you know outside is this factor and once it knows the factor it
+actually returns a whole function and the you remember you see this factor is used inside the
+definition of this multiplier function so just go through it slowly I mean if possible if you
+you know feel essential stop the video and think about what's actually going on here what is the
+input of this create multiplier function which is a factor and what is the output of this no function
+which is again a function itself okay now I want just to make more sense I mean I want let me
+I mean give you some concrete example let's say if I want to create a no function which let's
+say double you know whatever you give then what I will say I will say create instead of you know
+defining it a fresh here I can also define it you know in a completely fresh way right using
+expressions or whatever you want but I want to use let's say this create multiplier
+flyer okay and what's a live pass to the create multiplier
+two right so when I pass it to two it will create a you know multiplier you know function
+which will multiply by two and it will give it a name or double so double now becomes my function
+which will you know double whatever number I give to wait okay so for example I mean let me
+immediately maybe use this double to apply it to some maybe number and then
+so let me
+so maybe print you know double and apply double this number on 5 so what do you get what do you
+expect here so there is some error so double is not defined okay so there is no mismatch in
+the way I have defined double so okay now if so the double of 5 is 10 okay so can I also define
+your triple I mean in same way this is triple now as we discussed in the very beginning that
+this number should be able to so let me you know copy paste this one
+and then say that now I want to do different triple and what if I you know want to print what
+is the effect of my triple let's copy and paste it here instead of you know double
+now I want to print the triple and using this triple function okay
+triple function so what do you expect here see I mean we are getting exactly if we wanted right
+so we can create double triple and these kind of things and you can create no you know 10 times
+hour you know if you want to let's say define a function which is you know multiply it with 10
+times you can also say create multiplier and pass 10 like I mean let me create it and not use it
+maybe you want to multiply now with 10 so take you may so this time stand once there is nothing
+but let's say create multiply and then you pass it 10 you can also again check you know using
+the same method whether you know you can so again there is some error
+maybe you know some spelling mistake so I just copy it and paste here here okay so this is how
+you can create this no function but again if I ask you can you do it without defining this
+inside it okay so what we did here was now we we outputted no this multiplier function but before
+outputting this multiplier function we created this you know multiplier function inside the main
+function that you know was creating all this no function okay so can you get rid of you know this
+what I have highlighted here you know so let me you know copy this whole you know code and what I'm
+trying to ask you is copy and paste it here now what I'm trying to say is I mean can we do
+by not having this you know defined explicitly here okay so this is what you know we want to
+see and you should be able to guess you know what what what shall I do I mean if I don't want to
+define the function inside this you know main function no the whole no purpose of defining
+this multiplier here no is to use it here right in the return can I not define it here and still
+you know use something similar here in when I'm returning okay so so what I'm saying is I let's
+say if I comment these two lines of code and I still want to get the effect of multiplier here
+what shall I do I mean you should be able to guess at this point that we can use lambda expressions
+you know effectively to get rid of this definition inside the function okay so what about I mean if I
+right so what was it no job of this lambda function that you the function multiplier that you
+have defined inside x just to you know multiply that x you know with a factor right so instead of
+that we can also say this right that you take x as an input and then you return x multiplied by
+factor which you already know right because factor has been passed to you so if we use this
+expression you can see this expression has the same effect as this you know function okay
+so instead of you know returning that you can directly maybe you know return this thing okay
+and if I now try to run things and see whether I get the same result you see you get the same
+result it's a valid you know definition accepted by python and also the results are as intended okay
+so this is a perfectly you know correct way to do this so we could get rid of one definition of
+function inside this one now a third you know even more you know clever way to do you know
+something similar you know can be you know different I mean so what we are asking now in the
+third attempt is to can we you know instead of defining this function in this way can we define
+it using no lambda expressions so this is what I'm not asking you here so what what we are saying is
+no can we comment out all this code and then create multiplier using lambda expression because
+remember what we have written here is also a function right this itself is a function which takes
+you know some input what is the input that it takes factor and it turns to this function so can
+you know instead of writing this whole thing I mean this definition in this definition of
+function in this form can we convert this also as a lambda expression okay so this may look a
+little bit tricky to you at this moment but try to think about it I mean since it's a function
+we can always create a no nameless lambda expression out of this function okay so what I'm trying to
+say here is I mean is this a valid thing to do let me write it down so create maybe
+create multiplier okay so you see I mean you know I instead of defining this create multiplier
+function in this format which is normal no syntax for defining any function what I'm saying is
+can I define this create multiplier as a variable and then assign it some lambda expression which
+will have the same effect as if no we have defined the function so so what shall be the lambda
+expression then okay so the argument is no factor okay and so so this is no you see I mean
+the the argument was factor and what was the return type so what was the return value you see
+return value was a lambda expression itself okay so after colon or maybe you know we can copy
+from here exact thing right so what we want to return and for safety you use a parenthesis and
+then you know pass this do you see this is no valid one-line you know statement which again
+defines the same create multiplier function which will it should have the same meaning it from
+our discussion till now it's easy to see why no this is true okay so let me run this and see
+whether compiler accepts it without an error so certainly I mean it no accepts it without an
+error but what about again now if I want to not define like I mean if I want to just copy and
+paste this three line of code here just to check whether the semantics is also as intended
+because syntax wise it's perfect but what about semantics do we get the same semantics so let me
+run this piece of what again I know with this and you see the same meaning right so lambda expression
+can be very helpful in concisely representing function expressions and especially when you're
+using it no for maybe only one time and you know in cases where the function definition is not
+that complicated that you want to maybe write comment for describing it and especially if it is not
+reusable maybe you want to use it only for one time in that case also I mean you can simply use
+this lambda expression and avoid defining any new function so just to you know summarize the
+whole idea we want to know answer this question I mean through this lecture we try to answer this
+question that when would you use lambda expression okay so using lambda you know expression is you know
+perfect you know in the cases you know where for example you want to do calculation very
+no quickly okay so the very you know first thing is that if I want to do some no quick calculations maybe
+since then I have to know pray for this in our lambda expression also the kind of transformation
+which I want to capture with this lambda expression should be simple I mean it you should not
+know use lambda expression for very very complex transformation in that those cases it's better to
+define your function explicitly because that will no be more direct way of you know saying what
+you want to do rather than you know defining this complicated lambda expression so another thing
+that we would certainly want is that the transformation that we are trying to you know express using
+this lambda expression should be simple okay so we shall always write lambda expression for simple
+transformation you know another thing I mean that is you know important in that we discuss that you
+know if you know transformation that you are talking about right now is not reusable at multiple
+places it's only you know mean for one time maybe operation in that case again you can prefer
+using lambda expression over function so the third core criteria that you know that will help me
+to use lambda expression is one-time operation if no the operation that you want to perform or
+not define is a one-time operation then you better use it when to you know you use regular
+function so I mean when your logic is very complex let's say it's not very easy to define it in
+no one although I mean you can always define it in no terms of lambda expression but the expression
+may be very complex to make sense of so when your logic is complex you should most mostly know go
+to the regular function okay and define it using the syntax of the regular function so the very
+you know first you know kind of thing where I get a hint of you know going to regular function is
+no complex logic if the logic is complex better you know stick to regular function then I mean again
+I mean as we discussed previously I mean if the code has to already the function has to be used
+and reuse at multiple places in multiple files you know and then you must actually define it
+explicitly and give it a name because then that you can use that name multiple times in
+no different places okay so the next important thing to note is that you know our
+so you should write function when the code that you want to you know reuse multiple times okay
+so the code that you will reuse many times you better write functions for that and of course
+I mean code is you know reusable and logic is complex and when you want a clear documentation for
+that you certainly should use that okay so believe I mean let's you know suppose that your code is
+to be used by some other third party you know then you need to give the documentation of the code
+also very clearly and you cannot provide documentation inside a lambda expression okay so for that you
+need to write a proper function and also put enough documentation so that someone who is using your
+code should not be forced to look inside the implementation of the code rather than it can just
+look at the description of the code and use that code okay so if the code is meant for third party
+and if you want to document the code clearly then also you should define your you know functions
+using proper you know function definition so this is a moment you need clear documentation
+so these are some of the places where I can you know advise you to use lambda expressions
+and functions you know judicially based upon what's the current scenario okay so with this we
+would like to you know conclude this lecture I will see you in the next video thank you

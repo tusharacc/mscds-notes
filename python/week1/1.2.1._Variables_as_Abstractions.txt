@@ -1,0 +1,467 @@
+Hello and welcome back to the Python Core and Applied Concept.
+We are going to start Model 2 today and the main content of Model 2 will be the basic
+building blocks of Python programming language which are now variable data types expression.
+So let us now begin the discussion by moving to the slides.
+So this is our slide, title slide which says that now we are going to discuss today the
+building blocks, variables, data types and expressions in Python.
+So before we start the discussion of the basic building blocks of Python, let me quickly
+recap what we discussed so far.
+So we have already discussed the difference between syntax and semantics for programming
+language in detail in the last module.
+We understood that for defining programming language, you need to clearly define what
+all you can write in that programming language or what can be accepted as a valid program
+in the programming language.
+And these things are described using the syntax of programming language, sometimes we
+call syntax is what describe this notion of what is a valid or what is an invalid structurally
+valid or invalid program in a programming language.
+And the meaning of those structurally valid program is what we refer to as normally semantics.
+So the only way to describe semantics or the most common way in which the programming
+language designers would want to describe the semantics of a programming language is in
+English, right?
+And we describe the meaning of a program by describing what will be the effect of executing
+that program on the state of machine that is running that program, okay?
+And if you recall, we also discussed the complexity involved in this process of describing
+the meaning or semantics of a programming language because if you want to know the true
+or semantics, then you have to describe the effect of execution of that program on the
+exact machine, which we also refer to as concrete machine, right?
+This is very complex.
+And you know, if you want to reason at that level, it becomes very difficult to write and
+reason any, let's say, you know, non-trivial and useful program.
+So that's why we move to the concept of high level programming languages, right?
+I mean, we say that high level programming languages help us abstract out these concrete
+machine details by assuming some abstract machine where, you know, the number of details
+are not so high.
+I mean, you don't every time need to think in terms of what's changing inside the machine
+rather than that.
+You can think in terms of, you know, abstract concepts like what we are going to discuss
+today, variables and expressions and how these, you know, abstract concepts of, you know,
+variable and expression can help us figure out, you know, the change of the state of our
+abstract machine that we want to know work with.
+So underlying every high level programming language, there is an abstract machine which
+is far more simpler than our concrete machine, which we will actually run the program.
+But I mean, reasoning on top of the abstract machine is sufficient for, you know, ensuring
+that your program behaves exactly the same way as you want when it's, you know, executed
+even on the non-trivial machine or concrete machine, okay?
+So the programming language, a compiler and interpreted take care of all these, you know,
+abstraction.
+I mean, we don't need to, you know, we don't need to actually care about how these things
+are getting executed inside the machine, but if you can, you know, reason about these
+things at the subtracting machine level, then it should be enough, okay?
+And we also, if you remember, emphasize, you know, the evolving role of a programmer,
+you know, from, you know, being a code created to a code validator, now as moving forward
+since we are using, you know, LLM and other kind of agents, very, you know, aggressively
+in code development, you know, for good reasons.
+So we need to somehow ensure, you know, we are, you know, almost never writing our code
+from the various scratch.
+So no, there is no pressing need to ensure that whatever code we get generated using these
+LLM or any agent, we have a better understanding of that code.
+No, in the sense that we, we can be sure that the code actually does what we intended it
+to do, right?
+Because the only, you know, assurance that we have right now is that we gave a natural
+language prompt with somehow described our intent of computation.
+And these LLMs may have produced, you know, the correct or a line code which achieves
+those intences, but there is no guarantee, most of the time, these LLM has its needs.
+And they know they create, you know, any agent can create, you know, wrong result.
+So we should be able to understand or at least validate once we get the code, whether
+the code is doing exactly the same thing that we wanted it to do, okay?
+So that, that's one of the reason why we have designed this course, not keeping in mind
+that we will focus most of the time on semantics and try to understand the meaning of the
+program, you know, better so that we are in a position whenever we get the code, we can,
+you know, assure ourselves that the code is actually aligned with our implementation, okay?
+So with this, you know, I think we can go ahead with our discussion of today's topic,
+which is mostly about the very basic building blocks in Python, which are, you know, like
+the concepts of what is variable, what is expression, you know, and what is the meaning
+of, you know, these variables and expression and some simple statement in Python programming
+language.
+So this is roughly our plan, we will start with variable and identifier, then we will
+see that there is something, you know, called keywords, which is available in most of the
+programming languages, we then move to some of the, you know, typing, you know, feature
+or, you know, typing facility that is available in site, Python programming languages,
+like language, like, you know, typing, strong typing and, you know, static typing.
+So let's start with the discussion, you know, on variables, okay?
+So now remember, I mean, in any, you know, imperative programming language, which is mostly
+derived from the Turing machine concept and Turing machine and nothing but, you know,
+machine with some control unit with, you know, infinite memory type, right?
+So all of these imperative programming paradigm, primarily, you know, rely on, you know,
+giving computer a sequence of commands, which can change its state.
+Now, when we say change it, state means change, it's no state of the memory, okay?
+And in fact, this is not only a way in which we can get any, you know, meaningful computation
+done by these imperative programming languages.
+So underlying in theory is that, you know, we try to design or we try to, you know, come
+up with a sequence of instruction, which can do appropriate changes in the state of memory.
+And if we are able to observe these changes, so observing these changes is nothing but, you
+know, what we call as computation, okay?
+So, you know, by ensuring that the machine changes its state in a particular way.
+And by observing this, you know, change of state of the machine, we can observe the,
+you know, output of the computation that we want to, you know, perform, okay?
+Because I mean, most of the time we are making in the process of how we compute something
+using pen and paper, right? So when you write some, when you take a task of computing,
+let's say some function using pen and paper, what you start always is with some input, right?
+You, you start with the input and then in between you compute lots of intermediate results
+and final results is what you know, want to maybe compute.
+So you store all these intermediate results, you know, by writing them on pen and paper.
+So the idea in any imperative programming language is that,
+you know, instead of this pen and paper, now can we use the memory of these machines to,
+you know, or, you know, do the same kind of navigation inside this machine, right?
+Rather than writing on pen and paper, can we start with some, you know, variable,
+which will have these initial values, you know, which are input to our function?
+And then we calculate all these intermediate values, which are necessary for, let's say,
+calculating the complex function that we finally want to compute.
+And can we keep temporarily stored them in some other valuable or, you know,
+intermediate valuable and finally come to the conclusion where program returns us,
+the final complex value, okay?
+So this is the idea of an imperative programming language that we,
+and, you know, all that we can do is, you know, design these sequence of instructions in
+appropriate way so that they do these, you know, changes of state of machine,
+so that the final result reflects the computation that we want to achieve, okay?
+Now, the reality is that to do all these, I mean, you have to use all the,
+if you want to be, you know, purest, you have to talk in terms of the language of hardware, okay?
+Because data is stored in memory locations, you know, each of which has some numeric,
+you know, address, you know, which may, you know, look something like,
+something like this, right?
+So these are, you know, addresses of memory, you know, and CPU operates on data in the
+registers. So if you really want to communicate with this machine directly, let's say,
+you have to talk in terms of these kind of, you know, addresses and then, you know,
+interact with CPU instructions, which are, which CPU can understand, okay?
+But all of this becomes very, you know, challenging and that's why we need, you know,
+this idea of variable, okay? So variable, you know, takes us from memory address to meaningful names,
+okay? So we somehow want ourself to be free from, you know, manipulating, you know,
+addresses and direct CPU instruction and work at a high level. So variable, you know, in that
+sense, you know, provides us this, you know, fast level of, or layer of abstraction, where,
+what we want to say is that I don't want to care where this variable is getting stored in
+site memory, but I would like to call it by some name, which is, that's a convenient for, you know,
+some meaningful name, which I can remember throughout the development of this program.
+So that's how I mean these variables are very important in any programming languages.
+So you can assume, or you can, you know, see variable at the first layer of abstraction,
+which makes our life very easy, you know, instead of, you know, referring to this exact memory
+location, we would refer to the same location using these variable names, which are far more,
+you know, easy for us to remember and work with. So, we need an abstraction, you know,
+this is our problem and the solution is, we can get this communication done very effectively,
+if we have variable names, which are, you know, meaningful in nature, so that, you know,
+we can recall what is the purpose of each variable. And then, in the process of computation,
+we would like to come up with a program statement, which can appropriately change the value of this,
+you know, variables to reflect what we want to finally can create. Okay, so what is a variable then?
+A variable is a, you know, named alias or labeled for a memory location, okay? So you can,
+you know, assume for all, you know, practically, in that variable, like sticky notes, okay,
+with a name, okay, you can write, you know, name on that and stick into boxes and boxes and
+nothing, but, you know, these memory locations that contain values. So, although, finally,
+the values are being, you know, stored in memory location, you are referring to those,
+you know, values by using these variable names, okay? So this allows us to think in terms of
+problem domain and not the hardware domain, okay? Because if we are freed from the complexities of,
+with this hardware domain, then we can focus more on the problem and how to solve that problem,
+the solution, that problem. So that's why, you know, these variables, you know, provide a very,
+you know, first layer of abstraction, which is not always essentially in any high-level programming
+language. Okay, so now, you know, it's time to move into the Jupyter Notebook and we will try to
+explore this, you know, by doing some hands-on exploration around variable. We will, you know,
+try to explore how to define this or, I mean, how, what is the syntax or the semantics of this
+variable? Okay, so whenever we come across any new concept in the programming language, we will also
+always want to try to ask the question. I mean, if I want to define this concept of variable
+properly, I need to define two things. First one is, you know, syntax. How can I write variables
+properly? Let's say instruction involving variables properly inside the programming language.
+And the next question should be, so what is the meaning of a variable? You know, so meaning of a
+variable can only be understood in, you know, in the context of how a variable, how changing a variable
+can change this state of, you know, machine. So that's what is the semantics of a variable.
+So, so let me now move on to Jupyter Notebook, which we will be using as a default ID for this course
+and try to explain, you know, some of this feature, you know, inside the Jupyter Notebook.
+So, let us try to go to that screen first and see whether everything works fine. So,
+okay, so this is our Jupyter Notebook. I hope, yeah, so this is visible now. So, we can see,
+this is Jupyter Notebook. So, since this is, you know, first time we are coming to Jupyter Notebook.
+So, this as I, you know, discuss in the very first, you know, module, this is one of the popular
+IDE that many people use and this is one of my favorite because, you know, you can see there,
+inside Jupyter Notebook, you can write code blocks. So, these are, you know, called code blocks.
+I mean, you can see when I click on, you know, let me click on this, when I, you know, click on
+this particular code block, this, this, this, this was as code, right? So, so there are two types of,
+you know, blocks normally which people use very frequently inside this Jupyter Notebook,
+one is called code block and another one is model. So, for example, you know, this second block,
+when I click, you see, I mean, here it changes to model down, you know, instead of code block,
+now it says a small dot. So, this is now for writing comments or any descriptions. So,
+for example, when I was preparing this tutorial, I use both of these features to,
+nicely, you know, describe what we are discussing at a particular point of time inside the Jupyter
+Notebook. So, this is a very handy, you know, IDE. If you want to both develop your code and also
+describe it properly, maybe, you know, this is one of the best, you know, interface available.
+So, please feel free to explore other ideas, but for this course, we will be working precisely
+with, you know, these Jupyter Notebooks. So, you can see, I can run these code blocks.
+Okay. So, shortcut is you, you know, if you are on a Mac, you can simultaneously,
+you know, press shift return to just run this thing. Okay. And this cell runs. When you come to the
+second, you know, you know, thing, this is no markdown. If you double click on this, you see,
+you see the markdown, no, no, notations here. Okay. So, when we run it, we get things in
+proper format, okay. So, so let's start with the variable first, okay. So, with the discussion
+of variable, so what do we want to discuss here? So, we want to, you know, define the syntax first,
+right? This is what we talk right now. To define a variable, you know, we first want to define
+the syntax of a variable. So, syntax means, I mean, a rule which tells us how to write down or
+declare a variable properly. Okay. So, to define a, so I, as we, you know, discuss variables are
+nothing but, you know, labels or aliases that we, you know, give us name to these memory locations,
+which are, you know, which may be either register or, you know, main memory. So, how to give them,
+can we give write anything as name or there is some restriction on giving, you know, meaningful name?
+Okay. So, so there are some restrictions. You can read the detail again in the reference manual,
+but just to, you know, summarize, no, your variable name can start with letter or underscore,
+and then follow with letters, you know, digit or underscore. Okay. So, so you, you see one thing that,
+the digit cannot, you know, appear in the very beginning, you know, of the, any variable name.
+Okay. So, this is no one restriction that Python developer have, you know, kept while defining variable
+names, you should follow this. And it's case sensitive, you know, if you write something in
+lower case and some other variable name in upper case, they will be considered as different,
+not the same. So, can, so let me write down, you know, some of, you know, let's say, you know,
+some, you know, valid variable name on some, maybe invalid variable name to, you know,
+see it in no accent, whether, you know, Python accept it. So, so this is the cell, which can accept
+some code. So, let me, you know, declare some variable name, like, you know, we can talk about
+this course itself, you know, so what is the, you know, so I can use both, you know, letter and
+underscore, right? So, for example, you know, our course, you know, name for our course is
+Python, core and applied concepts, right? So, what, what I have to just now done is that,
+I declared a variable, can you see my cursor? Yeah, I, I, you know, declared a variable, which is,
+you know, course name, okay? And this is valid, where, you know, variable name, why? Because it
+follows the syntax, okay? Because it, you know, it has, you know, lower or upper case letters,
+you know, followed by some, you know, underscore, and then again, sequence of letters. And so,
+you know, this is, and then I assigned a string to this, you know, a variable called course name,
+okay? So, so this is, you know, what, so if you run this, I mean, you can see whether Python
+accept it or not. So, it, so see, when I, you know, run this block, Python accepts, you know,
+this variable name as a valid variable name, and this assignment also has a valid assignment. So,
+there is no error that, you know, comes in, okay? Similarly, I mean, we can, you know, define,
+so this was one variable which stored string, okay? So, can we define another variable,
+which, kind of stored Boolean values? Like, you know, if I want to know the status of let's say,
+the course, whether this course has started or not, okay? So, we know that the course has started,
+right? So, that's why I'm here putting the value true. The true and false are two possible Boolean
+values inside Python, which you can use, you know, in different ways. We will see when we come
+to, you know, conditional how these Boolean, you know, data types becomes very useful in deciding
+which branch to take, you know, inside your program. So, what, for the time being, I mean,
+let's assume that I'm only using this Boolean to, let's say, you know, keep track of the status of
+my course, you know, I want to know whether the course has started or not. Since its course has started,
+we put it value, you know, true and try to run it. No, that doesn't mean compiler gives an area,
+no, I mean, when we run it, you can see, I mean, it runs perfectly, all right, okay? Now, what about
+some other, not type of, so let's say, if I want to talk about a number of students in this course,
+which may be no more than 100, but let's say, say that the number number of students is equal to,
+maybe, let's say, put a number here 100. This is another variable, which is trying to store
+not data of type integer, right? So, if we try to run this, what do you guess? I mean, will Python accept
+this? Okay, so let's try to, and it can see what's the answer. So, if we run it, can you see,
+there is a error, right? Okay, so number of students, so syntax error, I cannot assign expression here,
+maybe you mean equal to equal to instead of this. So, the problem here, no, so I mean, so this is a
+syntax error, and the main reason is that, you know, while forming the name, okay, so while forming the
+name of this variable, I have violated the, you know, rule of syntax, which is that you can either
+use a no letter or underscore, but I have to do this hyphen, okay? So, this is the main reason,
+and if we, you know, get rid of this, let's say, instead of this, if I write number of students,
+if you get rid of that, and if we try to put underscore here, and if we run, you see, there is no
+error, right? So, I mean, if one has to be, you know, careful, I mean, you cannot define
+these variables in any way, okay? So, you can only use those things, which are allowed by the syntax
+of the programming language, but fortunately, since these syntax are very formal, you know,
+compiler can take care of, you know, these violations and can alert you, you know, at the compile
+time itself, so you don't, you know, carry forward this kind of errors. So, what can we, you know,
+another, you know, invalid name, I mean, if you, so if we want to see, what is the, so is the course
+in its second term, or it's in first term, right now. So, the course, but we are doing right now,
+is certainly, you know, in the first term, so I would like to say that no, second term status is,
+you know, not true now, let's say it's false. So, it's false is another, no kind of, so,
+the Boolean data type, which we want to store. So, what do you think, I mean, really,
+except this one or the compiler will throw some error message.
+Okay, so let's run and try to see what compiler does. So, when we run this, again, I mean, there is
+a, you know, syntax error. And where, what is wrong here? The, the place, which is complaining in
+this place, okay, so do you see the problem? I mean, we started this variable name with
+a digit, right? And a digit was not allowed in the very beginning, okay? So, this is also not,
+you know, accepted syntax for a variable name, okay? So, we should get rid of, you know,
+this kind of wrong variable name because they are not allowed by the syntax. So, this is also
+invalid, okay? So, so, so, no, so, no, let's comment it. So, the reason why this is not valid,
+this is because number can't appear in the beginning, okay? So, what was the reason for the
+earlier one when we had hyphen here? Because, you know, hypens are not allowed at all.
+So, so, what about, I mean, if, if you write, you know, something like this. So, how many classes
+are let's say there? So, so, is there a, you know, one class or two class in this particular,
+let's say, offering of the course? So, if I want to say there is only one class, you know,
+number of classes, if I want to represent this class. And, you know, I want to say that,
+you know, there is only one class. So, I want a variable to store this, you know, number of classes.
+So, in this case, let's say we have only one class going on right now. So, if you write one,
+do you think this is a, you know, valid variable declaration and assignment inside Python?
+And there's no particular case. I mean, I haven't violated any, right? I mean, we have only
+used lowercase letters. So, it should be an acceptable, you know, variable name, my Python,
+and it should, you know, accept this value one, right? So, but let us run and see what Python
+says about this. Okay? So, so it says it's an invalid syntax. Okay? So, you cannot assign this
+so value one to a class. So, so the reason here is not, you know, because we are violating the,
+you know, syntax for variable name is because this class, no, identifier is reserved as a keyword.
+Okay? So, Python, although it allows you a lot of freedom in defining the variable name,
+according to, you know, the way you want, you know, which reflects maybe the meaning of,
+or the intention of that variable in your program. But there are some identifiers or some names,
+which Python results for its own use. Okay? So, because I mean, compiler need these, you know,
+keywords for certain purposes. Okay? So, these keywords have some no reserved meaning. So,
+that's why you have in Python results then. Okay? So, this class is one such keyword, which is
+not available to you or any programmer to declare it as a, you know, normal variable and assigns
+some value. Okay? So, these, this is, you know, reserved as keywords. And that's why Python,
+you know, did not allow you to describe or define a variable with this particular keyword.
+So, so now, I mean, this, you know, brings us naturally to our, you know, next topic, which is,
+you know, keywords. So, what is keywords? So, keywords are actually reserved in Python. So,
+for example, I mean, if you, you know, one, so, want to define different types of, you know,
+sentences in our statement in your programming language, then you would need these keywords.
+I mean, these keywords help you combine things properly to make a proper statement, which can be
+executed inside Python. So, we need a lot of no such reserved keywords. So, that's why Python has
+reserved some of these. And it says that you cannot be, you cannot use these keywords inside your
+program as a variable. So, what are some keywords? Like, if while deaf, class, lambda, and true
+faults. Okay? So, these, these have predefined semantics in the abstract machine. Like, if I say,
+let's say, deaf, you know, I somehow hint the compiler of Python that I'm going to define a function.
+Okay? Similarly, if I, you know, use this class keyword, I, you know, give a hint to the compiler
+that I'm going to define a class inside and class as a particular meaning and already existing
+in programming languages. So, we want compiler to know something using these, you know, keywords.
+If you are, whether we are defining a function or we are defining a loop or, you know, we are
+defining a, you know, if else conditional. So, for all of this, we need these, you know,
+predefined semantics for, you know, these keywords. And that's why I mean, they're not available
+for use inside a program as a variable name. Okay? So, you cannot use them as variable name.
+So, you know, coming next, so what are some keywords in? So, these are, of course, some of the
+keywords, but can we, you know, print all possible, you know, keywords inside Python? So, to do,
+to do that. So, let me write a few line of code to show you some of the, you know,
+available keywords. So, like, but before doing that, we have to, you know, import this, you know,
+keyword, module inside Python, which will help us, you know, print all the keywords. So,
+this is how we import some module, like, I mean, this is one of one file that we have started,
+right? So, I have already imported it here. So, I may not need to import it there, but I mean,
+since this is one file, so there are multiple, you know, models inside Python,
+available, which you can use. So, there are many, you know, many functions, you know,
+signature and, you know, implementation available in the Python standard library. And if you want to
+use or utilize some of them, you know, without, again, you know, defining them, then you can just
+import those modules. So, this is how we import a module inside Python. We say, you know, import
+the module keyword, which we may have many other things, but I'm, you know, importing it for,
+you know, particular purpose here. So, this is the way we work inside Python. We import something,
+which is already existing. And then, no, maybe, we can go and use it. So, what, in this case, I,
+want to, you know, print some of the, let's say keywords. So, from the, you know, keyword
+model, I'm trying to, you know, print this keyword list, okay? So, that's why this, you know,
+keyword list. And maybe, you know, I want to just say, let's say, not 10 keywords. So, so,
+don't worry about it. You know, this exact syntax, if you don't understand it now, because these,
+these, you know, colon and, you know, these square brackets, you know, represents lists. So,
+we will, you know, talk about it when we go to list. But for now, I mean, what I'm trying to say,
+is I'm just trying to print some of the, you know, available keywords inside Python, okay? So,
+maybe just 10 or, or let's say, you know, 20 keywords, you know, if it is available inside Python,
+let's, you know, print it. There may be more, okay? But let's say, you know, show me, and this is
+just to show, let's say, the first 20, okay? So, what we're doing is we are trying to, you know,
+ask, you know, Python to show us, maybe the first 20 keywords.
+So, when we, you know, execute it, let's see, you know, what are the possible to see? So,
+these are the, you know, first 20 keywords that is now available inside Python, like false,
+none, true, and as assert, okay? So, some of them, I mean, there are more, you can, you know,
+print maybe, you know, 30, the first 30 keywords, and then you see what happens. I mean, when we
+print first 30, Python actually prints first 30. So, you know, in total, I remember Python has
+35, you know, keywords. So, I mean, if you print 35, it will, you know, print 35, what, if I print 36,
+necessarily prints, you know, 35 because, no, it has only 35, so it will print, you know, 35 keywords.
+Okay, so, so this is all about keywords. So, keyword has predefined semantics in the abstract
+machine that Python assumes, and it cannot be used as a variable name. So, these are the two things
+that we need to somehow keep in mind when working with Python. Okay, so now, let's move to the next
+topic, which is the basic, you know, act of assignment. So, so we have already seen an assignment,
+right? We have seen multiple assignments that we have declared variable, and we have also,
+we have not only declared variable, but also assigned some values to these variables, like,
+like this one assigned a string value to course name, and this one assigned, you know,
+this Boolean value to this variable, this, you know, started, and then we have number of students,
+and 100, which is an integer, which has been assigned to, you know, these variables. So,
+we have already seen some assignment. Okay, so, let me, you know, come here and show you some,
+you know, more examples of, you know, basic assignment. So, when, when we assign something like
+this, okay, so let's say, let me, you know, say, let's say, if I assign to this x or value 10,
+so what are we doing? Okay, so we are essentially creating a label, okay, x, and pointing it to the
+integer object 10, okay. So, in Python, you know, everything is, you know, object. So, this 10
+is an integer object, you know, object of, you know, type integer, and so what, this statement does,
+is it assigns a label, you know, x to this, you know, level x, pointing to this integer object 10,
+okay. So, when you print, you know, let's say, when, whenever we print, let's say, this x,
+what do we get? So, let us print this x and see what, what do we get? We get the value 10,
+right? Now, it turns out that, you know, we can assign or we can create multiple level for the same
+object, okay. For instance, I mean, in this case, you see, I mean, we have assigned x as a label
+to this 10, but we can also say in the, you know, immediately next statement that we want to assign
+another level, let's say, y to the same, you know, object that x was pointing to, okay.
+If we write this, what we are saying is, now, y will also point to 10. This is what we mean,
+I mean, we can create multiple levels for the same object, okay. So, to, again, check, I mean,
+if you want to print, no, let's say, print, and this is how we print inside Python, we write
+this print command, and then, let's say, value of, so what we are trying to print here is value of,
+let's say, y, and then we have to pass this variable y and see what is the final outcome, okay.
+So, original value, so this print, so when I run this, this print gets executed, so you get a
+10 value here, and for the y, you know, we are printing again the value of y, which is here,
+again, 10, okay. So, this is very, you know, interesting to see that, you know, we have assigned two
+different levels to the same object, you know, of integer type, you know, 10. Now, what about,
+so we know that these variables provide assigned abstraction, okay, but can we, you know, inspect
+the abstraction, you know, and get to know, using, you know, these variables name that, what
+objects these variables name are referring to, okay. So, these objects are certainly, you know,
+some, you know, concrete data types, I mean, to which these variables are referring to,
+but is there a way to, you know, figure out or inspect this abstraction? So, the ID function,
+you can use us, the built-in ID function to get the unique identity of these objects,
+which is essentially, you know, stored in memory addresses, you know, in the current running process.
+So, ID can tell us about, you know, if you use ID on this variable, this ID function,
+then we can actually figure out these unique IDs for these objects that these variables point to.
+Now, this can be used to prove that two variables are referencing to the same object,
+but you cannot use this ID to look up or manipulate data directly, okay. So, these are not exactly,
+like, you know, pointers. So, many people who are coming from C, C++, background,
+who are familiar with pointer, they may get a little confused and may, you know,
+assume that, you know, these, you know, object references are nothing but pointer, but they're
+not pointer. Actually, there is a subtle difference, which we'll, you know, say in some time.
+But, you know, let's try to first, you know, see whether we can use this ID function to figure out
+what is the, you know, ID of, let's say, X and Y that we have. Right now, we know that X and Y
+point to the same variable, but can we confirm it? So, if we, let's say, print, let's say, first,
+what I want to do is I want to print the ID of the object X, okay. So, ID of the object X,
+we want to print. So, what we are writing here is ID of X, okay. And then, let's print a copy
+this. And again, try to print the ID of object Y. And see whether we get same ID or different
+IDs here. So, what do you see? I mean, if we print both of these, you know, statement,
+then this is what we get, right? So, we get ID of object X as this one and ID of object Y as this
+one. So, both, no, the object, both objects are same ID. It means, I mean, these X and Y are
+referring to the same object, no, wherever it lies in the memories, it's actually referring to
+the same object, okay. So, similarly, we can also use a function, another function called type
+function to tell us the semantic type of the object, okay. So, this ID, you know, help us,
+so since variables are abstraction, right? I mean, just by looking at the variable name, you cannot
+say which object it is referring to or what is the type of the object that it is referring to.
+Okay. So, for getting those, you know, details, we are using these ID and type functions.
+The type function can tell you what is the type of data that is, you know, stored in this particular
+variable. For example, again, I mean, using for the, you know, two variables that we have defined
+above, if you want to know the type, what we can say is, you know, print for us, let's say,
+the type of X, and what we write after this is
+type of X, okay. And similarly, I mean, we let us copy this and try to use the same
+or getting the type of Y, we change this to Y and type of Y. So, since they are, no,
+my point in the same object, the type should be same and in this case, what is the type, type for
+X and Y, both should be integer, right? So, let us print it. So, see, this type of X is no int and
+type of Y is also int, okay. So, this is how we can actually inspect this abstraction and try to
+figure out the exact detail of what this abstract variable, you know, is referring to and what is
+the type of the object that it is referring to, okay. So, now, let's move on to the, you know,
+next important thing, which would demonstrate the ability to rewind the same variable name to some
+other object, okay. So, here, I mean, things go a little subtle and one should be very careful,
+not to confuse, you know, these variable names and, you know, this early bending as, you know,
+pointer, no, because I mean, that can be very confusing. So, let us, I know, try to just, you know,
+see with some example what I want to, you know, if I say so X and Y are pointing, are not to
+actually point it to the same memory location. So, if you are familiar with pointer, I mean,
+this may be, you know, a place where you may get confused that X and Y are actually pointed to
+the same memory location, no. So, X and Y point to the same object, but they are not, you know,
+pointed to the same memory location, okay. In Python, a variable is not a memory container,
+but this is important to understand. It's a name tag or a reference that points to an object
+in the memory and not to a memory location. So, this is very, very important, especially if you
+are working with immutable data types like, you know, integer, string or, you know, double,
+then this is a great no point of confusion for, you know, many of the big newcomers. So,
+to highlight this, let me now work out some example and then it will be clear. For example,
+in the beginning, as you remember, I mean, we instantiated both X and Y with a value 10, right?
+And that's why, that's how, you know, you know, that they point to the same object. But what?
+If at this particular point, we change the value of Y to, let's say, 20, okay. And let's say,
+we change the value of Y to the point of Y to 20. And then if we want to, no print, what is the,
+no, current? After let's say, executing this instruction that, no, we assign Y to 22, Y,
+if we want to see what's the value inside, let's say, the variable X. So, what's the, let's say,
+current value? Okay, so what is the current value of, say, X at this particular moment? Okay,
+so let me. So, do you think that changing Y will change X? No, no, if you consider them as
+pointer, then certainly yes, right? Because both point to the same memory location. So, no matter
+whether you change the value there, Y or Y or X, the change value should be reflected in both the
+cases, right? So, I mean, if they are actually pointer, then the current value of X should also
+change, right? But if you let's say, no print this, what do you get? You get the current value of
+X is 10, but you have assigned a value 20 to Y, okay? So, no, the current value of X has is same
+as the original value of X, right? Which was also the value of Y. So, these are not actually
+pointer, right? So, this is a very, you know, a small example to show that changing Y does not change
+X. And that's how, I mean, these are not exactly, you know, memory variables are not memory
+container, okay? So, they're the point to the same object. So, this is how, I mean, so Python's,
+you know, memory management and type system, take care of all of this for you. So, you don't need
+to worry, but I mean, you need to keep with this distinction clearly in mind that when you change
+the, so even if you assign, you know, Y to X, let's say here, and later on change the value of Y,
+you are not changing the value of X. Similarly, let me again change the value of X to know some other
+value, okay? So, 30, let's say. So, again, I mean, you can expect that the value of, you know, Y
+by changing this. So, since this is changing the value of X, and if I want to print now the current
+value of Y, what do you expect here, okay? So, based on our last discussion, what we expect here
+is that no value of Y should not change, right? The value of Y should be 20. If we run this code,
+this is what, you know, we get, which ensures that our understanding is now correct. We are not
+confusing, you know, these variable names as pointer in C, okay? To be more clear, I mean, if you
+want, you can also print the ID, okay? So, now, you see, I mean, Y and X are actually
+pointing to different objects, okay? So, since they are pointing to different objects, you know,
+if I just prove the ID of those objects, I should get, you know, different results, right? So,
+we can confirm this again. So, by just printing now, maybe the ID, so let's, you know, print plus the
+ID of object X. Let me print the ID of object X, and let's repeat the same instruction.
+Okay, for variable Y, let's change X to Y here, and also here Y, and try to see. So, what do you
+expect? I mean, now that we have assigned 20 to Y and 32X, if you print ID, what do you expect?
+Do you get the same result or different things? So, in this case, you can see that we get
+different, right? That X and Y are now pointing to two different objects, okay? And the ID for those
+different objects are, you know, clearly, you know, distinct here, right? This is what we can figure out.
+So, to summarize, you know, what we saw, you know, in this short video is that Python
+hides the complexity of direct memory manipulation, okay? And pointers behind a, you know, safe,
+high-level abstraction called object references, okay? So, these are called, no, object references. So,
+variable are referencing two objects, not to memory location. This makes the language easier,
+and you know, is it learned and used while being less prone to common memory management error?
+Otherwise, you have to do everything on your own. I mean, if you are given, they can see, I mean,
+you can manage your memory very efficiently, but then that is also, you know, a major cause of,
+you know, memory errors and no other kind of error. So, Python tries to hide all these details,
+you know, from you, and it still allows you enough freedom to work with it and write meaningful
+programs, okay? So, this is all for today. So, thank you for watching this video. I will meet you
+in the next video. Till then, goodbye. Thank you.

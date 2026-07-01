@@ -1,0 +1,513 @@
+start	end	text
+0	12240	Hello and welcome back to Python, Core and Applied Concept for Reliable Letters, Science
+12240	13240	Workflow.
+13240	20840	So, in today's this video we will continue our discussion of Bind Research Tree and we
+20840	27200	will talk about some of the drawbacks of working with Bind Research Tree.
+27200	35000	If you recall in the last lecture we discussed how to create Bind Research Tree from scratch
+35000	42280	and how to then populate Bind Research Tree by adding element 1 at a time right and we
+42280	47920	also have written one function which was actually adding this thing.
+47920	54440	So, this BST insert was the function that we discussed in the last class, this BST insert
+54440	62320	was helping us insert new values inside a existing Bind Research Tree and we experimented
+62320	67360	with this function and we saw the function was working correctly.
+67360	75080	But one thing which I noted very slightly in the previous lecture was that the overall
+75080	82760	structure of the BST will depend upon the order in which you add this element because
+82760	87000	the very first element becomes the root element of the BST.
+87000	97920	Now, that may cause trouble and depending upon if the order in which element comes is
+97920	107240	not favorable, we may end up with Bind Research Tree which are actually not balanced and
+107240	114360	one of the major advantage of BST as we discussed in the last lecture was that if the BST
+114360	121000	is balanced then searching in a BST for a value takes far less time right because you
+121000	127080	either only search in the left half or the right half depending upon how the value compares
+127080	134400	with the root node and in this way you can reduce our space by half in each go right
+134400	145560	and that somehow leads to log and complexity of search as well as insert for searching
+145560	153760	or inserting inside this BST, if the BST is balanced then you just need log and time
+153760	158640	for doing both this activity where N is the number of nodes because log N becomes the
+158720	165520	height of the BST. So, think about it in your free time and try to justify why for a balanced
+167280	172960	Bind Research Tree, the height of the Bind Research Tree is always less log N of
+174400	181200	where N is total number of elements in the Bind Research Tree. So, that's the major advantage
+181200	187840	I mean of using BST that if your BST is balanced then you can do both insertion as well as search
+188720	196320	which are most common activity on any data structure in log and time and log and doing being
+196320	204000	being able to do it in log and time is a very huge advantage. It was not the case with not
+204000	211520	let data structure which were linear in nature and we could get these advantages because
+211760	219520	BST has this order property and also I mean in the good cases when your BST is balanced your
+219520	227040	height is not only log N. So, losing these two are a very nice combination and that your tree
+227040	234080	has a height of log N and your tree has this property where your root node is always better than
+234880	240160	the element which is present in the left subtree and also your root node is
+240880	245920	less than all the elements that is present in the right subtree. So, you can combine these two
+245920	253520	property very nicely and come up with no efficient algorithm to search inside a Bind Research
+253520	259200	Tree as well as no update Bind Research Tree by inserting some element into it. But when this
+259280	267280	property of the BST this property of being balanced remember the property of being balanced is
+267280	272800	not a mandatory property for Bind Research Tree right we had only two essential property for
+272800	280480	BST one was this structural property which somehow guarantees that every node in the
+281040	290880	BST can have at most two children and the other property was this ordering property. So,
+290880	296400	so the balanced properties I mean if let us say we can define somehow this balance factor or
+296400	302080	this balancing thing that you typically we are talking about. So, that is not a prerequisite
+302080	306160	or not a requirement at least for the Bind Research Tree right. For example,
+306720	311920	assume that if you have only two elements in your Bind Research Tree right so either one
+311920	317280	element will be less than the other or the greater than other right I mean they
+317280	322320	they assume that they are distinct element then your binary tree will be either you know right
+322320	328960	skewed or left skewed right it it can never be balanced. So, you can never you know ensure
+328960	335200	complete balance in your Bind Research Tree but then we want to define some notion of you know
+335280	341280	balanced by in research tree and think about you know this kind of you know problematic
+341280	347600	instances where tree make it you know unbalanced. So, let us talk about that you know in in
+347600	353440	context of some you know example with some concrete example so that it makes sense. So,
+353440	360800	this is the you know problem that I was talking about that depending on how these elements are
+360800	367040	added into BST your BST may become completely you know unbalanced and then the height of the
+367040	374560	BST is no more log of log and right where n is number of element in the BST. To give you a very
+374560	379840	quick example I mean you can maybe apply the same function or that we have written BST insert
+379840	386560	and then insert values in your Bind Research Tree where you know you start your you know your
+386640	391280	Bind Research Tree your root is less than none in the beginning and then you add element in this
+391280	399440	order. If you add elements in this order it is not difficult to you know convince yourself that
+399440	406240	your tree will be skewed like this towards the right hand side right why because the first
+406240	412480	element that you add is 10. So, 10 becomes the root node and then the 20 is the next element it
+413200	419360	is greater than 10. So, it goes towards the right hand side okay. So, your node tree is not
+419360	426800	at the current you know position when you insert this 20 is already skewed towards right but no
+426800	433360	since you know every other value that is no coming is greater than the previous value you keep
+433360	438720	on you know adding those element at the right hand side of the you know last element or to
+438800	445840	not that you have added right and this way the tree keeps growing only towards the right hand
+445840	451760	side right and and if you now measure the height of this tree it is no more log n right it is
+451760	458480	exactly n right. So, these are extreme cases but you know this kind of a stream cases may occur
+459120	466720	either you know completely you know these extreme cases are somewhere in in in between I mean
+466720	474160	you may have some element which can get you balanced tree but then some at a stress you may get
+474160	480000	something like this which can cause you know imbalance in some part of the tree. So, it's not
+480000	486400	you know by just no maintaining the BST property you know in a nutshell what I'm trying to
+486400	492240	emphasize is that no by just maintaining the BST property we cannot be sure that our binary
+492240	499040	substrate that we get is always balanced okay and this kind of thing this kind of trees
+499680	505440	are you know unbalanced tree I mean this is what we call unbalanced tree okay and very you know
+505440	511040	go you know clean example is this you know increasing you know sorted let's say at least I mean if
+511040	516240	you if your element comes in this you know sorted out either in increasing order or in decreasing
+516320	521200	order right because if these elements come in decreasing order then in you can guess that
+522320	528320	this tree will become now left skewed right because you know everything in the very beginning you
+528320	536800	will get 50 and then 40 30 20 and 10 and all the new up no let us know members actually get to
+536800	542480	the left subtree okay and that way the tree may also grow towards the left hand side okay.
+542480	548320	So, in these kind of you know extreme example your tree is completely you know skewed I mean
+548960	554480	and this is just one of the same thing that I mentioned right now so if you know run this code
+554480	561200	which was you know our actual code okay so maybe we need to compile our code once more this BST
+565040	571840	so we define it somewhere yeah here so let me compile this BST insert and after
+572720	581520	this block if you again in that block on this sorted no list which represents you know the
+581520	588880	bad kind of order in which so this order then you can see that the tree produce will be
+589440	604640	okay so let me you know again compile the display tree function which we have this defined
+604640	612720	earlier in the earlier class right I mean so this was BST insert and where is this display tree
+612800	615520	so this is the code once we compile
+621360	629440	no maybe we just compile the code for this display function even once we compile it
+630080	634800	and then we come back to the place where we wanted to use it for the sorted list
+634880	645440	okay so now we have both the functions compile and it should actually run okay now if you run on
+645440	652720	this you can see you know when your input are in increasing order only you know any just step
+652720	660400	what is happening your you know right child is not being updated okay and you know at the end
+660400	666400	I mean what you get is this right child you know so left child remains none right and always the
+666400	673360	right child is expanded into another you know tree where again the left child is none and then
+673360	679520	right child has some value so you know so in picture I mean you know if you want to see this is
+679520	685840	exactly the scenario right where your tree is balanced towards the right and side so we certainly
+685840	693760	don't want this kind of you know scenario right where your tree becomes skewed in nature either
+693760	700000	left skewed or not right skewed so we want to avoid it otherwise we will not get the benefit of
+700000	710640	using BST kind of structure okay so this is what we know call no balancing okay so for
+710640	715680	for example and this is you know somewhat balanced tree but this is no completely unbalanced tree
+715680	721360	but we need and and when we have balanced tree then this is what we have right our height is
+721360	727920	log of n where n is total number of nodes in the tree and if your height is in log of n then you
+727920	735440	can do no most of the operation in of the order of log and time but if your tree grows you know in an
+735440	741280	unbalanced way for example this way the height becomes of the order of n and then any activity
+741280	747600	or any operation that you want to do on this data structure like you know insert or search
+748320	756240	takes this log and so this you know of the order of n time so this this may have no real world
+756240	764320	consequences and when your I mean these are some of the examples where you actually no real data
+764320	770400	may have this sorted property and in that case if you want to store then using BST then you will
+770400	776800	get this kind of skewed BST and you will not get the benefit of BST so what is the root cause
+777760	783120	regular BST don't care about their shape right so they have some structural requirement right
+783120	790400	structural requirement was that every node has should have at most not to children right and
+790400	795760	that was only structural requirement but that does not in in force in any way for these trees
+795760	801680	to be you know balanced right because in this case I mean it followed that is structural requirement
+801680	811040	if you see closely right none of the node has more than two children but it was not balanced
+811200	820960	right it was a skewed tree so so we need you know now somehow another no restriction or you can
+820960	826720	say invariant that we want to maintain for this data structure which is what we call no balance
+826720	834400	factor okay now so that's why you know we are going to discuss today something which is an
+834400	838880	you know improvement over by necessity which we call height balance tree okay so there are
+838880	845200	multiple ways in which you can you know balance height for this kind of binary substrate and we
+845200	852080	will be discussing today one of the very you know popular height balance tree structure which is
+852080	858320	called AVL tree okay so height balance tree maintains this extra property that for every node
+858320	868800	the height of left and rights of tree differ by at most one okay so I will call my tree to be
+869120	874560	height balanced only if this property is true right that no you're but in this case you can see
+874560	879840	for example this is not height balance right because the right subtree has no height 4
+880480	886560	but the left subtree had height 0 so I this will not qualify as no height balance tree but what
+886560	891280	about this I mean can we say or something about this is it a height balance tree
+891680	902080	for example for this node the left hand subtree has height 2 and the right hand subtree also has
+902080	909120	height 2 right so for this node I mean this node will not complain right so this is not a
+910080	915040	counter example to a height you know imbalance or let's hide balance right what about this node
+915600	923040	for this node can we say the same okay there is no right child for this node 20 but there is a
+923040	929200	left child okay but here also the no balance factor is only one right the difference in height
+929200	936160	between left subtree and right subtree for this node is also one and if it is no one or less
+936160	940960	than one then we don't care I mean we say that it's okay because anyway I mean if let's say
+941840	947760	in the very the example that the simplest example that I gave you if you have only two elements
+947760	955040	then you you can't know always say that no I can maintain a height difference of 0 between
+955040	960000	node left and right right because one of the two will come as a left child or right child for
+960000	965600	the simple or the simplest tree you will have high difference of one okay so what we say is we
+965680	974800	don't worry if the height difference of the left subtree and the right subtree is one at any
+974800	980400	you know place in our tree but if it is more than one then you know we would like to do something
+980400	987840	so that you know we can correct this height imbalance okay so let me yeah let me come to
+988000	999680	so this is how we define the balance factor okay so we measure our balance using a simple
+999680	1004960	calculation which is no which we call balance factor and what is this balance factor that height
+1004960	1011680	of left subtree minus height of right subtree okay and the valid values for the balance
+1011680	1017760	factor is no minus 1 0 or plus 1 so what we say essentially say that no if the height of the
+1017760	1024320	left subtree and right subtree are same for a node let's say then it's perfectly alright but if
+1024320	1031120	it is not let's say same I can accept a difference of one at max so this is no essentially what we
+1031120	1036960	are saying okay and I had to allow that no difference of one because of that no simple case which I
+1037040	1042080	mentioned right where we have only two element and we cannot actually do anything with those two
+1042080	1049520	element but two no we have to actually allow this you know difference of one okay so so valid
+1049520	1056880	values values for this balance factor is minus 1 0 and plus 1 and remember that no this balance
+1056880	1064800	factor so these valid values has to be true for every node in the tree okay it's not like I mean
+1065120	1070880	we are talking about only the root node maybe for root maybe I mean there may be you know some
+1070880	1076720	special cases of BST where root node is not complaining because it's left no subtree and right
+1076720	1081680	subtree has the same height but some somewhere down the line I mean there may be a no height
+1081680	1088640	imbalance okay so we have to check this for every node in the you know binary surgery and if
+1088640	1094320	this invariant is true for every node in the binary surgery then only we will call that binary
+1094560	1102880	such to be a balanced no height balance tree okay for example I mean a very quick example let me
+1102880	1110080	know increase the font of this so that no things are a bit clear okay now so this is a very you know
+1110080	1117040	a small example to show you how can we calculate the balance factor okay so when we talk about
+1117040	1122880	no this E and D since no they are anyway the leaf node the last node they don't have left
+1122880	1129680	child alright child so these nodes can never be you know reason for imbalance in your tree okay so
+1129680	1135920	at least I mean you can be sure about the leaf node but what if I go just one to the parent of
+1135920	1144880	the leaf node okay so so again I mean C is the parent for this you know leaf node E and what is
+1144880	1152160	the height of the left subtree on C there's nothing right so we say that the height is no zero
+1152160	1159520	here the left subtree but what about the height of the right subtree is one right I mean because no
+1159520	1166160	E is there so now if you take the difference of left subtree minus right subtree and try to
+1166160	1172000	calculate the balance factor for this particular node C what do you get so zero minus one gives you
+1172000	1179280	minus one right so C C's no balance factor is minus one so C will also not complain right because
+1179280	1186720	we will allow one difference in in in the height of left subtree and right subtree okay so what
+1186720	1192160	about B I mean if you calculate the balance factor of B what will you get now left subtree has
+1192160	1196720	a height one but the right there is no right subtree here right I mean so the height of the right
+1196720	1201760	subtree is zero so if you find the difference between the height of left subtree and right subtree
+1201760	1211520	you will get a plus one okay so B as well as C both cannot complain because for both of them the
+1211520	1216400	balance factor is actually plus one and minus one and which is allowed okay and also balance
+1216400	1222640	factor of you know zero is allowed because that's the ideal case where you know both left subtree
+1222640	1231440	and the right subtree has the same value or same height okay so what about A so if if you look
+1231440	1239440	at A no the left subtree of A has a height two and the right subtree of height no A also has
+1239440	1247840	height two so in this case also when we calculate the balance factor of A we get zero okay and this
+1247840	1254800	is what we have summarized here right if we calculate this balance factor for each of the node
+1254800	1260560	in the tree which can be no problematic except the no leaf node we figured out that the value for
+1260560	1266800	each of these nodes where either zero one or minus one so if the value is for each of the node is
+1266800	1271920	no either zero one or minus one we are happy we would say in this case that the
+1272560	1280080	binary system is a balanced tree okay it's a height balance tree okay so this is a perfect you
+1280080	1284960	know I mean this is perfectly alright from no the balance point of view or this balance factor
+1284960	1291440	point of view because every node qualified our invariant or the no criteria that we put
+1292160	1298160	for it to be a balanced tree but what about this tree I mean if you look at this I mean this
+1298160	1304880	certainly looks like you know a skewed like left skewed binary system and you know by just
+1304880	1313280	looking at it we would like to call it an unbalanced tree but can we figure out I mean which of
+1313280	1323680	the node will complain and be the cause of the no unbalanced that is there in this tree okay so again
+1323680	1328480	I mean with C there can't be any problem right because this is leaf node with B if you calculate
+1328480	1334720	again there is a left tree which has height one but the right sub tree is missing so if you
+1334720	1342000	know calculate the balance factor for this B we get plus one but in case of A if you calculate
+1342000	1346960	again the balance factor there is nothing on the right but left sub tree has height two so if
+1346960	1351760	you know calculate the difference the balance factor becomes plus two and this is the point I
+1351760	1359200	mean this is the node that will now start company right because we could find out a node for which
+1359200	1366160	the balance factor is not in this set no zero one or minus one no we we got a balance factor which
+1366160	1374320	is plus two okay so this is the problematic node and hence we will not call this BST
+1375920	1383440	a height balance no BST okay so this is the node which is causing the imbalance in the tree
+1386240	1391360	okay so I hope I mean now you know it's clear to you what what is no balance factor and how to
+1391440	1397280	calculate balance factor and how to figure out which which of the node may cause you know
+1398000	1405920	may be the reason for a BST to not be a height balance by this is tree okay so now
+1407920	1412400	no so if your tree is not you know balance then I mean we already discussed right this thing so
+1412400	1419600	you can just read it so these are some of the drawback that you get and to counter this you know
+1419600	1426560	difference in height of the left subtree and right subtree for any node we we thought we talk
+1426560	1432000	about this height balance tree and there are three popular height balance tree which you can
+1432000	1436720	know finding any other structure and algorithm book so they are known as avial tree red
+1436720	1443600	black tree and B tree so what we discussed today is this avial tree you know we will discuss one
+1443600	1450720	way to mitigate this on no imbalance in a binary search tree okay and that is the wire is no
+1450720	1459520	avial tree so avial tree or nothing but binary search tree with an additional requirement that
+1461040	1467200	the balance factor that we define just now for every node so the balance factor for any node in
+1467200	1474800	the tree has to be you know one among these three values that plus one minus one or zero okay
+1476160	1480720	so we will implement avial tree using you know the same dictionary and recursion pattern that
+1480720	1486000	you already know in fact I am not going to implement this and this is going to be a you know
+1486000	1493680	homework for you assignment for you so we will you know discuss about the idea of the height
+1494080	1502240	avial height balance tree and different operations that you have to perform to balance the height
+1502240	1507280	whenever there is an imbalance in height of the left subtree and the right subtree okay so let's
+1507280	1515600	go directly to this avial tree concept and try to understand so what is it so an avial tree
+1516480	1523120	is a self balancing binary search tree that we want to you know implement that maintains its
+1523120	1530320	balance through automatic rotation so that we will discuss about an operation which is called
+1531440	1537600	you know rotation no in the context of binary search tree and we will see that by doing these
+1537600	1544880	rotations you can immediately get rid of this no imbalance okay so whenever you figure out
+1544880	1552160	that some node is complaining because their balance factor has no went out of this set
+1552880	1558240	or you know their balance factors no absolute value is greater than one in that case we will
+1558240	1563520	immediately apply one of these rotations that we are going to discuss today and balance that tree
+1563520	1568800	okay so it should have properties of you know BST so it should maintain the binary
+1569280	1575520	such tree you know ordering invariant which says that no everything in the left subtree should be
+1575520	1580640	less than the parent and everything on the right subtree should be greater than the parent it should
+1582160	1589920	maintain this balance property that for every node this should be true so I mean to maintain
+1589920	1596240	this balance property the tree data structure should be no self balancing what do you mean by
+1596240	1600960	self balancing because if you want to maintain this you know balance property then you have to do
+1600960	1607200	something beyond simple insertion the way we did in no binary search tree right because in binary
+1607200	1612720	search tree we just figured out what is the correct position and we kept there but after an insertion
+1612720	1619360	let's say an already balanced binary search tree may become no imbalance you you also need to check
+1619440	1627200	whether this last insertion made my binary search tree imbalance and in that case if you figure out
+1627200	1632480	that the no binary search tree now had become imbalance you need to do something to do something
+1632480	1637680	to correct this imbalance that's what we call you know self balancing so this will be part of
+1637680	1644400	every you know insert or delete an operation that you do on this kind of you know
+1644400	1649520	white balance tree okay so this has to be taken care by those operations which tries to modify
+1649520	1656640	this data structure okay so so let's you know quickly again revisit what what was the balance
+1656640	1663200	factor so balance factor was height of less sub tree minus height of right subtree now I leave it
+1663200	1669360	again as a homework to define this height function right because right now we are talking about height
+1670160	1676240	in a intuitive way right we roughly understand what does a height mean for a tree but can you
+1676240	1682320	also you know define a function to calculate this height no for a given tree so do that okay so
+1682320	1687200	nitric that again as a no homework try to define this no height function which can calculate the
+1687200	1691920	height of a given tree and then once you have that function you will also have a function to
+1691920	1697680	calculate balance factor and we need to store the balance factor for each of the node because
+1697680	1705360	you know we we want to maintain this invariant okay we already discussed it that no
+1705360	1711040	a military always maintains the you know balance and if you can maintain the balance then you can
+1711040	1717600	ensure that you know you can do all these no update and search operation on this no data
+1717760	1725520	structure in out the order of log and you know time okay so this is again you know an example of
+1727440	1731920	height balance tree because here I mean you can see that no all the node has been a balance factor
+1731920	1739040	either you know zero or minus one or plus one so you can actually again revisit this
+1739040	1750320	BST on your own and check whether this is a balanced BST now let's talk about know the some some
+1750320	1760160	scenarios that can cause imbalance and in those scenario what can we do to let's say you know
+1760160	1768400	recover from that imbalance and no make it balance okay so there are four types of rotation
+1768880	1777120	that we will discuss just now which can help us regain the balance from an unbalanced tree okay so
+1777120	1785360	so let's discuss them one by one okay so the very first type of rotation that we talk about
+1785360	1790560	is called no left left rotation okay so
+1790640	1801920	so so what is the scenario so for example I mean assume that initially your tree was no balanced
+1801920	1807600	okay so this is again I mean a very simplistic example I mean this may not be the most general
+1807600	1816320	case but somehow these four you know cases captured the general all possible scenario that might
+1816320	1823280	happen in your actual BST that you are you know updating okay so let me talk about the very
+1823280	1829840	simplistic case you know using the simplest kind of example where we first time encounter some
+1829840	1837520	in imbalance so the very first case is the scenario where your node is left heavy and left child
+1837520	1844240	is left heavy or balanced so what does it mean so to understand this no assume that initially you
+1844240	1855040	had created a BST which had only A and B okay and B is on the left hand side of A or is B is a
+1855040	1861600	left child of A okay so assume that your BST only has this no A and B initially so why did you
+1861600	1871200	put B by the way on the left hand side as a left child of A because you know B had a value which
+1872000	1878960	less than the value of A right so that that's the only reason why you would put B as a left child of A
+1880800	1888240	and so at so at the time let's say another C arrived which has value even lesser than B
+1889120	1893840	okay so till the point when you had only A and B in your tree was the tree
+1894480	1902320	the unbalanced it was balanced so if you had only A and B you you say I mean your tree was not
+1902320	1907600	unbalanced right because no for B it was not B you cannot complain and A will also not
+1907600	1915920	complain why because the balance factor for A was 1 but as soon as you add a C which is no
+1915920	1923760	less than you you have to insert C here because C's value is less than B so in that moment it's
+1923760	1930480	itself so we will not complain but then A will start complaining okay so this is no the scenario
+1930480	1939040	that you are inserting into the left subtree of the left child okay so initially if your tree was
+1939040	1946000	you know balanced but if your current you know insertion is in the left subtree of the left child
+1946000	1952400	then you might encounter this kind of situation right because the final place where you inserted C
+1954560	1962320	is on the left subtree of A so initially it was balanced but then now it can become unbalanced
+1962320	1969920	so right so I hope I mean this is clear why this is an unbalanced tree because for A if you
+1969920	1975040	calculate the balance factor you can see the left child subtree has high 2 but there is nothing
+1975040	1983040	on the right okay so the moment you insert C at that moment itself A will start complaining
+1984480	1991280	right because for the first time balance factor went no beyond the allowed set of minus 1 0 and 1
+1994400	1999760	okay so the moment we encounter such a scenario where you know this is the case that your
+1999760	2006640	balance factor for the node becomes plus 2 so we can do something very simple to correct this
+2006640	2015760	balance factor so can I convert this tree into this tree without violating any of the property of
+2015760	2025280	BST if I can let's say do this I mean if let's say somehow you know one can transform this tree
+2025280	2032800	into this bottom tree without violating the property of BST then I would be happy right because
+2032880	2037440	then I will do this transformation and make the tree balance because you see one of the advantage is
+2037440	2047360	that the bottom tree that you are seeing is a balanced tree right but if it is also a BST then
+2047360	2052320	there should not be a issue right then I whenever I see such such a circumstances you know happening
+2052320	2058800	I will immediately you know transform this kind of you know tree or subtree into this kind of tree
+2059520	2068480	okay so why this is a valid transformation in this particular case so what have we done what we
+2068480	2081280	say is now we make you know B parent and A the right child of B and see let with the left child
+2081760	2090800	of B right so initially also if you see C was the left child of B right so it's same right so
+2090800	2097680	there is C and B cannot complain with respect to each other why because anyway C's value was
+2097680	2105280	less than you know B so C can happily sit on the left subtree of B but can A go to the right subtree
+2105280	2118560	of B is it a problem or it's allowed since A was parent of B and B was the left child of A
+2119520	2127280	you already know that the value of A must be greater than the value of B right because B is
+2127280	2133840	sitting on the left hand side of left subtree of A so you know that the A's value is greater than
+2133840	2141760	B so if A's value is greater than B the moment you make you know B parent and keep A on the right hand
+2141760	2149120	side it should not complain right because this is a valid BST property right now according to the BST
+2149120	2157760	ordering property this is allowed okay B can become parent of A when A is the right child of B
+2158720	2162400	because you know BST says that everything on the right subtree should be greater than
+2163920	2169520	the parent okay so transforming you know this tree into this tree
+2172960	2180480	doesn't break the BST ordering property okay so at least it's not so if you transform this
+2180480	2188480	you know this BST into this BST so then if you transform this tree or this BST into this tree
+2189280	2194320	it's not breaking the you know ordering property so at least one of the ordering property one of
+2194320	2200400	the essential property of the BST you could you know easily check that it's not being broken but
+2200400	2205760	about the other property the other property was the structural property right so are we breaking
+2205760	2211280	the structural property you know by you know transforming this tree into something like this
+2211760	2218320	are we let's say you know introducing nodes for which there are more than two
+2219040	2226880	child no right because no for each of the no you can see there are at most two children right so
+2226880	2232560	neither we are breaking a structural property nor we are breaking the you know ordering property
+2232560	2238240	right so if we are not doing if we are not breaking both then I will certainly transform it into
+2238320	2244560	this form why because the advantage is by transforming you know this you know tree which was
+2245760	2253280	troublesome due to this node which has a balance factor of plus two by transforming this into
+2253280	2258800	this we actually get rid of that no balance factor problem now in this tree if you calculate
+2258800	2263680	again the balance factor you will see that no balance factor for every node is within a
+2263680	2272160	loud range of you know minus one zero and one okay so that's why you know this kind of transformation
+2272160	2280400	you can easily do to recover from this kind of no imbalance that has been introduced by the last
+2280400	2286480	insertion that happened here okay so this is what we call you know LL or you know right rotation so
+2286480	2292400	why we are calling it right rotation rotation by the way because see I mean a
+2294640	2301200	c b and a where in this form right and then a now comes to the right of b okay so this is no
+2301200	2309280	like you know right you're rotating it in a from top to the right set I write I mean so so if you
+2309280	2313840	can you know justify this name then it's good otherwise also it's okay I mean but I mean this
+2313840	2323200	kind of thing is we call right rotation okay so so the second kind of you know rotation that
+2324400	2333680	we use to get rid of this kind of you know imbalances what we call RR or left rotation okay so this
+2333680	2337760	just the opposite case of the previous one that we have discussed again I mean assume that a b
+2337840	2344640	we are already you know in your tree in this order so since they were in this order you know that
+2344640	2353440	a was I had a value which is less than b at that time it did not complain but as soon as you
+2353440	2359360	added a c it started complaining right why it started complaining because the balance vector of a
+2359360	2366800	now becomes minus two so it's then you know you know it's not a balanced tree anymore
+2368560	2375040	now with this kind of our tree can we transform this tree into this without breaking the BST
+2375040	2381120	property and achieving balance right because to the one advantage you clearly see is that if you
+2381120	2387120	can transform this into this you certainly you know now maintain the balance right because whatever
+2387120	2395360	was causing imbalance you could get rid of that okay so if we are not breaking the BST property
+2396000	2401680	both structural and ordering property then we should be happy and this this is perfectly
+2402480	2407120	know doable thing right this kind of transformation you can easily do to maintain the
+2407120	2413360	imbalance factor okay and you can convince yourself that this is again allowed right because
+2414080	2418240	b and c are not changing their position with respect to each other right b was earlier also
+2418240	2425520	parent of c now also b is parent of c the only thing that you did is that you made a now the left
+2425520	2439200	child of b okay so if you make a left child of b is it allowed this is perfectly all right because
+2439280	2450880	it was any way less than b so it can come in the left subtree of b okay so think about it
+2450880	2456400	no again I mean in your free time and try to convince that this is a perfectly valid transformation
+2457600	2463600	which maintains the BST property okay so by doing this kind of transformation you will not
+2464000	2470320	break any of the essential property for you know BST okay so this is a second scenario
+2470960	2477600	but I mean scenario can be no different than these two cases I mean and these two are again I
+2477600	2483120	mean I'm trying to emphasize that these two are very simplistic cases in your general binary
+2484000	2492160	such tree at the moment these you know height balance properties you know broken maybe more complex
+2492160	2497280	and general than this but if you understand these things properly you can easily figure out what
+2497280	2503680	kind of transformation you need to do in the most general case okay so the simplistic cases are
+2503680	2508160	which you need to understand to understand the logic and once you understand the logic I leave it
+2508160	2513760	as an exercise for you to think about the most general case in which know these kind of
+2513760	2519280	imbalances may be introduced in your binary such tree and in that case I mean what will be
+2519280	2524240	the suitable transformation that you will apply to get rid of no these kind of imbalances okay
+2524240	2529040	so these are very simple cases so this is called right right rotation and you know you can see
+2529040	2537600	that this is also no valid the third case will can be something like this okay where you are
+2537600	2545040	introducing a C so I remember again AB will not complain when they are alone in the tree
+2545120	2553760	but as soon as you insert a element C which is less than A but greater than B so C will now come
+2555280	2562400	towards the right side of you know B right as in the right subtree of B remember this case three
+2562400	2568400	is not same as you know case one right you were in the case one C was less than B so it came
+2568480	2575680	toward to this end but right now what we are saying is although C was less than A so it went into
+2575680	2581280	the left subtree but it was no greater than B so it came here right so this is the know the situation
+2581280	2590800	when it can know happens like you know first right so if this is the case then can we
+2591440	2595280	no recover from this kind of imbalance and again you can see that there is an imbalance
+2595440	2602080	because for A the left subtree has high two but there is no right subtree so the imbalance
+2602080	2608880	no or the balance factor is plus two so A will complain how to get rid of or you know this kind
+2608880	2614720	of imbalance so we will say that we can get rid of this kind of imbalance in two steps
+2615760	2624000	okay the very first step is you change the position of B and C with respect to each other
+2625280	2631760	okay what we say is that you know instead of a B being parent of C now makes C parent of B
+2633520	2638480	because this is what we call left no rotation the first rotation is left that you know you take
+2638480	2647920	a C to the top and remove you know move B to the as a left child of C okay so again I mean is
+2647920	2653120	it allowed I mean is it a valid thing to do if I do this kind of transformation will I break some
+2653120	2660240	property now remember I mean if you just change the relative position of B and C A will not
+2660240	2668000	complain right why because both B and C where smaller than A that's why they are on the left
+2668000	2675920	subtree of A and even after the transformation they are on the left subtree of A right so A has no
+2675920	2680880	problem right because no B C where earlier also on the left subtree now also B and C are on the
+2680880	2692720	left subtree but what about B and C can C complain because now C is a no left child which is B
+2694640	2700480	so the left child has to be less right it's value has to be less than C
+2701280	2705920	so if that was the case then C should not complain right and was that the case
+2706240	2712480	so if you see the previous no tree structure that was the case right that the value of B was
+2712480	2718960	actually less than C so if the value of B was less than C then I can happily make C parent of B
+2719840	2727200	and keep B no as the left child of C okay so again I mean it is not difficult to convince yourself
+2727200	2734000	that we can transform this trade to this without breaking the BST property right both
+2734000	2739840	structure and the ordering property okay but remember we did not achieve anything right because
+2739840	2748800	here also if you see the balance factor for A will be plus 2 okay so by doing just this transformation
+2748800	2756960	we could not get rid of this imbalance so we are still we are having non balanced tree
+2757040	2766720	but once you do this operation we do a second rotation and that solves our problem okay
+2766720	2771760	so in the second step what we say is now we apply a right rotation now you remember I mean
+2771760	2779200	this is a familiar structure that you have already seen right AC and B all are in no left skewed
+2779200	2784720	right I mean your tree is very simple right now and for this kind of imbalance we have already
+2784720	2791360	a solution right remember this was the very first solution that we did right so for this kind
+2791360	2797120	of scenario what we did was a right rotation right this is what we call right rotation so what
+2797120	2804000	does what did we do we made the B the root and then push A to us right so this is why we call
+2804000	2810640	right rotation okay so whatever was the root you just bring it to us the right hand side of B
+2810640	2816640	so can we do that kind of right rotation here because we already you know or transform this into
+2816640	2822320	something which we already fixed right we know how to fix this kind of thing so we just push A to
+2822320	2830160	as a right child of C right so from here to here is what we already discussed and then this is
+2830160	2835360	allowed right this is perfectly allowed but again I mean convince yourself by thinking
+2835520	2842000	no slowly what this why this is allowed right because A was parent for C so certainly A was
+2842000	2848240	greater than a value for of A was greater than C right because C is the left child of A the value
+2848240	2858080	of A was greater than C then why can't A come on the right subtree of C and the moment you do
+2858080	2864080	this transformation now you can see that wanted that this final tree is a balanced tree
+2866080	2875120	okay so although not in one step but in two steps we can we could you know achieve a balanced
+2875120	2880800	factor right which is desired it from here we went to this one which is certainly allowed we
+2880800	2886240	have discussed why it is allowed and from here we went to this one which is again allowed
+2886240	2893360	by the BST property and in this case now we also have you know balance so our tree is high
+2893440	2899040	balance okay so so we can actually transform this into something like this without any problem
+2899920	2904800	so this is the third scenario that something like this may you know happen in your
+2906400	2913760	no modification of BST and when will it happen when when you're you're inserting something
+2913760	2920160	into the right subtree of your left child okay so if let's say the last element that you are
+2920160	2927280	trying to insert is onto the into the no right subtree of your left child of the tree then
+2927280	2931840	this kind of thing might happen but then think carefully because no situation may not be as
+2931840	2939760	simple as this because what we are saying is you're inserting C as the right subtree of B but
+2939760	2946000	there may be something here also right and the C may not go immediately after B but somewhere
+2946080	2950240	down the line right so that's the most general case I was referring from the very beginning
+2950240	2956160	but I'm not giving you a complete explanation of what you should do in those kind of scenario scenario
+2956800	2963920	think carefully and come up with a you know a nice way of dealing those general kind of scenario
+2963920	2969760	but if you understand this simple transformation on this simple tree properly it should not be
+2969760	2975040	you know difficult to come up with the exact logic logic for the most general case of BST okay
+2975040	2981920	so think about this problem you know on your own and try to come up with the appropriate rotations
+2981920	2987920	you know in in the in the most general you know setting of a BST okay so what about the last
+2987920	2994160	the no scenario so last scenario is again you know just like the previous one but here you know
+2994160	2998720	we have a balanced factor of minus two why because on the left hand side nothing is there
+2998720	3003600	but in the right hand side we have something like this okay and if you have something like this
+3003600	3011040	how to fix it again I mean you can maybe you know take a guess from the previous case that we
+3011040	3018480	have seen can we transform this first into this kind of a structure okay so A will not complain
+3018480	3024080	because for A nothing is changing but what about P and C so can we complain about C
+3026160	3033040	so cell B complaint so for this tree to be a BST or what is required that C should be greater than
+3034480	3042080	B that's how I mean she can come on as a right child of B but is C no greater than B already
+3042080	3047920	so here C is already greater than B right so if I transform this into this even B should not
+3047920	3055200	complain and C will not complain because he doesn't have any child okay so yeah so think about
+3055200	3061440	this this case is carefully so these are you know four different types of rotation that we apply
+3061520	3072240	on any you know balanced by by necessary to recover from this imbalance and you know get balance okay
+3072240	3078160	so to get a balanced by necessary so yeah so these are the things that know we discussed today
+3078160	3085040	so I leave as a assignment for you to you know define this rotation which we call left rotation
+3085360	3093200	rotation and use them to you know correct the imbalance that is there in in your tree after
+3093200	3098560	any insertion okay so for AVL tree now you have to write down all this code I mean you have
+3098560	3104240	so the the idea or our final goal is to maintain an AVL tree now AVL tree are you know
+3104240	3110320	by by necessary with this height balance thing you know check every time okay and for doing this
+3110400	3116480	kind of height balancing you have to rotate left or right or a combination of both of this that
+3116480	3122000	we have discussing in the previous no example using previous example so these are some you know
+3122000	3128080	function for which I have given you signature and you are expected to implement this function
+3128080	3134320	and submit it okay so what's the very first one is the rotate left okay and what it does it it
+3134320	3140240	gets an unbalanced node okay so we we try to figure out what is the you know unbalanced node
+3140240	3146080	and after getting to that unbalanced node we will try to do this kind of rotation to no left
+3146080	3157440	rotation to get rid of no so what is rotate left in the above if you see so this is the left
+3157440	3164000	rotation right so in this kind of no situation we want to implement this logic no of
+3164000	3170000	transformation that we discuss here okay so think about it so rotate left and rotate right
+3170000	3175760	right two functions which take an unbalanced node and does this so input is node or dictionary
+3175760	3183120	that is right heavy so if it is right heavy it needs a no left rotation right no so returns
+3183120	3190880	should be a new root node after the left rotation okay and this is exactly what we discussed
+3191120	3198400	also write some similar function for right rotation okay and then can you
+3199760	3205200	write a function which uses combination of this you know left rotation and right rotation
+3206000	3210960	to balance a particular node let's see you could figure out that some node is a no imbalance
+3210960	3217920	so so can you then write down a function which can convert that node into or know that part of
+3217920	3224320	the tree into a balanced tree okay so the input is node dictionary that might be unbalanced
+3225520	3231840	and the return for this return value for this you know function that you want to write is the
+3231840	3241200	balanced node okay so again I mean so this this may be you know more complicated right because here
+3241200	3247280	you have to identify first what kind of imbalance is there no which of these four you know cases
+3247280	3253600	you are in and then depending upon what is your current no scenario you have to apply one of the
+3253600	3258880	possible transformations or you know discuss transformation from above to solve these
+3258880	3264240	imbalance okay so this is what I expect you to write down okay so again I mean these are some
+3264240	3271200	no easy example to help you visualize this again same discussion that we had earlier so go
+3271680	3278720	to know in an offline mode and try to come up with these signatures so so finally what I want
+3278720	3284640	you to implement all these you know function signatures so I have summarized them so these are
+3284640	3291120	some you know core function signature that you need to implement in order to implement this
+3291120	3296640	no avial or high balance trees okay so first one is you know create node I mean can you write
+3296640	3303040	down a function we just create a node you know creates and it turns a new avial node this study
+3303920	3310000	then the second function is get height remember I mean now we can you know detect whether a node is
+3310800	3315840	complaining or not by calculating only height right I mean if you don't have a function to get
+3315840	3320400	height you cannot calculate balance factor and then you will never know whether a node is balance
+3320640	3327200	or not okay so first write down that height function so this function you know get height to calculate
+3327200	3332560	height for any node so think about it on your own and try to come up with an implementation
+3333440	3340880	using this can you now you know implement a function which can tell you what is the balance
+3340880	3346160	factor at each node okay so this this function should calculate balance factor
+3346640	3353440	for any no given node that you passed this function okay and once you have this balance factor
+3353440	3361680	you also have to maybe you know write a function which will update height right because whenever
+3361680	3368000	you add so now you want to maintain this height information always in your dictionary so that
+3368000	3375280	you immediately know whenever you know the balance factor for any of the node goes beyond the
+3375280	3380560	allowed let's say range so can you also write this you know update height function so whenever
+3380560	3388800	you add a node or remove a node from your there's a height balance tree so at that time so after
+3388800	3394320	that no addition or removal you should be able to know update the height for each of the node in
+3394320	3402400	the tree right so so so for that you would need a no update height function so either you integrate
+3402400	3410160	this update height function when you are you know calling when you're you know modifying your data
+3410160	3415760	structure or you can write down it separately and then you know call this whenever you are changing
+3415760	3422080	your data structure okay so write down this update height function so so that now this this
+3422080	3429280	takes a node and then again based on its children I mean it can actually update the height of
+3429280	3436480	the parent node then write this rotate left function which I've already not discussed so it
+3436480	3442880	it should take an unbalanced node and try to do this left rotation to fix the you know
+3443840	3453120	this kind of you know imbalance so similarly rotate right you have to write down so once you have
+3453120	3459920	rotate left and right or maybe now you you are in a position to know insert node right because once
+3459920	3467120	you insert node so after the insert and you may figure out that you know there is an imbalance
+3467120	3472160	introduced and at that time you may have to use this left and right rotation in combination with
+3472160	3479840	each other to to you know get rid of that imbalance so again I mean read the signature of this
+3479840	3485920	function carefully and try to implement this on your own then I mean this is a simple
+3485920	3490720	search function that you might have written for you know BST you have to again write that here
+3491360	3494960	and there are some utility function but these are optional I mean if you want to skip you can
+3494960	3500880	skip this function but at least right know all the implementation of these functions for which I
+3501040	3510560	provided you signature here no until this no section 4 okay so with this I would like to conclude
+3510560	3518320	no today's lecture so in today's you know video we briefly discussed about this idea of height
+3518320	3524480	balance tree and we we we we we we discuss why this is important and we also discuss about
+3524480	3529120	the overall logic of maintaining the height I mean if there is an temporary imbalance that has
+3529120	3534880	been introduced by insertion of a new element or deletion of existing element okay so we talked
+3534880	3541680	about LLLR and you know this left-right combination kind of rotation which can help us get rid of
+3541680	3548640	this kind of imbalances what do you I expect from you is to write down complete implementation of
+3548640	3554160	the function signature that I have given for you know this lecture so I will meet you in the
+3554160	3562080	next lecture so until then goodbye thank you

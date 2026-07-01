@@ -1,0 +1,700 @@
+1
+00:00:00,000 --> 00:00:09,720
+Hello and welcome back to the Python Core and Applied Concepts.
+
+2
+00:00:09,720 --> 00:00:16,880
+In this video we will talk about the very basics of Act of Programming.
+
+3
+00:00:16,880 --> 00:00:22,840
+So we will try to understand the Act of Programming by asking some very basic questions around
+
+4
+00:00:22,840 --> 00:00:24,760
+this.
+
+5
+00:00:24,760 --> 00:00:31,960
+For example, let's try to understand and try to understand and answer this first question
+
+6
+00:00:31,960 --> 00:00:36,040
+which is why do we write programs?
+
+7
+00:00:36,040 --> 00:00:40,640
+So I mean if you think carefully why do we want to write programs?
+
+8
+00:00:40,640 --> 00:00:44,840
+So we want to write programs to get some work done.
+
+9
+00:00:44,840 --> 00:00:50,240
+So when we say we want to get some work done, we mean we want to get some computational
+
+10
+00:00:50,240 --> 00:00:53,720
+work done by some machines.
+
+11
+00:00:53,720 --> 00:00:56,840
+So that's why we want to write programs.
+
+12
+00:00:56,840 --> 00:01:04,280
+Normally those tasks for which you want to write programs should be doable manually.
+
+13
+00:01:04,280 --> 00:01:08,560
+You should be able to, let's say if there is no computer or no machine available to
+
+14
+00:01:08,560 --> 00:01:14,680
+you, you should be able to write mechanical procedure or you should be able to do that
+
+15
+00:01:14,680 --> 00:01:19,000
+computation manually using pen and paper also.
+
+16
+00:01:19,000 --> 00:01:27,280
+So since these manual process may be very tiresome, they may be very cumbersome, exhausting
+
+17
+00:01:27,280 --> 00:01:31,520
+and monotonous, not so interesting act.
+
+18
+00:01:31,520 --> 00:01:37,800
+That's why we normally want to relegate this kind of activity of computing some functions
+
+19
+00:01:37,800 --> 00:01:47,640
+or some output that you want to compute based on some, let's say data, you want to relegate
+
+20
+00:01:47,640 --> 00:01:49,960
+these kind of things to computers.
+
+21
+00:01:49,960 --> 00:01:55,520
+So I mean we want to write program because we want to relegate these somewhat mechanical
+
+22
+00:01:55,520 --> 00:02:01,280
+and boring task to machines which can, you know, perform maybe these tasks in a much
+
+23
+00:02:01,280 --> 00:02:07,960
+faster way than a human can do and also, you know, in a more precise way, it can calculate
+
+24
+00:02:07,960 --> 00:02:09,640
+those things that we wanted to produce.
+
+25
+00:02:09,640 --> 00:02:11,440
+So that's why we write program.
+
+26
+00:02:11,440 --> 00:02:18,440
+So one thing to note here is that we can only, you know, write programs and get things
+
+27
+00:02:18,440 --> 00:02:23,760
+done for those kind of tasks for which we know the recipe to do those tasks, okay.
+
+28
+00:02:23,760 --> 00:02:29,480
+So if you do not know the procedure to calculate something or compute something, you cannot
+
+29
+00:02:29,480 --> 00:02:31,840
+instruct computers to do those things.
+
+30
+00:02:31,840 --> 00:02:40,840
+So this is one of the very important criteria that we can only, you know, write program
+
+31
+00:02:40,840 --> 00:02:44,720
+to do those kind of tasks which we can, you know, manually do.
+
+32
+00:02:44,720 --> 00:02:49,240
+It requires manual and manual understanding of the task and also a mechanical procedure
+
+33
+00:02:49,240 --> 00:02:55,560
+to accomplish this task, then only we can relegate these to computers.
+
+34
+00:02:55,560 --> 00:03:00,200
+Now coming to the next question, you know, what are we programming?
+
+35
+00:03:00,200 --> 00:03:05,840
+So when we say we are writing a program or we are doing the act of programming, at the
+
+36
+00:03:05,840 --> 00:03:11,360
+other end is a real computer and real computers nothing but real machines which we are trying
+
+37
+00:03:11,360 --> 00:03:13,000
+to program, okay.
+
+38
+00:03:13,000 --> 00:03:18,320
+So in the process of programming, we are trying to instruct these real machines to do some
+
+39
+00:03:18,320 --> 00:03:22,200
+computation that we desire to, you know, perform, okay.
+
+40
+00:03:22,200 --> 00:03:25,000
+So you know, so what are we programming finally?
+
+41
+00:03:25,000 --> 00:03:30,680
+So we are actually programming these real machines and therefore it's very important to understand
+
+42
+00:03:30,680 --> 00:03:32,800
+the interaction with this hardware properly.
+
+43
+00:03:32,800 --> 00:03:40,320
+If you want to convey your intention to compute something to these computers, then, you
+
+44
+00:03:40,320 --> 00:03:45,200
+should understand this process of, you know, communication in a much more precise way,
+
+45
+00:03:45,200 --> 00:03:48,400
+okay.
+
+46
+00:03:48,400 --> 00:03:53,200
+So this brings us to our, you know, next question, what is a program, okay.
+
+47
+00:03:53,200 --> 00:03:59,720
+So a program is then a mean or a method to communicate your desire of computation to
+
+48
+00:03:59,720 --> 00:04:02,680
+these real machines that we call computer, okay.
+
+49
+00:04:02,680 --> 00:04:09,360
+So we can communicate our, you know, intention to compute something by writing a program,
+
+50
+00:04:09,360 --> 00:04:15,280
+you know, to these computers.
+
+51
+00:04:15,280 --> 00:04:22,560
+So programs are sequence of instructions, they communicate computational intent to machines
+
+52
+00:04:22,560 --> 00:04:25,720
+and therefore understanding, you know, this communication is essential, you know,
+
+53
+00:04:25,720 --> 00:04:30,720
+are we communicating properly what we desire to compute to these machines is essential
+
+54
+00:04:30,720 --> 00:04:39,920
+to, you know, the act of programming.
+
+55
+00:04:39,920 --> 00:04:42,360
+So this brings us to our, you know, final question.
+
+56
+00:04:42,360 --> 00:04:44,280
+So what is a programming language?
+
+57
+00:04:44,280 --> 00:04:50,280
+So as we, you know, discuss just now that we write programs to communicate our intention.
+
+58
+00:04:50,280 --> 00:04:54,920
+But then, so what is the language in which we can write these programs, okay.
+
+59
+00:04:54,920 --> 00:04:59,520
+So like, you know, if I want to communicate with you, I use some natural language like,
+
+60
+00:04:59,520 --> 00:05:02,440
+you know, English, Hindi or any other language.
+
+61
+00:05:02,440 --> 00:05:07,120
+But then if I want to communicate my intention to computer, I would like to write a program.
+
+62
+00:05:07,120 --> 00:05:11,120
+But what will be the language which I use for writing this program?
+
+63
+00:05:11,120 --> 00:05:13,720
+So these languages are called programming languages, okay.
+
+64
+00:05:13,720 --> 00:05:20,560
+So programming languages are like natural languages, which gives us a, you know, way to communicate
+
+65
+00:05:20,560 --> 00:05:25,000
+our desire, which we call, you know, program to these real machines.
+
+66
+00:05:25,000 --> 00:05:29,520
+But there is a distinction between, you know, natural languages and programming languages.
+
+67
+00:05:29,520 --> 00:05:32,240
+So in programming languages, we cannot be ambiguous.
+
+68
+00:05:32,240 --> 00:05:33,920
+We have to be very precise.
+
+69
+00:05:33,920 --> 00:05:38,920
+In natural languages, when you are talking or communicating to, you know, your friend,
+
+70
+00:05:38,920 --> 00:05:42,320
+you have already, you know, built-in context in which you communicate.
+
+71
+00:05:42,320 --> 00:05:46,960
+So therefore, I mean, you can afford to be a little unambiguous and still your friend
+
+72
+00:05:46,960 --> 00:05:51,240
+at the other end will be able to, you know, disambiguate what you have said and make
+
+73
+00:05:51,240 --> 00:05:52,240
+sense of it.
+
+74
+00:05:52,240 --> 00:05:56,600
+But computers don't have a common context of, you know, communication with you.
+
+75
+00:05:56,600 --> 00:06:01,440
+So whatever you want to convey, you have to be very explicit and very precise in that.
+
+76
+00:06:01,440 --> 00:06:07,520
+And programming languages, you know, gives us a mean to be precise and explicit in our
+
+77
+00:06:07,520 --> 00:06:08,520
+communication.
+
+78
+00:06:08,520 --> 00:06:12,360
+So these are like natural languages, but these are, you know, more formal in the sense
+
+79
+00:06:12,360 --> 00:06:14,640
+that they are very precise.
+
+80
+00:06:14,640 --> 00:06:19,480
+There are, you know, very strict rules of what you can write and you cannot write, you
+
+81
+00:06:19,480 --> 00:06:21,240
+know, in a programming language.
+
+82
+00:06:21,240 --> 00:06:27,840
+And there are very, you know, strict definition of what will be the meaning of what you write
+
+83
+00:06:27,840 --> 00:06:28,840
+as a valid program.
+
+84
+00:06:28,840 --> 00:06:29,840
+Okay?
+
+85
+00:06:29,840 --> 00:06:34,840
+So there are very precise mathematical rules to define both the structure of a valid program
+
+86
+00:06:34,840 --> 00:06:36,840
+and also the meaning of a valid program.
+
+87
+00:06:36,840 --> 00:06:37,840
+Okay?
+
+88
+00:06:37,840 --> 00:06:41,280
+So these two, you know, aspects of programming languages are called normally syntax and
+
+89
+00:06:41,280 --> 00:06:44,440
+semantics of, you know, programming languages.
+
+90
+00:06:44,440 --> 00:06:46,800
+So, you know, in a summary, what is a programming language?
+
+91
+00:06:46,800 --> 00:06:51,880
+It's a formal language for writing program so that we can, you know, convey our computationally
+
+92
+00:06:51,880 --> 00:06:59,440
+intention to machines and this, you know, enables communication between us and computers.
+
+93
+00:06:59,440 --> 00:07:03,840
+And these programming languages should be defined in such a way so that there is no ambiguity
+
+94
+00:07:03,840 --> 00:07:07,080
+that we normally have in our natural languages.
+
+95
+00:07:07,080 --> 00:07:12,520
+Now there, you know, the programming languages can, can be categorized in a, you know, variety
+
+96
+00:07:12,520 --> 00:07:17,920
+of, you know, different level, you know, the very low level programming languages are
+
+97
+00:07:17,920 --> 00:07:23,240
+those programming languages, which are very close to how machine works.
+
+98
+00:07:23,240 --> 00:07:24,240
+Okay?
+
+99
+00:07:24,240 --> 00:07:29,920
+So, you can communicate your intention to machines by knowing how machine actually perform these
+
+100
+00:07:29,920 --> 00:07:30,920
+now operations.
+
+101
+00:07:30,920 --> 00:07:36,240
+So, if you are trying to communicate your intention in that way, then you will be using
+
+102
+00:07:36,240 --> 00:07:40,920
+a low level programming languages, which are like an assembly level languages, which very
+
+103
+00:07:40,920 --> 00:07:44,880
+closely resemble what happens inside the real computer.
+
+104
+00:07:44,880 --> 00:07:51,160
+But then for most of us, it's not that easy to understand the whole mechanism of computation
+
+105
+00:07:51,160 --> 00:07:56,880
+inside a computer and being able to, you know, convey our intention in form of those
+
+106
+00:07:56,880 --> 00:07:57,880
+computation.
+
+107
+00:07:57,880 --> 00:08:02,880
+So, we prefer, you know, most of the programmers, you know, prefer to write programs in a high
+
+108
+00:08:02,880 --> 00:08:08,680
+level programming languages where things are more, you know, close to, you know, natural
+
+109
+00:08:08,760 --> 00:08:09,760
+languages.
+
+110
+00:08:09,760 --> 00:08:14,040
+And it's very easy to make sense of, you know, what, you know, we are trying to communicate
+
+111
+00:08:14,040 --> 00:08:18,240
+to computer and then really get the, you know, task of translating, you know, these high
+
+112
+00:08:18,240 --> 00:08:23,080
+level instruction to the low level, you know, exact instruction, which machine can execute
+
+113
+00:08:23,080 --> 00:08:25,280
+to interpreter or compilers.
+
+114
+00:08:25,280 --> 00:08:30,880
+So, you know, this is the distance between low level and high level.
+
+115
+00:08:30,880 --> 00:08:37,320
+So just to summarize in, you know, low level programming, you know, languages, we work with
+
+116
+00:08:37,320 --> 00:08:43,120
+exact machines, which you can see on the, you know, left hand side and, you know, for
+
+117
+00:08:43,120 --> 00:08:49,320
+that we need to understand how these exact machine work, how, you know, memory addresses
+
+118
+00:08:49,320 --> 00:08:55,120
+are handled and how, you know, data flows between memory and, you know, computing units inside
+
+119
+00:08:55,120 --> 00:08:56,120
+the computer.
+
+120
+00:08:56,120 --> 00:09:01,360
+So, if you know exactly which instructions, I mean, in assembly language can help us trigger
+
+121
+00:09:01,360 --> 00:09:06,400
+these events, then we can actually write programs in low level programming languages.
+
+122
+00:09:06,400 --> 00:09:10,640
+But on the other hand, I mean, most of us normally, you know, prefer something, you know,
+
+123
+00:09:10,640 --> 00:09:16,000
+like, you know, right hand side where we work with a high level programming languages.
+
+124
+00:09:16,000 --> 00:09:21,640
+And these high level programming languages help you abstract out the exact details of
+
+125
+00:09:21,640 --> 00:09:26,880
+this machine and you can, you know, in mind, always assume for any given programming language
+
+126
+00:09:26,880 --> 00:09:33,440
+that there is an abstract machine, which is far more simpler than the real machine in
+
+127
+00:09:33,440 --> 00:09:34,960
+terms of, you know, thinking.
+
+128
+00:09:34,960 --> 00:09:41,680
+So, these abstract machine helps you, you know, handle most of the complexities of this
+
+129
+00:09:41,680 --> 00:09:46,880
+real machine by abstracting out these registers, memory and, you know, these computations
+
+130
+00:09:46,880 --> 00:09:51,880
+in form of variable and high level data structure and how those variables are, you know, manipulated
+
+131
+00:09:51,880 --> 00:09:53,800
+by different instructions in program.
+
+132
+00:09:53,800 --> 00:10:00,160
+So, you know, in a sense, you can reason about the final output or the result of execution
+
+133
+00:10:00,160 --> 00:10:05,600
+of program correctly, but without getting bothered about what's happening at a very low
+
+134
+00:10:05,600 --> 00:10:06,600
+level.
+
+135
+00:10:06,600 --> 00:10:09,520
+So, if you write a program in a high level programming language, this programming languages
+
+136
+00:10:09,520 --> 00:10:15,720
+give you enough feature to abstract out unnecessary, let's say, details, which is not necessary
+
+137
+00:10:15,720 --> 00:10:19,600
+to, you know, think about if you're, you know, concerned about the logic of your program
+
+138
+00:10:19,600 --> 00:10:26,920
+or, you know, your program being computing the logical functions on those input data,
+
+139
+00:10:26,920 --> 00:10:30,040
+then you can actually focus on these high level programming languages.
+
+140
+00:10:30,040 --> 00:10:34,960
+Python is one such programming languages and hence, I mean, it gives us a nice abstraction
+
+141
+00:10:34,960 --> 00:10:39,480
+where we can get rid of most of these low level details and we can just focus on the
+
+142
+00:10:39,480 --> 00:10:45,160
+program logic and write correct program to achieve some computational.
+
+143
+00:10:45,160 --> 00:10:51,800
+So, just to summarize, low level languages interact directly with hardware, which we call
+
+144
+00:10:51,800 --> 00:10:56,840
+exact machines, low level code provides you fine-grained control because, you know, exactly
+
+145
+00:10:56,840 --> 00:11:01,240
+how, you know, computer works, so you can actually instruct them in their language, immediate
+
+146
+00:11:01,240 --> 00:11:02,240
+language.
+
+147
+00:11:02,240 --> 00:11:07,000
+So, most of the time, you can be very efficient in translating your intention to what
+
+148
+00:11:07,000 --> 00:11:12,360
+machine need to do to let's say, achieve those computational desire.
+
+149
+00:11:12,360 --> 00:11:16,640
+On the other hand, high level languages offer greater abstraction, right?
+
+150
+00:11:16,640 --> 00:11:21,920
+We have a simpler, you know, machine which we call abstract machine and high level code
+
+151
+00:11:21,920 --> 00:11:27,200
+normally emphasizes on human readability and Python is one such, you know, high level
+
+152
+00:11:27,200 --> 00:11:29,360
+programming language.
+
+153
+00:11:29,360 --> 00:11:35,160
+So, this is, again, the same thing in, you know, one picture if we want to say things.
+
+154
+00:11:35,160 --> 00:11:40,640
+So, we are going from these exact machines, which are real machines, which will finally
+
+155
+00:11:40,640 --> 00:11:46,520
+perform the computation, but in order to convey our, you know, computational desire to these
+
+156
+00:11:46,560 --> 00:11:51,160
+exact machines, we don't need to always, you know, write instruction in the language,
+
+157
+00:11:51,160 --> 00:11:53,120
+which is very close to these machines.
+
+158
+00:11:53,120 --> 00:11:58,760
+We can write programs in a high level, you know, programming languages and all of this
+
+159
+00:11:58,760 --> 00:12:02,560
+can be translated easily to these languages by the interpreter and compiler.
+
+160
+00:12:02,560 --> 00:12:08,440
+So, this gives us, you know, extreme freedom and, you know, this improves our capability
+
+161
+00:12:08,440 --> 00:12:14,040
+to reason about the input output behavior of program at a very high level without getting
+
+162
+00:12:14,040 --> 00:12:21,040
+bothered about what's happening at the low level at a computer.
+
+163
+00:12:21,040 --> 00:12:30,360
+So, this is a quick recap of what we discussed today.
+
+164
+00:12:30,360 --> 00:12:37,200
+So, we program real computers, which are physical machines and therefore programs are sequence
+
+165
+00:12:37,200 --> 00:12:42,360
+of instructions for, you know, these machines and these instructions in a way communicate
+
+166
+00:12:42,400 --> 00:12:46,640
+our computational desire to these computers, computers.
+
+167
+00:12:46,640 --> 00:12:51,720
+And normally the languages which you use for, you know, conveying this computational
+
+168
+00:12:51,720 --> 00:12:56,280
+desire are called programming languages and they can be roughly categorized into low
+
+169
+00:12:56,280 --> 00:12:59,960
+level programming language and high level programming languages.
+
+170
+00:12:59,960 --> 00:13:05,080
+Low level languages are very close to machine, but they are very difficult to write programming.
+
+171
+00:13:05,080 --> 00:13:08,840
+That's why we move to high level programming languages, which gives us, you know, enough
+
+172
+00:13:08,840 --> 00:13:14,280
+abstraction to make our life easy and write, you know, meaningful complex programs which
+
+173
+00:13:14,280 --> 00:13:19,120
+can be executed on these real machines.
+
+174
+00:13:19,120 --> 00:13:27,320
+So, please take your time and reflect on these ideas, so we will meet in the next video
+
+175
+00:13:27,320 --> 00:13:28,320
+till then, goodbye.
+

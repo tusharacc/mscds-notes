@@ -1,0 +1,1392 @@
+1
+00:00:00,000 --> 00:00:16,200
+Hello and welcome back to Python Core and Applied Concepts for Reliable Data Scenes
+
+2
+00:00:16,200 --> 00:00:18,680
+workflow.
+
+3
+00:00:18,680 --> 00:00:26,320
+So in today's lecture I'm going to discuss about one of the projects with which we want
+
+4
+00:00:26,320 --> 00:00:33,200
+to conclude our lecture series on Python Core and Applied Concepts for Reliable Data
+
+5
+00:00:33,200 --> 00:00:34,720
+Scenes to Workflow.
+
+6
+00:00:34,720 --> 00:00:41,440
+So till now what we have seen was core Python programming and we have almost seen most
+
+7
+00:00:41,440 --> 00:00:48,760
+of the important concepts from that area core Python programming.
+
+8
+00:00:48,760 --> 00:00:54,840
+We also discussed about two simple data structure that I gave you as an assignment to implement
+
+9
+00:00:54,840 --> 00:01:02,080
+so that should give you enough practice on the core Python programming segment.
+
+10
+00:01:02,080 --> 00:01:10,600
+So the main goal of the lecture today is to introduce you to one concrete problem from
+
+11
+00:01:10,600 --> 00:01:17,600
+Data Scenes domain which is not very simplistic and also not very complex in nature.
+
+12
+00:01:17,600 --> 00:01:22,480
+So the idea is to not make you an expert in Data Scenes, I mean it's just to expose
+
+13
+00:01:22,480 --> 00:01:28,280
+you to the overall workflow of let's say any Data Scenes or projects.
+
+14
+00:01:28,280 --> 00:01:33,880
+So the workflow in different Data Scenes project may vary a lot depending upon the problem,
+
+15
+00:01:33,880 --> 00:01:39,880
+the requirement or the final output that is expected of that project.
+
+16
+00:01:39,880 --> 00:01:45,880
+But overall I mean if you understand these simple 5 to 6 step workflow you will be able
+
+17
+00:01:45,880 --> 00:01:51,880
+to make those minute adjustment on your own by understanding the problem statement.
+
+18
+00:01:51,880 --> 00:02:03,080
+So the goal here is to talk about that same 5 or 6 step workflow of Data Scenes project
+
+19
+00:02:03,080 --> 00:02:09,880
+in the context of a concrete project which we want to call a spectral trial modular
+
+20
+00:02:09,880 --> 00:02:12,880
+and automated workflow.
+
+21
+00:02:12,880 --> 00:02:16,880
+So the goal is how to design Data Scenes project architecture.
+
+22
+00:02:17,880 --> 00:02:23,880
+So with this goal let's continue our discussion.
+
+23
+00:02:23,880 --> 00:02:31,880
+So this is our first slide which tries to emphasize that we are going to kickstart this project
+
+24
+00:02:31,880 --> 00:02:37,880
+and this project is around spectral data to file inside.
+
+25
+00:02:37,880 --> 00:02:41,880
+So there will be two things that we will be talking in this project about.
+
+26
+00:02:41,880 --> 00:02:49,880
+What is spectral data in general and how it can be used effectively to gain some insight
+
+27
+00:02:49,880 --> 00:02:53,880
+about the soil on which we live.
+
+28
+00:02:53,880 --> 00:02:59,880
+And we will see that Data Scenes plays a very crucial role in solving this problem.
+
+29
+00:02:59,880 --> 00:03:04,880
+So in this project you know Data Scenes is a center piece kind of thing.
+
+30
+00:03:04,880 --> 00:03:10,880
+So we are not talking about a toy example so this is actually a real world problem
+
+31
+00:03:10,880 --> 00:03:17,880
+and we are solving this real you know environmental problem with Data Scenes.
+
+32
+00:03:17,880 --> 00:03:25,880
+So this is a very you know important slide and just I want to make it clear that since this is part of a project
+
+33
+00:03:25,880 --> 00:03:28,880
+that you need to finally submit.
+
+34
+00:03:28,880 --> 00:03:33,880
+I will avoid going to Jupyter Notebook if not essential.
+
+35
+00:03:33,880 --> 00:03:38,880
+So even if I go there I go with the purpose of explaining the overall workflow
+
+36
+00:03:38,880 --> 00:03:47,880
+and not to discuss the exact code or implementation of the ideas that I ask you to implement on your own.
+
+37
+00:03:47,880 --> 00:03:57,880
+So the focus is will be on providing this clear context and the problem statement in a far more detailed way
+
+38
+00:03:57,880 --> 00:04:01,880
+so that you don't have any ambiguity about what problem you are solving.
+
+39
+00:04:01,880 --> 00:04:06,880
+And it will not focus on the exhaustive details of the implementation.
+
+40
+00:04:06,880 --> 00:04:12,880
+So you are actually expected to figure out the exact implementation details on your own
+
+41
+00:04:12,880 --> 00:04:19,880
+and you are free to use internet and any other resources that might be helpful for you.
+
+42
+00:04:19,880 --> 00:04:27,880
+So to get our first draft of any code or understanding of what these concepts are
+
+43
+00:04:27,880 --> 00:04:31,880
+I mean if you want to know more details about what these concepts exactly are,
+
+44
+00:04:31,880 --> 00:04:35,880
+you can actually search web and not talk to GPT or any LLM agent.
+
+45
+00:04:35,880 --> 00:04:42,880
+But then I mean finally the code that you prepare you should take full guarantee for that code
+
+46
+00:04:42,880 --> 00:04:46,880
+and you should have a complete understanding of the code why that code should work
+
+47
+00:04:46,880 --> 00:04:49,880
+and whether that is a correct no way to solve this problem or not.
+
+48
+00:04:49,880 --> 00:04:55,880
+So you can actually explore all the online resources that is available
+
+49
+00:04:55,880 --> 00:04:59,880
+and an overall workflow will be provided for your guidance.
+
+50
+00:04:59,880 --> 00:05:05,880
+So the plan in the next three to four lectures is to just provide you this overall workflow
+
+51
+00:05:05,880 --> 00:05:14,880
+and not go to GPT notebook if not absolutely necessary for the project description.
+
+52
+00:05:14,880 --> 00:05:24,880
+Now let's come to the problem statement and why we are talking about why this project even matters.
+
+53
+00:05:24,880 --> 00:05:29,880
+So at the center of this project is this global soil health challenge.
+
+54
+00:05:29,880 --> 00:05:34,880
+I mean as we are proceeding ahead and countries are getting developed.
+
+55
+00:05:34,880 --> 00:05:40,880
+So we are depending a lot or we are stressing out our soil resources a lot.
+
+56
+00:05:40,880 --> 00:05:47,880
+So now soil quality is very important for almost every aspect of our life,
+
+57
+00:05:47,880 --> 00:05:54,880
+for food security and climate change are heavily affected by what is the quality of soil
+
+58
+00:05:54,880 --> 00:05:55,880
+and which you are living.
+
+59
+00:05:55,880 --> 00:06:02,880
+So this project actually tries to somehow address that global soil health challenge.
+
+60
+00:06:02,880 --> 00:06:08,880
+So these are some interesting fact that it is an interesting note at this point.
+
+61
+00:06:08,880 --> 00:06:12,880
+That soil stores more carbon than the whole atmosphere.
+
+62
+00:06:12,880 --> 00:06:19,880
+So while carbon dioxide may be harmful in the air,
+
+63
+00:06:19,880 --> 00:06:24,880
+so it is equally important or useful when it is present in the soil.
+
+64
+00:06:24,880 --> 00:06:30,880
+So that is why one of the target feature which this project also talks about is
+
+65
+00:06:30,880 --> 00:06:33,880
+total organic carbon content of the soil.
+
+66
+00:06:33,880 --> 00:06:41,880
+So we want to assess that and predict what will be the trend in future based on our ML pipeline that we create.
+
+67
+00:06:41,880 --> 00:06:48,880
+So there will be some other target properties of soil that we will be talking about.
+
+68
+00:06:48,880 --> 00:06:55,880
+But the total organic carbon is something that is very important for policy maker and farmers
+
+69
+00:06:55,880 --> 00:07:01,880
+because it directly affects the quality of life that we will be living in that region.
+
+70
+00:07:01,880 --> 00:07:06,880
+So every year billions of tons of fertile soil is being lost.
+
+71
+00:07:06,880 --> 00:07:13,880
+But due to unsustainable agriculture practices, deforestation, overwishing and construction kind of activity.
+
+72
+00:07:13,880 --> 00:07:18,880
+And this will put security in adverse way.
+
+73
+00:07:18,880 --> 00:07:24,880
+If we do not preserve our soil organic carbon and essential component of soil,
+
+74
+00:07:24,880 --> 00:07:28,880
+then in future we will have serious food security crisis.
+
+75
+00:07:28,880 --> 00:07:34,880
+And climate changes, mitigation through this soil organic carbon is also one thing
+
+76
+00:07:34,880 --> 00:07:36,880
+that people are looking at.
+
+77
+00:07:36,880 --> 00:07:44,880
+So can we somehow bring back these CO2 kind of things into the soil where it is more useful?
+
+78
+00:07:44,880 --> 00:07:51,880
+So that is why having accurate prediction of what is the soil organic content
+
+79
+00:07:51,880 --> 00:07:59,880
+and how it is depleting or increasing over the time is really a helpful thing to do.
+
+80
+00:07:59,880 --> 00:08:03,880
+Now we can do it in multiple ways.
+
+81
+00:08:03,880 --> 00:08:11,880
+This soil analysis, one very simple way is you bring soil sample to the wet labs
+
+82
+00:08:11,880 --> 00:08:17,880
+where chemist can help you assess what is the content of this less total organic carbon
+
+83
+00:08:17,880 --> 00:08:20,880
+or any other soil property that you are interested in.
+
+84
+00:08:20,880 --> 00:08:24,880
+And this has been the traditional approach to solve this problem.
+
+85
+00:08:24,880 --> 00:08:31,880
+Even in India we have multiple isro centers and local agriculture universities
+
+86
+00:08:31,880 --> 00:08:38,880
+which do regularly this soil health analysis by bringing sample from this varied region to lab
+
+87
+00:08:38,880 --> 00:08:44,880
+and then analyzing them in lab to figure out this soil content.
+
+88
+00:08:44,880 --> 00:08:50,880
+So this is already in existence but then this is as you can see very labor intensively.
+
+89
+00:08:50,880 --> 00:08:54,880
+Every time when you have to do this analysis you have to go back to the field again
+
+90
+00:08:54,880 --> 00:08:57,880
+and you know bring these samples.
+
+91
+00:08:57,880 --> 00:09:01,880
+So this is not something which can be scalable and which can be used again and again
+
+92
+00:09:01,880 --> 00:09:07,880
+if you want to let's say predict the soil health over a let's say elongated period of time
+
+93
+00:09:07,880 --> 00:09:11,880
+to see how this is changing you know whether this is alarming or not.
+
+94
+00:09:11,880 --> 00:09:16,880
+So if you want to do this practice again and again it requires a lot of human involvement.
+
+95
+00:09:16,880 --> 00:09:23,880
+So certainly bringing samples to the lab to test it using some chemical analysis
+
+96
+00:09:23,880 --> 00:09:27,880
+is not a way for future right.
+
+97
+00:09:27,880 --> 00:09:32,880
+I mean if you want to do these kind of analysis regularly in different time zone
+
+98
+00:09:32,880 --> 00:09:35,880
+then this is not a feasible practice.
+
+99
+00:09:35,880 --> 00:09:40,880
+So that's why this project talks about hyperspectral remote sensing.
+
+100
+00:09:40,880 --> 00:09:46,880
+So hyperspectral sensing goes beyond human vision okay.
+
+101
+00:09:46,880 --> 00:09:52,880
+So what happens is normally we employ some high-regulation camera
+
+102
+00:09:52,880 --> 00:10:00,880
+which can not only capture our human vision but also can capture beyond human vision you know a spectrums.
+
+103
+00:10:00,880 --> 00:10:08,880
+So normally the camera that we put on satellite to let's say take a picture of our you know
+
+104
+00:10:08,880 --> 00:10:11,880
+Earth or this you know geographical location which we are interested in.
+
+105
+00:10:11,880 --> 00:10:14,880
+It has multiple spectral bands okay.
+
+106
+00:10:14,880 --> 00:10:21,880
+So for human eye you know RGB red no being blue is all the sensual information that you need.
+
+107
+00:10:21,880 --> 00:10:26,880
+I mean any picture which has a combination of these three things makes sense to us.
+
+108
+00:10:26,880 --> 00:10:33,880
+No other things we cannot see but these cameras can actually capture very wide range of spectrum
+
+109
+00:10:33,880 --> 00:10:41,880
+and normally we call them hyperspectral if you know they are you know the number of bands
+
+110
+00:10:41,880 --> 00:10:46,880
+that they can capture goes beyond 200 plus or something like this no it even goes in thousands.
+
+111
+00:10:46,880 --> 00:10:53,880
+So like I mean the full hyperspectral actually contains thousands of you know band or different wavelengths.
+
+112
+00:10:53,880 --> 00:11:01,880
+I mean this camera capture images so each picture you know each at each pixel I mean which represents a geographical location on land.
+
+113
+00:11:01,880 --> 00:11:07,880
+You have a full hyperspectral you know signature okay.
+
+114
+00:11:07,880 --> 00:11:13,880
+So this is like you know providing a fingerprint for you know that particular on the soil location
+
+115
+00:11:13,880 --> 00:11:17,880
+or that particular geographical location that you are taking picture of.
+
+116
+00:11:17,880 --> 00:11:28,880
+Now what happens is let's say if this is you know one sample spectra that you observe by this satellite at a given pixel position.
+
+117
+00:11:28,880 --> 00:11:34,880
+So remember I mean we are talking about only one you know pixel signature okay.
+
+118
+00:11:34,880 --> 00:11:39,880
+So that one pixel on the ground you know represent you know some area right.
+
+119
+00:11:39,880 --> 00:11:43,880
+I mean so when you take an image and let's see we are talking about this particular pixel.
+
+120
+00:11:43,880 --> 00:11:48,880
+This picture so corresponding to some geographical location on the land itself okay.
+
+121
+00:11:48,880 --> 00:11:56,880
+So for this geographical location no corresponding to this picture if I see what is the reflected.
+
+122
+00:11:56,880 --> 00:12:02,880
+You know spectrum by this you know land that has been captured by my camera.
+
+123
+00:12:02,880 --> 00:12:08,880
+So cameras has sensors and they you know capture at so there are multiple you know sensors in camera.
+
+124
+00:12:08,880 --> 00:12:13,880
+And the number of sensor defines how you know high resolution your camera will have.
+
+125
+00:12:13,880 --> 00:12:19,880
+So every let's say sensor captures one no pixel information which correspond to a land location.
+
+126
+00:12:19,880 --> 00:12:29,880
+So what it means is that you know when you know erase gets you know reflected from this particular piece of land and then goes back to camera.
+
+127
+00:12:29,880 --> 00:12:38,880
+What are the energy level for each of the wavelengths that it you know captures okay.
+
+128
+00:12:38,880 --> 00:12:42,880
+So this is not we call you know amplitude of the wavelength that that is being captured.
+
+129
+00:12:42,880 --> 00:12:46,880
+For example you know these are the wavelengths which are captured with very low amplitude okay.
+
+130
+00:12:46,880 --> 00:12:55,880
+But on the other hand you know as you go across the higher bands so the horizontal line actually represents you know different wavelengths or different frequency.
+
+131
+00:12:55,880 --> 00:13:04,880
+So for different frequency you will see there will be different you know amplitude that the sensor finally could capture.
+
+132
+00:13:04,880 --> 00:13:17,880
+So why this is true because I mean there this becomes true because because you know soil different soil may have difference you know chemical components.
+
+133
+00:13:17,880 --> 00:13:26,880
+And this chemical components somehow you know influences what kind of radiation the soil will absorb and not let it know go back to the camera.
+
+134
+00:13:26,880 --> 00:13:33,880
+Okay so this absorption is what differs from different soil sample to difference and soil sample.
+
+135
+00:13:33,880 --> 00:13:41,880
+So this is what I wanted to highlight here that human high I can only capture three you know color but multispectral and hyperspectral.
+
+136
+00:13:41,880 --> 00:13:48,880
+No cameras can capture multiple bands information and when we say it capture band information what we are meaning is that.
+
+137
+00:13:48,880 --> 00:14:03,880
+It is capturing the reflected radiation that is coming from that piece of land to the camera and the reflection you know amplitude of different wavelengths may not be exactly same right.
+
+138
+00:14:03,880 --> 00:14:12,880
+We are not getting a horizontal curve you know flat curve kind of thing and these are the interesting thing that we want to note from that spectra okay.
+
+139
+00:14:12,880 --> 00:14:19,880
+So some so what happens let me go to the no next slide and then it will create so why different materials have you know unique signature.
+
+140
+00:14:19,880 --> 00:14:27,880
+So the reason is that every chemical you know bond vibrates at specific frequency and absorbs specific wavelength.
+
+141
+00:14:27,880 --> 00:14:41,880
+So let's say if some chemical is present in let's a high quantity in your soil sample then that we know chemical we have certain you know behavior that no it only absorbs some wavelength.
+
+142
+00:14:41,880 --> 00:14:51,880
+So some wavelengths no more aggressively than the other wavelengths for example maybe no total organic carbon absorbs these wavelengths no aggressively rather than other wavelengths.
+
+143
+00:14:51,880 --> 00:15:01,880
+So here you will see a deep kind of things means the reflected no wavelengths are not high in you know amplitude okay.
+
+144
+00:15:01,880 --> 00:15:13,880
+This is what you know this is why if your soil component or chemical composition of your soil change then you will see different kind of signature for the sample right because this may be.
+
+145
+00:15:13,880 --> 00:15:27,880
+So this is a signature of one let's say soil you know region or pixel value but if you go to another pixel value and then try to see what is the signature that is being captured by camera it may be completely different.
+
+146
+00:15:27,880 --> 00:15:37,880
+And I mean these are affected you know the reason for this kind of you know dips that you see in between are presence of different kind of chemical bond in the soil okay.
+
+147
+00:15:37,880 --> 00:15:55,880
+For example you know presence of more organic carbon may you know create dips at certain points similarly presence of more let's say calcium carbonate which is another you know interesting property that normally soil centrist want to measure may cause some other wavelengths to you know.
+
+148
+00:15:55,880 --> 00:16:15,880
+To see a deep here because they they actually absorb those kind of wavelengths no far more than let's say maybe this kind of a plant okay so by just looking at these dips you can figure out you know which of the component or less a soil chemical properties is present in your current sample.
+
+149
+00:16:15,880 --> 00:16:33,880
+So instead of taking these samples to you know lab every time I mean these hyper spectral signatures are also a very you know nice way to or an alternate way to predict the you know content of those chemical composition inside your soil okay.
+
+150
+00:16:33,880 --> 00:16:43,880
+So this is where you know we are going I mean we want to you know observe many such signatures and then maybe from their figure out some trend that can reflect
+
+151
+00:16:43,880 --> 00:16:49,880
+whether you know total organic carbon is more or less or let's say some other properties more or less okay.
+
+152
+00:16:49,880 --> 00:17:04,880
+So so this is what you know the problem statement is we want to predict soil organic carbon and also some you know other interesting property from by looking at what is reflected from let's say that soil sample.
+
+153
+00:17:04,880 --> 00:17:21,880
+Let's say this is the soil sample and it reflects some some of the or maybe you know all of the no wavelengths but with different amplitude right it reflects some wavelength quite well but it does not reflect some wavelength no that well because it absurd most of you do to some.
+
+154
+00:17:21,880 --> 00:17:33,880
+No soil property in this case let's say no keep in mind that soil organic carbon is what we are interested in but in the project I will give you you know multiple targets which represents different kind of soil no property.
+
+155
+00:17:33,880 --> 00:17:41,880
+But for this you know particular slide let's assume that we are interested in soil organic carbon which is also you know chemical property of the soil.
+
+156
+00:17:41,880 --> 00:17:56,880
+And for this particular sample what we see is that different wavelengths you know get reflected with different you know magnitude and these different magnitude actually reflect how much you know soil organic carbon is you know present in this one.
+
+157
+00:17:56,880 --> 00:18:08,880
+So so what we want to so this is you know kind of a regression problem where you want to predict what will be the value of total organic carbon if my signature looks something like this.
+
+158
+00:18:08,880 --> 00:18:16,880
+Okay so your signature may vary as I said right I mean one soil sample may have this kind of signature another soil sample may have the fear.
+
+159
+00:18:16,880 --> 00:18:34,880
+So that may represent you know more of total organic carbon or less total organic carbon depending upon you know by and we can analyze that no by looking at lots of data only okay so but the final task is I mean whatever analysis we do we want to finally predict what is the soil organic no content.
+
+160
+00:18:34,880 --> 00:18:48,880
+In that no sample okay so normally when you want to do machine learning on any type of data you always have you know this input output fear that you want your model to train on.
+
+161
+00:18:48,880 --> 00:19:02,880
+Okay so here so what is the input so what is the input that you will give to your machine learning model while training this spectral reflectance that you capture from 200 pants this will be the input for each of this spectral signature.
+
+162
+00:19:02,880 --> 00:19:12,880
+So since you you have not trained your model you have to start the training you need to also you know tell what was the observed let's say total organic carbon for this particular let's a first sample.
+
+163
+00:19:12,880 --> 00:19:29,880
+So for first sample you will have a spectral signature as well as a lesson lab calculated total organic carbon content information okay so so this first pair that you give the machine learning model to train from will be your.
+
+164
+00:19:29,880 --> 00:19:54,880
+You know this spectra and what is the corresponding total organic carbon that you could figure out by doing some better analysis okay similarly if let's say if you do this exercise for once and we have collected thousands of sample from you know various locations in the area where we are interested you know in the geographical location where we are interested and we took it to the lab.
+
+165
+00:19:54,880 --> 00:20:15,880
+So what we do is we normally note the Jewish special location of these places from where we have picked this sample and we store that so that later on we can match what was the reflectance you know or the you know signature of these samples when I captured it using satellite so satellite is always you know capturing from the top.
+
+166
+00:20:15,880 --> 00:20:44,880
+All the signature of all the sample that we want to collect okay so so anyway we will have an image which will have some pixels corresponding to each of the samples that we took to the lab okay so so understand the in a whole picture I mean what we have so maybe you know I have it in the next one okay so what we have is we have both this pair okay input output pair for many soil samples how can we have this because no our camera can not only picture you know captured picture of one.
+
+167
+00:20:44,880 --> 00:21:13,880
+No soil sample it or one small location on land but it can simultaneously even at one go it can capture picture of multiple location on the ground okay so we keep that information that image which is we call spectral signature and we also collect soil sample from all those location and take that to lab so in the lab what we get is the actual total organic you know carbon that is present in those samples so we recorded no in some Excel file let's say
+
+168
+00:21:14,880 --> 00:21:44,880
+no some CSB kind of format I mean we create an Excel file and then we ask our chemist to record for each soil sample know which are identified by let's say some soil sample ID what is the total organic carbon that they they could observe or they could figure out using their let's a chemical test okay so we store this information in one Excel file and then we also take the image captured by our satellite and from the geospatial location that we stored for each
+
+169
+00:21:44,880 --> 00:22:13,880
+of these samples that we collected we can figure out that what will be the spectral signature of all these samples right from that one image we can actually figure out because in that one image has multiple pixel where many of these pixel correspond to the samples that we have collected and take into the lab okay so the so the for every soil sample what you will have finally is a spectral signature as well as what was the actual total organic carbon present in that sample okay
+
+170
+00:22:13,880 --> 00:22:43,780
+and we can do it as many times as possible we can afford because this is as I said very labor intensive so you may not be able to let's say no collect millions of sample and do this no no wait and at least we can do hundreds of sample collection and then also collect their spectral signature using satellites okay so for the same soil sample we are we are collecting to information and it should be very clear to you know from now on what the very first information that you are collecting is from the satellite so what was the spectral signature of the soil sample that you know
+
+171
+00:22:43,780 --> 00:23:13,680
+that was collected by the satellite and the second information that you get is from the chemist so when you take the sample to the chemist you ask them to do some you know chemical analysis and tell us what is that let's it content of the total organic carbon budget in this particular sample so for each sample you have this two pair and when I collect multiple sample and you know collect these two information corresponding to each of those sample then I will have a CSV file or you know Excel file
+
+172
+00:23:13,680 --> 00:23:43,640
+where my inputs will be spectras you know these spectral signature which is nothing but you know information about 200 bands or 200 plus bands and the output value that I want to finally predict using my machine learning that I will train on this data will be those 12 total so you know soil organic carbon or you know total organic carbon that lab chem or chemist has you know calculated okay so so what will machine learn machine will try to
+
+173
+00:23:43,640 --> 00:23:59,640
+see from this data set which has both spectra as well as the actual total organic content of the you know each sample machine will try to see at the spectra and try to learn how to predict total organic carbon okay so for every machine learning model there has to I mean
+
+174
+00:23:59,640 --> 00:24:08,640
+those which as you know supervised learning you have to give this input output pair so whatever you want to predict we call it as output or target value okay
+
+175
+00:24:08,640 --> 00:24:28,640
+and whatever you give as input we call it you know features on which we want to train the machine okay so for example the very obvious feature here is all these wavelength information what what what was the magnitude of each of these wavelength that was let's say you know reflected by this particular soil sample is what we call features
+
+176
+00:24:28,640 --> 00:24:44,640
+and what is the target value you know here is the total organic no carbon that was observed by this chemical you know chemist in the lab okay so let's say if you have you know 700 or 800 sample that you have collected from different places
+
+177
+00:24:44,640 --> 00:24:54,640
+and also collected their signature then in a CSV file you can easily you know store this data although I mean they will be stored by you know they will be given to you by different you know persons one from you know maybe
+
+178
+00:24:54,640 --> 00:25:18,640
+store some other you know space organization and one from this you know chemical labs that you have sent the samples to so you have to collect both the sample and then then you have to know somehow identify that for each of the sample can you correctly identify what is the spectral signature and what is the actual soil organic carbon then we are in a position to do any machine learning task right
+
+179
+00:25:18,640 --> 00:25:34,640
+because you need these many input output pair on which you want to train your machine learning model okay so in any supervised machine learning you always need this to you know pair of data for multiple samples so if you have you know many data of this kind where you know
+
+180
+00:25:34,640 --> 00:25:46,640
+you have both these element of the pair the spectral signature as well as federal organic carbon then we can think of you know creating a model and then training them on this kind of data okay
+
+181
+00:25:46,640 --> 00:26:05,640
+so this is what is you know in concise way if I want to tell you I mean what what do we want to learn so we want some you want to learn some function over a spectral signature that can tell us what will be the percentage total organic carbon and how we will do it you know using existing data that we already have.
+
+182
+00:26:06,640 --> 00:26:23,640
+Now I mean I don't want to spend time here I mean just read it no no association key indicator for overall soil health and I mean presence of association answers nutrients no cycling and water retention if you can no predicted properly then
+
+183
+00:26:23,640 --> 00:26:34,640
+you can actually improve soil structure and prevent erosion and it's very critical for carbon sequestration efforts I mean which I told you earlier that no CO2 is not good in air
+
+184
+00:26:34,640 --> 00:26:42,560
+but carbon is very good in soil. If you can somehow push back some of these CO2 into soil
+
+185
+00:26:42,560 --> 00:26:49,440
+in form of carbon then this is actually very good for overall health of soil as well as no us.
+
+186
+00:26:49,440 --> 00:26:53,520
+So that's why I mean if you can predict soil organic carbon you can actually predict
+
+187
+00:26:53,520 --> 00:26:58,560
+no crop productivity and all that kind of thing and shall we do something to
+
+188
+00:26:58,560 --> 00:27:03,120
+let's say prevent this soil loss or this no total organic carbon loss from the soil
+
+189
+00:27:03,840 --> 00:27:11,920
+in the area where we are interested in. So this is the overall workflow that I you know
+
+190
+00:27:11,920 --> 00:27:18,240
+talk to you just now right so this is satellite which is taking you know image of some
+
+191
+00:27:19,120 --> 00:27:25,440
+portion of land okay and if let's say we could build successfully a machine learning model
+
+192
+00:27:25,440 --> 00:27:31,200
+that is very let's say you know accurate or satisfactoryly accurate to predict
+
+193
+00:27:31,200 --> 00:27:36,800
+total organic carbon in the soil then so what will be what will the final product look like is
+
+194
+00:27:36,800 --> 00:27:44,320
+what I'm trying to show you in this picture so this is into in pipeline so what we will we can do
+
+195
+00:27:44,320 --> 00:27:48,960
+finally if we have those no machine learning models already let's say trained and you know
+
+196
+00:27:48,960 --> 00:27:57,280
+available to us we can directly take satellite or any no aircraft data of that particular
+
+197
+00:27:57,360 --> 00:28:03,440
+piece of land in which let's say we are interested okay and we can collect the hyper spectral images
+
+198
+00:28:03,440 --> 00:28:09,680
+from these you know devices that is mounted on this satellite or other no vehicles some and
+
+199
+00:28:10,320 --> 00:28:15,440
+this hyper spectral images will be nothing but spectral signature right and since I have trained
+
+200
+00:28:15,440 --> 00:28:23,600
+my machine learning model to predict soil organic content by just looking at spectral signature
+
+201
+00:28:24,560 --> 00:28:30,640
+my machine learning model will be able to tell me what is the soil carbon map okay for each
+
+202
+00:28:30,640 --> 00:28:36,000
+of the pixel it can actually predict you what is the soil content or unless so what is the total
+
+203
+00:28:36,000 --> 00:28:41,520
+organic carbon present in that particular piece of you know soil sample and if you can do that
+
+204
+00:28:42,160 --> 00:28:48,160
+then what you will have finally is a map whereby region I mean you can automatically you know
+
+205
+00:28:48,720 --> 00:28:53,440
+plot and show me what will be the total organic car what is the total organic carbon present in
+
+206
+00:28:53,440 --> 00:28:59,280
+this piece of land okay and how it varies let's say along the no different landscape and geography
+
+207
+00:28:59,280 --> 00:29:05,360
+that you are interested in now this kind of information can be very useful for farmers and
+
+208
+00:29:05,360 --> 00:29:10,960
+policymakers now because no they can not decide depending upon what properties you are guessing in
+
+209
+00:29:10,960 --> 00:29:15,440
+this case we are you know guessing total organic carbon but we can maybe you know also
+
+210
+00:29:16,320 --> 00:29:22,960
+train model to guess maybe nitrogen in the you know soil and if the nitrogen is less then I mean
+
+211
+00:29:22,960 --> 00:29:28,880
+they can maybe put some fertilizer to improve the nitrogen you know content of the soil so that's
+
+212
+00:29:28,880 --> 00:29:34,160
+why I mean this this is a very you know realistic project where I mean if you have see the only
+
+213
+00:29:34,160 --> 00:29:39,120
+bottleneck is this machine learning model right which we don't know right now we don't have
+
+214
+00:29:39,120 --> 00:29:44,160
+but if you get a lot of sample that I told you in the last you know slide then we can maybe
+
+215
+00:29:44,240 --> 00:29:49,440
+train machine learning model and once we have this machine learning model we can create software
+
+216
+00:29:49,440 --> 00:29:54,000
+which can directly take the satellite images of the you know geographic location that you are
+
+217
+00:29:54,000 --> 00:30:01,040
+interested in and finally produce you a map like this okay which you know clearly shows you how
+
+218
+00:30:01,040 --> 00:30:05,680
+this no presence of total organic carbon varies from one location to another location and this is
+
+219
+00:30:05,680 --> 00:30:11,200
+very informative right then we can inform policymakers that you know you need to provide farmers with
+
+220
+00:30:11,200 --> 00:30:17,360
+some you know fertilizers that can improve these things or you need to make some policy that
+
+221
+00:30:17,360 --> 00:30:22,400
+will make sure that the total organic carbon is not depleting in this region you know you slow
+
+222
+00:30:22,400 --> 00:30:27,200
+down the rate of depletion of total organic carbon okay so this is the overall you know outcome that
+
+223
+00:30:27,200 --> 00:30:35,200
+or the project you know vision okay so this is no into in pipeline after we have this but now the
+
+224
+00:30:35,200 --> 00:30:39,840
+whole question is I mean since we don't have it we would like to our project actually aims
+
+225
+00:30:40,480 --> 00:30:48,000
+towards building this machine learning model okay so I hope you know
+
+226
+00:30:49,200 --> 00:30:55,840
+right now I mean you are clear about the no significance of this project right I mean if you
+
+227
+00:30:55,840 --> 00:31:01,040
+once you train this machine learning model where they can be used and you also understand
+
+228
+00:31:01,040 --> 00:31:08,320
+what will be the input while training machine learning model on this kind of data okay so so I
+
+229
+00:31:08,320 --> 00:31:16,960
+hope you understand this context very well now by now so so this is not something very new in the
+
+230
+00:31:16,960 --> 00:31:23,360
+world I mean many you know it does you know many developed countries like Israel and Brazil has
+
+231
+00:31:23,360 --> 00:31:28,320
+already replaced you will you snatched their you know agriculture by doing this kind of you know
+
+232
+00:31:28,320 --> 00:31:33,520
+precision agriculture so then we generally call this no precision agriculture can we use satellite
+
+233
+00:31:33,520 --> 00:31:41,680
+data to accurately predict soil content and then you know use fertilizers in an informed way
+
+234
+00:31:41,680 --> 00:31:46,960
+to let's say you know improve those missing content only in the location where it is missing rather
+
+235
+00:31:46,960 --> 00:31:52,560
+than you know you know using you know these fertilizers blindly and then again you know producing
+
+236
+00:31:52,560 --> 00:31:58,640
+some other kind of you know disasters so so this is you know what this projector is to handle
+
+237
+00:31:58,880 --> 00:32:07,920
+why this becomes you know so challenging because you know these are some of the reasons why this is
+
+238
+00:32:07,920 --> 00:32:13,520
+not so easy you know there is no you know simple physical law or you know mathematical law
+
+239
+00:32:14,320 --> 00:32:19,600
+which can you know take these you know signatures and tell you what is a soil component right
+
+240
+00:32:19,600 --> 00:32:24,640
+because it is very high dimensional problem first I mean the data is very high dimensional if you
+
+241
+00:32:24,640 --> 00:32:30,400
+see I mean there are thousands of spectral information that you get as input and by looking at the
+
+242
+00:32:30,400 --> 00:32:35,600
+trend on this thousand of you know you know band you have to actually predict what will be the
+
+243
+00:32:35,600 --> 00:32:42,960
+structural organic carbon and also this is a very interesting I mean so every you know chemical
+
+244
+00:32:42,960 --> 00:32:51,120
+come let's say compounded some absorption feature but in in a given soil sample you hardly have
+
+245
+00:32:51,120 --> 00:32:57,280
+only one chemical you know compound right so normally a soil component or a soil will have
+
+246
+00:32:57,280 --> 00:33:02,880
+you know multiple chemical you know compound which we call you know their chemical composition
+
+247
+00:33:02,880 --> 00:33:08,080
+and each of these chemical you know compound has some different spectral signature and when they
+
+248
+00:33:08,080 --> 00:33:13,520
+are present together I mean their spectral signature may you know mix with each other and then you
+
+249
+00:33:13,520 --> 00:33:18,880
+cannot you know accurately predict why this dip is there I mean is it there because of this first
+
+250
+00:33:18,880 --> 00:33:23,440
+property second property or third property because sometimes you know different kind of soil
+
+251
+00:33:23,440 --> 00:33:29,600
+you know chemical composition may cause similar kind of you know absorption feature or reflectance
+
+252
+00:33:29,600 --> 00:33:35,360
+feature so in that case so this is what we call you know spectral mixing so it actually it's not
+
+253
+00:33:35,360 --> 00:33:40,960
+that easy to say that you know this particular wavelength is let's absorb more by this compound only
+
+254
+00:33:40,960 --> 00:33:46,560
+okay so there may be other compounds also that may you know suppress the amplitude of wavelength
+
+255
+00:33:46,640 --> 00:33:53,440
+there plus there are no atmospheric interference when you know capture a satellite image in between
+
+256
+00:33:53,440 --> 00:33:59,360
+you know your satellite and the land there is an atmosphere right and atmosphere continuously
+
+257
+00:33:59,360 --> 00:34:03,600
+keep changing right in in in in let's say you know winter you have a different atmosphere in
+
+258
+00:34:03,600 --> 00:34:09,600
+monsoon you have a different atmosphere so when these rays you know are reflected from ground they do
+
+259
+00:34:09,600 --> 00:34:17,040
+not you know reach the satellite cameras with the same you know amplitude that they were reflected
+
+260
+00:34:17,040 --> 00:34:22,800
+from the ground okay because you know a water molecules in in the air may capture some of those
+
+261
+00:34:22,800 --> 00:34:28,000
+no wavelength further and then cause some you know interference which does not give you act
+
+262
+00:34:28,000 --> 00:34:33,120
+you know correct the correct data that you want to train on okay and then sometimes these
+
+263
+00:34:33,120 --> 00:34:37,920
+relationships are very non-linear and no physics and mathematics normally I mean work well when
+
+264
+00:34:38,400 --> 00:34:43,040
+you have simple relationship and you can express it in some mathematical equation so that's why
+
+265
+00:34:43,040 --> 00:34:47,840
+I mean in this kind of situation I mean machine learning methods actually side and that's why you
+
+266
+00:34:47,840 --> 00:34:53,840
+know machine ML methods are you know becoming more and more useful in this kind of area where you
+
+267
+00:34:53,840 --> 00:35:00,480
+know you want to predict this kind of complex high dimensional you know you know features I mean
+
+268
+00:35:00,480 --> 00:35:04,400
+you can you want to train and predict based on this kind of you know complex high dimensional
+
+269
+00:35:05,200 --> 00:35:09,680
+which are non-linear in nature okay so that's why we are going to machine learning you know models
+
+270
+00:35:10,880 --> 00:35:18,560
+so these you know this is our projects road map so we will see you know into in you know project
+
+271
+00:35:18,560 --> 00:35:24,240
+development in this kind of current project so into in data science no pipeline with the very
+
+272
+00:35:24,240 --> 00:35:31,120
+first step is no data wrangling where you get the raw spectra and then you have to clean that
+
+273
+00:35:31,120 --> 00:35:36,480
+data say okay so I will provide you with you know this initial data where you know your input
+
+274
+00:35:37,040 --> 00:35:42,880
+saw actually spectra as well as these chemical composition of the soil that has been measured by let's
+
+275
+00:35:42,880 --> 00:35:50,400
+say no you know this kind of this laboratory so you this will be available to you but then you
+
+276
+00:35:50,400 --> 00:35:56,400
+may need to do some you know data cleaning because many a times you don't get this data in the most
+
+277
+00:35:56,400 --> 00:36:01,760
+no clean for I mean they may have some impurity there may be some missing values in the data
+
+278
+00:36:01,760 --> 00:36:06,560
+and you have to take care of all that before you start you know your machine learning or training
+
+279
+00:36:06,560 --> 00:36:13,200
+process of for the machine learning you know model then this you know data raw data may not be
+
+280
+00:36:13,200 --> 00:36:17,760
+always the best kind of data on which you want to train your model so this is also very important
+
+281
+00:36:17,760 --> 00:36:23,680
+and that this is called feature engineering so normally no machine learning machine or you know
+
+282
+00:36:23,680 --> 00:36:31,920
+these ML models learn well when you do some sort of prepossessing on this data and you know filter
+
+283
+00:36:31,920 --> 00:36:37,440
+out some features which are really important for the learning perspective and this is one
+
+284
+00:36:37,440 --> 00:36:43,360
+information you know where domain knowledge comes very you know handy because soil scientist has
+
+285
+00:36:43,360 --> 00:36:47,520
+been let's say working in this area for quite long and they more or less know what kind of
+
+286
+00:36:48,320 --> 00:36:54,960
+preprocessing on a data helps you know figure out some certain property from that kind of data okay
+
+287
+00:36:54,960 --> 00:36:59,760
+so these are these are this is what we call you know feature engineering and I will tell you about
+
+288
+00:36:59,760 --> 00:37:07,280
+some of the you know preprocessing that normally soils and this do on this hyper spectral data
+
+289
+00:37:07,280 --> 00:37:15,600
+so that the feature can be you know the feature can clearly indicate what is the content of different
+
+290
+00:37:15,680 --> 00:37:20,640
+let's say chemical composition in in the soil okay so there are some you know feature important
+
+291
+00:37:22,240 --> 00:37:26,400
+feature really and there are some you know preprocessing technique which are really prevalent in
+
+292
+00:37:26,400 --> 00:37:30,560
+this domain and I will tell you about that I will tell you about the signature of those functions
+
+293
+00:37:30,560 --> 00:37:36,640
+and maybe ask you to implement now those functions which will do some sort of preprocessing on
+
+294
+00:37:36,640 --> 00:37:44,560
+the spectra before before we start now our model building the face then once you have no clean data
+
+295
+00:37:44,560 --> 00:37:51,520
+and let's say improved in a feature improved data then we will start the whole process of
+
+296
+00:37:51,520 --> 00:37:57,840
+model building where we will you know initialize the model and then we will try to you know
+
+297
+00:37:57,840 --> 00:38:05,040
+but train the model in a way so that no the prediction is good okay and while doing this we will not
+
+298
+00:38:06,080 --> 00:38:12,480
+restrict to one method but no I encourage you to take a look at four or five different method
+
+299
+00:38:13,360 --> 00:38:18,320
+released in the project description so so that no you can have a look at those different methods
+
+300
+00:38:18,320 --> 00:38:24,480
+you can search web about how those method roughly works you don't need to know all the detail of
+
+301
+00:38:24,480 --> 00:38:30,960
+these you know algorithms but you just need to figure out what is the you know key idea behind
+
+302
+00:38:30,960 --> 00:38:38,240
+this algorithm and how to you know implement those algorithm inside Python Python mostly has
+
+303
+00:38:38,240 --> 00:38:42,640
+available you know libraries which implements most of these algorithms so you don't have to write
+
+304
+00:38:42,640 --> 00:38:47,760
+anything from a stat but you need to at least know the interface of using those functions right the
+
+305
+00:38:47,760 --> 00:38:53,120
+way we you know said that we should write always nice dog strings so that anyone can know use
+
+306
+00:38:53,120 --> 00:38:59,200
+our functions in future so a Python developer has already implemented most of these commonly
+
+307
+00:38:59,200 --> 00:39:06,880
+or you know well known algorithms ML algorithms that you know people use for training models so you
+
+308
+00:39:06,880 --> 00:39:14,640
+can you know simply import their modules and use these models directly by knowing the interface
+
+309
+00:39:14,640 --> 00:39:20,640
+clearly okay so so this is not something that you need to build from a stat but no functions are
+
+310
+00:39:20,640 --> 00:39:26,160
+already there for you know training the model you know and you know predicting or you know
+
+311
+00:39:26,160 --> 00:39:30,800
+getting the score or prediction score of this model so but then you need to do at least you know
+
+312
+00:39:30,800 --> 00:39:36,320
+this initial data cleaning and feature engineering before you can you know invoke this model and of
+
+313
+00:39:36,320 --> 00:39:40,480
+course for using this function you need to know some functionality of this algorithm so that basic
+
+314
+00:39:40,480 --> 00:39:47,760
+functionality you should no figure out on your own by looking on way once we build model we don't stop
+
+315
+00:39:47,760 --> 00:39:53,120
+there because you know many people can build model but whether those models are reliable or not is
+
+316
+00:39:53,120 --> 00:40:02,320
+what we want to you know check and once you get the model can we do post you know analysis to
+
+317
+00:40:02,320 --> 00:40:10,880
+figure out what are the features that let's say help most for you know in deciding this soil
+
+318
+00:40:10,880 --> 00:40:16,320
+organic carbon so this is what we call feature importance analysis so now not maybe all of the
+
+319
+00:40:16,320 --> 00:40:21,280
+multi spectra which is available there was helpful in predicting let's say total organic carbon so
+
+320
+00:40:21,280 --> 00:40:28,320
+what were those no wavelengths or the region of wavelengths that help machine learning model most
+
+321
+00:40:28,560 --> 00:40:35,440
+let's say learning about all predicting soil organic carbon okay so this is what you know we also
+
+322
+00:40:35,440 --> 00:40:42,240
+do so this we call post model analysis we try to come up with what is the score what can we talk
+
+323
+00:40:42,240 --> 00:40:47,680
+about some quantitative metric by which we can tell that no this model is better predicting better
+
+324
+00:40:47,680 --> 00:40:52,480
+than other one or not and then also so if let's say this model is the best one among the
+
+325
+00:40:52,560 --> 00:40:58,560
+available model so what we are the feature that help this model most in predicting this kind of
+
+326
+00:40:59,280 --> 00:41:07,040
+no carbon content or any other nutrient contents so learning objective is you know you will be
+
+327
+00:41:07,040 --> 00:41:12,480
+able to frame real world problem as ML task you can in a process an engineer feature from raw data
+
+328
+00:41:12,480 --> 00:41:16,080
+so this is what we will learn I mean I will give you signature and you have to implement it
+
+329
+00:41:16,080 --> 00:41:20,880
+you will build and evaluate regression models you know effectively at least four five regression
+
+330
+00:41:20,880 --> 00:41:27,440
+model I will ask you to you know build and you know train from the scratch and then we will do
+
+331
+00:41:27,440 --> 00:41:32,640
+this interpretation of this model to get scientific insight that really what were the important
+
+332
+00:41:32,640 --> 00:41:37,840
+feature that helped our machine learning model to learn best and you know predict in a nice way
+
+333
+00:41:37,840 --> 00:41:43,840
+I mean the soil composition and how to communicate these results to domain experts because no domain
+
+334
+00:41:43,840 --> 00:41:50,720
+expert may not know all the ML that you know but they may want know these information that you
+
+335
+00:41:50,720 --> 00:41:56,720
+derive out of your whole project in form of some plots or some graphs no so that it's easy for
+
+336
+00:41:56,720 --> 00:42:02,320
+them to visualize and make sense or you know derive some nice insight from the whole experimentation
+
+337
+00:42:02,320 --> 00:42:07,760
+that you have done okay so this communication is equally you know important it's not
+
+338
+00:42:07,760 --> 00:42:14,880
+your task does not in that just getting this model so you you should be able to present it to
+
+339
+00:42:14,880 --> 00:42:20,320
+the you know field expert and they should be able to get you know good insight by looking at
+
+340
+00:42:20,320 --> 00:42:26,400
+your whole you know approach or your final data so communication is very you know essential
+
+341
+00:42:28,000 --> 00:42:34,240
+so so today we just discussed know why and what we are going to do and the project implementation
+
+342
+00:42:34,320 --> 00:42:40,720
+will teach you how to do it okay and in the process of doing it you will eventually know about
+
+343
+00:42:40,720 --> 00:42:45,360
+know something about Winopanda numtapai and other python library that is no available
+
+344
+00:42:47,200 --> 00:42:52,000
+with you so with this I would like to conclude today's lecture and I will also share
+
+345
+00:42:52,000 --> 00:42:58,080
+these data with you so start exploring them and in the next lecture I will talk about the
+
+346
+00:42:58,080 --> 00:43:04,000
+detailed you know pipeline how to do this kind of problem solving in a stepwise step manner again
+
+347
+00:43:04,000 --> 00:43:10,640
+without showing you the exact code okay and asking you to do this on your own so thank you I will
+
+348
+00:43:10,640 --> 00:43:12,640
+see you in the next video
+

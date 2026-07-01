@@ -1,0 +1,447 @@
+start	end	text
+0	14680	Hello and welcome back to Python core and applied concepts for reliable data science workflows.
+14680	22160	So today we will be continuing our discussion on assignment and no conditionals.
+22160	48160	So in in the last few lectures we discussed about how to build expressions inside Python or you know programming language and we have also seen the very basic statement in Python programming language which is called assignment statement and assignment statement or you know nothing new to Python it's almost no present in every other imperative programming language.
+48160	75160	We looked a little deeply into the semantics of assignment operator and we have seen you know with careful you know reasoning we can write correct programs which involves assignments right so we talked about a swap program where we use a temporary variable and we have also tried to write down some meaningful specification for those program using assertions.
+75160	91160	This was our discussion in the previous few lecture so today we will continue our discussion and we'll talk about something called conditionals so every programming so let me you know go to the exact place.
+92160	97160	So this is no model three which we have which we have been discussing you know in the last two three.
+98160	120160	Video so we talked about this program and then you know we tried to we attempted at writing down correct specification this is what I was talking about so we can use assertions you know assertions of you know this crime where we can use some you know ghost variable and then try to write down interesting property of you know this program.
+120160	149160	For example this program was a swap program and we captured the initial state of variable X and Y in this no ghost variable X original and Y origin and then when the program no wants to exit just before that we want to assert something which is in a sense to confirm that the program is doing what it was intended to do right so here what we are saying is now we want you know into X the original value of.
+150160	177160	Y and into Y the original value of X so you don't recall this lecture please go back to the lecture and see how we can use ghost variable like this to you know state properties of functions or program that changes the state of machine right because assignment statement whenever you write an assignment statement it it always changes the state of you know the abstract machine on which your program will run.
+177160	206160	For example here I mean you can see I mean you have destroyed the previous value of 10 when you do this no particular execute this particular line of code similarly you know these two line of code destroy the previous value of X and Y so if you want to stay meaningful property about you know the input and output of our program then most of the time we would need this kind of ghost variable which can help us capture the initial state when the function now started and.
+207160	236160	We can utilize these initial state to say something meaningful about the final state of the program okay so for that purpose we have seen we need no ghost variable and we can use assertions to do this kind of chop so so this one you know one new thing that we discussed in the last lecture the python and like python other programming languages also provide you know some way for you to assert you know some property of program.
+237160	254160	You know inside the program itself so that you know when you run this program the compiler or interpreter will check whether these assertions are true or not if the certain is true then you know it goes to the next instruction if it is false then you can optionally print something to indicate what went.
+254160	271160	No wrong at that particular point and then you know the ground program will exit so this is how not certain works and it is a very useful tool as a programmer to do defensive programming so this is what we emphasize in the last lecture we have you know seen several attempt.
+271160	282160	Art at listening you know correctly about this for function and you know this is nowhere we can create a last lecture so we continue this lecture you know with the discussion on branching.
+282160	287160	You know which is also called you know if then else kind of construct in any programming language.
+287160	311160	Now branching are very important why because as we discuss our program whatever you know what we want to calculate we can only you know communicate to machines using this programming language and normally what we do is we write instructions for doing you know a small you know set of you know what and then we join these instruction using sequence.
+311160	326160	Operator to let's execute all of these work you know in this particular order to achieve our computation but most of the time if you want to compute some you know meaningful function.
+326160	340160	We can't always go with a straight line you know sequence of execution of instructions so many of the interesting computation would require you to select one block of code.
+340160	369160	Over either depending upon some no situation okay so most of the we have to take some intermediate decision that whether we want to execute the next set of three four lines or we want to skip that and execute some other set of line for achieving what we want okay so this kind of you know branching you know kind of logic or you know this you know branching behavior is what is captured by this if then else when you don't want to do.
+369160	398160	You don't want to do the same set of action depending upon your state of machine you want some you know feature in programming language which can help you decide what you want to do next depending upon certain condition that you evaluated that particular point of time and no when the programming is executing so this is why we use this if then else so normal syntax of if then else you know construct is you know given in this form where you write if.
+398160	424160	You write if and then condition based on which you want to maybe decide whether you want to know execute certain piece of code so if the condition is true you want you know certain piece of code to be you know executed if the condition is false then you go to the L if branch and there can be multiple else if branch where again you you can actually say what condition you want to be true before you execute you know this particular piece of code.
+424160	444160	And let's say if none of these you know conditions you know are true then by default you would also maybe want to execute some piece of code which you write under this else so this is the know syntax of or L know if then else construct inside python programming language and the
+444160	469160	semantics is what we discussed just now so we evaluate the condition expression this is the condition expression after if keyword the result you know so this results I mean so you can only write down here you know Boolean expressions which can evaluate to either true or false right because you want to decide based on whether this condition is true or not so this has to be you know of the form.
+469160	498160	This condition has to be some expression which evaluates to either true or false so at that particular point in time when your program is executed this condition of this expression will be evaluated if the condition is true then you take certain branch if the condition is not true then it takes some other because this is what is summarized in the second point if the condition evaluates to true execute the intended block of code under the if statement for example I mean let's try to understand this with one.
+499160	528160	Small example very trivial example but no nice example to say for example let's say temperature is one variable right in your whole program I mean I need it actually let's say stores the temperature of that day so let's say you initialize to 30 I mean we can change this value to different value now depending upon what the temperature is you may want to do you know certain set of you know accents for example if your temperature is greater than 25.
+528160	543160	Then what we want to maybe print is it's hot and maybe you know you want to go for a no shape so no your activity should be so assume that you know these are the set of actions that you want to perform if this condition is true.
+543160	557160	So then you should write a piece of code which looks similar to this one okay so what was the condition here I mean if you have to just match to the syntax of what we discuss about if the nails so this is the condition right so this is exactly.
+557160	586160	You know this condition that you can see here right so this is the condition which no comes after it and before this no colon so if this condition is true then what is the piece of code that you want to execute so this you know indented piece of code which you know involved this print and then assigning activity is equal to swim is what you want to execute okay so if this condition is true then these two lines.
+586160	604160	These two line of code will be executed okay and after this two line of code is no executed you will simply you know go to the you know end of this if the nails block so you will not execute any of the L if or else branch so this is what the exact same.
+604160	615160	For example in this case when you want to execute you know this piece of course in temperature is 30 which is clearly no greater than 25 so this expression which comes
+615160	643160	after if immediately becomes true and you will only you know you will execute these two line of code and you will not execute anything from this point on to this point okay so this is no semantics of running if the nails branch so again I mean tell me I mean what will happen if we you know right here 20 instead of you know temperature initializing it to 25 if I write 20 then what should happen.
+646160	672160	Again you know following the semantics or the meaning of this if the nails branch what we will do is given this initial state of the program where temperature is initialized to 20 I would first try to evaluate whether this particular condition is true or not so you know your evaluation always start from the very first condition right so there may be multiple conditions so if may have one condition then L there may be several else if.
+672160	683160	Which have which will have no one again I mean different condition and then at last there will be an else if nothing is true then you just simply execute this else block and.
+683160	701160	In the if the nails construct okay so the first thing that is no done here is we will check whether with this current value of temperature can we can this expression be evaluated to true or false so if you substitute for temperature 20 is clearly see that this.
+701160	729160	Not true right this is false so I will not execute this piece of code okay so I have executed this you know I have evaluated this you know condition but then I will not execute this piece of code why because you know the condition was not true okay so if the condition is not true for for the first condition then I go to the second condition okay and what is the second condition second condition
+729160	748160	now ask me to evaluate this expression is a temperature is greater than 15 now if you substitute your 20 here you will see that this is true right so in the first no case the first condition was not
+748160	760160	so let's call it condition also condition was not true but then condition to become true since condition to become true when I run this program what shall I expect.
+760160	777160	I shall expect no these two line of code to be executed okay and hence if you run this program you know with this initial state what you get is no this print this being no printed out that it's a pleasant weather and you can go for a walk.
+777160	803160	So so this is the activity that you have decided for no condition when this is true the temperature is no greater than 15 so remember I mean when you reach this particular point in the if then else look you have some condition true right so what is the condition that is true when you reach at this particular point so certainly your temperature should be greater than when you know 15.
+803160	823160	Which is you know explicitly present here but the condition should also include that temperature is not greater than 25 right because if temperature would have been greater than 25 then you know you would have no gone to this piece of code and executed this.
+824160	852160	So no this is something that you should keep in mind I mean when we're talking about no this else if no condition we will go to this only if your first condition is not true okay so since you're executing this piece of code what so you you're in a condition where you know your condition to is true but your condition one evaluated to false.
+852160	880160	Okay so what you see explicitly as a you know condition before this L if is not the actual condition when you enter this no branch of the if then else construct okay so keep this in mind so you so this is certainly this has to be true otherwise you cannot enter even this branch of the loop this branch of the if then else no conditional but there is there are some additional you know
+880160	895160	expressions which has become true for you to enter this particular no branch in if then else condition okay so similarly let's say if you're you do not qualify the first two and that's your temperature is 10.
+897160	906160	So in this case what happened I mean when your temperature is 10 certainly I mean this condition is not true so you will not enter and execute this piece of code.
+906160	935160	Then we go to check whether my condition to which is you know for this else if is true or not I evaluated this condition you know again when I say I evaluated this condition means I evaluated this bullion expression again with the current state of machine and it returned me false again so since no I could not know encounter a true value in you know previous two branches I now move to the last branch
+935160	939960	which says that, you know, if none of your condition is true, then you simply execute
+939960	944440	this thing, that it's cold. Okay, so your temperature is 10, it's cold, so you can
+945080	950600	do some, you know, in how it's staying like reading. Okay, so I hope, you know, this simple example,
+951400	957800	you know, illustrates the way this if-then-else works, or to be more precise, this,
+957800	961960	you know, some, this illustration in a nice, with the semantics of how this if-then-else
+961960	967160	construct work in any programming language, and specifically Python. So the only thing,
+967160	973480	not to note here, from syntax point of view, is that you separate the actual block of code from
+974200	979800	the condition using this colon, right? And you've seen this colon, you know, separating even,
+979800	985720	I know, the input parameter from the actual expression in lambda expressions, right? So this is
+985880	992120	the syntax part that you need to, you know, keep in mind, even if you forget, I mean, the compiler
+992120	997720	will tell you what's wrong in it, but the semantic part is more important that you should know,
+997720	1004840	when will you execute the piece of code under, you know, given branch? So you should be able to
+1004840	1010040	calculate the exact condition under which you reach that particular branch, of course, okay?
+1010680	1017000	So with this small brief introduction of the syntax and semantics of
+1020120	1026440	branching, let's now come to a real problem where we want to maybe, you know, use this if-then-else
+1026440	1032440	branch. Again, I mean, this is a very small example, but very illustrative example to tell you how
+1032440	1039720	you can maybe use if-then-else in for solving some real problems, okay? So the problem that we are
+1040760	1047800	considering right now is finding out the maximum of three numbers. So let's say we want to write down
+1047800	1052440	a function which we want to say, you know, max of three. Let's say we want to write down a function
+1052440	1058600	with name, max of three, and the argument to this function are three, let's say integer. No,
+1058600	1065800	ABC or XYZ, whatever, I mean, and then you want to return the maximum of all, you know,
+1065880	1071560	these three numbers. So you want to always return the maximum of three numbers, and we want to write
+1071560	1079320	down a function for this. Now we'll see how we can use if-then-else two write down or implement a
+1079320	1091160	logic. So before we go to the code, let me show you the block diagram of how this, you know,
+1091160	1097320	function should work, okay? So what you get in the very beginning here is three number ABC,
+1097320	1104040	assume that, you know, A is the first B, C. So in this order, I give you three number ABC, okay?
+1104040	1109720	And so this may be, you know, one of the possible logic. So there may be multiple ways in which you
+1109720	1114760	can write down this function to calculate maximum of, you know, three numbers, but this, you know,
+1114760	1119800	maybe one of the most trivial way, which will come to your mind when you start thinking about
+1119800	1127160	this function. So what I do is I take the first two number A and B and I compare them. I say that
+1127160	1133640	I will check whether A is greater than equal to B or not. So if A is greater than equal to B,
+1133640	1139000	means if this condition evaluates to true, I know for sure that A is, you know, bigger than B.
+1139640	1144680	Now what I need to do is, no, so the, so when you go to the left hand side, you know, towards this
+1144680	1149800	branch, it's sure that A is no greater than B. So you don't need to not talk about B anymore
+1149800	1156680	because you, among A and B is, you know, maximum. So B cannot be maximum of ABC, you know, all this
+1156680	1161320	three, right? So, so when you go to the left hand side, whether that indicates when, you know,
+1161320	1166280	this condition is true. We want to do another check, maybe, right? We know that, no, A is bigger,
+1166280	1172760	certainly, no, than B. So in that case, what would you do? The next obvious step would be to compare A
+1172840	1180360	with C, right? And if you get an answer, which is yes, means if you evaluate this and it comes out
+1180360	1187160	to be true, in that case, you know that no A is on disputed champion. I mean, the maximum value is
+1187160	1192520	A because it was no greater than B as well as greater than C. So that's how you reach this
+1192520	1196920	particular point, right? So remember, again, I mean, as I said in the previous case, when you reach
+1197000	1203560	this particular, you know, segment of code or now the segment of action, you have already, you know,
+1203560	1208680	evaluated two expressions, right? The first expression was this one and the second expression was
+1208680	1215800	this one and then you reach to this point. So you being at this place, no, in a way, implies that
+1215800	1220040	both these conditions were true. That's how you could reach this place. And if both these
+1220040	1227640	conditions are true, then you know that you want to return a value, which is A, right? And you
+1227640	1231800	also know that it's new, why you want to return A? Because you know, these two conditions being
+1231800	1237400	true implies that A is the maximum of all these three numbers. So this is how, you know, we can
+1237400	1244600	reason about branching kind of statement inside a program. So this is a very simple program. So
+1245160	1250920	logic may be very, you know, may seem very trivial to you, but if you practice this enough,
+1250920	1255880	then even in the complex setting, you can reason in a correct way. Okay? So we'll see that if you don't
+1255880	1261160	practice properly or if you don't think about behavior of branching in the context of simple
+1261160	1266440	program, carefully, it's very natural that you will, you know, make mistake and I will come to
+1266440	1272040	some of those type of mistakes immediately now after discussing this example. So
+1273000	1278040	so, so this is no what should happen when your A is greater than B and A is greater than C.
+1278040	1283960	But what happens if A is greater than B and you know, A, this evaluates to false. So you already
+1283960	1293400	knew that no, your A is no greater than B. So you don't need to talk about B now. And when you
+1293400	1297720	compare A and C, it turns to the C is bigger. And that's how you know this, you will enter this
+1297720	1303720	branch. So when you enter this branch, you know that C is bigger than A and A was bigger than B.
+1303720	1310360	So what you want to know return is the value of C, right? So this makes perfect sense,
+1310360	1316520	right? This left hand side, you know, you know, tree that you get from this, by checking this
+1316520	1322440	condition, makes sense, right? I mean, these two results are no valid according to our reasoning
+1322440	1327480	till now. So what if, you know, so we can apply, you know, similar or symmetric reasoning for
+1327480	1332600	the right hand side also, right? If the this left's expression evaluates to, you know,
+1333160	1338280	let's say false. In that case, you know that B is greater than A. And then you maybe want to check
+1338280	1343560	one small B with C. We want to compare, you know, B with C as well before we can say anything.
+1343560	1348120	If no B is greater than C, then of course, you want to return B. Otherwise, you want to return
+1348920	1355320	C, okay? So this, this is a very simple logic by which we would naturally, let's say,
+1355320	1360040	compare three given numbers, right? When the three numbers are given to us, we mostly compared,
+1360040	1364920	you know, using some logic, which looks similar to this one. And whatever, you know,
+1364920	1370040	is the result, you have stored in each of these cases, you just return that, okay? So you will,
+1370040	1375800	you know, hit only one of these, you know, code, right? You will either hit this piece of code or
+1376280	1381000	this or this or this. You cannot hit, you know, multiple together in any of them, you know,
+1381000	1385800	else kind of, you know, branching kind of situation, okay? So now, whatever,
+1387240	1392600	no condition you evaluated to, you will hit the code corresponding to that condition. And
+1393160	1397720	whatever be your, you know, calculation of result, finally, we want to return that result.
+1397720	1401720	And that's how the problem is written. So this is a simple block diagram to show you,
+1402280	1408200	however, if then else function, you know, can be used to figure out something, you know,
+1408200	1413720	meaningful, like, no, maximum or three numbers. So can we go and now, you know, implement, you know,
+1413720	1418600	this, you know, try to write down a correct, you know, function, which can, you know, implement
+1419240	1423800	the logic that we have seen just now, okay? So let me, you know, use the same, you know,
+1423800	1432360	function names, let me call it maximum of three. So what we are going to do now is to,
+1433720	1438200	realize this, you know, block diagram or, you know, this control flow graph that I have
+1438200	1445240	shown you are using a function inside Python, okay? So let's call it, call them a function. So,
+1445240	1450200	before we start writing function, you know, we have to write this def to indicate that we are
+1450200	1454520	going to write a function. And the function name I give the same as what we discuss,
+1455160	1460120	max of let's say three number that is what we are trying to calculate. And
+1462120	1468760	let me take the numbers to be same as ABC. So that you know, you can relate to the flow chart that
+1468760	1474520	I have shown you just above. And then we need to give a colon to separate the function body.
+1474520	1479320	And when you go inside the function body, the first thing that we may, you know,
+1479320	1484280	want to do is to compare A and B, right? So this is what we did here, right? Let me go up and
+1484280	1490120	slide. This is what we did, right? Which compare this? And depending upon whether it was true or false,
+1490120	1495640	we do something, okay? So we do a second check whether, you know, if it is true, then we do something,
+1495640	1502840	if it is false, then we do something different. Let me write it down. So what do I want to write?
+1502840	1517080	I want to write, if let's say my condition A is greater than equal to B, I will do something,
+1517080	1525880	right? So, you know, let me write down, you know, maybe, you know, do something, something.
+1526440	1532920	So we will, you know, try to insert actual piece of code here, but for you to,
+1534600	1539080	you know, think clearly about the code, I mean, it's good to start with a, you know, top-down
+1539080	1543720	approach where you write down the logic in this way, like, you know, if this is true, then I
+1543720	1549480	want to maybe do something here. Or, you know, in the other case, when this is not true, let's say,
+1550120	1557240	oh, let's say, when this is not true, okay? In that case, also, I want to do something, right?
+1558040	1563000	What I want to do again, let me know copy past this and we will replace this with actual commands,
+1563000	1574040	but first let me, okay. So, you know, we will just write a placeholder, which we will replace later on,
+1574040	1582040	no, with the actual code. So, when, when I want to, when this condition evaluates to true,
+1582040	1586200	we want to do certain set of, no, accents, maybe we want to do another check, right? This is what,
+1586760	1594200	we wanted to do here, right? When A is greater than, no, equal to B, it evaluated to, when
+1594200	1599480	this evaluated to true, we wanted to do another check immediately, right? After, after this point.
+1599480	1605320	So, can we do, you know, that check and write code for that? Okay. So, the, where cell that come,
+1605320	1611080	that cell come here, right? We shall do another check and depending upon the value of that check,
+1611080	1615800	we will do certain set of accents. This is what, no, we, we discuss this now. So,
+1617160	1621880	now, let me, you know, replace, you know, do something, so we will maybe finally remove this,
+1621880	1627320	but for the time being, what is the, this do something for this branch? So, maybe, you know,
+1627320	1633480	what we want to do is, since I know that my A is greater than equal to B, I want to further compare A
+1633480	1643640	with C, right? Maybe greater than equal to C. Okay? And now, if, again, I mean, so, if you,
+1643640	1648600	you know, this condition is true, you want to do something, right? Again, let me, I know,
+1649320	1660200	right here. Maybe you want to do something, something, okay? And if this condition is not true,
+1661240	1664120	then, then also you, you want to do something, right?
+1669480	1673960	So, let me write down this structure, you know, first and then maybe we will fill
+1674760	1680440	and replace, you know, this placeholder with the actual piece of code that makes sense for
+1681240	1690440	each of this, no branches. Okay? So, you agree? I mean, so this, this is what was happening inside
+1690440	1696280	this one. Okay, we have not, we did not, you know, fill in the actual code, but at least the
+1696280	1701320	structure should be clear to you, right? That, now, if your A is greater than B, then you want to do
+1701320	1706280	something and what is that? Do something. So, do something is this piece of code, which again
+1706280	1710760	has some holes, which we want to fill, but then, no, this should be the structure of the code,
+1710760	1716600	at least looking at the structure of the flow chart or, no, this, no, control flow graph,
+1716600	1722040	that I have shown you. Okay? Now, can we go and, you know, fill all of this, no, thing? So,
+1722040	1729080	when, when A was greater than equal to B and when A is greater than equal to C. So, when you
+1729080	1735000	reach this particular point, what is, no, that's something you want to do at this, you know,
+1735000	1742440	face in time. When the, your program is executing. Right? So, so where are you in the actual,
+1742440	1749160	you know, code block? So, this condition evaluated to true, and this is also true. Now, we are at
+1749160	1755560	this particular moment in time or in the execution of our program, and we certainly want our result
+1755560	1760440	to be A, right? So, so this is what we can, you know, write on here explicitly that, you know,
+1760440	1766520	at this point of time, I want to, you know, store the maximum value in result. And if the,
+1766520	1771560	both these conditions are true, then I know for sure that, no, this is my final output.
+1773640	1779400	And what, if this is not true? So, so, if you are, if you have come to this point to this else,
+1779400	1785400	what does it means? Now, that this condition was true for sure, but the second condition that
+1785400	1792040	you check this is not true. So, if this is not true, where are you in the block diagram?
+1792040	1797320	We're certainly at this point. Right? Because, you know, this condition was true, but this
+1797320	1803640	evaluated to false, and hence you read this point. And at this point, you know that C is greater than
+1803640	1811560	A, and A was greater than B. So, maybe you want to know output the value of C as a final result,
+1811560	1816440	right? So, this is what, maybe we want to do at this particular moment in time. So, let me write
+1816440	1822360	it down for you. And then, maybe now we start replacing these two something. So, maybe I can
+1822360	1832040	directly write out here, result is equal to C, okay, at this particular point in time. And we
+1832040	1836040	can also now replace this thing, right? Because we have done whatever we wanted to do, you know,
+1836520	1844280	we did it properly, right? At this particular point in time. And now, since the set of action that we
+1844280	1851320	wanted to do, when this condition was true, we have already written that you can also safely maybe
+1851320	1856760	remove, you know, this do something, you know, this. So, I have written, you know, this way,
+1856760	1861320	just to help you figure out the overall logic, but you know, you can maybe you feel comfortable,
+1861320	1865880	you can directly write this piece of code, right? Because this is a simple piece of code. So, now,
+1867080	1873880	so once we have completed, you know, the if the condition is true part of code, we should also
+1873880	1879240	know think about what should come as here. Because, you know, I mean, can you trace? I mean,
+1881000	1886840	when you reach at this particular moment, what, what was your condition, right? So, we reach here,
+1886920	1892840	when our first condition that we check is not true, right? It means, I mean, you're going through
+1892840	1897400	to the right hand side of this, you know, branching, right? If A is not greater than B, then again,
+1897400	1902520	you want to do something, right? You maybe want to check this second condition again. So,
+1902520	1907880	so, again, another if will come. And depending upon what you know, get as your, you know,
+1908600	1914520	final value for this Boolean expression, you will do either this or this, okay? So, for the second
+1914520	1921240	branch, let me not, you know, do it that way, but directly, maybe write down what we want to do.
+1921240	1927720	So, let me write down what we want to do here. So, since I have reached at this particular point
+1927720	1934600	in, you know, execution, I want to check whether now, you know, B. So, since, you know, A, get
+1934600	1939560	other than B, return false. And hence, I, it is there. I know that, you know, B is greater than A.
+1939560	1944600	So, I now want to maybe compare with B the remaining, you know, number and not the A.
+1944600	1954680	So, what we do is check with B, B greater than equal to C, okay? And if the result is true,
+1954680	1961640	let's say, if this condition is, you know, no correct, evaluated to no correct, then what we say
+1961720	1968120	is we store in the result, what shall I store? I shall store the value of B, right?
+1970440	1975960	And if this is not true, let's say, then in that case, we are keep in mind that, you know,
+1975960	1979640	this indentation should, you know, match properly. So, if you know, the
+1980440	1986280	else for corresponding if should, you know, start at the same, you know, margin, okay? So,
+1986280	1992840	you can see, I mean, for this, if the matching else appears here with the same indentation, okay?
+1992840	1999560	Similarly, for this particular if the matching else appears at this place. So, this is also a very
+1999560	2006280	nice feature of, you know, Python, Python, you know, reads this indentation and tries to, you know,
+2006280	2011080	match this, you know, code. So, this is also kind of, you know, giving partial semantics to your
+2011080	2015640	code by just looking at the structure, you can make sense which of the, you know,
+2015640	2020520	quotient matches to which other, no, portion, for example, you know, all of, you know, this if
+2021640	2027080	thing matches with this else. Similarly, you know, for this if the corresponding else is this one,
+2027080	2032200	otherwise, I mean, if you are, you know, left with only curly braces and those kind of thing,
+2032200	2036280	then it becomes really, you know, difficult and you have to manually match each curly brace to,
+2036280	2041240	know, make sure that, you know, your thinking or your reasoning is correct. And when,
+2041240	2045800	when things goes nested, it becomes really difficult. But, you know, with the indentation proper
+2045800	2050840	indentation, you can say in Python, it is very easy to, you know, if I ask you, what is the if
+2050840	2055640	corresponding to this else? You can immediately tell me looking at the indentation that this is the,
+2055640	2059480	if, because this is the if that comes at the same indentation and before the cells.
+2059720	2066680	Okay, so let me, you know, just quickly write them. So if B is greater than equal to C, then,
+2066680	2071960	of course, we want to return B, but what otherwise, I mean,
+2074440	2083480	in the else case, what you want is, you want to result in the value of C, right? So we have stored
+2083960	2091880	the value, what that we want to finally return in the variable result, whatever be our, you know,
+2091880	2098200	circumstances. And then finally, what we want to do is, you know, maybe we want to return it.
+2098200	2106040	So one of the return statements should be somewhere here. So return, so what we want to return is
+2106040	2112920	the result that we have calculated, you know, for various branches. Now, this looks like, you know,
+2112920	2118120	correct logic. We have discussed the flow chart as well as we have written code carefully.
+2118120	2124440	So we expect it to run properly and, you know, produce a correct result for any three number that
+2124440	2130600	you give to this, you know, program. So now, let us do the check-outs. Okay, so let me compile this
+2130600	2140040	piece of code. What is the problem? You see, I mean, we did, since I made a, you know, syntax error,
+2140040	2145880	I mean, it immediately pointed out that I missed a colon somewhere, right? And the colon is here.
+2147480	2156600	So let me write on this and then if we run again, now this time there is no syntax error and the
+2156600	2163480	interpreted accepts the code as it is. Now, we are happy and we would want to not test our
+2164440	2170120	code on some input, maybe max of three, give three number. No, think of any three number that you
+2170120	2178520	want to pass to this, maybe, you know, small numbers like two, two, three, and maybe zero.
+2179080	2186760	There is three number. So what is the result? So maximum is certainly three. So you can expect,
+2187080	2193960	you know, they answer to be three. So this is something, since we did not, you know, omit this
+2193960	2202440	placeholder, we got this printed, let me, you know, omit for the clarity. So that our code is not
+2202440	2211080	neglected. So now, let me compile it again and maybe now we run it. So we just get the number three.
+2211160	2217400	This is what we wanted. So what about, no, will this same thing work for negative number,
+2217400	2223160	positive numbers? So many times, you know, we miss this boundary cases, if we don't write our
+2223160	2229320	functions properly. And so maybe, you know, we want to check whether this thing works well with
+2230200	2237560	that's a negative numbers. So what about this? Okay, so in this case, I mean, when you run,
+2237560	2242920	you get zero, which is the correct, right? Because zero is the number, greatest number among all
+2242920	2250040	this three number. So, so program seems to know what now properly, right? But since we have written
+2250040	2256120	the code from scratch, we know it's correct because we have also reasoned while writing this code.
+2257640	2262920	But I mentioned in the very first class that nowadays we are not writing code. So we mostly rely on
+2263080	2269240	LLM and other agents and, you know, any third party in Oracle that will give us code and then we
+2269240	2275320	want to believe that code, right? So, but before we believe the code, at least, no, so one way is
+2275320	2279960	you go through the code again and then do the analysis or try to convince yourself that the
+2279960	2285800	semantics or the meaning, intention of the code is exactly what the code is doing. Another way is,
+2285800	2290600	you write down some meaningful assertions. Okay, so let's say if the code block is very big and you
+2290600	2297000	don't want to get into the exact detail of how things are computed, the least you can do is write
+2297000	2303320	down some meaningful assertions or, you know, in another word, you can write down some meaningful
+2303320	2309160	properties about this functions or the return value and then check whether that no property is big
+2309160	2315480	true or not in most of the cases. If those properties are not violated, then you know, get to have
+2315560	2322120	more belief on the code. Okay, so this is, you know, one way to ensure that the code behaves as intended.
+2322120	2328440	So in this case, if I have to write down a meaningful, let's say, property for this function.
+2329880	2336760	So what can we, let me first copy this thing or the same piece of code. So what we are trying to
+2336760	2341480	write down is a correct specification. So we have, we understood the problem, right? We wanted to
+2341480	2345880	find out the maximum of three numbers. We have understood the logic also. We have written a code
+2345880	2349480	also, but let's say you don't want to, you know, go through this logic and code and you ask
+2349480	2354440	Chatgipiti to produce this piece of code. So Chatgipiti can give you, you know, a correct code or a
+2354440	2362200	wrong code or, you know, minimal, you know, maybe a little bit of with error. So how will you
+2362200	2367400	ensure that the code is correct and will you, you know, accept the code as it is? So we are trying
+2367480	2373160	to answer that question. So for the best way to, you know, ensure trust in the code generated by
+2373160	2381160	any third party is to ensure that the property that I wanted to, you know, the output to have is
+2381160	2385720	still correct, okay, irrespective of whether I build the code or someone else. So we don't know
+2385720	2391080	maybe. So this time assume that the code is not written by you, someone else, and you still want to
+2391080	2396760	verify whether the code works as you intended. So that's the purpose, you know, so we want to come
+2396920	2401960	up with a correct specification. So this is, you know, what we saw in the last class also, right,
+2401960	2406760	for the swap function, we have written a specification where we related the final value with the original
+2406760	2412760	value or initial state. So here also we, we can we do something similar. So let me copy this code
+2412760	2419320	and then paste here. So what I'm asking you here is, let's say this time, you know, this function,
+2419320	2423320	although we know that this function is correct, but assume that, you know, the code for this function
+2423320	2428120	is not generated by you. Let's say this piece of code has been generated by LLM or someone,
+2428120	2434680	no else. Now can we write down a correct specification for this function, which should always be,
+2434680	2440360	you know, true, no matter how it is, you know, implemented. So there can be multiple implementers,
+2440360	2445400	right? I can change the order in which I have, maybe, you know, compared this element, right?
+2445400	2452120	So someone else may say that, okay, let me first, you know, compare C with no other numbers,
+2452120	2457800	and then, you know, depending upon my, you know, result, I will compare, you know, something,
+2457800	2464280	you know, different. So like here, we started with no A comparison of A and B, right? One can also
+2464280	2470360	start with no A and C, right? I mean, so that that's a perfectly valid way. So there can be multiple
+2470360	2475560	correct implementation of the function, but whatever be the implementation, I don't care. I don't
+2475560	2480840	want to see this code piece of code, maybe, but I want to ensure that the final result is what we want.
+2481560	2488520	Okay? So can we write on a simple correct specification? And as I discussed, right? So what we are
+2488520	2494680	going to do is now, let me see, write a correct specification for this function.
+2495960	2505320	Okay? So we want to do a correct specification for this function. Now, we have seen, so you can
+2505320	2511320	guess at least that we are going to use assert, right? So assert statements are what can help us
+2511320	2517400	at this particular moment in time. So let me write down this, you know, assert, and what, what, what
+2518840	2524840	property you want to, you know, maybe say here, which, which if it is not true, then you can believe
+2524840	2529480	this piece of code. So you're returning something, right? Your program is returning something,
+2529480	2534920	and you want to maybe talk about the, you know, relationship between what you're returning and what
+2534920	2540760	you got as input, right? So you wanted to calculate the maximum value. And the final result that you
+2540760	2547560	are returning is in this result variable, right? And then input or ABC. So maybe, you know, it's a good
+2547560	2554680	time to compare whether the value in the result is, you know, greater than equal to each of them or
+2554680	2558920	not, okay? So if it is not greater than equal to each of them, then certainly the implementation
+2559000	2565320	may be, you know, somewhere wrong, right? So very immediate thing that comes to my mind at least is,
+2565320	2571880	you know, I would, you know, just compare my output, which is no result. With all these three,
+2571880	2576360	no input that was given to me, and if it turns out to be, you know, greater than equal to all
+2576360	2581400	these three, then no, I can say, maybe, or I may have more confidence in this piece of code,
+2581400	2588520	okay? So the very first condition that, you know, we can write down here is it then equal to A.
+2590120	2603240	And I also want my result to be no greater than equal to B. And my result to be no greater than
+2603240	2610520	equal to C, okay? So let's say, I mean, if this is not true, okay? So if this is not true,
+2610520	2618040	then what we can say is no result is not the maximum. Maybe, you know, we just print something here,
+2618040	2626040	which indicates that our assertions, assertion is violated by, you know, at this point. So maybe,
+2626040	2635480	no result is not maximum, okay? So remember that this will be printed only if this assertions,
+2635480	2641400	you know, before this is not true, okay? So in this case, certainly, you know, we know that
+2641400	2648040	no result is not maximum. So whatever you stored in the result is not the maximum among ABC, okay?
+2648040	2655720	So this looks like a correct specification, right? For this piece of code. So let me now run,
+2655720	2660360	so we have modified this function, right? With an assert, we have instrumented this function by
+2660360	2665480	writing an assert. We have not changed anything, right? In the code, we just copied from the previous,
+2665480	2671240	so this would return as the correct thing. So let me compile it. So it compiled properly, right? So
+2671240	2683880	now let me write down maybe, we have written it right. So what we can do is just check it.
+2686440	2694040	So now let me just check on some of the input, let's say, call it, call this function multiple times.
+2696920	2702840	Three. So this is what we want to do. Check whether now this is returning, you know,
+2702840	2708680	whether this is violating this assertions at any, for any given input or not, okay? So max of three,
+2708680	2715320	and then let's say again pass the string into comma three comma zero maybe, okay? And then try to run it.
+2717160	2721240	And it returns the correct value, okay? So what about if I change, let me copy it,
+2722680	2730520	once again, what if I call this with the value here, the last thing being 10? So what do you expect
+2730520	2737720	a minute should return? 10, right? So the value that it returns is 10 and 10 is certainly
+2737720	2743000	not greater than all these three. So there is no issue in the, you know, so there is no assertion
+2743000	2749080	violation. We know everything, you know, when, well, what about, so we have seen maximum value in
+2749080	2754520	the middle position, we have seen maximum in the last position. So why not check another thing that
+2754520	2762600	if, what if we, let's say put maximum value in the first position, let's say, in this case,
+2762600	2770200	also it's no behaving properly, right? So we have seen, I mean, multiple cases where the answer
+2770200	2778200	is correct, right? So in this case, so, so somehow now we believe, you know, start believing that
+2778200	2784200	this is correct. And see, an advantage of writing this kind of assertion is that if by mistake,
+2784200	2790600	something is wrong inside your code or implementation, then these assertions may help you as that
+2791000	2797560	bug. So for simplicity, let me try to make this implementation a little bit incorrect. So we know
+2797560	2802280	this is correct. So that's why, you know, our assertion is not, you know, failing. But what if I,
+2802280	2808680	let me copy and paste this again, the whole code here, let me try to introduce some, you know,
+2809800	2818200	subtle box in this piece of code. So let me think of a very, you know,
+2820840	2826680	you know, subtle bug like, I mean, let's say, I mean, by mistake, I mean, if this result is no
+2826680	2832440	hundred, okay? So since we don't want to see the code, so there can be mistake of different kinds
+2832440	2837240	inside the code. So you cannot believe that the code is always correct. So assume that there is
+2837240	2841320	some mistake and in this case, I have introduced intentionally some mistake, right? So what is the
+2841320	2846760	mistake you can see? I've introduced, you know, in this case, what I'm saying is no result is
+2846760	2855320	equal to hundred. And I want to check whether my, so, so, so what I want to check is whether,
+2856440	2862680	this can help me identify whether there is a bug, okay? So in this case, I'm returning something,
+2862680	2871320	which is, we should know. So what's the return here? I mean, in this case, what was I returning in the
+2871320	2880760	previous, so I should return B, right? Because I was in this branch where B is greater than C,
+2881400	2887080	and you knew that no B is greater than A. So in that case, I should return B. But instead of
+2887080	2893320	returning B, I'm returning plenty of value 10. So 100. So this is certainly, I know, a wrong
+2893320	2901720	implementation, right? So now, if we go on, let's check in this particular thing. So
+2903560	2906040	can this detect it now?
+2907000	2925880	So what about, let me again, copy paste some of the values that we have already used, maybe here.
+2926840	2937560	Or let me write it down. So max of, max of three, I want to call this, maybe your
+2939400	2946360	two comma, that's a minus three. So what's the value that you're getting here?
+2946360	2959480	Okay. So this is correct, right? Because not two is the maximum of all this. So what about
+2964680	2973880	maximum of, you see, I mean, in this case, there is no error because you don't hit that particular
+2973880	2980120	branch, right? Your first value is no greater. So you only execute the first block of code,
+2980120	2986680	which corresponds to the if. So you could not encounter that. So what about the other kind of,
+2986680	2994760	you know, input that you may get where, you know, this is, you're forced to go to the last branch,
+2994760	3001000	right? In that case, also, you will see, since no nothing is wrong, you get the correct thing.
+3001000	3010280	But what about max of three? And then in this case,
+3013240	3016920	again, if I want to maybe,
+3024120	3029640	so let me now cook up a case where I want to actually hit that particular branch. So maybe 20,
+3029640	3035560	I pass and then I pass 30 and then I pass 10. So in this case, certainly, I wanted to return,
+3036120	3041400	you know, 30, right? Because 30 is the maximum thing. So if I run it now,
+3044280	3048440	so did I not run this piece of code? I think I did not run this piece of code. So that's why,
+3049400	3052600	okay. So when I run this piece of code, and then if you,
+3052920	3060040	see, so in this case, there is no issue. In this case, again, there is no issue. So you get 10.
+3060040	3064120	But when you, you know, run this piece of code, what you get is 100, right?
+3065640	3072440	Which is certainly not the, you know, maximum of the three numbers that we, you know, wanted to return.
+3073640	3077960	So there is a, you know, error in the code, certainly, right? I mean, we have seen that,
+3077960	3083320	you know, this 100 is a error in the code. But the specification or, you know, the correct
+3083320	3090120	behavior that you have written could not be violated, right? Here, can you see the reason why?
+3090840	3099160	So, so since there is an error, ideally, I should have, you know, so the purpose of writing this
+3099160	3104680	assertion was to, you know, figure out whether there is an error or not, okay? So what we are
+3104680	3109880	seeing right now is no, this assertion is no passing without, so it's not getting violated.
+3110440	3116200	No, even though the final outcome that I'm getting here is something wrong, right? I should have,
+3116920	3123240	I should have got some, some hint with this assertion. So, so what went wrong was our assertion
+3123960	3129640	incorrect or something that we missed actually to capture in our assertion.
+3130520	3135960	So, the assertion is certainly correct, right? Because so this is not an incorrect specification
+3135960	3140760	for a result. So, results should always be greater than equal to A, B, and C.
+3141640	3146040	But this is not a complete specification. This is not as strong enough specification.
+3146040	3150600	So this should certainly be true, but there, I mean, we want something else to be true also,
+3150600	3155480	which we should include in the assertion to make it a, you know, a complete specification or
+3155480	3160600	a strong specification for this function, okay? So, certainly assertion is not, you know,
+3160600	3166120	a assertion is correct. This assertion should be true for the correct result,
+3166120	3170760	but something more should be true for the correct result also, right? So, we need to maybe
+3170760	3175960	specify a little tightly what this function is intended to do. And you can see, you know,
+3175960	3181080	this example shows you clearly what is, what are we missing? Although we claim that the final
+3181080	3187400	value that we are returning is greater than equal to all the value that has been given as input,
+3187400	3193320	but we are not ensuring in the assertion that the result should be one among these three value
+3193320	3197320	that has been given as input, okay? So, although this specification is correct,
+3198120	3201960	but this is not useful, this is not helping us to figure out this kind of error,
+3201960	3206840	because this is not a strong enough, okay? So, maybe we need to add something, you know,
+3206920	3212680	more strong to this assertion to make it a complete specification or a strong specification,
+3212680	3218040	which can, you know, cache this kind of bug. So, that's why, I mean, now let's, no, let me,
+3218040	3224440	no copy this piece of code again, okay? And go to this, you know, section, and then maybe
+3226120	3233400	copy and paste this piece of code here. And the additional line up assertion that we
+3233480	3239640	talk just now, maybe we want to write it here, okay? So, it's, it's a correct specification,
+3239640	3245160	so initially it was a correct specification, but you also need a strong specification,
+3245160	3251720	is what I want to emphasize at this point in time. So, we also need a strong specification.
+3252680	3257400	This, it was correct, but it was not strong enough to cache this kind of, you know, error.
+3257480	3263240	So, what we can say in the next line is, let me copy, copy this thing.
+3267960	3277320	Well, let me copy the whole thing and then paste it. And what I want to check here is,
+3277320	3283480	so that result should be no one among ABC, right? So, result should be either equal to A,
+3283480	3296680	let's change this and to R, or the result should be no equal to equal to B, or the result should
+3296680	3305880	be equal to equal to C. So, result is, no, maximum result. So, this, this check, the second
+3305960	3316600	assessment tells us this result is among the inputs, this is what maybe we want to claim at this
+3316600	3322040	point in time, okay? So, if we, you know, make this, you know, additional check that, no,
+3322040	3327800	result should be greater than certainly equal to all three, but the result should also be among one
+3327800	3334120	of these three, right? And the, no, best way to represent this criteria, this additional criteria,
+3334120	3339800	which makes our specification not only correct, but also strong, is to maybe write this kind of
+3339800	3345240	assertion, okay? So, if you understand your, you know, function behavior properly, you should
+3345240	3350280	be able to write out correct and strong specification. And this also gives a chance for you to think
+3350280	3355320	about the function behavior that you actually intend, right? Because many of you might have accepted
+3355320	3360360	the very first line itself to be a complete and strong, you know, correct and strong specification,
+3360360	3365960	but that was not right. We turned out, when we were checking on some example, we turned out, we
+3365960	3372360	returned, you know, wrong, no output, but is still satisfying the assertion. So, so this is also
+3372360	3378040	an, you know, kind of art, the more you think about functions and the more you write meaningful
+3378040	3382680	assertions about the functions, you become perfect at it, and you tend to write correct
+3382680	3388120	specification and strong specification, which can help you, you know, find or, you know, catch
+3388120	3393160	this kind of bugs, okay? So, now, when we have written this piece of code, let me, you know,
+3393160	3399880	compile this piece of code now. And once we compile this code, let me now write down again, a
+3399880	3411400	similar, you know, kind of some max of three. And then, let me pass it. Now, the buggy case,
+3412280	3418280	which one, which will happen if you hit the branch corresponding to be, right? So, where be,
+3418280	3424280	you want to output bn? So, I want my middle number to be the, this one, and this one, okay?
+3425880	3435240	Now, if you try to run this, can you see? So, now, this time, you know, my assertion failed,
+3435960	3441080	right? And it's telling you why the assertion failed because no assertions second condition is
+3441080	3448360	why I like it now. So, result is not among the inputs. So, I'm sorry. So, I should have written
+3448360	3457400	here, result is not among the inputs for it to be correct, right? Because this is printed only
+3457400	3463880	if your assertion is not true. So, if this is not true, you know, this piece of code, which is an
+3463880	3468680	expression, Boolean expression is not true, then I want to maybe print this thing, okay? And
+3468680	3473880	this, this, this is also, you know, help me catch certain type of, you know, errors. So,
+3473880	3478120	so this is, let's say, I mean, if we do not have access to this piece of code,
+3480520	3485480	okay, what I mean, I mean, this piece of code is very complex or somehow not accessible to you,
+3485480	3490360	but it has been produced by someone and you still want to verify whether the function is
+3490360	3495000	working as it is or not. So, maybe we can write down, you know, these two set of assertions
+3495960	3500200	and figure out whether the code is correct or not, okay? So, this is, you know, the power of
+3500200	3507320	a specification that will turn out to be most useful when we go ahead and we use LLM in software
+3507320	3512600	development, okay? So, with this, I would like to conclude today's lecture on conditional,
+3512600	3518680	we will continue in the next lecture with a discussion of loops. So, till then, goodbye,
+3518680	3520680	I will see you in the next video. Thank you.

@@ -1,0 +1,541 @@
+Hello and welcome back to Python, Core and Applied Concepts for a Level Data Sence Work
+Close.
+So, in today's lecture, we will continue where we left in the last video.
+So, in the last video, just a quick, as a quick, no recap, let me take you through what
+we discussed in the last video.
+In the last video, we started a discussion of lists in detail, and we talked about some
+of the very basic operations on lists, like how to add elements and lists in different ways,
+how to access some element inside a list, how to remove elements inside a list, and
+then we ended with how to search elements in the list, and how to count the number of
+occurrences in the list.
+So, we will continue this discussion today with what we call how to sort a list, so we
+have seen in again in some of the previous lectures how to do, how to write sorting algorithm
+that we have written by hand.
+So, those were no correct algorithms, but then may not be the most efficient algorithm,
+so if you are working inside Python, you may want to prefer most of the time in the
+end-built function that Python library provides you.
+So, this is one of the, you know, Python sorting function that we will use today to sort
+it.
+Let me, before we sort numbers, let me start with some list, and let me call the name
+on the list is numbers, so we first, you know, try to create a list, and then we would
+you know, see how the sorting algorithm inside the Python standard library actually works.
+So, first let's start with some unsorted list, and let our list be 3, 1, so list contains
+this numbers 3, 1, 4, 1, 5, 9, and maybe you know 2, so this is, this be let's our, you
+know, original, you know, list, which we called numbers, okay, so, and, so there is one
+one way to sort these numbers in place, which modifies the original list, is used, you
+know, sort method, so how to apply it, so let me first, so how to apply this, so now
+what we are going to discuss is, you know, sort the elements in place, which will modify
+the original list, so this is important to keep in mind, that there is a side effect,
+and the side effect is that when you apply this function, which is called numbers dot
+sort, then this will sort the whole list, and the list, the original list itself will
+be modified, so what we are saying is, we are doing sorting, which is in place, okay,
+which has a side effect that it modifies the list itself, it modifies the original list,
+okay, so what is the exact way to call this method is numbers dot sort, okay, and if you
+do this, I mean, you will see that the number, you know, these numbers are listed modified,
+so to see it in X, and let me know, before modifying the number list, can we first print
+this thing, so, so can we print the original numbers, and before we see what happened
+to this numbers once it's printed, okay, one once it's sorted, so let me now print the
+same thing, but now what we want to say is, this is after sort, maybe after sort, what's
+the status of the list is, what I want to check, so over, we just print it, okay, now
+if we run this, you will see that the original list actually gets, you know, sorted, and this
+is an in place sorting, which has a side effect, so let me run this base of code, and you can
+see the original list was, you know, 3, 1, 4, 1, 5, 9, 2, but now the sorted list, so after
+sort, I'm not, you know, I'm printing again the same list, right, this is what I'm passing
+as an argument when I printing, when I'm printing next time, and we see that the original
+list itself has changed, okay, this is important to, you know, keep in mind that your original
+list gets changed when you use, you know, list start sort, okay, so this is also called
+in place sorting, which modifies your original list, okay, so you can use the same function,
+let me, you know, copy this function, so you can use the same function to sort in place
+and sort in descending order, okay, so wherever you want to, let me write down what we want
+to do, now we want to use the same function, but now we increase, you know, increasing
+order, what we want to sort in descending order, okay, if you want to sort again the
+same numbers in descending order, now remember the number has changed to this one, okay,
+the latest value in the numbers is this one, because we have applied an in place sort,
+if I want to sort the same list in an descending order, so what we need to pass here is we have
+to indicate this, okay, and the way to indicate it, you write down the reverse is equal to
+group, okay, so by default the value of reverse argument is taken as, you know, false, if you don't
+write anything, I mean Python assumes that you want to sort the list in the increasing order,
+but if you want to sort it in decreasing order or descending order, you explicitly pass that,
+you know, I want to reverse the list, I mean, because this reverse is equal to true, we'll
+indicate to the library to the Python that you want to sort them in descending order, okay, so
+we shall also, you know, print to see the, what is the effect, because remember, I mean, we are
+not storing the value in some other variables, so if you want to see what happened to, you know,
+the list or what's the side effect of this, let's say instruction, then we need to explicitly
+print it, so let me not print, again, I mean same thing, right, after sort,
+but now, you know, what we have passed is not true, value, true, no reverse, so this is what we
+have passed, and now we want to see what is the effect of this,
+and you can see as expected, we get the reverse list, right, so this is how, you know, we can
+use this, you know, short function in build library, short function to actually sort
+a list either in, you know, increasing order or in descending order, but, you know, in both the
+cases, you know, be sure that your list, original list will change, okay, so this will what happened
+when you use this function in this particular way. Now, the next thing,
+so one more thing that you may want to do is, you know, not sort a list, right, I mean,
+you may also want to, you know, simply reverse your list, rather than sorting it in increasing
+or decreasing order, we may sometimes want to, you know, do a simple reversal kind of, you know,
+act, so if you want to do that, then again, I mean, there is a very easy way to do that,
+use library function, dot reverse, okay, so what we are saying is, instead of sorting,
+so here the action will be same because it's already, it was now sorted in descending order,
+but let's see, if I just want to reverse it and not sort it, okay, so maybe, you know, for that,
+so what we are trying to discuss now is how to reverse and how to do a implicit reverse of a
+string, okay, of a, sorry, list, so let's say again, if I write known this, let me copy this
+original list here, after this, let's say, if I define my numbers to be this one, and if you
+want to simply reverse it, let me in your final list, it should be 2951413 in this particular case,
+then the way to do this is you simply call this reverse method,
+okay, and if you do this, then what you can expect is on this thing, so let us now print it also,
+okay, let me print this thing, and you see, now you can reverse it, okay, so you know now how to
+sort in increasing, decreasing order, as well as how to reverse a given string, and how to do
+this in place, you know, activity, I mean, so the side effect is that in all these three cases,
+your original list will get changed, so it will not get modified, but what if you want to do this
+type of activity, but then you know, you don't want to maybe change your original list,
+so the way to do that is use this sorted function instead of not sort, okay, so the sorted,
+sorted this one, the sorted function creates new sorted list without modifying the original list,
+okay, so if you do not intend to change the original list and just want to maybe get a sorted
+version of it, then you can use this sorted function, okay, so let me again write down for you, now,
+we want to use this sorted, which will create for us a new list, but will not modify the very first
+thing that we want to apply, so let's be know first, have some unsorted again list, this can be
+the same list, I mean, maybe we can copy this thing,
+okay, this is unsorted, original list of here, so let me not print it also,
+now before we or let me know first, so we initialize this unsorted and then we
+pass this unsorted to this sorted function, and then whatever is, you know, return we
+accumulated in sorted ascending, so by default again, I mean, it will do, you know,
+sort in ascending order, if you want, you know, in descending order, then you have to again pass
+as second argument, reverse is equal to true, the way I mean, we did in first one, because
+in first one, we have only, you know, we only pass this argument whether to reverse or not,
+but here since it's a function, you have to pass both the unsorted list as well as whether to
+sort it in ascending or descending order, okay, so let me, you know, have both the variant of this,
+maybe, you know, we first run this and then print the outcome of this as well,
+so if I want to, you know, print the outcome of this, I can maybe print this one that we want to
+sort it, of unsorted, what is it, so, okay, so this is the final result that we want to
+know, observe, and we maybe, you know, we also want to, before we do that, we want,
+so after we do this, you know, sorting, we also want to see at this particular moment,
+what is the status of unsorted, right, is that will, you know, help us figure out whether this
+has a side effect or not, this function has a side effect or not, okay, so let me, you know,
+print it and see what happens, now you see the unsorted, the sorted list as this one, right,
+but then, you know, your original list, which was, you know, unsorted, when I print it,
+after this, you know, actually, this instruction get executed, even after this, this unsorted
+remains the same, it has the same value, okay, and now, you know, as in the previous case,
+you can also check the, you know, this reverse argument also in action, okay, so let's say,
+if I want, now, to sort it in reverse order, and then, uh, maybe, uh, see what happens,
+so what we can do is, let me, so now, sort of descending has, uh, sorted function,
+and we pass the same unsorted, which was, you know, same, we have seen, right, it, it was not
+modified, and then you pass reverse is equal to true, and we want to see what is the, you know,
+descending, uh, so what is accumulated in this sorted descending, if you print it now,
+this is what you get, okay, so now, we know, I mean, how to, uh, sort these, uh, lists,
+and a few important thing to, uh, no note, uh, regarding this, uh, sorted, uh, and, you know,
+the sorted function, as well as this method, list.sort is that, there, uh, somehow, you know,
+optimal, you know, they are very, uh, uh, fast, and it's an, you know, enhanced version of, uh,
+you know, maybe, team sort, uh, algorithm, so earlier, I, I'm sure it was a, uh, it was an
+implementation of team sort, maybe before Python, uh, 3.20, but then from Python 3.11, uh, it uses
+power sort algorithm, so inside this, uh, you know, sorting algorithm, we, uh, so Python developer
+has actually implemented, uh, power sort, which is actually enhanced version of team sort, uh,
+with optimal, you know, merge decisions, and essentially, uh, both of, you know, these, uh,
+sorting algorithms are stable and adaptive sorting algorithm optimized for kind of real world data,
+okay, so they are, uh, you know, a very mindful combination of, uh, insertion sort, and, uh, merge
+sort, okay, so I'm not getting into the detail of, uh, you know, these algorithm, but just keep in
+mind that they're, uh, no kind of optimal, uh, they perform in, of the order of analog and, uh,
+complexity, and, uh, they're very efficient for a lot, okay, so you can be, uh, um, you can be
+sure that if you use this built-in function, then you're using the most efficient algorithm for
+sorting, okay, so both algorithm, whether I mean you use, uh, this sorted, uh, function, or,
+you know, least dot sort method, combining insertion sort, efficiency, on a small, you know,
+partially, uh, you know, sorted data with merge sorts, no reliable guarantee that you will finally,
+you know, get thing in very less amount of time, and, uh, the hence, I mean, both of them are
+exceptionally fast, and if you are working on, uh, you know, real data, then, uh, you know, it's,
+you know, good to, you know, prefer this over even, you know, merge sort, because I mean, it,
+already, it doesn't, again, start by, you know, sorting, uh, things, if you have some, you know,
+already sorted thing, then it will not touch that, and it will, you know, it modifies this
+insertion sort, and merge sort, in a way, to achieve the, this, you know, optimal time,
+complexity kind of thing. Okay. So, now we'll not, no, delve deeper into this. You can search, uh,
+on the internet about, what is the algorithm that has been implemented in this sort,
+uh, you know, method, and, uh, the sort function. Now, let's, uh, go to another, you know,
+interesting thing that we usually want to do with list. So it's, you know, about copying list.
+So now there can be different way to copy a list. So copy means, I mean, I want to, you know,
+copy this list into some, you know, other, uh, list, this is, this is what we, say, mean, uh,
+you know, copying list when we say here, copy list. So there are various methods to create copies
+of list, and we'll see, you know, them one by one. So, but before we copy list, let's,
+now again, I'm create a list for ourselves. I mean, uh, let me, you know, call this list,
+original list. Okay. And so this, let's take a little, a complex list instead of, uh,
+simplest, now, list, uh, may contain, uh, list within, uh, themself. Okay. So one of the element
+of list can be another list also. Okay. So this, this is what, you know, I'm calling, you know,
+nested list here or more complex list rather than a simple flat kind of list. So for, you know,
+this set of, you know, activity where we want to copy list, let's consider a little, uh,
+can complement, you know, complicated list or, you know, a nested list. And for simplicity,
+let me again, uh, begin a fresh list where my, you know, elements are like this. Okay. So I have,
+you know, first one, two, three, you know, as, you know, first three element. And then, let me,
+put in the place of fourth element or another list, which is, you know, four, five. Okay. So
+remember, I mean, this is different than, uh, no, keeping, uh, one, two, three, four, five,
+in a single, you know, list in a flat way. Okay. So this is a nested structure where your fourth
+element itself is a list, which contains four and five. Okay. So note this difference with the,
+you know, previous list that we have been discussing so far. Okay. So let me write a comment here
+for your convenience. So this, what I want to say here is that this list, uh, is with nested
+structure. Okay. So if you print now, let me, uh, you know, this, now if you,
+print this, let me print here the original list, which we created just now.
+Okay. So you can see the original list is one, two, three, and then four, five,
+as the fourth element of it. So this, this is, you know, this is important to note that this is the
+fourth element of the outer list. Okay. Now, I mean, how to copy this kind of list? So one very,
+uh, it's no simple again method is to use this list.copy method. Okay. So we, we, let me, uh,
+go one by one so we can, to the very first and, uh, you know, very simple way to use this, uh,
+so let me call it copy one. Let's say, since we are going to discuss multiple ways to copies.
+So just to distinguish between, you know, what's happening. Let me give, you know, different name.
+So copy one, let's say we create by using this, uh, you know, list.copy method. Okay. So what was
+our original, uh, list, original list was this, you know, uh, stored in the original, uh, variable.
+And then if we say, original.copy, okay. And then, uh, whatever you get, you just keep it in
+copy one is what, uh, will not you ever.
+So let me now print also. So what if we print this, uh, now after, maybe, uh, you know,
+this copy. So what we are saying there, after we copy, we use a copy, uh, method.
+What is the output that we get here? Is copy one? Okay. Now if you just see, uh, what's the result? Then,
+you can see, uh, this is what, you know, we expected that in copy one, we get the same list.
+Okay. Now, I mean, I somehow, uh, like this, uh, you know, dot copy method because it's,
+you know, kind of explicit, right? It clearly says that I'm making a copy, right? This list.copy
+says clearly. So this is, uh, no Python style where you want to write on script, which is
+readable and immediately, you know, clear to you. Um, why, uh, or what we are doing. Okay.
+But again, I mean, those who are working with older version of Python, this might not be
+available. So my, you know, guess is that, you know, it's somehow a new feature that might not be,
+you know, available with previous, uh, version of I think Python. Okay. So older Python version may,
+may not have it, but check it. I mean, it, uh, I'm, I'm, I'm not, I may not be completely correct.
+And, uh, this is, you know, it's not a universal kind of, uh, no copy method, it works only on
+list. Okay. So that you have to keep in mind. There are some pros and some coincides. This is
+readable. It's very explicit, but again, it's not available in the previous version. And, uh,
+it may be not only applicable to lists. So this is what you can keep in mind when using this method.
+But then there is another, you know, more kind of universal, uh, you know, way to do the same thing.
+And that's what we call slicing. So slicing, we can use for not only copying the whole list,
+but also, you know, copying, uh, different segment of the list. Okay. So this is an interesting,
+another way of copying, uh, listing to another list in Python. And the good thing is,
+it works in all Python version. I mean, so, you know, I mean, this is present in almost all
+the version of the Python. So if you're writing, you know, backward, compatible code, then this is
+good thing to go ahead with. Uh, one another thing about slicing is that, you know, it works with
+other sequence type also, like, I mean, if you, instead of list, if you want to know work and copy,
+either whole, uh, you know, data structure or a subsequent of the data structure and data structure
+being different than list, let's say, string, tuple, then also you can use the slicing method. So,
+okay, so it's no more flexible in that sense. And as I said, it's more flexible in the sense that
+I can also, you know, copy, uh, sublist, instead of the full list, it also have some, uh,
+slight, you know, performance, uh, I think advantage over this dot copy method, uh, you know,
+but that, that is very, uh, slight. But I mean, some, some people may find again, I mean,
+this, uh, little more, uh, difficult to recall or remember that this is doing the job of copying,
+because here it was very explicit, right? We write dot copy. So, uh, for beginners, it's very easy,
+but this may be, uh, you know, not that easy to keep in mind, but given this pros and cons,
+let's see now, you know, how to use this thing, okay? So, what we say is, let's say,
+in our current, uh, you know, scenario, we just want to make the copy.
+So, let's call it copy two, and here what we want to do is, this, original,
+okay? And then you just write this column. So, what it means is that I want to copy the whole list,
+instead of, you know, this, I could have written, if I want to us, no, uh, sublist, I can write
+three numbers here, you know, first being a start, second being a stop, and then I can also,
+you know, say, what are the steps that you want to take, uh, you know, from start to stop,
+to select different elements that you want to copy. But let's say, for simplicity, right, now,
+I just want to, you know, focus on the whole, uh, list. So, we, uh, you know, just copy the whole list.
+The syntax to do that is just write a, you know, uh, colon like this, and this will, uh, copy the whole list.
+Okay. And, um, just to see the outcome, uh, just observe and validate whether things are going
+correct. We simply, you know, print it. So, we say that after slicing may be, uh, after,
+slicing, uh, we, we want to see, uh, our, um, original list, right? So, this is what we did,
+and what we want to see now is copy two. Because copy two is what, uh, we obtain just now.
+Okay. So, let's see, uh, what happens here when we,
+especially you get the same, uh, you know, our numbers and the list that you put inside the,
+no, outer list. Okay. So, this is perfectly, you know, aligned with what we, you know, expected.
+Now, another, uh, way to, again, achieve the same thing is, uh, using list constructor.
+Okay. So, list constructor is again, I mean, uh, it's, it's more, you know, universal. I mean,
+you can, uh, not only copy a list into another, uh, you know, list, but you can also copy other
+kind of, uh, you know, data sets like tuples, uh, uh, strings, uh, also, you know, into a list.
+I mean, and explicitly to this type of conversion. So, if you want to make sure that your,
+no, final thing is always a list whether you are copying, uh, no, list, or let's say, or string,
+or tuple, then you can explicitly say this, you know, uh, so I prefer this, you know, most of
+the time because this is explicit and I know my final outcome is list. So, if you also want to do,
+no, defensive programming and be sure of, uh, the type of data that is being written, then, uh,
+you know, some of you may want to prefer using, uh, you know, this constructor over, you know, other.
+So, worth the, you know, way to use it. So, let me end right down the code for this.
+So, we need to do is let's create another copy. I'm creating, uh, you know, these different copies,
+so that, you know, we can do some analysis at the end. So, let me, uh, now the, in this, this time,
+what I choose says, I use this, no, list constructor, where I pass my original list.
+And then whatever is written, I also want to, no print end, maybe see.
+Okay. So, let me print it. So, what we want to print it is, no, after we apply this list,
+constructor, original, right? So, what is that we expect here?
+Is stored in copy three. Okay. And ideally, we should get the same.
+And see, uh, this is what you get when we print out. Okay. So, as I mentioned,
+it is most universal work with, you know, any interval and it can copy from tuple,
+sets, strings, generator, etc. And this is very explicit, right? So, this may be good for those
+who want to be, you know, completely sure about the output type of the, you know, copy function.
+Okay. So, this is what we can use, you know, um, list constructor, you, you pass it.
+Now, the fourth way, uh, again, which can copy all the element in your, you know, list is
+this assignment operator. No, we have already seen the effect of assignment,
+operating previous lectures. So, this is safe. So, you can do that assignment on list also.
+Okay. So, the very, uh, no, long method that we want to see today is this assignment. So,
+let me create another copy. So, let's call it copy four.
+And again, pass the same thing. No, we pass origin into this one. And now we want to print what we
+get here. Okay. So, after assignment, uh, what we get is this copy four. Okay. And let me,
+you know, print it here. But after assignment, we get copy four. So, once we print here,
+you see, we get the same thing. Okay. So, now you, you might have noticed that in all these cases,
+the final outcome that we are getting are same, right? When we print them, they are same.
+But we want to verify whether, whether, you know, the semantics of all this four,
+no different ways of copying list is same or not. Okay. So, when I say whether the semantics is same
+or not, we have to check not only the values that appear in the final variable,
+but also whether, you know, they are somehow attached or they are, you know, completely separate entity.
+Okay. So, what I mean, I'm more precise way to ask this question is that we want to now verify
+whether, you know, the copied object is, you know, same as the original object in all these cases,
+or there is some distinction between these, you know, different ways of copying. Okay.
+So, we will, you know, verify whether the objects are different or the objects are same,
+the object that you get after, you know, you copy something and the object that you already know,
+originally, you know, copy from they are same or different. And for that, we use this is operated,
+that you might have seen in the last lecture also. Okay. So, his operator is, no, nothing,
+but a way to check object identity, whether to variable, you know, point to the same object in
+memory or not. Okay. So, we'll use the same is operator here to show whether two variables are
+kind of, you know, aliases or different names for the same object or they are independent copies.
+Okay. So, this will, you know, explain us the, you know, if there is any difference between these
+four, no different copies are not. Okay. So, learn, let me not try to write this thing here.
+So, what we want to do is verify that they are different, no, objects, okay.
+So, what we're going to do is verify that these are
+different objects is how to check. Okay. So, the way to check is using this is operator. Okay.
+Now, what we can do is we can just print that. Let me know.
+So, we want to first see the way that the original is same as the copy one. So, for that,
+we can maybe, you know, okay. So, this statement does the same, you know,
+activity that we want to do right now. Okay. So, let me put some.
+So, what we are trying to print is whether original is same as copy one. Okay. So, if original is,
+you know, same as copy one, then in this case, you will, you know, get a true value. Okay.
+So, if this expression, so you can see this is an expression, right. The original is copy one.
+So, if original is not copy one, let's say, if they are different objects, then what will be
+written? So, you will get a false value. Okay. But if they are same, then we will get a true value,
+and that is what will be no printed when we run this. So, can we run this and then see
+what's the output that we get here? Just to make sure that they are different. So, you see,
+original is copy one is this is false, right. Because, you know, this expression that we have
+written here evaluates to false. Because, original and copy one are two different objects. So,
+if original and copy one were to, you know, with the same object, then this expression will evaluate
+to true. In that case, we would have no printed truth here. But now, we see a false here, it, you know,
+makes us happy that, you know, they are not the same copy. So, they may not be any issue of
+aliasing and later on, you know, chances of ambiguity of, you know, changing your original variable
+without, you know, even not noticing. So, this is a good sign that we are indeed copying and
+you are getting to different objects. Okay. Now, can we do the same, you know, thing with the,
+no second and other thing? So, let me know copy face this thing and just check whether in other
+cases also we have similar nodules. So, what if I want to compare it, you know, with copy two
+instead of copy one? Okay. So, if you run. So, copy two is also, you know, different
+objects and what were copy one and copy two by the way. So, copy one was using this dot copy method,
+copy two was using this slicing. So, both of them gave me, you know, different objects. So,
+this is what we noticed just now. What about the list operator, which we give us copy, not three.
+So, can we also check for list? So, let me again copy and paste it and see what happens when we
+compare these two objects and want to check whether they are same or not. So, when we, you know,
+run it, it falls. Okay. So, these three are actually, now in all these three cases, we see that
+the object that we get after copy is different than the object that we copy. Okay. So, now,
+what about the last one where we store the final value in copy four? Can we also print it in the
+same way? So, let me, you know, copy this thing and paste and now we are comparing it with no
+copy four. So, we should change it to copy four and then see. In this case, what do we get?
+So, in this case, we get true, right? So, now, this is a, you know, very important to keep
+or note of this that the final one, which actually use the assignment operator, you see the final
+one where we, you know, use this assignment operator is actually creating, it's not creating a new
+object. Okay. It's pointing to the same object that this original one points to. So, it's like,
+you know, alias. So, if you change, now the value of, let's say copy four after this instruction
+is executed, your original will also get no chance. So, this is a very important to keep in mind.
+So, depending upon what you are using for copy, you may actually create alias and it may be
+cause of lots of, you know, error later on if you don't remember or recall that you have created
+alias. So, assignments, immediately creates an alias and it is different from these other three
+previous methods of copying in the sense that, you don't have different objects. Now, you have
+the same objects and two different, you know, variable pointing to the same object. Okay. So,
+this is, you know, one of the, so this is very, you know, important to keep in mind and this is what,
+you know, I wanted to, you know, you to note at this moment in time. Okay. Now, the effect of
+the three first three method is not as simple as it might appear just now and we will try to see,
+you know, in depth, what some remaining, you know, point that you need to remember when using
+this first three. So, although in the first three, you see that the object that you created,
+you know, the copy that you created were different, you know, objects, some parts of those,
+you know, bigger objects may be common with each other and to see that, I mean, it's good
+best to go with no one example, the example that we started with the original list and I will show
+you, okay. So, now we are trying to understand this, you know, silo copy behavior. So,
+this dot copy method, we also call silo copy and in all other cases, also we are doing,
+no, silo copy with nested list. So, we want to see a little deeply whether we understand the
+semantic is still correctly or not, okay. So, certainly, you know, the final object is different,
+right. And that's how you got this false in these three cases, but true in the last case, okay.
+So, but what about, you know, instead of do we understand it in the most, you know,
+precise way or we are still left with something. So, for that, let me demonstrate it using some
+examples. So, this will be the, you know, following examples to demonstrate to you, the
+exact semantics of this silo copy, you know, instead of, you know, understanding the approximate,
+you know, semantics, let's now dive deep and understand the exact semantics.
+So, the exact semantics of silo copy.
+Okay. Now, what do you select me? What do we want to do is let me copy this original one.
+So, this was our original. Let's start again. I mean, now, afresh is to make sure that
+we know what is our, know, original list. So, let's, this is our, know, original list. And now,
+we want to make a silo copy. We just give a name, silo copy to indicate the same thing that
+happened earlier. Okay. Just to, you know, now, remind ourselves that we are talking about silo
+copy. Let's, you know, rename it as silo copy. And what we are doing here is,
+applying this dot copy method. Okay. So, now, now we,
+know, so before we start changing these list, this list value or no copying, this list value,
+let's say, first print, I mean, that before doing any modification to any of the list,
+if you want to see, you know, what is the value of this list. So, we can actually immediately print
+it. Maybe here, select me. So, we have two things. We have original and we have silo copy version.
+Now, we want to, before we do any modification with these list, let's say, try to print the value
+of the list and see what's happening. Now, before any modification, we see that original is this
+one and your silo copy is also this one. But we know that they are no different objects. Okay.
+So, they are not the same objects. So, what we expect is if we change one of them,
+the others should not change. Okay. This is what is our expectation. Now, let me, you know, change
+some of the elements. So, let me now say that in the copied version, which we should
+select silo copy. If I want to, let's say, change the very first element, which is not the
+zero element, to some completely different valuation, so that we can identify this change.
+So, after modifying, you know, this, if I want to again check what is the status of original and,
+you know, what is the status of this copied version or silo copy. So, I can actually,
+do a print, right? I can immediately maybe, you know, print the original and then also,
+you know, similarly, I can now print this silo copy version also, right? So, let me print here the
+silo copy. So, what do you expect? In the silo copy, certainly, I mean, we want, you know,
+instead of this one here, 99, right? But in the original, we don't want to see any change,
+right? And this is what is the intended semantics. We understand till now. Okay. So, let me, you know,
+confirm it by just running it. And this is exactly what we, you know, guessed. Okay. So,
+our understanding seems to be correct that, you know, these two are different copies. So, here,
+you, you still have one. But, you know, after execution of this statement, in the silo copy,
+you can see the value of the first value has changed to 99. Okay. So, you know, with top,
+top-level elements, I mean, we can see that there is no, no difference in what we understand and
+what is being, you know, executed. Okay. So, our understanding of the execution semantics is
+completely correct. Now, what if we change something in the, let's say, nested, but I mean,
+just to make sure that we understand things correctly, what if I want to, let's say, change
+this thing in the, you know, silo copy. Let's again, if we pick the silo copy and want to change
+this element, which is inside a, you know, list. So, this is again another list, which is inside
+the, you know, bigger list. If I want to change this, then what can I expect? So, let me write it down
+and then check what happens. So, what we are, so what we saw here in the beginning was that we
+modify the top-level element in copy, right? So, let me write a comment to make sure that you
+understand what we intended here. Here, we intended to modify the top-level elements in copy.
+So, this is what we did, right? We did a silo copy and we modified the top-level. So, what are we
+calling top-level? The top-level are this one, two, three. And what is the nested part?
+Nested part is this four and five, which is inside another, you know, list, which appears as the
+fourth element in the, no, bigger, you know, outer list, okay? So, this is what we said top-level.
+Now, we want to modify, you know, nested element in the copy. So, let me,
+we want to do some change here maybe at this place and then want to see whether, you know, that thing
+affects the previous, or the original list or not, okay? So, how to do that? So, we say silo copy
+and then how to access that particular, you know, element in the list. So, since, you know,
+this is a list inside a list. So, the way to do is you first access the list by using this
+index three. So, can you see what should be the index for this list itself? So, what is,
+so this is fourth element in the silo copy list, right? First element was this one, second was
+this one, third was this one and fourth was this one. So, when you write silo copy and then pass
+this index three, you get this whole list itself, okay? Now, what we want to do is not to change this
+whole list, okay? So, the outcome of this silo copy, you know, then passing this index three is a
+list itself. Now, of this list, I want to just change maybe the first element, okay? So, how to
+access that? We put a second square bucket and then we say zero. So, when we say this zero,
+what are we accessing? We are accessing actually this element. And now, at this place,
+we want to maybe, you know, reassign some other value, okay? So, what let me, you know, reassign
+some value which is distinct from the normal value. Let's say, you know, we want to put here 88,
+okay? So, what should be the, you know, effect of this thing that, you know, this should get
+changed to 88, okay? So, after modifying the next element, you know, in the copy, if we want to
+now check what is the silo copy and what is, you know, the original copy, then what we have to do,
+so we have to print it, okay? So, let us now print it. Let me print this whole thing first.
+Okay, so let me, you know, print this thing. Okay, so we will print, print, original, you know,
+but let me print the silo copy first, okay? So, what if I want to print the silo copy first,
+what happened to the silo copy? I mean, after we change it, okay? So,
+we expect some change, right? So, and what is the change that we expect here in the silo copy,
+let me run this piece of potency. So, this is what happened to the silo copy, right? So,
+the copied version, because we, you know, explicitly assigned, you know, this particular element,
+you know, this position, the element present here, to the value 88. So, you can see now your,
+you know, silo copy has no 99 here and 88 here. But the original, what, what shall I expect in
+the original? Because that is a different object, right? So, if it is a different object,
+what will you expect? I mean, if I print original, I should expect this one, right? If it's a different
+element, I shall expect the same thing. Now, can we, you know, validate our understanding by
+uncommenting this? Let me uncomment this and then run. Now, see, the original also says,
+now, this time, right? So, instead of, you know, getting this as output,
+which we, we, we somehow, I mean, many of you might have expected at this moment that we will get
+this same original as output, because original was a distinct object, then the silo copy, what you
+get in original is at this place, the original does not have any more value for, right? So,
+originally, it's also got no change, although we did a silo copy, you know, which created a different
+object. So, what's going, you know, on wrong here? I mean, what's the thing that went wrong at
+this particular no place? Okay? We are sure that this silo copy is, you know, distinct from original,
+and we have checked it earlier on. So, for your, no, so, since we, we got something which is
+not intended, which is, you know, not explainable from the semantics that we learned so far,
+let me, you know, validate it, and what's the way to validate it? Can we print again to just check
+whether the original and silo copy is the same thing? So, for that, we can simply here print
+original is silo copy, and then check whether original is silo copy or not.
+Okay? So, you get a false, which is, you know, again, I mean correct, because we expected that
+original and silo copy are different things, right? So, if they are different things, then how come
+when you change silo copy, original changes? Okay? So, something is, you know, wrong here. We are not
+understanding the full semantics, maybe. So, what about, you know, if we check whether this part
+of original and silo copy are same or not? We know for sure that they, you know, the original and silo
+copy are, you know, pointing to different objects in memory. But remember that these objects inside
+also, you know, contains something, right? And one of the element in this, you know, list,
+was a list, list itself. So, although, I mean, when you, you know, copy using silo copy,
+your outer, for outer elements are simply, you know, constant objects, right? So, for them, I mean,
+you know, you have copies, but this inner element is a list itself. So, maybe Python is, you know,
+not, you know, copying the whole list, which is present inside as an element, but only, you know,
+copying the reference to this list, when you do a silo copy. Okay? So, but I mean, we are not sure,
+at least from the outcome that we get, it seems as, you know, as the, I mean, both the inner list
+or the nested list, you know, point to the same object in silo copy as well as original, you know,
+copy. So, can we check that also? We know that the original is not a silo copy. Okay? So, for the
+main, original list and silo copy, they point to different objects. But what about their, you know,
+this element? I mean, can we check and compare them also whether they, no, so let me know what I'm
+saying is, can we also compare this original three with silo copy three position? Okay? So,
+that mean, print it explicitly. So, this is what we want to know, print that our original,
+you know, at third position and what is the original third position? So, this is the list itself,
+and silo copy at third position are they same or not? Okay? The original and silo copy is,
+you know, clearly distinct. But what about this if I print it? Let's try, try to check.
+So, what you get here is a true value, which is surprising, right? And this is the reason why you
+get, no, something which you did not expect. So, even if you are copying using the silo copy,
+which was, no, the first three method that we used, the flat, no, elements or the outer
+most elements are, you know, copy it. Okay? So, you know, like, you know, one, two, three, these were
+the constant thing that you get copied. But when it came to list, the whole list was not copied
+into the, you know, newer copy. Instead, what we did was the pointer or the reference to the list
+is copied in the new list. Okay? So, now, if you are working with nested list, and even if you do
+silo copy or you do the first three, you use first three method, you are in danger. I mean,
+if you change something in the nested part, then your original part may also now get changed.
+Okay? So, this is very, you know, important to keep in mind that a silo copy creates a new list
+object, but only copies the reference to the nested object. Okay? For the nested object,
+it will not copy the whole object for the nested, you know, objects, which may be no list inside
+or list, it will copy only the reference to the nested object and not the nested object themselves.
+So, this is very important to keep in mind. The top level element, like, you know, integer or
+string that you keep, you know, directly, are independent, you know, in the copy, but when you
+have nested objects like, you know, inner list, okay, then there will be said, you know, between
+original and copy. Okay? So, this is what was happening here. So, okay? So, this is explanation of
+what I said, right? The silo copy creates a new list object, but only copies the reference to
+the nested objects, not the nested object themselves. Okay? Now, if you go step by step, you know,
+trying to understand what happens, so this is what happened, okay? Your original list was this one.
+Your silo copy was this one, an outer list, are different objects. So, what are the outer
+list? I mean, this one, this one, one, two and three. So, these one, two, three are here and
+these are two, one, two, three are different objects, okay? So, they're not the same thing.
+So, if you change one, I mean, another will not get changed, but then here, I mean, original
+list had, you know, this list as the fourth element, but here, the reference to that list is
+actually copied, not the whole list is copied. Okay? So, both of them actually point to the same
+four comma five. So, if you change this list, four comma five, you know, any one of this,
+then, I mean, the second one will be changed. Okay? This is what we wanted to say here. So, that's why
+when we, you know, did top-level element change, zero, silo copy is zero, 99, the only change,
+so it only changes, you know, the copies first element and not the, you know, it will only change,
+you know, this element and not the element here. Okay? So, original remains unchanged because
+integers are immutable and stored separately. Okay? And in case of, no, and this nested list,
+you know, say, this element, you know, three, cause silo copy three was a list itself and list
+are mutable. So, whenever, you know, you have mutable objects, as a entry inside this list,
+when you're copying, even using no silo copy, the reference to that, you know, mutable objects
+gets copied instead of that whole mutable object. Okay? So, both original and copy see this change.
+I mean, when you do this change, because this is inside the, you know, shared object, which is
+shared by both original and the copy, you will see the change at both places, okay? Because they
+both reference the same inner list object, modifying the inner list affects both outer list.
+Okay? So, I mean, and then, I mean, you should be very careful working with this kind of things,
+if you're having no deep, you know, nested, kind of list, then you better, you know, use something
+different. If you, if your intention is only to, you know, create a distinct copy, which will not
+modify or changing that will not modify the original one, then you use some other method, okay?
+So, the solution is this, you know, deep copy method. So, instead of silo copy, what we say,
+we do deep copy, we copy everything. I mean, we, we never try to copy a reference rather than
+we copy, you know, if, if let's say inside a list, there is another list, you simply copy the whole
+list, you know, explicitly without, you know, and not copying the reference to the, no, copy list.
+So, for that, we can use, you know, copy dot, you know, deep copy to create a completely
+independent copy where nested objects are also duplicated, okay? So, this is possible, this is
+completely possible inside Python, and when you're sure that you want to do a deep copy, you should,
+you know, use this, and for that, you have to know import this, you know, copy module,
+and then we can actually do this deep copy. So, what is the syntax for deep copy, then
+let me write down it. So, the syntax for deep copy is not this copy dot, deep copy, and then
+pass the original. So, I want to keep, let's say, I want to name it as deep copy now, let's say,
+we want to keep in, you know, deep copy. So, I want to access this, you know, deep copy,
+method inside this copy module. So, copy dot, deep copy, maybe, to this is the, you know,
+syntax that we can use, and then we can pass the original.
+Now, this will do, you know, true copying in the sense that it will copy everything. I mean,
+not the reference, but the whole list, even if there is a nested list, you know, inside the
+outer list. So, in this case, you know, modifying the nested element in the copy will not change
+the original element. So, let me, you know, do the same kind of change that we did earlier,
+and show you what's happening. Let's say, if I want to print it. So, after this instruction is
+executed, if I want to see, what is the status of, you know, original, and also, maybe, you know,
+what is the status of the deep copy that you have created just now.
+Okay. So, we have, you know, copied, we have done a deep copy of the original into this deep
+copy variable, and then next the action that we have taken is we have modified this deep copies,
+third, you know, elements, or I mean, there's this list first element by accessing it using these
+indices, and I'll sign there 88. So, what we, when we print original. So, since this is a deep
+copy, in this case, I expect that this is an original value is not changed, but when I print the
+deep copy, no value, which is no copied here, which I have already changed, I expect to change
+there, right. So, if it is a deep copy in true sense, then there should be this distinction,
+right, when we print it. So, now, let me, you know, print this thing then.
+Now, you see, even though we changed this deep copy value, here 88, the original list did not change.
+Okay. And this is what, you know, we wanted to note in this, no lecture that there is a difference
+between this kind of no shallow copy and deep copy. And whenever you are, you know, clear that you
+do a complete copy instead of, you know, copying some references to some, you know, said object,
+it's better to, you know, do this kind of deep copy to avoid any, you know, kind of confusion,
+and scope for, you know, future bugs. Okay. So, yeah, so keep in mind, this is very, you know,
+important topic, and we should, you know, always be sure about what's happening. I mean,
+whether, if we, you know, do a copy, does it actually creates a new thing or it passes just
+reference to the new thing. So, you know, if you keep in mind these things, then there is very
+less chance of error. So, yeah, please go through this lecture again to, no, observe,
+observe the material that we have discussed many of you might find it a little non-comfortable,
+but this is the exact semantics of copy, you know, shallow copy and deep copy. So, with this,
+I would like to conclude today's session. So, I'll meet you in the next video. Till then,
+goodbye. Thank you.

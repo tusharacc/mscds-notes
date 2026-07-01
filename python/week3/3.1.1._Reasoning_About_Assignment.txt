@@ -1,0 +1,504 @@
+Hello and welcome back to week three of Python applied core and applied concepts.
+So in this week we will be mostly covering module three which is about you know reasoning
+with assignment conditional and loops.
+So before we proceed with today's lecture so let me briefly talk about what we discussed
+in the last week.
+So this was roughly what we were discussing in the last week we talked about Python expression
+hierarchy.
+We learned how to build simple expressions, whether it be arithmetic expression logical
+expression or other kind of you know lambda expressions using operators.
+We went to the assignment expression which is distinctive from assignment statement.
+And we discussed the distinction between these two with carefully chosen example and then
+we moved on to lambda expression and discussed about lambda expression in you know some detail.
+We tried to emphasize that lambda expression are nameless functions and at multiple places
+they can be you know of use or they can be preferred over a simple function for which
+we have names.
+So lambda expressions are nameless functions.
+So if you feel like you don't need to give a name to a particular function and you
+still want to use that function maybe you know the best choice is lambda expression.
+So we discussed about this so please go through those lecture if you can't recall you
+know some of this concept.
+So yeah so with this let me go to today's topic which is mostly about assignment statement.
+So this week we will be mostly talking about assignment statement then you know conditionals
+in Python programming language and going ahead we will also see how to write loops and
+where can loops help us you know do some computation which is otherwise not possible using
+you know primitive concept like assignment and only conditionals.
+So now let me go directly to the non Jupyter notebook so again so we are here and what
+you can see is this model 3 which will be reasoning about assignment conditional and loops.
+So let's begin with the simplest one so although we have discussed in some you know detail
+this assignment statement when we were discussing about assignment expression but let us
+discuss today the semantics a little bit you know clearly so let's do a deep dive into this
+assignment statement with some very simple example which many of you might have seen earlier.
+So the idea today is to understand the semantics of assignment properly okay so and it can be
+understood only if we know focus on some simple very simple example very very you know simplest
+kind of example that can let us focus on the semantics rather than the you know complex syntax of
+the whole programming language. So assignments as I mentioned in the very you know first video
+are maybe the you know only way by which you can change the state of abstract machine okay and
+remember we are talking about a statement and normally statements are mean to change the state
+of abstract machine for your language okay so when we execute a statement one after another what
+we are actually doing is we are trying to change the state of machine in particular no way
+so that we achieve the kind of computation that we wanted to achieve okay so we always have
+intention in mind and then we want to translate that intention into a sequence of instructions
+and what finally those sequence of instruction does is changes the state of machine in a careful way
+so that what you get as a final you know state is you know what you intended to get as a computation
+of a let's say desired function or something like that okay so let me you know begin with very
+simple example so just you know quickly recap so what is the I think you can see my Jupiter notebook now
+so let me highlight the syntax of this assignment expression okay so before we go about this
+semantics let's talk about the syntax about the most you know simple syntax we have seen some
+syntactic sugar also in the last class where you can actually assign multiple you know variables
+simultaneously but let's talk about the simplest one and well if you know ideas clear about the
+simplest one then you will not do any mistake with you know more let's say sophisticated way in
+which you can use maybe assignment to assign multiple things or you know change assignment or
+something you know that we discuss in the last class so the simplest one is you have one variable
+let's say on the left hand side and on the right hand side what you have is an expression okay so
+this is the syntax of let's say assignment expression and now we want to know what is the effect of
+let's say executing this instruction on the state of Michigan right so that's what we call you know
+semantics of the meaning of this meaning of executing this instruction okay so you see I mean
+there are two things on the left hand side you have a variable you know with somehow you know
+points to something in memory which try to abstract out you know these memory you know registers
+or main memory and on this right hand side you have an expression okay we we have already seen
+right what an expression is in the last class you can know build simple expression and then
+complicated expression using operators no form those simple expressions so on the right hand side
+you can put any expression okay so this expression on the right hand side now always evaluates to
+some value okay so what we call here is you values from value and or an object okay so why we are
+calling object because no right hand side may not always no evaluate to let's say some you know
+data types you know primitive data type that you know like integers you know or string or
+these kind of things so right hand side may also evaluate to object which represent functions let's
+say right and in the last lecture we saw that we also you know you know defined remaining
+full function you using lambda expression and then assign those expressions to the variable on
+the left so so remember I mean this distinction these expressions need not always be the value the
+kind of value that comes to your mind you know by default like natural numbers string no I mean
+they can be no more complicated nothing like no function objects which are nothing but functions
+okay so you can also consider them as no value but then you know you have to be clear that when we
+say value we don't say no value in this restrictive sense of you know the data types only okay so
+great so our expression no on the right hand side evaluate to some value and then in the second
+step what happens is we bind now this value to the variable name that we have given on the left
+inside okay so this is you know two step you know operational semantics the first step is you
+evaluate the expression okay and remember that evaluating the expression may not always change
+the state of the machine okay so so this is what we also discussed right in the last class that
+we normally don't want you know expressions or evaluation of expressions to change the state
+of our abstract machine but then there are you know certain you know expressions like you know
+expression which will actually change the state of machine so not true always but you know
+most of the time we want it to be true okay so then I mean how this instruction or this you know
+statement in programming language is changing the state of the machine so even though let's say
+the first step which says now you evaluate the expression on the right hand side fast and then put
+it or bind it to the second you know left hand side variable in the left hand side so what happens
+even though let's say your first step does not change the state of machine the second state
+will certainly change the state of machine right because now you are pointing to some register
+you know or you know some memory location and you are saying that now I want to assign whatever
+value I have calculated from this expression into that memory location so the moment you do this
+you certainly change the state of machine okay so I mean at least I mean we are in a position where
+the state of machine may be changed now if you assign the same value let's say to the variable
+that you have declared may be earlier in the program you are certainly not changing the state of
+machine but then this is the no pop no segment of statement which has the potential to change the
+state of machine okay so whenever you see an assignment statement like this think in mind this
+two-step you know process two-step now personal semantic another thing that I want to highlight here
+is that assignment statements are destructive in the nature so what does it remain I mean see on
+the left hand side you have a variable right and this variable might have been initialized in your
+program no earlier on I mean this may not be the first time this variable is being used let's say
+so in that case what happens as soon as you assign the value of the expression on the right hand
+side to this variable the old value of the variable is lost for no ever you cannot recover that
+no variable value this should be very no causes if you are writing in your programmer statement
+an assignment statement then the effect of that assignment statement will be that now your
+previous value of the variable will be lost forever so if you want to use that value in future
+better story you know in some other variable that can be helpful later on okay this is very you
+know important and we will see you know going ahead this has no certain effect when you try to
+reason about the correctness of let's say your program so now let me write down a very simple
+maybe function which can not do a simple operation on some numbers so maybe the simplest
+my example that is coming in my mind is you know swapping to numbers I mean I hope many of you
+might have seen this program if I give you two variables let's say and I want to know swap the
+value of the two variable so I'm asking you to write down a function which can do this
+and it turns out that this no simple function can be written by just using you know this assignment
+expression so maybe you know this is the simplest you know kind of function which we can write
+using assignment statement so let me help you with you know initial definition and then we will
+reason about this function so so this is a very simple function like you know what we are trying
+to write down is you know definition of a function which let's say call swap okay so we are trying
+to write down a swap function okay so and let me say that we will use a temporary variable to swap
+the two number that is given as an argument so what are the argument to this function we have x and
+y okay so these x and y are two numbers which we want to swap no eventually so the definition
+of the function maybe something like this so since I want to swap the value of no x and y what I
+do as a first step is I maybe you know define a temporary variable temp and then store the value of
+x so you have given me the value of x and y as input to this function so what I do is I first let's say
+somehow no reserve this value of x because you know this value of x will be destroyed as soon as I
+you know write value of y into x okay so I want to maybe you know keep it safe no before I destroy
+the old value of x so this is no the intention of writing this you know temporary variable so when
+we say temp is equal to x what we have done just now is that you know we saved the old value of
+x and maybe the next step that I know 1 to 2 is I want to maybe assign the value of y into x
+okay so the moment I did it so see when we are writing program we have intense in behind each line
+right so no this is something which is missing in today's software development because you are
+asking with the natural language prompt and you are getting the whole code at once right so you never
+reason about the partial or the initial segment of a program on your own so but I mean it's always a good
+practice when even if you let's say get your whole code from lm you start reasoning about the code
+whether the code is meeting the intention of what you wanted okay and that you can do only if you
+go through the code not a little bit slowly and carefully and when you go through a code
+carefully you always you know look at some initial segment and write and your initial segment keeps
+increasing inside until you finish the no reviewing the whole code okay but for every initial segment
+also there is some purpose right by that by this time I am doing this particular job for example in
+this case when I say temp is equal to x I have some intention right I want to store the previous
+value of x maybe before destroying it that's why I am you know creating this not temp is equal to
+x so when you go through it slowly you can you know visualize the intention behind all this
+statement and then maybe you are in a better position to comprehend the program no properly and
+hence you can believe it okay so the temp is equal to x stores the previous value of x before we
+destroy it in the next step what we have is x is equal to y right so what is the effect of this
+now your value of y has been kept into x and remember does this step you know changes the value of y
+so this statement should not change the value of y right because you know x is on the left hand side
+so the if you're thinking again in terms of abstract machine if no x and y are the only let's
+say memory places that you have no initialize or in this case no x y and temp or three memory
+location that you have does till now so certainly the no this line where I'm trying to assign
+to x the value of y now only changes the state of you know abstract machine at that location x
+it does not change anything on so nothing about y is changed so this is what we want to say
+so so at this moment what you have is already no x has the value of y that you gave to this
+program and then what you know what what should be the final statement of this program to achieve
+the task that you did you wanted okay so I want into y no sound value right whatever was given
+as the initial value in x this is what I want in y and you see now why this temp variable you know
+comes handy because in the temporary variable you have written the original value of x that you
+you know wanted to transfer to y but if you did not store it in temp and you directly let's say
+did the no this statement no many people you know might do this mistake or programming for the very
+first time they may forget no this line of code and then what they can they would do is no x is
+equal to y and y is equal to no x and then no the whole thing no get strong so so what we do here
+is we try to you think through this program a little slowly and you will see that this no will
+make perfect sense to you and what you want to return is you know the value the current value in x
+and y okay so at this no moment in time when you are in executing this code your current value of
+x and y must have been swap so this is what we believe so let me you know quickly run this piece
+of code and then maybe run some examples of what example let's talk about some simple
+input so if what if I pass to this function swap let's say 2 comma 3 okay if I want to
+pass 2 comma 3 what do I return what do I you know expect in return 3 comma 2 right so this this
+is no nicely you know swapping the value so there is no issue right so let us try to swap things
+maybe which are of different types so this is very simple right we had to integer but what let's say
+if I have you know first thing as a you know integer and the second thing as a string
+see so no whether it's no integer or other kind of not a type that you are passing you know is
+in material this function is doing its job perfectly right this is what we intended we want to swap
+no value of the variable in these two different value that we have given to this function swap
+okay so this looks like a you know correct implementation and by working with these a small
+example we can get confidence why this should be correct but again as I said I mean looking at
+the program initial segments slowly and no increasing your initial segment gives you more confidence
+why this program should work because your program may work I mean if you only rely on testing it
+on some you know input it may work for your you know test input but it may not work for some other
+tests inputs so no only because it has worked for your input does not guarantee that it will work
+for all the input but if you work with the code a little slowly maybe it gives you much more
+confidence about the you know behavior of the program so now we will again you know let's talk
+about the same you know program and try to write down whatever we discuss no till now as a
+specification of the program so when we say specification now whatever we were thinking through
+when we were analyzing this program can we also write down our thoughts as something inside
+programming language okay so Python and other programming language is also you know provide to
+this feature of assertions where you can assert something that you believe it to be true at that
+particular moment of time in program okay so this assertions are very useful and I would highly
+encourage you know you to write these assertions you know as often as possible so that you know it
+it you you get a second you know chance to think about the program or initial segment of the
+program and write the meaningful you know intention that you have in mind when you're reading this
+program okay and if everything goes you know correct then you have more confidence in the program
+for example for this simple program let me know maybe a copy paste the code of the previous thing here
+okay so let me copy it and then we paste it here okay so let's call it you know instead of
+software rename this function to something different let's say software one okay and now what we
+want to do is you remember I mean I had some intention of this statement right so I so after
+this is no statement if you if I write let's say assert so assert always you know tries to
+assert something you know you are trying to declare something at this particular moment of time
+declarations are of the type true or false right your declaration may be no wrong or it may be
+right so anything that you know expect after this assert must you know return you boolean values okay
+and we know how to you know get boolean values right we have boolean operator or logical operator
+to compare no values or variables and then you know tell us whether this true or not so for
+example in this simple case after this line of code I certainly want this to be true do you see
+what I want is I want them them value is equal to is equal to the value of x okay so let's say
+uh so so assert statement I know this kind of semantic so you assert something and if let's say
+this something that you have asserted is not correct you may also optionally print something which
+can you know help you that you know this statement was not correct okay so let's say if this
+statement is not correct no I just want to know maybe say uh failed at know the very first let's
+say step let's have failed at what I mean just you know this this is for my hint that which of
+the assertions you know I have failed I may want to write multiple assertions in my program then
+but when it fails I want to know which one has failed okay so let's say you know if I see the
+this being printed out I can you know make make out that you know this is the assertion that I failed
+so at this particular moment of time I certainly want these two values to be true right so I can
+expect this to pass when I uh run this program okay so can we run the program and see whether this
+is you know passing for so let me know first compile this program and if we run this program again
+maybe you know copy the same thing okay and now instead of swap time let's say call this new
+function swap temp on and if I run it it passes right so there is no no error right so so no this
+statement is certainly you know changing the value of only temporary valuable and the value in
+the temporary very well after this no statement has been executed is the value of x okay so this is
+no perfectly fine so there is no no error that you know we get when we run this so
+what about another maybe statement that I want so what was the effect of this no can I write
+down something no similar let's say assert can I write down that at this moment of time
+so whatever you know was true previously is there and after executing you know this particular
+statement x is equal to y I also want something no new to be true so no I wanted no temp to be x but I
+maybe also want to so what the law effect of the last statement that x is equal to y right
+in x you have put the value of i so certainly no I want at this particular time x is equal to
+equal to y no since I have executed this statement just now I may want this to be true and let's say
+you know call it if this does not turned out to be no correct then I want to maybe you know print
+this statement okay so so now let me recompile this thing this part of the code
+so you see I mean what I'm saying is you know I want to you know here claim that since I have not
+done this you know part I want you know this new thing to be added to my previous you know
+knowledge or whatever I have stood till the last point okay so I have done maybe no this extra
+step in the last assignment so this equality should be true now in addition to the previous one
+so do you see I mean this should no return us true or false I mean we have run the code already
+and if we let's say now run it on 2.3 what do we get so so it's complaining right so it's saying
+that you have you know failed that too so something went wrong here right certainly I mean this
+expression is you know no more correct so what might have gone wrong so can this statement go
+wrong at this particular point in time so the semantics or the meaning of you know this assignment
+expression is that whatever was you know the value in why you just keep it in next so just
+after executing this to certainly we don't want to say that this statement cannot be true right
+because this is what we did right now and we are not doing anything else now after this step so
+this must be true so what went wrong then I mean is it true now
+see so as we discuss I mean the assignments are destructive right so as soon as you assign
+into x the value of y right so you have changed the value of x right so if initially temp was
+no is equal to is equal to x now temp may not be equal to equal to x right because no temp
+has not been changed but x has been changed you see the no advantage of writing you know these
+assertions so at this particular moment in time I I know that my you know value of x has been
+destroyed but my value of temp has not been no change and now if initially this was true
+it may not be true now right because my last statement has not changed another value of temp
+but it has changed change the value of x so this is the reason why you know this line of
+code is maybe failing okay so this assertion is failing so no instead of let's say so let me
+know copy let me keep it so that you can refer to it later on so let me write it down again
+and maybe commit this line of code we don't want know this whole thing now what we are saying is
+we can only claim this safely maybe after this you know instructions on this point in time
+okay and then if we run so what do you expect now select me now correct so let's run it and then
+if we run it again now there is no problem right so now with this one we can see that this is
+perfectly no correct okay so it's not failing at this no position so similarly what to write down
+no so since we have you know taken we took some lessons from the last two assignment statement
+we should be a little careful when we try to write down the effect of let's say the last
+statement which is y is equal to temp so what can we write down here the effect of the last
+statement can we write down so assert now since I'm changing y to the value of temp so is it okay to
+write down no this one so let's check it let's say if not then I want to maybe print the string failed
+at 3 okay and let me run it this should be correct right because again in the last statement
+that we have executed is y is equal to temp and after that no we are immediately claiming this
+thing so this must be tried this particular moment in time so let me run it and if we run it I
+don't see there isn't any error right okay so this is certainly no we want to
+we can you know confidently write down you know for this particular program but see I mean
+these assertions although tell us true things about the you know initial segment of program they
+don't say something very useful that maybe we want to write down and check for this overall program
+right so at the last you know at this moment in time when you're exiting before existing you
+are asserting something which is not very informative right what you're saying is no y is equal
+to is equal to temp and temp is something that you have created no inside this no function okay
+and if you don't know the code that's happening inside the function just by looking at you know
+this assertion it may not make a must sense of what this no function is doing so we we want to know
+some stronger or you know more meaningful or helpful assertions which can help us relate
+the implementation with the intention of the code so so the intention of the code was that I
+mean this no original value of x and y should have been swap okay so to achieve that what we do
+is we define some ghost variable okay so no no I'm going to introduce you to the concept of ghost
+variable and these are actually like you know other variable but the intention of ghost variable
+is completely different okay so these are purely for verification purpose and to you know ensure
+that the code is behaving the way you want after you know let's say you're you know confirm that
+the program works as it is this ghost variable can safely be removed from no code without affecting
+the effect of the code okay so the the whole sole purpose of this ghost variable are to ensure that
+the code behaves no properly and you should be able to write down know what you want to write for
+this particular piece of code okay so let me again I'll give you you know maybe I can copy and
+paste the same code from here see and then paste the code and what we want to do is now let's say
+not collect swap temp but what I want to call it is swap temp maybe you know very quiet okay
+this is what we want to say now we want to know say something meaningful about this program will
+which should relate to the intention okay so the intention that we wanted to say is the final
+value of you know x that is written from this no code is the original value of y right and
+the final value of y that is written by this no piece of code is the original value of x so this
+is what we want to maybe say in this for this no piece of code so what we can say is we can
+initialize to ghost variable which are nothing but just to capture the original value of x and y
+so what we can say we can use something like this let's say no use a meaningful name like no
+x original it to store the original value of you know x and y original to store the original value
+of you know y and let's say the very first step in my program is I just stored the original
+value of so the whole sole purpose of this you know is to define kind of a you know
+you want before the you know value of x and y gets destroyed you maybe want to store it in some
+variable and name it properly so that you can refer to it later on in your program okay so
+x original and y originals only you know intention is to capture the no original state
+no for reasoning okay so so let me write it down only intention of writing now this
+piece of code is to share
+original state for reasoning
+okay now we have since we have captured now our first statement is you know
+okay so this is the only purpose of this statement is to capture no this thing and then let me
+know remove all of this maybe you know we don't need here or I mean let's let's remove this
+a no intermediate assertions for the time being we'll put some new assertions which can be
+you know meaningful in the current context maybe also this one no assume that no for with this
+no initial original state no being captured in x original and y original if you can make assertion
+something no like this let's say at this step that you know finally when no before you
+exit your x should be nothing but no y original okay and y
+then we will be happy right so this is what was our original intention otherwise we will say
+that shop has failed so we see so we started the program so so imagine that now this piece of
+code which I have highlighted from here to at this point can be either you know let's say
+developed by you or LLM or by some you know third you know party and they have given you this
+function okay so what we can do is we can annotate this function properly to write down whatever
+was our original intention of us in code for this function okay so original intention was that
+if let's say x original and y original represent the initial state of you know x and y whatever
+was the value in x and y then finally after executing whatever code you give I want something like
+this to be true right that we I want to know safely assert that you know x should be equal to
+at this moment in time when you are exiting the program just before exiting x the value in x
+should be same as the original value of y so that's why you know this goes variable so remember
+if you don't define this goes variable there is no other way you know which can help you assert
+something like this here right because you want to relate the because this is a special you know
+case where we want to relate our final state of you know this x y with the original state of you know
+x y right so if you don't distort the original state since this assignment statements are you know
+destructive in nature you cannot assert something like this at the okay so the best or the most
+convenient way is you store both the original state in you know this goes variable and then later on
+if we do this you know in the very beginning later on towards before exiting the program we are
+in a position to assert something like this okay so do you see I mean this is exactly what we want
+from the program so if we can write down this we are sure and if you can you know get confirmed that
+no this is right then we are sure that the program is doing know what we intended it to do okay
+so certainly I mean you know this is something we would like to know whether the program is doing
+or not so let me now or call this function on some you know input to just check some
+maybe you know pass it an extreme x and then maybe two okay so if I want to let's swap these
+two things you know first one is string x instead of not giving some value I just give a string
+okay so we did not run this you know piece of port just above this so if the block of port does not
+recognize it but let's say if we run it then we now run the we call this function
+so what we got is these values you know swap right so certainly I mean so this is good okay so
+but then how to so one advantage of let's say you know writing this kind of you know meaningful and
+correct specification is that if let's just by some you know chance your LLM or whatever the third
+part is is not giving you the correct code it's giving you let's say some you know
+minutely let's say incorrect code you know there is some mistake which is very minute so can
+you know this kind of or I mean are these assertions good enough to cast those kind of bug okay so
+if you are sure about that no by capturing the initial state if I want this to be true for the
+final step then I can actually you know figure out some very subtle bug inside the code also
+let's say this code is not you know this seal but a you know big piece of code which you cannot
+know go and you know investigate line by line then then also I mean this kind of you know assertions
+can help you get rid of or at least detect those kind of you know bug so so no the third attempt
+what I want to do is maybe I want to do some you know bug in this implementation and then show you
+that this you know assertion can help you figure out that kind of bug for example let me copy paste
+first this code here okay and now so let's do a very maybe not trivial mistake maybe just just
+comment this okay see I mean this is a part of code that we want to modify or no introduce bug
+because you know this is what came from LLM or third party and so the very first line and third
+line was written by us understanding our intention okay so so if let's say we forget to you know
+comment this kind of we we we we comment this no one line of code and then you try to run this
+and maybe you know again call on some the same value maybe same thing if you want to
+you see I mean where did so this assertion at the last is not true right so since no we
+have commented this piece of code now you know that the value of x has not been changed right although
+you have changed the value of no y to x the value of x has not been changed and that's causes
+this no error right that your x does not have the no original value of y okay but your y may have
+the original value of x so so this assertion fails why this fails because there are two things which
+has to be true for this assertion to be you know true the first one and the second one okay and one
+of them does not hold true that's why this assertion fails and you know immediately that there is some
+you know error in the code so what you know just know to summarize what I wanted to say is if you
+invest a little bit of time trying to understand the intention of writing any function you know
+and that intention if you can translate from natural language to this assertions then the chances
+of no you know figuring out whether there is a bug in the no code that has been produced either by
+LLM or any third party agent increases and if those assertions pass then you are more confident
+that no your program will not have any error now what I'm saying is if those assertions pass
+then you have more confident only you know you know in a partial sense I mean if the assertions pass
+you cannot be confirmed that the code is correct because no assertions you are testing only
+on some input right we are testing on only this kind of input but then you know some there may be
+some other input where you know these assertions may fail right if the assertion passes on all
+possible input let's say for some know and if you can do this and check in some way then you
+can be certainly sure right that the code is correct but since we cannot check this assertion
+being you know true always for all possible input we cannot certainly even you know say after
+you know checking on finite number of input whether the code is correct or not so you don't
+have 100 percent guarantee but certainly you have more guarantee because you know multiple
+input you have checked the behavior to be true what you wanted it to be okay so these assertions
+are certainly better than you know one or two you know test cases but to make it you know worth
+while you need to somehow generate a lot of you know inputs you know for this program and then
+check whether you know you know these assertions are failing or not okay so let me uh
+so so one advantage another advantage that I wanted to tell you here is that see
+you know these assertions somehow capture the intent of your you know programming so what you need
+to give I mean you just need to give the inputs right and run this program on multiple input
+so in test cases you know you know if I have to contrast the situation with you know checking your
+program on multiple you know input output pair what you also need to give is you know the what
+is the correct output that you are expecting at each of those input right so test cases are normally
+those input output pair not only input right but here in this case if we write down or invest time
+in writing correct assertions are different you know programming uh stages then what you are do
+you have to do is just you know give me enough uh number of you know valid inputs on which I can
+run this program okay and you don't need to tell me exactly what is the value of output that I you
+know want to expect at this particular input because now those things are internally captured by
+these assertions so you just need to generate a lot of you know inputs to the program and not the
+no output value once you have no written these assertions carefully so that's also you know
+another kind of good advantage of writing the assertions you know properly okay so let's no go ahead
+with this uh I think now you know let me you know uncomment this thing all let me keep it there and
+comment this section of course so that you can review it okay so now we have written correct
+specification for sure right correct and if we are writing the correct code so so
+we should not only you know write correct specification uh you know final specification and
+correct code but you can also insert some intermediate no assertions that we were actually uh
+you know inserting previously as you say you know as you have seen in the very first example we have
+I have annotated the program with multiple assertions so let's do a final you know round of
+insertion of all those okay so let me write on first the whole thing code so certainly
+there this is what I want to be you know true at the in if this is true at the beginning so I'm
+very much you know sure about that but then what is it not like a complete proof of no correctness
+of this program so if I want to fix since you know this is not the only thing that I might might
+be seeing when I get the code I may also want to you know introduce some intermediate annotations
+or assertions that you know can be helpful in figuring now catching some other kind of box okay so
+so let me write it down so maybe after this line of code so what what do you expect I mean what
+shall be uh correct when I so let me uncomment this code because now I we want to run this piece of
+so after you know temp is equal to x what what can we assert safely so can we assert that you know
+temp's value is equal to is equal to let's say no x original okay but temp's value temp's value is
+also x but then no we we want to not talk about the values of this you know in temporary
+variable in terms of the original value because that's what is our intention right that temp
+no retains the original value of x so writing temp is equal to equal to x is also no perfectly valid
+but why we are writing here temp is equal to x original because maybe we want to carry a you know
+forward this information no towards the next step okay and we don't want it to change okay so
+you'll see in the next step know when we say and you you can actually differentiate between
+writing down temp is equal to equal to x and x temp is equal to equal to x original in the next step
+so let's for the timing write temp is equal to no x original and if it's not true again I mean you can
+say you know failed let's say the very first place so when we have you know this x is equal to
+is equal to y what can we say please can we still let me you know ask can we still write down temp
+is equal to is equal to original here do you think this is correct
+this should be correct right because you have not changed so to your last statement that
+you have seen just now has changed the state of x okay and what are the
+you know left hand and right hand side of this no equality uh relation this is temp and x
+so x original has not been changed right you have only changed the x so you know that's why we
+have written probably here you know x original that we wanted you know this uh you know it's part
+of statement to be true here as well okay so this part of a statement is true here also only
+because we are writing x original and not x okay so now we can safely write down here you know
+that temp is equal to is equal to x original because the our last statement is neither changing
+nor changing x original so this statement should be true and maybe no at this particular moment of
+time I can claim something more right so what what I can claim here is that my x now becomes
+no y original okay again you see I instead of writing x is equal to is equal to y what I have
+written is my x is equal to y original because till this point y's value has not been changed so y
+and y original is same essentially we can write both and both will be correct but this will be
+helpful when we try to prove the final property of the program okay so at this moment of time what
+we can safely claim is our temporary variable has x original and the current value in x is the
+original value that came into y okay so let me write down again I want to default let's say
+I want to maybe no print fill that too here because in case if I you know this thing is not true
+you know right now I'm guessing that this should be true but if it is not true it should you know
+return this print message and I should be able to see this now what about the you know very
+last one so what can we write here so shall we so what can we write so when we have done let's say
+this last step where y is equal to 10 okay so what can we safely know I said this particular
+point in time so where did we get this so this is our final thing right so this is certainly
+another final thing that we want to say but can we write down some you know detailed
+you know explanation of the last statement also so can we write down that since we have done
+y is equal to 10 maybe you know we want to say immediately here that y should y's value should
+be you know equal to temporary okay and what we also want to see here is the temp is equal to is
+equal to x original and maybe what else I want to see okay so so y is equal to temp for sure okay
+temp value is equal to x original not about no this last thing do we think that this is still true
+because y original has not changed and you know x has also been not touched by the you know
+code I'm sorry
+so we were writing down this piece of wooden we by mistake inserted this whole thing okay so what
+we are saying is we want to you know maybe copy and paste this thing right we want this to be
+not true at this particular moment of time and if it is not true let's say we want to say
+fail at three you see we are incrementally building the number of you know
+proposition that we want to be true right initially we are saying that no we want this to be true
+we want it to be retained even after the second one but then we want some additional thing to be
+true right by the second statement and what we are saying here is now we want you know this new
+thing to be true here but no we can safely assume that all the previous things are also true
+because my last statement does not change these are touches those variables so I can safely
+actually write down these things okay and that's how now if you know all these things are true
+then you can you know make sense that why you know this should imply this one right no you can
+easily see right that y you know x should be equal to y original right because see this is exactly
+what we have written here right that x is equal to y original and your y is equal to
+x original so y is equal to x original because y is already is equal to 10 and 10 is equal to
+x original so y is equal to x original so this is like a complete proof why this is programs should
+work okay so if you write no assertions like this a detailed set of assertions like this we
+can almost be sure that no will catch any bug that will come in the code if we run it you know
+enough number of time with different numbers of different no input buried input okay so we can
+we need a run again the same thing for just once or maybe you know this same piece of code we want
+to run it again so it's failing because no we have not defined this thing okay we have not
+know around this piece of what once we run this piece of what and then if we run we get the
+sort value okay so it was just you know highlight so today's no lecture we just wanted to highlight
+that there are ways to validate code that you write okay it's not that you cannot validate
+and by writing these assertions my intention was to tell you very you know clearly the
+semantics of this assignment statement so semantic assignment statement is you only you are
+changing that variable and nothing else so you know if you have some way to store the previous
+value of the variables then you can assert or you can claim meaningful property about your program
+very easily okay so that's was the not only purpose of this lecture so please go through the
+lecture today that we we discussed on the concept today these are very important assignment is
+you know one of the most important statement in any programming language especially if it is
+imperative programming language and we should clearly understand the semantics okay and in
+case of need where you know you can not trust let's say the piece of what that you have generated
+you should do this you know line by line analysis and you should write down your intentions
+using this assert statement so assert statement so it's very useful okay anything that comes inside
+this assert statement no it is a you know no Boolean expression and it always you know you
+values to idle to or false so if you generate you know enough number of let's say input to the
+program that you are trying to verify then there is high chance that you will you know catch any
+you know error box that may be present in your program okay so with this no I would like to
+in this lecture so what I have given here as an R2 you know assignment problems for you to think
+about so this did know this was you know one of the way to swap to number which is very safe
+where you use use a temporary variable but many people you know try to you know trick and then
+try to come up with it's a program is does not use any let's say additional variable like
+there we use an additional variable which we call temp now if someone asks you can you do this
+without using any additional variable so there are multiple ways to you know do that but then
+there can be error right in those ways so you should always know check whether those tricky ways of
+swapping to numbers are correct or not and for that I have given you you know two sample programs
+you just work through this program and try to repeat you know the kind of annotation or assertion
+that we have done for the safe you know this temporary variable swap program for these two
+setup program also so please take your time go through these you know the examples you know
+slowly the way we did today's example and try to see whether you can write down safely those
+assertions and get it right or not okay okay so with this I will conclude today's lecture and
+we'll meet in the next lecture see you then

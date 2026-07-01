@@ -1,0 +1,534 @@
+Hello and welcome back to Python, Core and Applied Concept for Reliable Data Sence Workflow.
+Today we will continue our discussion of Functions from nowhere we left in the last class.
+So if you recall, in the last class, our main topic of discussion was default arguments,
+or Functions. So sometimes we may not or I mean user may not want to call the function by
+explicitly giving you all the values of the function parameters. So some of the function
+parameters, most of the time may expect the same value. So in those kind of situation
+where Functions can be called, you know, using your argument, it's good to make some of
+the argument as default argument. So the nice thing about default argument is that it's not
+that you cannot provide value for those default arguments, but it gives you this additional
+flexibility of not providing that value every time. Okay. So if you don't provide that value,
+know, at some function call, then by default function, this no function call is free to assume
+some default value for that kind of parameter, which we call default parameter. So we talked
+about this. We saw some of the advantages of using this default argument like this flexibility,
+that one, you know, that we talked about, that function can be called with your argument,
+then readability. I mean, if your function, you know, call, let's say, includes fewer arguments,
+of course, I mean, it's far more, you know, readable, right? Your code does not every time has
+all these no extra information, which may be, you know, guessed by default in most of the cases.
+Okay. So at multiple places, your function call may look much simpler than what it could be,
+if you have, if you are, let's say, first to pass every argument, every, you know, other time,
+when you call the function, okay? And so, so this is the reason that we discussed, I mean,
+we use these default arguments. And one reason was this backward compatibility also, right? And for
+this, I took some, you know, example and showed that how this, you know, backward compatibility can
+be an issue. So when you have written a function, which has already been, let's say, used in
+many applications of many other, let's say, developer. And now you want to, you know,
+make your function more efficient, or maybe you want to add some new feature to your function,
+you know, which maybe, you know, in terms of some new argument passing, some new argument,
+then how to maintain the, you know, already developed code, which was developed based on your
+function, not to, no break. I mean, how to, you know, prevent breaking those, you know, existing code,
+in the presence of the update or upgrade you want to do for your own code. So this was
+what we call backward compatibility. We don't want the existing code to break when you upgrade
+your code using some, or adding some new feature by introducing some new parameter. So in that case,
+also default arguments were very, you know, nice way to deal with. And we, we saw one example,
+also it, this process dot example, where we explicitly talked about what was the problem.
+And what will happen if you don't have this feature of default argument, and if you just
+increase argument while one, all, you know, future called to the function in the existing software,
+actually break. But if you put it as a default argument, then even those functions will, you know,
+work as, it is those, for example, will also work as my expected. Yes, this was our discussion
+in the last class. So let's continue our discussion of, you know, default argument for,
+for a little while, and then we will go to the next topic. So we know why this is important,
+right? In the real project, and we also learned about how to use it. But, you know, there may be some
+confusion while using default argument, if you don't know the exact semantics of how these
+default arguments know work in Python, okay? So it's important to know the exact nature of this
+default argument. And it is a little bit different than, you know, other kind of, you know,
+function definition and function call. So as I said, I mean, in the beginning that when you define
+a function, you're just defining the syntax, right? And when you call that function, then the
+semantics come into picture because at that moment, the function, you know, gets executed or
+the execution of the function is start, okay? So you define function only once, and then you call
+that function at multiple places, right? So in that sense, I mean, you're again, and again,
+trying to, you know, invoke that function and execute the same code that you have written earlier
+at, let's say, one separate place or, you know, in a separate fight. So with the default argument,
+I mean, it is very important to keep in mind that the default argument, you know, value that you
+assign while defining the function using this kind of expression, these only evaluate once.
+I mean, when the function is not defined and not at every, you know, function call. I mean,
+so this might be a little counter, you know, intuitive or, you know, not so normal. I mean,
+in the context of, you know, function definition and its call, but I want to, you know, highlight this
+specifically because it may cause a lot of error. I mean, it may be root cause of many of the
+future errors that you may introduce in your code without realizing, okay? So in Python,
+this is what I want to say, you know, say in Python default arguments are evaluated at the time of
+a function is defined and not when the function is caught, and this is very, very, very important,
+so when you are defining your function at that time itself, I mean, this, you know, expression,
+which you want to assign to default argument, you know, gets evaluated or executed, okay?
+So once that's assigned, I mean, you know, so next time I mean, when you call again the function,
+it's not that this, you know, evaluation of this expression will again take place and then it will
+be assigned to this default argument, okay? So, so function call may have multiple arguments,
+what I am, you know, mentioning here is only the default argument because you see, I mean,
+this is how we, you know, indicated that this argument is default argument by, you know,
+assigning some value, some expression to that default argument, okay? There may be multiple other,
+you know, arguments, but what we are right now saying is when a function call have some
+argument and some of them are default argument, so when you define the function at that moment,
+itself, that expression, you know, gets evaluated and assigned to this default, you know, parameters,
+okay? So this is very, you know, important and we'll see, I mean, some, some example where you can
+be, you know, observer did no difference in behavior than what you might expect in the usual case,
+so this means that the expression used as a default value is executed once and the resulting
+object is stored as part of the function object itself, okay? So, so what happens when you define
+something like this? So, Python evaluates this expression and at the time of the definition,
+itself, I mean, once you define and compile this, this happens, it will, evaluates to expression
+and then stores the evaluated result as default value for argument, this argument, this particular
+argument which you intend to be a default argument, okay? Then it, you know, in all other
+next, you know, function call, it does not again evaluate this expression and you know, put it in
+this one, but instead it uses the same, you know, expression that it has assigned to this argument,
+you know, in the very first time when you compile this function, okay? And so one of the,
+you know, important implication of this is that, you know, because the default value is
+reused across function call, if your default, you know, if your expression for the default,
+you know, argument are mutable, you know, data types such as list, dictionary or set,
+this can lead to unexpected behavior, okay? Any modification to the default object persists across
+subsequent calls, okay? So you cannot, so let's say, I mean, if the default argument has been
+initialized to some mutable data types, like list, for example, I mean, let's the very simplest
+kind of, so let me, you know, talk in context, I mean, just by writing maybe some, you know,
+function, so for, for instance, I mean, let's say if we want to write a very simple function,
+which always adds something to a list kind of container, okay? So, so my, you know, simple function
+may look something, you know, like this, so let me, you know, define it, so let's say, define a
+function and let's call it, you know, add item, okay? And what, what, what I do is this add item
+actually keeps adding, you know, items to, uh, already, let's say, you know, existing list,
+which user may not want to give you, you know, every time, okay? So, by default, it, you know,
+it, it expect you to, you know, create, let's say, that list, as an empty list, in the beginning,
+okay? So one way, so one way to think about this function is, like, so we want to pass the item
+that we want to add to the, you know, list or the container, so let's call our list here container,
+now which contains all these items, okay? And I, uh, by default, let's say, if you don't want to pass
+every time on this container, I, what I say is, I mean, I make it a default argument and
+initialize the value to the, to, to, to be our empty list. So this is the default value as an
+empty list, okay? Now, uh, what happens when I, uh, so I have not defined the complete function,
+so let's make call it a container. So the main body says that now we want to
+append this thing, the item that came to us to this container, this is what I want to do right now.
+And then maybe I just want to know, uh, return the container, okay? So this, this may be a very
+simple function, okay? Now, uh, the calling, uh, this function,
+multiple time without providing container, uh, explicitly should also work, right?
+And what do you expect? I mean, if you don't provide, you know, container, uh, naturally
+after seeing this, you know, definition and attending the last lecture, we would, you know,
+start to believe that container will be, you know, initialize to empty every time, uh, if you
+don't pass it explicitly, okay? So one way is you can pass the container explicitly, okay? So
+that's, you know, the safest way I mean, you pass the container explicitly, but then let's say if
+someone wants to keep calling this function, uh, with no different item, but does not want to pass
+the container itself. So, you know, many of you may, uh, you know, guess that this container will
+get initialized to empty because that's how the, you know, that's how, uh, you know, it was working
+in the previous class, right? I mean, it was, you know, getting initialized to the default value
+and then that value was used, okay? So what we expect is, uh, you know, what, most of you may expect
+that this container in each call may get initialized to this empty, uh, placed, okay? But to,
+know, our surprise, I mean, this is not the, okay, when you call this function, uh, this container,
+this, no, expression is evaluated only once, the expression is this, no, empty list and it is
+assigned to container, uh, no, once, uh, and for all because this has to be executed only once
+when you compile this, uh, let's say, good block, okay? And after that, whenever you make a call to
+this, it will not, you know, get created in each of the calls, if you don't provide this as an
+explicit argument, okay? And it will keep adding on the previous list that it has created. So,
+what I'm trying to say is, let's compile this, uh, good block. And then, uh, if you want to
+use it, let me add a cell and then call this function, now we call this function at item,
+okay? And let's say, no, the intended, no way of using it is, no, I just want to add,
+let's say one item, let me call this my first item. And I don't pass the second, uh,
+no argument, uh, explicitly because I mean, I, I had this flexibility, uh, it is defined as a
+default argument. So, I know by default, it should take, uh, empty list and when I execute this statement,
+this is what you expect, right? So, what, what do you get as, uh, no, the output?
+This container itself, right? I mean, uh, where you have, uh, this, no, fast,
+not appearing here because, because we added this to the empty list because it was, you know,
+initially created as empty and then, uh, you added this item, which was our, you know,
+fast, this is string fast into the list, so it, it gives you. So, now, many of you might,
+you know, start believing that if I call the same thing, let's say, uh, maybe again.
+So, what shall I expect at this moment? I mean, if I call the same function again,
+so, no, if I, and I, if I don't understand the semantics well, then I would assume that the
+container, since again, I'm not passing the container, uh, you know, value explicitly,
+it might initialize it with, you know, empty value and again, put the, you know,
+fast in as the only element in the list and return, right? But what happens when we execute it here?
+You see the difference, okay? So, so it's not initializing again this container with the
+empty list, okay? And what's the reason for that? Because, you know, when you, uh, define this,
+uh, function and you initialize it and run it. So, this evaluation, uh, of expression,
+only takes place for that first time and it assigns that value to this container. And since
+container is a mutable data types, remember, I mean, list is also mutable data type, which you
+can alter later on after defining, okay? So, so that's why I mean, it does not keep creating,
+you know, this mutable data type, every time the function is called, it, it creates this
+only once when function is defined and, you know, compile, okay? So, that's why I mean,
+you see a difference here, right? We made the same function, we made a call to the same function,
+again, with the same, you know, argument, we were expecting that we should have only, you know,
+fast in the list, but now you see there are two first, first in the list, okay? So, this is very,
+you know, important, keep it in your, in mind while using this kind of, you know, operation on
+any mutable data type and if you're implementing and if you're using making any parameter, default,
+you know, argument or parameter, then you should keep this in mind. Otherwise, this may cause a lot
+of no problem. Okay, great. So, now that we have already discussed it, so what can we, I mean,
+let's, I mean, if our intention was to, you know, do something like what we said initially that
+if someone does not provide, you know, this container, then I would like to always initialize that
+container to be an empty, you know, list. So, you can do that, right? I mean, you can,
+write that, you know, explain and indicate that explicitly, you know, inside your code.
+And a nice way to, you know, do this kind of thing is to avoid this issue and, you know, not
+initialize this, you know, container as, you know, empty in the beginning, rather than it, you know,
+you can, you know, most of the time in the programmers, you know, commonly use this none,
+as a, you know, a sentinel value and create the mutable object inside the function body instead
+of, you know, creating just at the time when the, you know, function is being called. Okay,
+so what I'm saying is I mean, let me, you know, copy and paste it. So, possible, you know,
+good solution to this, maybe, and that, you know, instead of, you know, initializing this container
+to this mutable data type here, which is no list, but I can say, I don't want to initialize it
+to let's say empty list. And I say, I want it to be none by default. It's still, you know,
+default, you know, parameter. So, you may avoid giving any value for this container,
+but now it's not a, you know, mutable data type. So, I say, it's none here. And whatever I wanted
+to do, you know, or intended to do earlier, I'm to initialize this, you know, container as an empty
+thing, if you don't, you know, if it if you don't provide the value explicitly, then you can write
+that logic inside the function, you know, definition. So, what I would do here is I can write something
+like this that if your no container, you know, is let's say initialize or if your function is called
+with a default, by not providing default argument, in that case, no, your container will be
+none, right? Because this is the default value, it don't text.
+And then in this particular case, when you don't provide some value, I want to each time,
+maybe, you know, initialize this container to empty, okay, something like this. And then you do
+whatever you were doing, you know, earlier, right? So, this is what we were doing earlier.
+So, you got, I hope you get the message that instead of doing here, you know, at the function
+call itself for this argument, because, no, this is executed only once. And I intended to execute it
+every time when the container is not given to you, I can encode that logic inside the function
+definition itself, okay? Instead of here saying that I initialize the empty list, I say that I
+initialize empty list here, whenever I see that there is no, let's argument past and at the
+second place. Okay, I go inside the function, I execute the function and I see that whenever
+container is none, I always, you know, initialize it as a empty list. And this should solve your
+problem. If your intention is that, then, you know, you should write your function in this way,
+okay? So, let me, you know, so you, I mean, let me, you know, first compile this space of code.
+And then, you know, add new block and maybe, you know, just call the same functions, maybe,
+the same way, the way we, so you see, we got first, and what if I ask,
+or if I, you know, run the same thing again in the new code block?
+Now, you see, I mean, you get the behavior that you expected in the, you know, previous scenario,
+where I initialize the list as empty list in the very beginning in the function call itself,
+okay? A function, okay? So, so this, this is the, you know, distinction that will help you,
+avoid many, you know, errors, unintentional error in future. So, keep, keep, keep, keep,
+keep this in mind, okay? So, the safe use of default argument is using this kind of, you know,
+nothing, okay? So, you can, you know, put this default argument as, you can make these default
+arguments completely safe, and you can assume they are safe, when they are some, you know,
+immutable types like integer float strings or tuples, but whenever you are dealing with mutable types,
+and if you want them to initialize every time, you better encode that logic inside the function
+itself, okay? So, this is what I wanted to tell regarding this. So, these are, you know,
+the key takeaways from the previous lecture and the, you know, current lecture that we,
+we can define function using this, we can call function with positional or keyword argument
+that we have, you know, defined in previous classes. Positional arguments must come before keyword
+argument is what we discussed already, right? Once you use any keyword argument, you cannot use,
+you know, positional argument after that keyword argument. So, keep that in mind, and you should
+be very careful when working with immutable, you know, arguments, with mutable arguments,
+immutable arguments are, okay? They create, you know, by default, when you pass, there's some immutable
+arguments, they create, you know, copies of the original one and the originals one are not
+changed. This also we discuss in the previous lecture. So, please, if you don't recall, go back and see
+mutable arguments are which, you know, may create no problem. So, if you don't want to change your,
+you know, mutable objects that you are passing as argument, so better, no pass, no deep copy of that,
+and not the original object, okay? And you always use none for mutable default parameter to
+avoid shared state issues like what we discussed just now, okay? So, these are some very important,
+you know, notes that we can, you know, derive from our previous lecture and keep that in mind.
+So, now, let's continue our discussion on function and talk something, you know, very interesting
+regarding the type of value that a function can return. And what are the variations
+in the return value that a function can return, okay? So, function can return, I mean,
+function of a body can have, you know, one return, no return or multiple returns as well, okay?
+And function can also return, you know, one value or multiple values, you know, using something
+that takes no sugar, okay? So, both of this is what we are going to discuss today. So,
+the return statement, you know, you know, when function, so return statement is how the function
+communicates, you know, it's a result to the caller, it immediately exits the function and passes back,
+specified value, okay? So, we have seen some return statement, right, where we wanted to,
+let's say, return some value from which we might have, you know, calculated inside our function
+and we wanted to, you know, communicate to the, you know, caller function. So, you can explicitly
+return those values using the return statement. So, the easiest way is this explicit, so return,
+I mean, so we'll first talk about, you know, what is, what do we mean, my explicit and implicit
+return, okay? So, in explicit return function, specify exactly what to return, okay?
+For example, you know, very simple example, let me, you know, we have seen, I mean, this kind of
+thing earlier, but let me again, if you want to calculate, let's say, discount on some, you know,
+price and if you let's say, no, no, no, no, price of the object and the discount percentage,
+you may want to write a function which calculates this discount for you and returns the final price,
+let's say, for, you know, that object. So, what is the function that we want to write is,
+calculate this count. So, what it takes as input is, you know, price and then maybe
+discount percentage, okay? And then the function body starts, now it does something, right?
+It calculates the final price after the discount, okay? So, so maybe, you know, it will, first,
+calculate the discount amount maybe and then, you know, subtract it from the original price,
+what will the discount amount? So, this is price multiplied by your discount percentage that
+you know, get from here, right? So, this discount portion.
+And then, I don't divide it by, I mean, 100. So, this is what you're going to calculate,
+write the discount amount and then, we, our final price,
+price is same as the price that you know, gave initially the actual price of the object and then,
+you did, you just subtract this discount amount, okay? And this is what we know,
+we get at the final price and the function goal was actually to return this final price.
+So, so what we can say is return explicitly this value, okay, which is now our final price,
+sorry, final price, okay? So, this is now explicitly returning the, you know, calculated value,
+okay? So, this is what we call explicit return. So, you can define a function and, you know,
+use it in this form also, okay? Where this is explicitly written, okay? So, so this is,
+you know, first type or first kind, first one way to use this kind of return statement.
+So, another thing is, I mean, we can, you know, we may not, you know, want to, let's say,
+return something explicitly using return statement and maybe you just want to maybe print it,
+the price, I mean, same, same function we can write where what we are saying is, now we don't
+want to return the value, but let's say your only purpose is the print or the recipe, okay,
+print the recipe. So, then we don't use this return statement because we don't want a value to
+be returned by this function, the only purpose of the function is calculate it and so it, okay?
+In that case, you know, we cannot gain, I mean, copy in this whole thing.
+And we can say that we, we want to know, you know, don't want to calculate actually, but we
+want to just display, you know, display the discount or the final, you know, or receive and you do
+all the same, you know, actions and then you may be, you just, you know, print all these things
+to the, you know, final user, okay? So, maybe, I don't want to write a return here, but maybe,
+I just want to maybe, let's me write it here, we just want to print, you know, these, these are,
+what was the final, you know, initial price, what was a discount amount and what was the final price,
+if we, our purpose is to just print, we may do this and we may actually completely omit writing
+return, okay? So, no return statement, so it will automatically, no return. So, it's not that,
+I mean, you will get some, you know, error here, but no, the function will return, okay? So,
+let me, you know, run this, this compile, this, no hold, sorry, okay? Now, what if I, let's say,
+display, I mean, I call this function, which is my display discount, or I mean, it's a better
+call, it's no display receipt, right? Because you're not only showing the discount, but the complete,
+no receipt, so let me call it, okay? And when we call this function, let's say,
+with some value, let's see, you have to provide these two values, let's say, no, 100 was my original
+price and I, you know, give us discount percentage of maybe 20 percent, okay? So, in that case,
+if I, you know, want to print, what happens here? You see, I mean, I, you are,
+so what you return is your, what, why are we returning? Because this time, I mean, the,
+all of the function was not to return, so let's me, you know, just delete this thing, okay?
+So, if you don't want to return and just, you know, print these things, right? As output show,
+in that case, we can run this and you see, and the action of the function execution is that,
+you know, you print all these things on your screen, and this was, you know, purpose of this function,
+this display receipt. But one thing to note here is, I mean, although we are not using any
+return, you know, this command or keyword while defining this function, function always returns
+something, okay? So, whether you do it explicitly, or if you don't, you know, provide this
+information, so by default, what function does is that it returns, you the non-value, you know,
+automatically, okay? So, if you have no return statement in your function definition,
+it does not mean that function does not returns a value. So, function always returns a value,
+and in those cases where you have not written, let's say, any return statement, the function will
+return a value, which is none, okay? So, I mean, and again, I mean, this may be, you know,
+mistaking to, this may mistreat many of you that, if you have not written a return statement,
+function is not returning something. No, function is always returning something, which you can,
+you know, collect or observe by, you know, storing that in a return value, okay?
+So, although we have not written anything here, I mean, this kind of statement that I'm going
+to write down right now, so let me, so this is perfectly, you know, a valid display.
+In short, it is what we have written right now, right? And if I, let's say, put that value,
+when let me know all the same thing, okay? Let me know, comment out this thing,
+and what I'm right now doing is, you know, you store whatever the function returns
+into result, and you know, many of you might, you know, believe that function is not returning,
+and I think this may, you know, preserve some error or something like that, and it may not return,
+you know, anything. But I mean, function actually returns always this none value, if you don't
+provide this no return statement. So, the result that we get here inside this, you know, result
+variable should be, you know, none, and we want to show this side. So, let me, if I want to
+see also what the function has returned in this case, in this particular case, I would like to print it,
+right? So, let me, you know, print. So, what, what this function return?
+function return, and I want to see what it returns in this, you know, variable result, which,
+which I'm using to collect the return value, okay? So, now what happens if I, you know,
+this piece of code, and I want to see what happened to this result.
+So, what's the problem?
+Okay, so I did not close this, okay? So, this, I should write it,
+go to here, and then,
+if I run it, this is what I get, okay? So, function return, none, and this is what I mentioned,
+although this function, you know, does not have any return statement, and when I, you know,
+call this function and try to store the return value, it returns something very,
+and the value return was none. So, keep this in mind, the default return value is always done,
+okay? So, none. So, when a function does not have a return statement, or has a return without
+any value. So, this is, you know, another condition that, no, may occur, many a time that your
+function, you know, may not have return, or it may have return, but it is not, no returning,
+anything explicitly, any value, then Python automatically returns, none value. So, we have already
+seen, you know, one example where there was no return statement, right? But we can have also,
+I mean, some, you know, examples where you are not actually, you are using actually return,
+but you may not know return something explicitly, okay? So, both of these are possible.
+So, we already saw one example of such thing. So, but the other kind of, you know,
+example. So, let me, you know, give you one more example, at least before we go ahead.
+So, what if I want to process, let's say, this is very, you know, interesting function.
+So, we have already seen one example where, we did not, sorry, return anything. There was no
+return statement, but now in this case, let's say, if I define something like this, no process
+data, and you pass, you know, this data. So, it's sometimes, you know, return data, right?
+But it's sometimes, you know, there's not return anything. So, maybe, so I have not written
+this piece of course. So, you know, if it goes to this point, then it will certainly, you know,
+give you error. But let's say, you know, for now, I mean, I'm just concerned about this part,
+where, you know, if you hit this branch somehow, and when will you hit, if your data has, no,
+is let's say, you know, empty, I mean, if you pass empty list kind of thing here,
+then you hit this branch and you, you want to return, but you are not returning, you know,
+and any value here, right? So, what if I then know stored that value and then try to see what
+happened, I mean, in this particular case. So, what I'm trying to say is, let me call this function,
+and then, let me call, you know, result one. And in the result one, what I'm saying is,
+I call this process, let's say, data function. And when I'm calling it, I want this branch to be,
+you know, executed. And for that to happen, what I can do is, I can just keep passing empty list.
+So, you know, in that case, it knows that no data is empty. So, not data means, I mean,
+no data being true means data is actually, you know, empty, empty list. And this will get executed,
+okay? So, it will simply return. And you're not returning any value here, remember, I mean,
+although you are returning from the function by saying explicit, not returned statement,
+but then no value is being passed. So, if no value is being passed, in this case, you know,
+this is executed and the return happens where this root, but no value is passed. So, what can I
+expect in this, no result one? Okay? So, I want to, no, no, with that, I mean, this, no result one
+is, no, no, not, let's say. So, by default, what I say right now is that it should return and
+non-value, okay? So, we can actually print it and just check it. So, if I want to check, let's say,
+that my result one is, no, no, not. So, let's select it. I mean, by default, I got none in the
+previous case. In this case, also, I want to check. I claimed that it should return none,
+but let me check it. I mean, so, if you print this, so, if this is, no, none, then this would,
+return us true value. Okay? So, this is what we get. Okay? So, it returns true, no, none value,
+and that's how, you know, when you compare this result one with none, you get a true value.
+Okay, great. So, now, we have seen that if you default return value is none, whether you,
+don't try this return statement or you write return statement without providing any return value
+in both the cases you get this none value. So, so, that we have, we have to, you know, keep in mind
+where we are writing a function. Now, the next thing that I want to highlight is that function can
+have multiple return statement, right? I mean, I mean, in the previous case, also, if you see,
+if you observe, I mean, you have multiple return statement, right? We have one return here,
+one return here. So, that's perfectly, you know, or valid code structure. So, by syntax,
+you know, rule, this is not some, this is not an invalid syntax for Python's program. So,
+Python, cavern, multiple return, you know, points, but how, how so, I mean, irrespective of how
+many return, you have no return inside your function, only one will execute per function call.
+And the first return encounter actually ends the function. And it will depend upon what you are
+passing as argument, right? Because the argument will decide the exact control flow of the function,
+and it will tell you which of the branches to execute or not to execute. And when you get to your
+first return, the function gets, you know, encounters the end of the execution of. So, it is an
+indication that now you shouldn't execute. So, this is what is meant by, you know, multiple
+return paths. So, for example, a very simple, let me, you know, bring this code to you,
+or convenience, or assume that this is the simple function that we, you know, want to write to
+check temperature, okay? And then depending upon what is the temperature, you may, you know, want to print
+something, and maybe, you know, just return. So, one way can be that you, you know, return that thing
+into, you know, return this kind of, you know, strings depending upon this condition, like, if
+temperature is greater than 90, I want to just return this string. We said that it's too hot,
+indoor, you know, maybe, you know, save this somewhere, web in the color function, call this
+check temperature, it also wants this string to maybe, you know, store as a message, let's say,
+for later use by some other program, okay? So, this may be a very simple, you know, kind of function,
+where we can see there are multiple returns, right? But all of these returns are, you know, inside,
+you know, different, if, then else, construct. And you know, when you execute this function,
+with some concrete value for temperature, you will eat one of these, you know, branch,
+and whichever is the first branch, let's say, you hit, if your temperature is 100, you will hit
+this branch, and this return will be, you know, encountered, I mean, and immediately you execute
+this return and get out of the function, and all this part of the code will not be executed.
+So, this is what, you know, we said that only one, you know, return will be executed,
+no power function, call. Okay, although there are so many returns here, right?
+So, so we can actually check it, right? So, let me, you know, call this function, and then,
+let's say, you know, the very first message that now we want to store is,
+corresponding to the argument, let me call it 100, okay? So, check temperature,
+temperature, and when we pass 95, okay? So, what do you expect? I mean, in this case, since,
+you know, it's 95, it's more than this. So, I expect in my message one, you know, this information,
+that, you know, it's too hot to stay indoor, okay? And what if I, you know, pass some other value,
+should it let me, you know, pass some other value, and then, we try to see what happens now,
+but what can be our message?
+It's two. So, when, when I say, let's say, I want to hit some other branch, let's say, in this case,
+20. So, if you hit 20, you see, I mean, your temperature, you're saying less than 32. So,
+no, most probably, no, this is the branch, this is the first branch that will, that you will hit,
+and when you hit this, this message should be written into your message still, right? And what
+let's call it one more time to see what happens when I, you know, call this with, so let me call
+this message three, and with the temperature, which is 80, let's say, I want to intentionally hit
+another branch, 80 will take me, maybe, no, here, it will not take me into this, but you know,
+you get into this only when you are greater than 90, you get here only if you are less than 32,
+but, you know, with 80, you can hit this branch, right? I'm sorry, you're here.
+Okay, and if I, you know, print, let's say, these messages, let's say,
+let me make it process two, and then, what if you print message three, we print all these messages,
+what, what, what can we, you know, expect here? See, this is exactly what we expected, right,
+because we hit, we execute only one of the written statement, okay? Now, some people might want to,
+or sub-programming, you know, might want to use these returns as, return statement as a way
+to hardly exit in order to validate, let's say, its input. So, if your function is
+expecting input to have some, you know, restricted set of value, and let's say, in case you don't
+get that set of, you know, value, you may want to, you know, return from the function by maybe
+displaying some, you know, interesting message, useful message, okay? So, that's how also many people
+pull out programmer, you know, use this kind of, you know, return statements, okay? So, in the
+context of, you know, for example, the present problem that we were, you know, discussing this
+temperature, I mean, if your temperature value is some arbitrary number, or maybe, you know,
+let's say, not temperature is not a good thing to talk in this context, if you are calculating,
+let's say, grade, okay? And, for, for a given, let's say, no, no, number. So, if you're, you know,
+average, you don't want your average grade to be, you know, less than 0, or, you know, greater than,
+no, no, 100, right? Because let's say, if you are grading, you know, you're trying to derive
+a little rate for your, you know, exam, and you have been provided the average that a student
+get by, you know, we're doing weighted average of all the component. So, in that case, you never
+expect your average to be, you know, less than 0, or greater than 100, if there is no negative
+marking kind of nothing in your evaluation component. So, if your average score that you get
+for against which you want to, you know, calculate the letter rate is outside, let's say, this range,
+you know, which not, you know, less than 0, or, no, greater than 100, you use, it's kind of a
+hint that something, you know, wrong, and you don't want to execute this whole, you know, function,
+which will calculate for you the grade, and maybe you just want to return with the, you know,
+invalid average kind of, you know, message to the user. So, in that case, you can actually use
+you know, return statement also, by inside some conditional, it just checks whether, you know,
+your input is in the range that you expected, okay. Again, I mean, just know for a quick reference,
+I will just bring back this function for you, and, so what we are saying that, you know, some
+people may want to use early returns for validation also. For example, in this case, you know,
+you can use early return for input validation. If your whole goal is to calculate letter rates,
+no, for, for given average that a student has now obtained in class, if you know that, this is the
+condition, which, which should not be there, you can use this kind of return statement to,
+you know, print this kind of message, which can be very helpful, and then return from the
+function earlier. If this is not the case, then you go ahead and then calculate this, you know,
+return, return, whatever is the grade, okay. So, this is what many of you might find, you know,
+useful when you are writing your actual code. So, now, three examples of, you know, this,
+let me again, so you hear, I mean, if we try to call this again, same thing. So, you can expect,
+I mean, in this case, and in this case, we should get this message right average.
+So, invalid average. So, if we run this,
+and then if you know, you have to print also like this three value, you need to print it.
+So, let me print this three, you know,
+this is what, you know, we expected, okay. So, good. So, now, we know that, you know, function,
+so this, you know, return statement can be used in multiple ways, that, you know, multiple
+position in multiple number of times, but only one of it, you know, gets executed.
+The next thing that, that is remaining is to discuss that, your function can return multiple
+values also, you know, simultaneously, you know, in all the previous example, we were only,
+you know, returning one value, right. But what if you want to, you know, return multiple,
+you know, different values, which you might have computed inside your function instead of,
+you know, every time, only returning one, you know, value. So, you can use, you know, return
+statement to do that also, okay. So, Python allows returning multiple values from a single function.
+So, if you don't do anything, so, by, by default, what happens is that these values are automatically
+packed into a tuple, and it's, you know, returned as a tuple, okay. So, so, let me know again,
+so, you are very concrete example to illustrate this, not automating,
+automated, not toppling kind of, sorry, coupling kind. So, automatic, you know, this
+tuple making, you know, kind of activity. So,
+oh, again, I mean, assume that this is our code. Let me bring a function here,
+which is, you know, analyze score. Let's say, again, I mean, we are working with this course,
+and it returns multiple statistics about scores. So, the function input is score.
+So, if you don't provide score, you can handle it, again, using, you know, the return,
+separate type of, you know, return, where it returns, no, 0, 0, 0, 0, if you don't provide
+90 score at all, okay. Or, I mean, let's say, you know, you provide an empty, let's list.
+But if you provide a non-empty list, then, you know, it will go and calculate the average,
+okay, and highest marks, and the lowest marks, let's say, and then it, no, finally, returns this
+average, highest and lowest, because we are interested in all these three, let's say,
+property, when you are, you know, deciding a letter, you know, even before, let's say,
+you decide later, get, you may want to know what is the average, what is the highest,
+and what is the lowest, instead of doing, you know, plain calculation, as we did in the previous,
+okay. So, we want to return our function, we want our function to return this three values,
+average, highest and lowest, and this is the easiest way to say. So, I mean, you just separate
+the values that you want to return to these commas, and this will return a tuple.
+Of this, so a tuple is actually, you know, in this case, this tuple has no three values, and
+this is no one entity itself, okay, and you can actually collect this tuple in multiple ways.
+I mean, if you want to collect, no, these values in separate variables, you can actually use
+syntactic sugar, and do this unpacking. So, see, by default, it is, you know, packing all
+these three values that you are returning into one tuple, okay. So, so what it is written is,
+you know, one entity. So, but if you want to, again, you know, observe or, let's say,
+collect these values that is being written by function, you know, return statement into different
+variable, you can do it immediately, you don't need to, you know, again unpack this manually.
+So, Python will, you know, unpack it automatically for you.
+So, for example, I mean, if you let's say, let me, you know, make a call to this
+function. So, what we can say is, you want to call this function and maybe
+store the value that it returns. So, let's say, the value that I want to return, I want to
+store in maybe average and the highest and maybe the lowest that I want to return, I keep it
+in low. So, so this is what we can, you know, use to collect, okay. So, whenever you call this
+function, you know, analyze score function, you have to pass this list of scores. So, what I'm
+doing is I'm trying to call this function and then pass some list of numbers, let me pass some list
+of number, rectify some numbers. So, okay. So, these are the numbers, let's say,
+pass and I, you know, store it into this one and then if I want to print, what are these,
+you know, average, you know, high and low values. Now, I can simply print it using a print statement
+something like this. So, I print these average high and low values and the actual values,
+these average that I collected and this high and low. And I want to see what happens, okay.
+So, that does, I know, can Python do it automatically, this kind of unpacking of tuples that
+is being written by this function. So, to do that, I mean, we can actually print it and then see
+if we run this piece of code. So, this is what you get, right. So, inside average, you get this value.
+This is what I'm perfectly and you don't have to do it unpacking. This is a nice syntactic
+sugar where you can just write like this, separate it again, this value, you know, this variable
+with commerce and it will collect the values written by this. So, so what goes here inside this
+average, okay. What goes inside there, here is this average variable is the value written by this
+one, okay. Similarly, you know, this collects the value which is more written into this one
+and this low collects the value which is written in this lowest one, okay.
+So, so instead of that, I mean, you can actually, you may want to return it into a single variable.
+So, but then you have to do this unpacking on your own, okay. So, what I'm not trying to say is
+that we can maybe, you know, so an alternative way to collect this value maybe, you know,
+into a single variable, let's say called rigid, okay. And I again, you know, call the same function,
+maybe, you know, analyze score with all the same argument that we passed earlier.
+So, in this case, you know, what do you expect? I mean, so since we know that, you know,
+these average highest and lowest are always written as a tuple. So, inside the result,
+you will see a tuple which has the same value, okay. So, can we run it and see what is the value
+inside this result? So, if I want to print a result, so let me print that.
+Let me print the values that I want to.
+So, I can print the value which I want to know in this result, okay. I know what is the value
+that I want to see here? I mean, before I say this, this is it, okay.
+Now, if you print again, you see, now, you get a value inside result, which is actually a tuple,
+a tuple where all the values are same, but this is no one object, okay. This is one object,
+one tuple. But here in this case, we created three variables, no separate variables and all those
+variables, you know, these variables, you know, contain the first, second and, you know, third value
+inside the tuple, okay. So, depending upon what you want to do with the return value, you can
+use any of this, no, for your case, okay. So, good. So, I think I would like to,
+so these are the main takeaways. I mean, from today's lecture, that return immediately
+exits the function and sends back the value. So, this is how return, now this function will
+communicate with the color function. So, if there is no return statement, the function automatically
+returns none. If no return statement does not mean that there is no return value. So, return
+value is always none. I mean, if there is no return statement, you may have multiple return
+statement, which is a perfectly valid thing in Python, but only one of them will, you know,
+execute path call, okay. And early details can be used sometimes, no, for input validation and
+edge case analysis, okay. So, you can do, no, edge case analysis and input validation using early
+return, some programmers actually use this kind of notary. Now, multiple values can be return
+and are automatically packaged as tuple. So, this is what we know talk, we just know that, no,
+if you want to return multiple value, you can actually mention all those variables with the
+return statement separated by comma. And the way the usual way is that they are actually
+made into a tuple and then return. So, you can collect, no, those individual value
+by doing by, you know, taking help from Python and automatically unpacking that tuple
+by writing separate variables or if you want, you can actually collect that as a single,
+you know, tuple also inside of one variable, okay. So, all of this is not possible in Python, okay.
+So, with this, I would like to conclude today's lecture and we will continue with no function
+and discussions around functioning in the next lecture. Till then, good bye, I'll see you in the next video. Bye.

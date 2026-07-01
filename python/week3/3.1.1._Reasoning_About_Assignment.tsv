@@ -1,0 +1,505 @@
+start	end	text
+0	15160	Hello and welcome back to week three of Python applied core and applied concepts.
+15160	22000	So in this week we will be mostly covering module three which is about you know reasoning
+22000	25400	with assignment conditional and loops.
+25400	33920	So before we proceed with today's lecture so let me briefly talk about what we discussed
+33920	35760	in the last week.
+35760	41920	So this was roughly what we were discussing in the last week we talked about Python expression
+41920	42920	hierarchy.
+42920	48720	We learned how to build simple expressions, whether it be arithmetic expression logical
+48720	54480	expression or other kind of you know lambda expressions using operators.
+54480	61920	We went to the assignment expression which is distinctive from assignment statement.
+61920	68400	And we discussed the distinction between these two with carefully chosen example and then
+68400	75120	we moved on to lambda expression and discussed about lambda expression in you know some detail.
+75120	81920	We tried to emphasize that lambda expression are nameless functions and at multiple places
+81920	89200	they can be you know of use or they can be preferred over a simple function for which
+89200	91640	we have names.
+91640	94160	So lambda expressions are nameless functions.
+94160	99400	So if you feel like you don't need to give a name to a particular function and you
+99400	104880	still want to use that function maybe you know the best choice is lambda expression.
+104880	110440	So we discussed about this so please go through those lecture if you can't recall you
+110440	112480	know some of this concept.
+112480	120920	So yeah so with this let me go to today's topic which is mostly about assignment statement.
+120920	125320	So this week we will be mostly talking about assignment statement then you know conditionals
+125320	132360	in Python programming language and going ahead we will also see how to write loops and
+132440	139080	where can loops help us you know do some computation which is otherwise not possible using
+139080	143200	you know primitive concept like assignment and only conditionals.
+143200	149800	So now let me go directly to the non Jupyter notebook so again so we are here and what
+149800	156760	you can see is this model 3 which will be reasoning about assignment conditional and loops.
+156760	161880	So let's begin with the simplest one so although we have discussed in some you know detail
+161960	169160	this assignment statement when we were discussing about assignment expression but let us
+169160	174920	discuss today the semantics a little bit you know clearly so let's do a deep dive into this
+175720	182360	assignment statement with some very simple example which many of you might have seen earlier.
+183000	189960	So the idea today is to understand the semantics of assignment properly okay so and it can be
+189960	196520	understood only if we know focus on some simple very simple example very very you know simplest
+196520	203000	kind of example that can let us focus on the semantics rather than the you know complex syntax of
+203000	208360	the whole programming language. So assignments as I mentioned in the very you know first video
+208360	214920	are maybe the you know only way by which you can change the state of abstract machine okay and
+215000	221240	remember we are talking about a statement and normally statements are mean to change the state
+221240	227720	of abstract machine for your language okay so when we execute a statement one after another what
+227720	234360	we are actually doing is we are trying to change the state of machine in particular no way
+234360	239720	so that we achieve the kind of computation that we wanted to achieve okay so we always have
+239800	246520	intention in mind and then we want to translate that intention into a sequence of instructions
+247160	253240	and what finally those sequence of instruction does is changes the state of machine in a careful way
+253240	259320	so that what you get as a final you know state is you know what you intended to get as a computation
+259320	264120	of a let's say desired function or something like that okay so let me you know begin with very
+264120	274040	simple example so just you know quickly recap so what is the I think you can see my Jupiter notebook now
+274040	284280	so let me highlight the syntax of this assignment expression okay so before we go about this
+284280	290920	semantics let's talk about the syntax about the most you know simple syntax we have seen some
+290920	295800	syntactic sugar also in the last class where you can actually assign multiple you know variables
+295800	300120	simultaneously but let's talk about the simplest one and well if you know ideas clear about the
+300120	305480	simplest one then you will not do any mistake with you know more let's say sophisticated way in
+305480	309480	which you can use maybe assignment to assign multiple things or you know change assignment or
+309480	315000	something you know that we discuss in the last class so the simplest one is you have one variable
+315000	320680	let's say on the left hand side and on the right hand side what you have is an expression okay so
+320680	327480	this is the syntax of let's say assignment expression and now we want to know what is the effect of
+327480	334920	let's say executing this instruction on the state of Michigan right so that's what we call you know
+334920	340760	semantics of the meaning of this meaning of executing this instruction okay so you see I mean
+340760	345080	there are two things on the left hand side you have a variable you know with somehow you know
+345080	350600	points to something in memory which try to abstract out you know these memory you know registers
+350600	357160	or main memory and on this right hand side you have an expression okay we we have already seen
+357160	363000	right what an expression is in the last class you can know build simple expression and then
+363000	368360	complicated expression using operators no form those simple expressions so on the right hand side
+368360	376680	you can put any expression okay so this expression on the right hand side now always evaluates to
+376680	384680	some value okay so what we call here is you values from value and or an object okay so why we are
+384680	390680	calling object because no right hand side may not always no evaluate to let's say some you know
+390680	395080	data types you know primitive data type that you know like integers you know or string or
+395080	401160	these kind of things so right hand side may also evaluate to object which represent functions let's
+401160	409000	say right and in the last lecture we saw that we also you know you know defined remaining
+409000	413640	full function you using lambda expression and then assign those expressions to the variable on
+413640	419240	the left so so remember I mean this distinction these expressions need not always be the value the
+419240	425480	kind of value that comes to your mind you know by default like natural numbers string no I mean
+425480	430680	they can be no more complicated nothing like no function objects which are nothing but functions
+430680	435960	okay so you can also consider them as no value but then you know you have to be clear that when we
+435960	442120	say value we don't say no value in this restrictive sense of you know the data types only okay so
+442200	450600	great so our expression no on the right hand side evaluate to some value and then in the second
+450600	457560	step what happens is we bind now this value to the variable name that we have given on the left
+457560	463560	inside okay so this is you know two step you know operational semantics the first step is you
+463640	473400	evaluate the expression okay and remember that evaluating the expression may not always change
+473400	479480	the state of the machine okay so so this is what we also discussed right in the last class that
+479480	484920	we normally don't want you know expressions or evaluation of expressions to change the state
+484920	489400	of our abstract machine but then there are you know certain you know expressions like you know
+490120	496520	expression which will actually change the state of machine so not true always but you know
+496520	502040	most of the time we want it to be true okay so then I mean how this instruction or this you know
+502040	506760	statement in programming language is changing the state of the machine so even though let's say
+506760	512200	the first step which says now you evaluate the expression on the right hand side fast and then put
+512200	518600	it or bind it to the second you know left hand side variable in the left hand side so what happens
+518920	523960	even though let's say your first step does not change the state of machine the second state
+523960	528680	will certainly change the state of machine right because now you are pointing to some register
+528680	534040	you know or you know some memory location and you are saying that now I want to assign whatever
+534040	539800	value I have calculated from this expression into that memory location so the moment you do this
+539800	547960	you certainly change the state of machine okay so I mean at least I mean we are in a position where
+547960	551720	the state of machine may be changed now if you assign the same value let's say to the variable
+551720	555560	that you have declared may be earlier in the program you are certainly not changing the state of
+555560	563560	machine but then this is the no pop no segment of statement which has the potential to change the
+563560	569720	state of machine okay so whenever you see an assignment statement like this think in mind this
+569720	577960	two-step you know process two-step now personal semantic another thing that I want to highlight here
+577960	584280	is that assignment statements are destructive in the nature so what does it remain I mean see on
+584280	589320	the left hand side you have a variable right and this variable might have been initialized in your
+589320	594680	program no earlier on I mean this may not be the first time this variable is being used let's say
+595480	601880	so in that case what happens as soon as you assign the value of the expression on the right hand
+601880	608200	side to this variable the old value of the variable is lost for no ever you cannot recover that
+608200	614200	no variable value this should be very no causes if you are writing in your programmer statement
+615080	621080	an assignment statement then the effect of that assignment statement will be that now your
+621160	626200	previous value of the variable will be lost forever so if you want to use that value in future
+626200	632280	better story you know in some other variable that can be helpful later on okay this is very you
+632280	638280	know important and we will see you know going ahead this has no certain effect when you try to
+638280	644520	reason about the correctness of let's say your program so now let me write down a very simple
+645080	654520	maybe function which can not do a simple operation on some numbers so maybe the simplest
+654520	660760	my example that is coming in my mind is you know swapping to numbers I mean I hope many of you
+660760	666840	might have seen this program if I give you two variables let's say and I want to know swap the
+666840	673800	value of the two variable so I'm asking you to write down a function which can do this
+674520	680600	and it turns out that this no simple function can be written by just using you know this assignment
+680600	685480	expression so maybe you know this is the simplest you know kind of function which we can write
+685480	690040	using assignment statement so let me help you with you know initial definition and then we will
+690040	695480	reason about this function so so this is a very simple function like you know what we are trying
+695480	703880	to write down is you know definition of a function which let's say call swap okay so we are trying
+703880	716840	to write down a swap function okay so and let me say that we will use a temporary variable to swap
+716840	721960	the two number that is given as an argument so what are the argument to this function we have x and
+721960	728120	y okay so these x and y are two numbers which we want to swap no eventually so the definition
+728120	733640	of the function maybe something like this so since I want to swap the value of no x and y what I
+733720	743000	do as a first step is I maybe you know define a temporary variable temp and then store the value of
+743000	750680	x so you have given me the value of x and y as input to this function so what I do is I first let's say
+752680	758840	somehow no reserve this value of x because you know this value of x will be destroyed as soon as I
+758840	765480	you know write value of y into x okay so I want to maybe you know keep it safe no before I destroy
+765480	770840	the old value of x so this is no the intention of writing this you know temporary variable so when
+770840	779640	we say temp is equal to x what we have done just now is that you know we saved the old value of
+779720	791320	x and maybe the next step that I know 1 to 2 is I want to maybe assign the value of y into x
+792040	798040	okay so the moment I did it so see when we are writing program we have intense in behind each line
+798040	804440	right so no this is something which is missing in today's software development because you are
+804680	809240	asking with the natural language prompt and you are getting the whole code at once right so you never
+809240	816200	reason about the partial or the initial segment of a program on your own so but I mean it's always a good
+816200	822120	practice when even if you let's say get your whole code from lm you start reasoning about the code
+822120	828360	whether the code is meeting the intention of what you wanted okay and that you can do only if you
+828360	832840	go through the code not a little bit slowly and carefully and when you go through a code
+833400	838600	carefully you always you know look at some initial segment and write and your initial segment keeps
+838600	845160	increasing inside until you finish the no reviewing the whole code okay but for every initial segment
+845160	850120	also there is some purpose right by that by this time I am doing this particular job for example in
+850120	855240	this case when I say temp is equal to x I have some intention right I want to store the previous
+855240	860200	value of x maybe before destroying it that's why I am you know creating this not temp is equal to
+860200	866920	x so when you go through it slowly you can you know visualize the intention behind all this
+866920	872760	statement and then maybe you are in a better position to comprehend the program no properly and
+872760	878760	hence you can believe it okay so the temp is equal to x stores the previous value of x before we
+878760	887560	destroy it in the next step what we have is x is equal to y right so what is the effect of this
+887560	895320	now your value of y has been kept into x and remember does this step you know changes the value of y
+899480	904760	so this statement should not change the value of y right because you know x is on the left hand side
+904760	910520	so the if you're thinking again in terms of abstract machine if no x and y are the only let's
+910520	915960	say memory places that you have no initialize or in this case no x y and temp or three memory
+915960	922200	location that you have does till now so certainly the no this line where I'm trying to assign
+922200	928600	to x the value of y now only changes the state of you know abstract machine at that location x
+929080	935320	it does not change anything on so nothing about y is changed so this is what we want to say
+935960	942840	so so at this moment what you have is already no x has the value of y that you gave to this
+942840	949880	program and then what you know what what should be the final statement of this program to achieve
+950040	960120	the task that you did you wanted okay so I want into y no sound value right whatever was given
+960120	967560	as the initial value in x this is what I want in y and you see now why this temp variable you know
+967560	974680	comes handy because in the temporary variable you have written the original value of x that you
+974680	980760	you know wanted to transfer to y but if you did not store it in temp and you directly let's say
+980760	987240	did the no this statement no many people you know might do this mistake or programming for the very
+987240	994120	first time they may forget no this line of code and then what they can they would do is no x is
+994120	1003560	equal to y and y is equal to no x and then no the whole thing no get strong so so what we do here
+1003560	1010120	is we try to you think through this program a little slowly and you will see that this no will
+1010120	1018200	make perfect sense to you and what you want to return is you know the value the current value in x
+1018200	1025160	and y okay so at this no moment in time when you are in executing this code your current value of
+1025320	1034760	x and y must have been swap so this is what we believe so let me you know quickly run this piece
+1034760	1041560	of code and then maybe run some examples of what example let's talk about some simple
+1042680	1055080	input so if what if I pass to this function swap let's say 2 comma 3 okay if I want to
+1055080	1062920	pass 2 comma 3 what do I return what do I you know expect in return 3 comma 2 right so this this
+1062920	1071160	is no nicely you know swapping the value so there is no issue right so let us try to swap things
+1071160	1081960	maybe which are of different types so this is very simple right we had to integer but what let's say
+1081960	1092280	if I have you know first thing as a you know integer and the second thing as a string
+1097720	1103480	see so no whether it's no integer or other kind of not a type that you are passing you know is
+1103480	1109160	in material this function is doing its job perfectly right this is what we intended we want to swap
+1109800	1117080	no value of the variable in these two different value that we have given to this function swap
+1117080	1124040	okay so this looks like a you know correct implementation and by working with these a small
+1124040	1129640	example we can get confidence why this should be correct but again as I said I mean looking at
+1129640	1136840	the program initial segments slowly and no increasing your initial segment gives you more confidence
+1136840	1142040	why this program should work because your program may work I mean if you only rely on testing it
+1142040	1147240	on some you know input it may work for your you know test input but it may not work for some other
+1147240	1154040	tests inputs so no only because it has worked for your input does not guarantee that it will work
+1154040	1158760	for all the input but if you work with the code a little slowly maybe it gives you much more
+1158760	1165000	confidence about the you know behavior of the program so now we will again you know let's talk
+1165080	1171640	about the same you know program and try to write down whatever we discuss no till now as a
+1171640	1176680	specification of the program so when we say specification now whatever we were thinking through
+1176680	1184120	when we were analyzing this program can we also write down our thoughts as something inside
+1184120	1190200	programming language okay so Python and other programming language is also you know provide to
+1190360	1196360	this feature of assertions where you can assert something that you believe it to be true at that
+1196360	1201960	particular moment of time in program okay so this assertions are very useful and I would highly
+1201960	1208600	encourage you know you to write these assertions you know as often as possible so that you know it
+1208600	1213800	it you you get a second you know chance to think about the program or initial segment of the
+1213800	1218920	program and write the meaningful you know intention that you have in mind when you're reading this
+1218920	1224360	program okay and if everything goes you know correct then you have more confidence in the program
+1224360	1231480	for example for this simple program let me know maybe a copy paste the code of the previous thing here
+1234040	1241160	okay so let me copy it and then we paste it here okay so let's call it you know instead of
+1241160	1248840	software rename this function to something different let's say software one okay and now what we
+1248840	1258600	want to do is you remember I mean I had some intention of this statement right so I so after
+1258600	1266520	this is no statement if you if I write let's say assert so assert always you know tries to
+1266520	1270280	assert something you know you are trying to declare something at this particular moment of time
+1270680	1275640	declarations are of the type true or false right your declaration may be no wrong or it may be
+1276520	1283320	right so anything that you know expect after this assert must you know return you boolean values okay
+1283320	1288760	and we know how to you know get boolean values right we have boolean operator or logical operator
+1288760	1294360	to compare no values or variables and then you know tell us whether this true or not so for
+1294360	1299960	example in this simple case after this line of code I certainly want this to be true do you see
+1300680	1310760	what I want is I want them them value is equal to is equal to the value of x okay so let's say
+1310760	1315720	uh so so assert statement I know this kind of semantic so you assert something and if let's say
+1315720	1323800	this something that you have asserted is not correct you may also optionally print something which
+1323800	1328280	can you know help you that you know this statement was not correct okay so let's say if this
+1328280	1337960	statement is not correct no I just want to know maybe say uh failed at know the very first let's
+1337960	1343480	say step let's have failed at what I mean just you know this this is for my hint that which of
+1343480	1348440	the assertions you know I have failed I may want to write multiple assertions in my program then
+1348440	1353800	but when it fails I want to know which one has failed okay so let's say you know if I see the
+1354520	1359800	this being printed out I can you know make make out that you know this is the assertion that I failed
+1359800	1364440	so at this particular moment of time I certainly want these two values to be true right so I can
+1364440	1370920	expect this to pass when I uh run this program okay so can we run the program and see whether this
+1370920	1378280	is you know passing for so let me know first compile this program and if we run this program again
+1378360	1387400	maybe you know copy the same thing okay and now instead of swap time let's say call this new
+1387400	1395560	function swap temp on and if I run it it passes right so there is no no error right so so no this
+1395560	1401320	statement is certainly you know changing the value of only temporary valuable and the value in
+1401320	1407800	the temporary very well after this no statement has been executed is the value of x okay so this is
+1407800	1413640	no perfectly fine so there is no no error that you know we get when we run this so
+1414680	1421880	what about another maybe statement that I want so what was the effect of this no can I write
+1421880	1429480	down something no similar let's say assert can I write down that at this moment of time
+1429800	1439880	so whatever you know was true previously is there and after executing you know this particular
+1439880	1449160	statement x is equal to y I also want something no new to be true so no I wanted no temp to be x but I
+1449880	1459400	maybe also want to so what the law effect of the last statement that x is equal to y right
+1460040	1465400	in x you have put the value of i so certainly no I want at this particular time x is equal to
+1465400	1472680	equal to y no since I have executed this statement just now I may want this to be true and let's say
+1472680	1480120	you know call it if this does not turned out to be no correct then I want to maybe you know print
+1480120	1487560	this statement okay so so now let me recompile this thing this part of the code
+1489800	1495320	so you see I mean what I'm saying is you know I want to you know here claim that since I have not
+1495320	1499960	done this you know part I want you know this new thing to be added to my previous you know
+1499960	1506840	knowledge or whatever I have stood till the last point okay so I have done maybe no this extra
+1506840	1512360	step in the last assignment so this equality should be true now in addition to the previous one
+1513320	1518680	so do you see I mean this should no return us true or false I mean we have run the code already
+1518680	1528680	and if we let's say now run it on 2.3 what do we get so so it's complaining right so it's saying
+1528680	1535160	that you have you know failed that too so something went wrong here right certainly I mean this
+1535160	1545960	expression is you know no more correct so what might have gone wrong so can this statement go
+1546200	1554360	wrong at this particular point in time so the semantics or the meaning of you know this assignment
+1554360	1560120	expression is that whatever was you know the value in why you just keep it in next so just
+1560120	1565960	after executing this to certainly we don't want to say that this statement cannot be true right
+1565960	1570520	because this is what we did right now and we are not doing anything else now after this step so
+1571160	1576600	this must be true so what went wrong then I mean is it true now
+1581960	1586440	see so as we discuss I mean the assignments are destructive right so as soon as you assign
+1586440	1597720	into x the value of y right so you have changed the value of x right so if initially temp was
+1597720	1605720	no is equal to is equal to x now temp may not be equal to equal to x right because no temp
+1605720	1611720	has not been changed but x has been changed you see the no advantage of writing you know these
+1611720	1618200	assertions so at this particular moment in time I I know that my you know value of x has been
+1618200	1624600	destroyed but my value of temp has not been no change and now if initially this was true
+1624920	1631720	it may not be true now right because my last statement has not changed another value of temp
+1631720	1637240	but it has changed change the value of x so this is the reason why you know this line of
+1638040	1645000	code is maybe failing okay so this assertion is failing so no instead of let's say so let me
+1645000	1651320	know copy let me keep it so that you can refer to it later on so let me write it down again
+1651400	1658680	and maybe commit this line of code we don't want know this whole thing now what we are saying is
+1658680	1663880	we can only claim this safely maybe after this you know instructions on this point in time
+1665480	1673000	okay and then if we run so what do you expect now select me now correct so let's run it and then
+1673000	1679640	if we run it again now there is no problem right so now with this one we can see that this is
+1679640	1689960	perfectly no correct okay so it's not failing at this no position so similarly what to write down
+1689960	1694600	no so since we have you know taken we took some lessons from the last two assignment statement
+1694600	1702280	we should be a little careful when we try to write down the effect of let's say the last
+1702280	1707640	statement which is y is equal to temp so what can we write down here the effect of the last
+1707640	1716920	statement can we write down so assert now since I'm changing y to the value of temp so is it okay to
+1716920	1724200	write down no this one so let's check it let's say if not then I want to maybe print the string failed
+1726040	1735400	at 3 okay and let me run it this should be correct right because again in the last statement
+1735400	1741320	that we have executed is y is equal to temp and after that no we are immediately claiming this
+1741320	1751240	thing so this must be tried this particular moment in time so let me run it and if we run it I
+1751240	1762680	don't see there isn't any error right okay so this is certainly no we want to
+1763640	1769560	we can you know confidently write down you know for this particular program but see I mean
+1769560	1776200	these assertions although tell us true things about the you know initial segment of program they
+1776200	1783080	don't say something very useful that maybe we want to write down and check for this overall program
+1783080	1788840	right so at the last you know at this moment in time when you're exiting before existing you
+1788840	1795560	are asserting something which is not very informative right what you're saying is no y is equal
+1795560	1802600	to is equal to temp and temp is something that you have created no inside this no function okay
+1802600	1808520	and if you don't know the code that's happening inside the function just by looking at you know
+1808520	1814360	this assertion it may not make a must sense of what this no function is doing so we we want to know
+1814360	1821080	some stronger or you know more meaningful or helpful assertions which can help us relate
+1822440	1827080	the implementation with the intention of the code so so the intention of the code was that I
+1827080	1835560	mean this no original value of x and y should have been swap okay so to achieve that what we do
+1835560	1841400	is we define some ghost variable okay so no no I'm going to introduce you to the concept of ghost
+1841400	1847560	variable and these are actually like you know other variable but the intention of ghost variable
+1847560	1853320	is completely different okay so these are purely for verification purpose and to you know ensure
+1853320	1860520	that the code is behaving the way you want after you know let's say you're you know confirm that
+1860520	1866840	the program works as it is this ghost variable can safely be removed from no code without affecting
+1867000	1873560	the effect of the code okay so the the whole sole purpose of this ghost variable are to ensure that
+1873560	1879400	the code behaves no properly and you should be able to write down know what you want to write for
+1879400	1888040	this particular piece of code okay so let me again I'll give you you know maybe I can copy and
+1888040	1901560	paste the same code from here see and then paste the code and what we want to do is now let's say
+1901560	1910280	not collect swap temp but what I want to call it is swap temp maybe you know very quiet okay
+1911240	1917560	this is what we want to say now we want to know say something meaningful about this program will
+1917560	1922840	which should relate to the intention okay so the intention that we wanted to say is the final
+1922840	1929000	value of you know x that is written from this no code is the original value of y right and
+1929720	1934600	the final value of y that is written by this no piece of code is the original value of x so this
+1934600	1941000	is what we want to maybe say in this for this no piece of code so what we can say is we can
+1941000	1947240	initialize to ghost variable which are nothing but just to capture the original value of x and y
+1947240	1953000	so what we can say we can use something like this let's say no use a meaningful name like no
+1955000	1965160	x original it to store the original value of you know x and y original to store the original value
+1965160	1971000	of you know y and let's say the very first step in my program is I just stored the original
+1971080	1977080	value of so the whole sole purpose of this you know is to define kind of a you know
+1978920	1983960	you want before the you know value of x and y gets destroyed you maybe want to store it in some
+1983960	1988920	variable and name it properly so that you can refer to it later on in your program okay so
+1988920	1994920	x original and y originals only you know intention is to capture the no original state
+1995480	2000840	no for reasoning okay so so let me write it down only intention of writing now this
+2000840	2004520	piece of code is to share
+2010440	2014280	original state for reasoning
+2018360	2023640	okay now we have since we have captured now our first statement is you know
+2025080	2051560	okay so this is the only purpose of this statement is to capture no this thing and then let me
+2051560	2059240	know remove all of this maybe you know we don't need here or I mean let's let's remove this
+2059240	2064120	a no intermediate assertions for the time being we'll put some new assertions which can be
+2064600	2076040	you know meaningful in the current context maybe also this one no assume that no for with this
+2076040	2084440	no initial original state no being captured in x original and y original if you can make assertion
+2085080	2090760	something no like this let's say at this step that you know finally when no before you
+2090760	2100680	exit your x should be nothing but no y original okay and y
+2101000	2122040	then we will be happy right so this is what was our original intention otherwise we will say
+2122040	2127960	that shop has failed so we see so we started the program so so imagine that now this piece of
+2127960	2133640	code which I have highlighted from here to at this point can be either you know let's say
+2133640	2139080	developed by you or LLM or by some you know third you know party and they have given you this
+2139080	2145720	function okay so what we can do is we can annotate this function properly to write down whatever
+2145720	2151400	was our original intention of us in code for this function okay so original intention was that
+2151400	2156760	if let's say x original and y original represent the initial state of you know x and y whatever
+2157000	2163160	was the value in x and y then finally after executing whatever code you give I want something like
+2163160	2169320	this to be true right that we I want to know safely assert that you know x should be equal to
+2169320	2175400	at this moment in time when you are exiting the program just before exiting x the value in x
+2175400	2180520	should be same as the original value of y so that's why you know this goes variable so remember
+2180520	2186680	if you don't define this goes variable there is no other way you know which can help you assert
+2186680	2192600	something like this here right because you want to relate the because this is a special you know
+2192600	2198760	case where we want to relate our final state of you know this x y with the original state of you know
+2198760	2204120	x y right so if you don't distort the original state since this assignment statements are you know
+2204120	2209400	destructive in nature you cannot assert something like this at the okay so the best or the most
+2209400	2215960	convenient way is you store both the original state in you know this goes variable and then later on
+2215960	2221400	if we do this you know in the very beginning later on towards before exiting the program we are
+2221400	2226680	in a position to assert something like this okay so do you see I mean this is exactly what we want
+2226680	2231560	from the program so if we can write down this we are sure and if you can you know get confirmed that
+2231560	2238680	no this is right then we are sure that the program is doing know what we intended it to do okay
+2238680	2244760	so certainly I mean you know this is something we would like to know whether the program is doing
+2244840	2250120	or not so let me now or call this function on some you know input to just check some
+2260200	2267240	maybe you know pass it an extreme x and then maybe two okay so if I want to let's swap these
+2267240	2272360	two things you know first one is string x instead of not giving some value I just give a string
+2275240	2285240	okay so we did not run this you know piece of port just above this so if the block of port does not
+2285240	2290680	recognize it but let's say if we run it then we now run the we call this function
+2291960	2300200	so what we got is these values you know swap right so certainly I mean so this is good okay so
+2300680	2307880	but then how to so one advantage of let's say you know writing this kind of you know meaningful and
+2307880	2314040	correct specification is that if let's just by some you know chance your LLM or whatever the third
+2314040	2318520	part is is not giving you the correct code it's giving you let's say some you know
+2318520	2323640	minutely let's say incorrect code you know there is some mistake which is very minute so can
+2323640	2329240	you know this kind of or I mean are these assertions good enough to cast those kind of bug okay so
+2329240	2335480	if you are sure about that no by capturing the initial state if I want this to be true for the
+2335480	2341480	final step then I can actually you know figure out some very subtle bug inside the code also
+2341480	2345560	let's say this code is not you know this seal but a you know big piece of code which you cannot
+2345560	2351640	know go and you know investigate line by line then then also I mean this kind of you know assertions
+2351640	2357080	can help you get rid of or at least detect those kind of you know bug so so no the third attempt
+2357320	2363080	what I want to do is maybe I want to do some you know bug in this implementation and then show you
+2363080	2368760	that this you know assertion can help you figure out that kind of bug for example let me copy paste
+2368760	2381080	first this code here okay and now so let's do a very maybe not trivial mistake maybe just just
+2381080	2389240	comment this okay see I mean this is a part of code that we want to modify or no introduce bug
+2389240	2393560	because you know this is what came from LLM or third party and so the very first line and third
+2393560	2401480	line was written by us understanding our intention okay so so if let's say we forget to you know
+2401480	2408280	comment this kind of we we we we comment this no one line of code and then you try to run this
+2409000	2416040	and maybe you know again call on some the same value maybe same thing if you want to
+2423720	2431560	you see I mean where did so this assertion at the last is not true right so since no we
+2431560	2437160	have commented this piece of code now you know that the value of x has not been changed right although
+2437160	2443080	you have changed the value of no y to x the value of x has not been changed and that's causes
+2443080	2451560	this no error right that your x does not have the no original value of y okay but your y may have
+2451560	2456280	the original value of x so so this assertion fails why this fails because there are two things which
+2456280	2462200	has to be true for this assertion to be you know true the first one and the second one okay and one
+2462360	2467960	of them does not hold true that's why this assertion fails and you know immediately that there is some
+2468600	2475560	you know error in the code so what you know just know to summarize what I wanted to say is if you
+2475560	2482680	invest a little bit of time trying to understand the intention of writing any function you know
+2482680	2489000	and that intention if you can translate from natural language to this assertions then the chances
+2489000	2494520	of no you know figuring out whether there is a bug in the no code that has been produced either by
+2494520	2501960	LLM or any third party agent increases and if those assertions pass then you are more confident
+2501960	2507720	that no your program will not have any error now what I'm saying is if those assertions pass
+2507720	2516040	then you have more confident only you know you know in a partial sense I mean if the assertions pass
+2516040	2520680	you cannot be confirmed that the code is correct because no assertions you are testing only
+2520680	2525960	on some input right we are testing on only this kind of input but then you know some there may be
+2525960	2531320	some other input where you know these assertions may fail right if the assertion passes on all
+2531320	2539000	possible input let's say for some know and if you can do this and check in some way then you
+2539000	2544360	can be certainly sure right that the code is correct but since we cannot check this assertion
+2544360	2550280	being you know true always for all possible input we cannot certainly even you know say after
+2551320	2555160	you know checking on finite number of input whether the code is correct or not so you don't
+2555160	2559080	have 100 percent guarantee but certainly you have more guarantee because you know multiple
+2559080	2564120	input you have checked the behavior to be true what you wanted it to be okay so these assertions
+2564120	2571720	are certainly better than you know one or two you know test cases but to make it you know worth
+2571720	2576120	while you need to somehow generate a lot of you know inputs you know for this program and then
+2576120	2582760	check whether you know you know these assertions are failing or not okay so let me uh
+2584760	2589080	so so one advantage another advantage that I wanted to tell you here is that see
+2589080	2593960	you know these assertions somehow capture the intent of your you know programming so what you need
+2593960	2599080	to give I mean you just need to give the inputs right and run this program on multiple input
+2599960	2606760	so in test cases you know you know if I have to contrast the situation with you know checking your
+2606760	2612040	program on multiple you know input output pair what you also need to give is you know the what
+2612040	2617640	is the correct output that you are expecting at each of those input right so test cases are normally
+2617640	2623080	those input output pair not only input right but here in this case if we write down or invest time
+2623080	2628600	in writing correct assertions are different you know programming uh stages then what you are do
+2628600	2633800	you have to do is just you know give me enough uh number of you know valid inputs on which I can
+2633800	2640120	run this program okay and you don't need to tell me exactly what is the value of output that I you
+2640120	2646280	know want to expect at this particular input because now those things are internally captured by
+2646280	2651640	these assertions so you just need to generate a lot of you know inputs to the program and not the
+2651640	2655640	no output value once you have no written these assertions carefully so that's also you know
+2655640	2661240	another kind of good advantage of writing the assertions you know properly okay so let's no go ahead
+2661240	2668920	with this uh I think now you know let me you know uncomment this thing all let me keep it there and
+2669880	2679400	comment this section of course so that you can review it okay so now we have written correct
+2679400	2685000	specification for sure right correct and if we are writing the correct code so so
+2685640	2689640	we should not only you know write correct specification uh you know final specification and
+2689640	2694360	correct code but you can also insert some intermediate no assertions that we were actually uh
+2694360	2699640	you know inserting previously as you say you know as you have seen in the very first example we have
+2699640	2704920	I have annotated the program with multiple assertions so let's do a final you know round of
+2704920	2716600	insertion of all those okay so let me write on first the whole thing code so certainly
+2716600	2723480	there this is what I want to be you know true at the in if this is true at the beginning so I'm
+2723480	2728920	very much you know sure about that but then what is it not like a complete proof of no correctness
+2728920	2733720	of this program so if I want to fix since you know this is not the only thing that I might might
+2733720	2738360	be seeing when I get the code I may also want to you know introduce some intermediate annotations
+2738360	2743880	or assertions that you know can be helpful in figuring now catching some other kind of box okay so
+2743880	2750040	so let me write it down so maybe after this line of code so what what do you expect I mean what
+2750040	2755560	shall be uh correct when I so let me uncomment this code because now I we want to run this piece of
+2756360	2763640	so after you know temp is equal to x what what can we assert safely so can we assert that you know
+2763640	2775560	temp's value is equal to is equal to let's say no x original okay but temp's value temp's value is
+2775560	2780680	also x but then no we we want to not talk about the values of this you know in temporary
+2780680	2785080	variable in terms of the original value because that's what is our intention right that temp
+2785080	2791080	no retains the original value of x so writing temp is equal to equal to x is also no perfectly valid
+2791080	2796600	but why we are writing here temp is equal to x original because maybe we want to carry a you know
+2796600	2802600	forward this information no towards the next step okay and we don't want it to change okay so
+2802600	2807320	you'll see in the next step know when we say and you you can actually differentiate between
+2807400	2813640	writing down temp is equal to equal to x and x temp is equal to equal to x original in the next step
+2813640	2819800	so let's for the timing write temp is equal to no x original and if it's not true again I mean you can
+2819800	2828600	say you know failed let's say the very first place so when we have you know this x is equal to
+2828600	2836600	is equal to y what can we say please can we still let me you know ask can we still write down temp
+2837400	2843560	is equal to is equal to original here do you think this is correct
+2848440	2853160	this should be correct right because you have not changed so to your last statement that
+2853160	2858360	you have seen just now has changed the state of x okay and what are the
+2859880	2865880	you know left hand and right hand side of this no equality uh relation this is temp and x
+2866360	2871400	so x original has not been changed right you have only changed the x so you know that's why we
+2871400	2878600	have written probably here you know x original that we wanted you know this uh you know it's part
+2878600	2884600	of statement to be true here as well okay so this part of a statement is true here also only
+2884600	2889320	because we are writing x original and not x okay so now we can safely write down here you know
+2889320	2893800	that temp is equal to is equal to x original because the our last statement is neither changing
+2894520	2900360	nor changing x original so this statement should be true and maybe no at this particular moment of
+2900360	2911480	time I can claim something more right so what what I can claim here is that my x now becomes
+2913240	2921560	no y original okay again you see I instead of writing x is equal to is equal to y what I have
+2921560	2927480	written is my x is equal to y original because till this point y's value has not been changed so y
+2927480	2933320	and y original is same essentially we can write both and both will be correct but this will be
+2933320	2938280	helpful when we try to prove the final property of the program okay so at this moment of time what
+2938280	2946600	we can safely claim is our temporary variable has x original and the current value in x is the
+2946680	2953160	original value that came into y okay so let me write down again I want to default let's say
+2955800	2962760	I want to maybe no print fill that too here because in case if I you know this thing is not true
+2962760	2966760	you know right now I'm guessing that this should be true but if it is not true it should you know
+2966760	2972760	return this print message and I should be able to see this now what about the you know very
+2973320	2986040	last one so what can we write here so shall we so what can we write so when we have done let's say
+2986040	2997720	this last step where y is equal to 10 okay so what can we safely know I said this particular
+2997800	3006040	point in time so where did we get this so this is our final thing right so this is certainly
+3006040	3010680	another final thing that we want to say but can we write down some you know detailed
+3010680	3015640	you know explanation of the last statement also so can we write down that since we have done
+3015640	3023400	y is equal to 10 maybe you know we want to say immediately here that y should y's value should
+3023400	3033560	be you know equal to temporary okay and what we also want to see here is the temp is equal to is
+3033560	3048920	equal to x original and maybe what else I want to see okay so so y is equal to temp for sure okay
+3048920	3054520	temp value is equal to x original not about no this last thing do we think that this is still true
+3056840	3061720	because y original has not changed and you know x has also been not touched by the you know
+3062520	3064280	code I'm sorry
+3079240	3091800	so we were writing down this piece of wooden we by mistake inserted this whole thing okay so what
+3091800	3100360	we are saying is we want to you know maybe copy and paste this thing right we want this to be
+3100360	3105480	not true at this particular moment of time and if it is not true let's say we want to say
+3106200	3114120	fail at three you see we are incrementally building the number of you know
+3114120	3118360	proposition that we want to be true right initially we are saying that no we want this to be true
+3119160	3123320	we want it to be retained even after the second one but then we want some additional thing to be
+3123320	3128360	true right by the second statement and what we are saying here is now we want you know this new
+3128360	3134040	thing to be true here but no we can safely assume that all the previous things are also true
+3134040	3138920	because my last statement does not change these are touches those variables so I can safely
+3138920	3144600	actually write down these things okay and that's how now if you know all these things are true
+3144600	3151160	then you can you know make sense that why you know this should imply this one right no you can
+3151160	3157960	easily see right that y you know x should be equal to y original right because see this is exactly
+3157960	3163000	what we have written here right that x is equal to y original and your y is equal to
+3163720	3169560	x original so y is equal to x original because y is already is equal to 10 and 10 is equal to
+3169560	3175000	x original so y is equal to x original so this is like a complete proof why this is programs should
+3175000	3180760	work okay so if you write no assertions like this a detailed set of assertions like this we
+3180760	3187880	can almost be sure that no will catch any bug that will come in the code if we run it you know
+3187880	3193640	enough number of time with different numbers of different no input buried input okay so we can
+3193640	3199720	we need a run again the same thing for just once or maybe you know this same piece of code we want
+3199720	3210840	to run it again so it's failing because no we have not defined this thing okay we have not
+3210840	3216120	know around this piece of what once we run this piece of what and then if we run we get the
+3216120	3223000	sort value okay so it was just you know highlight so today's no lecture we just wanted to highlight
+3223000	3228280	that there are ways to validate code that you write okay it's not that you cannot validate
+3229080	3236920	and by writing these assertions my intention was to tell you very you know clearly the
+3236920	3241720	semantics of this assignment statement so semantic assignment statement is you only you are
+3241720	3246040	changing that variable and nothing else so you know if you have some way to store the previous
+3246040	3251960	value of the variables then you can assert or you can claim meaningful property about your program
+3251960	3257240	very easily okay so that's was the not only purpose of this lecture so please go through the
+3257240	3262200	lecture today that we we discussed on the concept today these are very important assignment is
+3262200	3266280	you know one of the most important statement in any programming language especially if it is
+3266280	3271320	imperative programming language and we should clearly understand the semantics okay and in
+3271320	3276040	case of need where you know you can not trust let's say the piece of what that you have generated
+3276040	3280520	you should do this you know line by line analysis and you should write down your intentions
+3280520	3285880	using this assert statement so assert statement so it's very useful okay anything that comes inside
+3285880	3292200	this assert statement no it is a you know no Boolean expression and it always you know you
+3292280	3297080	values to idle to or false so if you generate you know enough number of let's say input to the
+3297080	3302760	program that you are trying to verify then there is high chance that you will you know catch any
+3302760	3307800	you know error box that may be present in your program okay so with this no I would like to
+3307800	3314200	in this lecture so what I have given here as an R2 you know assignment problems for you to think
+3314200	3318680	about so this did know this was you know one of the way to swap to number which is very safe
+3318680	3324280	where you use use a temporary variable but many people you know try to you know trick and then
+3324280	3330360	try to come up with it's a program is does not use any let's say additional variable like
+3330360	3335240	there we use an additional variable which we call temp now if someone asks you can you do this
+3335240	3340440	without using any additional variable so there are multiple ways to you know do that but then
+3340440	3346360	there can be error right in those ways so you should always know check whether those tricky ways of
+3347320	3352280	swapping to numbers are correct or not and for that I have given you you know two sample programs
+3352280	3358680	you just work through this program and try to repeat you know the kind of annotation or assertion
+3358680	3364280	that we have done for the safe you know this temporary variable swap program for these two
+3364280	3369480	setup program also so please take your time go through these you know the examples you know
+3369480	3374760	slowly the way we did today's example and try to see whether you can write down safely those
+3374760	3380280	assertions and get it right or not okay okay so with this I will conclude today's lecture and
+3380280	3390280	we'll meet in the next lecture see you then

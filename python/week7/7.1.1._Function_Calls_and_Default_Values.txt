@@ -1,0 +1,501 @@
+Hello and welcome back to Python Core and Applied Concepts for a level data sense workflow.
+In the last video we started the discussion about functions, we saw how to know or went
+to write functions. I mean we discuss about the scenarios or situations where we think
+that we should write function instead of big monolithic code. So what are those hints
+that we get when that kind of situation arises when we are sure that we should instead write
+a function instead of writing a big monolithic code. This was in our discussion in the last
+class. So let me recap it very quickly. So right we started with the discussion around the
+need for a function right. So the three previous that we discussed very briefly was how
+the usability if you know want your code to be reused again and again by yourself as well as
+third party then you should most probably write function and not flat codes. So this was our first
+point. Then we talked about decomposition aspects of you know writing function also.
+When your task is very difficult or big if you want to solve some you know complex problem
+which if you don't decompose into smaller problems becomes really hard to tackle at once.
+So that's also a good sign that you should think about functions. You should think about
+subproblems as well as solving those subproblems using functions. Then the third point was abstraction
+right. The function helps you abstract with the detail of how you implement it. So someone who
+wants to use your function need not know all the detail of your function but can work with your
+function by you know ingest the interface or the no contract of your function or signature of
+your function which looks just like this. So with the proper description of function in
+natural language you can you know make other people use your function efficiently without any
+problem. This was the abstract view or logical view of the function that again motivates us to
+write function in many places where we want other to use our code without being you know bothered
+about how the code is actually implemented or how the function is actually implemented.
+So we discuss it then we also discuss about the basic syntax and semantics of function
+which included how to write functions whatever different you know component of defining a function
+like you have a depth and definitely a name for the function followed by body and then there
+must be a no return which returns the value that you want this function to detect. This was
+no very briefly that we talked about function syntax in the last part then we also said that
+this is only the syntax the actual semantics comes when you you know call this function so this
+is just definition so when you define things these things are not calculated but when you want to
+use this function you call these functions with their name and by passing the actual value for
+this parameter which we called no argument to this function to get it to get that is else no
+evaluated okay so that that's what we say you know calling the function and we have seen two very
+popular you know ways of calling a function by passing arguments one was this positive
+positional argument concept where you don't need to explicitly tell what are the arguments that
+you are passing I mean you don't need to name the argument but you can just pass the values but
+in that case you need to maintain the order in which the function actually defines the parameter
+when you pass this argument to the parameter okay so this was no positional way where you can
+actually avoid no giving this names of parameter like length width and no color in this case
+but you can simply call this function by passing the value to this parameter but you have to maintain
+the order in which you know you pass this thing so this is what we discussed in the other cases
+when your function may have lot of let's say parameter or arguments defined then you may not
+recall the order exact order in which these parameters were defined so in those cases we can
+also name the parameters and then pass the value explicitly by saying what these values correspond
+or which parameter these values correspond to okay so that is most of the time you know very
+convenient for us and we use this in case of any confusion and then there are you know otherwise
+where you can mix both positional and keyword arguments together but here when you mix them you
+have to no keep in mind that you can only use positional arguments in the beginning and once you
+have used any you know keyword argument then from then onward you cannot use positional
+arguments so this is one restriction that we have to you know follow when we try to mix them
+so depending upon what is your you know what what is your you know exact condition I mean you
+can use any of these three way of passing values to function parameters so you know just practice
+some no more solving some more problems small problems where functions are naturally
+you know more desirable so and try to use these three types of you know argument passing to
+you know be confident about using them okay so now we'll continue our discussion and we will talk
+about the nature of arguments that we pass to function okay so normally you pass some data
+you know as a no argument to the function parameter and those think can be mutable as well as
+immutable right we have you know seen that now there are data types like number strings and
+tuples which are immutable data types no one use once you define them I mean you cannot change
+them so this is what we know mean by immutable so you know you cannot so it cannot be changed
+after creation and when functions receives this kind of immutable not types they are essentially
+receiving a copy right and you cannot change the original thing by changing that copy so so the
+problem that so why we are discussing this is because of you know the side effect that function might
+have so when we say side effect we want to know whether the argument that we want we are passing
+to the function is the function actually changing those argument or not okay or is it simply you
+know using the value of those you know argument which you pass as maybe variable to the function
+so this is a very important point to keep in mind when you're writing a function or using a
+function which is written by someone else so you want to be sure what are the effects of the
+function is does it only return me the result value or it also changes some other variable you
+and these things would be very you know explicit okay but in most of the cases you know by the
+nature of the argument you can actually guess whether these things will be changed or not so for
+example if the arguments are immutable not data types then they will not be changed but then
+when arguments are immutable data types for example list dictionary or set in those cases you should
+be very careful I mean if you want it not to be changed then you better pass a deep no copy kind
+of thing you pass a copy of the actual you know data rather than the whole data itself okay so just
+to highlight this I mean I will give you two short examples one for immutable data types and one
+for immutable data types and we will be able to see what is the difference you know in the context
+of these exact examples so let me write down the very you know first example which
+is about immutable data types so for example let's say you want to update you know a score
+by some you know margin let's say which we call bonus okay so we can define a small you know
+function like this which is let's say definition is no update on maybe score
+and then you you pass the original score
+and then this bonus bonus is the amount by which I want to update this score so so the implementation
+what I do is you know my actual implementation is let's say a score is score
+plus okay so the important thing that I want to highlight here is that no see I mean we we are
+changing you know one of the argument which is a score right the very first argument which you
+pass to this function we are inside the function we are trying to change that you know value
+right score to score plus bonus okay so now we want to you know know what is the effect of this
+to the let's the original value which has been no pass to us okay so this score you know make
+come as a you know variable name to us I mean to this function when it is called so we would like
+to analyze and see whether changing it inside the function will actually change the original value
+or not so this is no our intention so this this is what the our function does and then let's say
+what we return is value score okay now we would like to see what is the effect of this function so
+let me you know so this is just the definition of the function so to see the effect we need to
+you know call this function so let me call this function and let's say initialize some variable
+where we store some initial let's score so this variable original score has some no original score
+which you would like to pass this update score function and then update this okay so now
+if let's I want to call this function okay and get let's say the new score that I
+no one to obtain by updating the current score is is what we call new score here and then we
+update the score using update score function and here what I'm passing is this in original
+okay so what in just no copy this so the very first argument is original score and then let's say
+I mean we want to you know in case it by value 20 okay so I hope you understand the no meaning of
+this instruction so what we are doing is we we just defined a function which we called update
+score and now we are calling update score with this you know original score value that I have just
+no initialize right original score is no hundred so I pass this original score to this one
+and then the value by which I want to update it is the second argument right this bonus is this
+20 so when I call this function this will certainly return some value right and what is the written
+value is the new score that it no calculates and that value I have stored in the new score thing
+okay now if we want to let's say no try if you want to see you know what happens to the
+the original score that we have defined here after let's say you execute this statement because
+no executing you know this statement means calling this function once right this is what we are doing
+we are making a call to the function and when you make a call to the function and when you have
+passed some arguments I want to see after the call has you know executed successfully what will
+happen to the argument value and what is this argument value that we are interested right now
+original score okay so to do that I mean what we need to do can we print the value of this
+original score so let me uh what we can do is we can say here print let's say
+original score maybe you know before function call okay
+okay and then I know if I just print what is
+score here so we know so what is this original score before no function call and if I want to do
+know the same thing uh after the original score has been so let me you know print copy paste the
+same thing and I want to see what happened to this original score so after function execution
+maybe okay after the function execution if you want to see again now what is my original
+score you know this will print okay and we would also like to let's just see the what is the value
+of the new score okay so let me you know print that also so
+what is our new score after function execution so that value should come in
+new score okay so so let me so so the value that it returns in this you know so remember I
+mean the new score will have value of this score right which is no calculated here inside this
+function so now I want to see what happens to so what do I get in new score and what is the
+original score after the function execution okay so if we uh run this piece of code now to see
+what happens so what we see is that original score before function call was 100 okay and again
+if you want to query your original score so what is the the inside this no original score variable
+that we have defined here after this function has been let's execute it so at that moment also
+we see that the original score did not change okay so we are safe right because no this original
+score contained a data type which was immutable okay so that's how you know that that's what we can
+see here clearly right that no we we have this value 100 even after the call but then when you see
+the new score I mean you see the updated value 120 okay so what happened no in principle when you
+pass this you know a copy of this value was passed which was 100 and that copy was you know
+used to assign this new variable score okay the new updated value which is no 100 plus 20 so 120
+and this was returned and this value was you know again kept in this new score okay so this is how
+this is what is the exact cement takes off how no execution works when you call it with immutable
+no data type okay so this variable was not changed this is important to keep in mind okay again
+I mean just to no contrast this with mutable data types we will you know take a similar example here
+where we will try to work with mutable data type and we'll see what is there so in this case I
+mean let's say try to no work with list instead of you know integer so because we know that list
+is a mutable data type and let's say we want to no maintain a roster where we want to no list
+all the student name okay so no one good function to no maintain that roster will be to add and
+use student let's say which which also changes the roster okay so that's why we are no defining
+this kind of function so the function that I'm trying to define right now is a new let's say
+edition of a student name in the existing roster so let's say what we say is no add student
+is what is my you know function that I'm trying to define and the very first
+no argument which I pass here is a list I mean I know this is intended to be list right now you
+don't know it right because we have not defined the function body so so my intention is to no keep
+make this you know roster list okay mutable data type and then given any let's say student name
+I would want to no append it to the end of this let's say roster so this is my you know
+intention of the function so you can now guess what should be the okay so what should be the
+statement that I shall write inside I want to append something to the existing you know roster so
+if roster is a list we have already seen this kind of in build function which can
+append something to our list and remember that when we discussed list we said that this kind of
+our method call will actually change the original list right so so it was called on roster so it
+has a side effect of changing the list right it will change your original list so student name is
+what we want to add so this most probably you know based on our you know current understanding of
+list and its prospective methods we know that this will have a side effect and it will modify the
+original list okay so so let me now again I mean do something you know similar as we so so let me
+first so this function no need not return anything I mean it's not necessary for every function to
+returns explicitly I have a return statement so we'll see that as we go ahead but let me you know
+finish it and then what we can have we can again I mean start let's say
+so let's say this is our roster class students which if I initialize with you know one student name
+let's say Hardik is already in the roster and then I want to maybe add another student so let me
+add so let me know use this so I passed the original
+the student list to this you know add student function that we have defined just now and just
+give one more name as a new entry to this so let's say no no is what I want to add to this
+cluster so so what do I want to see now I mean I want to see that no what's the status of this
+class student before and after we call this function okay because remember this is the point
+where we are actually calling the function right so I want to see what is the effect of execution
+of this function on this list class students so to see that I I can actually print it before just
+before this one and just after this one right so this is what we can do so what we can say is
+let me have a print statement just before it so we want to see what is so before function
+equal before function or we want to see what is there in this list which I call class students
+okay so what is there you know inside this thing
+when I call this no class student so and we want to just have similar things after the execution
+of the functions let me copy this and we can again paste the same piece of code here and we can
+say is after let's the function call after function call again we want to see what is the status
+of the same no list will use the same thing now if we and no this is the original list that we have
+created okay so remember that this is the original list that we have created now what do we expect
+as an you know outcome when we execute this code and when this function call has been made once
+so what is the effect that we want to see here in in this print okay since this is a mutable
+not a type we expect that this no roster which is no we which took the value of you know this class
+student initially we we expect it to change so this this is what is our expectation and now
+to put this on this piece of code and see what happened you see I printed the same
+you know variable this class student before and after also and in this case if I print them before
+and after I can see a difference because this was a mutable not a type this was list so here I
+mean when you pass this you know list to this roster you don't actually pass a copy instead
+what you are passing is the you know the actual thing and so if you make a change you your change
+is reflected in the other place also okay so this was very you know small to I mean these were two
+very small example but very you know you listed above the fact that how function can change
+you know the arguments also and you should be very careful if you are passing a mutable argument
+then I mean you know for sure that that's not changed right and this is what we saw here let me
+printed this original score that we passed you know instead you know in a place of this score
+we saw that there was no change right because here initially also we observed 100 and after
+the call also we observed 100 but in this case you can see now I use something very you know similar
+but no I in this case since the argument was mutable at a time we could see a change before
+and after the function call okay so great so with this no now we you know conclude the discussion
+of this particular part of function I mean which is about the mutable any mutable at a time now
+we want to go to another important concepts which we very often use in the context of function
+which is called default argument okay so what a default argument so default arguments are I mean
+they allow you to define parameters with preset values in function definitions okay so
+sometime you know sometime I mean some of the arguments for a function can be guessed actually
+okay so so for example I mean if you are writing some function which has multiple parameter
+and some of the parameter always let's say take some values by default you know for most of
+the you know function calls then in that case it is a good idea to you know explicitly tell
+Python that now these arguments by default take this kind of value so you assume by default
+this value if user does not want to specify explicitly some other value so this is the intention
+of you know having this kind of not default arguments so default arguments allow you to define
+some of the parameters with preset values in function definition okay now if caller does not want to
+provide that argument then these default values are used so this is what the you know default this
+is what we called default arguments in you know Python and I user need not provide them explicitly
+so let me sum to this so what very said this now is what he's mentioned here okay so default
+arguments allow you to define parameters with preset values and you know need not actually provide
+those value when you're calling no function just I mean against to give it a concrete
+context we can start with a simple function and try to see for example let's say if you want to order
+a copy okay if you want to order a copy and you know your copy machine has some function inside
+it which automates the whole process of let's say making copy for you so
+most of the time I mean since no maybe even people are taking lists so when you want to order a
+copy you have to specify what is the type of the copy you know what size of copy you want you know
+medium or large size or do you want you know sugar or not and if you want sugar how much you know
+sugar you want you want little amount I amount or no no amount so all of this now can be
+you know should be provided to make you or you can give you no proper copy but then in no
+most of the cases we know that most of the people who want to come for copy they prefer let's say
+medium size cup and then they also expect some amount of sugar which may be quantified by
+let's say if you know no sugar is zero if you know very little sugar is one if no some sugar is
+two and then if you know a little more sugar is three then most of the time you know you would say
+that we want sugar quantity to be two we want you know size to be medium and then type of the
+copy you of course you want to ask from the customer because it varies most of the time based on
+your you know past observation so you can actually then define this no order of copy kind of
+function inside Python okay let me you know just try to mimic this you know copy thing using a
+function so let me if I want to know I don't know function to order this copy so this order
+copy function would try to mimic what we said just now let's say okay so we are ordering our
+copy and so let's say three things there are three argument that typically you know
+people want to choose from one is know the type of the copy let's say we call it not simply type
+and then second one is the size of the copy and the size by default let's say I want to
+I know and most of the people come and they offer you know order medium size so
+if they don't specify I would by default let's consider the size to be medium so so this is
+you know my this is the second argument that I have given here is my default argument so this
+is how I specify that the default value for this argument should be taken as medium if let's
+say user does not specify anything okay so this is the way to indicate that this argument is
+not default argument and also about the you know let's a sugar content if user does not
+specify anything that I maybe know I want to keep it at a level two okay so let's say your
+your sugar amount of sugar is represented by three levels zero one two or four level zero one
+so then I want to you know maybe keep two as a you know by default level for making this
+copy so and instead of writing the complete no function which actually makes the copy let's
+say for you let me you know make it by just returning some I mean just no returning a print
+statement maybe that's more than enough for not to simulate this whole thing so what we say
+that no we are trying to no give you one you know let's say no by default medium size copy of this
+type with no two level of sugar is what you know we want to by default print but if it
+now user gives some other value for this type and sugar and you know this size then that will be
+printed so what we want to print is just I'm giving you one no some say I mean the size of
+coffee and then let's say medium size of coffee what type of coffee that maybe you know
+latte or espresso and coffee with some amount of sugar I mean which you can specify or I can take
+by default okay so let's say you know this is what I want to return when you call this function
+now if you so you certainly have to give one argument right type because type is not a you know
+pre-do you know type cannot take any default value because this is not how we have defined this
+function so so let's say I mean if I want to call this function using default values of
+the argument which is which can take some default value then so the first not in first
+attempt what we were doing is we were trying to use the defaults okay so we have to make a
+function called so let's say the function call that we make is now order coffee
+and then we pass you have to pass at least one parameter okay so let's say the type of the
+coffee that now we want to pass first time is let's say call it now that day okay and if you
+now order this kind of no coffee and let's say print whatever is returned to us okay
+okay so so what do we expect here I mean remember I mean when I make a actual function call which is
+this no expression from here to here I'm passing only the first argument right so I'm
+no by default this is the positional argument way in which we are passing the argument okay
+and we are passing only the first argument so by default it will assign this to time okay and
+other two which we are you know sides and no sugar content we have not provided here right if we
+we are making a function call where the original function which has been defined has three arguments
+but we are passing only one argument so this would work why because we have some default value
+if you let's say if you had not defined these things no this portion here and this portion here
+then in that case it would not throw some error but since you have defined it to be some no
+default value you can expect this to work properly and assign these values by default so now if I
+want to maybe no run this and see what's the effect of this run can you see so this is what we
+expected right so one medium let it copy with two sugar levels okay so how could it take this
+you know medium you know the size because the default value of this size was medium okay so
+even if I did not provide anything here it automatically took this medium value for the size
+and this you know two value for the sugar level okay so this is how we you know we can
+use this default value but I mean I mean since you have written it as a default value I need not
+always take default value you can explicitly also you know provide this to the function for example
+again I mean in this case let's say let me copy make another function call to the same function
+and I may say that this time I need some other copy copy type let's do a special
+and I may want to specify that this time you know my size be you know something maybe different
+from what is the usual thing I want to large special so I can say this and I want a little less sugar
+maybe so then in that case I can specify a sugar level also right because like I can I know
+right here you know instead of do the default value I can actually pass this one value okay and now
+if you are you know try to print it and see what happens you see our one large espresso copy with
+one sugar level so this is how we can use the default argument feature of functions inside
+Python no programming language and this no makes your life no easy and it's not it's not only you know
+so this is very useful for especially users right because they they can call function with fewer
+arguments I mean if they want to accept the default value okay and for most of the you know cases
+where you know that the default value will be this it is actually useful right so these are
+some benefit of using this default value so one is the flexibility that function can be called
+with fewer arguments you have seen right now right we we passed only late and then this function
+work perfectly second is no you can actually know somehow we realize this common use cases
+you know in a simpler way by just writing this and not asking every time and you know provide
+reasonable behavior out of the box I mean even if you don't want to bother user or clear
+to line to provide every other detail you can assume those as default value and another no
+important thing is this no backward compatibility okay so we'll come to this backward
+compatibility soon and see how you know how I mean having default values provides no backward
+compatibility in some of the cases okay so adding new parameters without breaking existing code
+is what we want to discuss specifically in this in our case so we will talk about no
+these things but no let me you know give you another quick example of maybe this kind of no
+so so another you know quick example of this default you know argument maybe you know
+like scheduling a meeting let's say if you want to schedule a meeting or team meeting or a
+zoom meeting so what are the things that you want to specify you know you want to specify why you
+are calling for this let's say meeting what should be the no duration for the meeting and who
+how many participants let's say you are expecting and whether you want to meet online or offline I
+mean so let's say if you are scheduling a meeting and that meeting may be online or offline
+that meeting may have some no topic of discussion how how long it should know go so let's say if
+you want to write a function to schedule no such a meeting so some of the arguments may you know go
+as no default argument for example I mean by default I can you know I may want to assume that my
+meeting goes only for maybe you know 60 minutes or my number of participants no by default is no
+10 or less and when I'm scheduling it I mean by default I can assume that this is you know online
+until I specify it okay so in that case now if you want to write down a function to simulate
+this kind of behavior what will be in our function so can we write down something like this let me
+here now so what if I you know all right in something like this okay so this is our schedule
+meeting you know function that we have written we specify topic we specify also duration
+participants and and again I mean here you can see we have specified these you know duration
+participant and online as a default argument right so you can only give the topic name and then
+call this function right and this will be executed properly I mean there will not be any error when
+you try to no run this function or call this function okay so for example like say you know if I
+want to just you know call a meeting for let's say daily stand up kind of thing so you can quickly
+say that no I want to call this meeting by you know calling this schedule function right so let's say
+call this schedule no meeting if I call this schedule meeting with only let's say the topic okay so
+let's say I mean topic is now okay so if I don't pass anything else so I pass only the first
+argument so the by default no duration will be taken as 60 and participants are expected to be
+10 and this should be no online mode okay so that these are the you know arguments value that we
+expect to be you know passed on when we call it this way to see what is written I can actually print
+this value and then see what happens and this is what we you know expected right so we expected
+that so daily stand so this is no daily stand up for a 60 minute 10 people and online mode
+now if you want to specify things or you know other things also you can you know maybe you know
+call this is a quarterly meeting which should go for a longer period let's say no 120 minutes and
+the number of participants are less also more 25 and you don't want it to be on you want it to be
+offline so in that case what we can do is we know we can call the same function
+with not the default argument but with some other argument so for instance I mean in this case let's say
+if I call you know this function with this kind of arguments schedule meeting
+no quarterly review and number of participants are 25 duration is 120 minutes and you know this
+is not online no this is offline so in that case if I now print it
+you can see that no meeting has been scheduled for 120 minutes with 25 people and this is
+in person why because this online is false okay and if online is false then I want to
+print that this is in person meeting this is you know these are some very simple examples where
+you can see that the default argument you know idea in Python especially I mean works very well
+and it can be very convenient most of the time when you know what should be the you know most
+used let's say value for some of the arguments for your function that you are defined okay so use
+now carefully I mean this can be very useful so we don't need to know any other example maybe at
+this point so the last thing that I want to know highlight about this default argument is that
+it can in some cases help in backward compatibility okay so what is backward compatibility by the
+way when we talk about our code let's say you have developed some function okay or you have
+developed some library which has many functions written already and you have a large user base also
+okay so many people are currently using your library they have already developed many you know
+applications software relying on your you know library functions okay now so you have a you know
+let's a large user base I mean where your function has already been called multiple times in many
+applications which are not running right now okay and now you know suddenly want to maybe
+upgrade your function with some new feature okay you think that your function can be you know maybe
+made more general or more you know flexible in no dealing with some different kind of you know
+scenarios also so in that case you want to you know modify your function okay and you want to
+modify it but then I mean if you modify your function you also don't want you know those
+earlier calls of the functions to break okay so this is what we call you know compatibility so can
+can I know upgrade my let's say library or any function or module that I have written in a safe way
+so that if someone else has been using it in no in his application it does not break I mean he does
+not you know need to go back to his you know whole applications software and then change the
+quote again to just make sure that things work with my no current or the upgraded library so this
+is what we call you know backward no compatibility here I mean when we say backward complete this is what
+you know I mean so just to give you again a very concrete you know example maybe
+so if you don't have let's say no default argument kind of thing you know then
+this this kind of things may become a little or I'm not saying that no having the default
+argument gives you by default also this no backward compatibility issue you know
+you know in all the cases but in most of the cases you can actually use or in many cases you can
+use this default argument to solve this no backward compatibility kind of issue so again I mean
+as a concrete problem let's start with you know existing function let's say that is already
+being used in many places so for instance I mean in this case let me write down a function with
+simply no processes some no data and at least I mean it converts you know any upper case into
+lower case you know kind of data so this is a data processing kind of function which given any
+input converts it into no lower case no strings okay so so a simple definition like this
+where we have this plus is data function let's say which takes some data no as input
+and it may be you know it calls and this no input this
+lower method so data dot lower to just know make it no lower case I mean if you have written
+something in upper case and it will be made automatically into the lower case so this function
+now let's say I mean this you have no earlier developed this function this this is very simple
+function but you know is it I mean just for example we have taken this simple function but it
+can be any you know complicated function also so for in this case this has a very simple
+role right converts into no lower case so let's say and some you know other you know user have
+used your function at multiple places and call it multiple places so let's call it at least once
+on this you know let's say hello so if I can copy the same thing and
+finished here so let's say so this kind of you know so this is calling this function right this
+is the definition of the function this is call of this function now if someone else has written
+a you know application program they where this function has been called multiple times in at
+multiple places because this is what we are saying that this this function have been you know
+called throughout a lot let's say code base so this is our scenario so what happens when we
+call this function so what is the immediate effect since we have not defined it we have not
+run this block we got this error but if you run it and then it converts into lower case so this
+works perfectly and it has been used at multiple times now if you imagine you want to extend this
+function by adding some new feature I mean or a new parameter to control this case handling now
+in all the cases maybe you don't want to you know you know convert this data processing let's say
+function now you want to make it you know you want to add an extra feature which also tells whether to
+change the given input into lower case or not I mean let's say so this is the no minimal change
+that we can expect at the time to generalize this function or make it more useful to a wider
+you know variety of application what we are saying that we want to now extend this function
+so let's say instead of so let me copy here
+you want to extend the feature or we want to extend this function to add some new feature here
+so this should be a good block okay and now I want to explicitly maybe you know give
+another option to the user to make it no more you know useful or more generally in or applied
+in other cases I want to maybe explicitly know whether I the user want to process this to lower
+case or not so here's an option if he you know says true in as a second argument it will be
+actually converted to lower case if it says no I mean I mean pulse then in that case I would
+say that okay so I would just I mean maybe I made the data itself so I will not process it so
+so inside the function you know definition what is the minimal change that I need to do at this
+point of time to make it happen so for it to be meaningful what I'm saying is to this lower
+to lower indicates the condition which if it is true then only I want to maybe you know
+return maybe you know that lower that's why let's say if I want to change the function in a
+minimal way like this where I want return data to lower only if this second argument is no
+given as true to me in other case I don't want to you know maybe return not at or lower but I
+just want to return the data okay now now let's say this is how I want to upgrade my function
+okay now if you want to upgrade your function you know in this way so let me define it
+so what happens is now since your function no earlier function was you know use at many places
+in application no software for many of the no other client that might have used your library
+so whenever in all those places where you know this thing was calling it on a single argument it
+it may actually so it will start failing right because now you are not the your new function
+definition actually expect another argument but that is not you know present in the no previous
+function calls previous function call only as no assume one argument and so this should no give
+you there a message so let's say I mean if I just to replicate I mean all you know visualize
+what happens to the this kind of calls that was already there in some other application now if I
+again try to run it you get an error right and it says exactly what we discussed right now that
+it's missing one required positional argument which is to lower why because your new function
+definition actually ask this no second argument now so so no this is no one very small example to
+illustrate that some of modification that you may want or new feature that you may want to add
+as a less a new argument to your function which gives maybe more flexibility to your user
+may you know cause no error in the existing you know called base if you go without less a default
+argument way but now you can actually handle this kind of situation very well by defining this
+to lower as a you know default argument so what we can do is we can instead of making this
+as a you know normal argument we can make this additional argument that you have added right now
+default argument so that I mean user may optionally want to not give the value for this second
+argument and in that case the behavior is the default behavior that we were anywhere I mean giving
+you know earlier so if you if you can actually map your current you know default behavior to
+the previous you know default behavior appropriately then the things will be done so again to be no
+more precise I mean in this given case how can we maybe you know handle this situation now for
+this particular function so can we you know use default arguments here I mean instead of using
+so can we make this too lower to be you know default argument and then have similar value as
+the previous you know process data function and not breaking another earlier part of the code
+so now we can certainly do it right and we have seen example like this earlier so instead of
+saying that the second additional argument that I have you know provided or added to my
+process data let's say now function so the first was of course the data but the second one was
+to lower which indicated whether to no make it lower case or not okay so instead of saying
+that this is a normal argument I can say that this is a so default so I would like to send the
+default value may be true whenever user does not want to specify it so this gives user not the
+flexibility not to specify this argument while calling this function okay and but still we are
+taking some value no which can help us mimic the behavior that we were having in the previous cases
+okay so two things are important one is giving user flexibility not to use it and still you know
+run it without any error and the second thing is I mean you have to do it in such a way so that the
+default value that you pass finally you know converts or translates the function the current
+function behavior to the previous function behavior okay so I know I would ask you to verify the
+second thing that I told just now I mean one thing is for sure that when you make it default user
+can not give this any still run this function without you know any error mess has been thrown to him
+but the second thing is whether the you know semantics of this new function is exactly same to the
+previous one is what you need to verify after okay now if I you know write something like this
+that if so we again I mean take the same definition that we have
+we want to if to lower is not true then with that case we want to do a lower case
+transformation of the current data otherwise you know in the general case what we want to say is
+we want to return the data itself whatever data was given to us okay so now in this case you will
+see I mean you you can actually check and see that the behavior is exactly same as the previous
+you know function that we have written but now you are providing you know additional feature
+in your you know function where the I mean user can control it and pass you know pulse to get
+not change the data okay and the so so old code still works and new functionalities I will
+be able to the user write without breaking any of the existing let's application software that
+you might have you what's the good check of this so a very good check is again I mean call
+on the thing that it broke earlier right if you call on this thing you know process data and then
+so before that I mean so remember I mean it was breaking earlier right if I don't compile this
+you know cell and it still run it should break right it is breaking why because it's taking the
+previous value of the no function I mean this is taking this definition of the function so it's
+failing but as soon as you you know compile this definition which accepts a default argument and
+then maybe we again run this piece of code you see I mean it's not breaking although we have
+provided the new feature feature right here it's you know you you have an option of providing
+whether you want to convert it to lowercase or not okay I mean you can actually quickly check
+whether this new feature has been added or not so it can say is process and data and you provide
+something or maybe on the same argument maybe but then I mean if you say that no I I don't want to
+know make it lowercase I just want as it is so and in this case if I you know run this function
+you see I get the same thing right so this is how we can add new feature you know without breaking
+the previous code in many cases by using this default argument okay so this is a very
+interesting use case of default argument where and then this is the summary of what we have been
+discussing so far on libraries and the first thing that is written is libraries and API maybe used
+not thousands of users you have written already something so you don't want to break the
+existing function call you know and create this runtime no issues so default arguments provide you
+cloud developer to evolve their API or there you know whatever library they have built safely
+and I mean especially this is important in public Python library and large scale production
+system and those kind of software which are meant to stay for no long right I mean like
+you know modules in MATLAB or those kind of you know science tool boxes that you build which
+is to be used again and again by user and not developed on top of that so so remember so the key
+idea to remember is that default argument allow you to add new parameters to a function while
+preserving its original behavior for existing code so this is very very important so this provides you
+stability ease of maintenance and minimal refactoring you don't have to go and change again and
+again whenever lecture library is updated or know the software on which you have no one
+defined your own application software is changed okay so this is the how things you know works
+and then there is no one very so we will continue again I mean in the next lecture from here
+onward so for today I would like to conclude lecture here thank you very much I'll see you in the next
+week

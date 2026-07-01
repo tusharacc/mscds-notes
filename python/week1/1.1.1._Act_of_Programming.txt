@@ -1,0 +1,175 @@
+Hello and welcome back to the Python Core and Applied Concepts.
+In this video we will talk about the very basics of Act of Programming.
+So we will try to understand the Act of Programming by asking some very basic questions around
+this.
+For example, let's try to understand and try to understand and answer this first question
+which is why do we write programs?
+So I mean if you think carefully why do we want to write programs?
+So we want to write programs to get some work done.
+So when we say we want to get some work done, we mean we want to get some computational
+work done by some machines.
+So that's why we want to write programs.
+Normally those tasks for which you want to write programs should be doable manually.
+You should be able to, let's say if there is no computer or no machine available to
+you, you should be able to write mechanical procedure or you should be able to do that
+computation manually using pen and paper also.
+So since these manual process may be very tiresome, they may be very cumbersome, exhausting
+and monotonous, not so interesting act.
+That's why we normally want to relegate this kind of activity of computing some functions
+or some output that you want to compute based on some, let's say data, you want to relegate
+these kind of things to computers.
+So I mean we want to write program because we want to relegate these somewhat mechanical
+and boring task to machines which can, you know, perform maybe these tasks in a much
+faster way than a human can do and also, you know, in a more precise way, it can calculate
+those things that we wanted to produce.
+So that's why we write program.
+So one thing to note here is that we can only, you know, write programs and get things
+done for those kind of tasks for which we know the recipe to do those tasks, okay.
+So if you do not know the procedure to calculate something or compute something, you cannot
+instruct computers to do those things.
+So this is one of the very important criteria that we can only, you know, write program
+to do those kind of tasks which we can, you know, manually do.
+It requires manual and manual understanding of the task and also a mechanical procedure
+to accomplish this task, then only we can relegate these to computers.
+Now coming to the next question, you know, what are we programming?
+So when we say we are writing a program or we are doing the act of programming, at the
+other end is a real computer and real computers nothing but real machines which we are trying
+to program, okay.
+So in the process of programming, we are trying to instruct these real machines to do some
+computation that we desire to, you know, perform, okay.
+So you know, so what are we programming finally?
+So we are actually programming these real machines and therefore it's very important to understand
+the interaction with this hardware properly.
+If you want to convey your intention to compute something to these computers, then, you
+should understand this process of, you know, communication in a much more precise way,
+okay.
+So this brings us to our, you know, next question, what is a program, okay.
+So a program is then a mean or a method to communicate your desire of computation to
+these real machines that we call computer, okay.
+So we can communicate our, you know, intention to compute something by writing a program,
+you know, to these computers.
+So programs are sequence of instructions, they communicate computational intent to machines
+and therefore understanding, you know, this communication is essential, you know,
+are we communicating properly what we desire to compute to these machines is essential
+to, you know, the act of programming.
+So this brings us to our, you know, final question.
+So what is a programming language?
+So as we, you know, discuss just now that we write programs to communicate our intention.
+But then, so what is the language in which we can write these programs, okay.
+So like, you know, if I want to communicate with you, I use some natural language like,
+you know, English, Hindi or any other language.
+But then if I want to communicate my intention to computer, I would like to write a program.
+But what will be the language which I use for writing this program?
+So these languages are called programming languages, okay.
+So programming languages are like natural languages, which gives us a, you know, way to communicate
+our desire, which we call, you know, program to these real machines.
+But there is a distinction between, you know, natural languages and programming languages.
+So in programming languages, we cannot be ambiguous.
+We have to be very precise.
+In natural languages, when you are talking or communicating to, you know, your friend,
+you have already, you know, built-in context in which you communicate.
+So therefore, I mean, you can afford to be a little unambiguous and still your friend
+at the other end will be able to, you know, disambiguate what you have said and make
+sense of it.
+But computers don't have a common context of, you know, communication with you.
+So whatever you want to convey, you have to be very explicit and very precise in that.
+And programming languages, you know, gives us a mean to be precise and explicit in our
+communication.
+So these are like natural languages, but these are, you know, more formal in the sense
+that they are very precise.
+There are, you know, very strict rules of what you can write and you cannot write, you
+know, in a programming language.
+And there are very, you know, strict definition of what will be the meaning of what you write
+as a valid program.
+Okay?
+So there are very precise mathematical rules to define both the structure of a valid program
+and also the meaning of a valid program.
+Okay?
+So these two, you know, aspects of programming languages are called normally syntax and
+semantics of, you know, programming languages.
+So, you know, in a summary, what is a programming language?
+It's a formal language for writing program so that we can, you know, convey our computationally
+intention to machines and this, you know, enables communication between us and computers.
+And these programming languages should be defined in such a way so that there is no ambiguity
+that we normally have in our natural languages.
+Now there, you know, the programming languages can, can be categorized in a, you know, variety
+of, you know, different level, you know, the very low level programming languages are
+those programming languages, which are very close to how machine works.
+Okay?
+So, you can communicate your intention to machines by knowing how machine actually perform these
+now operations.
+So, if you are trying to communicate your intention in that way, then you will be using
+a low level programming languages, which are like an assembly level languages, which very
+closely resemble what happens inside the real computer.
+But then for most of us, it's not that easy to understand the whole mechanism of computation
+inside a computer and being able to, you know, convey our intention in form of those
+computation.
+So, we prefer, you know, most of the programmers, you know, prefer to write programs in a high
+level programming languages where things are more, you know, close to, you know, natural
+languages.
+And it's very easy to make sense of, you know, what, you know, we are trying to communicate
+to computer and then really get the, you know, task of translating, you know, these high
+level instruction to the low level, you know, exact instruction, which machine can execute
+to interpreter or compilers.
+So, you know, this is the distance between low level and high level.
+So just to summarize in, you know, low level programming, you know, languages, we work with
+exact machines, which you can see on the, you know, left hand side and, you know, for
+that we need to understand how these exact machine work, how, you know, memory addresses
+are handled and how, you know, data flows between memory and, you know, computing units inside
+the computer.
+So, if you know exactly which instructions, I mean, in assembly language can help us trigger
+these events, then we can actually write programs in low level programming languages.
+But on the other hand, I mean, most of us normally, you know, prefer something, you know,
+like, you know, right hand side where we work with a high level programming languages.
+And these high level programming languages help you abstract out the exact details of
+this machine and you can, you know, in mind, always assume for any given programming language
+that there is an abstract machine, which is far more simpler than the real machine in
+terms of, you know, thinking.
+So, these abstract machine helps you, you know, handle most of the complexities of this
+real machine by abstracting out these registers, memory and, you know, these computations
+in form of variable and high level data structure and how those variables are, you know, manipulated
+by different instructions in program.
+So, you know, in a sense, you can reason about the final output or the result of execution
+of program correctly, but without getting bothered about what's happening at a very low
+level.
+So, if you write a program in a high level programming language, this programming languages
+give you enough feature to abstract out unnecessary, let's say, details, which is not necessary
+to, you know, think about if you're, you know, concerned about the logic of your program
+or, you know, your program being computing the logical functions on those input data,
+then you can actually focus on these high level programming languages.
+Python is one such programming languages and hence, I mean, it gives us a nice abstraction
+where we can get rid of most of these low level details and we can just focus on the
+program logic and write correct program to achieve some computational.
+So, just to summarize, low level languages interact directly with hardware, which we call
+exact machines, low level code provides you fine-grained control because, you know, exactly
+how, you know, computer works, so you can actually instruct them in their language, immediate
+language.
+So, most of the time, you can be very efficient in translating your intention to what
+machine need to do to let's say, achieve those computational desire.
+On the other hand, high level languages offer greater abstraction, right?
+We have a simpler, you know, machine which we call abstract machine and high level code
+normally emphasizes on human readability and Python is one such, you know, high level
+programming language.
+So, this is, again, the same thing in, you know, one picture if we want to say things.
+So, we are going from these exact machines, which are real machines, which will finally
+perform the computation, but in order to convey our, you know, computational desire to these
+exact machines, we don't need to always, you know, write instruction in the language,
+which is very close to these machines.
+We can write programs in a high level, you know, programming languages and all of this
+can be translated easily to these languages by the interpreter and compiler.
+So, this gives us, you know, extreme freedom and, you know, this improves our capability
+to reason about the input output behavior of program at a very high level without getting
+bothered about what's happening at the low level at a computer.
+So, this is a quick recap of what we discussed today.
+So, we program real computers, which are physical machines and therefore programs are sequence
+of instructions for, you know, these machines and these instructions in a way communicate
+our computational desire to these computers, computers.
+And normally the languages which you use for, you know, conveying this computational
+desire are called programming languages and they can be roughly categorized into low
+level programming language and high level programming languages.
+Low level languages are very close to machine, but they are very difficult to write programming.
+That's why we move to high level programming languages, which gives us, you know, enough
+abstraction to make our life easy and write, you know, meaningful complex programs which
+can be executed on these real machines.
+So, please take your time and reflect on these ideas, so we will meet in the next video
+till then, goodbye.

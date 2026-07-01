@@ -1,0 +1,176 @@
+start	end	text
+0	9720	Hello and welcome back to the Python Core and Applied Concepts.
+9720	16880	In this video we will talk about the very basics of Act of Programming.
+16880	22840	So we will try to understand the Act of Programming by asking some very basic questions around
+22840	24760	this.
+24760	31960	For example, let's try to understand and try to understand and answer this first question
+31960	36040	which is why do we write programs?
+36040	40640	So I mean if you think carefully why do we want to write programs?
+40640	44840	So we want to write programs to get some work done.
+44840	50240	So when we say we want to get some work done, we mean we want to get some computational
+50240	53720	work done by some machines.
+53720	56840	So that's why we want to write programs.
+56840	64280	Normally those tasks for which you want to write programs should be doable manually.
+64280	68560	You should be able to, let's say if there is no computer or no machine available to
+68560	74680	you, you should be able to write mechanical procedure or you should be able to do that
+74680	79000	computation manually using pen and paper also.
+79000	87280	So since these manual process may be very tiresome, they may be very cumbersome, exhausting
+87280	91520	and monotonous, not so interesting act.
+91520	97800	That's why we normally want to relegate this kind of activity of computing some functions
+97800	107640	or some output that you want to compute based on some, let's say data, you want to relegate
+107640	109960	these kind of things to computers.
+109960	115520	So I mean we want to write program because we want to relegate these somewhat mechanical
+115520	121280	and boring task to machines which can, you know, perform maybe these tasks in a much
+121280	127960	faster way than a human can do and also, you know, in a more precise way, it can calculate
+127960	129640	those things that we wanted to produce.
+129640	131440	So that's why we write program.
+131440	138440	So one thing to note here is that we can only, you know, write programs and get things
+138440	143760	done for those kind of tasks for which we know the recipe to do those tasks, okay.
+143760	149480	So if you do not know the procedure to calculate something or compute something, you cannot
+149480	151840	instruct computers to do those things.
+151840	160840	So this is one of the very important criteria that we can only, you know, write program
+160840	164720	to do those kind of tasks which we can, you know, manually do.
+164720	169240	It requires manual and manual understanding of the task and also a mechanical procedure
+169240	175560	to accomplish this task, then only we can relegate these to computers.
+175560	180200	Now coming to the next question, you know, what are we programming?
+180200	185840	So when we say we are writing a program or we are doing the act of programming, at the
+185840	191360	other end is a real computer and real computers nothing but real machines which we are trying
+191360	193000	to program, okay.
+193000	198320	So in the process of programming, we are trying to instruct these real machines to do some
+198320	202200	computation that we desire to, you know, perform, okay.
+202200	205000	So you know, so what are we programming finally?
+205000	210680	So we are actually programming these real machines and therefore it's very important to understand
+210680	212800	the interaction with this hardware properly.
+212800	220320	If you want to convey your intention to compute something to these computers, then, you
+220320	225200	should understand this process of, you know, communication in a much more precise way,
+225200	228400	okay.
+228400	233200	So this brings us to our, you know, next question, what is a program, okay.
+233200	239720	So a program is then a mean or a method to communicate your desire of computation to
+239720	242680	these real machines that we call computer, okay.
+242680	249360	So we can communicate our, you know, intention to compute something by writing a program,
+249360	255280	you know, to these computers.
+255280	262560	So programs are sequence of instructions, they communicate computational intent to machines
+262560	265720	and therefore understanding, you know, this communication is essential, you know,
+265720	270720	are we communicating properly what we desire to compute to these machines is essential
+270720	279920	to, you know, the act of programming.
+279920	282360	So this brings us to our, you know, final question.
+282360	284280	So what is a programming language?
+284280	290280	So as we, you know, discuss just now that we write programs to communicate our intention.
+290280	294920	But then, so what is the language in which we can write these programs, okay.
+294920	299520	So like, you know, if I want to communicate with you, I use some natural language like,
+299520	302440	you know, English, Hindi or any other language.
+302440	307120	But then if I want to communicate my intention to computer, I would like to write a program.
+307120	311120	But what will be the language which I use for writing this program?
+311120	313720	So these languages are called programming languages, okay.
+313720	320560	So programming languages are like natural languages, which gives us a, you know, way to communicate
+320560	325000	our desire, which we call, you know, program to these real machines.
+325000	329520	But there is a distinction between, you know, natural languages and programming languages.
+329520	332240	So in programming languages, we cannot be ambiguous.
+332240	333920	We have to be very precise.
+333920	338920	In natural languages, when you are talking or communicating to, you know, your friend,
+338920	342320	you have already, you know, built-in context in which you communicate.
+342320	346960	So therefore, I mean, you can afford to be a little unambiguous and still your friend
+346960	351240	at the other end will be able to, you know, disambiguate what you have said and make
+351240	352240	sense of it.
+352240	356600	But computers don't have a common context of, you know, communication with you.
+356600	361440	So whatever you want to convey, you have to be very explicit and very precise in that.
+361440	367520	And programming languages, you know, gives us a mean to be precise and explicit in our
+367520	368520	communication.
+368520	372360	So these are like natural languages, but these are, you know, more formal in the sense
+372360	374640	that they are very precise.
+374640	379480	There are, you know, very strict rules of what you can write and you cannot write, you
+379480	381240	know, in a programming language.
+381240	387840	And there are very, you know, strict definition of what will be the meaning of what you write
+387840	388840	as a valid program.
+388840	389840	Okay?
+389840	394840	So there are very precise mathematical rules to define both the structure of a valid program
+394840	396840	and also the meaning of a valid program.
+396840	397840	Okay?
+397840	401280	So these two, you know, aspects of programming languages are called normally syntax and
+401280	404440	semantics of, you know, programming languages.
+404440	406800	So, you know, in a summary, what is a programming language?
+406800	411880	It's a formal language for writing program so that we can, you know, convey our computationally
+411880	419440	intention to machines and this, you know, enables communication between us and computers.
+419440	423840	And these programming languages should be defined in such a way so that there is no ambiguity
+423840	427080	that we normally have in our natural languages.
+427080	432520	Now there, you know, the programming languages can, can be categorized in a, you know, variety
+432520	437920	of, you know, different level, you know, the very low level programming languages are
+437920	443240	those programming languages, which are very close to how machine works.
+443240	444240	Okay?
+444240	449920	So, you can communicate your intention to machines by knowing how machine actually perform these
+449920	450920	now operations.
+450920	456240	So, if you are trying to communicate your intention in that way, then you will be using
+456240	460920	a low level programming languages, which are like an assembly level languages, which very
+460920	464880	closely resemble what happens inside the real computer.
+464880	471160	But then for most of us, it's not that easy to understand the whole mechanism of computation
+471160	476880	inside a computer and being able to, you know, convey our intention in form of those
+476880	477880	computation.
+477880	482880	So, we prefer, you know, most of the programmers, you know, prefer to write programs in a high
+482880	488680	level programming languages where things are more, you know, close to, you know, natural
+488760	489760	languages.
+489760	494040	And it's very easy to make sense of, you know, what, you know, we are trying to communicate
+494040	498240	to computer and then really get the, you know, task of translating, you know, these high
+498240	503080	level instruction to the low level, you know, exact instruction, which machine can execute
+503080	505280	to interpreter or compilers.
+505280	510880	So, you know, this is the distance between low level and high level.
+510880	517320	So just to summarize in, you know, low level programming, you know, languages, we work with
+517320	523120	exact machines, which you can see on the, you know, left hand side and, you know, for
+523120	529320	that we need to understand how these exact machine work, how, you know, memory addresses
+529320	535120	are handled and how, you know, data flows between memory and, you know, computing units inside
+535120	536120	the computer.
+536120	541360	So, if you know exactly which instructions, I mean, in assembly language can help us trigger
+541360	546400	these events, then we can actually write programs in low level programming languages.
+546400	550640	But on the other hand, I mean, most of us normally, you know, prefer something, you know,
+550640	556000	like, you know, right hand side where we work with a high level programming languages.
+556000	561640	And these high level programming languages help you abstract out the exact details of
+561640	566880	this machine and you can, you know, in mind, always assume for any given programming language
+566880	573440	that there is an abstract machine, which is far more simpler than the real machine in
+573440	574960	terms of, you know, thinking.
+574960	581680	So, these abstract machine helps you, you know, handle most of the complexities of this
+581680	586880	real machine by abstracting out these registers, memory and, you know, these computations
+586880	591880	in form of variable and high level data structure and how those variables are, you know, manipulated
+591880	593800	by different instructions in program.
+593800	600160	So, you know, in a sense, you can reason about the final output or the result of execution
+600160	605600	of program correctly, but without getting bothered about what's happening at a very low
+605600	606600	level.
+606600	609520	So, if you write a program in a high level programming language, this programming languages
+609520	615720	give you enough feature to abstract out unnecessary, let's say, details, which is not necessary
+615720	619600	to, you know, think about if you're, you know, concerned about the logic of your program
+619600	626920	or, you know, your program being computing the logical functions on those input data,
+626920	630040	then you can actually focus on these high level programming languages.
+630040	634960	Python is one such programming languages and hence, I mean, it gives us a nice abstraction
+634960	639480	where we can get rid of most of these low level details and we can just focus on the
+639480	645160	program logic and write correct program to achieve some computational.
+645160	651800	So, just to summarize, low level languages interact directly with hardware, which we call
+651800	656840	exact machines, low level code provides you fine-grained control because, you know, exactly
+656840	661240	how, you know, computer works, so you can actually instruct them in their language, immediate
+661240	662240	language.
+662240	667000	So, most of the time, you can be very efficient in translating your intention to what
+667000	672360	machine need to do to let's say, achieve those computational desire.
+672360	676640	On the other hand, high level languages offer greater abstraction, right?
+676640	681920	We have a simpler, you know, machine which we call abstract machine and high level code
+681920	687200	normally emphasizes on human readability and Python is one such, you know, high level
+687200	689360	programming language.
+689360	695160	So, this is, again, the same thing in, you know, one picture if we want to say things.
+695160	700640	So, we are going from these exact machines, which are real machines, which will finally
+700640	706520	perform the computation, but in order to convey our, you know, computational desire to these
+706560	711160	exact machines, we don't need to always, you know, write instruction in the language,
+711160	713120	which is very close to these machines.
+713120	718760	We can write programs in a high level, you know, programming languages and all of this
+718760	722560	can be translated easily to these languages by the interpreter and compiler.
+722560	728440	So, this gives us, you know, extreme freedom and, you know, this improves our capability
+728440	734040	to reason about the input output behavior of program at a very high level without getting
+734040	741040	bothered about what's happening at the low level at a computer.
+741040	750360	So, this is a quick recap of what we discussed today.
+750360	757200	So, we program real computers, which are physical machines and therefore programs are sequence
+757200	762360	of instructions for, you know, these machines and these instructions in a way communicate
+762400	766640	our computational desire to these computers, computers.
+766640	771720	And normally the languages which you use for, you know, conveying this computational
+771720	776280	desire are called programming languages and they can be roughly categorized into low
+776280	779960	level programming language and high level programming languages.
+779960	785080	Low level languages are very close to machine, but they are very difficult to write programming.
+785080	788840	That's why we move to high level programming languages, which gives us, you know, enough
+788840	794280	abstraction to make our life easy and write, you know, meaningful complex programs which
+794280	799120	can be executed on these real machines.
+799120	807320	So, please take your time and reflect on these ideas, so we will meet in the next video
+807320	808320	till then, goodbye.

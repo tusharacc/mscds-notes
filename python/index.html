@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Python Core &amp; Applied Concepts course notes — MScDS IIIT Hyderabad. Weeks 4–5: Loops, loop invariants, sorting, and lists.">
+<meta name="description" content="Python Core &amp; Applied Concepts course notes — MScDS IIIT Hyderabad. Weeks 1–10: Foundations, expressions, reasoning, loops, sorting, lists, functions, dictionaries, recursion, and applied data science.">
 <title>Python — Course Notes</title>
 
 <!-- Scholarly fonts: Playfair Display (headings) + Lora (body) -->
@@ -36,8 +36,16 @@
   --shadow-md: 0 4px 14px rgba(28,20,16,.10), 0 2px 4px rgba(28,20,16,.06);
 
   /* Week accent colors */
-  --week-accent-1: #0369a1;
-  --week-accent-2: #7c3aed;
+  --week-accent-1:  #059669;
+  --week-accent-2:  #e11d48;
+  --week-accent-3:  #4338ca;
+  --week-accent-4:  #0369a1;
+  --week-accent-5:  #7c3aed;
+  --week-accent-6:  #ea580c;
+  --week-accent-7:  #0d9488;
+  --week-accent-8:  #b45309;
+  --week-accent-9:  #9f1239;
+  --week-accent-10: #166534;
   --code-bg: #1e1a16;
   --code-surface: #2a2420;
   --code-border: #3d3028;
@@ -149,13 +157,45 @@ main { flex: 1; max-width: 900px; padding: 3rem 2.5rem 6rem; }
 .week-banner .week-meta {
   font-size: .8rem; opacity: .6; margin-top: .3rem; font-style: italic;
 }
+.week-section[data-week="1"] .week-banner {
+  background: linear-gradient(135deg, #d1fae5 0%, #f0fdf9 70%);
+  border-color: var(--week-accent-1); color: #065f46;
+}
+.week-section[data-week="2"] .week-banner {
+  background: linear-gradient(135deg, #ffe4e6 0%, #fff1f2 70%);
+  border-color: var(--week-accent-2); color: #881337;
+}
+.week-section[data-week="3"] .week-banner {
+  background: linear-gradient(135deg, #e0e7ff 0%, #eef2ff 70%);
+  border-color: var(--week-accent-3); color: #312e81;
+}
 .week-section[data-week="4"] .week-banner {
   background: linear-gradient(135deg, #dbeafe 0%, #eff9ff 70%);
-  border-color: var(--week-accent-1); color: #0c4a6e;
+  border-color: var(--week-accent-4); color: #0c4a6e;
 }
 .week-section[data-week="5"] .week-banner {
   background: linear-gradient(135deg, #ede9fe 0%, #f5f3ff 70%);
-  border-color: var(--week-accent-2); color: #3b0764;
+  border-color: var(--week-accent-5); color: #3b0764;
+}
+.week-section[data-week="6"] .week-banner {
+  background: linear-gradient(135deg, #ffedd5 0%, #fff7ed 70%);
+  border-color: var(--week-accent-6); color: #7c2d12;
+}
+.week-section[data-week="7"] .week-banner {
+  background: linear-gradient(135deg, #ccfbf1 0%, #f0fdfa 70%);
+  border-color: var(--week-accent-7); color: #134e4a;
+}
+.week-section[data-week="8"] .week-banner {
+  background: linear-gradient(135deg, #fef3c7 0%, #fffbeb 70%);
+  border-color: var(--week-accent-8); color: #78350f;
+}
+.week-section[data-week="9"] .week-banner {
+  background: linear-gradient(135deg, #ffe4e6 0%, #fff1f2 70%);
+  border-color: var(--week-accent-9); color: #881337;
+}
+.week-section[data-week="10"] .week-banner {
+  background: linear-gradient(135deg, #dcfce7 0%, #f0fdf4 70%);
+  border-color: var(--week-accent-10); color: #14532d;
 }
 
 /* ── Concept Sections ── */
@@ -450,6 +490,44 @@ tr:nth-child(even) td { background: rgba(229,217,200,.18); }
   <div class="toc-week">
     <div class="toc-week-header">
       <div class="toc-week-dot" style="background:var(--week-accent-1)"></div>
+      Week 1 · Foundations
+    </div>
+    <ol>
+      <li><a href="#act-of-programming">Act of Programming</a></li>
+      <li><a href="#syntax-semantics">Syntax &amp; Semantics</a></li>
+      <li><a href="#programming-errors">Programming Errors</a></li>
+      <li><a href="#python-features">Python Language Features</a></li>
+      <li><a href="#variables">Variables as Abstractions</a></li>
+      <li><a href="#type-system">Python Type System</a></li>
+    </ol>
+  </div>
+
+  <div class="toc-week">
+    <div class="toc-week-header">
+      <div class="toc-week-dot" style="background:var(--week-accent-2)"></div>
+      Week 2 · Expressions
+    </div>
+    <ol>
+      <li><a href="#expressions-operators">Expressions &amp; Operators</a></li>
+      <li><a href="#walrus">Walrus &amp; Assignment Expressions</a></li>
+      <li><a href="#lambda">Lambda Expressions</a></li>
+    </ol>
+  </div>
+
+  <div class="toc-week">
+    <div class="toc-week-header">
+      <div class="toc-week-dot" style="background:var(--week-accent-3)"></div>
+      Week 3 · Reasoning
+    </div>
+    <ol>
+      <li><a href="#reasoning-assignment">Reasoning About Assignment</a></li>
+      <li><a href="#conditional-branching">Conditional Branching</a></li>
+    </ol>
+  </div>
+
+  <div class="toc-week">
+    <div class="toc-week-header">
+      <div class="toc-week-dot" style="background:var(--week-accent-4)"></div>
       Week 4 · Loops
     </div>
     <ol>
@@ -463,7 +541,7 @@ tr:nth-child(even) td { background: rgba(229,217,200,.18); }
 
   <div class="toc-week">
     <div class="toc-week-header">
-      <div class="toc-week-dot" style="background:var(--week-accent-2)"></div>
+      <div class="toc-week-dot" style="background:var(--week-accent-5)"></div>
       Week 5 · Sorting &amp; Lists
     </div>
     <ol>
@@ -475,6 +553,61 @@ tr:nth-child(even) td { background: rgba(229,217,200,.18); }
       <li><a href="#lists-create">Lists — Creation &amp; Access</a></li>
       <li><a href="#lists-modify">Lists — Modification</a></li>
       <li><a href="#lists-search">Lists — Searching &amp; Membership</a></li>
+    </ol>
+  </div>
+
+  <div class="toc-week">
+    <div class="toc-week-header">
+      <div class="toc-week-dot" style="background:var(--week-accent-6)"></div>
+      Week 6 · Lists II &amp; Functions
+    </div>
+    <ol>
+      <li><a href="#list-sorting">List Sorting</a></li>
+      <li><a href="#shallow-deep-copy">Shallow vs Deep Copy</a></li>
+      <li><a href="#functions-abstraction">Functions as Abstraction</a></li>
+    </ol>
+  </div>
+
+  <div class="toc-week">
+    <div class="toc-week-header">
+      <div class="toc-week-dot" style="background:var(--week-accent-7)"></div>
+      Week 7 · Function Deep Dive
+    </div>
+    <ol>
+      <li><a href="#default-arguments">Default Arguments</a></li>
+      <li><a href="#return-values">Return Values</a></li>
+    </ol>
+  </div>
+
+  <div class="toc-week">
+    <div class="toc-week-header">
+      <div class="toc-week-dot" style="background:var(--week-accent-8)"></div>
+      Week 8 · Dictionaries
+    </div>
+    <ol>
+      <li><a href="#dictionaries">Dictionaries in Python</a></li>
+    </ol>
+  </div>
+
+  <div class="toc-week">
+    <div class="toc-week-header">
+      <div class="toc-week-dot" style="background:var(--week-accent-9)"></div>
+      Week 9 · Recursion &amp; Trees
+    </div>
+    <ol>
+      <li><a href="#bst">Binary Search Trees</a></li>
+      <li><a href="#recursive-bst">Recursive BST Insert</a></li>
+      <li><a href="#avl-trees">AVL Height-Balanced Trees</a></li>
+    </ol>
+  </div>
+
+  <div class="toc-week">
+    <div class="toc-week-header">
+      <div class="toc-week-dot" style="background:var(--week-accent-10)"></div>
+      Week 10 · Applied Project
+    </div>
+    <ol>
+      <li><a href="#spectral-soil">Spectral Soil Modeler</a></li>
     </ol>
   </div>
 
@@ -491,7 +624,7 @@ tr:nth-child(even) td { background: rgba(229,217,200,.18); }
 
 <header class="page-header">
   <h1>Python Core &amp; Applied Concepts</h1>
-  <p class="subtitle">MScDS &nbsp;·&nbsp; IIIT Hyderabad &nbsp;·&nbsp; Weeks 4–5: Loops, reasoning, sorting, and lists</p>
+  <p class="subtitle">MScDS &nbsp;·&nbsp; IIIT Hyderabad &nbsp;·&nbsp; Weeks 1–10: Foundations · Expressions · Reasoning · Loops · Sorting · Lists · Functions · Dictionaries · Recursion · Applied DS</p>
   <div class="legend">
     <div class="legend-item"><div class="legend-dot" style="background:var(--blue-badge)"></div> Definition</div>
     <div class="legend-item"><div class="legend-dot" style="background:var(--amber-badge)"></div> Rule / Theorem</div>
@@ -500,6 +633,529 @@ tr:nth-child(even) td { background: rgba(229,217,200,.18); }
     <div class="legend-item"><div class="legend-dot" style="background:var(--grey-badge)"></div> Practice / Exercise</div>
   </div>
 </header>
+
+<!-- ╔═══════════════════════════════════════════════════════════════════╗
+     ║  WEEK 1 · PYTHON FOUNDATIONS                                      ║
+     ╚═══════════════════════════════════════════════════════════════════╝ -->
+<section class="week-section" id="week1" data-week="1">
+  <div class="week-banner">
+    <div>
+      <div class="week-tag">Week 1</div>
+      <h2>Python Foundations</h2>
+      <div class="week-meta">6 concepts &nbsp;·&nbsp; 2 lectures &nbsp;·&nbsp; Act of programming · Syntax &amp; semantics · Errors · Features · Variables · Type system</div>
+    </div>
+  </div>
+
+  <!-- §1 ─ ACT OF PROGRAMMING ──────────────────────────────────────── -->
+  <section class="concept-section" id="act-of-programming">
+    <h3>1 · The Act of Programming</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">What is Programming?</div>
+      <p>Programming is the act of <strong>delegating mechanical, repetitive tasks to machines</strong>. A program is a precise set of instructions that tells a real physical machine — a CPU — exactly what operations to carry out, in what order.</p>
+      <ul class="steps">
+        <li><strong>Mechanical delegation:</strong> Humans design the algorithm; the machine executes it tirelessly and without error (if instructions are correct).</li>
+        <li><strong>Programs are instructions for real machines:</strong> Even high-level Python code ultimately drives physical hardware — memory reads, arithmetic units, I/O devices.</li>
+      </ul>
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Concept</span>
+      <div class="block-title">Language Levels — Low vs High</div>
+      <div class="tbl-scroll">
+        <table>
+          <thead><tr><th>Level</th><th>Proximity to hardware</th><th>Examples</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Low-level</strong></td>
+              <td>Close — instructions map almost directly to CPU operations</td>
+              <td>Assembly, machine code</td>
+            </tr>
+            <tr>
+              <td><strong>High-level</strong></td>
+              <td>Abstracted — one statement may generate many machine instructions</td>
+              <td>Python, Java, C++</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>High-level languages let programmers reason about <em>what</em> to compute rather than <em>how</em> the hardware computes it. The language implementation (compiler or interpreter) handles the translation.</p>
+    </div>
+  </section>
+
+  <!-- §2 ─ SYNTAX & SEMANTICS ──────────────────────────────────────── -->
+  <section class="concept-section" id="syntax-semantics">
+    <h3>2 · Syntax &amp; Semantics</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Syntax — The Grammar of a Language</div>
+      <p><strong>Syntax</strong> defines the legal structure of programs — which sequences of tokens form valid statements. Python's syntax is described by a <strong>BNF grammar</strong> (Backus–Naur Form), a formal notation that specifies every valid construct.</p>
+      <p style="margin-top:.5rem">A <em>syntax error</em> means the text you wrote does not conform to the grammar. The interpreter refuses to run the program at all.</p>
+    </div>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Semantics — The Meaning of a Program</div>
+      <p><strong>Semantics</strong> is the <em>effect</em> a syntactically valid program has on an <strong>abstract machine</strong> — a mathematical model of computation that specifies what each construct does without reference to any particular hardware.</p>
+      <p style="margin-top:.5rem">Python's reference semantics are defined by <strong>CPython</strong>, the canonical C implementation. Other implementations (PyPy, Jython) must match CPython's observable behaviour.</p>
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Concept</span>
+      <div class="block-title">IDEs &amp; Environments</div>
+      <p>Python code can be written in any text editor, but specialised environments offer error highlighting, auto-complete, and debugging.</p>
+      <ul class="steps">
+        <li><strong>Jupyter Notebook</strong> — preferred for data science; cells mix code, output, and prose.</li>
+        <li><strong>PyCharm</strong> — full IDE with type checking, refactoring tools.</li>
+        <li><strong>VS Code</strong> — lightweight editor with Python extension ecosystem.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- §3 ─ PROGRAMMING ERRORS ─────────────────────────────────────── -->
+  <section class="concept-section" id="programming-errors">
+    <h3>3 · Programming Errors — Syntax, Runtime, Semantic</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Three Classes of Error</div>
+      <div class="tbl-scroll">
+        <table>
+          <thead><tr><th>Error Type</th><th>When detected</th><th>Example</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Syntax</strong></td>
+              <td>Before execution — caught by the interpreter/parser</td>
+              <td><code>if x = 5:</code> (should be <code>==</code>)</td>
+            </tr>
+            <tr>
+              <td><strong>Runtime</strong></td>
+              <td>During execution — program crashes with an exception</td>
+              <td><code>1 / 0</code> → <code>ZeroDivisionError</code></td>
+            </tr>
+            <tr>
+              <td><strong>Semantic</strong></td>
+              <td>Never — program runs without crashing but produces wrong results</td>
+              <td>Computing average but dividing by <code>n+1</code> instead of <code>n</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Rule</span>
+      <div class="block-title">Semantic Errors Are the Hardest</div>
+      <p>Syntax and runtime errors are <em>self-announcing</em> — the interpreter tells you something is wrong. Semantic errors are silent; the program happily returns an incorrect value. Detecting them requires <strong>reasoning about the program's specification</strong> and comparing intended vs actual behaviour.</p>
+      <div class="invariant-box" style="margin-top:.7rem">
+        <div class="inv-label">The Programmer as LLM Validator</div>
+        <p>When you use a large language model to generate code, your primary job is to <strong>validate correctness</strong> — especially semantic correctness. The model can produce syntactically valid, crash-free code that silently computes the wrong thing. Critical thinking about specifications is non-negotiable.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- §4 ─ PYTHON LANGUAGE FEATURES ───────────────────────────────── -->
+  <section class="concept-section" id="python-features">
+    <h3>4 · Python Language Features</h3>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Concept</span>
+      <div class="block-title">The Zen of Python</div>
+      <p>Python's design philosophy is codified in <strong>PEP 20</strong> ("The Zen of Python"). Three core tenets:</p>
+      <ul class="steps">
+        <li><strong>Readability counts</strong> — code is read far more often than it is written.</li>
+        <li><strong>Simple is better than complex</strong> — prefer the straightforward solution.</li>
+        <li><strong>Explicit is better than implicit</strong> — make your intentions obvious.</li>
+      </ul>
+      <div class="code-wrap" style="margin-top:.75rem">
+        <div class="code-label">Python</div>
+        <pre><code><span class="kw">import</span> this   <span class="cm"># prints the full Zen of Python</span></code></pre>
+      </div>
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Concept</span>
+      <div class="block-title">Python is Multi-Paradigm</div>
+      <p>Python supports three programming paradigms, letting you choose the style that best fits the problem:</p>
+      <ul class="steps">
+        <li><strong>Imperative / Procedural</strong> — step-by-step instructions (loops, conditionals)</li>
+        <li><strong>Object-Oriented</strong> — data + behaviour bundled into classes and objects</li>
+        <li><strong>Functional</strong> — functions as first-class values, <code>map</code>, <code>filter</code>, lambda</li>
+      </ul>
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Rule</span>
+      <div class="block-title">Python's Disadvantages &amp; Mitigations</div>
+      <p>Python is convenient but carries real costs:</p>
+      <ul class="steps">
+        <li><strong>Energy:</strong> Benchmarks show Python uses up to <em>76× more energy</em> than equivalent C code.</li>
+        <li><strong>Speed:</strong> Interpreted execution and dynamic dispatch are slower than compiled, statically typed languages.</li>
+        <li><strong>Optimisation limits:</strong> Dynamic typing prevents many compiler optimisations.</li>
+      </ul>
+      <p style="margin-top:.5rem"><strong>Mitigations:</strong> <em>type hints</em> (PEP 484) improve tooling and documentation; <em>Numba JIT</em> compiles numerical code to machine instructions at runtime; <em>Cython</em> compiles Python-like code to C extensions.</p>
+    </div>
+  </section>
+
+  <!-- §5 ─ VARIABLES AS ABSTRACTIONS ──────────────────────────────── -->
+  <section class="concept-section" id="variables">
+    <h3>5 · Variables as Abstractions</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Variables — Named Aliases for Memory Locations</div>
+      <p>A <strong>variable</strong> is a named alias that refers to an object stored in memory. The name provides a human-readable abstraction over a raw memory address.</p>
+      <div class="code-wrap" style="margin-top:.75rem">
+        <div class="code-label">Python — variables and identity</div>
+        <pre><code>x = <span class="nu">42</span>
+<span class="fn">print</span>(<span class="fn">id</span>(x))    <span class="cm"># unique integer identity (memory address in CPython)</span>
+<span class="fn">print</span>(<span class="fn">type</span>(x))  <span class="cm"># &lt;class 'int'&gt; — type lives with the object, not the variable</span></code></pre>
+      </div>
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Rule</span>
+      <div class="block-title">Object References, Not Memory Pointers</div>
+      <p>Python variables do <em>not</em> store values directly. They store <strong>references</strong> (pointers) to objects on the heap. Two variables can reference the same object.</p>
+      <div class="code-wrap" style="margin-top:.75rem">
+        <div class="code-label">Python — reference semantics</div>
+        <pre><code>a = [<span class="nu">1</span>, <span class="nu">2</span>, <span class="nu">3</span>]
+b = a          <span class="cm"># b refers to the same list object as a</span>
+b[<span class="nu">0</span>] = <span class="nu">99</span>
+<span class="fn">print</span>(a)       <span class="cm"># → [99, 2, 3]  ← a also changed!</span>
+<span class="fn">print</span>(a <span class="kw">is</span> b) <span class="cm"># → True  ← same object</span></code></pre>
+      </div>
+      <p style="margin-top:.5rem">Python has <strong>35 reserved keywords</strong> — words like <code>if</code>, <code>for</code>, <code>return</code> — that cannot be used as variable names.</p>
+    </div>
+  </section>
+
+  <!-- §6 ─ PYTHON TYPE SYSTEM ─────────────────────────────────────── -->
+  <section class="concept-section" id="type-system">
+    <h3>6 · Python Type System</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Dynamic Typing</div>
+      <p>Python is <strong>dynamically typed</strong>: the <em>type lives with the object</em>, not the variable. A variable can be rebound to an object of a completely different type at any time.</p>
+      <div class="code-wrap" style="margin-top:.75rem">
+        <div class="code-label">Python — dynamic typing</div>
+        <pre><code>x = <span class="nu">42</span>         <span class="cm"># x refers to an int</span>
+x = <span class="st">"hello"</span>    <span class="cm"># x now refers to a str — perfectly valid in Python</span>
+x = [<span class="nu">1</span>, <span class="nu">2</span>]    <span class="cm"># now a list</span></code></pre>
+      </div>
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Rule</span>
+      <div class="block-title">Strong Typing — No Implicit Coercion</div>
+      <p>Although Python is dynamically typed, it is <strong>strongly typed</strong>: Python <em>never</em> silently converts one type to another to satisfy an operation.</p>
+      <div class="code-wrap" style="margin-top:.75rem">
+        <div class="code-label">Python — strong typing</div>
+        <pre><code><span class="st">"hello"</span> + <span class="nu">5</span>   <span class="cm"># → TypeError: can only concatenate str (not "int") to str</span>
+<span class="st">"hello"</span> + <span class="fn">str</span>(<span class="nu">5</span>)  <span class="cm"># → "hello5"  (explicit conversion)</span></code></pre>
+      </div>
+      <p style="margin-top:.5rem">Compare with JavaScript, which would silently coerce <code>5</code> to <code>"5"</code>. Python's strong typing surfaces type mismatches as explicit errors, making bugs easier to find.</p>
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Concept</span>
+      <div class="block-title">Optional Type Hints (PEP 484)</div>
+      <p>Python 3.5+ allows <strong>type hints</strong> — annotations that document the expected types of variables, parameters, and return values. They are <em>ignored at runtime</em> but used by static analysers (mypy, Pyright) and IDEs.</p>
+      <div class="code-wrap" style="margin-top:.75rem">
+        <div class="code-label">Python — type hints</div>
+        <pre><code><span class="kw">def</span> <span class="fn">add</span>(x: <span class="op">int</span>, y: <span class="op">int</span>) -&gt; <span class="op">int</span>:
+    <span class="kw">return</span> x + y
+
+name: <span class="op">str</span> = <span class="st">"Alice"</span>
+scores: <span class="op">list</span>[<span class="op">int</span>] = [<span class="nu">90</span>, <span class="nu">85</span>, <span class="nu">92</span>]</code></pre>
+      </div>
+      <p style="margin-top:.5rem">Type hints narrow the gap between Python's flexibility and the safety of statically typed languages — without changing runtime behaviour.</p>
+    </div>
+  </section>
+
+</section><!-- /week1 -->
+
+<!-- ╔═══════════════════════════════════════════════════════════════════╗
+     ║  WEEK 2 · EXPRESSIONS & ANONYMOUS FUNCTIONS                       ║
+     ╚═══════════════════════════════════════════════════════════════════╝ -->
+<section class="week-section" id="week2" data-week="2">
+  <div class="week-banner">
+    <div>
+      <div class="week-tag">Week 2</div>
+      <h2>Expressions &amp; Anonymous Functions</h2>
+      <div class="week-meta">3 concepts &nbsp;·&nbsp; 1 lecture &nbsp;·&nbsp; Operators · Walrus operator · Lambda expressions</div>
+    </div>
+  </div>
+
+  <!-- §7 ─ EXPRESSIONS & OPERATORS ────────────────────────────────── -->
+  <section class="concept-section" id="expressions-operators">
+    <h3>7 · Expressions &amp; Operators</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">What is an Expression?</div>
+      <p>An <strong>expression</strong> is any piece of code that evaluates to a <em>value</em>. Every literal, variable, function call, and operator combination is an expression. Expressions can be combined to form more complex expressions.</p>
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Concept</span>
+      <div class="block-title">Operator Categories</div>
+      <div class="tbl-scroll">
+        <table>
+          <thead><tr><th>Category</th><th>Operators</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Arithmetic</strong></td>
+              <td><code>+  -  *  /  //  %  **</code></td>
+              <td><code>//</code> integer division; <code>**</code> exponentiation</td>
+            </tr>
+            <tr>
+              <td><strong>Comparison</strong></td>
+              <td><code>==  !=  &lt;  &gt;  &lt;=  &gt;=</code></td>
+              <td>Always return <code>True</code> or <code>False</code></td>
+            </tr>
+            <tr>
+              <td><strong>Logical</strong></td>
+              <td><code>and  or  not</code></td>
+              <td>Short-circuit evaluation; return one of the operands</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top:.5rem"><strong>Operator overloading</strong> — the same symbol means different things for different types: <code>"a" + "b"</code> concatenates, <code>1 + 2</code> adds. Python dispatches via dunder methods (<code>__add__</code>, etc.).</p>
+    </div>
+  </section>
+
+  <!-- §8 ─ WALRUS & ASSIGNMENT EXPRESSIONS ─────────────────────────── -->
+  <section class="concept-section" id="walrus">
+    <h3>8 · Walrus &amp; Assignment Expressions</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Expression vs Statement</div>
+      <p>The key distinction in Python:</p>
+      <ul class="steps">
+        <li><strong>Assignment <code>=</code> is a <em>statement</em></strong> — it performs an action but has no value. You cannot use it inside another expression.</li>
+        <li><strong>Walrus <code>:=</code> is an <em>expression</em></strong> — it both assigns and evaluates to the assigned value, so it can appear inside conditions, list comprehensions, etc.</li>
+      </ul>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Walrus Operator in Practice</div>
+      <div class="code-wrap">
+        <div class="code-label">Python — walrus operator</div>
+        <pre><code><span class="cm"># Normal assignment — statement, no value</span>
+result = (x := <span class="nu">5</span>)   <span class="cm"># x = 5 AND result = 5 simultaneously</span>
+<span class="fn">print</span>(x, result)    <span class="cm"># → 5  5</span>
+
+<span class="cm"># SyntaxError — = is a statement, cannot be used as expression</span>
+<span class="cm"># result = (x = 5)   ← invalid!</span>
+
+<span class="cm"># Chain assignment</span>
+a = b = c = <span class="nu">5</span>        <span class="cm"># all three names refer to the same int object 5</span>
+
+<span class="cm"># Tuple unpacking</span>
+x, y = <span class="nu">1</span>, <span class="nu">2</span>          <span class="cm"># x=1, y=2 — simultaneous assignment</span></code></pre>
+      </div>
+
+      <details>
+        <summary>Walrus in a while loop — a practical use</summary>
+        <div class="code-wrap">
+          <div class="code-label">Python — walrus avoids duplicate call</div>
+          <pre><code><span class="cm"># Without walrus — read() called twice (redundant)</span>
+data = <span class="fn">read_chunk</span>()
+<span class="kw">while</span> data:
+    <span class="fn">process</span>(data)
+    data = <span class="fn">read_chunk</span>()
+
+<span class="cm"># With walrus — read() called once per iteration</span>
+<span class="kw">while</span> data := <span class="fn">read_chunk</span>():
+    <span class="fn">process</span>(data)</code></pre>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- §9 ─ LAMBDA EXPRESSIONS ─────────────────────────────────────── -->
+  <section class="concept-section" id="lambda">
+    <h3>9 · Lambda Expressions</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Lambda — Anonymous Single-Expression Function</div>
+      <p>A <strong>lambda</strong> creates a small anonymous function with a single expression as its body. No <code>return</code> keyword — the expression's value is implicitly returned.</p>
+      <div class="code-wrap" style="margin-top:.75rem">
+        <div class="code-label">Python Syntax</div>
+        <pre><code><span class="kw">lambda</span> parameters: expression</code></pre>
+      </div>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Lambda with map() and filter()</div>
+      <div class="code-wrap">
+        <div class="code-label">Python — lambda in higher-order functions</div>
+        <pre><code>numbers = [<span class="nu">1</span>, <span class="nu">2</span>, <span class="nu">3</span>, <span class="nu">4</span>, <span class="nu">5</span>]
+
+<span class="cm"># map: apply function to every element</span>
+squared = <span class="fn">list</span>(<span class="fn">map</span>(<span class="kw">lambda</span> x: x**<span class="nu">2</span>, numbers))
+<span class="cm"># → [1, 4, 9, 16, 25]</span>
+
+<span class="cm"># filter: keep elements where function returns True</span>
+evens = <span class="fn">list</span>(<span class="fn">filter</span>(<span class="kw">lambda</span> x: x % <span class="nu">2</span> == <span class="nu">0</span>, numbers))
+<span class="cm"># → [2, 4]</span></code></pre>
+      </div>
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Concept</span>
+      <div class="block-title">Function Factories — Lambda Returning Lambda</div>
+      <p>Lambdas can return other lambdas, creating specialised functions on the fly.</p>
+      <div class="code-wrap" style="margin-top:.75rem">
+        <div class="code-label">Python — function factory</div>
+        <pre><code><span class="cm"># Factory that creates a multiplier for any factor</span>
+multiplier = <span class="kw">lambda</span> factor: <span class="kw">lambda</span> x: x * factor
+
+double = <span class="fn">multiplier</span>(<span class="nu">2</span>)
+triple = <span class="fn">multiplier</span>(<span class="nu">3</span>)
+
+<span class="fn">double</span>(<span class="nu">5</span>)   <span class="cm"># → 10</span>
+<span class="fn">triple</span>(<span class="nu">5</span>)   <span class="cm"># → 15</span></code></pre>
+      </div>
+      <div class="invariant-box" style="margin-top:.75rem">
+        <div class="inv-label">Lambda vs def</div>
+        <p>Use <code>lambda</code> for short, inline functions passed as arguments. Use <code>def</code> when the function has multiple statements, needs a docstring, or will be reused by name. Overuse of lambda reduces readability.</p>
+      </div>
+    </div>
+  </section>
+
+</section><!-- /week2 -->
+
+<!-- ╔═══════════════════════════════════════════════════════════════════╗
+     ║  WEEK 3 · REASONING ABOUT CODE                                    ║
+     ╚═══════════════════════════════════════════════════════════════════╝ -->
+<section class="week-section" id="week3" data-week="3">
+  <div class="week-banner">
+    <div>
+      <div class="week-tag">Week 3</div>
+      <h2>Reasoning About Code</h2>
+      <div class="week-meta">2 concepts &nbsp;·&nbsp; 1 lecture &nbsp;·&nbsp; Assignment semantics · Assertions · Conditional branching</div>
+    </div>
+  </div>
+
+  <!-- §10 ─ REASONING ABOUT ASSIGNMENT ────────────────────────────── -->
+  <section class="concept-section" id="reasoning-assignment">
+    <h3>10 · Reasoning About Assignment</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Two-Step Semantics of Assignment</div>
+      <p>Every assignment statement has exactly two steps:</p>
+      <ol class="steps">
+        <li><strong>Evaluate</strong> the right-hand side (RHS) to produce a value.</li>
+        <li><strong>Bind</strong> the left-hand side name (LHS) to that value.</li>
+      </ol>
+      <p style="margin-top:.5rem">Assignment is <strong>destructive</strong>: the old binding is lost. After <code>x = 5; x = 10</code>, the value 5 is gone from <code>x</code>.</p>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Swap Pattern &amp; Ghost Variables</div>
+      <div class="code-wrap">
+        <div class="code-label">Python — swap via temp variable</div>
+        <pre><code>a, b = <span class="nu">3</span>, <span class="nu">7</span>
+
+<span class="cm"># Swap using a temporary variable</span>
+temp = a    <span class="cm"># save a's current value</span>
+a = b
+b = temp
+<span class="cm"># Now a=7, b=3</span>
+
+<span class="cm"># Pythonic one-liner (tuple unpacking)</span>
+a, b = b, a</code></pre>
+      </div>
+      <p style="margin-top:.5rem">A <strong>ghost variable</strong> is an auxiliary name used in a specification or assertion to capture the <em>initial value</em> of a variable before the assignment overwrites it — useful when writing post-conditions that reference both old and new states.</p>
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Rule</span>
+      <div class="block-title">Correct vs Strong Specification</div>
+      <p>When writing an assertion (post-condition) for a statement, aim to be both <em>correct</em> and <em>strong</em>:</p>
+      <ul class="steps">
+        <li><strong>Correct:</strong> the assertion is actually true after the statement executes.</li>
+        <li><strong>Strong:</strong> the assertion captures everything we know — it is as specific as possible. A weak correct assertion like <code>x &gt; 0</code> when you know <code>x == 5</code> is correct but loses information.</li>
+      </ul>
+      <div class="code-wrap" style="margin-top:.75rem">
+        <div class="code-label">Python — assertions as post-conditions</div>
+        <pre><code>x = <span class="nu">0</span>
+x = x + <span class="nu">1</span>
+<span class="kw">assert</span> x == <span class="nu">1</span>        <span class="cm"># strong and correct</span>
+<span class="kw">assert</span> x &gt; <span class="nu">0</span>         <span class="cm"># correct but weak — loses the exact value</span></code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- §11 ─ CONDITIONAL BRANCHING ─────────────────────────────────── -->
+  <section class="concept-section" id="conditional-branching">
+    <h3>11 · Conditional Branching</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">if / elif / else Syntax</div>
+      <p>Conditional branching selects one branch of code to execute based on Boolean conditions evaluated at runtime.</p>
+      <div class="code-wrap" style="margin-top:.75rem">
+        <div class="code-label">Python Syntax</div>
+        <pre><code><span class="kw">if</span> condition_1:
+    &lt;branch 1&gt;
+<span class="kw">elif</span> condition_2:
+    &lt;branch 2&gt;
+<span class="kw">else</span>:
+    &lt;default branch&gt;</code></pre>
+      </div>
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Rule</span>
+      <div class="block-title">Compound Implicit Conditions</div>
+      <p>When Python reaches an <code>elif</code> or <code>else</code>, it is <em>known</em> that all prior conditions were <code>False</code>. This gives each branch an implicit compound pre-condition.</p>
+      <div class="invariant-box" style="margin-top:.7rem">
+        <div class="inv-label">Implicit conditions when entering elif / else</div>
+        <p>When entering the <code>elif condition_2</code> branch: it is implicitly known that <code>¬condition_1 ∧ condition_2</code>.</p>
+        <p style="margin-top:.3rem">When entering the <code>else</code> branch: it is implicitly known that <code>¬condition_1 ∧ ¬condition_2</code>.</p>
+      </div>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">max_of_three with Assertions</div>
+      <div class="code-wrap">
+        <div class="code-label">Python — max_of_three with post-condition assertions</div>
+        <pre><code><span class="kw">def</span> <span class="fn">max_of_three</span>(a, b, c):
+    <span class="kw">if</span> a &gt;= b <span class="kw">and</span> a &gt;= c:
+        result = a
+        <span class="kw">assert</span> result == a <span class="kw">and</span> result &gt;= b <span class="kw">and</span> result &gt;= c
+    <span class="kw">elif</span> b &gt;= c:          <span class="cm"># implicit: a < b or a < c, AND b >= c</span>
+        result = b
+        <span class="kw">assert</span> result == b <span class="kw">and</span> result &gt;= c
+    <span class="kw">else</span>:                 <span class="cm"># implicit: c > a and c > b</span>
+        result = c
+        <span class="kw">assert</span> result == c
+
+    <span class="cm"># Final post-condition: result is the maximum</span>
+    <span class="kw">assert</span> result &gt;= a <span class="kw">and</span> result &gt;= b <span class="kw">and</span> result &gt;= c
+    <span class="kw">return</span> result</code></pre>
+      </div>
+      <details>
+        <summary>Why the elif condition suffices without re-checking a</summary>
+        <p>When we reach <code>elif b &gt;= c</code>, we already know the first condition failed — meaning <code>a &lt; b</code> or <code>a &lt; c</code>. Combined with <code>b &gt;= c</code>, this guarantees <code>b</code> is at least as large as both <code>a</code> and <code>c</code>. We do not need to write <code>elif b &gt;= a and b &gt;= c</code> because the failed first condition has already handled the <code>a</code> comparison implicitly.</p>
+      </details>
+    </div>
+  </section>
+
+</section><!-- /week3 -->
 
 <!-- ╔═══════════════════════════════════════════════════════════════════╗
      ║  WEEK 4 · LOOPS & REASONING                                       ║
@@ -513,9 +1169,9 @@ tr:nth-child(even) td { background: rgba(229,217,200,.18); }
     </div>
   </div>
 
-  <!-- §1 ─ WHILE LOOPS ─────────────────────────────────────────────── -->
+  <!-- §12 ─ WHILE LOOPS ────────────────────────────────────────────── -->
   <section class="concept-section" id="while-loops">
-    <h3>1 · While Loops — Motivation &amp; Mechanics</h3>
+    <h3>12 · While Loops — Motivation &amp; Mechanics</h3>
 
     <div class="def-block">
       <span class="block-badge">Definition</span>
@@ -580,9 +1236,9 @@ tr:nth-child(even) td { background: rgba(229,217,200,.18); }
     </div>
   </section>
 
-  <!-- §2 ─ LOOP INVARIANTS (WHILE) ─────────────────────────────────── -->
+  <!-- §13 ─ LOOP INVARIANTS (WHILE) ────────────────────────────────── -->
   <section class="concept-section" id="loop-invariants-while">
-    <h3>2 · Loop Invariants for While Loops</h3>
+    <h3>13 · Loop Invariants for While Loops</h3>
 
     <div class="def-block">
       <span class="block-badge">Definition</span>
@@ -657,9 +1313,9 @@ tr:nth-child(even) td { background: rgba(229,217,200,.18); }
     </div>
   </section>
 
-  <!-- §3 ─ FOR LOOPS ───────────────────────────────────────────────── -->
+  <!-- §14 ─ FOR LOOPS ──────────────────────────────────────────────── -->
   <section class="concept-section" id="for-loops">
-    <h3>3 · For Loops &amp; the <code>range()</code> Function</h3>
+    <h3>14 · For Loops &amp; the <code>range()</code> Function</h3>
 
     <div class="def-block">
       <span class="block-badge">Definition</span>
@@ -737,9 +1393,9 @@ tr:nth-child(even) td { background: rgba(229,217,200,.18); }
     </div>
   </section>
 
-  <!-- §4 ─ FOR VS WHILE ───────────────────────────────────────────── -->
+  <!-- §15 ─ FOR VS WHILE ──────────────────────────────────────────── -->
   <section class="concept-section" id="for-vs-while">
-    <h3>4 · For vs While — Which to Choose?</h3>
+    <h3>15 · For vs While — Which to Choose?</h3>
 
     <div class="tbl-scroll">
       <table>
@@ -788,9 +1444,9 @@ tr:nth-child(even) td { background: rgba(229,217,200,.18); }
     </div>
   </section>
 
-  <!-- §5 ─ isSorted ──────────────────────────────────────────────── -->
+  <!-- §16 ─ isSorted ─────────────────────────────────────────────── -->
   <section class="concept-section" id="issorted">
-    <h3>5 · isSorted — A For Loop with Loop Invariants</h3>
+    <h3>16 · isSorted — A For Loop with Loop Invariants</h3>
 
     <div class="example-block">
       <span class="block-badge">Example</span>
@@ -870,9 +1526,9 @@ tr:nth-child(even) td { background: rgba(229,217,200,.18); }
     </div>
   </div>
 
-  <!-- §6 ─ BUBBLE SORT IDEA ────────────────────────────────────────── -->
+  <!-- §17 ─ BUBBLE SORT IDEA ───────────────────────────────────────── -->
   <section class="concept-section" id="bubble-sort-idea">
-    <h3>6 · Bubble Sort — The Core Idea</h3>
+    <h3>17 · Bubble Sort — The Core Idea</h3>
 
     <div class="def-block">
       <span class="block-badge">Definition</span>
@@ -922,9 +1578,9 @@ tr:nth-child(even) td { background: rgba(229,217,200,.18); }
     </div>
   </section>
 
-  <!-- §7 ─ ONE BUBBLE PASS ────────────────────────────────────────── -->
+  <!-- §18 ─ ONE BUBBLE PASS ───────────────────────────────────────── -->
   <section class="concept-section" id="one-pass">
-    <h3>7 · Implementing One Bubble Pass</h3>
+    <h3>18 · Implementing One Bubble Pass</h3>
 
     <div class="example-block">
       <span class="block-badge">Example</span>
@@ -956,9 +1612,9 @@ tr:nth-child(even) td { background: rgba(229,217,200,.18); }
     </div>
   </section>
 
-  <!-- §8 ─ FULL BUBBLE SORT ────────────────────────────────────────── -->
+  <!-- §19 ─ FULL BUBBLE SORT ───────────────────────────────────────── -->
   <section class="concept-section" id="bubble-sort-full">
-    <h3>8 · Full Bubble Sort — Naive Version</h3>
+    <h3>19 · Full Bubble Sort — Naive Version</h3>
 
     <div class="example-block">
       <span class="block-badge">Example</span>
@@ -981,9 +1637,9 @@ tr:nth-child(even) td { background: rgba(229,217,200,.18); }
     </div>
   </section>
 
-  <!-- §9 ─ OPTIMIZED BUBBLE SORT ──────────────────────────────────── -->
+  <!-- §20 ─ OPTIMIZED BUBBLE SORT ─────────────────────────────────── -->
   <section class="concept-section" id="bubble-sort-optimized">
-    <h3>9 · Optimized Bubble Sort — Early Termination</h3>
+    <h3>20 · Optimized Bubble Sort — Early Termination</h3>
 
     <div class="formula-block">
       <span class="block-badge">Key Concept</span>
@@ -1040,9 +1696,9 @@ tr:nth-child(even) td { background: rgba(229,217,200,.18); }
     </div>
   </section>
 
-  <!-- §10 ─ BUBBLE SORT LOOP INVARIANTS ──────────────────────────── -->
+  <!-- §21 ─ BUBBLE SORT LOOP INVARIANTS ──────────────────────────── -->
   <section class="concept-section" id="bubble-invariants">
-    <h3>10 · Loop Invariants for Bubble Sort</h3>
+    <h3>21 · Loop Invariants for Bubble Sort</h3>
 
     <div class="formula-block">
       <span class="block-badge">Key Concept</span>
@@ -1106,9 +1762,9 @@ tr:nth-child(even) td { background: rgba(229,217,200,.18); }
     </div>
   </section>
 
-  <!-- §11 ─ LISTS — CREATION & ACCESS ─────────────────────────────── -->
+  <!-- §22 ─ LISTS — CREATION & ACCESS ─────────────────────────────── -->
   <section class="concept-section" id="lists-create">
-    <h3>11 · Python Lists — Creation &amp; Access</h3>
+    <h3>22 · Python Lists — Creation &amp; Access</h3>
 
     <div class="def-block">
       <span class="block-badge">Definition</span>
@@ -1172,9 +1828,9 @@ my_list[-<span class="nu">3</span>:]      <span class="cm"># → [3, 4, 5]</span
     </div>
   </section>
 
-  <!-- §12 ─ LISTS — MODIFICATION ──────────────────────────────────── -->
+  <!-- §23 ─ LISTS — MODIFICATION ──────────────────────────────────── -->
   <section class="concept-section" id="lists-modify">
-    <h3>12 · Python Lists — Adding &amp; Removing Elements</h3>
+    <h3>23 · Python Lists — Adding &amp; Removing Elements</h3>
 
     <div class="formula-block">
       <span class="block-badge">Key Concept</span>
@@ -1238,9 +1894,9 @@ my_list.<span class="fn">clear</span>()
     </div>
   </section>
 
-  <!-- §13 ─ LISTS — SEARCHING ─────────────────────────────────────── -->
+  <!-- §24 ─ LISTS — SEARCHING ─────────────────────────────────────── -->
   <section class="concept-section" id="lists-search">
-    <h3>13 · Python Lists — Searching &amp; Membership</h3>
+    <h3>24 · Python Lists — Searching &amp; Membership</h3>
 
     <div class="formula-block">
       <span class="block-badge">Key Concept</span>
@@ -1316,6 +1972,695 @@ numbers.<span class="fn">index</span>(<span class="nu">2</span>, <span class="nu
   </section>
 
 </section><!-- /week5 -->
+
+<!-- ╔═══════════════════════════════════════════════════════════════════╗
+     ║  WEEK 6 · LISTS II & FUNCTIONS AS ABSTRACTION                     ║
+     ╚═══════════════════════════════════════════════════════════════════╝ -->
+<section class="week-section" id="week6" data-week="6">
+  <div class="week-banner">
+    <div>
+      <div class="week-tag">Week 6</div>
+      <h2>Lists II &amp; Functions as Abstraction</h2>
+      <div class="week-meta">3 concepts &nbsp;·&nbsp; 2 lectures &nbsp;·&nbsp; List sorting · Shallow vs deep copy · Functions: reuse, decomposition, abstraction</div>
+    </div>
+  </div>
+
+  <!-- §25 ─ LIST SORTING ───────────────────────────────────────────── -->
+  <section class="concept-section" id="list-sorting">
+    <h3>25 · List Sorting</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">sort() vs sorted() — In-Place vs Non-Mutating</div>
+      <div class="tbl-scroll">
+        <table>
+          <thead><tr><th>Feature</th><th><code>list.sort()</code></th><th><code>sorted()</code></th></tr></thead>
+          <tbody>
+            <tr><td>Mutates original?</td><td>Yes — in-place</td><td>No — returns new list</td></tr>
+            <tr><td>Return value</td><td><code>None</code></td><td>New sorted list</td></tr>
+            <tr><td>Works on</td><td>Lists only</td><td>Any iterable</td></tr>
+            <tr><td>Side effect</td><td>Yes</td><td>No</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="code-wrap" style="margin-top:.75rem">
+        <div class="code-label">Python — sort vs sorted</div>
+        <pre><code>numbers = [<span class="nu">3</span>, <span class="nu">1</span>, <span class="nu">4</span>, <span class="nu">1</span>, <span class="nu">5</span>]
+
+<span class="cm"># sorted() — non-mutating</span>
+result = <span class="fn">sorted</span>(numbers)           <span class="cm"># → [1, 1, 3, 4, 5]</span>
+<span class="fn">print</span>(numbers)                      <span class="cm"># → [3, 1, 4, 1, 5]  unchanged</span>
+
+<span class="cm"># sort() — in-place, returns None</span>
+numbers.<span class="fn">sort</span>()
+<span class="fn">print</span>(numbers)                      <span class="cm"># → [1, 1, 3, 4, 5]  mutated</span>
+
+<span class="cm"># Reverse sort</span>
+numbers.<span class="fn">sort</span>(reverse=<span class="kw">True</span>)          <span class="cm"># → [5, 4, 3, 1, 1]</span></code></pre>
+      </div>
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Rule</span>
+      <div class="block-title">Python's Sorting Algorithm — Powersort</div>
+      <p>Python 3.11+ uses <strong>Powersort</strong>, an adaptive merge sort. Key properties:</p>
+      <ul class="steps">
+        <li><strong>Time complexity:</strong> O(n log n) worst case.</li>
+        <li><strong>Adaptive:</strong> exploits existing runs (sorted subsequences) in the data — nearly sorted input sorts faster.</li>
+        <li><strong>Stable:</strong> equal elements preserve their original relative order.</li>
+      </ul>
+      <p style="margin-top:.5rem">Powersort replaces Timsort as the default in Python 3.11+, offering better worst-case guarantees while retaining adaptiveness.</p>
+    </div>
+  </section>
+
+  <!-- §26 ─ SHALLOW VS DEEP COPY ──────────────────────────────────── -->
+  <section class="concept-section" id="shallow-deep-copy">
+    <h3>26 · Shallow vs Deep Copy</h3>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Concept</span>
+      <div class="block-title">Four Ways to "Copy" a List</div>
+      <div class="code-wrap">
+        <div class="code-label">Python — copy methods compared</div>
+        <pre><code>original = [<span class="nu">1</span>, [<span class="nu">2</span>, <span class="nu">3</span>], <span class="nu">4</span>]
+
+copy1 = original.<span class="fn">copy</span>()   <span class="cm"># shallow copy</span>
+copy2 = original[:]        <span class="cm"># shallow copy via slice</span>
+copy3 = <span class="fn">list</span>(original)    <span class="cm"># shallow copy via constructor</span>
+copy4 = original           <span class="cm"># NOT a copy — just another alias!</span>
+
+<span class="fn">print</span>(original <span class="kw">is</span> copy4)  <span class="cm"># → True  (same object)</span>
+<span class="fn">print</span>(original <span class="kw">is</span> copy1)  <span class="cm"># → False (different object)</span></code></pre>
+      </div>
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Rule</span>
+      <div class="block-title">Shallow Copy — Copies References, Not Nested Objects</div>
+      <p>A <strong>shallow copy</strong> creates a new outer list, but the elements it contains are still <em>the same objects</em> as the original. For nested mutable objects (inner lists, dicts), a change in one is visible through both.</p>
+      <div class="code-wrap" style="margin-top:.75rem">
+        <div class="code-label">Python — shallow copy danger</div>
+        <pre><code>original = [<span class="nu">1</span>, [<span class="nu">2</span>, <span class="nu">3</span>], <span class="nu">4</span>]
+shallow  = original.<span class="fn">copy</span>()
+
+shallow[<span class="nu">1</span>].<span class="fn">append</span>(<span class="nu">99</span>)    <span class="cm"># mutate the nested list</span>
+<span class="fn">print</span>(original)           <span class="cm"># → [1, [2, 3, 99], 4]  ← also changed!</span></code></pre>
+      </div>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Deep Copy — Fully Independent Clone</div>
+      <p>Use <code>copy.deepcopy()</code> to recursively duplicate every nested object, creating a completely independent copy.</p>
+      <div class="code-wrap">
+        <div class="code-label">Python — deep copy</div>
+        <pre><code><span class="kw">import</span> copy
+
+original = [<span class="nu">1</span>, [<span class="nu">2</span>, <span class="nu">3</span>], <span class="nu">4</span>]
+deep = copy.<span class="fn">deepcopy</span>(original)
+
+deep[<span class="nu">1</span>].<span class="fn">append</span>(<span class="nu">99</span>)
+<span class="fn">print</span>(original)   <span class="cm"># → [1, [2, 3], 4]  unchanged</span>
+<span class="fn">print</span>(deep)       <span class="cm"># → [1, [2, 3, 99], 4]</span></code></pre>
+      </div>
+      <div class="invariant-box" style="margin-top:.75rem">
+        <div class="inv-label">When to use each</div>
+        <p>Use <strong>shallow copy</strong> when your list contains only immutable elements (ints, strings, tuples) — no nesting risk. Use <strong>deep copy</strong> when the list contains mutable nested objects and you need a fully independent duplicate.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- §27 ─ FUNCTIONS AS ABSTRACTION ──────────────────────────────── -->
+  <section class="concept-section" id="functions-abstraction">
+    <h3>27 · Functions as Abstraction</h3>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Concept</span>
+      <div class="block-title">The Three Pillars of Functions</div>
+      <ol class="steps">
+        <li><strong>Reusability:</strong> write once, use everywhere. A function encapsulates logic so it can be called from multiple places without duplication.</li>
+        <li><strong>Decomposition:</strong> divide-and-conquer. Break complex problems into smaller, independently solvable sub-problems.</li>
+        <li><strong>Abstraction:</strong> the caller uses the function's <em>interface</em> (name + docstring), not its implementation. The function is a black box.</li>
+      </ol>
+    </div>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Function Syntax &amp; Docstrings</div>
+      <div class="code-wrap">
+        <div class="code-label">Python — function definition</div>
+        <pre><code><span class="kw">def</span> <span class="fn">function_name</span>(param1, param2):
+    <span class="st">"""Docstring: describes what this function does, its parameters, and return value.
+    Callers should read this — not the implementation."""</span>
+    <span class="cm"># function body</span>
+    <span class="kw">return</span> value</code></pre>
+      </div>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Positional vs Keyword Arguments</div>
+      <div class="code-wrap">
+        <div class="code-label">Python — argument passing styles</div>
+        <pre><code><span class="kw">def</span> <span class="fn">describe_pet</span>(animal_type, pet_name):
+    <span class="fn">print</span>(<span class="st">f"I have a {animal_type} named {pet_name}."</span>)
+
+<span class="cm"># Positional — order matters</span>
+<span class="fn">describe_pet</span>(<span class="st">'dog'</span>, <span class="st">'Rex'</span>)
+
+<span class="cm"># Keyword — order doesn't matter</span>
+<span class="fn">describe_pet</span>(pet_name=<span class="st">'Rex'</span>, animal_type=<span class="st">'dog'</span>)
+
+<span class="cm"># Mixed — positional must come BEFORE keyword</span>
+<span class="fn">describe_pet</span>(<span class="st">'dog'</span>, pet_name=<span class="st">'Rex'</span>)</code></pre>
+      </div>
+    </div>
+  </section>
+
+</section><!-- /week6 -->
+
+<!-- ╔═══════════════════════════════════════════════════════════════════╗
+     ║  WEEK 7 · FUNCTION DEEP DIVE                                      ║
+     ╚═══════════════════════════════════════════════════════════════════╝ -->
+<section class="week-section" id="week7" data-week="7">
+  <div class="week-banner">
+    <div>
+      <div class="week-tag">Week 7</div>
+      <h2>Function Deep Dive</h2>
+      <div class="week-meta">2 concepts &nbsp;·&nbsp; 2 lectures &nbsp;·&nbsp; Default arguments · Mutable default pitfall · Return values · Tuple returns</div>
+    </div>
+  </div>
+
+  <!-- §28 ─ DEFAULT ARGUMENTS ─────────────────────────────────────── -->
+  <section class="concept-section" id="default-arguments">
+    <h3>28 · Default Arguments</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Default Parameter Values</div>
+      <p>A parameter can have a <strong>default value</strong>. If the caller omits the argument, the default is used. Defaults make functions backward-compatible when new parameters are added.</p>
+      <div class="code-wrap" style="margin-top:.75rem">
+        <div class="code-label">Python — default arguments</div>
+        <pre><code><span class="kw">def</span> <span class="fn">greet</span>(name, greeting=<span class="st">"Hello"</span>):
+    <span class="fn">print</span>(<span class="st">f"{greeting}, {name}!"</span>)
+
+<span class="fn">greet</span>(<span class="st">"Alice"</span>)            <span class="cm"># → Hello, Alice!</span>
+<span class="fn">greet</span>(<span class="st">"Bob"</span>, <span class="st">"Hi"</span>)        <span class="cm"># → Hi, Bob!</span></code></pre>
+      </div>
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Rule</span>
+      <div class="block-title">The Mutable Default Pitfall</div>
+      <p>Default values are <strong>evaluated once at function definition time</strong>, not on each call. For immutable defaults (int, str, tuple) this is harmless. For <em>mutable</em> defaults (list, dict), the same object is shared across all calls — mutations accumulate!</p>
+      <div class="code-wrap" style="margin-top:.75rem">
+        <div class="code-label">Python — mutable default bug</div>
+        <pre><code><span class="kw">def</span> <span class="fn">append_item</span>(item, lst=[]):  <span class="cm"># lst is created ONCE at definition</span>
+    lst.<span class="fn">append</span>(item)
+    <span class="kw">return</span> lst
+
+<span class="fn">append_item</span>(<span class="nu">1</span>)   <span class="cm"># → [1]</span>
+<span class="fn">append_item</span>(<span class="nu">2</span>)   <span class="cm"># → [1, 2]  ← accumulated from previous call!</span>
+<span class="fn">append_item</span>(<span class="nu">3</span>)   <span class="cm"># → [1, 2, 3]</span></code></pre>
+      </div>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">The None Sentinel Fix</div>
+      <p>The canonical solution: use <code>None</code> as the default, then create a fresh object inside the function body if the argument is absent.</p>
+      <div class="code-wrap">
+        <div class="code-label">Python — None sentinel pattern</div>
+        <pre><code><span class="kw">def</span> <span class="fn">append_item</span>(item, lst=<span class="kw">None</span>):
+    <span class="kw">if</span> lst <span class="kw">is</span> <span class="kw">None</span>:
+        lst = []          <span class="cm"># fresh list created on EACH call</span>
+    lst.<span class="fn">append</span>(item)
+    <span class="kw">return</span> lst
+
+<span class="fn">append_item</span>(<span class="nu">1</span>)   <span class="cm"># → [1]</span>
+<span class="fn">append_item</span>(<span class="nu">2</span>)   <span class="cm"># → [2]  ← correct: independent fresh list</span></code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- §29 ─ RETURN VALUES ──────────────────────────────────────────── -->
+  <section class="concept-section" id="return-values">
+    <h3>29 · Return Values</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Explicit vs Implicit Return</div>
+      <div class="tbl-scroll">
+        <table>
+          <thead><tr><th>Form</th><th>Returns</th><th>Example</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><code>return expr</code></td>
+              <td>The value of <code>expr</code></td>
+              <td><code>return x + 1</code></td>
+            </tr>
+            <tr>
+              <td><code>return</code></td>
+              <td><code>None</code></td>
+              <td>Early exit, no value</td>
+            </tr>
+            <tr>
+              <td>No <code>return</code></td>
+              <td><code>None</code> (implicit)</td>
+              <td>Procedures / side-effect functions</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Concept</span>
+      <div class="block-title">Returning Multiple Values via Tuples</div>
+      <p>Python functions can return multiple values — they are automatically packed into a <strong>tuple</strong>. The caller can unpack them with tuple assignment.</p>
+      <div class="code-wrap" style="margin-top:.75rem">
+        <div class="code-label">Python — multiple return values</div>
+        <pre><code><span class="kw">def</span> <span class="fn">analyze_scores</span>(scores):
+    <span class="kw">return</span> <span class="fn">sum</span>(scores) / <span class="fn">len</span>(scores), <span class="fn">max</span>(scores), <span class="fn">min</span>(scores)
+
+<span class="cm"># Tuple unpacking</span>
+avg, high, low = <span class="fn">analyze_scores</span>([<span class="nu">80</span>, <span class="nu">95</span>, <span class="nu">70</span>, <span class="nu">88</span>])
+<span class="fn">print</span>(avg, high, low)   <span class="cm"># → 83.25  95  70</span></code></pre>
+      </div>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Early Return for Input Validation</div>
+      <p>Multiple <code>return</code> statements are valid — only one executes per call. Early returns are a clean way to handle edge cases without deep nesting.</p>
+      <div class="code-wrap">
+        <div class="code-label">Python — early return pattern</div>
+        <pre><code><span class="kw">def</span> <span class="fn">safe_divide</span>(a, b):
+    <span class="kw">if</span> b == <span class="nu">0</span>:
+        <span class="kw">return</span> <span class="kw">None</span>           <span class="cm"># guard clause — exit immediately</span>
+    <span class="kw">return</span> a / b
+
+<span class="fn">safe_divide</span>(<span class="nu">10</span>, <span class="nu">2</span>)    <span class="cm"># → 5.0</span>
+<span class="fn">safe_divide</span>(<span class="nu">10</span>, <span class="nu">0</span>)    <span class="cm"># → None  (no crash)</span></code></pre>
+      </div>
+    </div>
+  </section>
+
+</section><!-- /week7 -->
+
+<!-- ╔═══════════════════════════════════════════════════════════════════╗
+     ║  WEEK 8 · DICTIONARIES                                            ║
+     ╚═══════════════════════════════════════════════════════════════════╝ -->
+<section class="week-section" id="week8" data-week="8">
+  <div class="week-banner">
+    <div>
+      <div class="week-tag">Week 8</div>
+      <h2>Dictionaries</h2>
+      <div class="week-meta">1 concept &nbsp;·&nbsp; 1 lecture &nbsp;·&nbsp; Key-value store · Hashable keys · Access · Update · Iteration</div>
+    </div>
+  </div>
+
+  <!-- §30 ─ DICTIONARIES ───────────────────────────────────────────── -->
+  <section class="concept-section" id="dictionaries">
+    <h3>30 · Dictionaries in Python</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">What is a Dictionary?</div>
+      <p>A <strong>dictionary</strong> stores <em>key-value pairs</em>. Each key maps to exactly one value. Dictionaries are <em>mutable</em>, <em>ordered</em> (insertion order preserved since Python 3.7), and support O(1) average-case lookup.</p>
+      <div class="code-wrap" style="margin-top:.75rem">
+        <div class="code-label">Python — creating dictionaries</div>
+        <pre><code><span class="cm"># Literal syntax</span>
+person = {<span class="st">"name"</span>: <span class="st">"Alice"</span>, <span class="st">"age"</span>: <span class="nu">30</span>}
+
+<span class="cm"># dict() constructor with keyword arguments</span>
+person = <span class="fn">dict</span>(name=<span class="st">"Alice"</span>, age=<span class="nu">30</span>)
+
+<span class="cm"># Empty dictionary</span>
+empty = {}
+empty = <span class="fn">dict</span>()</code></pre>
+      </div>
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Rule</span>
+      <div class="block-title">Keys Must Be Hashable (Immutable)</div>
+      <p>Dictionary keys must be <strong>hashable</strong> — their hash value must not change during their lifetime. This means:</p>
+      <ul class="steps">
+        <li><strong>Valid keys:</strong> <code>str</code>, <code>int</code>, <code>float</code>, <code>bool</code>, <code>tuple</code> (of immutables)</li>
+        <li><strong>Invalid keys:</strong> <code>list</code>, <code>dict</code>, <code>set</code> — all mutable, all unhashable</li>
+      </ul>
+      <p style="margin-top:.5rem">Values can be <em>any</em> type — mutable or immutable.</p>
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Concept</span>
+      <div class="block-title">Access, Update &amp; Remove</div>
+      <div class="code-wrap">
+        <div class="code-label">Python — dictionary operations</div>
+        <pre><code>d = {<span class="st">"name"</span>: <span class="st">"Alice"</span>, <span class="st">"age"</span>: <span class="nu">30</span>}
+
+<span class="cm"># Access — raises KeyError if key absent</span>
+d[<span class="st">"name"</span>]                    <span class="cm"># → "Alice"</span>
+
+<span class="cm"># Safe access — returns None (or default) if absent</span>
+d.<span class="fn">get</span>(<span class="st">"height"</span>)              <span class="cm"># → None</span>
+d.<span class="fn">get</span>(<span class="st">"height"</span>, <span class="nu">170</span>)         <span class="cm"># → 170 (default)</span>
+
+<span class="cm"># Add or update</span>
+d[<span class="st">"email"</span>] = <span class="st">"alice@x.com"</span>   <span class="cm"># add new key</span>
+d[<span class="st">"age"</span>] = <span class="nu">31</span>                 <span class="cm"># update existing key</span>
+d.<span class="fn">update</span>({<span class="st">"city"</span>: <span class="st">"Hyd"</span>, <span class="st">"age"</span>: <span class="nu">32</span>})  <span class="cm"># bulk update</span>
+
+<span class="cm"># Remove</span>
+d.<span class="fn">pop</span>(<span class="st">"email"</span>)               <span class="cm"># remove key, return value</span>
+<span class="kw">del</span> d[<span class="st">"city"</span>]                 <span class="cm"># remove key</span>
+d.<span class="fn">clear</span>()                     <span class="cm"># remove all keys</span></code></pre>
+      </div>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Iterating a Dictionary</div>
+      <div class="code-wrap">
+        <div class="code-label">Python — iteration patterns</div>
+        <pre><code>scores = {<span class="st">"Alice"</span>: <span class="nu">90</span>, <span class="st">"Bob"</span>: <span class="nu">85</span>, <span class="st">"Carol"</span>: <span class="nu">92</span>}
+
+<span class="cm"># Iterate over keys (default)</span>
+<span class="kw">for</span> name <span class="kw">in</span> scores:
+    <span class="fn">print</span>(name)
+
+<span class="cm"># Iterate over values</span>
+<span class="kw">for</span> score <span class="kw">in</span> scores.<span class="fn">values</span>():
+    <span class="fn">print</span>(score)
+
+<span class="cm"># Iterate over key-value pairs</span>
+<span class="kw">for</span> name, score <span class="kw">in</span> scores.<span class="fn">items</span>():
+    <span class="fn">print</span>(<span class="st">f"{name}: {score}"</span>)</code></pre>
+      </div>
+      <div class="invariant-box" style="margin-top:.75rem">
+        <div class="inv-label">Dict vs List — When to use which</div>
+        <p>Use a <strong>list</strong> when you access elements by numeric position. Use a <strong>dict</strong> when you access by a meaningful label (name, ID, attribute). Dicts are self-documenting — <code>person["age"]</code> is clearer than <code>person[1]</code>.</p>
+      </div>
+    </div>
+
+    <div class="practice-block">
+      <span class="block-badge">Practice</span>
+      <div class="block-title">Dictionary Operations — Quick Exercise</div>
+      <p>Given <code>inventory = {"apples": 5, "bananas": 3, "oranges": 8}</code>, write code to:</p>
+      <ol class="steps">
+        <li>Get the number of bananas safely (use <code>.get()</code>).</li>
+        <li>Add "grapes" with count 12.</li>
+        <li>Update the apple count to 10.</li>
+        <li>Remove "bananas" and capture the removed value.</li>
+        <li>Print each fruit and its count on its own line.</li>
+      </ol>
+    </div>
+  </section>
+
+</section><!-- /week8 -->
+
+<!-- ╔═══════════════════════════════════════════════════════════════════╗
+     ║  WEEK 9 · RECURSION & BINARY SEARCH TREES                         ║
+     ╚═══════════════════════════════════════════════════════════════════╝ -->
+<section class="week-section" id="week9" data-week="9">
+  <div class="week-banner">
+    <div>
+      <div class="week-tag">Week 9</div>
+      <h2>Recursion &amp; Binary Search Trees</h2>
+      <div class="week-meta">3 concepts &nbsp;·&nbsp; 2 lectures &nbsp;·&nbsp; BST definition · Recursive insertion · Call stack · AVL height-balanced trees</div>
+    </div>
+  </div>
+
+  <!-- §31 ─ BINARY SEARCH TREES ───────────────────────────────────── -->
+  <section class="concept-section" id="bst">
+    <h3>31 · Binary Search Trees</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Binary Search Tree (BST)</div>
+      <p>A <strong>Binary Search Tree</strong> is a tree where every node has at most two children, and the following <em>ordering property</em> holds recursively:</p>
+      <div class="invariant-box" style="margin-top:.7rem">
+        <div class="inv-label">BST Ordering Property</div>
+        <p>For every node <em>N</em>:</p>
+        <ul class="steps">
+          <li>All values in <em>N</em>'s <strong>left subtree</strong> are <strong>less than</strong> <em>N</em>'s value.</li>
+          <li>All values in <em>N</em>'s <strong>right subtree</strong> are <strong>greater than</strong> <em>N</em>'s value.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Concept</span>
+      <div class="block-title">Representing a Node as a Dictionary</div>
+      <div class="code-wrap">
+        <div class="code-label">Python — BST node representation</div>
+        <pre><code><span class="cm"># A node is a dict with three keys</span>
+node = {
+    <span class="st">"value"</span>: <span class="nu">5</span>,
+    <span class="st">"left"</span>:  <span class="kw">None</span>,   <span class="cm"># left child (None = empty subtree)</span>
+    <span class="st">"right"</span>: <span class="kw">None</span>    <span class="cm"># right child</span>
+}</code></pre>
+      </div>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">BST Insertion — Algorithm Walk-through</div>
+      <p>Insert the value 4 into a BST that already contains 5, 3, 7:</p>
+      <details open>
+        <summary>Step-by-step insertion of 4</summary>
+        <ol class="steps">
+          <li>Start at root (5). Is 4 &lt; 5? Yes → go left.</li>
+          <li>At node 3. Is 4 &lt; 3? No. Is 4 &gt; 3? Yes → go right.</li>
+          <li>Right child of 3 is <code>None</code> → insert new node here.</li>
+          <li>New node: <code>{"value": 4, "left": None, "right": None}</code>.</li>
+        </ol>
+      </details>
+    </div>
+  </section>
+
+  <!-- §32 ─ RECURSIVE BST INSERT ──────────────────────────────────── -->
+  <section class="concept-section" id="recursive-bst">
+    <h3>32 · Recursive BST Insert</h3>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">bst_insert — Recursive Implementation</div>
+      <div class="code-wrap">
+        <div class="code-label">Python — bst_insert</div>
+        <pre><code><span class="kw">def</span> <span class="fn">bst_insert</span>(root, val):
+    <span class="cm"># Base case: empty position found — create new node</span>
+    <span class="kw">if</span> root <span class="kw">is</span> <span class="kw">None</span>:
+        <span class="kw">return</span> {<span class="st">"value"</span>: val, <span class="st">"left"</span>: <span class="kw">None</span>, <span class="st">"right"</span>: <span class="kw">None</span>}
+
+    <span class="cm"># Recursive step: decide which subtree to descend into</span>
+    <span class="kw">if</span> val &lt; root[<span class="st">"value"</span>]:
+        root[<span class="st">"left"</span>] = <span class="fn">bst_insert</span>(root[<span class="st">"left"</span>], val)
+    <span class="kw">else</span>:
+        root[<span class="st">"right"</span>] = <span class="fn">bst_insert</span>(root[<span class="st">"right"</span>], val)
+
+    <span class="kw">return</span> root   <span class="cm"># return (possibly modified) current node</span>
+
+
+<span class="cm"># Build a BST by inserting values</span>
+root = <span class="kw">None</span>
+<span class="kw">for</span> v <span class="kw">in</span> [<span class="nu">5</span>, <span class="nu">3</span>, <span class="nu">7</span>, <span class="nu">1</span>, <span class="nu">4</span>]:
+    root = <span class="fn">bst_insert</span>(root, v)</code></pre>
+      </div>
+
+      <details open>
+        <summary>Call stack walk-through for inserting 4</summary>
+        <ol class="steps">
+          <li><code>bst_insert(root=5_node, 4)</code> — 4 &lt; 5, so calls <code>bst_insert(3_node, 4)</code> and suspends.</li>
+          <li><code>bst_insert(root=3_node, 4)</code> — 4 &gt; 3, so calls <code>bst_insert(None, 4)</code> and suspends.</li>
+          <li><code>bst_insert(root=None, 4)</code> — base case hit. Creates new node, returns it.</li>
+          <li>Level 2 resumes: sets <code>3_node["right"] = new_node</code>, returns <code>3_node</code>.</li>
+          <li>Level 1 resumes: sets <code>5_node["left"] = 3_node</code> (unchanged), returns <code>5_node</code>.</li>
+        </ol>
+      </details>
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Rule</span>
+      <div class="block-title">Recursion Pattern</div>
+      <p>A <strong>recursive function</strong> calls itself. Every correct recursive function has:</p>
+      <ol class="steps">
+        <li><strong>Base case:</strong> the simplest input where the answer is known directly (no recursive call). For BST: <code>root is None</code>.</li>
+        <li><strong>Recursive step:</strong> reduce the problem to a smaller version of itself and call the function again. For BST: descend one level, then call on the subtree.</li>
+      </ol>
+      <p style="margin-top:.5rem">Each call is suspended on the <em>call stack</em> until its child call returns. When the base case returns, each suspended call resumes in reverse order.</p>
+    </div>
+  </section>
+
+  <!-- §33 ─ AVL HEIGHT-BALANCED TREES ──────────────────────────────── -->
+  <section class="concept-section" id="avl-trees">
+    <h3>33 · AVL Height-Balanced Trees</h3>
+
+    <div class="axiom-block">
+      <span class="block-badge">Rule</span>
+      <div class="block-title">The BST Skew Problem</div>
+      <p>Inserting values in sorted order into a regular BST produces a degenerate <em>skewed</em> tree — essentially a linked list. Height becomes O(n), eliminating the O(log n) search advantage entirely.</p>
+      <div class="code-wrap" style="margin-top:.75rem">
+        <div class="code-label">Example — inserting 1, 2, 3, 4, 5 in order</div>
+        <pre><code><span class="cm"># Results in a right-skewed tree:</span>
+<span class="cm"># 1</span>
+<span class="cm">#  \</span>
+<span class="cm">#   2</span>
+<span class="cm">#    \</span>
+<span class="cm">#     3</span>
+<span class="cm">#      \</span>
+<span class="cm">#       4  ...  height = n, search = O(n)</span></code></pre>
+      </div>
+    </div>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">AVL Tree &amp; Balance Factor</div>
+      <p>An <strong>AVL tree</strong> (Adelson-Velsky &amp; Landis, 1962) is a self-balancing BST. After every insertion or deletion, it automatically restores height balance via <em>rotations</em>.</p>
+      <div class="invariant-box" style="margin-top:.7rem">
+        <div class="inv-label">AVL Invariant</div>
+        <p><strong>Balance factor</strong> = height(left subtree) − height(right subtree)</p>
+        <p style="margin-top:.3rem">For every node in an AVL tree: balance factor ∈ {−1, 0, +1}</p>
+      </div>
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Concept</span>
+      <div class="block-title">Four Rotation Cases</div>
+      <div class="tbl-scroll">
+        <table>
+          <thead><tr><th>Case</th><th>Imbalance pattern</th><th>Fix</th></tr></thead>
+          <tbody>
+            <tr><td><strong>LL</strong></td><td>Left-heavy, left child left-heavy</td><td>Right rotation on root</td></tr>
+            <tr><td><strong>RR</strong></td><td>Right-heavy, right child right-heavy</td><td>Left rotation on root</td></tr>
+            <tr><td><strong>LR</strong></td><td>Left-heavy, left child right-heavy</td><td>Left rotation on left child, then right rotation on root</td></tr>
+            <tr><td><strong>RL</strong></td><td>Right-heavy, right child left-heavy</td><td>Right rotation on right child, then left rotation on root</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="practice-block">
+      <span class="block-badge">Practice</span>
+      <div class="block-title">Assignment — Implement AVL Insert</div>
+      <p>Implement the following functions (each builds on the previous):</p>
+      <ol class="steps">
+        <li><code>create_node(val)</code> — create a node dict with <code>value</code>, <code>left</code>, <code>right</code>, <code>height</code> fields.</li>
+        <li><code>get_height(node)</code> — return node's height; return −1 if <code>None</code>.</li>
+        <li><code>get_balance_factor(node)</code> — return height(left) − height(right).</li>
+        <li><code>update_height(node)</code> — recompute and store node's height.</li>
+        <li><code>rotate_left(node)</code> — perform a left rotation, return new root.</li>
+        <li><code>rotate_right(node)</code> — perform a right rotation, return new root.</li>
+        <li><code>avl_insert(root, val)</code> — insert, rebalance with appropriate rotation.</li>
+        <li><code>search(root, val)</code> — return <code>True</code> if value exists in the tree.</li>
+      </ol>
+      <p style="margin-top:.5rem">Test with worst-case insertion order (sorted sequence) and verify the tree height stays O(log n).</p>
+    </div>
+  </section>
+
+</section><!-- /week9 -->
+
+<!-- ╔═══════════════════════════════════════════════════════════════════╗
+     ║  WEEK 10 · APPLIED PROJECT: SPECTRAL SOIL MODELER                 ║
+     ╚═══════════════════════════════════════════════════════════════════╝ -->
+<section class="week-section" id="week10" data-week="10">
+  <div class="week-banner">
+    <div>
+      <div class="week-tag">Week 10</div>
+      <h2>Applied Project: Spectral Soil Modeler</h2>
+      <div class="week-meta">1 concept &nbsp;·&nbsp; 1 lecture &nbsp;·&nbsp; Hyperspectral imagery · Soil organic carbon · ML pipeline · NumPy · Pandas · scikit-learn</div>
+    </div>
+  </div>
+
+  <!-- §34 ─ SPECTRAL SOIL MODELER ─────────────────────────────────── -->
+  <section class="concept-section" id="spectral-soil">
+    <h3>34 · Spectral Soil Modeler — End-to-End Data Science Project</h3>
+
+    <div class="def-block">
+      <span class="block-badge">Definition</span>
+      <div class="block-title">Problem Statement</div>
+      <p>Goal: predict <strong>Soil Organic Carbon (SOC)</strong> content from <strong>hyperspectral satellite imagery</strong>.</p>
+      <ul class="steps">
+        <li><strong>Traditional method:</strong> wet-lab chemical analysis — accurate but labour-intensive, expensive, and not scalable to large geographic areas.</li>
+        <li><strong>Proposed approach:</strong> supervised ML where the input is a pixel's spectral signature (200+ wavelength band reflectances) and the target is the lab-measured SOC value.</li>
+      </ul>
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Concept</span>
+      <div class="block-title">Why Hyperspectral Imaging?</div>
+      <p>Hyperspectral cameras capture reflectance across hundreds of narrow wavelength bands (visible + near-infrared + shortwave infrared). Each pixel in the image is a <strong>spectral signature</strong> — a unique fingerprint.</p>
+      <ul class="steps">
+        <li>Different soil chemicals (organic matter, minerals, water content) absorb and reflect light differently at different wavelengths.</li>
+        <li>A pixel's spectrum therefore encodes indirect evidence about its chemical composition.</li>
+        <li>ML models learn the mapping: spectral signature → SOC concentration.</li>
+      </ul>
+    </div>
+
+    <div class="formula-block">
+      <span class="block-badge">Key Concept</span>
+      <div class="block-title">End-to-End ML Pipeline</div>
+      <ol class="steps">
+        <li><strong>Data wrangling:</strong> load raw hyperspectral data, clean missing values, align with lab measurements.</li>
+        <li><strong>Feature engineering:</strong> spectral preprocessing — atmospheric correction, normalisation, derivative features, spectral indices.</li>
+        <li><strong>Model building:</strong> train 4–5 regression algorithms (Linear Regression, Random Forest, SVR, XGBoost, etc.).</li>
+        <li><strong>Post-model analysis:</strong> feature importance to identify which wavelength bands are most predictive.</li>
+        <li><strong>Communication:</strong> present findings to domain experts (agronomists, soil scientists) — clarity over technical jargon.</li>
+      </ol>
+    </div>
+
+    <div class="axiom-block">
+      <span class="block-badge">Rule</span>
+      <div class="block-title">Key Challenges in Spectral ML</div>
+      <ul class="steps">
+        <li><strong>High dimensionality:</strong> 200+ features per sample — curse of dimensionality; dimensionality reduction (PCA) often needed.</li>
+        <li><strong>Spectral mixing:</strong> a single pixel may cover multiple soil types or land-cover classes.</li>
+        <li><strong>Atmospheric interference:</strong> water vapour and aerosols distort raw reflectance readings.</li>
+        <li><strong>Non-linear relationships:</strong> the spectral–SOC relationship is rarely linear; ensemble models or neural networks may be needed.</li>
+      </ul>
+    </div>
+
+    <div class="example-block">
+      <span class="block-badge">Example</span>
+      <div class="block-title">Python Libraries for the Pipeline</div>
+      <div class="code-wrap">
+        <div class="code-label">Python — typical imports for spectral ML</div>
+        <pre><code><span class="kw">import</span> numpy <span class="kw">as</span> np           <span class="cm"># array operations, spectral band math</span>
+<span class="kw">import</span> pandas <span class="kw">as</span> pd           <span class="cm"># tabular data, data wrangling</span>
+<span class="kw">from</span> sklearn.ensemble <span class="kw">import</span> RandomForestRegressor
+<span class="kw">from</span> sklearn.linear_model <span class="kw">import</span> LinearRegression
+<span class="kw">from</span> sklearn.preprocessing <span class="kw">import</span> StandardScaler
+<span class="kw">from</span> sklearn.model_selection <span class="kw">import</span> train_test_split
+<span class="kw">from</span> sklearn.metrics <span class="kw">import</span> mean_squared_error, r2_score
+
+<span class="cm"># Load spectral data (rows = pixels, cols = wavelength bands)</span>
+X = pd.<span class="fn">read_csv</span>(<span class="st">"spectral_bands.csv"</span>)  <span class="cm"># shape (n_samples, 224)</span>
+y = pd.<span class="fn">read_csv</span>(<span class="st">"soc_labels.csv"</span>)    <span class="cm"># shape (n_samples,)</span>
+
+X_train, X_test, y_train, y_test = <span class="fn">train_test_split</span>(X, y, test_size=<span class="nu">0.2</span>)
+model = <span class="fn">RandomForestRegressor</span>(n_estimators=<span class="nu">100</span>)
+model.<span class="fn">fit</span>(X_train, y_train)
+y_pred = model.<span class="fn">predict</span>(X_test)
+<span class="fn">print</span>(<span class="st">f"R² = {<span class="fn">r2_score</span>(y_test, y_pred):.3f}"</span>)</code></pre>
+      </div>
+    </div>
+
+    <div class="practice-block">
+      <span class="block-badge">Practice</span>
+      <div class="block-title">Project Milestones</div>
+      <ol class="steps">
+        <li><strong>EDA:</strong> visualise the distribution of SOC values; plot mean spectral signature by SOC quartile.</li>
+        <li><strong>Preprocessing:</strong> apply min-max normalisation to spectral bands; check for correlated bands (VIF or correlation matrix).</li>
+        <li><strong>Baseline:</strong> train a linear regression model; record R² and RMSE.</li>
+        <li><strong>Improved model:</strong> train a Random Forest; compare performance metrics.</li>
+        <li><strong>Feature importance:</strong> plot the top 20 most important wavelength bands; research what chemical absorptions occur at those wavelengths.</li>
+        <li><strong>Report:</strong> write a 1-page summary for a non-technical audience explaining the findings.</li>
+      </ol>
+    </div>
+  </section>
+
+</section><!-- /week10 -->
 
 </main>
 </div><!-- /layout -->

@@ -1,0 +1,446 @@
+Hello and welcome back to Python core and applied concepts for reliable data science workflows.
+So today we will be continuing our discussion on assignment and no conditionals.
+So in in the last few lectures we discussed about how to build expressions inside Python or you know programming language and we have also seen the very basic statement in Python programming language which is called assignment statement and assignment statement or you know nothing new to Python it's almost no present in every other imperative programming language.
+We looked a little deeply into the semantics of assignment operator and we have seen you know with careful you know reasoning we can write correct programs which involves assignments right so we talked about a swap program where we use a temporary variable and we have also tried to write down some meaningful specification for those program using assertions.
+This was our discussion in the previous few lecture so today we will continue our discussion and we'll talk about something called conditionals so every programming so let me you know go to the exact place.
+So this is no model three which we have which we have been discussing you know in the last two three.
+Video so we talked about this program and then you know we tried to we attempted at writing down correct specification this is what I was talking about so we can use assertions you know assertions of you know this crime where we can use some you know ghost variable and then try to write down interesting property of you know this program.
+For example this program was a swap program and we captured the initial state of variable X and Y in this no ghost variable X original and Y origin and then when the program no wants to exit just before that we want to assert something which is in a sense to confirm that the program is doing what it was intended to do right so here what we are saying is now we want you know into X the original value of.
+Y and into Y the original value of X so you don't recall this lecture please go back to the lecture and see how we can use ghost variable like this to you know state properties of functions or program that changes the state of machine right because assignment statement whenever you write an assignment statement it it always changes the state of you know the abstract machine on which your program will run.
+For example here I mean you can see I mean you have destroyed the previous value of 10 when you do this no particular execute this particular line of code similarly you know these two line of code destroy the previous value of X and Y so if you want to stay meaningful property about you know the input and output of our program then most of the time we would need this kind of ghost variable which can help us capture the initial state when the function now started and.
+We can utilize these initial state to say something meaningful about the final state of the program okay so for that purpose we have seen we need no ghost variable and we can use assertions to do this kind of chop so so this one you know one new thing that we discussed in the last lecture the python and like python other programming languages also provide you know some way for you to assert you know some property of program.
+You know inside the program itself so that you know when you run this program the compiler or interpreter will check whether these assertions are true or not if the certain is true then you know it goes to the next instruction if it is false then you can optionally print something to indicate what went.
+No wrong at that particular point and then you know the ground program will exit so this is how not certain works and it is a very useful tool as a programmer to do defensive programming so this is what we emphasize in the last lecture we have you know seen several attempt.
+Art at listening you know correctly about this for function and you know this is nowhere we can create a last lecture so we continue this lecture you know with the discussion on branching.
+You know which is also called you know if then else kind of construct in any programming language.
+Now branching are very important why because as we discuss our program whatever you know what we want to calculate we can only you know communicate to machines using this programming language and normally what we do is we write instructions for doing you know a small you know set of you know what and then we join these instruction using sequence.
+Operator to let's execute all of these work you know in this particular order to achieve our computation but most of the time if you want to compute some you know meaningful function.
+We can't always go with a straight line you know sequence of execution of instructions so many of the interesting computation would require you to select one block of code.
+Over either depending upon some no situation okay so most of the we have to take some intermediate decision that whether we want to execute the next set of three four lines or we want to skip that and execute some other set of line for achieving what we want okay so this kind of you know branching you know kind of logic or you know this you know branching behavior is what is captured by this if then else when you don't want to do.
+You don't want to do the same set of action depending upon your state of machine you want some you know feature in programming language which can help you decide what you want to do next depending upon certain condition that you evaluated that particular point of time and no when the programming is executing so this is why we use this if then else so normal syntax of if then else you know construct is you know given in this form where you write if.
+You write if and then condition based on which you want to maybe decide whether you want to know execute certain piece of code so if the condition is true you want you know certain piece of code to be you know executed if the condition is false then you go to the L if branch and there can be multiple else if branch where again you you can actually say what condition you want to be true before you execute you know this particular piece of code.
+And let's say if none of these you know conditions you know are true then by default you would also maybe want to execute some piece of code which you write under this else so this is the know syntax of or L know if then else construct inside python programming language and the
+semantics is what we discussed just now so we evaluate the condition expression this is the condition expression after if keyword the result you know so this results I mean so you can only write down here you know Boolean expressions which can evaluate to either true or false right because you want to decide based on whether this condition is true or not so this has to be you know of the form.
+This condition has to be some expression which evaluates to either true or false so at that particular point in time when your program is executed this condition of this expression will be evaluated if the condition is true then you take certain branch if the condition is not true then it takes some other because this is what is summarized in the second point if the condition evaluates to true execute the intended block of code under the if statement for example I mean let's try to understand this with one.
+Small example very trivial example but no nice example to say for example let's say temperature is one variable right in your whole program I mean I need it actually let's say stores the temperature of that day so let's say you initialize to 30 I mean we can change this value to different value now depending upon what the temperature is you may want to do you know certain set of you know accents for example if your temperature is greater than 25.
+Then what we want to maybe print is it's hot and maybe you know you want to go for a no shape so no your activity should be so assume that you know these are the set of actions that you want to perform if this condition is true.
+So then you should write a piece of code which looks similar to this one okay so what was the condition here I mean if you have to just match to the syntax of what we discuss about if the nails so this is the condition right so this is exactly.
+You know this condition that you can see here right so this is the condition which no comes after it and before this no colon so if this condition is true then what is the piece of code that you want to execute so this you know indented piece of code which you know involved this print and then assigning activity is equal to swim is what you want to execute okay so if this condition is true then these two lines.
+These two line of code will be executed okay and after this two line of code is no executed you will simply you know go to the you know end of this if the nails block so you will not execute any of the L if or else branch so this is what the exact same.
+For example in this case when you want to execute you know this piece of course in temperature is 30 which is clearly no greater than 25 so this expression which comes
+after if immediately becomes true and you will only you know you will execute these two line of code and you will not execute anything from this point on to this point okay so this is no semantics of running if the nails branch so again I mean tell me I mean what will happen if we you know right here 20 instead of you know temperature initializing it to 25 if I write 20 then what should happen.
+Again you know following the semantics or the meaning of this if the nails branch what we will do is given this initial state of the program where temperature is initialized to 20 I would first try to evaluate whether this particular condition is true or not so you know your evaluation always start from the very first condition right so there may be multiple conditions so if may have one condition then L there may be several else if.
+Which have which will have no one again I mean different condition and then at last there will be an else if nothing is true then you just simply execute this else block and.
+In the if the nails construct okay so the first thing that is no done here is we will check whether with this current value of temperature can we can this expression be evaluated to true or false so if you substitute for temperature 20 is clearly see that this.
+Not true right this is false so I will not execute this piece of code okay so I have executed this you know I have evaluated this you know condition but then I will not execute this piece of code why because you know the condition was not true okay so if the condition is not true for for the first condition then I go to the second condition okay and what is the second condition second condition
+now ask me to evaluate this expression is a temperature is greater than 15 now if you substitute your 20 here you will see that this is true right so in the first no case the first condition was not
+so let's call it condition also condition was not true but then condition to become true since condition to become true when I run this program what shall I expect.
+I shall expect no these two line of code to be executed okay and hence if you run this program you know with this initial state what you get is no this print this being no printed out that it's a pleasant weather and you can go for a walk.
+So so this is the activity that you have decided for no condition when this is true the temperature is no greater than 15 so remember I mean when you reach this particular point in the if then else look you have some condition true right so what is the condition that is true when you reach at this particular point so certainly your temperature should be greater than when you know 15.
+Which is you know explicitly present here but the condition should also include that temperature is not greater than 25 right because if temperature would have been greater than 25 then you know you would have no gone to this piece of code and executed this.
+So no this is something that you should keep in mind I mean when we're talking about no this else if no condition we will go to this only if your first condition is not true okay so since you're executing this piece of code what so you you're in a condition where you know your condition to is true but your condition one evaluated to false.
+Okay so what you see explicitly as a you know condition before this L if is not the actual condition when you enter this no branch of the if then else construct okay so keep this in mind so you so this is certainly this has to be true otherwise you cannot enter even this branch of the loop this branch of the if then else no conditional but there is there are some additional you know
+expressions which has become true for you to enter this particular no branch in if then else condition okay so similarly let's say if you're you do not qualify the first two and that's your temperature is 10.
+So in this case what happened I mean when your temperature is 10 certainly I mean this condition is not true so you will not enter and execute this piece of code.
+Then we go to check whether my condition to which is you know for this else if is true or not I evaluated this condition you know again when I say I evaluated this condition means I evaluated this bullion expression again with the current state of machine and it returned me false again so since no I could not know encounter a true value in you know previous two branches I now move to the last branch
+which says that, you know, if none of your condition is true, then you simply execute
+this thing, that it's cold. Okay, so your temperature is 10, it's cold, so you can
+do some, you know, in how it's staying like reading. Okay, so I hope, you know, this simple example,
+you know, illustrates the way this if-then-else works, or to be more precise, this,
+you know, some, this illustration in a nice, with the semantics of how this if-then-else
+construct work in any programming language, and specifically Python. So the only thing,
+not to note here, from syntax point of view, is that you separate the actual block of code from
+the condition using this colon, right? And you've seen this colon, you know, separating even,
+I know, the input parameter from the actual expression in lambda expressions, right? So this is
+the syntax part that you need to, you know, keep in mind, even if you forget, I mean, the compiler
+will tell you what's wrong in it, but the semantic part is more important that you should know,
+when will you execute the piece of code under, you know, given branch? So you should be able to
+calculate the exact condition under which you reach that particular branch, of course, okay?
+So with this small brief introduction of the syntax and semantics of
+branching, let's now come to a real problem where we want to maybe, you know, use this if-then-else
+branch. Again, I mean, this is a very small example, but very illustrative example to tell you how
+you can maybe use if-then-else in for solving some real problems, okay? So the problem that we are
+considering right now is finding out the maximum of three numbers. So let's say we want to write down
+a function which we want to say, you know, max of three. Let's say we want to write down a function
+with name, max of three, and the argument to this function are three, let's say integer. No,
+ABC or XYZ, whatever, I mean, and then you want to return the maximum of all, you know,
+these three numbers. So you want to always return the maximum of three numbers, and we want to write
+down a function for this. Now we'll see how we can use if-then-else two write down or implement a
+logic. So before we go to the code, let me show you the block diagram of how this, you know,
+function should work, okay? So what you get in the very beginning here is three number ABC,
+assume that, you know, A is the first B, C. So in this order, I give you three number ABC, okay?
+And so this may be, you know, one of the possible logic. So there may be multiple ways in which you
+can write down this function to calculate maximum of, you know, three numbers, but this, you know,
+maybe one of the most trivial way, which will come to your mind when you start thinking about
+this function. So what I do is I take the first two number A and B and I compare them. I say that
+I will check whether A is greater than equal to B or not. So if A is greater than equal to B,
+means if this condition evaluates to true, I know for sure that A is, you know, bigger than B.
+Now what I need to do is, no, so the, so when you go to the left hand side, you know, towards this
+branch, it's sure that A is no greater than B. So you don't need to not talk about B anymore
+because you, among A and B is, you know, maximum. So B cannot be maximum of ABC, you know, all this
+three, right? So, so when you go to the left hand side, whether that indicates when, you know,
+this condition is true. We want to do another check, maybe, right? We know that, no, A is bigger,
+certainly, no, than B. So in that case, what would you do? The next obvious step would be to compare A
+with C, right? And if you get an answer, which is yes, means if you evaluate this and it comes out
+to be true, in that case, you know that no A is on disputed champion. I mean, the maximum value is
+A because it was no greater than B as well as greater than C. So that's how you reach this
+particular point, right? So remember, again, I mean, as I said in the previous case, when you reach
+this particular, you know, segment of code or now the segment of action, you have already, you know,
+evaluated two expressions, right? The first expression was this one and the second expression was
+this one and then you reach to this point. So you being at this place, no, in a way, implies that
+both these conditions were true. That's how you could reach this place. And if both these
+conditions are true, then you know that you want to return a value, which is A, right? And you
+also know that it's new, why you want to return A? Because you know, these two conditions being
+true implies that A is the maximum of all these three numbers. So this is how, you know, we can
+reason about branching kind of statement inside a program. So this is a very simple program. So
+logic may be very, you know, may seem very trivial to you, but if you practice this enough,
+then even in the complex setting, you can reason in a correct way. Okay? So we'll see that if you don't
+practice properly or if you don't think about behavior of branching in the context of simple
+program, carefully, it's very natural that you will, you know, make mistake and I will come to
+some of those type of mistakes immediately now after discussing this example. So
+so, so this is no what should happen when your A is greater than B and A is greater than C.
+But what happens if A is greater than B and you know, A, this evaluates to false. So you already
+knew that no, your A is no greater than B. So you don't need to talk about B now. And when you
+compare A and C, it turns to the C is bigger. And that's how you know this, you will enter this
+branch. So when you enter this branch, you know that C is bigger than A and A was bigger than B.
+So what you want to know return is the value of C, right? So this makes perfect sense,
+right? This left hand side, you know, you know, tree that you get from this, by checking this
+condition, makes sense, right? I mean, these two results are no valid according to our reasoning
+till now. So what if, you know, so we can apply, you know, similar or symmetric reasoning for
+the right hand side also, right? If the this left's expression evaluates to, you know,
+let's say false. In that case, you know that B is greater than A. And then you maybe want to check
+one small B with C. We want to compare, you know, B with C as well before we can say anything.
+If no B is greater than C, then of course, you want to return B. Otherwise, you want to return
+C, okay? So this, this is a very simple logic by which we would naturally, let's say,
+compare three given numbers, right? When the three numbers are given to us, we mostly compared,
+you know, using some logic, which looks similar to this one. And whatever, you know,
+is the result, you have stored in each of these cases, you just return that, okay? So you will,
+you know, hit only one of these, you know, code, right? You will either hit this piece of code or
+this or this or this. You cannot hit, you know, multiple together in any of them, you know,
+else kind of, you know, branching kind of situation, okay? So now, whatever,
+no condition you evaluated to, you will hit the code corresponding to that condition. And
+whatever be your, you know, calculation of result, finally, we want to return that result.
+And that's how the problem is written. So this is a simple block diagram to show you,
+however, if then else function, you know, can be used to figure out something, you know,
+meaningful, like, no, maximum or three numbers. So can we go and now, you know, implement, you know,
+this, you know, try to write down a correct, you know, function, which can, you know, implement
+the logic that we have seen just now, okay? So let me, you know, use the same, you know,
+function names, let me call it maximum of three. So what we are going to do now is to,
+realize this, you know, block diagram or, you know, this control flow graph that I have
+shown you are using a function inside Python, okay? So let's call it, call them a function. So,
+before we start writing function, you know, we have to write this def to indicate that we are
+going to write a function. And the function name I give the same as what we discuss,
+max of let's say three number that is what we are trying to calculate. And
+let me take the numbers to be same as ABC. So that you know, you can relate to the flow chart that
+I have shown you just above. And then we need to give a colon to separate the function body.
+And when you go inside the function body, the first thing that we may, you know,
+want to do is to compare A and B, right? So this is what we did here, right? Let me go up and
+slide. This is what we did, right? Which compare this? And depending upon whether it was true or false,
+we do something, okay? So we do a second check whether, you know, if it is true, then we do something,
+if it is false, then we do something different. Let me write it down. So what do I want to write?
+I want to write, if let's say my condition A is greater than equal to B, I will do something,
+right? So, you know, let me write down, you know, maybe, you know, do something, something.
+So we will, you know, try to insert actual piece of code here, but for you to,
+you know, think clearly about the code, I mean, it's good to start with a, you know, top-down
+approach where you write down the logic in this way, like, you know, if this is true, then I
+want to maybe do something here. Or, you know, in the other case, when this is not true, let's say,
+oh, let's say, when this is not true, okay? In that case, also, I want to do something, right?
+What I want to do again, let me know copy past this and we will replace this with actual commands,
+but first let me, okay. So, you know, we will just write a placeholder, which we will replace later on,
+no, with the actual code. So, when, when I want to, when this condition evaluates to true,
+we want to do certain set of, no, accents, maybe we want to do another check, right? This is what,
+we wanted to do here, right? When A is greater than, no, equal to B, it evaluated to, when
+this evaluated to true, we wanted to do another check immediately, right? After, after this point.
+So, can we do, you know, that check and write code for that? Okay. So, the, where cell that come,
+that cell come here, right? We shall do another check and depending upon the value of that check,
+we will do certain set of accents. This is what, no, we, we discuss this now. So,
+now, let me, you know, replace, you know, do something, so we will maybe finally remove this,
+but for the time being, what is the, this do something for this branch? So, maybe, you know,
+what we want to do is, since I know that my A is greater than equal to B, I want to further compare A
+with C, right? Maybe greater than equal to C. Okay? And now, if, again, I mean, so, if you,
+you know, this condition is true, you want to do something, right? Again, let me, I know,
+right here. Maybe you want to do something, something, okay? And if this condition is not true,
+then, then also you, you want to do something, right?
+So, let me write down this structure, you know, first and then maybe we will fill
+and replace, you know, this placeholder with the actual piece of code that makes sense for
+each of this, no branches. Okay? So, you agree? I mean, so this, this is what was happening inside
+this one. Okay, we have not, we did not, you know, fill in the actual code, but at least the
+structure should be clear to you, right? That, now, if your A is greater than B, then you want to do
+something and what is that? Do something. So, do something is this piece of code, which again
+has some holes, which we want to fill, but then, no, this should be the structure of the code,
+at least looking at the structure of the flow chart or, no, this, no, control flow graph,
+that I have shown you. Okay? Now, can we go and, you know, fill all of this, no, thing? So,
+when, when A was greater than equal to B and when A is greater than equal to C. So, when you
+reach this particular point, what is, no, that's something you want to do at this, you know,
+face in time. When the, your program is executing. Right? So, so where are you in the actual,
+you know, code block? So, this condition evaluated to true, and this is also true. Now, we are at
+this particular moment in time or in the execution of our program, and we certainly want our result
+to be A, right? So, so this is what we can, you know, write on here explicitly that, you know,
+at this point of time, I want to, you know, store the maximum value in result. And if the,
+both these conditions are true, then I know for sure that, no, this is my final output.
+And what, if this is not true? So, so, if you are, if you have come to this point to this else,
+what does it means? Now, that this condition was true for sure, but the second condition that
+you check this is not true. So, if this is not true, where are you in the block diagram?
+We're certainly at this point. Right? Because, you know, this condition was true, but this
+evaluated to false, and hence you read this point. And at this point, you know that C is greater than
+A, and A was greater than B. So, maybe you want to know output the value of C as a final result,
+right? So, this is what, maybe we want to do at this particular moment in time. So, let me write
+it down for you. And then, maybe now we start replacing these two something. So, maybe I can
+directly write out here, result is equal to C, okay, at this particular point in time. And we
+can also now replace this thing, right? Because we have done whatever we wanted to do, you know,
+we did it properly, right? At this particular point in time. And now, since the set of action that we
+wanted to do, when this condition was true, we have already written that you can also safely maybe
+remove, you know, this do something, you know, this. So, I have written, you know, this way,
+just to help you figure out the overall logic, but you know, you can maybe you feel comfortable,
+you can directly write this piece of code, right? Because this is a simple piece of code. So, now,
+so once we have completed, you know, the if the condition is true part of code, we should also
+know think about what should come as here. Because, you know, I mean, can you trace? I mean,
+when you reach at this particular moment, what, what was your condition, right? So, we reach here,
+when our first condition that we check is not true, right? It means, I mean, you're going through
+to the right hand side of this, you know, branching, right? If A is not greater than B, then again,
+you want to do something, right? You maybe want to check this second condition again. So,
+so, again, another if will come. And depending upon what you know, get as your, you know,
+final value for this Boolean expression, you will do either this or this, okay? So, for the second
+branch, let me not, you know, do it that way, but directly, maybe write down what we want to do.
+So, let me write down what we want to do here. So, since I have reached at this particular point
+in, you know, execution, I want to check whether now, you know, B. So, since, you know, A, get
+other than B, return false. And hence, I, it is there. I know that, you know, B is greater than A.
+So, I now want to maybe compare with B the remaining, you know, number and not the A.
+So, what we do is check with B, B greater than equal to C, okay? And if the result is true,
+let's say, if this condition is, you know, no correct, evaluated to no correct, then what we say
+is we store in the result, what shall I store? I shall store the value of B, right?
+And if this is not true, let's say, then in that case, we are keep in mind that, you know,
+this indentation should, you know, match properly. So, if you know, the
+else for corresponding if should, you know, start at the same, you know, margin, okay? So,
+you can see, I mean, for this, if the matching else appears here with the same indentation, okay?
+Similarly, for this particular if the matching else appears at this place. So, this is also a very
+nice feature of, you know, Python, Python, you know, reads this indentation and tries to, you know,
+match this, you know, code. So, this is also kind of, you know, giving partial semantics to your
+code by just looking at the structure, you can make sense which of the, you know,
+quotient matches to which other, no, portion, for example, you know, all of, you know, this if
+thing matches with this else. Similarly, you know, for this if the corresponding else is this one,
+otherwise, I mean, if you are, you know, left with only curly braces and those kind of thing,
+then it becomes really, you know, difficult and you have to manually match each curly brace to,
+know, make sure that, you know, your thinking or your reasoning is correct. And when,
+when things goes nested, it becomes really difficult. But, you know, with the indentation proper
+indentation, you can say in Python, it is very easy to, you know, if I ask you, what is the if
+corresponding to this else? You can immediately tell me looking at the indentation that this is the,
+if, because this is the if that comes at the same indentation and before the cells.
+Okay, so let me, you know, just quickly write them. So if B is greater than equal to C, then,
+of course, we want to return B, but what otherwise, I mean,
+in the else case, what you want is, you want to result in the value of C, right? So we have stored
+the value, what that we want to finally return in the variable result, whatever be our, you know,
+circumstances. And then finally, what we want to do is, you know, maybe we want to return it.
+So one of the return statements should be somewhere here. So return, so what we want to return is
+the result that we have calculated, you know, for various branches. Now, this looks like, you know,
+correct logic. We have discussed the flow chart as well as we have written code carefully.
+So we expect it to run properly and, you know, produce a correct result for any three number that
+you give to this, you know, program. So now, let us do the check-outs. Okay, so let me compile this
+piece of code. What is the problem? You see, I mean, we did, since I made a, you know, syntax error,
+I mean, it immediately pointed out that I missed a colon somewhere, right? And the colon is here.
+So let me write on this and then if we run again, now this time there is no syntax error and the
+interpreted accepts the code as it is. Now, we are happy and we would want to not test our
+code on some input, maybe max of three, give three number. No, think of any three number that you
+want to pass to this, maybe, you know, small numbers like two, two, three, and maybe zero.
+There is three number. So what is the result? So maximum is certainly three. So you can expect,
+you know, they answer to be three. So this is something, since we did not, you know, omit this
+placeholder, we got this printed, let me, you know, omit for the clarity. So that our code is not
+neglected. So now, let me compile it again and maybe now we run it. So we just get the number three.
+This is what we wanted. So what about, no, will this same thing work for negative number,
+positive numbers? So many times, you know, we miss this boundary cases, if we don't write our
+functions properly. And so maybe, you know, we want to check whether this thing works well with
+that's a negative numbers. So what about this? Okay, so in this case, I mean, when you run,
+you get zero, which is the correct, right? Because zero is the number, greatest number among all
+this three number. So, so program seems to know what now properly, right? But since we have written
+the code from scratch, we know it's correct because we have also reasoned while writing this code.
+But I mentioned in the very first class that nowadays we are not writing code. So we mostly rely on
+LLM and other agents and, you know, any third party in Oracle that will give us code and then we
+want to believe that code, right? So, but before we believe the code, at least, no, so one way is
+you go through the code again and then do the analysis or try to convince yourself that the
+semantics or the meaning, intention of the code is exactly what the code is doing. Another way is,
+you write down some meaningful assertions. Okay, so let's say if the code block is very big and you
+don't want to get into the exact detail of how things are computed, the least you can do is write
+down some meaningful assertions or, you know, in another word, you can write down some meaningful
+properties about this functions or the return value and then check whether that no property is big
+true or not in most of the cases. If those properties are not violated, then you know, get to have
+more belief on the code. Okay, so this is, you know, one way to ensure that the code behaves as intended.
+So in this case, if I have to write down a meaningful, let's say, property for this function.
+So what can we, let me first copy this thing or the same piece of code. So what we are trying to
+write down is a correct specification. So we have, we understood the problem, right? We wanted to
+find out the maximum of three numbers. We have understood the logic also. We have written a code
+also, but let's say you don't want to, you know, go through this logic and code and you ask
+Chatgipiti to produce this piece of code. So Chatgipiti can give you, you know, a correct code or a
+wrong code or, you know, minimal, you know, maybe a little bit of with error. So how will you
+ensure that the code is correct and will you, you know, accept the code as it is? So we are trying
+to answer that question. So for the best way to, you know, ensure trust in the code generated by
+any third party is to ensure that the property that I wanted to, you know, the output to have is
+still correct, okay, irrespective of whether I build the code or someone else. So we don't know
+maybe. So this time assume that the code is not written by you, someone else, and you still want to
+verify whether the code works as you intended. So that's the purpose, you know, so we want to come
+up with a correct specification. So this is, you know, what we saw in the last class also, right,
+for the swap function, we have written a specification where we related the final value with the original
+value or initial state. So here also we, we can we do something similar. So let me copy this code
+and then paste here. So what I'm asking you here is, let's say this time, you know, this function,
+although we know that this function is correct, but assume that, you know, the code for this function
+is not generated by you. Let's say this piece of code has been generated by LLM or someone,
+no else. Now can we write down a correct specification for this function, which should always be,
+you know, true, no matter how it is, you know, implemented. So there can be multiple implementers,
+right? I can change the order in which I have, maybe, you know, compared this element, right?
+So someone else may say that, okay, let me first, you know, compare C with no other numbers,
+and then, you know, depending upon my, you know, result, I will compare, you know, something,
+you know, different. So like here, we started with no A comparison of A and B, right? One can also
+start with no A and C, right? I mean, so that that's a perfectly valid way. So there can be multiple
+correct implementation of the function, but whatever be the implementation, I don't care. I don't
+want to see this code piece of code, maybe, but I want to ensure that the final result is what we want.
+Okay? So can we write on a simple correct specification? And as I discussed, right? So what we are
+going to do is now, let me see, write a correct specification for this function.
+Okay? So we want to do a correct specification for this function. Now, we have seen, so you can
+guess at least that we are going to use assert, right? So assert statements are what can help us
+at this particular moment in time. So let me write down this, you know, assert, and what, what, what
+property you want to, you know, maybe say here, which, which if it is not true, then you can believe
+this piece of code. So you're returning something, right? Your program is returning something,
+and you want to maybe talk about the, you know, relationship between what you're returning and what
+you got as input, right? So you wanted to calculate the maximum value. And the final result that you
+are returning is in this result variable, right? And then input or ABC. So maybe, you know, it's a good
+time to compare whether the value in the result is, you know, greater than equal to each of them or
+not, okay? So if it is not greater than equal to each of them, then certainly the implementation
+may be, you know, somewhere wrong, right? So very immediate thing that comes to my mind at least is,
+you know, I would, you know, just compare my output, which is no result. With all these three,
+no input that was given to me, and if it turns out to be, you know, greater than equal to all
+these three, then no, I can say, maybe, or I may have more confidence in this piece of code,
+okay? So the very first condition that, you know, we can write down here is it then equal to A.
+And I also want my result to be no greater than equal to B. And my result to be no greater than
+equal to C, okay? So let's say, I mean, if this is not true, okay? So if this is not true,
+then what we can say is no result is not the maximum. Maybe, you know, we just print something here,
+which indicates that our assertions, assertion is violated by, you know, at this point. So maybe,
+no result is not maximum, okay? So remember that this will be printed only if this assertions,
+you know, before this is not true, okay? So in this case, certainly, you know, we know that
+no result is not maximum. So whatever you stored in the result is not the maximum among ABC, okay?
+So this looks like a correct specification, right? For this piece of code. So let me now run,
+so we have modified this function, right? With an assert, we have instrumented this function by
+writing an assert. We have not changed anything, right? In the code, we just copied from the previous,
+so this would return as the correct thing. So let me compile it. So it compiled properly, right? So
+now let me write down maybe, we have written it right. So what we can do is just check it.
+So now let me just check on some of the input, let's say, call it, call this function multiple times.
+Three. So this is what we want to do. Check whether now this is returning, you know,
+whether this is violating this assertions at any, for any given input or not, okay? So max of three,
+and then let's say again pass the string into comma three comma zero maybe, okay? And then try to run it.
+And it returns the correct value, okay? So what about if I change, let me copy it,
+once again, what if I call this with the value here, the last thing being 10? So what do you expect
+a minute should return? 10, right? So the value that it returns is 10 and 10 is certainly
+not greater than all these three. So there is no issue in the, you know, so there is no assertion
+violation. We know everything, you know, when, well, what about, so we have seen maximum value in
+the middle position, we have seen maximum in the last position. So why not check another thing that
+if, what if we, let's say put maximum value in the first position, let's say, in this case,
+also it's no behaving properly, right? So we have seen, I mean, multiple cases where the answer
+is correct, right? So in this case, so, so somehow now we believe, you know, start believing that
+this is correct. And see, an advantage of writing this kind of assertion is that if by mistake,
+something is wrong inside your code or implementation, then these assertions may help you as that
+bug. So for simplicity, let me try to make this implementation a little bit incorrect. So we know
+this is correct. So that's why, you know, our assertion is not, you know, failing. But what if I,
+let me copy and paste this again, the whole code here, let me try to introduce some, you know,
+subtle box in this piece of code. So let me think of a very, you know,
+you know, subtle bug like, I mean, let's say, I mean, by mistake, I mean, if this result is no
+hundred, okay? So since we don't want to see the code, so there can be mistake of different kinds
+inside the code. So you cannot believe that the code is always correct. So assume that there is
+some mistake and in this case, I have introduced intentionally some mistake, right? So what is the
+mistake you can see? I've introduced, you know, in this case, what I'm saying is no result is
+equal to hundred. And I want to check whether my, so, so, so what I want to check is whether,
+this can help me identify whether there is a bug, okay? So in this case, I'm returning something,
+which is, we should know. So what's the return here? I mean, in this case, what was I returning in the
+previous, so I should return B, right? Because I was in this branch where B is greater than C,
+and you knew that no B is greater than A. So in that case, I should return B. But instead of
+returning B, I'm returning plenty of value 10. So 100. So this is certainly, I know, a wrong
+implementation, right? So now, if we go on, let's check in this particular thing. So
+can this detect it now?
+So what about, let me again, copy paste some of the values that we have already used, maybe here.
+Or let me write it down. So max of, max of three, I want to call this, maybe your
+two comma, that's a minus three. So what's the value that you're getting here?
+Okay. So this is correct, right? Because not two is the maximum of all this. So what about
+maximum of, you see, I mean, in this case, there is no error because you don't hit that particular
+branch, right? Your first value is no greater. So you only execute the first block of code,
+which corresponds to the if. So you could not encounter that. So what about the other kind of,
+you know, input that you may get where, you know, this is, you're forced to go to the last branch,
+right? In that case, also, you will see, since no nothing is wrong, you get the correct thing.
+But what about max of three? And then in this case,
+again, if I want to maybe,
+so let me now cook up a case where I want to actually hit that particular branch. So maybe 20,
+I pass and then I pass 30 and then I pass 10. So in this case, certainly, I wanted to return,
+you know, 30, right? Because 30 is the maximum thing. So if I run it now,
+so did I not run this piece of code? I think I did not run this piece of code. So that's why,
+okay. So when I run this piece of code, and then if you,
+see, so in this case, there is no issue. In this case, again, there is no issue. So you get 10.
+But when you, you know, run this piece of code, what you get is 100, right?
+Which is certainly not the, you know, maximum of the three numbers that we, you know, wanted to return.
+So there is a, you know, error in the code, certainly, right? I mean, we have seen that,
+you know, this 100 is a error in the code. But the specification or, you know, the correct
+behavior that you have written could not be violated, right? Here, can you see the reason why?
+So, so since there is an error, ideally, I should have, you know, so the purpose of writing this
+assertion was to, you know, figure out whether there is an error or not, okay? So what we are
+seeing right now is no, this assertion is no passing without, so it's not getting violated.
+No, even though the final outcome that I'm getting here is something wrong, right? I should have,
+I should have got some, some hint with this assertion. So, so what went wrong was our assertion
+incorrect or something that we missed actually to capture in our assertion.
+So, the assertion is certainly correct, right? Because so this is not an incorrect specification
+for a result. So, results should always be greater than equal to A, B, and C.
+But this is not a complete specification. This is not as strong enough specification.
+So this should certainly be true, but there, I mean, we want something else to be true also,
+which we should include in the assertion to make it a, you know, a complete specification or
+a strong specification for this function, okay? So, certainly assertion is not, you know,
+a assertion is correct. This assertion should be true for the correct result,
+but something more should be true for the correct result also, right? So, we need to maybe
+specify a little tightly what this function is intended to do. And you can see, you know,
+this example shows you clearly what is, what are we missing? Although we claim that the final
+value that we are returning is greater than equal to all the value that has been given as input,
+but we are not ensuring in the assertion that the result should be one among these three value
+that has been given as input, okay? So, although this specification is correct,
+but this is not useful, this is not helping us to figure out this kind of error,
+because this is not a strong enough, okay? So, maybe we need to add something, you know,
+more strong to this assertion to make it a complete specification or a strong specification,
+which can, you know, cache this kind of bug. So, that's why, I mean, now let's, no, let me,
+no copy this piece of code again, okay? And go to this, you know, section, and then maybe
+copy and paste this piece of code here. And the additional line up assertion that we
+talk just now, maybe we want to write it here, okay? So, it's, it's a correct specification,
+so initially it was a correct specification, but you also need a strong specification,
+is what I want to emphasize at this point in time. So, we also need a strong specification.
+This, it was correct, but it was not strong enough to cache this kind of, you know, error.
+So, what we can say in the next line is, let me copy, copy this thing.
+Well, let me copy the whole thing and then paste it. And what I want to check here is,
+so that result should be no one among ABC, right? So, result should be either equal to A,
+let's change this and to R, or the result should be no equal to equal to B, or the result should
+be equal to equal to C. So, result is, no, maximum result. So, this, this check, the second
+assessment tells us this result is among the inputs, this is what maybe we want to claim at this
+point in time, okay? So, if we, you know, make this, you know, additional check that, no,
+result should be greater than certainly equal to all three, but the result should also be among one
+of these three, right? And the, no, best way to represent this criteria, this additional criteria,
+which makes our specification not only correct, but also strong, is to maybe write this kind of
+assertion, okay? So, if you understand your, you know, function behavior properly, you should
+be able to write out correct and strong specification. And this also gives a chance for you to think
+about the function behavior that you actually intend, right? Because many of you might have accepted
+the very first line itself to be a complete and strong, you know, correct and strong specification,
+but that was not right. We turned out, when we were checking on some example, we turned out, we
+returned, you know, wrong, no output, but is still satisfying the assertion. So, so this is also
+an, you know, kind of art, the more you think about functions and the more you write meaningful
+assertions about the functions, you become perfect at it, and you tend to write correct
+specification and strong specification, which can help you, you know, find or, you know, catch
+this kind of bugs, okay? So, now, when we have written this piece of code, let me, you know,
+compile this piece of code now. And once we compile this code, let me now write down again, a
+similar, you know, kind of some max of three. And then, let me pass it. Now, the buggy case,
+which one, which will happen if you hit the branch corresponding to be, right? So, where be,
+you want to output bn? So, I want my middle number to be the, this one, and this one, okay?
+Now, if you try to run this, can you see? So, now, this time, you know, my assertion failed,
+right? And it's telling you why the assertion failed because no assertions second condition is
+why I like it now. So, result is not among the inputs. So, I'm sorry. So, I should have written
+here, result is not among the inputs for it to be correct, right? Because this is printed only
+if your assertion is not true. So, if this is not true, you know, this piece of code, which is an
+expression, Boolean expression is not true, then I want to maybe print this thing, okay? And
+this, this, this is also, you know, help me catch certain type of, you know, errors. So,
+so this is, let's say, I mean, if we do not have access to this piece of code,
+okay, what I mean, I mean, this piece of code is very complex or somehow not accessible to you,
+but it has been produced by someone and you still want to verify whether the function is
+working as it is or not. So, maybe we can write down, you know, these two set of assertions
+and figure out whether the code is correct or not, okay? So, this is, you know, the power of
+a specification that will turn out to be most useful when we go ahead and we use LLM in software
+development, okay? So, with this, I would like to conclude today's lecture on conditional,
+we will continue in the next lecture with a discussion of loops. So, till then, goodbye,
+I will see you in the next video. Thank you.

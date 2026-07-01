@@ -1,0 +1,2164 @@
+1
+00:00:00,000 --> 00:00:13,320
+Hello and welcome back to Python, Core and Applied Concepts for a Level Data Sence Work
+
+2
+00:00:13,320 --> 00:00:14,320
+Close.
+
+3
+00:00:14,320 --> 00:00:19,120
+So, in today's lecture, we will continue where we left in the last video.
+
+4
+00:00:19,120 --> 00:00:24,760
+So, in the last video, just a quick, as a quick, no recap, let me take you through what
+
+5
+00:00:24,760 --> 00:00:27,320
+we discussed in the last video.
+
+6
+00:00:27,320 --> 00:00:33,920
+In the last video, we started a discussion of lists in detail, and we talked about some
+
+7
+00:00:33,920 --> 00:00:41,720
+of the very basic operations on lists, like how to add elements and lists in different ways,
+
+8
+00:00:41,720 --> 00:00:50,520
+how to access some element inside a list, how to remove elements inside a list, and
+
+9
+00:00:50,520 --> 00:00:58,160
+then we ended with how to search elements in the list, and how to count the number of
+
+10
+00:00:58,160 --> 00:01:00,160
+occurrences in the list.
+
+11
+00:01:00,160 --> 00:01:07,120
+So, we will continue this discussion today with what we call how to sort a list, so we
+
+12
+00:01:07,120 --> 00:01:13,240
+have seen in again in some of the previous lectures how to do, how to write sorting algorithm
+
+13
+00:01:13,240 --> 00:01:16,400
+that we have written by hand.
+
+14
+00:01:16,400 --> 00:01:21,640
+So, those were no correct algorithms, but then may not be the most efficient algorithm,
+
+15
+00:01:21,640 --> 00:01:27,360
+so if you are working inside Python, you may want to prefer most of the time in the
+
+16
+00:01:27,360 --> 00:01:30,720
+end-built function that Python library provides you.
+
+17
+00:01:30,720 --> 00:01:38,120
+So, this is one of the, you know, Python sorting function that we will use today to sort
+
+18
+00:01:38,120 --> 00:01:39,120
+it.
+
+19
+00:01:39,120 --> 00:01:53,200
+Let me, before we sort numbers, let me start with some list, and let me call the name
+
+20
+00:01:53,200 --> 00:01:59,440
+on the list is numbers, so we first, you know, try to create a list, and then we would
+
+21
+00:01:59,440 --> 00:02:04,920
+you know, see how the sorting algorithm inside the Python standard library actually works.
+
+22
+00:02:04,920 --> 00:02:13,800
+So, first let's start with some unsorted list, and let our list be 3, 1, so list contains
+
+23
+00:02:13,800 --> 00:02:26,680
+this numbers 3, 1, 4, 1, 5, 9, and maybe you know 2, so this is, this be let's our, you
+
+24
+00:02:26,680 --> 00:02:34,120
+know, original, you know, list, which we called numbers, okay, so, and, so there is one
+
+25
+00:02:34,120 --> 00:02:42,160
+one way to sort these numbers in place, which modifies the original list, is used, you
+
+26
+00:02:42,160 --> 00:02:50,240
+know, sort method, so how to apply it, so let me first, so how to apply this, so now
+
+27
+00:02:50,240 --> 00:02:55,440
+what we are going to discuss is, you know, sort the elements in place, which will modify
+
+28
+00:02:55,440 --> 00:03:00,240
+the original list, so this is important to keep in mind, that there is a side effect,
+
+29
+00:03:00,240 --> 00:03:05,880
+and the side effect is that when you apply this function, which is called numbers dot
+
+30
+00:03:05,880 --> 00:03:12,960
+sort, then this will sort the whole list, and the list, the original list itself will
+
+31
+00:03:12,960 --> 00:03:20,560
+be modified, so what we are saying is, we are doing sorting, which is in place, okay,
+
+32
+00:03:20,560 --> 00:03:32,880
+which has a side effect that it modifies the list itself, it modifies the original list,
+
+33
+00:03:32,880 --> 00:03:48,200
+okay, so what is the exact way to call this method is numbers dot sort, okay, and if you
+
+34
+00:03:48,200 --> 00:03:53,880
+do this, I mean, you will see that the number, you know, these numbers are listed modified,
+
+35
+00:03:53,880 --> 00:04:01,080
+so to see it in X, and let me know, before modifying the number list, can we first print
+
+36
+00:04:01,080 --> 00:04:10,560
+this thing, so, so can we print the original numbers, and before we see what happened
+
+37
+00:04:10,560 --> 00:04:19,280
+to this numbers once it's printed, okay, one once it's sorted, so let me now print the
+
+38
+00:04:19,280 --> 00:04:29,280
+same thing, but now what we want to say is, this is after sort, maybe after sort, what's
+
+39
+00:04:29,280 --> 00:04:40,120
+the status of the list is, what I want to check, so over, we just print it, okay, now
+
+40
+00:04:40,120 --> 00:04:46,840
+if we run this, you will see that the original list actually gets, you know, sorted, and this
+
+41
+00:04:46,840 --> 00:04:52,440
+is an in place sorting, which has a side effect, so let me run this base of code, and you can
+
+42
+00:04:52,440 --> 00:05:00,000
+see the original list was, you know, 3, 1, 4, 1, 5, 9, 2, but now the sorted list, so after
+
+43
+00:05:00,000 --> 00:05:04,800
+sort, I'm not, you know, I'm printing again the same list, right, this is what I'm passing
+
+44
+00:05:04,800 --> 00:05:11,160
+as an argument when I printing, when I'm printing next time, and we see that the original
+
+45
+00:05:11,160 --> 00:05:16,280
+list itself has changed, okay, this is important to, you know, keep in mind that your original
+
+46
+00:05:16,280 --> 00:05:22,040
+list gets changed when you use, you know, list start sort, okay, so this is also called
+
+47
+00:05:22,040 --> 00:05:28,760
+in place sorting, which modifies your original list, okay, so you can use the same function,
+
+48
+00:05:28,760 --> 00:05:35,640
+let me, you know, copy this function, so you can use the same function to sort in place
+
+49
+00:05:35,640 --> 00:05:41,960
+and sort in descending order, okay, so wherever you want to, let me write down what we want
+
+50
+00:05:41,960 --> 00:05:48,320
+to do, now we want to use the same function, but now we increase, you know, increasing
+
+51
+00:05:48,320 --> 00:06:02,800
+order, what we want to sort in descending order, okay, if you want to sort again the
+
+52
+00:06:02,800 --> 00:06:08,360
+same numbers in descending order, now remember the number has changed to this one, okay,
+
+53
+00:06:08,360 --> 00:06:12,240
+the latest value in the numbers is this one, because we have applied an in place sort,
+
+54
+00:06:12,480 --> 00:06:20,520
+if I want to sort the same list in an descending order, so what we need to pass here is we have
+
+55
+00:06:20,520 --> 00:06:28,640
+to indicate this, okay, and the way to indicate it, you write down the reverse is equal to
+
+56
+00:06:29,920 --> 00:06:36,480
+group, okay, so by default the value of reverse argument is taken as, you know, false, if you don't
+
+57
+00:06:36,480 --> 00:06:45,040
+write anything, I mean Python assumes that you want to sort the list in the increasing order,
+
+58
+00:06:45,040 --> 00:06:51,040
+but if you want to sort it in decreasing order or descending order, you explicitly pass that,
+
+59
+00:06:51,040 --> 00:06:56,320
+you know, I want to reverse the list, I mean, because this reverse is equal to true, we'll
+
+60
+00:06:56,320 --> 00:07:03,200
+indicate to the library to the Python that you want to sort them in descending order, okay, so
+
+61
+00:07:03,200 --> 00:07:09,680
+we shall also, you know, print to see the, what is the effect, because remember, I mean, we are
+
+62
+00:07:09,680 --> 00:07:15,360
+not storing the value in some other variables, so if you want to see what happened to, you know,
+
+63
+00:07:15,360 --> 00:07:21,120
+the list or what's the side effect of this, let's say instruction, then we need to explicitly
+
+64
+00:07:21,760 --> 00:07:29,440
+print it, so let me not print, again, I mean same thing, right, after sort,
+
+65
+00:07:33,360 --> 00:07:45,600
+but now, you know, what we have passed is not true, value, true, no reverse, so this is what we
+
+66
+00:07:48,560 --> 00:07:53,200
+have passed, and now we want to see what is the effect of this,
+
+67
+00:07:57,200 --> 00:08:01,760
+and you can see as expected, we get the reverse list, right, so this is how, you know, we can
+
+68
+00:08:02,320 --> 00:08:08,640
+use this, you know, short function in build library, short function to actually sort
+
+69
+00:08:08,640 --> 00:08:15,200
+a list either in, you know, increasing order or in descending order, but, you know, in both the
+
+70
+00:08:15,200 --> 00:08:22,080
+cases, you know, be sure that your list, original list will change, okay, so this will what happened
+
+71
+00:08:22,160 --> 00:08:28,880
+when you use this function in this particular way. Now, the next thing,
+
+72
+00:08:34,320 --> 00:08:41,040
+so one more thing that you may want to do is, you know, not sort a list, right, I mean,
+
+73
+00:08:41,040 --> 00:08:47,040
+you may also want to, you know, simply reverse your list, rather than sorting it in increasing
+
+74
+00:08:47,120 --> 00:08:53,200
+or decreasing order, we may sometimes want to, you know, do a simple reversal kind of, you know,
+
+75
+00:08:53,200 --> 00:08:59,520
+act, so if you want to do that, then again, I mean, there is a very easy way to do that,
+
+76
+00:08:59,520 --> 00:09:05,680
+use library function, dot reverse, okay, so what we are saying is, instead of sorting,
+
+77
+00:09:05,680 --> 00:09:11,920
+so here the action will be same because it's already, it was now sorted in descending order,
+
+78
+00:09:11,920 --> 00:09:17,280
+but let's see, if I just want to reverse it and not sort it, okay, so maybe, you know, for that,
+
+79
+00:09:20,560 --> 00:09:27,200
+so what we are trying to discuss now is how to reverse and how to do a implicit reverse of a
+
+80
+00:09:27,200 --> 00:09:35,600
+string, okay, of a, sorry, list, so let's say again, if I write known this, let me copy this
+
+81
+00:09:35,600 --> 00:09:41,360
+original list here, after this, let's say, if I define my numbers to be this one, and if you
+
+82
+00:09:41,360 --> 00:09:50,560
+want to simply reverse it, let me in your final list, it should be 2951413 in this particular case,
+
+83
+00:09:50,560 --> 00:09:59,920
+then the way to do this is you simply call this reverse method,
+
+84
+00:10:00,560 --> 00:10:10,640
+okay, and if you do this, then what you can expect is on this thing, so let us now print it also,
+
+85
+00:10:10,640 --> 00:10:24,800
+okay, let me print this thing, and you see, now you can reverse it, okay, so you know now how to
+
+86
+00:10:24,880 --> 00:10:31,440
+sort in increasing, decreasing order, as well as how to reverse a given string, and how to do
+
+87
+00:10:31,440 --> 00:10:37,760
+this in place, you know, activity, I mean, so the side effect is that in all these three cases,
+
+88
+00:10:37,760 --> 00:10:47,600
+your original list will get changed, so it will not get modified, but what if you want to do this
+
+89
+00:10:47,600 --> 00:10:54,160
+type of activity, but then you know, you don't want to maybe change your original list,
+
+90
+00:10:54,160 --> 00:11:01,760
+so the way to do that is use this sorted function instead of not sort, okay, so the sorted,
+
+91
+00:11:01,760 --> 00:11:06,960
+sorted this one, the sorted function creates new sorted list without modifying the original list,
+
+92
+00:11:06,960 --> 00:11:13,760
+okay, so if you do not intend to change the original list and just want to maybe get a sorted
+
+93
+00:11:13,760 --> 00:11:21,120
+version of it, then you can use this sorted function, okay, so let me again write down for you, now,
+
+94
+00:11:21,600 --> 00:11:32,160
+we want to use this sorted, which will create for us a new list, but will not modify the very first
+
+95
+00:11:32,160 --> 00:11:42,880
+thing that we want to apply, so let's be know first, have some unsorted again list, this can be
+
+96
+00:11:43,840 --> 00:11:46,960
+the same list, I mean, maybe we can copy this thing,
+
+97
+00:11:50,640 --> 00:11:56,960
+okay, this is unsorted, original list of here, so let me not print it also,
+
+98
+00:11:56,960 --> 00:12:06,480
+now before we or let me know first, so we initialize this unsorted and then we
+
+99
+00:12:06,720 --> 00:12:13,520
+pass this unsorted to this sorted function, and then whatever is, you know, return we
+
+100
+00:12:14,320 --> 00:12:19,120
+accumulated in sorted ascending, so by default again, I mean, it will do, you know,
+
+101
+00:12:20,240 --> 00:12:24,400
+sort in ascending order, if you want, you know, in descending order, then you have to again pass
+
+102
+00:12:24,960 --> 00:12:30,560
+as second argument, reverse is equal to true, the way I mean, we did in first one, because
+
+103
+00:12:30,560 --> 00:12:35,600
+in first one, we have only, you know, we only pass this argument whether to reverse or not,
+
+104
+00:12:35,600 --> 00:12:41,200
+but here since it's a function, you have to pass both the unsorted list as well as whether to
+
+105
+00:12:41,200 --> 00:12:49,120
+sort it in ascending or descending order, okay, so let me, you know, have both the variant of this,
+
+106
+00:12:49,120 --> 00:12:56,000
+maybe, you know, we first run this and then print the outcome of this as well,
+
+107
+00:12:56,800 --> 00:13:06,080
+so if I want to, you know, print the outcome of this, I can maybe print this one that we want to
+
+108
+00:13:06,080 --> 00:13:12,160
+sort it, of unsorted, what is it, so, okay, so this is the final result that we want to
+
+109
+00:13:13,440 --> 00:13:22,000
+know, observe, and we maybe, you know, we also want to, before we do that, we want,
+
+110
+00:13:26,320 --> 00:13:33,040
+so after we do this, you know, sorting, we also want to see at this particular moment,
+
+111
+00:13:33,040 --> 00:13:38,240
+what is the status of unsorted, right, is that will, you know, help us figure out whether this
+
+112
+00:13:38,960 --> 00:13:44,320
+has a side effect or not, this function has a side effect or not, okay, so let me, you know,
+
+113
+00:13:44,320 --> 00:13:53,440
+print it and see what happens, now you see the unsorted, the sorted list as this one, right,
+
+114
+00:13:54,400 --> 00:14:00,000
+but then, you know, your original list, which was, you know, unsorted, when I print it,
+
+115
+00:14:00,000 --> 00:14:06,720
+after this, you know, actually, this instruction get executed, even after this, this unsorted
+
+116
+00:14:06,720 --> 00:14:14,720
+remains the same, it has the same value, okay, and now, you know, as in the previous case,
+
+117
+00:14:14,720 --> 00:14:21,600
+you can also check the, you know, this reverse argument also in action, okay, so let's say,
+
+118
+00:14:21,600 --> 00:14:31,440
+if I want, now, to sort it in reverse order, and then, uh, maybe, uh, see what happens,
+
+119
+00:14:31,440 --> 00:14:39,760
+so what we can do is, let me, so now, sort of descending has, uh, sorted function,
+
+120
+00:14:39,760 --> 00:14:45,120
+and we pass the same unsorted, which was, you know, same, we have seen, right, it, it was not
+
+121
+00:14:45,120 --> 00:14:50,800
+modified, and then you pass reverse is equal to true, and we want to see what is the, you know,
+
+122
+00:14:50,800 --> 00:14:57,760
+descending, uh, so what is accumulated in this sorted descending, if you print it now,
+
+123
+00:14:58,400 --> 00:15:04,400
+this is what you get, okay, so now, we know, I mean, how to, uh, sort these, uh, lists,
+
+124
+00:15:04,400 --> 00:15:12,560
+and a few important thing to, uh, no note, uh, regarding this, uh, sorted, uh, and, you know,
+
+125
+00:15:12,560 --> 00:15:18,880
+the sorted function, as well as this method, list.sort is that, there, uh, somehow, you know,
+
+126
+00:15:18,880 --> 00:15:25,120
+optimal, you know, they are very, uh, uh, fast, and it's an, you know, enhanced version of, uh,
+
+127
+00:15:25,120 --> 00:15:31,840
+you know, maybe, team sort, uh, algorithm, so earlier, I, I'm sure it was a, uh, it was an
+
+128
+00:15:31,840 --> 00:15:40,320
+implementation of team sort, maybe before Python, uh, 3.20, but then from Python 3.11, uh, it uses
+
+129
+00:15:40,320 --> 00:15:46,000
+power sort algorithm, so inside this, uh, you know, sorting algorithm, we, uh, so Python developer
+
+130
+00:15:46,000 --> 00:15:52,720
+has actually implemented, uh, power sort, which is actually enhanced version of team sort, uh,
+
+131
+00:15:52,720 --> 00:15:58,240
+with optimal, you know, merge decisions, and essentially, uh, both of, you know, these, uh,
+
+132
+00:15:58,240 --> 00:16:04,560
+sorting algorithms are stable and adaptive sorting algorithm optimized for kind of real world data,
+
+133
+00:16:04,560 --> 00:16:11,520
+okay, so they are, uh, you know, a very mindful combination of, uh, insertion sort, and, uh, merge
+
+134
+00:16:11,520 --> 00:16:16,080
+sort, okay, so I'm not getting into the detail of, uh, you know, these algorithm, but just keep in
+
+135
+00:16:16,080 --> 00:16:22,560
+mind that they're, uh, no kind of optimal, uh, they perform in, of the order of analog and, uh,
+
+136
+00:16:22,560 --> 00:16:30,480
+complexity, and, uh, they're very efficient for a lot, okay, so you can be, uh, um, you can be
+
+137
+00:16:30,480 --> 00:16:36,080
+sure that if you use this built-in function, then you're using the most efficient algorithm for
+
+138
+00:16:36,080 --> 00:16:42,400
+sorting, okay, so both algorithm, whether I mean you use, uh, this sorted, uh, function, or,
+
+139
+00:16:42,400 --> 00:16:48,480
+you know, least dot sort method, combining insertion sort, efficiency, on a small, you know,
+
+140
+00:16:48,480 --> 00:16:55,040
+partially, uh, you know, sorted data with merge sorts, no reliable guarantee that you will finally,
+
+141
+00:16:55,040 --> 00:17:02,160
+you know, get thing in very less amount of time, and, uh, the hence, I mean, both of them are
+
+142
+00:17:02,160 --> 00:17:08,720
+exceptionally fast, and if you are working on, uh, you know, real data, then, uh, you know, it's,
+
+143
+00:17:08,720 --> 00:17:14,080
+you know, good to, you know, prefer this over even, you know, merge sort, because I mean, it,
+
+144
+00:17:14,080 --> 00:17:19,120
+already, it doesn't, again, start by, you know, sorting, uh, things, if you have some, you know,
+
+145
+00:17:19,120 --> 00:17:24,000
+already sorted thing, then it will not touch that, and it will, you know, it modifies this
+
+146
+00:17:24,000 --> 00:17:29,520
+insertion sort, and merge sort, in a way, to achieve the, this, you know, optimal time,
+
+147
+00:17:29,520 --> 00:17:34,960
+complexity kind of thing. Okay. So, now we'll not, no, delve deeper into this. You can search, uh,
+
+148
+00:17:34,960 --> 00:17:39,760
+on the internet about, what is the algorithm that has been implemented in this sort,
+
+149
+00:17:40,560 --> 00:17:47,120
+uh, you know, method, and, uh, the sort function. Now, let's, uh, go to another, you know,
+
+150
+00:17:47,120 --> 00:17:53,040
+interesting thing that we usually want to do with list. So it's, you know, about copying list.
+
+151
+00:17:53,040 --> 00:17:58,320
+So now there can be different way to copy a list. So copy means, I mean, I want to, you know,
+
+152
+00:17:58,320 --> 00:18:04,000
+copy this list into some, you know, other, uh, list, this is, this is what we, say, mean, uh,
+
+153
+00:18:04,000 --> 00:18:08,480
+you know, copying list when we say here, copy list. So there are various methods to create copies
+
+154
+00:18:08,480 --> 00:18:15,120
+of list, and we'll see, you know, them one by one. So, but before we copy list, let's,
+
+155
+00:18:15,120 --> 00:18:21,440
+now again, I'm create a list for ourselves. I mean, uh, let me, you know, call this list,
+
+156
+00:18:21,440 --> 00:18:30,880
+original list. Okay. And so this, let's take a little, a complex list instead of, uh,
+
+157
+00:18:30,880 --> 00:18:37,760
+simplest, now, list, uh, may contain, uh, list within, uh, themself. Okay. So one of the element
+
+158
+00:18:37,760 --> 00:18:44,080
+of list can be another list also. Okay. So this, this is what, you know, I'm calling, you know,
+
+159
+00:18:44,080 --> 00:18:50,240
+nested list here or more complex list rather than a simple flat kind of list. So for, you know,
+
+160
+00:18:50,240 --> 00:18:56,400
+this set of, you know, activity where we want to copy list, let's consider a little, uh,
+
+161
+00:18:56,400 --> 00:19:02,160
+can complement, you know, complicated list or, you know, a nested list. And for simplicity,
+
+162
+00:19:02,160 --> 00:19:09,600
+let me again, uh, begin a fresh list where my, you know, elements are like this. Okay. So I have,
+
+163
+00:19:09,600 --> 00:19:15,520
+you know, first one, two, three, you know, as, you know, first three element. And then, let me,
+
+164
+00:19:15,920 --> 00:19:23,600
+put in the place of fourth element or another list, which is, you know, four, five. Okay. So
+
+165
+00:19:23,600 --> 00:19:28,640
+remember, I mean, this is different than, uh, no, keeping, uh, one, two, three, four, five,
+
+166
+00:19:28,640 --> 00:19:34,080
+in a single, you know, list in a flat way. Okay. So this is a nested structure where your fourth
+
+167
+00:19:34,080 --> 00:19:42,000
+element itself is a list, which contains four and five. Okay. So note this difference with the,
+
+168
+00:19:42,000 --> 00:19:47,440
+you know, previous list that we have been discussing so far. Okay. So let me write a comment here
+
+169
+00:19:47,440 --> 00:19:54,240
+for your convenience. So this, what I want to say here is that this list, uh, is with nested
+
+170
+00:19:55,520 --> 00:20:11,120
+structure. Okay. So if you print now, let me, uh, you know, this, now if you,
+
+171
+00:20:12,560 --> 00:20:24,400
+print this, let me print here the original list, which we created just now.
+
+172
+00:20:32,000 --> 00:20:36,480
+Okay. So you can see the original list is one, two, three, and then four, five,
+
+173
+00:20:36,560 --> 00:20:41,920
+as the fourth element of it. So this, this is, you know, this is important to note that this is the
+
+174
+00:20:41,920 --> 00:20:51,040
+fourth element of the outer list. Okay. Now, I mean, how to copy this kind of list? So one very,
+
+175
+00:20:51,040 --> 00:20:58,240
+uh, it's no simple again method is to use this list.copy method. Okay. So we, we, let me, uh,
+
+176
+00:20:58,240 --> 00:21:05,600
+go one by one so we can, to the very first and, uh, you know, very simple way to use this, uh,
+
+177
+00:21:05,760 --> 00:21:11,360
+so let me call it copy one. Let's say, since we are going to discuss multiple ways to copies.
+
+178
+00:21:11,360 --> 00:21:17,040
+So just to distinguish between, you know, what's happening. Let me give, you know, different name.
+
+179
+00:21:17,040 --> 00:21:24,000
+So copy one, let's say we create by using this, uh, you know, list.copy method. Okay. So what was
+
+180
+00:21:24,000 --> 00:21:31,840
+our original, uh, list, original list was this, you know, uh, stored in the original, uh, variable.
+
+181
+00:21:31,840 --> 00:21:42,080
+And then if we say, original.copy, okay. And then, uh, whatever you get, you just keep it in
+
+182
+00:21:42,080 --> 00:21:46,880
+copy one is what, uh, will not you ever.
+
+183
+00:21:50,640 --> 00:21:57,360
+So let me now print also. So what if we print this, uh, now after, maybe, uh, you know,
+
+184
+00:21:57,440 --> 00:22:07,040
+this copy. So what we are saying there, after we copy, we use a copy, uh, method.
+
+185
+00:22:08,080 --> 00:22:18,800
+What is the output that we get here? Is copy one? Okay. Now if you just see, uh, what's the result? Then,
+
+186
+00:22:18,800 --> 00:22:27,200
+you can see, uh, this is what, you know, we expected that in copy one, we get the same list.
+
+187
+00:22:27,920 --> 00:22:33,440
+Okay. Now, I mean, I somehow, uh, like this, uh, you know, dot copy method because it's,
+
+188
+00:22:33,440 --> 00:22:38,240
+you know, kind of explicit, right? It clearly says that I'm making a copy, right? This list.copy
+
+189
+00:22:38,240 --> 00:22:44,480
+says clearly. So this is, uh, no Python style where you want to write on script, which is
+
+190
+00:22:44,480 --> 00:22:51,120
+readable and immediately, you know, clear to you. Um, why, uh, or what we are doing. Okay.
+
+191
+00:22:51,760 --> 00:22:56,400
+But again, I mean, those who are working with older version of Python, this might not be
+
+192
+00:22:56,400 --> 00:23:01,760
+available. So my, you know, guess is that, you know, it's somehow a new feature that might not be,
+
+193
+00:23:01,760 --> 00:23:08,480
+you know, available with previous, uh, version of I think Python. Okay. So older Python version may,
+
+194
+00:23:08,560 --> 00:23:13,840
+may not have it, but check it. I mean, it, uh, I'm, I'm, I'm not, I may not be completely correct.
+
+195
+00:23:14,560 --> 00:23:21,440
+And, uh, this is, you know, it's not a universal kind of, uh, no copy method, it works only on
+
+196
+00:23:21,440 --> 00:23:26,800
+list. Okay. So that you have to keep in mind. There are some pros and some coincides. This is
+
+197
+00:23:26,800 --> 00:23:32,880
+readable. It's very explicit, but again, it's not available in the previous version. And, uh,
+
+198
+00:23:33,600 --> 00:23:40,160
+it may be not only applicable to lists. So this is what you can keep in mind when using this method.
+
+199
+00:23:40,160 --> 00:23:49,600
+But then there is another, you know, more kind of universal, uh, you know, way to do the same thing.
+
+200
+00:23:49,600 --> 00:23:55,920
+And that's what we call slicing. So slicing, we can use for not only copying the whole list,
+
+201
+00:23:55,920 --> 00:24:00,800
+but also, you know, copying, uh, different segment of the list. Okay. So this is an interesting,
+
+202
+00:24:01,440 --> 00:24:06,960
+another way of copying, uh, listing to another list in Python. And the good thing is,
+
+203
+00:24:06,960 --> 00:24:12,880
+it works in all Python version. I mean, so, you know, I mean, this is present in almost all
+
+204
+00:24:12,880 --> 00:24:18,080
+the version of the Python. So if you're writing, you know, backward, compatible code, then this is
+
+205
+00:24:18,080 --> 00:24:25,600
+good thing to go ahead with. Uh, one another thing about slicing is that, you know, it works with
+
+206
+00:24:25,680 --> 00:24:31,120
+other sequence type also, like, I mean, if you, instead of list, if you want to know work and copy,
+
+207
+00:24:32,320 --> 00:24:37,280
+either whole, uh, you know, data structure or a subsequent of the data structure and data structure
+
+208
+00:24:37,280 --> 00:24:42,880
+being different than list, let's say, string, tuple, then also you can use the slicing method. So,
+
+209
+00:24:42,880 --> 00:24:49,280
+okay, so it's no more flexible in that sense. And as I said, it's more flexible in the sense that
+
+210
+00:24:49,360 --> 00:24:56,960
+I can also, you know, copy, uh, sublist, instead of the full list, it also have some, uh,
+
+211
+00:24:56,960 --> 00:25:03,840
+slight, you know, performance, uh, I think advantage over this dot copy method, uh, you know,
+
+212
+00:25:03,840 --> 00:25:09,520
+but that, that is very, uh, slight. But I mean, some, some people may find again, I mean,
+
+213
+00:25:09,520 --> 00:25:15,840
+this, uh, little more, uh, difficult to recall or remember that this is doing the job of copying,
+
+214
+00:25:15,840 --> 00:25:21,040
+because here it was very explicit, right? We write dot copy. So, uh, for beginners, it's very easy,
+
+215
+00:25:21,040 --> 00:25:26,880
+but this may be, uh, you know, not that easy to keep in mind, but given this pros and cons,
+
+216
+00:25:26,880 --> 00:25:31,520
+let's see now, you know, how to use this thing, okay? So, what we say is, let's say,
+
+217
+00:25:32,800 --> 00:25:38,400
+in our current, uh, you know, scenario, we just want to make the copy.
+
+218
+00:25:38,560 --> 00:25:48,000
+So, let's call it copy two, and here what we want to do is, this, original,
+
+219
+00:25:50,000 --> 00:25:57,680
+okay? And then you just write this column. So, what it means is that I want to copy the whole list,
+
+220
+00:25:57,680 --> 00:26:04,320
+instead of, you know, this, I could have written, if I want to us, no, uh, sublist, I can write
+
+221
+00:26:04,400 --> 00:26:09,360
+three numbers here, you know, first being a start, second being a stop, and then I can also,
+
+222
+00:26:09,360 --> 00:26:14,400
+you know, say, what are the steps that you want to take, uh, you know, from start to stop,
+
+223
+00:26:14,400 --> 00:26:18,960
+to select different elements that you want to copy. But let's say, for simplicity, right, now,
+
+224
+00:26:18,960 --> 00:26:24,320
+I just want to, you know, focus on the whole, uh, list. So, we, uh, you know, just copy the whole list.
+
+225
+00:26:25,840 --> 00:26:32,080
+The syntax to do that is just write a, you know, uh, colon like this, and this will, uh, copy the whole list.
+
+226
+00:26:32,560 --> 00:26:40,080
+Okay. And, um, just to see the outcome, uh, just observe and validate whether things are going
+
+227
+00:26:40,080 --> 00:26:46,560
+correct. We simply, you know, print it. So, we say that after slicing may be, uh, after,
+
+228
+00:26:48,000 --> 00:26:58,800
+slicing, uh, we, we want to see, uh, our, um, original list, right? So, this is what we did,
+
+229
+00:26:58,800 --> 00:27:06,880
+and what we want to see now is copy two. Because copy two is what, uh, we obtain just now.
+
+230
+00:27:08,560 --> 00:27:12,240
+Okay. So, let's see, uh, what happens here when we,
+
+231
+00:27:14,800 --> 00:27:21,920
+especially you get the same, uh, you know, our numbers and the list that you put inside the,
+
+232
+00:27:21,920 --> 00:27:27,840
+no, outer list. Okay. So, this is perfectly, you know, aligned with what we, you know, expected.
+
+233
+00:27:28,560 --> 00:27:34,880
+Now, another, uh, way to, again, achieve the same thing is, uh, using list constructor.
+
+234
+00:27:35,680 --> 00:27:43,360
+Okay. So, list constructor is again, I mean, uh, it's, it's more, you know, universal. I mean,
+
+235
+00:27:43,360 --> 00:27:50,080
+you can, uh, not only copy a list into another, uh, you know, list, but you can also copy other
+
+236
+00:27:50,080 --> 00:27:59,520
+kind of, uh, you know, data sets like tuples, uh, uh, strings, uh, also, you know, into a list.
+
+237
+00:27:59,520 --> 00:28:03,600
+I mean, and explicitly to this type of conversion. So, if you want to make sure that your,
+
+238
+00:28:03,600 --> 00:28:10,480
+no, final thing is always a list whether you are copying, uh, no, list, or let's say, or string,
+
+239
+00:28:10,480 --> 00:28:15,840
+or tuple, then you can explicitly say this, you know, uh, so I prefer this, you know, most of
+
+240
+00:28:15,840 --> 00:28:21,840
+the time because this is explicit and I know my final outcome is list. So, if you also want to do,
+
+241
+00:28:21,840 --> 00:28:27,200
+no, defensive programming and be sure of, uh, the type of data that is being written, then, uh,
+
+242
+00:28:27,200 --> 00:28:33,360
+you know, some of you may want to prefer using, uh, you know, this constructor over, you know, other.
+
+243
+00:28:33,360 --> 00:28:40,320
+So, worth the, you know, way to use it. So, let me end right down the code for this.
+
+244
+00:28:40,480 --> 00:28:48,560
+So, we need to do is let's create another copy. I'm creating, uh, you know, these different copies,
+
+245
+00:28:48,560 --> 00:28:54,480
+so that, you know, we can do some analysis at the end. So, let me, uh, now the, in this, this time,
+
+246
+00:28:54,480 --> 00:29:04,640
+what I choose says, I use this, no, list constructor, where I pass my original list.
+
+247
+00:29:04,880 --> 00:29:12,560
+And then whatever is written, I also want to, no print end, maybe see.
+
+248
+00:29:12,560 --> 00:29:26,240
+Okay. So, let me print it. So, what we want to print it is, no, after we apply this list,
+
+249
+00:29:26,640 --> 00:29:35,120
+constructor, original, right? So, what is that we expect here?
+
+250
+00:29:36,640 --> 00:29:41,440
+Is stored in copy three. Okay. And ideally, we should get the same.
+
+251
+00:29:45,520 --> 00:29:52,400
+And see, uh, this is what you get when we print out. Okay. So, as I mentioned,
+
+252
+00:29:52,400 --> 00:29:57,840
+it is most universal work with, you know, any interval and it can copy from tuple,
+
+253
+00:29:58,480 --> 00:30:04,400
+sets, strings, generator, etc. And this is very explicit, right? So, this may be good for those
+
+254
+00:30:04,400 --> 00:30:10,480
+who want to be, you know, completely sure about the output type of the, you know, copy function.
+
+255
+00:30:10,480 --> 00:30:15,760
+Okay. So, this is what we can use, you know, um, list constructor, you, you pass it.
+
+256
+00:30:16,560 --> 00:30:22,320
+Now, the fourth way, uh, again, which can copy all the element in your, you know, list is
+
+257
+00:30:22,880 --> 00:30:26,560
+this assignment operator. No, we have already seen the effect of assignment,
+
+258
+00:30:26,560 --> 00:30:31,840
+operating previous lectures. So, this is safe. So, you can do that assignment on list also.
+
+259
+00:30:32,720 --> 00:30:39,280
+Okay. So, the very, uh, no, long method that we want to see today is this assignment. So,
+
+260
+00:30:39,360 --> 00:30:43,360
+let me create another copy. So, let's call it copy four.
+
+261
+00:30:45,520 --> 00:30:53,760
+And again, pass the same thing. No, we pass origin into this one. And now we want to print what we
+
+262
+00:30:53,760 --> 00:31:01,280
+get here. Okay. So, after assignment, uh, what we get is this copy four. Okay. And let me,
+
+263
+00:31:01,280 --> 00:31:07,520
+you know, print it here. But after assignment, we get copy four. So, once we print here,
+
+264
+00:31:07,520 --> 00:31:14,160
+you see, we get the same thing. Okay. So, now you, you might have noticed that in all these cases,
+
+265
+00:31:14,720 --> 00:31:20,400
+the final outcome that we are getting are same, right? When we print them, they are same.
+
+266
+00:31:21,360 --> 00:31:26,480
+But we want to verify whether, whether, you know, the semantics of all this four,
+
+267
+00:31:26,960 --> 00:31:33,520
+no different ways of copying list is same or not. Okay. So, when I say whether the semantics is same
+
+268
+00:31:33,600 --> 00:31:40,000
+or not, we have to check not only the values that appear in the final variable,
+
+269
+00:31:40,720 --> 00:31:46,560
+but also whether, you know, they are somehow attached or they are, you know, completely separate entity.
+
+270
+00:31:46,560 --> 00:31:52,080
+Okay. So, what I mean, I'm more precise way to ask this question is that we want to now verify
+
+271
+00:31:52,080 --> 00:31:57,840
+whether, you know, the copied object is, you know, same as the original object in all these cases,
+
+272
+00:31:57,840 --> 00:32:03,040
+or there is some distinction between these, you know, different ways of copying. Okay.
+
+273
+00:32:03,040 --> 00:32:09,360
+So, we will, you know, verify whether the objects are different or the objects are same,
+
+274
+00:32:09,360 --> 00:32:16,080
+the object that you get after, you know, you copy something and the object that you already know,
+
+275
+00:32:16,080 --> 00:32:22,400
+originally, you know, copy from they are same or different. And for that, we use this is operated,
+
+276
+00:32:22,400 --> 00:32:27,280
+that you might have seen in the last lecture also. Okay. So, his operator is, no, nothing,
+
+277
+00:32:27,360 --> 00:32:33,840
+but a way to check object identity, whether to variable, you know, point to the same object in
+
+278
+00:32:33,840 --> 00:32:39,840
+memory or not. Okay. So, we'll use the same is operator here to show whether two variables are
+
+279
+00:32:39,840 --> 00:32:45,520
+kind of, you know, aliases or different names for the same object or they are independent copies.
+
+280
+00:32:46,240 --> 00:32:50,720
+Okay. So, this will, you know, explain us the, you know, if there is any difference between these
+
+281
+00:32:50,720 --> 00:32:58,160
+four, no different copies are not. Okay. So, learn, let me not try to write this thing here.
+
+282
+00:32:58,160 --> 00:33:04,400
+So, what we want to do is verify that they are different, no, objects, okay.
+
+283
+00:33:08,000 --> 00:33:14,000
+So, what we're going to do is verify that these are
+
+284
+00:33:14,880 --> 00:33:29,760
+different objects is how to check. Okay. So, the way to check is using this is operator. Okay.
+
+285
+00:33:29,760 --> 00:33:34,800
+Now, what we can do is we can just print that. Let me know.
+
+286
+00:33:34,880 --> 00:33:46,400
+So, we want to first see the way that the original is same as the copy one. So, for that,
+
+287
+00:33:47,040 --> 00:33:56,320
+we can maybe, you know, okay. So, this statement does the same, you know,
+
+288
+00:33:56,400 --> 00:34:02,080
+activity that we want to do right now. Okay. So, let me put some.
+
+289
+00:34:04,160 --> 00:34:10,800
+So, what we are trying to print is whether original is same as copy one. Okay. So, if original is,
+
+290
+00:34:11,840 --> 00:34:19,040
+you know, same as copy one, then in this case, you will, you know, get a true value. Okay.
+
+291
+00:34:19,040 --> 00:34:24,880
+So, if this expression, so you can see this is an expression, right. The original is copy one.
+
+292
+00:34:24,880 --> 00:34:29,040
+So, if original is not copy one, let's say, if they are different objects, then what will be
+
+293
+00:34:29,040 --> 00:34:36,640
+written? So, you will get a false value. Okay. But if they are same, then we will get a true value,
+
+294
+00:34:36,640 --> 00:34:42,000
+and that is what will be no printed when we run this. So, can we run this and then see
+
+295
+00:34:42,000 --> 00:34:47,760
+what's the output that we get here? Just to make sure that they are different. So, you see,
+
+296
+00:34:47,760 --> 00:34:53,520
+original is copy one is this is false, right. Because, you know, this expression that we have
+
+297
+00:34:53,520 --> 00:34:59,520
+written here evaluates to false. Because, original and copy one are two different objects. So,
+
+298
+00:34:59,520 --> 00:35:06,080
+if original and copy one were to, you know, with the same object, then this expression will evaluate
+
+299
+00:35:06,080 --> 00:35:13,200
+to true. In that case, we would have no printed truth here. But now, we see a false here, it, you know,
+
+300
+00:35:14,240 --> 00:35:18,720
+makes us happy that, you know, they are not the same copy. So, they may not be any issue of
+
+301
+00:35:18,800 --> 00:35:24,960
+aliasing and later on, you know, chances of ambiguity of, you know, changing your original variable
+
+302
+00:35:24,960 --> 00:35:29,920
+without, you know, even not noticing. So, this is a good sign that we are indeed copying and
+
+303
+00:35:29,920 --> 00:35:36,720
+you are getting to different objects. Okay. Now, can we do the same, you know, thing with the,
+
+304
+00:35:36,720 --> 00:35:43,280
+no second and other thing? So, let me know copy face this thing and just check whether in other
+
+305
+00:35:43,280 --> 00:35:49,760
+cases also we have similar nodules. So, what if I want to compare it, you know, with copy two
+
+306
+00:35:49,760 --> 00:35:58,960
+instead of copy one? Okay. So, if you run. So, copy two is also, you know, different
+
+307
+00:35:58,960 --> 00:36:05,120
+objects and what were copy one and copy two by the way. So, copy one was using this dot copy method,
+
+308
+00:36:05,120 --> 00:36:10,080
+copy two was using this slicing. So, both of them gave me, you know, different objects. So,
+
+309
+00:36:10,080 --> 00:36:14,880
+this is what we noticed just now. What about the list operator, which we give us copy, not three.
+
+310
+00:36:15,760 --> 00:36:25,440
+So, can we also check for list? So, let me again copy and paste it and see what happens when we
+
+311
+00:36:25,920 --> 00:36:33,360
+compare these two objects and want to check whether they are same or not. So, when we, you know,
+
+312
+00:36:33,360 --> 00:36:41,120
+run it, it falls. Okay. So, these three are actually, now in all these three cases, we see that
+
+313
+00:36:41,120 --> 00:36:48,400
+the object that we get after copy is different than the object that we copy. Okay. So, now,
+
+314
+00:36:48,400 --> 00:36:55,280
+what about the last one where we store the final value in copy four? Can we also print it in the
+
+315
+00:36:55,280 --> 00:37:03,440
+same way? So, let me, you know, copy this thing and paste and now we are comparing it with no
+
+316
+00:37:03,440 --> 00:37:09,840
+copy four. So, we should change it to copy four and then see. In this case, what do we get?
+
+317
+00:37:11,920 --> 00:37:18,000
+So, in this case, we get true, right? So, now, this is a, you know, very important to keep
+
+318
+00:37:18,880 --> 00:37:25,280
+or note of this that the final one, which actually use the assignment operator, you see the final
+
+319
+00:37:25,280 --> 00:37:33,120
+one where we, you know, use this assignment operator is actually creating, it's not creating a new
+
+320
+00:37:33,120 --> 00:37:39,440
+object. Okay. It's pointing to the same object that this original one points to. So, it's like,
+
+321
+00:37:39,440 --> 00:37:47,760
+you know, alias. So, if you change, now the value of, let's say copy four after this instruction
+
+322
+00:37:47,840 --> 00:37:53,280
+is executed, your original will also get no chance. So, this is a very important to keep in mind.
+
+323
+00:37:53,280 --> 00:38:00,880
+So, depending upon what you are using for copy, you may actually create alias and it may be
+
+324
+00:38:00,880 --> 00:38:06,240
+cause of lots of, you know, error later on if you don't remember or recall that you have created
+
+325
+00:38:06,240 --> 00:38:12,720
+alias. So, assignments, immediately creates an alias and it is different from these other three
+
+326
+00:38:13,440 --> 00:38:18,640
+previous methods of copying in the sense that, you don't have different objects. Now, you have
+
+327
+00:38:18,640 --> 00:38:24,240
+the same objects and two different, you know, variable pointing to the same object. Okay. So,
+
+328
+00:38:24,240 --> 00:38:29,920
+this is, you know, one of the, so this is very, you know, important to keep in mind and this is what,
+
+329
+00:38:29,920 --> 00:38:39,440
+you know, I wanted to, you know, you to note at this moment in time. Okay. Now, the effect of
+
+330
+00:38:39,760 --> 00:38:48,480
+the three first three method is not as simple as it might appear just now and we will try to see,
+
+331
+00:38:48,480 --> 00:38:54,720
+you know, in depth, what some remaining, you know, point that you need to remember when using
+
+332
+00:38:54,720 --> 00:39:00,240
+this first three. So, although in the first three, you see that the object that you created,
+
+333
+00:39:00,240 --> 00:39:07,520
+you know, the copy that you created were different, you know, objects, some parts of those,
+
+334
+00:39:07,920 --> 00:39:12,400
+you know, bigger objects may be common with each other and to see that, I mean, it's good
+
+335
+00:39:12,400 --> 00:39:18,400
+best to go with no one example, the example that we started with the original list and I will show
+
+336
+00:39:18,400 --> 00:39:23,680
+you, okay. So, now we are trying to understand this, you know, silo copy behavior. So,
+
+337
+00:39:23,680 --> 00:39:28,160
+this dot copy method, we also call silo copy and in all other cases, also we are doing,
+
+338
+00:39:28,160 --> 00:39:34,640
+no, silo copy with nested list. So, we want to see a little deeply whether we understand the
+
+339
+00:39:34,640 --> 00:39:39,840
+semantic is still correctly or not, okay. So, certainly, you know, the final object is different,
+
+340
+00:39:39,840 --> 00:39:44,880
+right. And that's how you got this false in these three cases, but true in the last case, okay.
+
+341
+00:39:44,880 --> 00:39:51,360
+So, but what about, you know, instead of do we understand it in the most, you know,
+
+342
+00:39:51,360 --> 00:39:58,000
+precise way or we are still left with something. So, for that, let me demonstrate it using some
+
+343
+00:39:58,000 --> 00:40:03,360
+examples. So, this will be the, you know, following examples to demonstrate to you, the
+
+344
+00:40:04,320 --> 00:40:09,120
+exact semantics of this silo copy, you know, instead of, you know, understanding the approximate,
+
+345
+00:40:09,120 --> 00:40:13,440
+you know, semantics, let's now dive deep and understand the exact semantics.
+
+346
+00:40:13,440 --> 00:40:24,560
+So, the exact semantics of silo copy.
+
+347
+00:40:27,840 --> 00:40:37,680
+Okay. Now, what do you select me? What do we want to do is let me copy this original one.
+
+348
+00:40:38,240 --> 00:40:49,360
+So, this was our original. Let's start again. I mean, now, afresh is to make sure that
+
+349
+00:40:50,960 --> 00:40:58,720
+we know what is our, know, original list. So, let's, this is our, know, original list. And now,
+
+350
+00:40:58,720 --> 00:41:05,280
+we want to make a silo copy. We just give a name, silo copy to indicate the same thing that
+
+351
+00:41:05,280 --> 00:41:10,400
+happened earlier. Okay. Just to, you know, now, remind ourselves that we are talking about silo
+
+352
+00:41:10,400 --> 00:41:14,880
+copy. Let's, you know, rename it as silo copy. And what we are doing here is,
+
+353
+00:41:16,960 --> 00:41:25,680
+applying this dot copy method. Okay. So, now, now we,
+
+354
+00:41:28,000 --> 00:41:34,560
+know, so before we start changing these list, this list value or no copying, this list value,
+
+355
+00:41:34,560 --> 00:41:39,280
+let's say, first print, I mean, that before doing any modification to any of the list,
+
+356
+00:41:39,280 --> 00:41:45,040
+if you want to see, you know, what is the value of this list. So, we can actually immediately print
+
+357
+00:41:45,040 --> 00:41:51,280
+it. Maybe here, select me. So, we have two things. We have original and we have silo copy version.
+
+358
+00:41:51,280 --> 00:41:57,200
+Now, we want to, before we do any modification with these list, let's say, try to print the value
+
+359
+00:41:57,200 --> 00:42:04,000
+of the list and see what's happening. Now, before any modification, we see that original is this
+
+360
+00:42:04,000 --> 00:42:09,520
+one and your silo copy is also this one. But we know that they are no different objects. Okay.
+
+361
+00:42:09,520 --> 00:42:13,760
+So, they are not the same objects. So, what we expect is if we change one of them,
+
+362
+00:42:14,560 --> 00:42:20,240
+the others should not change. Okay. This is what is our expectation. Now, let me, you know, change
+
+363
+00:42:20,240 --> 00:42:26,640
+some of the elements. So, let me now say that in the copied version, which we should
+
+364
+00:42:27,600 --> 00:42:36,000
+select silo copy. If I want to, let's say, change the very first element, which is not the
+
+365
+00:42:36,000 --> 00:42:41,840
+zero element, to some completely different valuation, so that we can identify this change.
+
+366
+00:42:42,880 --> 00:42:50,160
+So, after modifying, you know, this, if I want to again check what is the status of original and,
+
+367
+00:42:50,160 --> 00:42:56,480
+you know, what is the status of this copied version or silo copy. So, I can actually,
+
+368
+00:42:59,200 --> 00:43:06,000
+do a print, right? I can immediately maybe, you know, print the original and then also,
+
+369
+00:43:06,000 --> 00:43:13,760
+you know, similarly, I can now print this silo copy version also, right? So, let me print here the
+
+370
+00:43:13,760 --> 00:43:23,680
+silo copy. So, what do you expect? In the silo copy, certainly, I mean, we want, you know,
+
+371
+00:43:23,680 --> 00:43:31,520
+instead of this one here, 99, right? But in the original, we don't want to see any change,
+
+372
+00:43:31,520 --> 00:43:37,280
+right? And this is what is the intended semantics. We understand till now. Okay. So, let me, you know,
+
+373
+00:43:37,360 --> 00:43:46,000
+confirm it by just running it. And this is exactly what we, you know, guessed. Okay. So,
+
+374
+00:43:46,000 --> 00:43:51,040
+our understanding seems to be correct that, you know, these two are different copies. So, here,
+
+375
+00:43:51,040 --> 00:43:57,520
+you, you still have one. But, you know, after execution of this statement, in the silo copy,
+
+376
+00:43:57,520 --> 00:44:05,600
+you can see the value of the first value has changed to 99. Okay. So, you know, with top,
+
+377
+00:44:06,080 --> 00:44:12,160
+top-level elements, I mean, we can see that there is no, no difference in what we understand and
+
+378
+00:44:12,160 --> 00:44:19,600
+what is being, you know, executed. Okay. So, our understanding of the execution semantics is
+
+379
+00:44:19,600 --> 00:44:26,640
+completely correct. Now, what if we change something in the, let's say, nested, but I mean,
+
+380
+00:44:26,640 --> 00:44:31,280
+just to make sure that we understand things correctly, what if I want to, let's say, change
+
+381
+00:44:31,840 --> 00:44:37,840
+this thing in the, you know, silo copy. Let's again, if we pick the silo copy and want to change
+
+382
+00:44:38,400 --> 00:44:43,840
+this element, which is inside a, you know, list. So, this is again another list, which is inside
+
+383
+00:44:43,840 --> 00:44:50,560
+the, you know, bigger list. If I want to change this, then what can I expect? So, let me write it down
+
+384
+00:44:50,560 --> 00:44:58,480
+and then check what happens. So, what we are, so what we saw here in the beginning was that we
+
+385
+00:44:58,480 --> 00:45:03,680
+modify the top-level element in copy, right? So, let me write a comment to make sure that you
+
+386
+00:45:03,680 --> 00:45:22,400
+understand what we intended here. Here, we intended to modify the top-level elements in copy.
+
+387
+00:45:23,520 --> 00:45:27,440
+So, this is what we did, right? We did a silo copy and we modified the top-level. So, what are we
+
+388
+00:45:27,440 --> 00:45:32,400
+calling top-level? The top-level are this one, two, three. And what is the nested part?
+
+389
+00:45:32,400 --> 00:45:38,160
+Nested part is this four and five, which is inside another, you know, list, which appears as the
+
+390
+00:45:38,160 --> 00:45:43,440
+fourth element in the, no, bigger, you know, outer list, okay? So, this is what we said top-level.
+
+391
+00:45:43,440 --> 00:45:49,440
+Now, we want to modify, you know, nested element in the copy. So, let me,
+
+392
+00:45:49,520 --> 00:46:01,440
+we want to do some change here maybe at this place and then want to see whether, you know, that thing
+
+393
+00:46:01,440 --> 00:46:11,920
+affects the previous, or the original list or not, okay? So, how to do that? So, we say silo copy
+
+394
+00:46:12,160 --> 00:46:20,480
+and then how to access that particular, you know, element in the list. So, since, you know,
+
+395
+00:46:20,480 --> 00:46:27,680
+this is a list inside a list. So, the way to do is you first access the list by using this
+
+396
+00:46:27,680 --> 00:46:33,680
+index three. So, can you see what should be the index for this list itself? So, what is,
+
+397
+00:46:34,720 --> 00:46:41,040
+so this is fourth element in the silo copy list, right? First element was this one, second was
+
+398
+00:46:41,040 --> 00:46:47,840
+this one, third was this one and fourth was this one. So, when you write silo copy and then pass
+
+399
+00:46:47,840 --> 00:46:53,680
+this index three, you get this whole list itself, okay? Now, what we want to do is not to change this
+
+400
+00:46:53,680 --> 00:46:59,120
+whole list, okay? So, the outcome of this silo copy, you know, then passing this index three is a
+
+401
+00:46:59,120 --> 00:47:06,320
+list itself. Now, of this list, I want to just change maybe the first element, okay? So, how to
+
+402
+00:47:06,400 --> 00:47:14,560
+access that? We put a second square bucket and then we say zero. So, when we say this zero,
+
+403
+00:47:14,560 --> 00:47:22,960
+what are we accessing? We are accessing actually this element. And now, at this place,
+
+404
+00:47:22,960 --> 00:47:29,680
+we want to maybe, you know, reassign some other value, okay? So, what let me, you know, reassign
+
+405
+00:47:29,680 --> 00:47:35,040
+some value which is distinct from the normal value. Let's say, you know, we want to put here 88,
+
+406
+00:47:35,760 --> 00:47:41,440
+okay? So, what should be the, you know, effect of this thing that, you know, this should get
+
+407
+00:47:41,440 --> 00:47:48,560
+changed to 88, okay? So, after modifying the next element, you know, in the copy, if we want to
+
+408
+00:47:49,360 --> 00:47:56,400
+now check what is the silo copy and what is, you know, the original copy, then what we have to do,
+
+409
+00:47:56,480 --> 00:48:04,560
+so we have to print it, okay? So, let us now print it. Let me print this whole thing first.
+
+410
+00:48:15,360 --> 00:48:21,760
+Okay, so let me, you know, print this thing. Okay, so we will print, print, original, you know,
+
+411
+00:48:22,560 --> 00:48:28,960
+but let me print the silo copy first, okay? So, what if I want to print the silo copy first,
+
+412
+00:48:29,840 --> 00:48:36,560
+what happened to the silo copy? I mean, after we change it, okay? So,
+
+413
+00:48:39,760 --> 00:48:45,040
+we expect some change, right? So, and what is the change that we expect here in the silo copy,
+
+414
+00:48:45,040 --> 00:48:51,280
+let me run this piece of potency. So, this is what happened to the silo copy, right? So,
+
+415
+00:48:51,280 --> 00:48:58,560
+the copied version, because we, you know, explicitly assigned, you know, this particular element,
+
+416
+00:48:58,560 --> 00:49:05,040
+you know, this position, the element present here, to the value 88. So, you can see now your,
+
+417
+00:49:05,040 --> 00:49:12,320
+you know, silo copy has no 99 here and 88 here. But the original, what, what shall I expect in
+
+418
+00:49:12,320 --> 00:49:16,400
+the original? Because that is a different object, right? So, if it is a different object,
+
+419
+00:49:16,400 --> 00:49:22,560
+what will you expect? I mean, if I print original, I should expect this one, right? If it's a different
+
+420
+00:49:22,560 --> 00:49:28,000
+element, I shall expect the same thing. Now, can we, you know, validate our understanding by
+
+421
+00:49:28,000 --> 00:49:36,400
+uncommenting this? Let me uncomment this and then run. Now, see, the original also says,
+
+422
+00:49:36,400 --> 00:49:42,320
+now, this time, right? So, instead of, you know, getting this as output,
+
+423
+00:49:43,200 --> 00:49:48,800
+which we, we, we somehow, I mean, many of you might have expected at this moment that we will get
+
+424
+00:49:48,800 --> 00:49:55,520
+this same original as output, because original was a distinct object, then the silo copy, what you
+
+425
+00:49:56,880 --> 00:50:04,320
+get in original is at this place, the original does not have any more value for, right? So,
+
+426
+00:50:04,320 --> 00:50:09,920
+originally, it's also got no change, although we did a silo copy, you know, which created a different
+
+427
+00:50:09,920 --> 00:50:16,080
+object. So, what's going, you know, on wrong here? I mean, what's the thing that went wrong at
+
+428
+00:50:16,080 --> 00:50:25,280
+this particular no place? Okay? We are sure that this silo copy is, you know, distinct from original,
+
+429
+00:50:25,280 --> 00:50:29,680
+and we have checked it earlier on. So, for your, no, so, since we, we got something which is
+
+430
+00:50:30,320 --> 00:50:37,360
+not intended, which is, you know, not explainable from the semantics that we learned so far,
+
+431
+00:50:37,360 --> 00:50:43,760
+let me, you know, validate it, and what's the way to validate it? Can we print again to just check
+
+432
+00:50:43,760 --> 00:50:52,720
+whether the original and silo copy is the same thing? So, for that, we can simply here print
+
+433
+00:50:53,680 --> 00:50:57,920
+original is silo copy, and then check whether original is silo copy or not.
+
+434
+00:50:58,480 --> 00:51:07,680
+Okay? So, you get a false, which is, you know, again, I mean correct, because we expected that
+
+435
+00:51:07,680 --> 00:51:12,640
+original and silo copy are different things, right? So, if they are different things, then how come
+
+436
+00:51:12,640 --> 00:51:19,520
+when you change silo copy, original changes? Okay? So, something is, you know, wrong here. We are not
+
+437
+00:51:19,520 --> 00:51:24,640
+understanding the full semantics, maybe. So, what about, you know, if we check whether this part
+
+438
+00:51:24,800 --> 00:51:30,480
+of original and silo copy are same or not? We know for sure that they, you know, the original and silo
+
+439
+00:51:30,480 --> 00:51:37,920
+copy are, you know, pointing to different objects in memory. But remember that these objects inside
+
+440
+00:51:37,920 --> 00:51:44,880
+also, you know, contains something, right? And one of the element in this, you know, list,
+
+441
+00:51:44,880 --> 00:51:50,800
+was a list, list itself. So, although, I mean, when you, you know, copy using silo copy,
+
+442
+00:51:50,800 --> 00:51:56,960
+your outer, for outer elements are simply, you know, constant objects, right? So, for them, I mean,
+
+443
+00:51:56,960 --> 00:52:03,040
+you know, you have copies, but this inner element is a list itself. So, maybe Python is, you know,
+
+444
+00:52:03,040 --> 00:52:09,600
+not, you know, copying the whole list, which is present inside as an element, but only, you know,
+
+445
+00:52:09,600 --> 00:52:17,520
+copying the reference to this list, when you do a silo copy. Okay? So, but I mean, we are not sure,
+
+446
+00:52:18,320 --> 00:52:25,520
+at least from the outcome that we get, it seems as, you know, as the, I mean, both the inner list
+
+447
+00:52:25,520 --> 00:52:32,080
+or the nested list, you know, point to the same object in silo copy as well as original, you know,
+
+448
+00:52:32,080 --> 00:52:38,960
+copy. So, can we check that also? We know that the original is not a silo copy. Okay? So, for the
+
+449
+00:52:38,960 --> 00:52:43,920
+main, original list and silo copy, they point to different objects. But what about their, you know,
+
+450
+00:52:44,000 --> 00:52:49,760
+this element? I mean, can we check and compare them also whether they, no, so let me know what I'm
+
+451
+00:52:49,760 --> 00:52:58,400
+saying is, can we also compare this original three with silo copy three position? Okay? So,
+
+452
+00:52:59,040 --> 00:53:09,200
+that mean, print it explicitly. So, this is what we want to know, print that our original,
+
+453
+00:53:09,840 --> 00:53:13,600
+you know, at third position and what is the original third position? So, this is the list itself,
+
+454
+00:53:14,320 --> 00:53:23,760
+and silo copy at third position are they same or not? Okay? The original and silo copy is,
+
+455
+00:53:23,760 --> 00:53:29,120
+you know, clearly distinct. But what about this if I print it? Let's try, try to check.
+
+456
+00:53:30,000 --> 00:53:35,920
+So, what you get here is a true value, which is surprising, right? And this is the reason why you
+
+457
+00:53:35,920 --> 00:53:41,360
+get, no, something which you did not expect. So, even if you are copying using the silo copy,
+
+458
+00:53:41,360 --> 00:53:47,840
+which was, no, the first three method that we used, the flat, no, elements or the outer
+
+459
+00:53:47,840 --> 00:53:54,080
+most elements are, you know, copy it. Okay? So, you know, like, you know, one, two, three, these were
+
+460
+00:53:54,080 --> 00:54:00,160
+the constant thing that you get copied. But when it came to list, the whole list was not copied
+
+461
+00:54:00,160 --> 00:54:06,400
+into the, you know, newer copy. Instead, what we did was the pointer or the reference to the list
+
+462
+00:54:07,040 --> 00:54:14,000
+is copied in the new list. Okay? So, now, if you are working with nested list, and even if you do
+
+463
+00:54:14,000 --> 00:54:19,920
+silo copy or you do the first three, you use first three method, you are in danger. I mean,
+
+464
+00:54:19,920 --> 00:54:25,360
+if you change something in the nested part, then your original part may also now get changed.
+
+465
+00:54:25,920 --> 00:54:31,280
+Okay? So, this is very, you know, important to keep in mind that a silo copy creates a new list
+
+466
+00:54:31,280 --> 00:54:37,600
+object, but only copies the reference to the nested object. Okay? For the nested object,
+
+467
+00:54:37,600 --> 00:54:44,400
+it will not copy the whole object for the nested, you know, objects, which may be no list inside
+
+468
+00:54:44,400 --> 00:54:49,760
+or list, it will copy only the reference to the nested object and not the nested object themselves.
+
+469
+00:54:49,760 --> 00:54:55,280
+So, this is very important to keep in mind. The top level element, like, you know, integer or
+
+470
+00:54:55,280 --> 00:55:00,800
+string that you keep, you know, directly, are independent, you know, in the copy, but when you
+
+471
+00:55:00,800 --> 00:55:08,000
+have nested objects like, you know, inner list, okay, then there will be said, you know, between
+
+472
+00:55:08,000 --> 00:55:18,720
+original and copy. Okay? So, this is what was happening here. So, okay? So, this is explanation of
+
+473
+00:55:18,720 --> 00:55:24,480
+what I said, right? The silo copy creates a new list object, but only copies the reference to
+
+474
+00:55:24,480 --> 00:55:33,040
+the nested objects, not the nested object themselves. Okay? Now, if you go step by step, you know,
+
+475
+00:55:33,680 --> 00:55:38,160
+trying to understand what happens, so this is what happened, okay? Your original list was this one.
+
+476
+00:55:39,440 --> 00:55:44,560
+Your silo copy was this one, an outer list, are different objects. So, what are the outer
+
+477
+00:55:44,560 --> 00:55:49,040
+list? I mean, this one, this one, one, two and three. So, these one, two, three are here and
+
+478
+00:55:49,120 --> 00:55:54,800
+these are two, one, two, three are different objects, okay? So, they're not the same thing.
+
+479
+00:55:54,800 --> 00:56:00,880
+So, if you change one, I mean, another will not get changed, but then here, I mean, original
+
+480
+00:56:00,880 --> 00:56:08,160
+list had, you know, this list as the fourth element, but here, the reference to that list is
+
+481
+00:56:08,160 --> 00:56:15,520
+actually copied, not the whole list is copied. Okay? So, both of them actually point to the same
+
+482
+00:56:16,480 --> 00:56:21,440
+four comma five. So, if you change this list, four comma five, you know, any one of this,
+
+483
+00:56:21,440 --> 00:56:28,800
+then, I mean, the second one will be changed. Okay? This is what we wanted to say here. So, that's why
+
+484
+00:56:29,600 --> 00:56:37,440
+when we, you know, did top-level element change, zero, silo copy is zero, 99, the only change,
+
+485
+00:56:38,800 --> 00:56:44,320
+so it only changes, you know, the copies first element and not the, you know, it will only change,
+
+486
+00:56:44,320 --> 00:56:55,280
+you know, this element and not the element here. Okay? So, original remains unchanged because
+
+487
+00:56:55,280 --> 00:57:02,720
+integers are immutable and stored separately. Okay? And in case of, no, and this nested list,
+
+488
+00:57:02,720 --> 00:57:10,320
+you know, say, this element, you know, three, cause silo copy three was a list itself and list
+
+489
+00:57:10,320 --> 00:57:17,760
+are mutable. So, whenever, you know, you have mutable objects, as a entry inside this list,
+
+490
+00:57:18,480 --> 00:57:23,760
+when you're copying, even using no silo copy, the reference to that, you know, mutable objects
+
+491
+00:57:23,760 --> 00:57:29,760
+gets copied instead of that whole mutable object. Okay? So, both original and copy see this change.
+
+492
+00:57:29,760 --> 00:57:34,480
+I mean, when you do this change, because this is inside the, you know, shared object, which is
+
+493
+00:57:34,480 --> 00:57:40,160
+shared by both original and the copy, you will see the change at both places, okay? Because they
+
+494
+00:57:40,160 --> 00:57:47,040
+both reference the same inner list object, modifying the inner list affects both outer list.
+
+495
+00:57:48,880 --> 00:57:53,680
+Okay? So, I mean, and then, I mean, you should be very careful working with this kind of things,
+
+496
+00:57:53,680 --> 00:58:02,720
+if you're having no deep, you know, nested, kind of list, then you better, you know, use something
+
+497
+00:58:02,800 --> 00:58:08,400
+different. If you, if your intention is only to, you know, create a distinct copy, which will not
+
+498
+00:58:08,400 --> 00:58:13,360
+modify or changing that will not modify the original one, then you use some other method, okay?
+
+499
+00:58:13,360 --> 00:58:18,080
+So, the solution is this, you know, deep copy method. So, instead of silo copy, what we say,
+
+500
+00:58:18,080 --> 00:58:23,600
+we do deep copy, we copy everything. I mean, we, we never try to copy a reference rather than
+
+501
+00:58:23,600 --> 00:58:29,440
+we copy, you know, if, if let's say inside a list, there is another list, you simply copy the whole
+
+502
+00:58:30,160 --> 00:58:36,000
+list, you know, explicitly without, you know, and not copying the reference to the, no, copy list.
+
+503
+00:58:36,000 --> 00:58:42,080
+So, for that, we can use, you know, copy dot, you know, deep copy to create a completely
+
+504
+00:58:42,080 --> 00:58:48,080
+independent copy where nested objects are also duplicated, okay? So, this is possible, this is
+
+505
+00:58:48,080 --> 00:58:54,480
+completely possible inside Python, and when you're sure that you want to do a deep copy, you should,
+
+506
+00:58:55,200 --> 00:58:59,040
+you know, use this, and for that, you have to know import this, you know, copy module,
+
+507
+00:58:59,600 --> 00:59:04,480
+and then we can actually do this deep copy. So, what is the syntax for deep copy, then
+
+508
+00:59:05,280 --> 00:59:11,840
+let me write down it. So, the syntax for deep copy is not this copy dot, deep copy, and then
+
+509
+00:59:11,840 --> 00:59:18,720
+pass the original. So, I want to keep, let's say, I want to name it as deep copy now, let's say,
+
+510
+00:59:19,520 --> 00:59:29,200
+we want to keep in, you know, deep copy. So, I want to access this, you know, deep copy,
+
+511
+00:59:30,720 --> 00:59:38,640
+method inside this copy module. So, copy dot, deep copy, maybe, to this is the, you know,
+
+512
+00:59:38,640 --> 00:59:43,280
+syntax that we can use, and then we can pass the original.
+
+513
+00:59:43,920 --> 00:59:52,320
+Now, this will do, you know, true copying in the sense that it will copy everything. I mean,
+
+514
+00:59:52,320 --> 00:59:57,920
+not the reference, but the whole list, even if there is a nested list, you know, inside the
+
+515
+00:59:57,920 --> 01:00:04,960
+outer list. So, in this case, you know, modifying the nested element in the copy will not change
+
+516
+01:00:04,960 --> 01:00:10,720
+the original element. So, let me, you know, do the same kind of change that we did earlier,
+
+517
+01:00:11,200 --> 01:00:25,360
+and show you what's happening. Let's say, if I want to print it. So, after this instruction is
+
+518
+01:00:25,360 --> 01:00:31,760
+executed, if I want to see, what is the status of, you know, original, and also, maybe, you know,
+
+519
+01:00:31,760 --> 01:00:36,400
+what is the status of the deep copy that you have created just now.
+
+520
+01:00:41,680 --> 01:00:51,760
+Okay. So, we have, you know, copied, we have done a deep copy of the original into this deep
+
+521
+01:00:51,760 --> 01:00:56,960
+copy variable, and then next the action that we have taken is we have modified this deep copies,
+
+522
+01:00:57,840 --> 01:01:04,720
+third, you know, elements, or I mean, there's this list first element by accessing it using these
+
+523
+01:01:04,960 --> 01:01:13,280
+indices, and I'll sign there 88. So, what we, when we print original. So, since this is a deep
+
+524
+01:01:13,280 --> 01:01:19,760
+copy, in this case, I expect that this is an original value is not changed, but when I print the
+
+525
+01:01:19,760 --> 01:01:26,080
+deep copy, no value, which is no copied here, which I have already changed, I expect to change
+
+526
+01:01:26,080 --> 01:01:31,600
+there, right. So, if it is a deep copy in true sense, then there should be this distinction,
+
+527
+01:01:31,600 --> 01:01:35,200
+right, when we print it. So, now, let me, you know, print this thing then.
+
+528
+01:01:37,360 --> 01:01:44,160
+Now, you see, even though we changed this deep copy value, here 88, the original list did not change.
+
+529
+01:01:44,800 --> 01:01:50,800
+Okay. And this is what, you know, we wanted to note in this, no lecture that there is a difference
+
+530
+01:01:50,800 --> 01:01:56,800
+between this kind of no shallow copy and deep copy. And whenever you are, you know, clear that you
+
+531
+01:01:57,680 --> 01:02:03,040
+do a complete copy instead of, you know, copying some references to some, you know, said object,
+
+532
+01:02:03,040 --> 01:02:08,800
+it's better to, you know, do this kind of deep copy to avoid any, you know, kind of confusion,
+
+533
+01:02:08,800 --> 01:02:15,200
+and scope for, you know, future bugs. Okay. So, yeah, so keep in mind, this is very, you know,
+
+534
+01:02:15,200 --> 01:02:22,480
+important topic, and we should, you know, always be sure about what's happening. I mean,
+
+535
+01:02:23,440 --> 01:02:29,920
+whether, if we, you know, do a copy, does it actually creates a new thing or it passes just
+
+536
+01:02:29,920 --> 01:02:35,440
+reference to the new thing. So, you know, if you keep in mind these things, then there is very
+
+537
+01:02:35,440 --> 01:02:40,080
+less chance of error. So, yeah, please go through this lecture again to, no, observe,
+
+538
+01:02:40,080 --> 01:02:45,360
+observe the material that we have discussed many of you might find it a little non-comfortable,
+
+539
+01:02:45,360 --> 01:02:50,880
+but this is the exact semantics of copy, you know, shallow copy and deep copy. So, with this,
+
+540
+01:02:50,880 --> 01:02:55,840
+I would like to conclude today's session. So, I'll meet you in the next video. Till then,
+
+541
+01:02:55,840 --> 01:03:05,840
+goodbye. Thank you.
+

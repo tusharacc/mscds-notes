@@ -1,0 +1,512 @@
+Hello and welcome back to Python, Core and Applied Concept for Reliable Letters, Science
+Workflow.
+So, in today's this video we will continue our discussion of Bind Research Tree and we
+will talk about some of the drawbacks of working with Bind Research Tree.
+If you recall in the last lecture we discussed how to create Bind Research Tree from scratch
+and how to then populate Bind Research Tree by adding element 1 at a time right and we
+also have written one function which was actually adding this thing.
+So, this BST insert was the function that we discussed in the last class, this BST insert
+was helping us insert new values inside a existing Bind Research Tree and we experimented
+with this function and we saw the function was working correctly.
+But one thing which I noted very slightly in the previous lecture was that the overall
+structure of the BST will depend upon the order in which you add this element because
+the very first element becomes the root element of the BST.
+Now, that may cause trouble and depending upon if the order in which element comes is
+not favorable, we may end up with Bind Research Tree which are actually not balanced and
+one of the major advantage of BST as we discussed in the last lecture was that if the BST
+is balanced then searching in a BST for a value takes far less time right because you
+either only search in the left half or the right half depending upon how the value compares
+with the root node and in this way you can reduce our space by half in each go right
+and that somehow leads to log and complexity of search as well as insert for searching
+or inserting inside this BST, if the BST is balanced then you just need log and time
+for doing both this activity where N is the number of nodes because log N becomes the
+height of the BST. So, think about it in your free time and try to justify why for a balanced
+Bind Research Tree, the height of the Bind Research Tree is always less log N of
+where N is total number of elements in the Bind Research Tree. So, that's the major advantage
+I mean of using BST that if your BST is balanced then you can do both insertion as well as search
+which are most common activity on any data structure in log and time and log and doing being
+being able to do it in log and time is a very huge advantage. It was not the case with not
+let data structure which were linear in nature and we could get these advantages because
+BST has this order property and also I mean in the good cases when your BST is balanced your
+height is not only log N. So, losing these two are a very nice combination and that your tree
+has a height of log N and your tree has this property where your root node is always better than
+the element which is present in the left subtree and also your root node is
+less than all the elements that is present in the right subtree. So, you can combine these two
+property very nicely and come up with no efficient algorithm to search inside a Bind Research
+Tree as well as no update Bind Research Tree by inserting some element into it. But when this
+property of the BST this property of being balanced remember the property of being balanced is
+not a mandatory property for Bind Research Tree right we had only two essential property for
+BST one was this structural property which somehow guarantees that every node in the
+BST can have at most two children and the other property was this ordering property. So,
+so the balanced properties I mean if let us say we can define somehow this balance factor or
+this balancing thing that you typically we are talking about. So, that is not a prerequisite
+or not a requirement at least for the Bind Research Tree right. For example,
+assume that if you have only two elements in your Bind Research Tree right so either one
+element will be less than the other or the greater than other right I mean they
+they assume that they are distinct element then your binary tree will be either you know right
+skewed or left skewed right it it can never be balanced. So, you can never you know ensure
+complete balance in your Bind Research Tree but then we want to define some notion of you know
+balanced by in research tree and think about you know this kind of you know problematic
+instances where tree make it you know unbalanced. So, let us talk about that you know in in
+context of some you know example with some concrete example so that it makes sense. So,
+this is the you know problem that I was talking about that depending on how these elements are
+added into BST your BST may become completely you know unbalanced and then the height of the
+BST is no more log of log and right where n is number of element in the BST. To give you a very
+quick example I mean you can maybe apply the same function or that we have written BST insert
+and then insert values in your Bind Research Tree where you know you start your you know your
+Bind Research Tree your root is less than none in the beginning and then you add element in this
+order. If you add elements in this order it is not difficult to you know convince yourself that
+your tree will be skewed like this towards the right hand side right why because the first
+element that you add is 10. So, 10 becomes the root node and then the 20 is the next element it
+is greater than 10. So, it goes towards the right hand side okay. So, your node tree is not
+at the current you know position when you insert this 20 is already skewed towards right but no
+since you know every other value that is no coming is greater than the previous value you keep
+on you know adding those element at the right hand side of the you know last element or to
+not that you have added right and this way the tree keeps growing only towards the right hand
+side right and and if you now measure the height of this tree it is no more log n right it is
+exactly n right. So, these are extreme cases but you know this kind of a stream cases may occur
+either you know completely you know these extreme cases are somewhere in in in between I mean
+you may have some element which can get you balanced tree but then some at a stress you may get
+something like this which can cause you know imbalance in some part of the tree. So, it's not
+you know by just no maintaining the BST property you know in a nutshell what I'm trying to
+emphasize is that no by just maintaining the BST property we cannot be sure that our binary
+substrate that we get is always balanced okay and this kind of thing this kind of trees
+are you know unbalanced tree I mean this is what we call unbalanced tree okay and very you know
+go you know clean example is this you know increasing you know sorted let's say at least I mean if
+you if your element comes in this you know sorted out either in increasing order or in decreasing
+order right because if these elements come in decreasing order then in you can guess that
+this tree will become now left skewed right because you know everything in the very beginning you
+will get 50 and then 40 30 20 and 10 and all the new up no let us know members actually get to
+the left subtree okay and that way the tree may also grow towards the left hand side okay.
+So, in these kind of you know extreme example your tree is completely you know skewed I mean
+and this is just one of the same thing that I mentioned right now so if you know run this code
+which was you know our actual code okay so maybe we need to compile our code once more this BST
+so we define it somewhere yeah here so let me compile this BST insert and after
+this block if you again in that block on this sorted no list which represents you know the
+bad kind of order in which so this order then you can see that the tree produce will be
+okay so let me you know again compile the display tree function which we have this defined
+earlier in the earlier class right I mean so this was BST insert and where is this display tree
+so this is the code once we compile
+no maybe we just compile the code for this display function even once we compile it
+and then we come back to the place where we wanted to use it for the sorted list
+okay so now we have both the functions compile and it should actually run okay now if you run on
+this you can see you know when your input are in increasing order only you know any just step
+what is happening your you know right child is not being updated okay and you know at the end
+I mean what you get is this right child you know so left child remains none right and always the
+right child is expanded into another you know tree where again the left child is none and then
+right child has some value so you know so in picture I mean you know if you want to see this is
+exactly the scenario right where your tree is balanced towards the right and side so we certainly
+don't want this kind of you know scenario right where your tree becomes skewed in nature either
+left skewed or not right skewed so we want to avoid it otherwise we will not get the benefit of
+using BST kind of structure okay so this is what we know call no balancing okay so for
+for example and this is you know somewhat balanced tree but this is no completely unbalanced tree
+but we need and and when we have balanced tree then this is what we have right our height is
+log of n where n is total number of nodes in the tree and if your height is in log of n then you
+can do no most of the operation in of the order of log and time but if your tree grows you know in an
+unbalanced way for example this way the height becomes of the order of n and then any activity
+or any operation that you want to do on this data structure like you know insert or search
+takes this log and so this you know of the order of n time so this this may have no real world
+consequences and when your I mean these are some of the examples where you actually no real data
+may have this sorted property and in that case if you want to store then using BST then you will
+get this kind of skewed BST and you will not get the benefit of BST so what is the root cause
+regular BST don't care about their shape right so they have some structural requirement right
+structural requirement was that every node has should have at most not to children right and
+that was only structural requirement but that does not in in force in any way for these trees
+to be you know balanced right because in this case I mean it followed that is structural requirement
+if you see closely right none of the node has more than two children but it was not balanced
+right it was a skewed tree so so we need you know now somehow another no restriction or you can
+say invariant that we want to maintain for this data structure which is what we call no balance
+factor okay now so that's why you know we are going to discuss today something which is an
+you know improvement over by necessity which we call height balance tree okay so there are
+multiple ways in which you can you know balance height for this kind of binary substrate and we
+will be discussing today one of the very you know popular height balance tree structure which is
+called AVL tree okay so height balance tree maintains this extra property that for every node
+the height of left and rights of tree differ by at most one okay so I will call my tree to be
+height balanced only if this property is true right that no you're but in this case you can see
+for example this is not height balance right because the right subtree has no height 4
+but the left subtree had height 0 so I this will not qualify as no height balance tree but what
+about this I mean can we say or something about this is it a height balance tree
+for example for this node the left hand subtree has height 2 and the right hand subtree also has
+height 2 right so for this node I mean this node will not complain right so this is not a
+counter example to a height you know imbalance or let's hide balance right what about this node
+for this node can we say the same okay there is no right child for this node 20 but there is a
+left child okay but here also the no balance factor is only one right the difference in height
+between left subtree and right subtree for this node is also one and if it is no one or less
+than one then we don't care I mean we say that it's okay because anyway I mean if let's say
+in the very the example that the simplest example that I gave you if you have only two elements
+then you you can't know always say that no I can maintain a height difference of 0 between
+node left and right right because one of the two will come as a left child or right child for
+the simple or the simplest tree you will have high difference of one okay so what we say is we
+don't worry if the height difference of the left subtree and the right subtree is one at any
+you know place in our tree but if it is more than one then you know we would like to do something
+so that you know we can correct this height imbalance okay so let me yeah let me come to
+so this is how we define the balance factor okay so we measure our balance using a simple
+calculation which is no which we call balance factor and what is this balance factor that height
+of left subtree minus height of right subtree okay and the valid values for the balance
+factor is no minus 1 0 or plus 1 so what we say essentially say that no if the height of the
+left subtree and right subtree are same for a node let's say then it's perfectly alright but if
+it is not let's say same I can accept a difference of one at max so this is no essentially what we
+are saying okay and I had to allow that no difference of one because of that no simple case which I
+mentioned right where we have only two element and we cannot actually do anything with those two
+element but two no we have to actually allow this you know difference of one okay so so valid
+values values for this balance factor is minus 1 0 and plus 1 and remember that no this balance
+factor so these valid values has to be true for every node in the tree okay it's not like I mean
+we are talking about only the root node maybe for root maybe I mean there may be you know some
+special cases of BST where root node is not complaining because it's left no subtree and right
+subtree has the same height but some somewhere down the line I mean there may be a no height
+imbalance okay so we have to check this for every node in the you know binary surgery and if
+this invariant is true for every node in the binary surgery then only we will call that binary
+such to be a balanced no height balance tree okay for example I mean a very quick example let me
+know increase the font of this so that no things are a bit clear okay now so this is a very you know
+a small example to show you how can we calculate the balance factor okay so when we talk about
+no this E and D since no they are anyway the leaf node the last node they don't have left
+child alright child so these nodes can never be you know reason for imbalance in your tree okay so
+at least I mean you can be sure about the leaf node but what if I go just one to the parent of
+the leaf node okay so so again I mean C is the parent for this you know leaf node E and what is
+the height of the left subtree on C there's nothing right so we say that the height is no zero
+here the left subtree but what about the height of the right subtree is one right I mean because no
+E is there so now if you take the difference of left subtree minus right subtree and try to
+calculate the balance factor for this particular node C what do you get so zero minus one gives you
+minus one right so C C's no balance factor is minus one so C will also not complain right because
+we will allow one difference in in in the height of left subtree and right subtree okay so what
+about B I mean if you calculate the balance factor of B what will you get now left subtree has
+a height one but the right there is no right subtree here right I mean so the height of the right
+subtree is zero so if you find the difference between the height of left subtree and right subtree
+you will get a plus one okay so B as well as C both cannot complain because for both of them the
+balance factor is actually plus one and minus one and which is allowed okay and also balance
+factor of you know zero is allowed because that's the ideal case where you know both left subtree
+and the right subtree has the same value or same height okay so what about A so if if you look
+at A no the left subtree of A has a height two and the right subtree of height no A also has
+height two so in this case also when we calculate the balance factor of A we get zero okay and this
+is what we have summarized here right if we calculate this balance factor for each of the node
+in the tree which can be no problematic except the no leaf node we figured out that the value for
+each of these nodes where either zero one or minus one so if the value is for each of the node is
+no either zero one or minus one we are happy we would say in this case that the
+binary system is a balanced tree okay it's a height balance tree okay so this is a perfect you
+know I mean this is perfectly alright from no the balance point of view or this balance factor
+point of view because every node qualified our invariant or the no criteria that we put
+for it to be a balanced tree but what about this tree I mean if you look at this I mean this
+certainly looks like you know a skewed like left skewed binary system and you know by just
+looking at it we would like to call it an unbalanced tree but can we figure out I mean which of
+the node will complain and be the cause of the no unbalanced that is there in this tree okay so again
+I mean with C there can't be any problem right because this is leaf node with B if you calculate
+again there is a left tree which has height one but the right sub tree is missing so if you
+know calculate the balance factor for this B we get plus one but in case of A if you calculate
+again the balance factor there is nothing on the right but left sub tree has height two so if
+you know calculate the difference the balance factor becomes plus two and this is the point I
+mean this is the node that will now start company right because we could find out a node for which
+the balance factor is not in this set no zero one or minus one no we we got a balance factor which
+is plus two okay so this is the problematic node and hence we will not call this BST
+a height balance no BST okay so this is the node which is causing the imbalance in the tree
+okay so I hope I mean now you know it's clear to you what what is no balance factor and how to
+calculate balance factor and how to figure out which which of the node may cause you know
+may be the reason for a BST to not be a height balance by this is tree okay so now
+no so if your tree is not you know balance then I mean we already discussed right this thing so
+you can just read it so these are some of the drawback that you get and to counter this you know
+difference in height of the left subtree and right subtree for any node we we thought we talk
+about this height balance tree and there are three popular height balance tree which you can
+know finding any other structure and algorithm book so they are known as avial tree red
+black tree and B tree so what we discussed today is this avial tree you know we will discuss one
+way to mitigate this on no imbalance in a binary search tree okay and that is the wire is no
+avial tree so avial tree or nothing but binary search tree with an additional requirement that
+the balance factor that we define just now for every node so the balance factor for any node in
+the tree has to be you know one among these three values that plus one minus one or zero okay
+so we will implement avial tree using you know the same dictionary and recursion pattern that
+you already know in fact I am not going to implement this and this is going to be a you know
+homework for you assignment for you so we will you know discuss about the idea of the height
+avial height balance tree and different operations that you have to perform to balance the height
+whenever there is an imbalance in height of the left subtree and the right subtree okay so let's
+go directly to this avial tree concept and try to understand so what is it so an avial tree
+is a self balancing binary search tree that we want to you know implement that maintains its
+balance through automatic rotation so that we will discuss about an operation which is called
+you know rotation no in the context of binary search tree and we will see that by doing these
+rotations you can immediately get rid of this no imbalance okay so whenever you figure out
+that some node is complaining because their balance factor has no went out of this set
+or you know their balance factors no absolute value is greater than one in that case we will
+immediately apply one of these rotations that we are going to discuss today and balance that tree
+okay so it should have properties of you know BST so it should maintain the binary
+such tree you know ordering invariant which says that no everything in the left subtree should be
+less than the parent and everything on the right subtree should be greater than the parent it should
+maintain this balance property that for every node this should be true so I mean to maintain
+this balance property the tree data structure should be no self balancing what do you mean by
+self balancing because if you want to maintain this you know balance property then you have to do
+something beyond simple insertion the way we did in no binary search tree right because in binary
+search tree we just figured out what is the correct position and we kept there but after an insertion
+let's say an already balanced binary search tree may become no imbalance you you also need to check
+whether this last insertion made my binary search tree imbalance and in that case if you figure out
+that the no binary search tree now had become imbalance you need to do something to do something
+to correct this imbalance that's what we call you know self balancing so this will be part of
+every you know insert or delete an operation that you do on this kind of you know
+white balance tree okay so this has to be taken care by those operations which tries to modify
+this data structure okay so so let's you know quickly again revisit what what was the balance
+factor so balance factor was height of less sub tree minus height of right subtree now I leave it
+again as a homework to define this height function right because right now we are talking about height
+in a intuitive way right we roughly understand what does a height mean for a tree but can you
+also you know define a function to calculate this height no for a given tree so do that okay so
+nitric that again as a no homework try to define this no height function which can calculate the
+height of a given tree and then once you have that function you will also have a function to
+calculate balance factor and we need to store the balance factor for each of the node because
+you know we we want to maintain this invariant okay we already discussed it that no
+a military always maintains the you know balance and if you can maintain the balance then you can
+ensure that you know you can do all these no update and search operation on this no data
+structure in out the order of log and you know time okay so this is again you know an example of
+height balance tree because here I mean you can see that no all the node has been a balance factor
+either you know zero or minus one or plus one so you can actually again revisit this
+BST on your own and check whether this is a balanced BST now let's talk about know the some some
+scenarios that can cause imbalance and in those scenario what can we do to let's say you know
+recover from that imbalance and no make it balance okay so there are four types of rotation
+that we will discuss just now which can help us regain the balance from an unbalanced tree okay so
+so let's discuss them one by one okay so the very first type of rotation that we talk about
+is called no left left rotation okay so
+so so what is the scenario so for example I mean assume that initially your tree was no balanced
+okay so this is again I mean a very simplistic example I mean this may not be the most general
+case but somehow these four you know cases captured the general all possible scenario that might
+happen in your actual BST that you are you know updating okay so let me talk about the very
+simplistic case you know using the simplest kind of example where we first time encounter some
+in imbalance so the very first case is the scenario where your node is left heavy and left child
+is left heavy or balanced so what does it mean so to understand this no assume that initially you
+had created a BST which had only A and B okay and B is on the left hand side of A or is B is a
+left child of A okay so assume that your BST only has this no A and B initially so why did you
+put B by the way on the left hand side as a left child of A because you know B had a value which
+less than the value of A right so that that's the only reason why you would put B as a left child of A
+and so at so at the time let's say another C arrived which has value even lesser than B
+okay so till the point when you had only A and B in your tree was the tree
+the unbalanced it was balanced so if you had only A and B you you say I mean your tree was not
+unbalanced right because no for B it was not B you cannot complain and A will also not
+complain why because the balance factor for A was 1 but as soon as you add a C which is no
+less than you you have to insert C here because C's value is less than B so in that moment it's
+itself so we will not complain but then A will start complaining okay so this is no the scenario
+that you are inserting into the left subtree of the left child okay so initially if your tree was
+you know balanced but if your current you know insertion is in the left subtree of the left child
+then you might encounter this kind of situation right because the final place where you inserted C
+is on the left subtree of A so initially it was balanced but then now it can become unbalanced
+so right so I hope I mean this is clear why this is an unbalanced tree because for A if you
+calculate the balance factor you can see the left child subtree has high 2 but there is nothing
+on the right okay so the moment you insert C at that moment itself A will start complaining
+right because for the first time balance factor went no beyond the allowed set of minus 1 0 and 1
+okay so the moment we encounter such a scenario where you know this is the case that your
+balance factor for the node becomes plus 2 so we can do something very simple to correct this
+balance factor so can I convert this tree into this tree without violating any of the property of
+BST if I can let's say do this I mean if let's say somehow you know one can transform this tree
+into this bottom tree without violating the property of BST then I would be happy right because
+then I will do this transformation and make the tree balance because you see one of the advantage is
+that the bottom tree that you are seeing is a balanced tree right but if it is also a BST then
+there should not be a issue right then I whenever I see such such a circumstances you know happening
+I will immediately you know transform this kind of you know tree or subtree into this kind of tree
+okay so why this is a valid transformation in this particular case so what have we done what we
+say is now we make you know B parent and A the right child of B and see let with the left child
+of B right so initially also if you see C was the left child of B right so it's same right so
+there is C and B cannot complain with respect to each other why because anyway C's value was
+less than you know B so C can happily sit on the left subtree of B but can A go to the right subtree
+of B is it a problem or it's allowed since A was parent of B and B was the left child of A
+you already know that the value of A must be greater than the value of B right because B is
+sitting on the left hand side of left subtree of A so you know that the A's value is greater than
+B so if A's value is greater than B the moment you make you know B parent and keep A on the right hand
+side it should not complain right because this is a valid BST property right now according to the BST
+ordering property this is allowed okay B can become parent of A when A is the right child of B
+because you know BST says that everything on the right subtree should be greater than
+the parent okay so transforming you know this tree into this tree
+doesn't break the BST ordering property okay so at least it's not so if you transform this
+you know this BST into this BST so then if you transform this tree or this BST into this tree
+it's not breaking the you know ordering property so at least one of the ordering property one of
+the essential property of the BST you could you know easily check that it's not being broken but
+about the other property the other property was the structural property right so are we breaking
+the structural property you know by you know transforming this tree into something like this
+are we let's say you know introducing nodes for which there are more than two
+child no right because no for each of the no you can see there are at most two children right so
+neither we are breaking a structural property nor we are breaking the you know ordering property
+right so if we are not doing if we are not breaking both then I will certainly transform it into
+this form why because the advantage is by transforming you know this you know tree which was
+troublesome due to this node which has a balance factor of plus two by transforming this into
+this we actually get rid of that no balance factor problem now in this tree if you calculate
+again the balance factor you will see that no balance factor for every node is within a
+loud range of you know minus one zero and one okay so that's why you know this kind of transformation
+you can easily do to recover from this kind of no imbalance that has been introduced by the last
+insertion that happened here okay so this is what we call you know LL or you know right rotation so
+why we are calling it right rotation rotation by the way because see I mean a
+c b and a where in this form right and then a now comes to the right of b okay so this is no
+like you know right you're rotating it in a from top to the right set I write I mean so so if you
+can you know justify this name then it's good otherwise also it's okay I mean but I mean this
+kind of thing is we call right rotation okay so so the second kind of you know rotation that
+we use to get rid of this kind of you know imbalances what we call RR or left rotation okay so this
+just the opposite case of the previous one that we have discussed again I mean assume that a b
+we are already you know in your tree in this order so since they were in this order you know that
+a was I had a value which is less than b at that time it did not complain but as soon as you
+added a c it started complaining right why it started complaining because the balance vector of a
+now becomes minus two so it's then you know you know it's not a balanced tree anymore
+now with this kind of our tree can we transform this tree into this without breaking the BST
+property and achieving balance right because to the one advantage you clearly see is that if you
+can transform this into this you certainly you know now maintain the balance right because whatever
+was causing imbalance you could get rid of that okay so if we are not breaking the BST property
+both structural and ordering property then we should be happy and this this is perfectly
+know doable thing right this kind of transformation you can easily do to maintain the
+imbalance factor okay and you can convince yourself that this is again allowed right because
+b and c are not changing their position with respect to each other right b was earlier also
+parent of c now also b is parent of c the only thing that you did is that you made a now the left
+child of b okay so if you make a left child of b is it allowed this is perfectly all right because
+it was any way less than b so it can come in the left subtree of b okay so think about it
+no again I mean in your free time and try to convince that this is a perfectly valid transformation
+which maintains the BST property okay so by doing this kind of transformation you will not
+break any of the essential property for you know BST okay so this is a second scenario
+but I mean scenario can be no different than these two cases I mean and these two are again I
+mean I'm trying to emphasize that these two are very simplistic cases in your general binary
+such tree at the moment these you know height balance properties you know broken maybe more complex
+and general than this but if you understand these things properly you can easily figure out what
+kind of transformation you need to do in the most general case okay so the simplistic cases are
+which you need to understand to understand the logic and once you understand the logic I leave it
+as an exercise for you to think about the most general case in which know these kind of
+imbalances may be introduced in your binary such tree and in that case I mean what will be
+the suitable transformation that you will apply to get rid of no these kind of imbalances okay
+so these are very simple cases so this is called right right rotation and you know you can see
+that this is also no valid the third case will can be something like this okay where you are
+introducing a C so I remember again AB will not complain when they are alone in the tree
+but as soon as you insert a element C which is less than A but greater than B so C will now come
+towards the right side of you know B right as in the right subtree of B remember this case three
+is not same as you know case one right you were in the case one C was less than B so it came
+toward to this end but right now what we are saying is although C was less than A so it went into
+the left subtree but it was no greater than B so it came here right so this is the know the situation
+when it can know happens like you know first right so if this is the case then can we
+no recover from this kind of imbalance and again you can see that there is an imbalance
+because for A the left subtree has high two but there is no right subtree so the imbalance
+no or the balance factor is plus two so A will complain how to get rid of or you know this kind
+of imbalance so we will say that we can get rid of this kind of imbalance in two steps
+okay the very first step is you change the position of B and C with respect to each other
+okay what we say is that you know instead of a B being parent of C now makes C parent of B
+because this is what we call left no rotation the first rotation is left that you know you take
+a C to the top and remove you know move B to the as a left child of C okay so again I mean is
+it allowed I mean is it a valid thing to do if I do this kind of transformation will I break some
+property now remember I mean if you just change the relative position of B and C A will not
+complain right why because both B and C where smaller than A that's why they are on the left
+subtree of A and even after the transformation they are on the left subtree of A right so A has no
+problem right because no B C where earlier also on the left subtree now also B and C are on the
+left subtree but what about B and C can C complain because now C is a no left child which is B
+so the left child has to be less right it's value has to be less than C
+so if that was the case then C should not complain right and was that the case
+so if you see the previous no tree structure that was the case right that the value of B was
+actually less than C so if the value of B was less than C then I can happily make C parent of B
+and keep B no as the left child of C okay so again I mean it is not difficult to convince yourself
+that we can transform this trade to this without breaking the BST property right both
+structure and the ordering property okay but remember we did not achieve anything right because
+here also if you see the balance factor for A will be plus 2 okay so by doing just this transformation
+we could not get rid of this imbalance so we are still we are having non balanced tree
+but once you do this operation we do a second rotation and that solves our problem okay
+so in the second step what we say is now we apply a right rotation now you remember I mean
+this is a familiar structure that you have already seen right AC and B all are in no left skewed
+right I mean your tree is very simple right now and for this kind of imbalance we have already
+a solution right remember this was the very first solution that we did right so for this kind
+of scenario what we did was a right rotation right this is what we call right rotation so what
+does what did we do we made the B the root and then push A to us right so this is why we call
+right rotation okay so whatever was the root you just bring it to us the right hand side of B
+so can we do that kind of right rotation here because we already you know or transform this into
+something which we already fixed right we know how to fix this kind of thing so we just push A to
+as a right child of C right so from here to here is what we already discussed and then this is
+allowed right this is perfectly allowed but again I mean convince yourself by thinking
+no slowly what this why this is allowed right because A was parent for C so certainly A was
+greater than a value for of A was greater than C right because C is the left child of A the value
+of A was greater than C then why can't A come on the right subtree of C and the moment you do
+this transformation now you can see that wanted that this final tree is a balanced tree
+okay so although not in one step but in two steps we can we could you know achieve a balanced
+factor right which is desired it from here we went to this one which is certainly allowed we
+have discussed why it is allowed and from here we went to this one which is again allowed
+by the BST property and in this case now we also have you know balance so our tree is high
+balance okay so so we can actually transform this into something like this without any problem
+so this is the third scenario that something like this may you know happen in your
+no modification of BST and when will it happen when when you're you're inserting something
+into the right subtree of your left child okay so if let's say the last element that you are
+trying to insert is onto the into the no right subtree of your left child of the tree then
+this kind of thing might happen but then think carefully because no situation may not be as
+simple as this because what we are saying is you're inserting C as the right subtree of B but
+there may be something here also right and the C may not go immediately after B but somewhere
+down the line right so that's the most general case I was referring from the very beginning
+but I'm not giving you a complete explanation of what you should do in those kind of scenario scenario
+think carefully and come up with a you know a nice way of dealing those general kind of scenario
+but if you understand this simple transformation on this simple tree properly it should not be
+you know difficult to come up with the exact logic logic for the most general case of BST okay
+so think about this problem you know on your own and try to come up with the appropriate rotations
+you know in in the in the most general you know setting of a BST okay so what about the last
+the no scenario so last scenario is again you know just like the previous one but here you know
+we have a balanced factor of minus two why because on the left hand side nothing is there
+but in the right hand side we have something like this okay and if you have something like this
+how to fix it again I mean you can maybe you know take a guess from the previous case that we
+have seen can we transform this first into this kind of a structure okay so A will not complain
+because for A nothing is changing but what about P and C so can we complain about C
+so cell B complaint so for this tree to be a BST or what is required that C should be greater than
+B that's how I mean she can come on as a right child of B but is C no greater than B already
+so here C is already greater than B right so if I transform this into this even B should not
+complain and C will not complain because he doesn't have any child okay so yeah so think about
+this this case is carefully so these are you know four different types of rotation that we apply
+on any you know balanced by by necessary to recover from this imbalance and you know get balance okay
+so to get a balanced by necessary so yeah so these are the things that know we discussed today
+so I leave as a assignment for you to you know define this rotation which we call left rotation
+rotation and use them to you know correct the imbalance that is there in in your tree after
+any insertion okay so for AVL tree now you have to write down all this code I mean you have
+so the the idea or our final goal is to maintain an AVL tree now AVL tree are you know
+by by necessary with this height balance thing you know check every time okay and for doing this
+kind of height balancing you have to rotate left or right or a combination of both of this that
+we have discussing in the previous no example using previous example so these are some you know
+function for which I have given you signature and you are expected to implement this function
+and submit it okay so what's the very first one is the rotate left okay and what it does it it
+gets an unbalanced node okay so we we try to figure out what is the you know unbalanced node
+and after getting to that unbalanced node we will try to do this kind of rotation to no left
+rotation to get rid of no so what is rotate left in the above if you see so this is the left
+rotation right so in this kind of no situation we want to implement this logic no of
+transformation that we discuss here okay so think about it so rotate left and rotate right
+right two functions which take an unbalanced node and does this so input is node or dictionary
+that is right heavy so if it is right heavy it needs a no left rotation right no so returns
+should be a new root node after the left rotation okay and this is exactly what we discussed
+also write some similar function for right rotation okay and then can you
+write a function which uses combination of this you know left rotation and right rotation
+to balance a particular node let's see you could figure out that some node is a no imbalance
+so so can you then write down a function which can convert that node into or know that part of
+the tree into a balanced tree okay so the input is node dictionary that might be unbalanced
+and the return for this return value for this you know function that you want to write is the
+balanced node okay so again I mean so this this may be you know more complicated right because here
+you have to identify first what kind of imbalance is there no which of these four you know cases
+you are in and then depending upon what is your current no scenario you have to apply one of the
+possible transformations or you know discuss transformation from above to solve these
+imbalance okay so this is what I expect you to write down okay so again I mean these are some
+no easy example to help you visualize this again same discussion that we had earlier so go
+to know in an offline mode and try to come up with these signatures so so finally what I want
+you to implement all these you know function signatures so I have summarized them so these are
+some you know core function signature that you need to implement in order to implement this
+no avial or high balance trees okay so first one is you know create node I mean can you write
+down a function we just create a node you know creates and it turns a new avial node this study
+then the second function is get height remember I mean now we can you know detect whether a node is
+complaining or not by calculating only height right I mean if you don't have a function to get
+height you cannot calculate balance factor and then you will never know whether a node is balance
+or not okay so first write down that height function so this function you know get height to calculate
+height for any node so think about it on your own and try to come up with an implementation
+using this can you now you know implement a function which can tell you what is the balance
+factor at each node okay so this this function should calculate balance factor
+for any no given node that you passed this function okay and once you have this balance factor
+you also have to maybe you know write a function which will update height right because whenever
+you add so now you want to maintain this height information always in your dictionary so that
+you immediately know whenever you know the balance factor for any of the node goes beyond the
+allowed let's say range so can you also write this you know update height function so whenever
+you add a node or remove a node from your there's a height balance tree so at that time so after
+that no addition or removal you should be able to know update the height for each of the node in
+the tree right so so so for that you would need a no update height function so either you integrate
+this update height function when you are you know calling when you're you know modifying your data
+structure or you can write down it separately and then you know call this whenever you are changing
+your data structure okay so write down this update height function so so that now this this
+takes a node and then again based on its children I mean it can actually update the height of
+the parent node then write this rotate left function which I've already not discussed so it
+it should take an unbalanced node and try to do this left rotation to fix the you know
+this kind of you know imbalance so similarly rotate right you have to write down so once you have
+rotate left and right or maybe now you you are in a position to know insert node right because once
+you insert node so after the insert and you may figure out that you know there is an imbalance
+introduced and at that time you may have to use this left and right rotation in combination with
+each other to to you know get rid of that imbalance so again I mean read the signature of this
+function carefully and try to implement this on your own then I mean this is a simple
+search function that you might have written for you know BST you have to again write that here
+and there are some utility function but these are optional I mean if you want to skip you can
+skip this function but at least right know all the implementation of these functions for which I
+provided you signature here no until this no section 4 okay so with this I would like to conclude
+no today's lecture so in today's you know video we briefly discussed about this idea of height
+balance tree and we we we we we we discuss why this is important and we also discuss about
+the overall logic of maintaining the height I mean if there is an temporary imbalance that has
+been introduced by insertion of a new element or deletion of existing element okay so we talked
+about LLLR and you know this left-right combination kind of rotation which can help us get rid of
+this kind of imbalances what do you I expect from you is to write down complete implementation of
+the function signature that I have given for you know this lecture so I will meet you in the
+next lecture so until then goodbye thank you

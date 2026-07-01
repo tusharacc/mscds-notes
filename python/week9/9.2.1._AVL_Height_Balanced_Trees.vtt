@@ -1,0 +1,1538 @@
+WEBVTT
+
+00:00.000 --> 00:12.240
+Hello and welcome back to Python, Core and Applied Concept for Reliable Letters, Science
+
+00:12.240 --> 00:13.240
+Workflow.
+
+00:13.240 --> 00:20.840
+So, in today's this video we will continue our discussion of Bind Research Tree and we
+
+00:20.840 --> 00:27.200
+will talk about some of the drawbacks of working with Bind Research Tree.
+
+00:27.200 --> 00:35.000
+If you recall in the last lecture we discussed how to create Bind Research Tree from scratch
+
+00:35.000 --> 00:42.280
+and how to then populate Bind Research Tree by adding element 1 at a time right and we
+
+00:42.280 --> 00:47.920
+also have written one function which was actually adding this thing.
+
+00:47.920 --> 00:54.440
+So, this BST insert was the function that we discussed in the last class, this BST insert
+
+00:54.440 --> 01:02.320
+was helping us insert new values inside a existing Bind Research Tree and we experimented
+
+01:02.320 --> 01:07.360
+with this function and we saw the function was working correctly.
+
+01:07.360 --> 01:15.080
+But one thing which I noted very slightly in the previous lecture was that the overall
+
+01:15.080 --> 01:22.760
+structure of the BST will depend upon the order in which you add this element because
+
+01:22.760 --> 01:27.000
+the very first element becomes the root element of the BST.
+
+01:27.000 --> 01:37.920
+Now, that may cause trouble and depending upon if the order in which element comes is
+
+01:37.920 --> 01:47.240
+not favorable, we may end up with Bind Research Tree which are actually not balanced and
+
+01:47.240 --> 01:54.360
+one of the major advantage of BST as we discussed in the last lecture was that if the BST
+
+01:54.360 --> 02:01.000
+is balanced then searching in a BST for a value takes far less time right because you
+
+02:01.000 --> 02:07.080
+either only search in the left half or the right half depending upon how the value compares
+
+02:07.080 --> 02:14.400
+with the root node and in this way you can reduce our space by half in each go right
+
+02:14.400 --> 02:25.560
+and that somehow leads to log and complexity of search as well as insert for searching
+
+02:25.560 --> 02:33.760
+or inserting inside this BST, if the BST is balanced then you just need log and time
+
+02:33.760 --> 02:38.640
+for doing both this activity where N is the number of nodes because log N becomes the
+
+02:38.720 --> 02:45.520
+height of the BST. So, think about it in your free time and try to justify why for a balanced
+
+02:47.280 --> 02:52.960
+Bind Research Tree, the height of the Bind Research Tree is always less log N of
+
+02:54.400 --> 03:01.200
+where N is total number of elements in the Bind Research Tree. So, that's the major advantage
+
+03:01.200 --> 03:07.840
+I mean of using BST that if your BST is balanced then you can do both insertion as well as search
+
+03:08.720 --> 03:16.320
+which are most common activity on any data structure in log and time and log and doing being
+
+03:16.320 --> 03:24.000
+being able to do it in log and time is a very huge advantage. It was not the case with not
+
+03:24.000 --> 03:31.520
+let data structure which were linear in nature and we could get these advantages because
+
+03:31.760 --> 03:39.520
+BST has this order property and also I mean in the good cases when your BST is balanced your
+
+03:39.520 --> 03:47.040
+height is not only log N. So, losing these two are a very nice combination and that your tree
+
+03:47.040 --> 03:54.080
+has a height of log N and your tree has this property where your root node is always better than
+
+03:54.880 --> 04:00.160
+the element which is present in the left subtree and also your root node is
+
+04:00.880 --> 04:05.920
+less than all the elements that is present in the right subtree. So, you can combine these two
+
+04:05.920 --> 04:13.520
+property very nicely and come up with no efficient algorithm to search inside a Bind Research
+
+04:13.520 --> 04:19.200
+Tree as well as no update Bind Research Tree by inserting some element into it. But when this
+
+04:19.280 --> 04:27.280
+property of the BST this property of being balanced remember the property of being balanced is
+
+04:27.280 --> 04:32.800
+not a mandatory property for Bind Research Tree right we had only two essential property for
+
+04:32.800 --> 04:40.480
+BST one was this structural property which somehow guarantees that every node in the
+
+04:41.040 --> 04:50.880
+BST can have at most two children and the other property was this ordering property. So,
+
+04:50.880 --> 04:56.400
+so the balanced properties I mean if let us say we can define somehow this balance factor or
+
+04:56.400 --> 05:02.080
+this balancing thing that you typically we are talking about. So, that is not a prerequisite
+
+05:02.080 --> 05:06.160
+or not a requirement at least for the Bind Research Tree right. For example,
+
+05:06.720 --> 05:11.920
+assume that if you have only two elements in your Bind Research Tree right so either one
+
+05:11.920 --> 05:17.280
+element will be less than the other or the greater than other right I mean they
+
+05:17.280 --> 05:22.320
+they assume that they are distinct element then your binary tree will be either you know right
+
+05:22.320 --> 05:28.960
+skewed or left skewed right it it can never be balanced. So, you can never you know ensure
+
+05:28.960 --> 05:35.200
+complete balance in your Bind Research Tree but then we want to define some notion of you know
+
+05:35.280 --> 05:41.280
+balanced by in research tree and think about you know this kind of you know problematic
+
+05:41.280 --> 05:47.600
+instances where tree make it you know unbalanced. So, let us talk about that you know in in
+
+05:47.600 --> 05:53.440
+context of some you know example with some concrete example so that it makes sense. So,
+
+05:53.440 --> 06:00.800
+this is the you know problem that I was talking about that depending on how these elements are
+
+06:00.800 --> 06:07.040
+added into BST your BST may become completely you know unbalanced and then the height of the
+
+06:07.040 --> 06:14.560
+BST is no more log of log and right where n is number of element in the BST. To give you a very
+
+06:14.560 --> 06:19.840
+quick example I mean you can maybe apply the same function or that we have written BST insert
+
+06:19.840 --> 06:26.560
+and then insert values in your Bind Research Tree where you know you start your you know your
+
+06:26.640 --> 06:31.280
+Bind Research Tree your root is less than none in the beginning and then you add element in this
+
+06:31.280 --> 06:39.440
+order. If you add elements in this order it is not difficult to you know convince yourself that
+
+06:39.440 --> 06:46.240
+your tree will be skewed like this towards the right hand side right why because the first
+
+06:46.240 --> 06:52.480
+element that you add is 10. So, 10 becomes the root node and then the 20 is the next element it
+
+06:53.200 --> 06:59.360
+is greater than 10. So, it goes towards the right hand side okay. So, your node tree is not
+
+06:59.360 --> 07:06.800
+at the current you know position when you insert this 20 is already skewed towards right but no
+
+07:06.800 --> 07:13.360
+since you know every other value that is no coming is greater than the previous value you keep
+
+07:13.360 --> 07:18.720
+on you know adding those element at the right hand side of the you know last element or to
+
+07:18.800 --> 07:25.840
+not that you have added right and this way the tree keeps growing only towards the right hand
+
+07:25.840 --> 07:31.760
+side right and and if you now measure the height of this tree it is no more log n right it is
+
+07:31.760 --> 07:38.480
+exactly n right. So, these are extreme cases but you know this kind of a stream cases may occur
+
+07:39.120 --> 07:46.720
+either you know completely you know these extreme cases are somewhere in in in between I mean
+
+07:46.720 --> 07:54.160
+you may have some element which can get you balanced tree but then some at a stress you may get
+
+07:54.160 --> 08:00.000
+something like this which can cause you know imbalance in some part of the tree. So, it's not
+
+08:00.000 --> 08:06.400
+you know by just no maintaining the BST property you know in a nutshell what I'm trying to
+
+08:06.400 --> 08:12.240
+emphasize is that no by just maintaining the BST property we cannot be sure that our binary
+
+08:12.240 --> 08:19.040
+substrate that we get is always balanced okay and this kind of thing this kind of trees
+
+08:19.680 --> 08:25.440
+are you know unbalanced tree I mean this is what we call unbalanced tree okay and very you know
+
+08:25.440 --> 08:31.040
+go you know clean example is this you know increasing you know sorted let's say at least I mean if
+
+08:31.040 --> 08:36.240
+you if your element comes in this you know sorted out either in increasing order or in decreasing
+
+08:36.320 --> 08:41.200
+order right because if these elements come in decreasing order then in you can guess that
+
+08:42.320 --> 08:48.320
+this tree will become now left skewed right because you know everything in the very beginning you
+
+08:48.320 --> 08:56.800
+will get 50 and then 40 30 20 and 10 and all the new up no let us know members actually get to
+
+08:56.800 --> 09:02.480
+the left subtree okay and that way the tree may also grow towards the left hand side okay.
+
+09:02.480 --> 09:08.320
+So, in these kind of you know extreme example your tree is completely you know skewed I mean
+
+09:08.960 --> 09:14.480
+and this is just one of the same thing that I mentioned right now so if you know run this code
+
+09:14.480 --> 09:21.200
+which was you know our actual code okay so maybe we need to compile our code once more this BST
+
+09:25.040 --> 09:31.840
+so we define it somewhere yeah here so let me compile this BST insert and after
+
+09:32.720 --> 09:41.520
+this block if you again in that block on this sorted no list which represents you know the
+
+09:41.520 --> 09:48.880
+bad kind of order in which so this order then you can see that the tree produce will be
+
+09:49.440 --> 10:04.640
+okay so let me you know again compile the display tree function which we have this defined
+
+10:04.640 --> 10:12.720
+earlier in the earlier class right I mean so this was BST insert and where is this display tree
+
+10:12.800 --> 10:15.520
+so this is the code once we compile
+
+10:21.360 --> 10:29.440
+no maybe we just compile the code for this display function even once we compile it
+
+10:30.080 --> 10:34.800
+and then we come back to the place where we wanted to use it for the sorted list
+
+10:34.880 --> 10:45.440
+okay so now we have both the functions compile and it should actually run okay now if you run on
+
+10:45.440 --> 10:52.720
+this you can see you know when your input are in increasing order only you know any just step
+
+10:52.720 --> 11:00.400
+what is happening your you know right child is not being updated okay and you know at the end
+
+11:00.400 --> 11:06.400
+I mean what you get is this right child you know so left child remains none right and always the
+
+11:06.400 --> 11:13.360
+right child is expanded into another you know tree where again the left child is none and then
+
+11:13.360 --> 11:19.520
+right child has some value so you know so in picture I mean you know if you want to see this is
+
+11:19.520 --> 11:25.840
+exactly the scenario right where your tree is balanced towards the right and side so we certainly
+
+11:25.840 --> 11:33.760
+don't want this kind of you know scenario right where your tree becomes skewed in nature either
+
+11:33.760 --> 11:40.000
+left skewed or not right skewed so we want to avoid it otherwise we will not get the benefit of
+
+11:40.000 --> 11:50.640
+using BST kind of structure okay so this is what we know call no balancing okay so for
+
+11:50.640 --> 11:55.680
+for example and this is you know somewhat balanced tree but this is no completely unbalanced tree
+
+11:55.680 --> 12:01.360
+but we need and and when we have balanced tree then this is what we have right our height is
+
+12:01.360 --> 12:07.920
+log of n where n is total number of nodes in the tree and if your height is in log of n then you
+
+12:07.920 --> 12:15.440
+can do no most of the operation in of the order of log and time but if your tree grows you know in an
+
+12:15.440 --> 12:21.280
+unbalanced way for example this way the height becomes of the order of n and then any activity
+
+12:21.280 --> 12:27.600
+or any operation that you want to do on this data structure like you know insert or search
+
+12:28.320 --> 12:36.240
+takes this log and so this you know of the order of n time so this this may have no real world
+
+12:36.240 --> 12:44.320
+consequences and when your I mean these are some of the examples where you actually no real data
+
+12:44.320 --> 12:50.400
+may have this sorted property and in that case if you want to store then using BST then you will
+
+12:50.400 --> 12:56.800
+get this kind of skewed BST and you will not get the benefit of BST so what is the root cause
+
+12:57.760 --> 13:03.120
+regular BST don't care about their shape right so they have some structural requirement right
+
+13:03.120 --> 13:10.400
+structural requirement was that every node has should have at most not to children right and
+
+13:10.400 --> 13:15.760
+that was only structural requirement but that does not in in force in any way for these trees
+
+13:15.760 --> 13:21.680
+to be you know balanced right because in this case I mean it followed that is structural requirement
+
+13:21.680 --> 13:31.040
+if you see closely right none of the node has more than two children but it was not balanced
+
+13:31.200 --> 13:40.960
+right it was a skewed tree so so we need you know now somehow another no restriction or you can
+
+13:40.960 --> 13:46.720
+say invariant that we want to maintain for this data structure which is what we call no balance
+
+13:46.720 --> 13:54.400
+factor okay now so that's why you know we are going to discuss today something which is an
+
+13:54.400 --> 13:58.880
+you know improvement over by necessity which we call height balance tree okay so there are
+
+13:58.880 --> 14:05.200
+multiple ways in which you can you know balance height for this kind of binary substrate and we
+
+14:05.200 --> 14:12.080
+will be discussing today one of the very you know popular height balance tree structure which is
+
+14:12.080 --> 14:18.320
+called AVL tree okay so height balance tree maintains this extra property that for every node
+
+14:18.320 --> 14:28.800
+the height of left and rights of tree differ by at most one okay so I will call my tree to be
+
+14:29.120 --> 14:34.560
+height balanced only if this property is true right that no you're but in this case you can see
+
+14:34.560 --> 14:39.840
+for example this is not height balance right because the right subtree has no height 4
+
+14:40.480 --> 14:46.560
+but the left subtree had height 0 so I this will not qualify as no height balance tree but what
+
+14:46.560 --> 14:51.280
+about this I mean can we say or something about this is it a height balance tree
+
+14:51.680 --> 15:02.080
+for example for this node the left hand subtree has height 2 and the right hand subtree also has
+
+15:02.080 --> 15:09.120
+height 2 right so for this node I mean this node will not complain right so this is not a
+
+15:10.080 --> 15:15.040
+counter example to a height you know imbalance or let's hide balance right what about this node
+
+15:15.600 --> 15:23.040
+for this node can we say the same okay there is no right child for this node 20 but there is a
+
+15:23.040 --> 15:29.200
+left child okay but here also the no balance factor is only one right the difference in height
+
+15:29.200 --> 15:36.160
+between left subtree and right subtree for this node is also one and if it is no one or less
+
+15:36.160 --> 15:40.960
+than one then we don't care I mean we say that it's okay because anyway I mean if let's say
+
+15:41.840 --> 15:47.760
+in the very the example that the simplest example that I gave you if you have only two elements
+
+15:47.760 --> 15:55.040
+then you you can't know always say that no I can maintain a height difference of 0 between
+
+15:55.040 --> 16:00.000
+node left and right right because one of the two will come as a left child or right child for
+
+16:00.000 --> 16:05.600
+the simple or the simplest tree you will have high difference of one okay so what we say is we
+
+16:05.680 --> 16:14.800
+don't worry if the height difference of the left subtree and the right subtree is one at any
+
+16:14.800 --> 16:20.400
+you know place in our tree but if it is more than one then you know we would like to do something
+
+16:20.400 --> 16:27.840
+so that you know we can correct this height imbalance okay so let me yeah let me come to
+
+16:28.000 --> 16:39.680
+so this is how we define the balance factor okay so we measure our balance using a simple
+
+16:39.680 --> 16:44.960
+calculation which is no which we call balance factor and what is this balance factor that height
+
+16:44.960 --> 16:51.680
+of left subtree minus height of right subtree okay and the valid values for the balance
+
+16:51.680 --> 16:57.760
+factor is no minus 1 0 or plus 1 so what we say essentially say that no if the height of the
+
+16:57.760 --> 17:04.320
+left subtree and right subtree are same for a node let's say then it's perfectly alright but if
+
+17:04.320 --> 17:11.120
+it is not let's say same I can accept a difference of one at max so this is no essentially what we
+
+17:11.120 --> 17:16.960
+are saying okay and I had to allow that no difference of one because of that no simple case which I
+
+17:17.040 --> 17:22.080
+mentioned right where we have only two element and we cannot actually do anything with those two
+
+17:22.080 --> 17:29.520
+element but two no we have to actually allow this you know difference of one okay so so valid
+
+17:29.520 --> 17:36.880
+values values for this balance factor is minus 1 0 and plus 1 and remember that no this balance
+
+17:36.880 --> 17:44.800
+factor so these valid values has to be true for every node in the tree okay it's not like I mean
+
+17:45.120 --> 17:50.880
+we are talking about only the root node maybe for root maybe I mean there may be you know some
+
+17:50.880 --> 17:56.720
+special cases of BST where root node is not complaining because it's left no subtree and right
+
+17:56.720 --> 18:01.680
+subtree has the same height but some somewhere down the line I mean there may be a no height
+
+18:01.680 --> 18:08.640
+imbalance okay so we have to check this for every node in the you know binary surgery and if
+
+18:08.640 --> 18:14.320
+this invariant is true for every node in the binary surgery then only we will call that binary
+
+18:14.560 --> 18:22.880
+such to be a balanced no height balance tree okay for example I mean a very quick example let me
+
+18:22.880 --> 18:30.080
+know increase the font of this so that no things are a bit clear okay now so this is a very you know
+
+18:30.080 --> 18:37.040
+a small example to show you how can we calculate the balance factor okay so when we talk about
+
+18:37.040 --> 18:42.880
+no this E and D since no they are anyway the leaf node the last node they don't have left
+
+18:42.880 --> 18:49.680
+child alright child so these nodes can never be you know reason for imbalance in your tree okay so
+
+18:49.680 --> 18:55.920
+at least I mean you can be sure about the leaf node but what if I go just one to the parent of
+
+18:55.920 --> 19:04.880
+the leaf node okay so so again I mean C is the parent for this you know leaf node E and what is
+
+19:04.880 --> 19:12.160
+the height of the left subtree on C there's nothing right so we say that the height is no zero
+
+19:12.160 --> 19:19.520
+here the left subtree but what about the height of the right subtree is one right I mean because no
+
+19:19.520 --> 19:26.160
+E is there so now if you take the difference of left subtree minus right subtree and try to
+
+19:26.160 --> 19:32.000
+calculate the balance factor for this particular node C what do you get so zero minus one gives you
+
+19:32.000 --> 19:39.280
+minus one right so C C's no balance factor is minus one so C will also not complain right because
+
+19:39.280 --> 19:46.720
+we will allow one difference in in in the height of left subtree and right subtree okay so what
+
+19:46.720 --> 19:52.160
+about B I mean if you calculate the balance factor of B what will you get now left subtree has
+
+19:52.160 --> 19:56.720
+a height one but the right there is no right subtree here right I mean so the height of the right
+
+19:56.720 --> 20:01.760
+subtree is zero so if you find the difference between the height of left subtree and right subtree
+
+20:01.760 --> 20:11.520
+you will get a plus one okay so B as well as C both cannot complain because for both of them the
+
+20:11.520 --> 20:16.400
+balance factor is actually plus one and minus one and which is allowed okay and also balance
+
+20:16.400 --> 20:22.640
+factor of you know zero is allowed because that's the ideal case where you know both left subtree
+
+20:22.640 --> 20:31.440
+and the right subtree has the same value or same height okay so what about A so if if you look
+
+20:31.440 --> 20:39.440
+at A no the left subtree of A has a height two and the right subtree of height no A also has
+
+20:39.440 --> 20:47.840
+height two so in this case also when we calculate the balance factor of A we get zero okay and this
+
+20:47.840 --> 20:54.800
+is what we have summarized here right if we calculate this balance factor for each of the node
+
+20:54.800 --> 21:00.560
+in the tree which can be no problematic except the no leaf node we figured out that the value for
+
+21:00.560 --> 21:06.800
+each of these nodes where either zero one or minus one so if the value is for each of the node is
+
+21:06.800 --> 21:11.920
+no either zero one or minus one we are happy we would say in this case that the
+
+21:12.560 --> 21:20.080
+binary system is a balanced tree okay it's a height balance tree okay so this is a perfect you
+
+21:20.080 --> 21:24.960
+know I mean this is perfectly alright from no the balance point of view or this balance factor
+
+21:24.960 --> 21:31.440
+point of view because every node qualified our invariant or the no criteria that we put
+
+21:32.160 --> 21:38.160
+for it to be a balanced tree but what about this tree I mean if you look at this I mean this
+
+21:38.160 --> 21:44.880
+certainly looks like you know a skewed like left skewed binary system and you know by just
+
+21:44.880 --> 21:53.280
+looking at it we would like to call it an unbalanced tree but can we figure out I mean which of
+
+21:53.280 --> 22:03.680
+the node will complain and be the cause of the no unbalanced that is there in this tree okay so again
+
+22:03.680 --> 22:08.480
+I mean with C there can't be any problem right because this is leaf node with B if you calculate
+
+22:08.480 --> 22:14.720
+again there is a left tree which has height one but the right sub tree is missing so if you
+
+22:14.720 --> 22:22.000
+know calculate the balance factor for this B we get plus one but in case of A if you calculate
+
+22:22.000 --> 22:26.960
+again the balance factor there is nothing on the right but left sub tree has height two so if
+
+22:26.960 --> 22:31.760
+you know calculate the difference the balance factor becomes plus two and this is the point I
+
+22:31.760 --> 22:39.200
+mean this is the node that will now start company right because we could find out a node for which
+
+22:39.200 --> 22:46.160
+the balance factor is not in this set no zero one or minus one no we we got a balance factor which
+
+22:46.160 --> 22:54.320
+is plus two okay so this is the problematic node and hence we will not call this BST
+
+22:55.920 --> 23:03.440
+a height balance no BST okay so this is the node which is causing the imbalance in the tree
+
+23:06.240 --> 23:11.360
+okay so I hope I mean now you know it's clear to you what what is no balance factor and how to
+
+23:11.440 --> 23:17.280
+calculate balance factor and how to figure out which which of the node may cause you know
+
+23:18.000 --> 23:25.920
+may be the reason for a BST to not be a height balance by this is tree okay so now
+
+23:27.920 --> 23:32.400
+no so if your tree is not you know balance then I mean we already discussed right this thing so
+
+23:32.400 --> 23:39.600
+you can just read it so these are some of the drawback that you get and to counter this you know
+
+23:39.600 --> 23:46.560
+difference in height of the left subtree and right subtree for any node we we thought we talk
+
+23:46.560 --> 23:52.000
+about this height balance tree and there are three popular height balance tree which you can
+
+23:52.000 --> 23:56.720
+know finding any other structure and algorithm book so they are known as avial tree red
+
+23:56.720 --> 24:03.600
+black tree and B tree so what we discussed today is this avial tree you know we will discuss one
+
+24:03.600 --> 24:10.720
+way to mitigate this on no imbalance in a binary search tree okay and that is the wire is no
+
+24:10.720 --> 24:19.520
+avial tree so avial tree or nothing but binary search tree with an additional requirement that
+
+24:21.040 --> 24:27.200
+the balance factor that we define just now for every node so the balance factor for any node in
+
+24:27.200 --> 24:34.800
+the tree has to be you know one among these three values that plus one minus one or zero okay
+
+24:36.160 --> 24:40.720
+so we will implement avial tree using you know the same dictionary and recursion pattern that
+
+24:40.720 --> 24:46.000
+you already know in fact I am not going to implement this and this is going to be a you know
+
+24:46.000 --> 24:53.680
+homework for you assignment for you so we will you know discuss about the idea of the height
+
+24:54.080 --> 25:02.240
+avial height balance tree and different operations that you have to perform to balance the height
+
+25:02.240 --> 25:07.280
+whenever there is an imbalance in height of the left subtree and the right subtree okay so let's
+
+25:07.280 --> 25:15.600
+go directly to this avial tree concept and try to understand so what is it so an avial tree
+
+25:16.480 --> 25:23.120
+is a self balancing binary search tree that we want to you know implement that maintains its
+
+25:23.120 --> 25:30.320
+balance through automatic rotation so that we will discuss about an operation which is called
+
+25:31.440 --> 25:37.600
+you know rotation no in the context of binary search tree and we will see that by doing these
+
+25:37.600 --> 25:44.880
+rotations you can immediately get rid of this no imbalance okay so whenever you figure out
+
+25:44.880 --> 25:52.160
+that some node is complaining because their balance factor has no went out of this set
+
+25:52.880 --> 25:58.240
+or you know their balance factors no absolute value is greater than one in that case we will
+
+25:58.240 --> 26:03.520
+immediately apply one of these rotations that we are going to discuss today and balance that tree
+
+26:03.520 --> 26:08.800
+okay so it should have properties of you know BST so it should maintain the binary
+
+26:09.280 --> 26:15.520
+such tree you know ordering invariant which says that no everything in the left subtree should be
+
+26:15.520 --> 26:20.640
+less than the parent and everything on the right subtree should be greater than the parent it should
+
+26:22.160 --> 26:29.920
+maintain this balance property that for every node this should be true so I mean to maintain
+
+26:29.920 --> 26:36.240
+this balance property the tree data structure should be no self balancing what do you mean by
+
+26:36.240 --> 26:40.960
+self balancing because if you want to maintain this you know balance property then you have to do
+
+26:40.960 --> 26:47.200
+something beyond simple insertion the way we did in no binary search tree right because in binary
+
+26:47.200 --> 26:52.720
+search tree we just figured out what is the correct position and we kept there but after an insertion
+
+26:52.720 --> 26:59.360
+let's say an already balanced binary search tree may become no imbalance you you also need to check
+
+26:59.440 --> 27:07.200
+whether this last insertion made my binary search tree imbalance and in that case if you figure out
+
+27:07.200 --> 27:12.480
+that the no binary search tree now had become imbalance you need to do something to do something
+
+27:12.480 --> 27:17.680
+to correct this imbalance that's what we call you know self balancing so this will be part of
+
+27:17.680 --> 27:24.400
+every you know insert or delete an operation that you do on this kind of you know
+
+27:24.400 --> 27:29.520
+white balance tree okay so this has to be taken care by those operations which tries to modify
+
+27:29.520 --> 27:36.640
+this data structure okay so so let's you know quickly again revisit what what was the balance
+
+27:36.640 --> 27:43.200
+factor so balance factor was height of less sub tree minus height of right subtree now I leave it
+
+27:43.200 --> 27:49.360
+again as a homework to define this height function right because right now we are talking about height
+
+27:50.160 --> 27:56.240
+in a intuitive way right we roughly understand what does a height mean for a tree but can you
+
+27:56.240 --> 28:02.320
+also you know define a function to calculate this height no for a given tree so do that okay so
+
+28:02.320 --> 28:07.200
+nitric that again as a no homework try to define this no height function which can calculate the
+
+28:07.200 --> 28:11.920
+height of a given tree and then once you have that function you will also have a function to
+
+28:11.920 --> 28:17.680
+calculate balance factor and we need to store the balance factor for each of the node because
+
+28:17.680 --> 28:25.360
+you know we we want to maintain this invariant okay we already discussed it that no
+
+28:25.360 --> 28:31.040
+a military always maintains the you know balance and if you can maintain the balance then you can
+
+28:31.040 --> 28:37.600
+ensure that you know you can do all these no update and search operation on this no data
+
+28:37.760 --> 28:45.520
+structure in out the order of log and you know time okay so this is again you know an example of
+
+28:47.440 --> 28:51.920
+height balance tree because here I mean you can see that no all the node has been a balance factor
+
+28:51.920 --> 28:59.040
+either you know zero or minus one or plus one so you can actually again revisit this
+
+28:59.040 --> 29:10.320
+BST on your own and check whether this is a balanced BST now let's talk about know the some some
+
+29:10.320 --> 29:20.160
+scenarios that can cause imbalance and in those scenario what can we do to let's say you know
+
+29:20.160 --> 29:28.400
+recover from that imbalance and no make it balance okay so there are four types of rotation
+
+29:28.880 --> 29:37.120
+that we will discuss just now which can help us regain the balance from an unbalanced tree okay so
+
+29:37.120 --> 29:45.360
+so let's discuss them one by one okay so the very first type of rotation that we talk about
+
+29:45.360 --> 29:50.560
+is called no left left rotation okay so
+
+29:50.640 --> 30:01.920
+so so what is the scenario so for example I mean assume that initially your tree was no balanced
+
+30:01.920 --> 30:07.600
+okay so this is again I mean a very simplistic example I mean this may not be the most general
+
+30:07.600 --> 30:16.320
+case but somehow these four you know cases captured the general all possible scenario that might
+
+30:16.320 --> 30:23.280
+happen in your actual BST that you are you know updating okay so let me talk about the very
+
+30:23.280 --> 30:29.840
+simplistic case you know using the simplest kind of example where we first time encounter some
+
+30:29.840 --> 30:37.520
+in imbalance so the very first case is the scenario where your node is left heavy and left child
+
+30:37.520 --> 30:44.240
+is left heavy or balanced so what does it mean so to understand this no assume that initially you
+
+30:44.240 --> 30:55.040
+had created a BST which had only A and B okay and B is on the left hand side of A or is B is a
+
+30:55.040 --> 31:01.600
+left child of A okay so assume that your BST only has this no A and B initially so why did you
+
+31:01.600 --> 31:11.200
+put B by the way on the left hand side as a left child of A because you know B had a value which
+
+31:12.000 --> 31:18.960
+less than the value of A right so that that's the only reason why you would put B as a left child of A
+
+31:20.800 --> 31:28.240
+and so at so at the time let's say another C arrived which has value even lesser than B
+
+31:29.120 --> 31:33.840
+okay so till the point when you had only A and B in your tree was the tree
+
+31:34.480 --> 31:42.320
+the unbalanced it was balanced so if you had only A and B you you say I mean your tree was not
+
+31:42.320 --> 31:47.600
+unbalanced right because no for B it was not B you cannot complain and A will also not
+
+31:47.600 --> 31:55.920
+complain why because the balance factor for A was 1 but as soon as you add a C which is no
+
+31:55.920 --> 32:03.760
+less than you you have to insert C here because C's value is less than B so in that moment it's
+
+32:03.760 --> 32:10.480
+itself so we will not complain but then A will start complaining okay so this is no the scenario
+
+32:10.480 --> 32:19.040
+that you are inserting into the left subtree of the left child okay so initially if your tree was
+
+32:19.040 --> 32:26.000
+you know balanced but if your current you know insertion is in the left subtree of the left child
+
+32:26.000 --> 32:32.400
+then you might encounter this kind of situation right because the final place where you inserted C
+
+32:34.560 --> 32:42.320
+is on the left subtree of A so initially it was balanced but then now it can become unbalanced
+
+32:42.320 --> 32:49.920
+so right so I hope I mean this is clear why this is an unbalanced tree because for A if you
+
+32:49.920 --> 32:55.040
+calculate the balance factor you can see the left child subtree has high 2 but there is nothing
+
+32:55.040 --> 33:03.040
+on the right okay so the moment you insert C at that moment itself A will start complaining
+
+33:04.480 --> 33:11.280
+right because for the first time balance factor went no beyond the allowed set of minus 1 0 and 1
+
+33:14.400 --> 33:19.760
+okay so the moment we encounter such a scenario where you know this is the case that your
+
+33:19.760 --> 33:26.640
+balance factor for the node becomes plus 2 so we can do something very simple to correct this
+
+33:26.640 --> 33:35.760
+balance factor so can I convert this tree into this tree without violating any of the property of
+
+33:35.760 --> 33:45.280
+BST if I can let's say do this I mean if let's say somehow you know one can transform this tree
+
+33:45.280 --> 33:52.800
+into this bottom tree without violating the property of BST then I would be happy right because
+
+33:52.880 --> 33:57.440
+then I will do this transformation and make the tree balance because you see one of the advantage is
+
+33:57.440 --> 34:07.360
+that the bottom tree that you are seeing is a balanced tree right but if it is also a BST then
+
+34:07.360 --> 34:12.320
+there should not be a issue right then I whenever I see such such a circumstances you know happening
+
+34:12.320 --> 34:18.800
+I will immediately you know transform this kind of you know tree or subtree into this kind of tree
+
+34:19.520 --> 34:28.480
+okay so why this is a valid transformation in this particular case so what have we done what we
+
+34:28.480 --> 34:41.280
+say is now we make you know B parent and A the right child of B and see let with the left child
+
+34:41.760 --> 34:50.800
+of B right so initially also if you see C was the left child of B right so it's same right so
+
+34:50.800 --> 34:57.680
+there is C and B cannot complain with respect to each other why because anyway C's value was
+
+34:57.680 --> 35:05.280
+less than you know B so C can happily sit on the left subtree of B but can A go to the right subtree
+
+35:05.280 --> 35:18.560
+of B is it a problem or it's allowed since A was parent of B and B was the left child of A
+
+35:19.520 --> 35:27.280
+you already know that the value of A must be greater than the value of B right because B is
+
+35:27.280 --> 35:33.840
+sitting on the left hand side of left subtree of A so you know that the A's value is greater than
+
+35:33.840 --> 35:41.760
+B so if A's value is greater than B the moment you make you know B parent and keep A on the right hand
+
+35:41.760 --> 35:49.120
+side it should not complain right because this is a valid BST property right now according to the BST
+
+35:49.120 --> 35:57.760
+ordering property this is allowed okay B can become parent of A when A is the right child of B
+
+35:58.720 --> 36:02.400
+because you know BST says that everything on the right subtree should be greater than
+
+36:03.920 --> 36:09.520
+the parent okay so transforming you know this tree into this tree
+
+36:12.960 --> 36:20.480
+doesn't break the BST ordering property okay so at least it's not so if you transform this
+
+36:20.480 --> 36:28.480
+you know this BST into this BST so then if you transform this tree or this BST into this tree
+
+36:29.280 --> 36:34.320
+it's not breaking the you know ordering property so at least one of the ordering property one of
+
+36:34.320 --> 36:40.400
+the essential property of the BST you could you know easily check that it's not being broken but
+
+36:40.400 --> 36:45.760
+about the other property the other property was the structural property right so are we breaking
+
+36:45.760 --> 36:51.280
+the structural property you know by you know transforming this tree into something like this
+
+36:51.760 --> 36:58.320
+are we let's say you know introducing nodes for which there are more than two
+
+36:59.040 --> 37:06.880
+child no right because no for each of the no you can see there are at most two children right so
+
+37:06.880 --> 37:12.560
+neither we are breaking a structural property nor we are breaking the you know ordering property
+
+37:12.560 --> 37:18.240
+right so if we are not doing if we are not breaking both then I will certainly transform it into
+
+37:18.320 --> 37:24.560
+this form why because the advantage is by transforming you know this you know tree which was
+
+37:25.760 --> 37:33.280
+troublesome due to this node which has a balance factor of plus two by transforming this into
+
+37:33.280 --> 37:38.800
+this we actually get rid of that no balance factor problem now in this tree if you calculate
+
+37:38.800 --> 37:43.680
+again the balance factor you will see that no balance factor for every node is within a
+
+37:43.680 --> 37:52.160
+loud range of you know minus one zero and one okay so that's why you know this kind of transformation
+
+37:52.160 --> 38:00.400
+you can easily do to recover from this kind of no imbalance that has been introduced by the last
+
+38:00.400 --> 38:06.480
+insertion that happened here okay so this is what we call you know LL or you know right rotation so
+
+38:06.480 --> 38:12.400
+why we are calling it right rotation rotation by the way because see I mean a
+
+38:14.640 --> 38:21.200
+c b and a where in this form right and then a now comes to the right of b okay so this is no
+
+38:21.200 --> 38:29.280
+like you know right you're rotating it in a from top to the right set I write I mean so so if you
+
+38:29.280 --> 38:33.840
+can you know justify this name then it's good otherwise also it's okay I mean but I mean this
+
+38:33.840 --> 38:43.200
+kind of thing is we call right rotation okay so so the second kind of you know rotation that
+
+38:44.400 --> 38:53.680
+we use to get rid of this kind of you know imbalances what we call RR or left rotation okay so this
+
+38:53.680 --> 38:57.760
+just the opposite case of the previous one that we have discussed again I mean assume that a b
+
+38:57.840 --> 39:04.640
+we are already you know in your tree in this order so since they were in this order you know that
+
+39:04.640 --> 39:13.440
+a was I had a value which is less than b at that time it did not complain but as soon as you
+
+39:13.440 --> 39:19.360
+added a c it started complaining right why it started complaining because the balance vector of a
+
+39:19.360 --> 39:26.800
+now becomes minus two so it's then you know you know it's not a balanced tree anymore
+
+39:28.560 --> 39:35.040
+now with this kind of our tree can we transform this tree into this without breaking the BST
+
+39:35.040 --> 39:41.120
+property and achieving balance right because to the one advantage you clearly see is that if you
+
+39:41.120 --> 39:47.120
+can transform this into this you certainly you know now maintain the balance right because whatever
+
+39:47.120 --> 39:55.360
+was causing imbalance you could get rid of that okay so if we are not breaking the BST property
+
+39:56.000 --> 40:01.680
+both structural and ordering property then we should be happy and this this is perfectly
+
+40:02.480 --> 40:07.120
+know doable thing right this kind of transformation you can easily do to maintain the
+
+40:07.120 --> 40:13.360
+imbalance factor okay and you can convince yourself that this is again allowed right because
+
+40:14.080 --> 40:18.240
+b and c are not changing their position with respect to each other right b was earlier also
+
+40:18.240 --> 40:25.520
+parent of c now also b is parent of c the only thing that you did is that you made a now the left
+
+40:25.520 --> 40:39.200
+child of b okay so if you make a left child of b is it allowed this is perfectly all right because
+
+40:39.280 --> 40:50.880
+it was any way less than b so it can come in the left subtree of b okay so think about it
+
+40:50.880 --> 40:56.400
+no again I mean in your free time and try to convince that this is a perfectly valid transformation
+
+40:57.600 --> 41:03.600
+which maintains the BST property okay so by doing this kind of transformation you will not
+
+41:04.000 --> 41:10.320
+break any of the essential property for you know BST okay so this is a second scenario
+
+41:10.960 --> 41:17.600
+but I mean scenario can be no different than these two cases I mean and these two are again I
+
+41:17.600 --> 41:23.120
+mean I'm trying to emphasize that these two are very simplistic cases in your general binary
+
+41:24.000 --> 41:32.160
+such tree at the moment these you know height balance properties you know broken maybe more complex
+
+41:32.160 --> 41:37.280
+and general than this but if you understand these things properly you can easily figure out what
+
+41:37.280 --> 41:43.680
+kind of transformation you need to do in the most general case okay so the simplistic cases are
+
+41:43.680 --> 41:48.160
+which you need to understand to understand the logic and once you understand the logic I leave it
+
+41:48.160 --> 41:53.760
+as an exercise for you to think about the most general case in which know these kind of
+
+41:53.760 --> 41:59.280
+imbalances may be introduced in your binary such tree and in that case I mean what will be
+
+41:59.280 --> 42:04.240
+the suitable transformation that you will apply to get rid of no these kind of imbalances okay
+
+42:04.240 --> 42:09.040
+so these are very simple cases so this is called right right rotation and you know you can see
+
+42:09.040 --> 42:17.600
+that this is also no valid the third case will can be something like this okay where you are
+
+42:17.600 --> 42:25.040
+introducing a C so I remember again AB will not complain when they are alone in the tree
+
+42:25.120 --> 42:33.760
+but as soon as you insert a element C which is less than A but greater than B so C will now come
+
+42:35.280 --> 42:42.400
+towards the right side of you know B right as in the right subtree of B remember this case three
+
+42:42.400 --> 42:48.400
+is not same as you know case one right you were in the case one C was less than B so it came
+
+42:48.480 --> 42:55.680
+toward to this end but right now what we are saying is although C was less than A so it went into
+
+42:55.680 --> 43:01.280
+the left subtree but it was no greater than B so it came here right so this is the know the situation
+
+43:01.280 --> 43:10.800
+when it can know happens like you know first right so if this is the case then can we
+
+43:11.440 --> 43:15.280
+no recover from this kind of imbalance and again you can see that there is an imbalance
+
+43:15.440 --> 43:22.080
+because for A the left subtree has high two but there is no right subtree so the imbalance
+
+43:22.080 --> 43:28.880
+no or the balance factor is plus two so A will complain how to get rid of or you know this kind
+
+43:28.880 --> 43:34.720
+of imbalance so we will say that we can get rid of this kind of imbalance in two steps
+
+43:35.760 --> 43:44.000
+okay the very first step is you change the position of B and C with respect to each other
+
+43:45.280 --> 43:51.760
+okay what we say is that you know instead of a B being parent of C now makes C parent of B
+
+43:53.520 --> 43:58.480
+because this is what we call left no rotation the first rotation is left that you know you take
+
+43:58.480 --> 44:07.920
+a C to the top and remove you know move B to the as a left child of C okay so again I mean is
+
+44:07.920 --> 44:13.120
+it allowed I mean is it a valid thing to do if I do this kind of transformation will I break some
+
+44:13.120 --> 44:20.240
+property now remember I mean if you just change the relative position of B and C A will not
+
+44:20.240 --> 44:28.000
+complain right why because both B and C where smaller than A that's why they are on the left
+
+44:28.000 --> 44:35.920
+subtree of A and even after the transformation they are on the left subtree of A right so A has no
+
+44:35.920 --> 44:40.880
+problem right because no B C where earlier also on the left subtree now also B and C are on the
+
+44:40.880 --> 44:52.720
+left subtree but what about B and C can C complain because now C is a no left child which is B
+
+44:54.640 --> 45:00.480
+so the left child has to be less right it's value has to be less than C
+
+45:01.280 --> 45:05.920
+so if that was the case then C should not complain right and was that the case
+
+45:06.240 --> 45:12.480
+so if you see the previous no tree structure that was the case right that the value of B was
+
+45:12.480 --> 45:18.960
+actually less than C so if the value of B was less than C then I can happily make C parent of B
+
+45:19.840 --> 45:27.200
+and keep B no as the left child of C okay so again I mean it is not difficult to convince yourself
+
+45:27.200 --> 45:34.000
+that we can transform this trade to this without breaking the BST property right both
+
+45:34.000 --> 45:39.840
+structure and the ordering property okay but remember we did not achieve anything right because
+
+45:39.840 --> 45:48.800
+here also if you see the balance factor for A will be plus 2 okay so by doing just this transformation
+
+45:48.800 --> 45:56.960
+we could not get rid of this imbalance so we are still we are having non balanced tree
+
+45:57.040 --> 46:06.720
+but once you do this operation we do a second rotation and that solves our problem okay
+
+46:06.720 --> 46:11.760
+so in the second step what we say is now we apply a right rotation now you remember I mean
+
+46:11.760 --> 46:19.200
+this is a familiar structure that you have already seen right AC and B all are in no left skewed
+
+46:19.200 --> 46:24.720
+right I mean your tree is very simple right now and for this kind of imbalance we have already
+
+46:24.720 --> 46:31.360
+a solution right remember this was the very first solution that we did right so for this kind
+
+46:31.360 --> 46:37.120
+of scenario what we did was a right rotation right this is what we call right rotation so what
+
+46:37.120 --> 46:44.000
+does what did we do we made the B the root and then push A to us right so this is why we call
+
+46:44.000 --> 46:50.640
+right rotation okay so whatever was the root you just bring it to us the right hand side of B
+
+46:50.640 --> 46:56.640
+so can we do that kind of right rotation here because we already you know or transform this into
+
+46:56.640 --> 47:02.320
+something which we already fixed right we know how to fix this kind of thing so we just push A to
+
+47:02.320 --> 47:10.160
+as a right child of C right so from here to here is what we already discussed and then this is
+
+47:10.160 --> 47:15.360
+allowed right this is perfectly allowed but again I mean convince yourself by thinking
+
+47:15.520 --> 47:22.000
+no slowly what this why this is allowed right because A was parent for C so certainly A was
+
+47:22.000 --> 47:28.240
+greater than a value for of A was greater than C right because C is the left child of A the value
+
+47:28.240 --> 47:38.080
+of A was greater than C then why can't A come on the right subtree of C and the moment you do
+
+47:38.080 --> 47:44.080
+this transformation now you can see that wanted that this final tree is a balanced tree
+
+47:46.080 --> 47:55.120
+okay so although not in one step but in two steps we can we could you know achieve a balanced
+
+47:55.120 --> 48:00.800
+factor right which is desired it from here we went to this one which is certainly allowed we
+
+48:00.800 --> 48:06.240
+have discussed why it is allowed and from here we went to this one which is again allowed
+
+48:06.240 --> 48:13.360
+by the BST property and in this case now we also have you know balance so our tree is high
+
+48:13.440 --> 48:19.040
+balance okay so so we can actually transform this into something like this without any problem
+
+48:19.920 --> 48:24.800
+so this is the third scenario that something like this may you know happen in your
+
+48:26.400 --> 48:33.760
+no modification of BST and when will it happen when when you're you're inserting something
+
+48:33.760 --> 48:40.160
+into the right subtree of your left child okay so if let's say the last element that you are
+
+48:40.160 --> 48:47.280
+trying to insert is onto the into the no right subtree of your left child of the tree then
+
+48:47.280 --> 48:51.840
+this kind of thing might happen but then think carefully because no situation may not be as
+
+48:51.840 --> 48:59.760
+simple as this because what we are saying is you're inserting C as the right subtree of B but
+
+48:59.760 --> 49:06.000
+there may be something here also right and the C may not go immediately after B but somewhere
+
+49:06.080 --> 49:10.240
+down the line right so that's the most general case I was referring from the very beginning
+
+49:10.240 --> 49:16.160
+but I'm not giving you a complete explanation of what you should do in those kind of scenario scenario
+
+49:16.800 --> 49:23.920
+think carefully and come up with a you know a nice way of dealing those general kind of scenario
+
+49:23.920 --> 49:29.760
+but if you understand this simple transformation on this simple tree properly it should not be
+
+49:29.760 --> 49:35.040
+you know difficult to come up with the exact logic logic for the most general case of BST okay
+
+49:35.040 --> 49:41.920
+so think about this problem you know on your own and try to come up with the appropriate rotations
+
+49:41.920 --> 49:47.920
+you know in in the in the most general you know setting of a BST okay so what about the last
+
+49:47.920 --> 49:54.160
+the no scenario so last scenario is again you know just like the previous one but here you know
+
+49:54.160 --> 49:58.720
+we have a balanced factor of minus two why because on the left hand side nothing is there
+
+49:58.720 --> 50:03.600
+but in the right hand side we have something like this okay and if you have something like this
+
+50:03.600 --> 50:11.040
+how to fix it again I mean you can maybe you know take a guess from the previous case that we
+
+50:11.040 --> 50:18.480
+have seen can we transform this first into this kind of a structure okay so A will not complain
+
+50:18.480 --> 50:24.080
+because for A nothing is changing but what about P and C so can we complain about C
+
+50:26.160 --> 50:33.040
+so cell B complaint so for this tree to be a BST or what is required that C should be greater than
+
+50:34.480 --> 50:42.080
+B that's how I mean she can come on as a right child of B but is C no greater than B already
+
+50:42.080 --> 50:47.920
+so here C is already greater than B right so if I transform this into this even B should not
+
+50:47.920 --> 50:55.200
+complain and C will not complain because he doesn't have any child okay so yeah so think about
+
+50:55.200 --> 51:01.440
+this this case is carefully so these are you know four different types of rotation that we apply
+
+51:01.520 --> 51:12.240
+on any you know balanced by by necessary to recover from this imbalance and you know get balance okay
+
+51:12.240 --> 51:18.160
+so to get a balanced by necessary so yeah so these are the things that know we discussed today
+
+51:18.160 --> 51:25.040
+so I leave as a assignment for you to you know define this rotation which we call left rotation
+
+51:25.360 --> 51:33.200
+rotation and use them to you know correct the imbalance that is there in in your tree after
+
+51:33.200 --> 51:38.560
+any insertion okay so for AVL tree now you have to write down all this code I mean you have
+
+51:38.560 --> 51:44.240
+so the the idea or our final goal is to maintain an AVL tree now AVL tree are you know
+
+51:44.240 --> 51:50.320
+by by necessary with this height balance thing you know check every time okay and for doing this
+
+51:50.400 --> 51:56.480
+kind of height balancing you have to rotate left or right or a combination of both of this that
+
+51:56.480 --> 52:02.000
+we have discussing in the previous no example using previous example so these are some you know
+
+52:02.000 --> 52:08.080
+function for which I have given you signature and you are expected to implement this function
+
+52:08.080 --> 52:14.320
+and submit it okay so what's the very first one is the rotate left okay and what it does it it
+
+52:14.320 --> 52:20.240
+gets an unbalanced node okay so we we try to figure out what is the you know unbalanced node
+
+52:20.240 --> 52:26.080
+and after getting to that unbalanced node we will try to do this kind of rotation to no left
+
+52:26.080 --> 52:37.440
+rotation to get rid of no so what is rotate left in the above if you see so this is the left
+
+52:37.440 --> 52:44.000
+rotation right so in this kind of no situation we want to implement this logic no of
+
+52:44.000 --> 52:50.000
+transformation that we discuss here okay so think about it so rotate left and rotate right
+
+52:50.000 --> 52:55.760
+right two functions which take an unbalanced node and does this so input is node or dictionary
+
+52:55.760 --> 53:03.120
+that is right heavy so if it is right heavy it needs a no left rotation right no so returns
+
+53:03.120 --> 53:10.880
+should be a new root node after the left rotation okay and this is exactly what we discussed
+
+53:11.120 --> 53:18.400
+also write some similar function for right rotation okay and then can you
+
+53:19.760 --> 53:25.200
+write a function which uses combination of this you know left rotation and right rotation
+
+53:26.000 --> 53:30.960
+to balance a particular node let's see you could figure out that some node is a no imbalance
+
+53:30.960 --> 53:37.920
+so so can you then write down a function which can convert that node into or know that part of
+
+53:37.920 --> 53:44.320
+the tree into a balanced tree okay so the input is node dictionary that might be unbalanced
+
+53:45.520 --> 53:51.840
+and the return for this return value for this you know function that you want to write is the
+
+53:51.840 --> 54:01.200
+balanced node okay so again I mean so this this may be you know more complicated right because here
+
+54:01.200 --> 54:07.280
+you have to identify first what kind of imbalance is there no which of these four you know cases
+
+54:07.280 --> 54:13.600
+you are in and then depending upon what is your current no scenario you have to apply one of the
+
+54:13.600 --> 54:18.880
+possible transformations or you know discuss transformation from above to solve these
+
+54:18.880 --> 54:24.240
+imbalance okay so this is what I expect you to write down okay so again I mean these are some
+
+54:24.240 --> 54:31.200
+no easy example to help you visualize this again same discussion that we had earlier so go
+
+54:31.680 --> 54:38.720
+to know in an offline mode and try to come up with these signatures so so finally what I want
+
+54:38.720 --> 54:44.640
+you to implement all these you know function signatures so I have summarized them so these are
+
+54:44.640 --> 54:51.120
+some you know core function signature that you need to implement in order to implement this
+
+54:51.120 --> 54:56.640
+no avial or high balance trees okay so first one is you know create node I mean can you write
+
+54:56.640 --> 55:03.040
+down a function we just create a node you know creates and it turns a new avial node this study
+
+55:03.920 --> 55:10.000
+then the second function is get height remember I mean now we can you know detect whether a node is
+
+55:10.800 --> 55:15.840
+complaining or not by calculating only height right I mean if you don't have a function to get
+
+55:15.840 --> 55:20.400
+height you cannot calculate balance factor and then you will never know whether a node is balance
+
+55:20.640 --> 55:27.200
+or not okay so first write down that height function so this function you know get height to calculate
+
+55:27.200 --> 55:32.560
+height for any node so think about it on your own and try to come up with an implementation
+
+55:33.440 --> 55:40.880
+using this can you now you know implement a function which can tell you what is the balance
+
+55:40.880 --> 55:46.160
+factor at each node okay so this this function should calculate balance factor
+
+55:46.640 --> 55:53.440
+for any no given node that you passed this function okay and once you have this balance factor
+
+55:53.440 --> 56:01.680
+you also have to maybe you know write a function which will update height right because whenever
+
+56:01.680 --> 56:08.000
+you add so now you want to maintain this height information always in your dictionary so that
+
+56:08.000 --> 56:15.280
+you immediately know whenever you know the balance factor for any of the node goes beyond the
+
+56:15.280 --> 56:20.560
+allowed let's say range so can you also write this you know update height function so whenever
+
+56:20.560 --> 56:28.800
+you add a node or remove a node from your there's a height balance tree so at that time so after
+
+56:28.800 --> 56:34.320
+that no addition or removal you should be able to know update the height for each of the node in
+
+56:34.320 --> 56:42.400
+the tree right so so so for that you would need a no update height function so either you integrate
+
+56:42.400 --> 56:50.160
+this update height function when you are you know calling when you're you know modifying your data
+
+56:50.160 --> 56:55.760
+structure or you can write down it separately and then you know call this whenever you are changing
+
+56:55.760 --> 57:02.080
+your data structure okay so write down this update height function so so that now this this
+
+57:02.080 --> 57:09.280
+takes a node and then again based on its children I mean it can actually update the height of
+
+57:09.280 --> 57:16.480
+the parent node then write this rotate left function which I've already not discussed so it
+
+57:16.480 --> 57:22.880
+it should take an unbalanced node and try to do this left rotation to fix the you know
+
+57:23.840 --> 57:33.120
+this kind of you know imbalance so similarly rotate right you have to write down so once you have
+
+57:33.120 --> 57:39.920
+rotate left and right or maybe now you you are in a position to know insert node right because once
+
+57:39.920 --> 57:47.120
+you insert node so after the insert and you may figure out that you know there is an imbalance
+
+57:47.120 --> 57:52.160
+introduced and at that time you may have to use this left and right rotation in combination with
+
+57:52.160 --> 57:59.840
+each other to to you know get rid of that imbalance so again I mean read the signature of this
+
+57:59.840 --> 58:05.920
+function carefully and try to implement this on your own then I mean this is a simple
+
+58:05.920 --> 58:10.720
+search function that you might have written for you know BST you have to again write that here
+
+58:11.360 --> 58:14.960
+and there are some utility function but these are optional I mean if you want to skip you can
+
+58:14.960 --> 58:20.880
+skip this function but at least right know all the implementation of these functions for which I
+
+58:21.040 --> 58:30.560
+provided you signature here no until this no section 4 okay so with this I would like to conclude
+
+58:30.560 --> 58:38.320
+no today's lecture so in today's you know video we briefly discussed about this idea of height
+
+58:38.320 --> 58:44.480
+balance tree and we we we we we we discuss why this is important and we also discuss about
+
+58:44.480 --> 58:49.120
+the overall logic of maintaining the height I mean if there is an temporary imbalance that has
+
+58:49.120 --> 58:54.880
+been introduced by insertion of a new element or deletion of existing element okay so we talked
+
+58:54.880 --> 59:01.680
+about LLLR and you know this left-right combination kind of rotation which can help us get rid of
+
+59:01.680 --> 59:08.640
+this kind of imbalances what do you I expect from you is to write down complete implementation of
+
+59:08.640 --> 59:14.160
+the function signature that I have given for you know this lecture so I will meet you in the
+
+59:14.160 --> 59:22.080
+next lecture so until then goodbye thank you
+

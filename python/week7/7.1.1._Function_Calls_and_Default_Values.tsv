@@ -1,0 +1,502 @@
+start	end	text
+0	15840	Hello and welcome back to Python Core and Applied Concepts for a level data sense workflow.
+15840	24320	In the last video we started the discussion about functions, we saw how to know or went
+24320	32560	to write functions. I mean we discuss about the scenarios or situations where we think
+32560	39040	that we should write function instead of big monolithic code. So what are those hints
+39040	45280	that we get when that kind of situation arises when we are sure that we should instead write
+45280	51040	a function instead of writing a big monolithic code. This was in our discussion in the last
+51040	59360	class. So let me recap it very quickly. So right we started with the discussion around the
+59360	64560	need for a function right. So the three previous that we discussed very briefly was how
+64560	70880	the usability if you know want your code to be reused again and again by yourself as well as
+70880	77040	third party then you should most probably write function and not flat codes. So this was our first
+77040	83280	point. Then we talked about decomposition aspects of you know writing function also.
+83840	90720	When your task is very difficult or big if you want to solve some you know complex problem
+91760	97040	which if you don't decompose into smaller problems becomes really hard to tackle at once.
+97040	101280	So that's also a good sign that you should think about functions. You should think about
+101760	109360	subproblems as well as solving those subproblems using functions. Then the third point was abstraction
+109360	116480	right. The function helps you abstract with the detail of how you implement it. So someone who
+116480	121920	wants to use your function need not know all the detail of your function but can work with your
+121920	127120	function by you know ingest the interface or the no contract of your function or signature of
+127120	131840	your function which looks just like this. So with the proper description of function in
+131840	138320	natural language you can you know make other people use your function efficiently without any
+138320	144480	problem. This was the abstract view or logical view of the function that again motivates us to
+144480	150240	write function in many places where we want other to use our code without being you know bothered
+150240	154160	about how the code is actually implemented or how the function is actually implemented.
+154960	159840	So we discuss it then we also discuss about the basic syntax and semantics of function
+160480	166080	which included how to write functions whatever different you know component of defining a function
+166080	172320	like you have a depth and definitely a name for the function followed by body and then there
+172320	177760	must be a no return which returns the value that you want this function to detect. This was
+178320	186160	no very briefly that we talked about function syntax in the last part then we also said that
+186160	191600	this is only the syntax the actual semantics comes when you you know call this function so this
+191600	197360	is just definition so when you define things these things are not calculated but when you want to
+197360	202960	use this function you call these functions with their name and by passing the actual value for
+203040	209440	this parameter which we called no argument to this function to get it to get that is else no
+209440	214640	evaluated okay so that that's what we say you know calling the function and we have seen two very
+214640	220800	popular you know ways of calling a function by passing arguments one was this positive
+220800	227760	positional argument concept where you don't need to explicitly tell what are the arguments that
+227760	232400	you are passing I mean you don't need to name the argument but you can just pass the values but
+232400	238160	in that case you need to maintain the order in which the function actually defines the parameter
+238160	244080	when you pass this argument to the parameter okay so this was no positional way where you can
+244080	250480	actually avoid no giving this names of parameter like length width and no color in this case
+250480	257120	but you can simply call this function by passing the value to this parameter but you have to maintain
+257200	262000	the order in which you know you pass this thing so this is what we discussed in the other cases
+262000	270240	when your function may have lot of let's say parameter or arguments defined then you may not
+270240	275840	recall the order exact order in which these parameters were defined so in those cases we can
+275840	282560	also name the parameters and then pass the value explicitly by saying what these values correspond
+282640	287680	or which parameter these values correspond to okay so that is most of the time you know very
+287680	295360	convenient for us and we use this in case of any confusion and then there are you know otherwise
+295360	301200	where you can mix both positional and keyword arguments together but here when you mix them you
+301200	307280	have to no keep in mind that you can only use positional arguments in the beginning and once you
+307280	313520	have used any you know keyword argument then from then onward you cannot use positional
+313520	318480	arguments so this is one restriction that we have to you know follow when we try to mix them
+319120	325920	so depending upon what is your you know what what is your you know exact condition I mean you
+325920	332720	can use any of these three way of passing values to function parameters so you know just practice
+332720	338160	some no more solving some more problems small problems where functions are naturally
+338880	345760	you know more desirable so and try to use these three types of you know argument passing to
+345760	351680	you know be confident about using them okay so now we'll continue our discussion and we will talk
+351680	358720	about the nature of arguments that we pass to function okay so normally you pass some data
+358800	365520	you know as a no argument to the function parameter and those think can be mutable as well as
+365520	372480	immutable right we have you know seen that now there are data types like number strings and
+372480	378080	tuples which are immutable data types no one use once you define them I mean you cannot change
+378080	384320	them so this is what we know mean by immutable so you know you cannot so it cannot be changed
+384320	391600	after creation and when functions receives this kind of immutable not types they are essentially
+391600	398160	receiving a copy right and you cannot change the original thing by changing that copy so so the
+398160	405520	problem that so why we are discussing this is because of you know the side effect that function might
+405520	411040	have so when we say side effect we want to know whether the argument that we want we are passing
+411040	417040	to the function is the function actually changing those argument or not okay or is it simply you
+417040	421840	know using the value of those you know argument which you pass as maybe variable to the function
+421840	428160	so this is a very important point to keep in mind when you're writing a function or using a
+428160	433760	function which is written by someone else so you want to be sure what are the effects of the
+433760	439120	function is does it only return me the result value or it also changes some other variable you
+440080	447200	and these things would be very you know explicit okay but in most of the cases you know by the
+447200	451920	nature of the argument you can actually guess whether these things will be changed or not so for
+451920	457200	example if the arguments are immutable not data types then they will not be changed but then
+457200	463680	when arguments are immutable data types for example list dictionary or set in those cases you should
+463680	469440	be very careful I mean if you want it not to be changed then you better pass a deep no copy kind
+469440	476640	of thing you pass a copy of the actual you know data rather than the whole data itself okay so just
+476640	482000	to highlight this I mean I will give you two short examples one for immutable data types and one
+482000	486480	for immutable data types and we will be able to see what is the difference you know in the context
+486480	493120	of these exact examples so let me write down the very you know first example which
+495120	500960	is about immutable data types so for example let's say you want to update you know a score
+501600	507120	by some you know margin let's say which we call bonus okay so we can define a small you know
+507200	514400	function like this which is let's say definition is no update on maybe score
+516160	519520	and then you you pass the original score
+523520	530720	and then this bonus bonus is the amount by which I want to update this score so so the implementation
+530800	538080	what I do is you know my actual implementation is let's say a score is score
+539920	548560	plus okay so the important thing that I want to highlight here is that no see I mean we we are
+548560	553680	changing you know one of the argument which is a score right the very first argument which you
+553680	560880	pass to this function we are inside the function we are trying to change that you know value
+560880	567200	right score to score plus bonus okay so now we want to you know know what is the effect of this
+567200	572800	to the let's the original value which has been no pass to us okay so this score you know make
+572800	578880	come as a you know variable name to us I mean to this function when it is called so we would like
+579040	584960	to analyze and see whether changing it inside the function will actually change the original value
+584960	592480	or not so this is no our intention so this this is what the our function does and then let's say
+592480	606720	what we return is value score okay now we would like to see what is the effect of this function so
+606720	611600	let me you know so this is just the definition of the function so to see the effect we need to
+611600	621840	you know call this function so let me call this function and let's say initialize some variable
+621840	629680	where we store some initial let's score so this variable original score has some no original score
+629680	635680	which you would like to pass this update score function and then update this okay so now
+636880	642880	if let's I want to call this function okay and get let's say the new score that I
+647200	653360	no one to obtain by updating the current score is is what we call new score here and then we
+656160	663200	update the score using update score function and here what I'm passing is this in original
+663840	670960	okay so what in just no copy this so the very first argument is original score and then let's say
+670960	678160	I mean we want to you know in case it by value 20 okay so I hope you understand the no meaning of
+678160	682800	this instruction so what we are doing is we we just defined a function which we called update
+682800	688640	score and now we are calling update score with this you know original score value that I have just
+688720	694080	no initialize right original score is no hundred so I pass this original score to this one
+694080	698960	and then the value by which I want to update it is the second argument right this bonus is this
+698960	704240	20 so when I call this function this will certainly return some value right and what is the written
+704240	711280	value is the new score that it no calculates and that value I have stored in the new score thing
+711280	717840	okay now if we want to let's say no try if you want to see you know what happens to the
+718400	724480	the original score that we have defined here after let's say you execute this statement because
+724480	730320	no executing you know this statement means calling this function once right this is what we are doing
+730320	736000	we are making a call to the function and when you make a call to the function and when you have
+736000	743520	passed some arguments I want to see after the call has you know executed successfully what will
+743520	748320	happen to the argument value and what is this argument value that we are interested right now
+748880	757200	original score okay so to do that I mean what we need to do can we print the value of this
+757200	771360	original score so let me uh what we can do is we can say here print let's say
+771520	785920	original score maybe you know before function call okay
+786240	794720	okay and then I know if I just print what is
+801120	808480	score here so we know so what is this original score before no function call and if I want to do
+808480	815120	know the same thing uh after the original score has been so let me you know print copy paste the
+815120	831520	same thing and I want to see what happened to this original score so after function execution
+831520	839200	maybe okay after the function execution if you want to see again now what is my original
+839280	845680	score you know this will print okay and we would also like to let's just see the what is the value
+845680	851760	of the new score okay so let me you know print that also so
+856480	862080	what is our new score after function execution so that value should come in
+862240	875360	new score okay so so let me so so the value that it returns in this you know so remember I
+875360	880480	mean the new score will have value of this score right which is no calculated here inside this
+880480	886080	function so now I want to see what happens to so what do I get in new score and what is the
+886080	892880	original score after the function execution okay so if we uh run this piece of code now to see
+892880	900480	what happens so what we see is that original score before function call was 100 okay and again
+900480	907120	if you want to query your original score so what is the the inside this no original score variable
+907120	913840	that we have defined here after this function has been let's execute it so at that moment also
+913840	918240	we see that the original score did not change okay so we are safe right because no this original
+918240	925280	score contained a data type which was immutable okay so that's how you know that that's what we can
+925280	931680	see here clearly right that no we we have this value 100 even after the call but then when you see
+931680	938480	the new score I mean you see the updated value 120 okay so what happened no in principle when you
+938480	945040	pass this you know a copy of this value was passed which was 100 and that copy was you know
+945920	958160	used to assign this new variable score okay the new updated value which is no 100 plus 20 so 120
+958160	964160	and this was returned and this value was you know again kept in this new score okay so this is how
+964800	972320	this is what is the exact cement takes off how no execution works when you call it with immutable
+972320	978720	no data type okay so this variable was not changed this is important to keep in mind okay again
+978720	984240	I mean just to no contrast this with mutable data types we will you know take a similar example here
+985120	991920	where we will try to work with mutable data type and we'll see what is there so in this case I
+991920	999280	mean let's say try to no work with list instead of you know integer so because we know that list
+999280	1006000	is a mutable data type and let's say we want to no maintain a roster where we want to no list
+1006000	1012000	all the student name okay so no one good function to no maintain that roster will be to add and
+1012000	1016880	use student let's say which which also changes the roster okay so that's why we are no defining
+1016960	1026400	this kind of function so the function that I'm trying to define right now is a new let's say
+1026960	1034720	edition of a student name in the existing roster so let's say what we say is no add student
+1036640	1042400	is what is my you know function that I'm trying to define and the very first
+1042400	1050320	no argument which I pass here is a list I mean I know this is intended to be list right now you
+1050320	1055760	don't know it right because we have not defined the function body so so my intention is to no keep
+1055760	1063680	make this you know roster list okay mutable data type and then given any let's say student name
+1067280	1071600	I would want to no append it to the end of this let's say roster so this is my you know
+1071600	1080400	intention of the function so you can now guess what should be the okay so what should be the
+1080400	1089600	statement that I shall write inside I want to append something to the existing you know roster so
+1089600	1094240	if roster is a list we have already seen this kind of in build function which can
+1095040	1103600	append something to our list and remember that when we discussed list we said that this kind of
+1104480	1110080	our method call will actually change the original list right so so it was called on roster so it
+1110080	1116720	has a side effect of changing the list right it will change your original list so student name is
+1116720	1124960	what we want to add so this most probably you know based on our you know current understanding of
+1124960	1132320	list and its prospective methods we know that this will have a side effect and it will modify the
+1132320	1141200	original list okay so so let me now again I mean do something you know similar as we so so let me
+1141200	1148400	first so this function no need not return anything I mean it's not necessary for every function to
+1148400	1157520	returns explicitly I have a return statement so we'll see that as we go ahead but let me you know
+1157520	1167040	finish it and then what we can have we can again I mean start let's say
+1171200	1181760	so let's say this is our roster class students which if I initialize with you know one student name
+1181760	1191600	let's say Hardik is already in the roster and then I want to maybe add another student so let me
+1191920	1205040	add so let me know use this so I passed the original
+1207680	1214400	the student list to this you know add student function that we have defined just now and just
+1214400	1221280	give one more name as a new entry to this so let's say no no is what I want to add to this
+1221600	1229200	cluster so so what do I want to see now I mean I want to see that no what's the status of this
+1230400	1236800	class student before and after we call this function okay because remember this is the point
+1236800	1243040	where we are actually calling the function right so I want to see what is the effect of execution
+1243040	1251040	of this function on this list class students so to see that I I can actually print it before just
+1251040	1256400	before this one and just after this one right so this is what we can do so what we can say is
+1256400	1267040	let me have a print statement just before it so we want to see what is so before function
+1267280	1282480	equal before function or we want to see what is there in this list which I call class students
+1286240	1289200	okay so what is there you know inside this thing
+1289360	1302320	when I call this no class student so and we want to just have similar things after the execution
+1302320	1309280	of the functions let me copy this and we can again paste the same piece of code here and we can
+1309280	1318080	say is after let's the function call after function call again we want to see what is the status
+1318160	1326880	of the same no list will use the same thing now if we and no this is the original list that we have
+1326880	1336160	created okay so remember that this is the original list that we have created now what do we expect
+1336160	1342640	as an you know outcome when we execute this code and when this function call has been made once
+1342640	1348800	so what is the effect that we want to see here in in this print okay since this is a mutable
+1349360	1356960	not a type we expect that this no roster which is no we which took the value of you know this class
+1356960	1364400	student initially we we expect it to change so this this is what is our expectation and now
+1365360	1372960	to put this on this piece of code and see what happened you see I printed the same
+1375200	1383120	you know variable this class student before and after also and in this case if I print them before
+1383120	1388000	and after I can see a difference because this was a mutable not a type this was list so here I
+1388000	1394880	mean when you pass this you know list to this roster you don't actually pass a copy instead
+1394880	1402480	what you are passing is the you know the actual thing and so if you make a change you your change
+1402480	1409360	is reflected in the other place also okay so this was very you know small to I mean these were two
+1409360	1416720	very small example but very you know you listed above the fact that how function can change
+1416800	1421360	you know the arguments also and you should be very careful if you are passing a mutable argument
+1421360	1426160	then I mean you know for sure that that's not changed right and this is what we saw here let me
+1426160	1431680	printed this original score that we passed you know instead you know in a place of this score
+1433040	1437680	we saw that there was no change right because here initially also we observed 100 and after
+1437680	1443920	the call also we observed 100 but in this case you can see now I use something very you know similar
+1443920	1451120	but no I in this case since the argument was mutable at a time we could see a change before
+1451120	1460000	and after the function call okay so great so with this no now we you know conclude the discussion
+1460000	1468480	of this particular part of function I mean which is about the mutable any mutable at a time now
+1468560	1476080	we want to go to another important concepts which we very often use in the context of function
+1476080	1484160	which is called default argument okay so what a default argument so default arguments are I mean
+1484160	1491760	they allow you to define parameters with preset values in function definitions okay so
+1491760	1500240	sometime you know sometime I mean some of the arguments for a function can be guessed actually
+1500240	1505360	okay so so for example I mean if you are writing some function which has multiple parameter
+1505360	1511040	and some of the parameter always let's say take some values by default you know for most of
+1511040	1517840	the you know function calls then in that case it is a good idea to you know explicitly tell
+1518800	1525760	Python that now these arguments by default take this kind of value so you assume by default
+1525760	1531280	this value if user does not want to specify explicitly some other value so this is the intention
+1531280	1536400	of you know having this kind of not default arguments so default arguments allow you to define
+1536400	1542800	some of the parameters with preset values in function definition okay now if caller does not want to
+1542800	1549120	provide that argument then these default values are used so this is what the you know default this
+1549120	1555520	is what we called default arguments in you know Python and I user need not provide them explicitly
+1555520	1562160	so let me sum to this so what very said this now is what he's mentioned here okay so default
+1562160	1568640	arguments allow you to define parameters with preset values and you know need not actually provide
+1568720	1575200	those value when you're calling no function just I mean against to give it a concrete
+1576240	1583200	context we can start with a simple function and try to see for example let's say if you want to order
+1583200	1591680	a copy okay if you want to order a copy and you know your copy machine has some function inside
+1592240	1596960	it which automates the whole process of let's say making copy for you so
+1597280	1604080	most of the time I mean since no maybe even people are taking lists so when you want to order a
+1604080	1609280	copy you have to specify what is the type of the copy you know what size of copy you want you know
+1609280	1615200	medium or large size or do you want you know sugar or not and if you want sugar how much you know
+1615200	1621280	sugar you want you want little amount I amount or no no amount so all of this now can be
+1621280	1628960	you know should be provided to make you or you can give you no proper copy but then in no
+1628960	1634320	most of the cases we know that most of the people who want to come for copy they prefer let's say
+1634320	1641760	medium size cup and then they also expect some amount of sugar which may be quantified by
+1641760	1647120	let's say if you know no sugar is zero if you know very little sugar is one if no some sugar is
+1647360	1652000	two and then if you know a little more sugar is three then most of the time you know you would say
+1652000	1658080	that we want sugar quantity to be two we want you know size to be medium and then type of the
+1658080	1664480	copy you of course you want to ask from the customer because it varies most of the time based on
+1664480	1670800	your you know past observation so you can actually then define this no order of copy kind of
+1670800	1676480	function inside Python okay let me you know just try to mimic this you know copy thing using a
+1676480	1683920	function so let me if I want to know I don't know function to order this copy so this order
+1683920	1694080	copy function would try to mimic what we said just now let's say okay so we are ordering our
+1694080	1700080	copy and so let's say three things there are three argument that typically you know
+1701040	1705280	people want to choose from one is know the type of the copy let's say we call it not simply type
+1706080	1712480	and then second one is the size of the copy and the size by default let's say I want to
+1714000	1717680	I know and most of the people come and they offer you know order medium size so
+1718400	1723600	if they don't specify I would by default let's consider the size to be medium so so this is
+1723600	1728320	you know my this is the second argument that I have given here is my default argument so this
+1728320	1734480	is how I specify that the default value for this argument should be taken as medium if let's
+1734480	1741520	say user does not specify anything okay so this is the way to indicate that this argument is
+1741520	1748480	not default argument and also about the you know let's a sugar content if user does not
+1748480	1753920	specify anything that I maybe know I want to keep it at a level two okay so let's say your
+1753920	1759040	your sugar amount of sugar is represented by three levels zero one two or four level zero one
+1760000	1765760	so then I want to you know maybe keep two as a you know by default level for making this
+1765760	1772160	copy so and instead of writing the complete no function which actually makes the copy let's
+1772160	1779040	say for you let me you know make it by just returning some I mean just no returning a print
+1779040	1786480	statement maybe that's more than enough for not to simulate this whole thing so what we say
+1786480	1794960	that no we are trying to no give you one you know let's say no by default medium size copy of this
+1794960	1802640	type with no two level of sugar is what you know we want to by default print but if it
+1802640	1808160	now user gives some other value for this type and sugar and you know this size then that will be
+1808240	1817280	printed so what we want to print is just I'm giving you one no some say I mean the size of
+1818240	1823440	coffee and then let's say medium size of coffee what type of coffee that maybe you know
+1823440	1836000	latte or espresso and coffee with some amount of sugar I mean which you can specify or I can take
+1836080	1847680	by default okay so let's say you know this is what I want to return when you call this function
+1848320	1854480	now if you so you certainly have to give one argument right type because type is not a you know
+1855280	1860240	pre-do you know type cannot take any default value because this is not how we have defined this
+1860320	1866400	function so so let's say I mean if I want to call this function using default values of
+1867200	1873680	the argument which is which can take some default value then so the first not in first
+1873680	1881520	attempt what we were doing is we were trying to use the defaults okay so we have to make a
+1881520	1888960	function called so let's say the function call that we make is now order coffee
+1894160	1899840	and then we pass you have to pass at least one parameter okay so let's say the type of the
+1899840	1907200	coffee that now we want to pass first time is let's say call it now that day okay and if you
+1907520	1915440	now order this kind of no coffee and let's say print whatever is returned to us okay
+1919600	1926480	okay so so what do we expect here I mean remember I mean when I make a actual function call which is
+1926480	1935680	this no expression from here to here I'm passing only the first argument right so I'm
+1935760	1940240	no by default this is the positional argument way in which we are passing the argument okay
+1940240	1945120	and we are passing only the first argument so by default it will assign this to time okay and
+1945120	1952640	other two which we are you know sides and no sugar content we have not provided here right if we
+1952640	1958400	we are making a function call where the original function which has been defined has three arguments
+1958400	1963600	but we are passing only one argument so this would work why because we have some default value
+1963680	1969040	if you let's say if you had not defined these things no this portion here and this portion here
+1969040	1975280	then in that case it would not throw some error but since you have defined it to be some no
+1975280	1982160	default value you can expect this to work properly and assign these values by default so now if I
+1982160	1991040	want to maybe no run this and see what's the effect of this run can you see so this is what we
+1991040	1999440	expected right so one medium let it copy with two sugar levels okay so how could it take this
+1999440	2007920	you know medium you know the size because the default value of this size was medium okay so
+2007920	2013920	even if I did not provide anything here it automatically took this medium value for the size
+2013920	2019760	and this you know two value for the sugar level okay so this is how we you know we can
+2020400	2026640	use this default value but I mean I mean since you have written it as a default value I need not
+2026640	2032960	always take default value you can explicitly also you know provide this to the function for example
+2032960	2040000	again I mean in this case let's say let me copy make another function call to the same function
+2040640	2048800	and I may say that this time I need some other copy copy type let's do a special
+2052000	2060960	and I may want to specify that this time you know my size be you know something maybe different
+2060960	2068240	from what is the usual thing I want to large special so I can say this and I want a little less sugar
+2068240	2075280	maybe so then in that case I can specify a sugar level also right because like I can I know
+2075280	2081920	right here you know instead of do the default value I can actually pass this one value okay and now
+2081920	2090480	if you are you know try to print it and see what happens you see our one large espresso copy with
+2090480	2097840	one sugar level so this is how we can use the default argument feature of functions inside
+2097920	2106160	Python no programming language and this no makes your life no easy and it's not it's not only you know
+2106160	2114880	so this is very useful for especially users right because they they can call function with fewer
+2114880	2121360	arguments I mean if they want to accept the default value okay and for most of the you know cases
+2121360	2126080	where you know that the default value will be this it is actually useful right so these are
+2126240	2133440	some benefit of using this default value so one is the flexibility that function can be called
+2133440	2139360	with fewer arguments you have seen right now right we we passed only late and then this function
+2139360	2147920	work perfectly second is no you can actually know somehow we realize this common use cases
+2147920	2153840	you know in a simpler way by just writing this and not asking every time and you know provide
+2153840	2159200	reasonable behavior out of the box I mean even if you don't want to bother user or clear
+2159200	2165520	to line to provide every other detail you can assume those as default value and another no
+2165520	2171280	important thing is this no backward compatibility okay so we'll come to this backward
+2171280	2178640	compatibility soon and see how you know how I mean having default values provides no backward
+2178640	2185200	compatibility in some of the cases okay so adding new parameters without breaking existing code
+2185200	2189840	is what we want to discuss specifically in this in our case so we will talk about no
+2190560	2200160	these things but no let me you know give you another quick example of maybe this kind of no
+2202080	2207120	so so another you know quick example of this default you know argument maybe you know
+2207200	2211280	like scheduling a meeting let's say if you want to schedule a meeting or team meeting or a
+2211280	2217600	zoom meeting so what are the things that you want to specify you know you want to specify why you
+2217600	2223280	are calling for this let's say meeting what should be the no duration for the meeting and who
+2223280	2230080	how many participants let's say you are expecting and whether you want to meet online or offline I
+2230080	2235280	mean so let's say if you are scheduling a meeting and that meeting may be online or offline
+2236240	2243840	that meeting may have some no topic of discussion how how long it should know go so let's say if
+2243840	2249760	you want to write a function to schedule no such a meeting so some of the arguments may you know go
+2249760	2255600	as no default argument for example I mean by default I can you know I may want to assume that my
+2255600	2262240	meeting goes only for maybe you know 60 minutes or my number of participants no by default is no
+2262240	2268800	10 or less and when I'm scheduling it I mean by default I can assume that this is you know online
+2268800	2275120	until I specify it okay so in that case now if you want to write down a function to simulate
+2275120	2281040	this kind of behavior what will be in our function so can we write down something like this let me
+2281040	2298800	here now so what if I you know all right in something like this okay so this is our schedule
+2298800	2305360	meeting you know function that we have written we specify topic we specify also duration
+2306000	2312720	participants and and again I mean here you can see we have specified these you know duration
+2312720	2318320	participant and online as a default argument right so you can only give the topic name and then
+2318320	2325920	call this function right and this will be executed properly I mean there will not be any error when
+2325920	2333760	you try to no run this function or call this function okay so for example like say you know if I
+2333760	2339360	want to just you know call a meeting for let's say daily stand up kind of thing so you can quickly
+2339360	2346800	say that no I want to call this meeting by you know calling this schedule function right so let's say
+2346800	2358000	call this schedule no meeting if I call this schedule meeting with only let's say the topic okay so
+2358320	2370560	let's say I mean topic is now okay so if I don't pass anything else so I pass only the first
+2370560	2378400	argument so the by default no duration will be taken as 60 and participants are expected to be
+2378400	2384480	10 and this should be no online mode okay so that these are the you know arguments value that we
+2384480	2395360	expect to be you know passed on when we call it this way to see what is written I can actually print
+2395360	2408080	this value and then see what happens and this is what we you know expected right so we expected
+2408400	2417040	that so daily stand so this is no daily stand up for a 60 minute 10 people and online mode
+2420160	2426320	now if you want to specify things or you know other things also you can you know maybe you know
+2426320	2431600	call this is a quarterly meeting which should go for a longer period let's say no 120 minutes and
+2431600	2437600	the number of participants are less also more 25 and you don't want it to be on you want it to be
+2437920	2442800	offline so in that case what we can do is we know we can call the same function
+2445600	2453280	with not the default argument but with some other argument so for instance I mean in this case let's say
+2455600	2459920	if I call you know this function with this kind of arguments schedule meeting
+2460880	2468320	no quarterly review and number of participants are 25 duration is 120 minutes and you know this
+2468320	2473520	is not online no this is offline so in that case if I now print it
+2476640	2482240	you can see that no meeting has been scheduled for 120 minutes with 25 people and this is
+2482240	2486960	in person why because this online is false okay and if online is false then I want to
+2487200	2492560	print that this is in person meeting this is you know these are some very simple examples where
+2492560	2501280	you can see that the default argument you know idea in Python especially I mean works very well
+2501280	2507360	and it can be very convenient most of the time when you know what should be the you know most
+2507360	2513040	used let's say value for some of the arguments for your function that you are defined okay so use
+2513440	2519040	now carefully I mean this can be very useful so we don't need to know any other example maybe at
+2519040	2526800	this point so the last thing that I want to know highlight about this default argument is that
+2526800	2535440	it can in some cases help in backward compatibility okay so what is backward compatibility by the
+2535440	2541360	way when we talk about our code let's say you have developed some function okay or you have
+2541520	2548640	developed some library which has many functions written already and you have a large user base also
+2548640	2553120	okay so many people are currently using your library they have already developed many you know
+2553120	2560080	applications software relying on your you know library functions okay now so you have a you know
+2560080	2565200	let's a large user base I mean where your function has already been called multiple times in many
+2565200	2570960	applications which are not running right now okay and now you know suddenly want to maybe
+2570960	2577840	upgrade your function with some new feature okay you think that your function can be you know maybe
+2577840	2584240	made more general or more you know flexible in no dealing with some different kind of you know
+2584240	2590560	scenarios also so in that case you want to you know modify your function okay and you want to
+2590560	2597360	modify it but then I mean if you modify your function you also don't want you know those
+2597360	2602880	earlier calls of the functions to break okay so this is what we call you know compatibility so can
+2602880	2611280	can I know upgrade my let's say library or any function or module that I have written in a safe way
+2611280	2616800	so that if someone else has been using it in no in his application it does not break I mean he does
+2616800	2623520	not you know need to go back to his you know whole applications software and then change the
+2623520	2629520	quote again to just make sure that things work with my no current or the upgraded library so this
+2629520	2635440	is what we call you know backward no compatibility here I mean when we say backward complete this is what
+2635440	2641360	you know I mean so just to give you again a very concrete you know example maybe
+2646560	2651040	so if you don't have let's say no default argument kind of thing you know then
+2651840	2657280	this this kind of things may become a little or I'm not saying that no having the default
+2657280	2663040	argument gives you by default also this no backward compatibility issue you know
+2664000	2669120	you know in all the cases but in most of the cases you can actually use or in many cases you can
+2669120	2675040	use this default argument to solve this no backward compatibility kind of issue so again I mean
+2675040	2682000	as a concrete problem let's start with you know existing function let's say that is already
+2682000	2689520	being used in many places so for instance I mean in this case let me write down a function with
+2689520	2697360	simply no processes some no data and at least I mean it converts you know any upper case into
+2697360	2703600	lower case you know kind of data so this is a data processing kind of function which given any
+2703600	2711600	input converts it into no lower case no strings okay so so a simple definition like this
+2711680	2724320	where we have this plus is data function let's say which takes some data no as input
+2726000	2736560	and it may be you know it calls and this no input this
+2736560	2744000	lower method so data dot lower to just know make it no lower case I mean if you have written
+2744000	2749200	something in upper case and it will be made automatically into the lower case so this function
+2750720	2754640	now let's say I mean this you have no earlier developed this function this this is very simple
+2754640	2758560	function but you know is it I mean just for example we have taken this simple function but it
+2758560	2763840	can be any you know complicated function also so for in this case this has a very simple
+2763840	2771360	role right converts into no lower case so let's say and some you know other you know user have
+2771360	2777920	used your function at multiple places and call it multiple places so let's call it at least once
+2777920	2782880	on this you know let's say hello so if I can copy the same thing and
+2784560	2791600	finished here so let's say so this kind of you know so this is calling this function right this
+2791600	2795680	is the definition of the function this is call of this function now if someone else has written
+2795680	2799840	a you know application program they where this function has been called multiple times in at
+2799840	2805840	multiple places because this is what we are saying that this this function have been you know
+2805840	2810480	called throughout a lot let's say code base so this is our scenario so what happens when we
+2810480	2817600	call this function so what is the immediate effect since we have not defined it we have not
+2817840	2823600	run this block we got this error but if you run it and then it converts into lower case so this
+2823600	2828960	works perfectly and it has been used at multiple times now if you imagine you want to extend this
+2828960	2836400	function by adding some new feature I mean or a new parameter to control this case handling now
+2836400	2844080	in all the cases maybe you don't want to you know you know convert this data processing let's say
+2844160	2853120	function now you want to make it you know you want to add an extra feature which also tells whether to
+2854080	2860160	change the given input into lower case or not I mean let's say so this is the no minimal change
+2860160	2866480	that we can expect at the time to generalize this function or make it more useful to a wider
+2866480	2871360	you know variety of application what we are saying that we want to now extend this function
+2871840	2874720	so let's say instead of so let me copy here
+2879520	2885840	you want to extend the feature or we want to extend this function to add some new feature here
+2886720	2896640	so this should be a good block okay and now I want to explicitly maybe you know give
+2896800	2903280	another option to the user to make it no more you know useful or more generally in or applied
+2903280	2909440	in other cases I want to maybe explicitly know whether I the user want to process this to lower
+2909440	2917600	case or not so here's an option if he you know says true in as a second argument it will be
+2917600	2924320	actually converted to lower case if it says no I mean I mean pulse then in that case I would
+2924320	2930480	say that okay so I would just I mean maybe I made the data itself so I will not process it so
+2933760	2940480	so inside the function you know definition what is the minimal change that I need to do at this
+2940480	2947840	point of time to make it happen so for it to be meaningful what I'm saying is to this lower
+2947920	2954480	to lower indicates the condition which if it is true then only I want to maybe you know
+2957920	2967760	return maybe you know that lower that's why let's say if I want to change the function in a
+2967760	2976080	minimal way like this where I want return data to lower only if this second argument is no
+2976640	2983120	given as true to me in other case I don't want to you know maybe return not at or lower but I
+2983120	2988880	just want to return the data okay now now let's say this is how I want to upgrade my function
+2989920	2995840	okay now if you want to upgrade your function you know in this way so let me define it
+2998080	3003440	so what happens is now since your function no earlier function was you know use at many places
+3003440	3009920	in application no software for many of the no other client that might have used your library
+3010480	3016960	so whenever in all those places where you know this thing was calling it on a single argument it
+3016960	3023360	it may actually so it will start failing right because now you are not the your new function
+3023360	3032080	definition actually expect another argument but that is not you know present in the no previous
+3032080	3038160	function calls previous function call only as no assume one argument and so this should no give
+3038160	3044000	you there a message so let's say I mean if I just to replicate I mean all you know visualize
+3044000	3049920	what happens to the this kind of calls that was already there in some other application now if I
+3049920	3058880	again try to run it you get an error right and it says exactly what we discussed right now that
+3058880	3064320	it's missing one required positional argument which is to lower why because your new function
+3064320	3073600	definition actually ask this no second argument now so so no this is no one very small example to
+3073600	3079040	illustrate that some of modification that you may want or new feature that you may want to add
+3079600	3084480	as a less a new argument to your function which gives maybe more flexibility to your user
+3085280	3093200	may you know cause no error in the existing you know called base if you go without less a default
+3093200	3099120	argument way but now you can actually handle this kind of situation very well by defining this
+3099120	3105360	to lower as a you know default argument so what we can do is we can instead of making this
+3106400	3111760	as a you know normal argument we can make this additional argument that you have added right now
+3112560	3118800	default argument so that I mean user may optionally want to not give the value for this second
+3118800	3124560	argument and in that case the behavior is the default behavior that we were anywhere I mean giving
+3124560	3131920	you know earlier so if you if you can actually map your current you know default behavior to
+3131920	3138320	the previous you know default behavior appropriately then the things will be done so again to be no
+3138320	3144400	more precise I mean in this given case how can we maybe you know handle this situation now for
+3144400	3152800	this particular function so can we you know use default arguments here I mean instead of using
+3152800	3159120	so can we make this too lower to be you know default argument and then have similar value as
+3159120	3165120	the previous you know process data function and not breaking another earlier part of the code
+3165120	3171120	so now we can certainly do it right and we have seen example like this earlier so instead of
+3171120	3178240	saying that the second additional argument that I have you know provided or added to my
+3178240	3186320	process data let's say now function so the first was of course the data but the second one was
+3187360	3195040	to lower which indicated whether to no make it lower case or not okay so instead of saying
+3195040	3205040	that this is a normal argument I can say that this is a so default so I would like to send the
+3205040	3211440	default value may be true whenever user does not want to specify it so this gives user not the
+3211440	3217600	flexibility not to specify this argument while calling this function okay and but still we are
+3217600	3224640	taking some value no which can help us mimic the behavior that we were having in the previous cases
+3225680	3232640	okay so two things are important one is giving user flexibility not to use it and still you know
+3232640	3237840	run it without any error and the second thing is I mean you have to do it in such a way so that the
+3237840	3244720	default value that you pass finally you know converts or translates the function the current
+3244720	3251760	function behavior to the previous function behavior okay so I know I would ask you to verify the
+3251760	3258080	second thing that I told just now I mean one thing is for sure that when you make it default user
+3258080	3264480	can not give this any still run this function without you know any error mess has been thrown to him
+3264480	3270720	but the second thing is whether the you know semantics of this new function is exactly same to the
+3270720	3278240	previous one is what you need to verify after okay now if I you know write something like this
+3278320	3281760	that if so we again I mean take the same definition that we have
+3283680	3290000	we want to if to lower is not true then with that case we want to do a lower case
+3291680	3299440	transformation of the current data otherwise you know in the general case what we want to say is
+3300000	3306240	we want to return the data itself whatever data was given to us okay so now in this case you will
+3306480	3311040	see I mean you you can actually check and see that the behavior is exactly same as the previous
+3311680	3316480	you know function that we have written but now you are providing you know additional feature
+3317200	3323520	in your you know function where the I mean user can control it and pass you know pulse to get
+3324080	3330640	not change the data okay and the so so old code still works and new functionalities I will
+3330640	3334720	be able to the user write without breaking any of the existing let's application software that
+3334720	3341200	you might have you what's the good check of this so a very good check is again I mean call
+3342480	3348960	on the thing that it broke earlier right if you call on this thing you know process data and then
+3350720	3355600	so before that I mean so remember I mean it was breaking earlier right if I don't compile this
+3355600	3361920	you know cell and it still run it should break right it is breaking why because it's taking the
+3361920	3367600	previous value of the no function I mean this is taking this definition of the function so it's
+3367600	3373920	failing but as soon as you you know compile this definition which accepts a default argument and
+3373920	3379760	then maybe we again run this piece of code you see I mean it's not breaking although we have
+3379760	3385120	provided the new feature feature right here it's you know you you have an option of providing
+3385120	3390400	whether you want to convert it to lowercase or not okay I mean you can actually quickly check
+3390400	3398240	whether this new feature has been added or not so it can say is process and data and you provide
+3398240	3408560	something or maybe on the same argument maybe but then I mean if you say that no I I don't want to
+3409760	3416080	know make it lowercase I just want as it is so and in this case if I you know run this function
+3416160	3422720	you see I get the same thing right so this is how we can add new feature you know without breaking
+3422720	3429520	the previous code in many cases by using this default argument okay so this is a very
+3429520	3435440	interesting use case of default argument where and then this is the summary of what we have been
+3435440	3441360	discussing so far on libraries and the first thing that is written is libraries and API maybe used
+3441760	3446480	not thousands of users you have written already something so you don't want to break the
+3446480	3452800	existing function call you know and create this runtime no issues so default arguments provide you
+3453840	3459920	cloud developer to evolve their API or there you know whatever library they have built safely
+3461920	3467360	and I mean especially this is important in public Python library and large scale production
+3467360	3473440	system and those kind of software which are meant to stay for no long right I mean like
+3474800	3481840	you know modules in MATLAB or those kind of you know science tool boxes that you build which
+3482480	3489760	is to be used again and again by user and not developed on top of that so so remember so the key
+3489760	3494880	idea to remember is that default argument allow you to add new parameters to a function while
+3494960	3500640	preserving its original behavior for existing code so this is very very important so this provides you
+3500640	3506240	stability ease of maintenance and minimal refactoring you don't have to go and change again and
+3506240	3512240	again whenever lecture library is updated or know the software on which you have no one
+3512240	3520000	defined your own application software is changed okay so this is the how things you know works
+3520000	3526560	and then there is no one very so we will continue again I mean in the next lecture from here
+3526560	3533520	onward so for today I would like to conclude lecture here thank you very much I'll see you in the next
+3533520	3541280	week

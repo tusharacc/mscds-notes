@@ -1,0 +1,2016 @@
+1
+00:00:00,000 --> 00:00:15,160
+Hello and welcome back to week three of Python applied core and applied concepts.
+
+2
+00:00:15,160 --> 00:00:22,000
+So in this week we will be mostly covering module three which is about you know reasoning
+
+3
+00:00:22,000 --> 00:00:25,400
+with assignment conditional and loops.
+
+4
+00:00:25,400 --> 00:00:33,920
+So before we proceed with today's lecture so let me briefly talk about what we discussed
+
+5
+00:00:33,920 --> 00:00:35,760
+in the last week.
+
+6
+00:00:35,760 --> 00:00:41,920
+So this was roughly what we were discussing in the last week we talked about Python expression
+
+7
+00:00:41,920 --> 00:00:42,920
+hierarchy.
+
+8
+00:00:42,920 --> 00:00:48,720
+We learned how to build simple expressions, whether it be arithmetic expression logical
+
+9
+00:00:48,720 --> 00:00:54,480
+expression or other kind of you know lambda expressions using operators.
+
+10
+00:00:54,480 --> 00:01:01,920
+We went to the assignment expression which is distinctive from assignment statement.
+
+11
+00:01:01,920 --> 00:01:08,400
+And we discussed the distinction between these two with carefully chosen example and then
+
+12
+00:01:08,400 --> 00:01:15,120
+we moved on to lambda expression and discussed about lambda expression in you know some detail.
+
+13
+00:01:15,120 --> 00:01:21,920
+We tried to emphasize that lambda expression are nameless functions and at multiple places
+
+14
+00:01:21,920 --> 00:01:29,200
+they can be you know of use or they can be preferred over a simple function for which
+
+15
+00:01:29,200 --> 00:01:31,640
+we have names.
+
+16
+00:01:31,640 --> 00:01:34,160
+So lambda expressions are nameless functions.
+
+17
+00:01:34,160 --> 00:01:39,400
+So if you feel like you don't need to give a name to a particular function and you
+
+18
+00:01:39,400 --> 00:01:44,880
+still want to use that function maybe you know the best choice is lambda expression.
+
+19
+00:01:44,880 --> 00:01:50,440
+So we discussed about this so please go through those lecture if you can't recall you
+
+20
+00:01:50,440 --> 00:01:52,480
+know some of this concept.
+
+21
+00:01:52,480 --> 00:02:00,920
+So yeah so with this let me go to today's topic which is mostly about assignment statement.
+
+22
+00:02:00,920 --> 00:02:05,320
+So this week we will be mostly talking about assignment statement then you know conditionals
+
+23
+00:02:05,320 --> 00:02:12,360
+in Python programming language and going ahead we will also see how to write loops and
+
+24
+00:02:12,440 --> 00:02:19,080
+where can loops help us you know do some computation which is otherwise not possible using
+
+25
+00:02:19,080 --> 00:02:23,200
+you know primitive concept like assignment and only conditionals.
+
+26
+00:02:23,200 --> 00:02:29,800
+So now let me go directly to the non Jupyter notebook so again so we are here and what
+
+27
+00:02:29,800 --> 00:02:36,760
+you can see is this model 3 which will be reasoning about assignment conditional and loops.
+
+28
+00:02:36,760 --> 00:02:41,880
+So let's begin with the simplest one so although we have discussed in some you know detail
+
+29
+00:02:41,960 --> 00:02:49,160
+this assignment statement when we were discussing about assignment expression but let us
+
+30
+00:02:49,160 --> 00:02:54,920
+discuss today the semantics a little bit you know clearly so let's do a deep dive into this
+
+31
+00:02:55,720 --> 00:03:02,360
+assignment statement with some very simple example which many of you might have seen earlier.
+
+32
+00:03:03,000 --> 00:03:09,960
+So the idea today is to understand the semantics of assignment properly okay so and it can be
+
+33
+00:03:09,960 --> 00:03:16,520
+understood only if we know focus on some simple very simple example very very you know simplest
+
+34
+00:03:16,520 --> 00:03:23,000
+kind of example that can let us focus on the semantics rather than the you know complex syntax of
+
+35
+00:03:23,000 --> 00:03:28,360
+the whole programming language. So assignments as I mentioned in the very you know first video
+
+36
+00:03:28,360 --> 00:03:34,920
+are maybe the you know only way by which you can change the state of abstract machine okay and
+
+37
+00:03:35,000 --> 00:03:41,240
+remember we are talking about a statement and normally statements are mean to change the state
+
+38
+00:03:41,240 --> 00:03:47,720
+of abstract machine for your language okay so when we execute a statement one after another what
+
+39
+00:03:47,720 --> 00:03:54,360
+we are actually doing is we are trying to change the state of machine in particular no way
+
+40
+00:03:54,360 --> 00:03:59,720
+so that we achieve the kind of computation that we wanted to achieve okay so we always have
+
+41
+00:03:59,800 --> 00:04:06,520
+intention in mind and then we want to translate that intention into a sequence of instructions
+
+42
+00:04:07,160 --> 00:04:13,240
+and what finally those sequence of instruction does is changes the state of machine in a careful way
+
+43
+00:04:13,240 --> 00:04:19,320
+so that what you get as a final you know state is you know what you intended to get as a computation
+
+44
+00:04:19,320 --> 00:04:24,120
+of a let's say desired function or something like that okay so let me you know begin with very
+
+45
+00:04:24,120 --> 00:04:34,040
+simple example so just you know quickly recap so what is the I think you can see my Jupiter notebook now
+
+46
+00:04:34,040 --> 00:04:44,280
+so let me highlight the syntax of this assignment expression okay so before we go about this
+
+47
+00:04:44,280 --> 00:04:50,920
+semantics let's talk about the syntax about the most you know simple syntax we have seen some
+
+48
+00:04:50,920 --> 00:04:55,800
+syntactic sugar also in the last class where you can actually assign multiple you know variables
+
+49
+00:04:55,800 --> 00:05:00,120
+simultaneously but let's talk about the simplest one and well if you know ideas clear about the
+
+50
+00:05:00,120 --> 00:05:05,480
+simplest one then you will not do any mistake with you know more let's say sophisticated way in
+
+51
+00:05:05,480 --> 00:05:09,480
+which you can use maybe assignment to assign multiple things or you know change assignment or
+
+52
+00:05:09,480 --> 00:05:15,000
+something you know that we discuss in the last class so the simplest one is you have one variable
+
+53
+00:05:15,000 --> 00:05:20,680
+let's say on the left hand side and on the right hand side what you have is an expression okay so
+
+54
+00:05:20,680 --> 00:05:27,480
+this is the syntax of let's say assignment expression and now we want to know what is the effect of
+
+55
+00:05:27,480 --> 00:05:34,920
+let's say executing this instruction on the state of Michigan right so that's what we call you know
+
+56
+00:05:34,920 --> 00:05:40,760
+semantics of the meaning of this meaning of executing this instruction okay so you see I mean
+
+57
+00:05:40,760 --> 00:05:45,080
+there are two things on the left hand side you have a variable you know with somehow you know
+
+58
+00:05:45,080 --> 00:05:50,600
+points to something in memory which try to abstract out you know these memory you know registers
+
+59
+00:05:50,600 --> 00:05:57,160
+or main memory and on this right hand side you have an expression okay we we have already seen
+
+60
+00:05:57,160 --> 00:06:03,000
+right what an expression is in the last class you can know build simple expression and then
+
+61
+00:06:03,000 --> 00:06:08,360
+complicated expression using operators no form those simple expressions so on the right hand side
+
+62
+00:06:08,360 --> 00:06:16,680
+you can put any expression okay so this expression on the right hand side now always evaluates to
+
+63
+00:06:16,680 --> 00:06:24,680
+some value okay so what we call here is you values from value and or an object okay so why we are
+
+64
+00:06:24,680 --> 00:06:30,680
+calling object because no right hand side may not always no evaluate to let's say some you know
+
+65
+00:06:30,680 --> 00:06:35,080
+data types you know primitive data type that you know like integers you know or string or
+
+66
+00:06:35,080 --> 00:06:41,160
+these kind of things so right hand side may also evaluate to object which represent functions let's
+
+67
+00:06:41,160 --> 00:06:49,000
+say right and in the last lecture we saw that we also you know you know defined remaining
+
+68
+00:06:49,000 --> 00:06:53,640
+full function you using lambda expression and then assign those expressions to the variable on
+
+69
+00:06:53,640 --> 00:06:59,240
+the left so so remember I mean this distinction these expressions need not always be the value the
+
+70
+00:06:59,240 --> 00:07:05,480
+kind of value that comes to your mind you know by default like natural numbers string no I mean
+
+71
+00:07:05,480 --> 00:07:10,680
+they can be no more complicated nothing like no function objects which are nothing but functions
+
+72
+00:07:10,680 --> 00:07:15,960
+okay so you can also consider them as no value but then you know you have to be clear that when we
+
+73
+00:07:15,960 --> 00:07:22,120
+say value we don't say no value in this restrictive sense of you know the data types only okay so
+
+74
+00:07:22,200 --> 00:07:30,600
+great so our expression no on the right hand side evaluate to some value and then in the second
+
+75
+00:07:30,600 --> 00:07:37,560
+step what happens is we bind now this value to the variable name that we have given on the left
+
+76
+00:07:37,560 --> 00:07:43,560
+inside okay so this is you know two step you know operational semantics the first step is you
+
+77
+00:07:43,640 --> 00:07:53,400
+evaluate the expression okay and remember that evaluating the expression may not always change
+
+78
+00:07:53,400 --> 00:07:59,480
+the state of the machine okay so so this is what we also discussed right in the last class that
+
+79
+00:07:59,480 --> 00:08:04,920
+we normally don't want you know expressions or evaluation of expressions to change the state
+
+80
+00:08:04,920 --> 00:08:09,400
+of our abstract machine but then there are you know certain you know expressions like you know
+
+81
+00:08:10,120 --> 00:08:16,520
+expression which will actually change the state of machine so not true always but you know
+
+82
+00:08:16,520 --> 00:08:22,040
+most of the time we want it to be true okay so then I mean how this instruction or this you know
+
+83
+00:08:22,040 --> 00:08:26,760
+statement in programming language is changing the state of the machine so even though let's say
+
+84
+00:08:26,760 --> 00:08:32,200
+the first step which says now you evaluate the expression on the right hand side fast and then put
+
+85
+00:08:32,200 --> 00:08:38,600
+it or bind it to the second you know left hand side variable in the left hand side so what happens
+
+86
+00:08:38,920 --> 00:08:43,960
+even though let's say your first step does not change the state of machine the second state
+
+87
+00:08:43,960 --> 00:08:48,680
+will certainly change the state of machine right because now you are pointing to some register
+
+88
+00:08:48,680 --> 00:08:54,040
+you know or you know some memory location and you are saying that now I want to assign whatever
+
+89
+00:08:54,040 --> 00:08:59,800
+value I have calculated from this expression into that memory location so the moment you do this
+
+90
+00:08:59,800 --> 00:09:07,960
+you certainly change the state of machine okay so I mean at least I mean we are in a position where
+
+91
+00:09:07,960 --> 00:09:11,720
+the state of machine may be changed now if you assign the same value let's say to the variable
+
+92
+00:09:11,720 --> 00:09:15,560
+that you have declared may be earlier in the program you are certainly not changing the state of
+
+93
+00:09:15,560 --> 00:09:23,560
+machine but then this is the no pop no segment of statement which has the potential to change the
+
+94
+00:09:23,560 --> 00:09:29,720
+state of machine okay so whenever you see an assignment statement like this think in mind this
+
+95
+00:09:29,720 --> 00:09:37,960
+two-step you know process two-step now personal semantic another thing that I want to highlight here
+
+96
+00:09:37,960 --> 00:09:44,280
+is that assignment statements are destructive in the nature so what does it remain I mean see on
+
+97
+00:09:44,280 --> 00:09:49,320
+the left hand side you have a variable right and this variable might have been initialized in your
+
+98
+00:09:49,320 --> 00:09:54,680
+program no earlier on I mean this may not be the first time this variable is being used let's say
+
+99
+00:09:55,480 --> 00:10:01,880
+so in that case what happens as soon as you assign the value of the expression on the right hand
+
+100
+00:10:01,880 --> 00:10:08,200
+side to this variable the old value of the variable is lost for no ever you cannot recover that
+
+101
+00:10:08,200 --> 00:10:14,200
+no variable value this should be very no causes if you are writing in your programmer statement
+
+102
+00:10:15,080 --> 00:10:21,080
+an assignment statement then the effect of that assignment statement will be that now your
+
+103
+00:10:21,160 --> 00:10:26,200
+previous value of the variable will be lost forever so if you want to use that value in future
+
+104
+00:10:26,200 --> 00:10:32,280
+better story you know in some other variable that can be helpful later on okay this is very you
+
+105
+00:10:32,280 --> 00:10:38,280
+know important and we will see you know going ahead this has no certain effect when you try to
+
+106
+00:10:38,280 --> 00:10:44,520
+reason about the correctness of let's say your program so now let me write down a very simple
+
+107
+00:10:45,080 --> 00:10:54,520
+maybe function which can not do a simple operation on some numbers so maybe the simplest
+
+108
+00:10:54,520 --> 00:11:00,760
+my example that is coming in my mind is you know swapping to numbers I mean I hope many of you
+
+109
+00:11:00,760 --> 00:11:06,840
+might have seen this program if I give you two variables let's say and I want to know swap the
+
+110
+00:11:06,840 --> 00:11:13,800
+value of the two variable so I'm asking you to write down a function which can do this
+
+111
+00:11:14,520 --> 00:11:20,600
+and it turns out that this no simple function can be written by just using you know this assignment
+
+112
+00:11:20,600 --> 00:11:25,480
+expression so maybe you know this is the simplest you know kind of function which we can write
+
+113
+00:11:25,480 --> 00:11:30,040
+using assignment statement so let me help you with you know initial definition and then we will
+
+114
+00:11:30,040 --> 00:11:35,480
+reason about this function so so this is a very simple function like you know what we are trying
+
+115
+00:11:35,480 --> 00:11:43,880
+to write down is you know definition of a function which let's say call swap okay so we are trying
+
+116
+00:11:43,880 --> 00:11:56,840
+to write down a swap function okay so and let me say that we will use a temporary variable to swap
+
+117
+00:11:56,840 --> 00:12:01,960
+the two number that is given as an argument so what are the argument to this function we have x and
+
+118
+00:12:01,960 --> 00:12:08,120
+y okay so these x and y are two numbers which we want to swap no eventually so the definition
+
+119
+00:12:08,120 --> 00:12:13,640
+of the function maybe something like this so since I want to swap the value of no x and y what I
+
+120
+00:12:13,720 --> 00:12:23,000
+do as a first step is I maybe you know define a temporary variable temp and then store the value of
+
+121
+00:12:23,000 --> 00:12:30,680
+x so you have given me the value of x and y as input to this function so what I do is I first let's say
+
+122
+00:12:32,680 --> 00:12:38,840
+somehow no reserve this value of x because you know this value of x will be destroyed as soon as I
+
+123
+00:12:38,840 --> 00:12:45,480
+you know write value of y into x okay so I want to maybe you know keep it safe no before I destroy
+
+124
+00:12:45,480 --> 00:12:50,840
+the old value of x so this is no the intention of writing this you know temporary variable so when
+
+125
+00:12:50,840 --> 00:12:59,640
+we say temp is equal to x what we have done just now is that you know we saved the old value of
+
+126
+00:12:59,720 --> 00:13:11,320
+x and maybe the next step that I know 1 to 2 is I want to maybe assign the value of y into x
+
+127
+00:13:12,040 --> 00:13:18,040
+okay so the moment I did it so see when we are writing program we have intense in behind each line
+
+128
+00:13:18,040 --> 00:13:24,440
+right so no this is something which is missing in today's software development because you are
+
+129
+00:13:24,680 --> 00:13:29,240
+asking with the natural language prompt and you are getting the whole code at once right so you never
+
+130
+00:13:29,240 --> 00:13:36,200
+reason about the partial or the initial segment of a program on your own so but I mean it's always a good
+
+131
+00:13:36,200 --> 00:13:42,120
+practice when even if you let's say get your whole code from lm you start reasoning about the code
+
+132
+00:13:42,120 --> 00:13:48,360
+whether the code is meeting the intention of what you wanted okay and that you can do only if you
+
+133
+00:13:48,360 --> 00:13:52,840
+go through the code not a little bit slowly and carefully and when you go through a code
+
+134
+00:13:53,400 --> 00:13:58,600
+carefully you always you know look at some initial segment and write and your initial segment keeps
+
+135
+00:13:58,600 --> 00:14:05,160
+increasing inside until you finish the no reviewing the whole code okay but for every initial segment
+
+136
+00:14:05,160 --> 00:14:10,120
+also there is some purpose right by that by this time I am doing this particular job for example in
+
+137
+00:14:10,120 --> 00:14:15,240
+this case when I say temp is equal to x I have some intention right I want to store the previous
+
+138
+00:14:15,240 --> 00:14:20,200
+value of x maybe before destroying it that's why I am you know creating this not temp is equal to
+
+139
+00:14:20,200 --> 00:14:26,920
+x so when you go through it slowly you can you know visualize the intention behind all this
+
+140
+00:14:26,920 --> 00:14:32,760
+statement and then maybe you are in a better position to comprehend the program no properly and
+
+141
+00:14:32,760 --> 00:14:38,760
+hence you can believe it okay so the temp is equal to x stores the previous value of x before we
+
+142
+00:14:38,760 --> 00:14:47,560
+destroy it in the next step what we have is x is equal to y right so what is the effect of this
+
+143
+00:14:47,560 --> 00:14:55,320
+now your value of y has been kept into x and remember does this step you know changes the value of y
+
+144
+00:14:59,480 --> 00:15:04,760
+so this statement should not change the value of y right because you know x is on the left hand side
+
+145
+00:15:04,760 --> 00:15:10,520
+so the if you're thinking again in terms of abstract machine if no x and y are the only let's
+
+146
+00:15:10,520 --> 00:15:15,960
+say memory places that you have no initialize or in this case no x y and temp or three memory
+
+147
+00:15:15,960 --> 00:15:22,200
+location that you have does till now so certainly the no this line where I'm trying to assign
+
+148
+00:15:22,200 --> 00:15:28,600
+to x the value of y now only changes the state of you know abstract machine at that location x
+
+149
+00:15:29,080 --> 00:15:35,320
+it does not change anything on so nothing about y is changed so this is what we want to say
+
+150
+00:15:35,960 --> 00:15:42,840
+so so at this moment what you have is already no x has the value of y that you gave to this
+
+151
+00:15:42,840 --> 00:15:49,880
+program and then what you know what what should be the final statement of this program to achieve
+
+152
+00:15:50,040 --> 00:16:00,120
+the task that you did you wanted okay so I want into y no sound value right whatever was given
+
+153
+00:16:00,120 --> 00:16:07,560
+as the initial value in x this is what I want in y and you see now why this temp variable you know
+
+154
+00:16:07,560 --> 00:16:14,680
+comes handy because in the temporary variable you have written the original value of x that you
+
+155
+00:16:14,680 --> 00:16:20,760
+you know wanted to transfer to y but if you did not store it in temp and you directly let's say
+
+156
+00:16:20,760 --> 00:16:27,240
+did the no this statement no many people you know might do this mistake or programming for the very
+
+157
+00:16:27,240 --> 00:16:34,120
+first time they may forget no this line of code and then what they can they would do is no x is
+
+158
+00:16:34,120 --> 00:16:43,560
+equal to y and y is equal to no x and then no the whole thing no get strong so so what we do here
+
+159
+00:16:43,560 --> 00:16:50,120
+is we try to you think through this program a little slowly and you will see that this no will
+
+160
+00:16:50,120 --> 00:16:58,200
+make perfect sense to you and what you want to return is you know the value the current value in x
+
+161
+00:16:58,200 --> 00:17:05,160
+and y okay so at this no moment in time when you are in executing this code your current value of
+
+162
+00:17:05,320 --> 00:17:14,760
+x and y must have been swap so this is what we believe so let me you know quickly run this piece
+
+163
+00:17:14,760 --> 00:17:21,560
+of code and then maybe run some examples of what example let's talk about some simple
+
+164
+00:17:22,680 --> 00:17:35,080
+input so if what if I pass to this function swap let's say 2 comma 3 okay if I want to
+
+165
+00:17:35,080 --> 00:17:42,920
+pass 2 comma 3 what do I return what do I you know expect in return 3 comma 2 right so this this
+
+166
+00:17:42,920 --> 00:17:51,160
+is no nicely you know swapping the value so there is no issue right so let us try to swap things
+
+167
+00:17:51,160 --> 00:18:01,960
+maybe which are of different types so this is very simple right we had to integer but what let's say
+
+168
+00:18:01,960 --> 00:18:12,280
+if I have you know first thing as a you know integer and the second thing as a string
+
+169
+00:18:17,720 --> 00:18:23,480
+see so no whether it's no integer or other kind of not a type that you are passing you know is
+
+170
+00:18:23,480 --> 00:18:29,160
+in material this function is doing its job perfectly right this is what we intended we want to swap
+
+171
+00:18:29,800 --> 00:18:37,080
+no value of the variable in these two different value that we have given to this function swap
+
+172
+00:18:37,080 --> 00:18:44,040
+okay so this looks like a you know correct implementation and by working with these a small
+
+173
+00:18:44,040 --> 00:18:49,640
+example we can get confidence why this should be correct but again as I said I mean looking at
+
+174
+00:18:49,640 --> 00:18:56,840
+the program initial segments slowly and no increasing your initial segment gives you more confidence
+
+175
+00:18:56,840 --> 00:19:02,040
+why this program should work because your program may work I mean if you only rely on testing it
+
+176
+00:19:02,040 --> 00:19:07,240
+on some you know input it may work for your you know test input but it may not work for some other
+
+177
+00:19:07,240 --> 00:19:14,040
+tests inputs so no only because it has worked for your input does not guarantee that it will work
+
+178
+00:19:14,040 --> 00:19:18,760
+for all the input but if you work with the code a little slowly maybe it gives you much more
+
+179
+00:19:18,760 --> 00:19:25,000
+confidence about the you know behavior of the program so now we will again you know let's talk
+
+180
+00:19:25,080 --> 00:19:31,640
+about the same you know program and try to write down whatever we discuss no till now as a
+
+181
+00:19:31,640 --> 00:19:36,680
+specification of the program so when we say specification now whatever we were thinking through
+
+182
+00:19:36,680 --> 00:19:44,120
+when we were analyzing this program can we also write down our thoughts as something inside
+
+183
+00:19:44,120 --> 00:19:50,200
+programming language okay so Python and other programming language is also you know provide to
+
+184
+00:19:50,360 --> 00:19:56,360
+this feature of assertions where you can assert something that you believe it to be true at that
+
+185
+00:19:56,360 --> 00:20:01,960
+particular moment of time in program okay so this assertions are very useful and I would highly
+
+186
+00:20:01,960 --> 00:20:08,600
+encourage you know you to write these assertions you know as often as possible so that you know it
+
+187
+00:20:08,600 --> 00:20:13,800
+it you you get a second you know chance to think about the program or initial segment of the
+
+188
+00:20:13,800 --> 00:20:18,920
+program and write the meaningful you know intention that you have in mind when you're reading this
+
+189
+00:20:18,920 --> 00:20:24,360
+program okay and if everything goes you know correct then you have more confidence in the program
+
+190
+00:20:24,360 --> 00:20:31,480
+for example for this simple program let me know maybe a copy paste the code of the previous thing here
+
+191
+00:20:34,040 --> 00:20:41,160
+okay so let me copy it and then we paste it here okay so let's call it you know instead of
+
+192
+00:20:41,160 --> 00:20:48,840
+software rename this function to something different let's say software one okay and now what we
+
+193
+00:20:48,840 --> 00:20:58,600
+want to do is you remember I mean I had some intention of this statement right so I so after
+
+194
+00:20:58,600 --> 00:21:06,520
+this is no statement if you if I write let's say assert so assert always you know tries to
+
+195
+00:21:06,520 --> 00:21:10,280
+assert something you know you are trying to declare something at this particular moment of time
+
+196
+00:21:10,680 --> 00:21:15,640
+declarations are of the type true or false right your declaration may be no wrong or it may be
+
+197
+00:21:16,520 --> 00:21:23,320
+right so anything that you know expect after this assert must you know return you boolean values okay
+
+198
+00:21:23,320 --> 00:21:28,760
+and we know how to you know get boolean values right we have boolean operator or logical operator
+
+199
+00:21:28,760 --> 00:21:34,360
+to compare no values or variables and then you know tell us whether this true or not so for
+
+200
+00:21:34,360 --> 00:21:39,960
+example in this simple case after this line of code I certainly want this to be true do you see
+
+201
+00:21:40,680 --> 00:21:50,760
+what I want is I want them them value is equal to is equal to the value of x okay so let's say
+
+202
+00:21:50,760 --> 00:21:55,720
+uh so so assert statement I know this kind of semantic so you assert something and if let's say
+
+203
+00:21:55,720 --> 00:22:03,800
+this something that you have asserted is not correct you may also optionally print something which
+
+204
+00:22:03,800 --> 00:22:08,280
+can you know help you that you know this statement was not correct okay so let's say if this
+
+205
+00:22:08,280 --> 00:22:17,960
+statement is not correct no I just want to know maybe say uh failed at know the very first let's
+
+206
+00:22:17,960 --> 00:22:23,480
+say step let's have failed at what I mean just you know this this is for my hint that which of
+
+207
+00:22:23,480 --> 00:22:28,440
+the assertions you know I have failed I may want to write multiple assertions in my program then
+
+208
+00:22:28,440 --> 00:22:33,800
+but when it fails I want to know which one has failed okay so let's say you know if I see the
+
+209
+00:22:34,520 --> 00:22:39,800
+this being printed out I can you know make make out that you know this is the assertion that I failed
+
+210
+00:22:39,800 --> 00:22:44,440
+so at this particular moment of time I certainly want these two values to be true right so I can
+
+211
+00:22:44,440 --> 00:22:50,920
+expect this to pass when I uh run this program okay so can we run the program and see whether this
+
+212
+00:22:50,920 --> 00:22:58,280
+is you know passing for so let me know first compile this program and if we run this program again
+
+213
+00:22:58,360 --> 00:23:07,400
+maybe you know copy the same thing okay and now instead of swap time let's say call this new
+
+214
+00:23:07,400 --> 00:23:15,560
+function swap temp on and if I run it it passes right so there is no no error right so so no this
+
+215
+00:23:15,560 --> 00:23:21,320
+statement is certainly you know changing the value of only temporary valuable and the value in
+
+216
+00:23:21,320 --> 00:23:27,800
+the temporary very well after this no statement has been executed is the value of x okay so this is
+
+217
+00:23:27,800 --> 00:23:33,640
+no perfectly fine so there is no no error that you know we get when we run this so
+
+218
+00:23:34,680 --> 00:23:41,880
+what about another maybe statement that I want so what was the effect of this no can I write
+
+219
+00:23:41,880 --> 00:23:49,480
+down something no similar let's say assert can I write down that at this moment of time
+
+220
+00:23:49,800 --> 00:23:59,880
+so whatever you know was true previously is there and after executing you know this particular
+
+221
+00:23:59,880 --> 00:24:09,160
+statement x is equal to y I also want something no new to be true so no I wanted no temp to be x but I
+
+222
+00:24:09,880 --> 00:24:19,400
+maybe also want to so what the law effect of the last statement that x is equal to y right
+
+223
+00:24:20,040 --> 00:24:25,400
+in x you have put the value of i so certainly no I want at this particular time x is equal to
+
+224
+00:24:25,400 --> 00:24:32,680
+equal to y no since I have executed this statement just now I may want this to be true and let's say
+
+225
+00:24:32,680 --> 00:24:40,120
+you know call it if this does not turned out to be no correct then I want to maybe you know print
+
+226
+00:24:40,120 --> 00:24:47,560
+this statement okay so so now let me recompile this thing this part of the code
+
+227
+00:24:49,800 --> 00:24:55,320
+so you see I mean what I'm saying is you know I want to you know here claim that since I have not
+
+228
+00:24:55,320 --> 00:24:59,960
+done this you know part I want you know this new thing to be added to my previous you know
+
+229
+00:24:59,960 --> 00:25:06,840
+knowledge or whatever I have stood till the last point okay so I have done maybe no this extra
+
+230
+00:25:06,840 --> 00:25:12,360
+step in the last assignment so this equality should be true now in addition to the previous one
+
+231
+00:25:13,320 --> 00:25:18,680
+so do you see I mean this should no return us true or false I mean we have run the code already
+
+232
+00:25:18,680 --> 00:25:28,680
+and if we let's say now run it on 2.3 what do we get so so it's complaining right so it's saying
+
+233
+00:25:28,680 --> 00:25:35,160
+that you have you know failed that too so something went wrong here right certainly I mean this
+
+234
+00:25:35,160 --> 00:25:45,960
+expression is you know no more correct so what might have gone wrong so can this statement go
+
+235
+00:25:46,200 --> 00:25:54,360
+wrong at this particular point in time so the semantics or the meaning of you know this assignment
+
+236
+00:25:54,360 --> 00:26:00,120
+expression is that whatever was you know the value in why you just keep it in next so just
+
+237
+00:26:00,120 --> 00:26:05,960
+after executing this to certainly we don't want to say that this statement cannot be true right
+
+238
+00:26:05,960 --> 00:26:10,520
+because this is what we did right now and we are not doing anything else now after this step so
+
+239
+00:26:11,160 --> 00:26:16,600
+this must be true so what went wrong then I mean is it true now
+
+240
+00:26:21,960 --> 00:26:26,440
+see so as we discuss I mean the assignments are destructive right so as soon as you assign
+
+241
+00:26:26,440 --> 00:26:37,720
+into x the value of y right so you have changed the value of x right so if initially temp was
+
+242
+00:26:37,720 --> 00:26:45,720
+no is equal to is equal to x now temp may not be equal to equal to x right because no temp
+
+243
+00:26:45,720 --> 00:26:51,720
+has not been changed but x has been changed you see the no advantage of writing you know these
+
+244
+00:26:51,720 --> 00:26:58,200
+assertions so at this particular moment in time I I know that my you know value of x has been
+
+245
+00:26:58,200 --> 00:27:04,600
+destroyed but my value of temp has not been no change and now if initially this was true
+
+246
+00:27:04,920 --> 00:27:11,720
+it may not be true now right because my last statement has not changed another value of temp
+
+247
+00:27:11,720 --> 00:27:17,240
+but it has changed change the value of x so this is the reason why you know this line of
+
+248
+00:27:18,040 --> 00:27:25,000
+code is maybe failing okay so this assertion is failing so no instead of let's say so let me
+
+249
+00:27:25,000 --> 00:27:31,320
+know copy let me keep it so that you can refer to it later on so let me write it down again
+
+250
+00:27:31,400 --> 00:27:38,680
+and maybe commit this line of code we don't want know this whole thing now what we are saying is
+
+251
+00:27:38,680 --> 00:27:43,880
+we can only claim this safely maybe after this you know instructions on this point in time
+
+252
+00:27:45,480 --> 00:27:53,000
+okay and then if we run so what do you expect now select me now correct so let's run it and then
+
+253
+00:27:53,000 --> 00:27:59,640
+if we run it again now there is no problem right so now with this one we can see that this is
+
+254
+00:27:59,640 --> 00:28:09,960
+perfectly no correct okay so it's not failing at this no position so similarly what to write down
+
+255
+00:28:09,960 --> 00:28:14,600
+no so since we have you know taken we took some lessons from the last two assignment statement
+
+256
+00:28:14,600 --> 00:28:22,280
+we should be a little careful when we try to write down the effect of let's say the last
+
+257
+00:28:22,280 --> 00:28:27,640
+statement which is y is equal to temp so what can we write down here the effect of the last
+
+258
+00:28:27,640 --> 00:28:36,920
+statement can we write down so assert now since I'm changing y to the value of temp so is it okay to
+
+259
+00:28:36,920 --> 00:28:44,200
+write down no this one so let's check it let's say if not then I want to maybe print the string failed
+
+260
+00:28:46,040 --> 00:28:55,400
+at 3 okay and let me run it this should be correct right because again in the last statement
+
+261
+00:28:55,400 --> 00:29:01,320
+that we have executed is y is equal to temp and after that no we are immediately claiming this
+
+262
+00:29:01,320 --> 00:29:11,240
+thing so this must be tried this particular moment in time so let me run it and if we run it I
+
+263
+00:29:11,240 --> 00:29:22,680
+don't see there isn't any error right okay so this is certainly no we want to
+
+264
+00:29:23,640 --> 00:29:29,560
+we can you know confidently write down you know for this particular program but see I mean
+
+265
+00:29:29,560 --> 00:29:36,200
+these assertions although tell us true things about the you know initial segment of program they
+
+266
+00:29:36,200 --> 00:29:43,080
+don't say something very useful that maybe we want to write down and check for this overall program
+
+267
+00:29:43,080 --> 00:29:48,840
+right so at the last you know at this moment in time when you're exiting before existing you
+
+268
+00:29:48,840 --> 00:29:55,560
+are asserting something which is not very informative right what you're saying is no y is equal
+
+269
+00:29:55,560 --> 00:30:02,600
+to is equal to temp and temp is something that you have created no inside this no function okay
+
+270
+00:30:02,600 --> 00:30:08,520
+and if you don't know the code that's happening inside the function just by looking at you know
+
+271
+00:30:08,520 --> 00:30:14,360
+this assertion it may not make a must sense of what this no function is doing so we we want to know
+
+272
+00:30:14,360 --> 00:30:21,080
+some stronger or you know more meaningful or helpful assertions which can help us relate
+
+273
+00:30:22,440 --> 00:30:27,080
+the implementation with the intention of the code so so the intention of the code was that I
+
+274
+00:30:27,080 --> 00:30:35,560
+mean this no original value of x and y should have been swap okay so to achieve that what we do
+
+275
+00:30:35,560 --> 00:30:41,400
+is we define some ghost variable okay so no no I'm going to introduce you to the concept of ghost
+
+276
+00:30:41,400 --> 00:30:47,560
+variable and these are actually like you know other variable but the intention of ghost variable
+
+277
+00:30:47,560 --> 00:30:53,320
+is completely different okay so these are purely for verification purpose and to you know ensure
+
+278
+00:30:53,320 --> 00:31:00,520
+that the code is behaving the way you want after you know let's say you're you know confirm that
+
+279
+00:31:00,520 --> 00:31:06,840
+the program works as it is this ghost variable can safely be removed from no code without affecting
+
+280
+00:31:07,000 --> 00:31:13,560
+the effect of the code okay so the the whole sole purpose of this ghost variable are to ensure that
+
+281
+00:31:13,560 --> 00:31:19,400
+the code behaves no properly and you should be able to write down know what you want to write for
+
+282
+00:31:19,400 --> 00:31:28,040
+this particular piece of code okay so let me again I'll give you you know maybe I can copy and
+
+283
+00:31:28,040 --> 00:31:41,560
+paste the same code from here see and then paste the code and what we want to do is now let's say
+
+284
+00:31:41,560 --> 00:31:50,280
+not collect swap temp but what I want to call it is swap temp maybe you know very quiet okay
+
+285
+00:31:51,240 --> 00:31:57,560
+this is what we want to say now we want to know say something meaningful about this program will
+
+286
+00:31:57,560 --> 00:32:02,840
+which should relate to the intention okay so the intention that we wanted to say is the final
+
+287
+00:32:02,840 --> 00:32:09,000
+value of you know x that is written from this no code is the original value of y right and
+
+288
+00:32:09,720 --> 00:32:14,600
+the final value of y that is written by this no piece of code is the original value of x so this
+
+289
+00:32:14,600 --> 00:32:21,000
+is what we want to maybe say in this for this no piece of code so what we can say is we can
+
+290
+00:32:21,000 --> 00:32:27,240
+initialize to ghost variable which are nothing but just to capture the original value of x and y
+
+291
+00:32:27,240 --> 00:32:33,000
+so what we can say we can use something like this let's say no use a meaningful name like no
+
+292
+00:32:35,000 --> 00:32:45,160
+x original it to store the original value of you know x and y original to store the original value
+
+293
+00:32:45,160 --> 00:32:51,000
+of you know y and let's say the very first step in my program is I just stored the original
+
+294
+00:32:51,080 --> 00:32:57,080
+value of so the whole sole purpose of this you know is to define kind of a you know
+
+295
+00:32:58,920 --> 00:33:03,960
+you want before the you know value of x and y gets destroyed you maybe want to store it in some
+
+296
+00:33:03,960 --> 00:33:08,920
+variable and name it properly so that you can refer to it later on in your program okay so
+
+297
+00:33:08,920 --> 00:33:14,920
+x original and y originals only you know intention is to capture the no original state
+
+298
+00:33:15,480 --> 00:33:20,840
+no for reasoning okay so so let me write it down only intention of writing now this
+
+299
+00:33:20,840 --> 00:33:24,520
+piece of code is to share
+
+300
+00:33:30,440 --> 00:33:34,280
+original state for reasoning
+
+301
+00:33:38,360 --> 00:33:43,640
+okay now we have since we have captured now our first statement is you know
+
+302
+00:33:45,080 --> 00:34:11,560
+okay so this is the only purpose of this statement is to capture no this thing and then let me
+
+303
+00:34:11,560 --> 00:34:19,240
+know remove all of this maybe you know we don't need here or I mean let's let's remove this
+
+304
+00:34:19,240 --> 00:34:24,120
+a no intermediate assertions for the time being we'll put some new assertions which can be
+
+305
+00:34:24,600 --> 00:34:36,040
+you know meaningful in the current context maybe also this one no assume that no for with this
+
+306
+00:34:36,040 --> 00:34:44,440
+no initial original state no being captured in x original and y original if you can make assertion
+
+307
+00:34:45,080 --> 00:34:50,760
+something no like this let's say at this step that you know finally when no before you
+
+308
+00:34:50,760 --> 00:35:00,680
+exit your x should be nothing but no y original okay and y
+
+309
+00:35:01,000 --> 00:35:22,040
+then we will be happy right so this is what was our original intention otherwise we will say
+
+310
+00:35:22,040 --> 00:35:27,960
+that shop has failed so we see so we started the program so so imagine that now this piece of
+
+311
+00:35:27,960 --> 00:35:33,640
+code which I have highlighted from here to at this point can be either you know let's say
+
+312
+00:35:33,640 --> 00:35:39,080
+developed by you or LLM or by some you know third you know party and they have given you this
+
+313
+00:35:39,080 --> 00:35:45,720
+function okay so what we can do is we can annotate this function properly to write down whatever
+
+314
+00:35:45,720 --> 00:35:51,400
+was our original intention of us in code for this function okay so original intention was that
+
+315
+00:35:51,400 --> 00:35:56,760
+if let's say x original and y original represent the initial state of you know x and y whatever
+
+316
+00:35:57,000 --> 00:36:03,160
+was the value in x and y then finally after executing whatever code you give I want something like
+
+317
+00:36:03,160 --> 00:36:09,320
+this to be true right that we I want to know safely assert that you know x should be equal to
+
+318
+00:36:09,320 --> 00:36:15,400
+at this moment in time when you are exiting the program just before exiting x the value in x
+
+319
+00:36:15,400 --> 00:36:20,520
+should be same as the original value of y so that's why you know this goes variable so remember
+
+320
+00:36:20,520 --> 00:36:26,680
+if you don't define this goes variable there is no other way you know which can help you assert
+
+321
+00:36:26,680 --> 00:36:32,600
+something like this here right because you want to relate the because this is a special you know
+
+322
+00:36:32,600 --> 00:36:38,760
+case where we want to relate our final state of you know this x y with the original state of you know
+
+323
+00:36:38,760 --> 00:36:44,120
+x y right so if you don't distort the original state since this assignment statements are you know
+
+324
+00:36:44,120 --> 00:36:49,400
+destructive in nature you cannot assert something like this at the okay so the best or the most
+
+325
+00:36:49,400 --> 00:36:55,960
+convenient way is you store both the original state in you know this goes variable and then later on
+
+326
+00:36:55,960 --> 00:37:01,400
+if we do this you know in the very beginning later on towards before exiting the program we are
+
+327
+00:37:01,400 --> 00:37:06,680
+in a position to assert something like this okay so do you see I mean this is exactly what we want
+
+328
+00:37:06,680 --> 00:37:11,560
+from the program so if we can write down this we are sure and if you can you know get confirmed that
+
+329
+00:37:11,560 --> 00:37:18,680
+no this is right then we are sure that the program is doing know what we intended it to do okay
+
+330
+00:37:18,680 --> 00:37:24,760
+so certainly I mean you know this is something we would like to know whether the program is doing
+
+331
+00:37:24,840 --> 00:37:30,120
+or not so let me now or call this function on some you know input to just check some
+
+332
+00:37:40,200 --> 00:37:47,240
+maybe you know pass it an extreme x and then maybe two okay so if I want to let's swap these
+
+333
+00:37:47,240 --> 00:37:52,360
+two things you know first one is string x instead of not giving some value I just give a string
+
+334
+00:37:55,240 --> 00:38:05,240
+okay so we did not run this you know piece of port just above this so if the block of port does not
+
+335
+00:38:05,240 --> 00:38:10,680
+recognize it but let's say if we run it then we now run the we call this function
+
+336
+00:38:11,960 --> 00:38:20,200
+so what we got is these values you know swap right so certainly I mean so this is good okay so
+
+337
+00:38:20,680 --> 00:38:27,880
+but then how to so one advantage of let's say you know writing this kind of you know meaningful and
+
+338
+00:38:27,880 --> 00:38:34,040
+correct specification is that if let's just by some you know chance your LLM or whatever the third
+
+339
+00:38:34,040 --> 00:38:38,520
+part is is not giving you the correct code it's giving you let's say some you know
+
+340
+00:38:38,520 --> 00:38:43,640
+minutely let's say incorrect code you know there is some mistake which is very minute so can
+
+341
+00:38:43,640 --> 00:38:49,240
+you know this kind of or I mean are these assertions good enough to cast those kind of bug okay so
+
+342
+00:38:49,240 --> 00:38:55,480
+if you are sure about that no by capturing the initial state if I want this to be true for the
+
+343
+00:38:55,480 --> 00:39:01,480
+final step then I can actually you know figure out some very subtle bug inside the code also
+
+344
+00:39:01,480 --> 00:39:05,560
+let's say this code is not you know this seal but a you know big piece of code which you cannot
+
+345
+00:39:05,560 --> 00:39:11,640
+know go and you know investigate line by line then then also I mean this kind of you know assertions
+
+346
+00:39:11,640 --> 00:39:17,080
+can help you get rid of or at least detect those kind of you know bug so so no the third attempt
+
+347
+00:39:17,320 --> 00:39:23,080
+what I want to do is maybe I want to do some you know bug in this implementation and then show you
+
+348
+00:39:23,080 --> 00:39:28,760
+that this you know assertion can help you figure out that kind of bug for example let me copy paste
+
+349
+00:39:28,760 --> 00:39:41,080
+first this code here okay and now so let's do a very maybe not trivial mistake maybe just just
+
+350
+00:39:41,080 --> 00:39:49,240
+comment this okay see I mean this is a part of code that we want to modify or no introduce bug
+
+351
+00:39:49,240 --> 00:39:53,560
+because you know this is what came from LLM or third party and so the very first line and third
+
+352
+00:39:53,560 --> 00:40:01,480
+line was written by us understanding our intention okay so so if let's say we forget to you know
+
+353
+00:40:01,480 --> 00:40:08,280
+comment this kind of we we we we comment this no one line of code and then you try to run this
+
+354
+00:40:09,000 --> 00:40:16,040
+and maybe you know again call on some the same value maybe same thing if you want to
+
+355
+00:40:23,720 --> 00:40:31,560
+you see I mean where did so this assertion at the last is not true right so since no we
+
+356
+00:40:31,560 --> 00:40:37,160
+have commented this piece of code now you know that the value of x has not been changed right although
+
+357
+00:40:37,160 --> 00:40:43,080
+you have changed the value of no y to x the value of x has not been changed and that's causes
+
+358
+00:40:43,080 --> 00:40:51,560
+this no error right that your x does not have the no original value of y okay but your y may have
+
+359
+00:40:51,560 --> 00:40:56,280
+the original value of x so so this assertion fails why this fails because there are two things which
+
+360
+00:40:56,280 --> 00:41:02,200
+has to be true for this assertion to be you know true the first one and the second one okay and one
+
+361
+00:41:02,360 --> 00:41:07,960
+of them does not hold true that's why this assertion fails and you know immediately that there is some
+
+362
+00:41:08,600 --> 00:41:15,560
+you know error in the code so what you know just know to summarize what I wanted to say is if you
+
+363
+00:41:15,560 --> 00:41:22,680
+invest a little bit of time trying to understand the intention of writing any function you know
+
+364
+00:41:22,680 --> 00:41:29,000
+and that intention if you can translate from natural language to this assertions then the chances
+
+365
+00:41:29,000 --> 00:41:34,520
+of no you know figuring out whether there is a bug in the no code that has been produced either by
+
+366
+00:41:34,520 --> 00:41:41,960
+LLM or any third party agent increases and if those assertions pass then you are more confident
+
+367
+00:41:41,960 --> 00:41:47,720
+that no your program will not have any error now what I'm saying is if those assertions pass
+
+368
+00:41:47,720 --> 00:41:56,040
+then you have more confident only you know you know in a partial sense I mean if the assertions pass
+
+369
+00:41:56,040 --> 00:42:00,680
+you cannot be confirmed that the code is correct because no assertions you are testing only
+
+370
+00:42:00,680 --> 00:42:05,960
+on some input right we are testing on only this kind of input but then you know some there may be
+
+371
+00:42:05,960 --> 00:42:11,320
+some other input where you know these assertions may fail right if the assertion passes on all
+
+372
+00:42:11,320 --> 00:42:19,000
+possible input let's say for some know and if you can do this and check in some way then you
+
+373
+00:42:19,000 --> 00:42:24,360
+can be certainly sure right that the code is correct but since we cannot check this assertion
+
+374
+00:42:24,360 --> 00:42:30,280
+being you know true always for all possible input we cannot certainly even you know say after
+
+375
+00:42:31,320 --> 00:42:35,160
+you know checking on finite number of input whether the code is correct or not so you don't
+
+376
+00:42:35,160 --> 00:42:39,080
+have 100 percent guarantee but certainly you have more guarantee because you know multiple
+
+377
+00:42:39,080 --> 00:42:44,120
+input you have checked the behavior to be true what you wanted it to be okay so these assertions
+
+378
+00:42:44,120 --> 00:42:51,720
+are certainly better than you know one or two you know test cases but to make it you know worth
+
+379
+00:42:51,720 --> 00:42:56,120
+while you need to somehow generate a lot of you know inputs you know for this program and then
+
+380
+00:42:56,120 --> 00:43:02,760
+check whether you know you know these assertions are failing or not okay so let me uh
+
+381
+00:43:04,760 --> 00:43:09,080
+so so one advantage another advantage that I wanted to tell you here is that see
+
+382
+00:43:09,080 --> 00:43:13,960
+you know these assertions somehow capture the intent of your you know programming so what you need
+
+383
+00:43:13,960 --> 00:43:19,080
+to give I mean you just need to give the inputs right and run this program on multiple input
+
+384
+00:43:19,960 --> 00:43:26,760
+so in test cases you know you know if I have to contrast the situation with you know checking your
+
+385
+00:43:26,760 --> 00:43:32,040
+program on multiple you know input output pair what you also need to give is you know the what
+
+386
+00:43:32,040 --> 00:43:37,640
+is the correct output that you are expecting at each of those input right so test cases are normally
+
+387
+00:43:37,640 --> 00:43:43,080
+those input output pair not only input right but here in this case if we write down or invest time
+
+388
+00:43:43,080 --> 00:43:48,600
+in writing correct assertions are different you know programming uh stages then what you are do
+
+389
+00:43:48,600 --> 00:43:53,800
+you have to do is just you know give me enough uh number of you know valid inputs on which I can
+
+390
+00:43:53,800 --> 00:44:00,120
+run this program okay and you don't need to tell me exactly what is the value of output that I you
+
+391
+00:44:00,120 --> 00:44:06,280
+know want to expect at this particular input because now those things are internally captured by
+
+392
+00:44:06,280 --> 00:44:11,640
+these assertions so you just need to generate a lot of you know inputs to the program and not the
+
+393
+00:44:11,640 --> 00:44:15,640
+no output value once you have no written these assertions carefully so that's also you know
+
+394
+00:44:15,640 --> 00:44:21,240
+another kind of good advantage of writing the assertions you know properly okay so let's no go ahead
+
+395
+00:44:21,240 --> 00:44:28,920
+with this uh I think now you know let me you know uncomment this thing all let me keep it there and
+
+396
+00:44:29,880 --> 00:44:39,400
+comment this section of course so that you can review it okay so now we have written correct
+
+397
+00:44:39,400 --> 00:44:45,000
+specification for sure right correct and if we are writing the correct code so so
+
+398
+00:44:45,640 --> 00:44:49,640
+we should not only you know write correct specification uh you know final specification and
+
+399
+00:44:49,640 --> 00:44:54,360
+correct code but you can also insert some intermediate no assertions that we were actually uh
+
+400
+00:44:54,360 --> 00:44:59,640
+you know inserting previously as you say you know as you have seen in the very first example we have
+
+401
+00:44:59,640 --> 00:45:04,920
+I have annotated the program with multiple assertions so let's do a final you know round of
+
+402
+00:45:04,920 --> 00:45:16,600
+insertion of all those okay so let me write on first the whole thing code so certainly
+
+403
+00:45:16,600 --> 00:45:23,480
+there this is what I want to be you know true at the in if this is true at the beginning so I'm
+
+404
+00:45:23,480 --> 00:45:28,920
+very much you know sure about that but then what is it not like a complete proof of no correctness
+
+405
+00:45:28,920 --> 00:45:33,720
+of this program so if I want to fix since you know this is not the only thing that I might might
+
+406
+00:45:33,720 --> 00:45:38,360
+be seeing when I get the code I may also want to you know introduce some intermediate annotations
+
+407
+00:45:38,360 --> 00:45:43,880
+or assertions that you know can be helpful in figuring now catching some other kind of box okay so
+
+408
+00:45:43,880 --> 00:45:50,040
+so let me write it down so maybe after this line of code so what what do you expect I mean what
+
+409
+00:45:50,040 --> 00:45:55,560
+shall be uh correct when I so let me uncomment this code because now I we want to run this piece of
+
+410
+00:45:56,360 --> 00:46:03,640
+so after you know temp is equal to x what what can we assert safely so can we assert that you know
+
+411
+00:46:03,640 --> 00:46:15,560
+temp's value is equal to is equal to let's say no x original okay but temp's value temp's value is
+
+412
+00:46:15,560 --> 00:46:20,680
+also x but then no we we want to not talk about the values of this you know in temporary
+
+413
+00:46:20,680 --> 00:46:25,080
+variable in terms of the original value because that's what is our intention right that temp
+
+414
+00:46:25,080 --> 00:46:31,080
+no retains the original value of x so writing temp is equal to equal to x is also no perfectly valid
+
+415
+00:46:31,080 --> 00:46:36,600
+but why we are writing here temp is equal to x original because maybe we want to carry a you know
+
+416
+00:46:36,600 --> 00:46:42,600
+forward this information no towards the next step okay and we don't want it to change okay so
+
+417
+00:46:42,600 --> 00:46:47,320
+you'll see in the next step know when we say and you you can actually differentiate between
+
+418
+00:46:47,400 --> 00:46:53,640
+writing down temp is equal to equal to x and x temp is equal to equal to x original in the next step
+
+419
+00:46:53,640 --> 00:46:59,800
+so let's for the timing write temp is equal to no x original and if it's not true again I mean you can
+
+420
+00:46:59,800 --> 00:47:08,600
+say you know failed let's say the very first place so when we have you know this x is equal to
+
+421
+00:47:08,600 --> 00:47:16,600
+is equal to y what can we say please can we still let me you know ask can we still write down temp
+
+422
+00:47:17,400 --> 00:47:23,560
+is equal to is equal to original here do you think this is correct
+
+423
+00:47:28,440 --> 00:47:33,160
+this should be correct right because you have not changed so to your last statement that
+
+424
+00:47:33,160 --> 00:47:38,360
+you have seen just now has changed the state of x okay and what are the
+
+425
+00:47:39,880 --> 00:47:45,880
+you know left hand and right hand side of this no equality uh relation this is temp and x
+
+426
+00:47:46,360 --> 00:47:51,400
+so x original has not been changed right you have only changed the x so you know that's why we
+
+427
+00:47:51,400 --> 00:47:58,600
+have written probably here you know x original that we wanted you know this uh you know it's part
+
+428
+00:47:58,600 --> 00:48:04,600
+of statement to be true here as well okay so this part of a statement is true here also only
+
+429
+00:48:04,600 --> 00:48:09,320
+because we are writing x original and not x okay so now we can safely write down here you know
+
+430
+00:48:09,320 --> 00:48:13,800
+that temp is equal to is equal to x original because the our last statement is neither changing
+
+431
+00:48:14,520 --> 00:48:20,360
+nor changing x original so this statement should be true and maybe no at this particular moment of
+
+432
+00:48:20,360 --> 00:48:31,480
+time I can claim something more right so what what I can claim here is that my x now becomes
+
+433
+00:48:33,240 --> 00:48:41,560
+no y original okay again you see I instead of writing x is equal to is equal to y what I have
+
+434
+00:48:41,560 --> 00:48:47,480
+written is my x is equal to y original because till this point y's value has not been changed so y
+
+435
+00:48:47,480 --> 00:48:53,320
+and y original is same essentially we can write both and both will be correct but this will be
+
+436
+00:48:53,320 --> 00:48:58,280
+helpful when we try to prove the final property of the program okay so at this moment of time what
+
+437
+00:48:58,280 --> 00:49:06,600
+we can safely claim is our temporary variable has x original and the current value in x is the
+
+438
+00:49:06,680 --> 00:49:13,160
+original value that came into y okay so let me write down again I want to default let's say
+
+439
+00:49:15,800 --> 00:49:22,760
+I want to maybe no print fill that too here because in case if I you know this thing is not true
+
+440
+00:49:22,760 --> 00:49:26,760
+you know right now I'm guessing that this should be true but if it is not true it should you know
+
+441
+00:49:26,760 --> 00:49:32,760
+return this print message and I should be able to see this now what about the you know very
+
+442
+00:49:33,320 --> 00:49:46,040
+last one so what can we write here so shall we so what can we write so when we have done let's say
+
+443
+00:49:46,040 --> 00:49:57,720
+this last step where y is equal to 10 okay so what can we safely know I said this particular
+
+444
+00:49:57,800 --> 00:50:06,040
+point in time so where did we get this so this is our final thing right so this is certainly
+
+445
+00:50:06,040 --> 00:50:10,680
+another final thing that we want to say but can we write down some you know detailed
+
+446
+00:50:10,680 --> 00:50:15,640
+you know explanation of the last statement also so can we write down that since we have done
+
+447
+00:50:15,640 --> 00:50:23,400
+y is equal to 10 maybe you know we want to say immediately here that y should y's value should
+
+448
+00:50:23,400 --> 00:50:33,560
+be you know equal to temporary okay and what we also want to see here is the temp is equal to is
+
+449
+00:50:33,560 --> 00:50:48,920
+equal to x original and maybe what else I want to see okay so so y is equal to temp for sure okay
+
+450
+00:50:48,920 --> 00:50:54,520
+temp value is equal to x original not about no this last thing do we think that this is still true
+
+451
+00:50:56,840 --> 00:51:01,720
+because y original has not changed and you know x has also been not touched by the you know
+
+452
+00:51:02,520 --> 00:51:04,280
+code I'm sorry
+
+453
+00:51:19,240 --> 00:51:31,800
+so we were writing down this piece of wooden we by mistake inserted this whole thing okay so what
+
+454
+00:51:31,800 --> 00:51:40,360
+we are saying is we want to you know maybe copy and paste this thing right we want this to be
+
+455
+00:51:40,360 --> 00:51:45,480
+not true at this particular moment of time and if it is not true let's say we want to say
+
+456
+00:51:46,200 --> 00:51:54,120
+fail at three you see we are incrementally building the number of you know
+
+457
+00:51:54,120 --> 00:51:58,360
+proposition that we want to be true right initially we are saying that no we want this to be true
+
+458
+00:51:59,160 --> 00:52:03,320
+we want it to be retained even after the second one but then we want some additional thing to be
+
+459
+00:52:03,320 --> 00:52:08,360
+true right by the second statement and what we are saying here is now we want you know this new
+
+460
+00:52:08,360 --> 00:52:14,040
+thing to be true here but no we can safely assume that all the previous things are also true
+
+461
+00:52:14,040 --> 00:52:18,920
+because my last statement does not change these are touches those variables so I can safely
+
+462
+00:52:18,920 --> 00:52:24,600
+actually write down these things okay and that's how now if you know all these things are true
+
+463
+00:52:24,600 --> 00:52:31,160
+then you can you know make sense that why you know this should imply this one right no you can
+
+464
+00:52:31,160 --> 00:52:37,960
+easily see right that y you know x should be equal to y original right because see this is exactly
+
+465
+00:52:37,960 --> 00:52:43,000
+what we have written here right that x is equal to y original and your y is equal to
+
+466
+00:52:43,720 --> 00:52:49,560
+x original so y is equal to x original because y is already is equal to 10 and 10 is equal to
+
+467
+00:52:49,560 --> 00:52:55,000
+x original so y is equal to x original so this is like a complete proof why this is programs should
+
+468
+00:52:55,000 --> 00:53:00,760
+work okay so if you write no assertions like this a detailed set of assertions like this we
+
+469
+00:53:00,760 --> 00:53:07,880
+can almost be sure that no will catch any bug that will come in the code if we run it you know
+
+470
+00:53:07,880 --> 00:53:13,640
+enough number of time with different numbers of different no input buried input okay so we can
+
+471
+00:53:13,640 --> 00:53:19,720
+we need a run again the same thing for just once or maybe you know this same piece of code we want
+
+472
+00:53:19,720 --> 00:53:30,840
+to run it again so it's failing because no we have not defined this thing okay we have not
+
+473
+00:53:30,840 --> 00:53:36,120
+know around this piece of what once we run this piece of what and then if we run we get the
+
+474
+00:53:36,120 --> 00:53:43,000
+sort value okay so it was just you know highlight so today's no lecture we just wanted to highlight
+
+475
+00:53:43,000 --> 00:53:48,280
+that there are ways to validate code that you write okay it's not that you cannot validate
+
+476
+00:53:49,080 --> 00:53:56,920
+and by writing these assertions my intention was to tell you very you know clearly the
+
+477
+00:53:56,920 --> 00:54:01,720
+semantics of this assignment statement so semantic assignment statement is you only you are
+
+478
+00:54:01,720 --> 00:54:06,040
+changing that variable and nothing else so you know if you have some way to store the previous
+
+479
+00:54:06,040 --> 00:54:11,960
+value of the variables then you can assert or you can claim meaningful property about your program
+
+480
+00:54:11,960 --> 00:54:17,240
+very easily okay so that's was the not only purpose of this lecture so please go through the
+
+481
+00:54:17,240 --> 00:54:22,200
+lecture today that we we discussed on the concept today these are very important assignment is
+
+482
+00:54:22,200 --> 00:54:26,280
+you know one of the most important statement in any programming language especially if it is
+
+483
+00:54:26,280 --> 00:54:31,320
+imperative programming language and we should clearly understand the semantics okay and in
+
+484
+00:54:31,320 --> 00:54:36,040
+case of need where you know you can not trust let's say the piece of what that you have generated
+
+485
+00:54:36,040 --> 00:54:40,520
+you should do this you know line by line analysis and you should write down your intentions
+
+486
+00:54:40,520 --> 00:54:45,880
+using this assert statement so assert statement so it's very useful okay anything that comes inside
+
+487
+00:54:45,880 --> 00:54:52,200
+this assert statement no it is a you know no Boolean expression and it always you know you
+
+488
+00:54:52,280 --> 00:54:57,080
+values to idle to or false so if you generate you know enough number of let's say input to the
+
+489
+00:54:57,080 --> 00:55:02,760
+program that you are trying to verify then there is high chance that you will you know catch any
+
+490
+00:55:02,760 --> 00:55:07,800
+you know error box that may be present in your program okay so with this no I would like to
+
+491
+00:55:07,800 --> 00:55:14,200
+in this lecture so what I have given here as an R2 you know assignment problems for you to think
+
+492
+00:55:14,200 --> 00:55:18,680
+about so this did know this was you know one of the way to swap to number which is very safe
+
+493
+00:55:18,680 --> 00:55:24,280
+where you use use a temporary variable but many people you know try to you know trick and then
+
+494
+00:55:24,280 --> 00:55:30,360
+try to come up with it's a program is does not use any let's say additional variable like
+
+495
+00:55:30,360 --> 00:55:35,240
+there we use an additional variable which we call temp now if someone asks you can you do this
+
+496
+00:55:35,240 --> 00:55:40,440
+without using any additional variable so there are multiple ways to you know do that but then
+
+497
+00:55:40,440 --> 00:55:46,360
+there can be error right in those ways so you should always know check whether those tricky ways of
+
+498
+00:55:47,320 --> 00:55:52,280
+swapping to numbers are correct or not and for that I have given you you know two sample programs
+
+499
+00:55:52,280 --> 00:55:58,680
+you just work through this program and try to repeat you know the kind of annotation or assertion
+
+500
+00:55:58,680 --> 00:56:04,280
+that we have done for the safe you know this temporary variable swap program for these two
+
+501
+00:56:04,280 --> 00:56:09,480
+setup program also so please take your time go through these you know the examples you know
+
+502
+00:56:09,480 --> 00:56:14,760
+slowly the way we did today's example and try to see whether you can write down safely those
+
+503
+00:56:14,760 --> 00:56:20,280
+assertions and get it right or not okay okay so with this I will conclude today's lecture and
+
+504
+00:56:20,280 --> 00:56:30,280
+we'll meet in the next lecture see you then
+

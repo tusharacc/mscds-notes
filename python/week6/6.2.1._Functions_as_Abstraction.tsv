@@ -1,0 +1,439 @@
+start	end	text
+0	14680	Hello and welcome back to Python, core and applied concepts for reliable data sense workflow.
+14680	21120	Today we will start a new module which is module 5 and this module will be mostly about
+21120	25400	functions and they are using Python programming language.
+25400	33560	So functions as another programming construct is a very important idea in any programming
+33560	43000	language and it helps your whole core structure to keep very clean and structure so that any
+43000	51800	future development can be benefited from this clean structure and its reusability perspective.
+52520	58280	So we will talk about this in detail today how to create functions, how to use them,
+58280	64120	what are some common pitfalls that you may encounter if you don't look at the function
+64120	71800	arguments carefully. So all of that but first just start with no question that when do we
+73240	80440	really know that we need to write a function. So functions normally you write functions to
+80440	87160	organize your code you don't always want your single function or the main function to be
+87160	95880	very big monolithic piece of code. So if you figure out that some piece of code is being repeated
+95880	103160	again and again then that's kind of a good sign to isolate that block of code and make it a little
+103160	110280	more abstract general in the sense that it can be used in multiple ways at multiple places.
+111000	116920	So that's kind of a hint that you get when you see this kind of repetitive code.
+119400	126440	That's what I'm going to discuss here. The three pillars of function utility is what we want to see.
+126520	134280	So these three kind of behavior or these three kind of pattern will help you figure out whether you
+134280	139400	should write a function for this particular piece of code or not. So the very first thing is no
+139400	146280	reusability. So you write a function only once and then you can use it everywhere. So if you feel
+146280	153080	that let's say a sequence of instructions which you have written for your current program can be
+153720	159160	used at other places also maybe to solve some other problem in some other context.
+159880	166920	Then and if you think this will repeat multiple times then it's a good idea to abstract out that
+166920	177240	four line or five line of code into a separate function that you can call at any point and then
+177240	183480	use it rather than writing those four line of code everywhere whenever it appears. So this is
+183480	190440	very first sign when you would probably know that this is the best time to write a function instead
+190440	195400	of writing this four line of instructions for not achieving this particular objective.
+196360	203480	So reusability is the very first pillar or first observation that you can make when you know
+203480	212360	that you now need to write a function. So the main idea is that you write no only once and use
+212360	218360	it everywhere. So when you find yourself copying and pasting the same logic in multiple places
+219240	225320	you have identified a perfect candidate for a function. So this is what we want to say
+225320	231800	and function can in encapsulate common operations along you to debug and test them no ones
+231800	236440	then deploy them anywhere. So this is also an advantage right if you isolate this four piece of
+236440	243240	code at one place in in form of function you can maybe put all your effort to write it correctly
+243240	248600	only once and then whenever you deploy it knowing any context and you can safely rely that these
+248600	255880	four line of code actually does the job that it is intended to do. So this is not only
+256280	263160	development time but also ensures somehow consistency right if you need to fix a bug or improve the
+263160	268840	logic you only have to do it in one place. Later on if you find figure out let's say that this
+268840	277080	four piece of you know four line of code can be improved and maybe made more can we make can we
+277080	282440	made more efficient. So what you need to do is to just know look at that function and just
+282440	289080	improve its no performance instead of you know going to every place where you have maybe return
+289080	294520	the function or this four line of code and replacing those four line of code not each of these
+294520	301480	places okay. So this is you know one example and here you can see I have given some you know
+303000	309240	examples I mean like I mean if you want to let's calculate the area of room. So you can one
+309400	314920	thing I mean you can do is you can always let's say you know multiplies no dimension and then
+314920	320120	get the area for example if you want to no calculate area of room one followed by room two
+320120	324600	then room three. So you can write down this kind of code this is perfectly you know all right I
+324600	330600	mean it will give you the desired result but then this is not the most or it's not the best way
+330600	337480	to do this kind of job rather than it I mean we can maybe define some function which actually
+337480	342280	calculates the area and you just pass the argument to the function and get the final result.
+342280	349320	So area may be you know very simple you know very primitive simple example which might not highlight
+349320	356760	the essence of what I wanted to say but you know I hope you get the point that I mean if you have
+356760	362680	a come even complicated no piece of what let's say multiple line of code which you think can be
+362680	369320	used at multiple places it's best to you know write down them in form of a function and then use
+369320	375240	call function at all those places where you know these things are needed okay. So some other
+375240	379720	example like material cost or printing cost if you want to calculate always and it's better to write
+379720	385400	down functions instead of you know doing those things look at you can write down these no sequence
+385400	391960	of instructions to perform them again and again here although I mean there's no one instruction
+391960	397000	computes what you desire so it may may not be the best you know candidate for function but then
+397000	403320	I mean in general we want or we would like to convert our no code structure in this form of a
+403320	409880	modular structure where mostly we use functions no for whatever task we want to get it done okay.
+409880	417400	So this is the first no thing that comes I mean this is the first kind of no pattern that appears
+417400	424920	when we feel that we should write function okay. The second kind of thing is the complexity of the
+424920	432440	problem if the problem that you're solving is very let's say complex okay and you can solve that
+432440	440040	problem by writing you know a large piece of code but then that's not a good idea right because
+440280	447880	thinking about the whole logic in one go may be very difficult right and in computer science this
+447880	455640	is a very common practice that when you encounter difficult problem normally we used this concept
+455640	461080	of divide and conquer right we try to think I mean what if I can solve you know multiple simple
+461080	467240	problems can I combine in some way the solution of those simple problems to solve my bigger problem.
+467240	476200	So this is no called divide and conquer and I would know argue that the success of computer science
+476200	481880	heavily realized on these kind of principles where you can think decompose the main problem into
+481880	488600	you know simpler problem and try to solve those simpler problem first and then combine the solutions
+488600	494040	of those simpler problem in a meaningful way to get the solution of no the bigger problem.
+494040	498600	Remember this is not you know thumb roll or this is not something that will work all the time I
+498600	504440	mean your your problems should have that kind of property so that you can decompose it you know
+505640	510680	in smaller problem and it's not always possible but whenever it is possible I mean the suggestion is
+510680	515880	you better decompose the problem into smaller problem and then try to solve those smaller problem
+515880	520840	and then combine the solution to get the solution for the bigger problem and when you do this
+521800	526600	you are essentially actually writing down again no simple functions to solve like study simple
+526600	532600	problems so when you have all these functions ready which solves these you know various simple
+532600	538120	problems what you can do is you can know call those functions one after another or you know combine
+538120	544520	them in a meaningful way to get the solution of a bigger problem okay so this is very you know
+544520	549800	useful technique that we again I mean always use in computer science complex problem becomes
+549800	555880	very you know unmanageable I mean when you don't break it so it's better to break them you know in a
+555880	565160	smaller you know focused pieces right which you can put your all energy to solve them right I mean
+565160	570120	if you have multiple smaller problem and you're solving them one at a time you can devote all your
+570120	575160	attention and energy into that smaller piece of you know writing in that smaller piece of code
+575160	580280	and getting it correct now each function should have a single clear responsibility so when we
+580280	584920	when we divide you know this problem into smaller problem we we know for sure that you know this
+584920	590280	particular smaller problem will be solved by this function because it it somehow aligns with the
+590280	595800	you know intention of the problem okay with the every no module or every every function that you
+595800	603320	write has a very clear responsibility this approach makes code easier to understand also man you
+603320	610200	can again I mean test them independently and also maintain it properly right so so all these you know
+611160	617240	you know important feature of software development like you know testing or maintainability becomes
+617240	621880	far more easier when you decompose the bigger problem into smaller problem and try to solve them
+621880	626680	think of it like you know organizing a large project into a specialized teams where each team
+626760	632920	you know handles one aspect of the problem okay so this you know conquer complexity through division is
+632920	639640	a very you know useful tool it you know you can replace tangled you know monolithic dependency with
+639640	648440	clean focused module that each you know will solve a specific part of the problem okay and when
+648440	655160	you decompose things then at that moment of time it's very you know important to keep in mind that
+655240	660280	how these you know different functions will interact with each other so they they should have
+660280	664840	you know very clear established interface or you know boundary so you have to create stable
+664840	670920	interfaces between components or to minimize coupling and maximize cohesion so so that I mean
+670920	677320	they can be used you know the result of one can be used very easily by others so this is also what
+677320	683800	you need to you know define properly so when you define the subproblems properly it becomes natural
+683800	688600	to you know define these boundaries very clearly for the function that you know tries to solve those
+688600	694600	subproblem okay another advantage know that you automatically get is that you can enable pedal
+694600	700680	development right when you have isolated all these smaller problems now you can put you know multiple
+700680	705480	teams to work simultaneously on these different you know modules are the different no problem that
+705480	711080	you want to solve without you know integration complex so let's say I mean if you could divide
+711080	717000	successfully and if you could establish this you know clear boundaries and you know interfaces
+717000	723160	that will help them talk to each other without knowing the details of how the implementation has been
+723160	730520	done then you can actually you know give these tasks to multiple teams and ask them to work simultaneously
+730520	736200	on different models without no bothering about what will happen when I integrate the whole thing
+736840	742920	into a single or enough project so so this again I mean that they're what I mean trying to use or
+742920	752200	know making up you know having a practice of using functions as often as possible is or will also
+752200	756440	reduce your time of development right because you can actually really get different tasks for
+756440	764440	different people and what I said in the very beginning that you you can actually modify only
+764440	771320	this piece of code and reuse it at multiple places is also an advantage that you can modify the
+771320	776840	place or a scale individual component without destabilizing the entire system right in future if you
+776840	782520	feel that you know some of the component my you know can be let's say improved for efficiency or
+782520	788680	reliability or whatever you can actually safely do that without you know hindering the other
+788680	794200	component right so this is this is what we are calling here you know evolutionary design you know
+794200	799720	it supports actually evolutionary design where you figure out no at all at rest is that something
+799720	806120	might be enhanced in in some some way okay and also I mean when you divide the whole problem and
+806120	811080	we are when you are solving each of this problem the chances of localizing error is also
+811160	818040	right here if some failure occurs let's say so you can actually localize the failure was caused
+818040	824840	due to which of the component so that also becomes you know possible so all of these are actually
+824840	830920	advantage and somehow you know can be categorized under this decomposition aspect of coming up with
+830920	837400	the function okay so this is again I mean that I as I said hint to you I whenever you get some
+837400	842840	complex problems just think about dividing it into simpler problems and then solving them for
+842840	849960	example I mean one thing that we know almost know we know as a faculty member here always come up
+849960	854280	with know this grading I mean although grading is not such a complex you know problem but still
+854280	860440	we would like to if I have to know grade at the end of semester I would know think of this grading
+860440	868120	activity as multiple you know sub problems which if I can achieve each I can maybe you know give
+868120	872680	proper later grade to students so finally what we have to produce is a proper no later grade to
+872680	877960	students but then before that we have to do a lot of activity right we have to you know evaluate
+877960	882360	all the assignments you know everything and then we have to calculate weighted average of all these
+882360	888280	things and then get the final later grade okay and you know many of these things are you know
+888920	893320	changing throughout the semester so I mean if we keep track of these things separately and then
+893320	899000	try to define them in form of know this modular structure of function or something like function then
+899000	904920	it becomes very easy for us to you know produce later grade at the end of the semester okay
+904920	911240	so this is one example that immediately came into my mind it is no not that complex but you can
+911240	917480	imagine the hardest problem that you might have solved in your life and then try to look back
+918040	923640	again go back to that problem and think back and see whether you can divide that problem into
+923640	929160	smaller you know piece of code or a smaller you know sub problems that you can solve using
+929160	934920	you know independent functions okay so this is you know one advantage another thing is know
+934920	941560	this idea of abstraction so you know this this abstraction is a very no again I mean as
+942200	949560	important idea as divided conquer in computer science because it helps you get rid of
+950600	956200	the details which may not matter for the no bigger picture or the bigger you know system
+956200	962520	of software to work so abstraction is no this idea where you can you know consider each of
+962520	967320	these components which we are saying you know individual functions as a black box okay so
+967880	973080	if you can consider them as a black box and if you know exactly how this you know black box behaves
+973880	979080	while not knowing how these black box have been you know implemented then that gives
+979080	984760	you added advantage right you can build on top of these functions very easily right if someone
+984760	990760	has you know written nice reliable functions by describing properly what the function does
+991400	996360	any third party can use those functions right we we're just looking at the you know description
+996440	1002280	of the function instead of the you know actual implementation of the function and we need not
+1002280	1007800	worry about how it is implemented and this gives us tremendous you know strength in coming up
+1007800	1013720	or solving bigger and complex problem because we don't now don't need to know deal with all the
+1013720	1019960	no trivial details of every function implementation okay so but I mean for this kind of you know
+1019960	1026120	abstraction to work perfectly you have to make the contract very clear right function has to
+1026360	1032360	very clearly what it you know expects as input and what it will give as our output okay and
+1032920	1037640	all the implementation details has to be hidden I mean if you can hide the implementation details
+1037640	1042360	know well then there is nothing like it I mean then you have written or use the functions
+1042360	1049160	you know strength in proper way and you know if if this is there then I mean it enables of course
+1049160	1054680	collaboration among the team right so this separation imposed by clear contracts allows
+1055240	1060840	you know different team members to work on separate modules efficiently relying on each
+1060840	1066760	other's interfaces without understanding the no underlying detail okay so this this abstraction is
+1066760	1072200	you know very very important I mean if you can abstract out all the detail and almost of the
+1072200	1078600	detail in you know form of clear interface like you know this let's say I mean if some third
+1078600	1083480	party or user want to use your you know function what he should be bothered about is only you know
+1083560	1088680	what are the expected input and what is the you know output and a clear description of this not
+1088680	1092840	the actual you know implementation so he should not be bothered with the implementation and if he
+1092840	1098680	is not bothered with the implementation then he can quickly build on top your of your you know
+1098680	1105320	function by using your function some nice project which is interested in you know solving this
+1105320	1110920	or building very quickly okay this is also very important so function now you see I mean gives you
+1110920	1117800	all these you know advantages which in some sense has used you know help computer science
+1119080	1126920	lot I mean in you know past decades to you know in the development of systems and software okay
+1126920	1134120	so that's why functions are you know so important so now let's now get to the minute details one
+1134120	1143080	by one slowly so now let me go to this Jupiter notebook and so now let's start seeing
+1143800	1147960	the actual implementation of function right I mean how to we have seen so many functions still
+1147960	1153560	now in our discussion without you know explicitly are talking about how to define them you know
+1153560	1159560	but now in today's lecture we will see how a function how how you can actually define a function
+1159640	1165640	and then how you can call a function and how to pass you know parameters to a function in an
+1165640	1171880	actual function called so let's start with a very you know basic which is the syntax okay syntax
+1171880	1177240	of a function like any other construct we will first know we learn how to write a correct
+1177240	1183480	function which is you know correct by syntax okay so this is the typical syntax of a function
+1183560	1187560	that you can see here so let me increase the font a bit
+1199080	1207080	okay so this is how the functions in text looks so we we write def for to indicate again I'm
+1207080	1213000	comp python that we are going to define a function and followed by that we give a function name
+1213000	1217960	here I have written you know function name but you can write down you know any valid identifier as
+1217960	1224440	a function name here and then you can pass parameters to the function so parameters are like
+1224440	1229880	argument so what will be the input to the function so this is what I was calling interface okay so
+1229880	1234680	so inputs are also you know interface you know clear defining clearly what do you expect
+1235720	1240520	as an argument for this function is very important and if you can clearly define that then
+1240520	1246760	anyone can use it by just providing you know these no parameters as argument when calling this
+1246760	1251960	function so these are parameters which you are defining you know inside this parenthesis which
+1251960	1258040	you write just up to the function name and then this colon you know indicates that now you are
+1258040	1264760	going to define the actual body of the function okay so it's a very good practice to write the
+1264760	1271640	description of the function in the very beginning so what you see you know here as you know inside
+1271640	1280600	this no quotation is a doc string okay so for you for your function to be reusable by any third
+1280600	1287000	party you should try to write down the description of the function as clearly as you know possible
+1287000	1292680	we will come to it again in the maybe next video and tell you some you know template you can use
+1292680	1298360	to define you know the interface and working of your functions properly in the very beginning
+1298360	1304440	itself okay so let's say someone else who doesn't know or have access to the source code of your
+1305240	1310280	you know function and he still you know wants to know about how to use your function okay the way
+1310280	1315960	I mean you know you try to get information about any let's say built-in or a standard library
+1315960	1320840	function of Python is what someone wants to do with your function also you have written so if you
+1320840	1325960	don't provide you know good doc string then he will not be able to get the details of your function
+1325960	1330440	he has no other way but to know open up your function and see the implementation to figure out
+1330440	1337080	what each argument means but the the doc string provides you a method or you know a way to describe
+1338120	1344440	the behavior or the interface of your function using natural language like English okay so whatever
+1344920	1351880	you write in this doc string can be accessed later on by any you know third party or user by using
+1351880	1357720	just help function okay if he writes no help and then your function name this doc string will be printed
+1358680	1364920	okay and this doc string I mean if you have written it properly user can know exactly by reading
+1364920	1371080	this doc string what your function does okay so it can have a very nice natural language description
+1371560	1377320	what is expected as input for your function and what your function calculates and what is the
+1377320	1384680	you know format of output that you want to you know give or return from your function so all
+1384680	1390440	this you can describe using you know English language in this doc string personnel okay so to
+1390440	1395480	remember the doc string is the very you know in the beginning so just after the colon you start
+1395480	1400920	this quotation mark and you write whatever you feel can be important for any you know third party
+1400920	1405960	user when it he's using your function okay you can also mention I mean whether your function is
+1405960	1411400	changing you know some argument which has been passed to it or not so this is called no generally
+1411400	1417080	side effects so again we'll come back to it but just to mention that this is a important aspect
+1417080	1423400	of writing a reusable function if you don't write doc string properly then your functions are
+1423480	1430920	actually not reusable no no other person except you can maybe you know reuse it conveniently so it's
+1430920	1435800	very important point and just keep in mind whenever you're writing a function spend some time
+1435800	1441800	writing the doc string for your function then comes so you also this definition we have talked
+1441800	1447880	about function name you talked about parameters and this doc string we know also talked about this
+1448040	1454360	optional but no I would you know encourage to write doc string for every function that you know you
+1454360	1460520	want to write you know for your purpose and if you think I mean you want it to be you reuse by
+1460520	1465800	someone else then certainly try to write doc string then comes the function body say then whatever
+1465800	1471800	you write you know after that and before return is the actual function body which will not do
+1471800	1477320	the computation that you wanted to do for example in this case let's say we just wanted to know
+1477320	1483400	some these two parameters and result that value so this is no simple you know statement which
+1484360	1488760	implements this no intention okay so this is the function body or the actual code
+1490600	1496840	for which we have written this function and then there is a return statement followed by
+1496840	1502600	whatever you want to return I mean we'll see that we can return you know multiple things from inside
+1502680	1508520	a function okay we may not want to return something you know explicitly like the way we have
+1508520	1514600	done here and all of those you know variation we will not see as we go but this is more or less
+1514600	1520520	the you know basic syntax of no function there are many variations possible and we will
+1520520	1527160	no discuss them one by one so so just just to give you a practical example for example let's say
+1528120	1534760	if you want to calculate total price of you know a number of objects let's say so I can actually
+1534760	1540840	write down that code you know outside function also but I if you write it inside a function is
+1540840	1548200	some much more in a modular style of coding so so for if you want to calculate the total price of
+1548200	1555800	a let's say a number of you know pieces of certain type then what you need to pass it the quantity
+1555800	1560440	and the unit price right if you pass quantity and unit price you can you know easily calculate
+1560440	1566680	the total price right total so this is how you can maybe define a simple answers to to do job like
+1566680	1574120	this okay where you define this calculate total price as the function name and pass two arguments
+1574120	1579320	which which is any way necessary to calculate these things right so the quantity is the first
+1579320	1583800	thing that you pass and then the unit price is the second thing so what is the price for every unit
+1583800	1588360	and then inside the function you actually calculate the total you don't price to be quantity
+1589080	1594120	multiplied by unit price and then you can return this total now whenever you want to you know
+1594120	1598840	calculate total price you can simply call this function with this argument and this will return
+1598840	1605640	you the value that you want it okay so you know something along the same line I mean another
+1605640	1611240	function you can go through it in an offline mode but let me go ahead with now function calls okay
+1611240	1616440	so what we have done so far is just define the function so defining the function does not
+1616440	1623800	automatically mean that this function you know will be executed now it's like you know it's like
+1623800	1630280	you know just defining the structure of the function or how this function will work when it is called
+1630280	1637320	okay but if you don't call it then I mean there is no state change you know in the actual machine
+1637480	1641880	or abstract machine that you are running okay this is just definition it gives the template
+1642680	1647560	of set of actions or sequence of actions that will be executed when you call this function so
+1647560	1653160	the important thing is that you you have to call this function to you know get this piece of code
+1653160	1661000	executed so how to you know call functions so calling functions executed code with a specific
+1661000	1666200	value the formal parameter in the definition becomes argument in the call okay so what we call
+1666200	1671160	here is the you know as parameters you remember I mean these whatever you pass here inside this
+1671160	1677240	function is called parameters so when you want this function to you know execute you have to call
+1677240	1682200	this function with these parameters and when we call the function with this parameter we say that
+1682200	1687800	we are passing argument you know which should be you know taken you know as you know value for this
+1687800	1695720	parameter and then this function is to be done now when trying to you know call a function there
+1695720	1703960	are multiple ways in which you can call a function so let me try to write some simple function and
+1703960	1709960	then talk about these things in in that context so so there are multiple ways in which you can
+1709960	1717960	actually pass this parameter values to the function so the very first way and the most you know used
+1718440	1725560	this positional argument where you just pass the values for those you know parameter in the order
+1725560	1733080	in which they were defined in the actual function okay so so for example let me define a very simple
+1733080	1753480	function just for this purpose only so let's see a simple function like this which creates
+1753480	1759240	a rectangle okay so creating a rectangle means I mean just no printing this that it has created
+1759480	1767400	a rectangle with some you know area and some color okay so so if you pass you know length width
+1767400	1773800	and color as an argument so let's say I mean if you want to create a rectangle with length 10
+1774760	1779480	you know width 5 and color red then you will pass those three things as this
+1780280	1785800	argument with a function and function will automatically take this value and then create or print
+1785800	1792200	this statement for you which you know somehow you know is like simulating a creation of this rectangle
+1792200	1798040	for you okay now how to call this you know function so so let's say this function is defined let me
+1798040	1806920	run this piece of code okay so now since this function is defined what we want to do is we want to
+1808520	1815080	call this function okay how to execute this function unless there's some parameters that we want
+1815160	1824120	so the you know easiest way is to give the or the pass the parameters in order in which it has been
+1824120	1829480	defined let's say the first thing that it expects is length okay so let me create some rectangle
+1829480	1837800	for this so what we are trying to look at right now here this concept of
+1837800	1848520	positional argument okay and in positional argument we will see that in the orders matter
+1853000	1858440	okay so what does it mean that if I want to now create let's say this is this is already
+1858440	1863720	we have written a function to create rectangle now if I want to create rectangles let me create
+1863720	1872120	rectangle let me call it rectangle one so if I want to create a rectangle one then I need to call
+1872120	1879960	this function create rectangle and I have to pass all these three values right so the first value
+1879960	1886440	that I have to pass is the length value okay when in length I can no pass may be 10 for the width maybe
+1886440	1900200	I pass no five and then no for the color I mean pass color like no blue okay now using these
+1900200	1907160	you know value for the parameters which we which are right now arguments so my arguments are 10
+1907160	1912680	five and blue that I pass which will be taken as param value for this parameter length width and
+1912680	1918760	color so it will be masked in the order in which I have given okay so what it assumes is that the
+1918760	1926760	length value that I want to pass is 10 so you know it assigns this 10 to this length and not to the
+1926760	1932600	width okay so this is why we say that you know order matters okay so when you so the and these are
+1932600	1938440	no positional arguments okay so in positional argument order matters and you have to give you
+1938440	1944200	have to pass arguments in in the correct order then only a minute can you know print for you
+1944200	1950840	this statement where you know the past argument you see is the length and second argument is the width
+1950840	1958280	so if you pass no 10 and five what you can expect is 10 followed by five and the idea whatever
+1958280	1966280	you want to print okay so this is what is very important so now if let's say we want to run this
+1966280	1973000	so what will you expect so you you will expect a you know statement like this right
+1975000	1979800	we are length and width are replaced by 10 and five and the idea is replaced by the value
+1979800	1987960	no 50 right so now let's just run it and try to see whether we get what we expect if we
+2009800	2012760	you
+2039960	2051000	okay so let me know create another rectangle before we print the value so let me know create another
+2051000	2058200	rectangle which is maybe rectangle just not by flipping these things into
+2058200	2074680	okay so this is okay so I so this is the second rectangle that we created and you see I mean
+2074680	2080840	I have just changed the order of you know 5 and 10 and then what we do is we print let's say
+2081400	2085400	okay so whatever is you know returned we need to print it
+2090840	2099400	and then followed by let me print for the other thing also when I try to print so whatever was
+2099400	2104920	returned was actually stored in this variable right I mean so no that's why we were not able to
+2104920	2110600	print something so it was actually or returned in this variable rectangle one and rectangle
+2111160	2112920	and now we want to do is
+2120520	2125160	and let me now you know print these two things and see this is what we know we expected right
+2125160	2133800	so the blue rectangle it for the first call created a blue rectangle with this 10 and 5 in this
+2133800	2140120	order it is no same but then you can see the order in which it has been printed length into
+2140200	2148520	with okay so position actually no matters now now for many functions when you have many let's
+2148520	2155560	say a lot of parameters so it's not possible always to keep in mind the order of those parameters
+2155560	2162840	right so it's not always feasible to although you may recall what are the let's say input to the
+2162840	2169720	functions required you may not recall the order in which these input has to be passed okay so you
+2169720	2174600	may not recall the exact position of these let's say parameter so in that case there is an
+2174600	2181080	alternative you know way of passing argument which is called you know keyword arguments so instead
+2181080	2187960	of maintaining the order I what I say is I explicitly tell you that what this value is intended
+2187960	2195080	for or no to which parameter you shall you know assign these arguments okay so this is what we
+2195160	2201000	call you know keyword argument we explicitly say that you know this value should be attached to
+2201000	2208440	you know this particular parameter by naming it okay for example in the same you know for the same
+2208440	2216440	function if I have to let's say pass these no arguments so what we are going to do right now
+2217240	2221000	is pass the same argument as keyword argument okay
+2229720	2235000	so in this one you may pass in you know out of order you don't need to know you know when you
+2235000	2239800	are using this keywords I mean you are telling explicitly that this particular value is for this
+2239800	2245560	parameter then and the order does not matter okay so you can pass out of order so that's the
+2245560	2255720	advantage of you know this keyword no arguments so you can here order does not matter okay this is
+2257160	2262360	very helpful now if I want to let's say create another rectangle let's say
+2265320	2273640	and this time no let's say call it rectangle 3 so in that case if I call the same let's say
+2273720	2282040	what was the name of this function create rectangle and I if I don't recall what was the
+2282040	2288520	you know exact order in which this argument or these parameters were defined when defining
+2288520	2296280	function it no it's not a no it will not hamper my you know call okay so I can easily call without
+2297080	2303080	no recalling or remembering this orders now what I say I can pass maybe the color as the first
+2303240	2306840	argument okay so but here also you need to remember the
+2309960	2313800	name of the parameter okay so the least that you need to remember is the name otherwise you will not
+2313800	2320120	be able to call even using keyword no arguments so what I say in the color you pass may maybe you
+2320120	2328280	agree okay and remember the color was not the first argument right if you see here the definition
+2328360	2335240	the color was the last no parameter but I have no pass it as a no first argument okay so
+2335240	2344440	but I have I'm explicitly saying that no pass in color the value green python knows I mean how
+2344440	2349960	to execute this function it it doesn't have any ambiguity okay now you can you know whatever order
+2349960	2357720	you want for the other three many for example in the width but I can say the pass the value
+2357720	2370200	eight and in the length pass the value 12 okay so this this is this is a perfectly valid call of
+2370200	2376040	the function okay and now if you want to maybe you know change this to so it's not only this I mean
+2376040	2381400	you can no use any other order for example immediately after this if you want to create another
+2381400	2389720	rectangle let's say rectangle four here what no I may want to do is to you know maybe pass the length
+2389720	2399320	itself as a first thing okay why I may want to know pass the length as the first no argument
+2399320	2405560	but since I have explicitly mentioned that the value in length is no whatever you want to you know
+2405560	2413240	maybe you know some other value 15 and color you pass no some other color maybe now this time
+2416280	2420840	yellow and then width you pass no any other value of it let's say no six
+2423400	2428760	so this is also a perfectly valid no call to the function okay so this will not cause any
+2429640	2436760	error and then if you just to check whether things have been passed appropriately or not what we
+2436760	2447240	can do is we can print okay then maybe a triangle three no then followed by
+2447240	2465400	rectangle four and if you know predict you see I mean it actually did exactly what we
+2465400	2472280	intended to do right so this is very you know important and especially important if you have
+2472280	2477880	not written function function yourself or you know even if you have written function yourself in
+2477880	2483720	some let's say other module some other file you don't recall the exact you know order in which
+2483720	2490440	the parameters were there it's better to be safe and use these keyword arguments okay and here
+2490440	2495720	again I mean these dog string become very important like I mean if you have written the function
+2495720	2500280	even yourself let's say and we have kept it in some other file you are working in a large project
+2500680	2506840	you have opened another no Jupyter file and you want to now you know use your function you don't
+2506840	2511240	recall I mean you don't need to actually open that file again so what you can do is you can simply
+2511240	2516760	print help and your you know function name and if your description of the function the dog string
+2516760	2522120	is but properly written there then everything will be printed for you okay and you can use those
+2522120	2527960	you know parameter name to easily call your function yes so that's that's why also I mean it's
+2527960	2533880	very important to write a descriptive dog string which can at least help you figure out what were the
+2534840	2540040	you know arguments and what were the name of the parameters that this function was defined on
+2540040	2545160	so so that I mean you can later on while passing the argument be very sure that if you use this
+2545160	2550360	keyword you know these names as keyword and then pass the value the function will be executed
+2550360	2557400	properly okay so good so now you can go either with this positional argument way or you can go
+2557400	2565160	with this keyword argument way or you can also you know use both together okay it's perfectly
+2565160	2571320	all right to you know mix and use both of this method I mean for some of the argument you can
+2571320	2577560	actually use you know positional way of passing the argument and for some you can use keyword okay
+2577560	2584360	for example let's say if I you know remember that the first you know if you know among you know
+2584360	2591080	many of the key you know parameter if I remember the the first two where you know these parameter
+2591640	2596360	then I can actually use positional argument there and later on if I forget what were the
+2596360	2603160	order in which other arguments no appear I can use keyword argument for the again I mean as a
+2603160	2608680	concrete example in the same you know space for the same function maybe you know we can again
+2608680	2616360	call the same function to what we are saying is we can actually mix positional and keyword and
+2616360	2621720	when doing this you know important thing is that whenever you mix positional argument and keyword
+2621720	2627880	argument your positional argument should be in the beginning so okay so once you have you know
+2627880	2633640	used any keyword argument you cannot use the positional argument and there is a no logic behind it
+2633640	2639960	because you know if you can let's say remember the first two you you actually mention only the values
+2639960	2644280	for the first two parameters and then start using you know keyword two but the moment you
+2644280	2650440	started using keyword argument you are actually you you started playing with the order of the no
+2651000	2657240	passing values and from that point on word python will only you know expect you to give keyword
+2657640	2665400	argument because you have started you know you have somehow you know by passing some argument at
+2665400	2673560	at the place of at the position of other argument you you tend to somehow I know confused from
+2674200	2679800	that point on word python compiler or interpreter that what's what how should it interpret
+2679800	2687640	a given value or what should be the corresponding no parameter for this particular argument okay
+2687640	2693320	since you already disturbed it so better you give it as a keyword argument okay so I mean again
+2693320	2697960	just to be you know concrete let me give you some examples so what I'm saying is that this is
+2699320	2705800	so first let me show you some valid way to pass this mixed kind of argument so what we are
+2705800	2710600	going to see some valid way in which we can mix this positional and keyword argument okay
+2714280	2726920	and keyword argument and then keyword so keyword followed by position is not all over so
+2727800	2735960	so the very first example is create maybe we can create another and maybe rectangle and then
+2738360	2749720	ask we can call this function create rectangle and then let me say that no let's say I remember
+2750600	2757480	that the first argument is length and second argument is let's say which so I can pass this to
+2757480	2762520	and for the third onward if I don't recall exactly what was the order let's say
+2764200	2770120	there were some other no argument also so and I don't recall now the order of the argument so I can
+2770120	2777000	maybe just say argument after this point to be by just no calling the name
+2777480	2786360	okay so this is a valid you know call so we can do it okay so so in this case I mean since
+2786360	2792360	only one you know one of the argument was remaining it was not very beneficial but let's let me
+2792360	2802360	you know copy page this to give you a more let me say that if someone only recalls that the first
+2802360	2812200	argument was no length and then onward he doesn't remember whether the second argument was width
+2812200	2819000	or color so in that case what he can do is you know he can say if he is confused he may want to
+2819000	2825320	say that no color is maybe you know purple but I I don't know whether color and width come before
+2825800	2832920	or another so in that case he can clearly maybe pass this so this is perfectly allowed okay
+2833800	2840440	so why this is allowed because because in this case what so the moment I started using keyword
+2840440	2847240	argument after that I'm not using you know positional argument so I can't simply you know pass seven
+2847240	2853720	here so what I'm saying is this is not possible okay because you have already used the second
+2853720	2860280	position to pass you know parameter which was not placed at the no seconds position so from
+2860280	2865960	this point onward Python will be confused so Python will expect you to give exact keyword name
+2865960	2872520	and then followed by the value okay so so the what I you know say this is not allowed so this is
+2872520	2884120	no invalid but if you give no this parameter name and then pass this value seven this is perfect
+2884120	2894200	for Python okay so there is no no issue okay so if we run this piece of what you will see that
+2894200	2900120	no both of them run without an error okay but we can also know create some you know invalid
+2900840	2909160	argument the the way I said I mean if you let me say so what I'm saying is I mean once you have
+2909160	2915000	started using the keyword argument you cannot go back to the positional argument it's what we are
+2915800	2921240	claiming here so for example lectave angle seven I created in the very first argument I use
+2921240	2926360	that skewered argument so after this point Python is confused I mean Python expect you to give
+2926440	2932520	you know all other argument also as you know keyword argument so you cannot give here you know five
+2932520	2939480	and this blue even though I mean no they're incorrect order but this is not something expected by
+2939480	2946120	Python so if you know do this if you run see in positional argument follows keyword argument okay
+2946120	2951320	so that's the problem that you have initially given the first argument itself as a keyword
+2951320	2956840	argument and then you are trying to give other argument as positional argument so which is not
+2957560	2965640	what is expected no by Python okay so skip these things in mind and now we'll continue the
+2965640	2973080	discussion of function again in the next video so for this video we'll conclude the lecture here
+2973080	2976520	okay so I'll see you in the next video till then goodbye

@@ -1,0 +1,525 @@
+Okay, welcome back to this BST and No Recursive Function session that we started in the last
+video.
+So if you recall in the last video we talked about how to insert elements in a BST, no
+one at a time, right?
+If you remember these were the elements that we inserted in the BST in this order and
+we noted that if you start with 10, the 10 becomes your root of the BST and then following
+the sequence we kept on inserting one element at a time while preserving all the BST property
+right and there were two sensual property that we wanted to ensure one was structural
+property that at no time your tree should have more than any node in your tree should
+have more than two elements or two two childrens and then the other property which was concerning
+the values that you can put at a parent or child was that you know every child or you
+know everything that comes in the right you know subtree of a parent should be greater
+than the parent value and everything that comes on the left subtree should be less than
+on this.
+So this was the property that you mentioned in the very beginning.
+This is a standard BST property that should be true for any BST, okay?
+So if you are claiming that you are trying to maintain a BST while this insert or delete
+operation happens on your rata structure then you have to somehow make sure or give proof
+of correctness why this is maintained through every insert or not releasing and that's
+what we try to do at least for the insertion in the last video right.
+So all nodes in the left subtree should have values less than the nodes value was the first
+property and in all node in its right subtree have the value no greater than the nodes value
+both left and right subtree must also satisfy the BST property, okay?
+So it's not that I mean this property should be only true for the topmost or let's say root
+node.
+I mean all the nodes should have this property and that's how you know I mean and if this
+is true for every node in your tree then you can call it a BST, okay?
+And we saw some examples then we started you know creating a BST from scratch in the
+last video where we try to create you know BST when the elements were coming in this order
+where you first saw 10, 10, 50, 37, 10, 20, 20, and 40, we justified and first we looked
+at the overall workflow that we would most probably want to implement later on in Python
+but then the important point was that throughout this no workflow or adding or inserting different
+elements in this existing BST we try to maintain the BST property right?
+That's why I said that now whenever you add a node you immediately add no two children
+to it so that you remember that you cannot have no more than two children and none represents
+that there is nothing you know present at the present moment in the tree at this particular
+position and you follow whatever was the property and then you can find a logical way to insert
+it either in the left subtree or right subtree or the root node, okay?
+And you keep going down until you find the suitable place to insert it and then this was
+our discussion so you know so at the end of all this insertion where we wanted to insert
+all these elements into a BST what we get is something like this right? So this was our
+final tree that came as an output after having all those inserts and in the sequence that
+were not given to us. So let's say I mean somehow if you have you know if you implement the BST
+insert method and want to do it not by hand but want to call program to insert let's say these
+elements one after another so at the end what should you expect you should expect a tree like
+this right? And I also hinted in the very beginning that no we can represent these trees using
+dictionary right? So the final dictionary that you know represent this tree should look something
+like this I mean so I want to go through this code slowly to see whether it makes sense or not.
+Does this dictionary represent the same tree that we formed here? Okay so let me help you with
+some of the nodes and then I'll leave the other for you to explore in your free time so what
+was the root tree so let's say I mean this tree is a dictionary so this is how we represent a
+dictionary you know if you recall I mean we identify dictionary with some name let's say call here
+this dictionary to be tree because you know our intention is to somehow represent this whole tree
+using our dictionary so we give it a name as tree and then we start the curly braces and
+in curly braces here okay and in our tree essentially what you are trying to you know store I mean
+at the end what should be there I mean your left subtree is none right and then your right subtree
+is a big tree right you know which which if you want you know a tree to be represented as
+dictionary then the right subtree itself is a dictionary so this is how you should interpret it
+and the value at the root node is 10 so this is what this tree you know dictionary is trying to
+no capture the value is 10 so this value represents the value of the node and then since you know
+this this is the root node you know this tree actually represents the root node of this whole tree
+so for every you know root node you have you know three things right we said or I mean for any
+node you have three you know information that you want to store so what is the value present there
+what is the left subtree that is present there and what is the right subtree that is present there
+so that's why this tree feels you know these three keys are there in this dictionary and the
+values corresponding to these three keys will be what I discussed right the first one represents
+the value or key represents what's the actual value you know kept at that node the left key
+represents what is the left subtree and the right key represents what is the right subtree and you
+could see on the you know for left we have kept none right because no we wanted to capture this
+particularly so here you can see left is not so now we keep keep it here is not but what about
+can you see a curly brace no starting here right you can see a curly brace starts here
+and from this point onward to this point you know inside there is no curly braces what
+we do is we represent another tree because remember when we are talking about this may you know
+main you know root node here which is 10 it's right style is not you know one node right it's a
+complete you know BST itself right it's another you know smaller BST so if if you represent this
+BST using dictionary then no at the right no of key no corresponding to the right key the value
+that you will have will actually be a dictionary right and I mean you can just follow this recursive
+nature of this dictionary and then guess know what what should be the let's say root node of the
+right subtree this is the right subtree right which appears at the right hand side of
+or not as a right child of the node 10 and 10 was a you know root node for our main let's say
+tree the bigger tree but for this you know right as a right child you again have a dictionary
+or a tree BST which we want to represent with DST you know BST so what is the root node of this
+no BST what is the value kept at this root node so this is what is what how you know we represent it
+the value kept is 50 and again this no right subtree will have no value as well as left subtree
+and right subtree of this you know current right subtree that we are looking at okay so again
+I mean left hand side is a tree BST is expected to be a BST and right hand side is also expected
+to be a BST so that's why you know we kept here you can see I mean for this no smaller right subtree
+which start from here and goes up to no this place okay so we have left key which no
+represents a complete tree right which which which is encoded up to this point and also a right key
+corresponding to which you again have a dictionary which represents the right subtree of this one
+okay and you know I'll leave you for you to look at it a little carefully and you know
+convince yourself that this is indeed what this no figure represents okay and this is important
+because you know say because you know when you will be writing Python program to insert elements
+I mean we will be following no this kind of representation for a BST okay so we want to
+represent this BST using a binary such a there so this you know binary such is using dictionary
+and if you use dictionary and this is the you know most natural way to encode this information
+okay now knowing that our current tree is always you know always looks like this I want to now
+know right a function which will help me insert a new element let's say you know in existing tree
+so before than that I mean before going to the madat mean function I've already written here
+you know helper function for you to just see what is the status of the tree right now okay because
+here it was difficult right to see this you know clumsy you know code block corresponding to a
+dictionary and figure out what was the left and right thing the ideal situation of scenario might
+be some displaying this dictionary in this you know form but then I mean this is also not that
+easy because of the nature of tree how it grows right you know you have to represent it in
+the window that is available to you so what we instead do is you know we try to represent the
+same tree using this kind of no notation where the root is 10 and the left I mean this again the
+same so you go through this you know function offline and try to see how it when and given
+given any root node for a dictionary can print the dictionary for you okay so this is an alternate
+way to you know print the same no tree which is which looks like this okay so I'm not going to
+discuss this function right now I leave it for you to no figure out how this function can take any
+tree of not this kind which is given as dictionary and you print something like this
+here where you can see no root node is 10 the left child is none right child is itself of you
+know bigger tree again you know from this point onward to this point and then right child of this
+is again a tree like this okay so this is certainly now simpler to you know visualize
+then this other than you know this particular code which is a complete description of the
+BST in using dictionary so we'll be using you know calling this function and again and again when we
+let's insert something you know in a dictionary or no we remove something from it is dictionary okay
+so now let's come to the actual function which we want to not develop right now so what we
+want to do is we want to know so whatever we discuss in the previous video like I mean how to
+insert a given element into an existing BST so that after insertion the BST remains the BST
+because the new tree that you get is also BST so that whole logic of inserts and we want to now
+encode using a Python program is what we are trying to do right now okay so for such a function
+I mean can you guess what should be the argument for such such a function I mean BST insert function
+so you need to think right at the existing tree BST and the new value that you want to insert
+into it okay so these are the you know two information that you know would like to pass to the
+okay to this no BST insert so while we are passing root no because root itself is a dictionary right
+remember I mean the root node is a dictionary which has all the information about the BST okay
+so that's why it's not enough to just pass the root node because root node itself you know is a
+dictionary and that dictionary has information about all other element right left child right child
+and all the following left and right child of those no trees subject so it's good to pass root
+and the value that you want to insert to this you know BST insert function
+now let's try to you know develop this function so once let's say if we have this this information
+with us if it is you know given to us the root node and the value so the very thing and the first
+thing that we do is we we check the you know base guess kind of thing right I mean let's say what if
+your root itself is none okay that that may be true right because in the very beginning when you
+start no building that no BST there may not be any element at all okay and a good way to
+no represent that would be that you know you assign this root value which is not
+okay so so that may be so the base guess I mean and you need to know how to handle this
+base guess right because even when you are you know inserting elements you remember I mean we
+were going down either left subtree or right subtree and the moment you want to this you know
+take this call whether I sell insert at this position or not was
+somehow decided based on whether none is present there or not okay so if none is present then only
+you can you know insert you know something so that's why I mean the very so the base case is what
+we we need to solve first so let me so what we are trying to do is now define the base case
+so I mean this will be a row if you remember see this this whole function structure would be
+recursive in nature because not any moment in time when you are comparing it with the root node
+or the root node of the subtree that you are currently looking at you want to say whether it's
+the element should go to the right subtree or the left subtree right so you may want to again call
+the same function with a different argument I mean your value will be same but you know a root
+will change right and you will keep doing it until you hit the base no no case and the best
+case is when you see that your root which is right now your point where pointing to is actually
+not right remember I mean so this is what happened right in the previous cases when we were discussing
+this one by one the moment I decided that no 30 you know goes to the right of 50 so to the
+no 30 is goes to the right of 10 and then we compare it with 50 and then we decided to go
+towards this no left subtree and we immediately encountered this non-value so it indicated that now
+now we cannot go any no further so the no the root for the left subtree was none right and
+root for the left subtree was none that's why you know we decided that no we have reached the
+correct position but now we cannot go down further so if we see that the root of our
+no going to root of our current dictionary is none and we are we have been asked to put it
+in this you know the subtree better replace this none with the value that I came up
+having in my hand for example in this case no 30 was in my hand right and I inserted 30 here
+and I created left and right child immediately for this 30 okay so this is the action that you need
+to you know take when you have reached the correct position okay but I mean you have to somehow
+say this explicitly in your code okay and if you have reached that place and how do you know that
+you have reached that place by checking whether the root has become none or not so can we you know
+write down the same logic here maybe where we are writing can we you know write down this
+base case thing so that this is no kind of base case where we know that we have reached the
+place where we want to put the value that is provided to us okay now if so what is that
+base case now if root is none because we are representing with none this this none in a way
+is representing in our case that no there is nothing you know down in the line if you go want to go
+ahead okay so in this case what we want to do is we want to return our dictionary okay so what's
+the dictionary that you want to return now you want to put there this value right so what you want to
+in the value field I will you know pass whatever value no comes as an argument to me
+and then I will immediately create you know left and so if you know that your root the root that
+currently you know is in your hand is none then at that moment itself you have decided that okay
+I want to know maybe know make a small tree and then return this thing right so the return
+so you you are returning a small tree where your value is this one and you have to left thing
+in left we none because you know right now I know that there is nothing you know down say this is
+the last element that I'm not trying to insert so I should make it in form of a node and this is
+how I represent a node which does not have any you know child so for that node you have to tell
+what is the value what is the left child and what is the right child the left child is in none and
+the right child is also okay so this should also be none right so no this way we created a dictionary
+and remember I mean this is a dictionary right because I kept it in curly paste so this
+represents my you know current node that I have inserted and I will just return it okay so this
+you know function actually you know returns to the updated tree okay but this remember the
+base case when you know that the root itself is none but it might not be correct right because
+you know in in so it may be correct only maybe in the very first go when you are starting with the
+empty let's say BST but in most of the other case when you start your insertion process you
+already have a not tree and you want to figure out what is the correct position where I shall go
+and then try to insert it right so most of the other insertors will not you know immediately hit
+this no base case okay so we will start exploring from the root and you you want to navigate to
+that place where you want to keep this okay so this is what we call you know recursive step so
+so let me call it you know one the base case let's just call it one is the base case and then
+the recursive cases the most no general case where so let me you know call it
+recursive step and in the recursive step what we do is no you have a value and you have a root
+and if you root is not none so if root is none you know that no this is this statement is executed
+and you immediately written right this is what the meaning of the semantics of this written
+that you don't execute anything below but if root is not none then you get to this recursive step
+which says that now now now what we need to do we need to compare right whether the value is left
+in the root value or the non greater than root value and depending upon what is the you know
+current scenario I would do different set of actions okay so let me in or write it down so let me
+say if our value in hand is less than the value that is present at root and how to access that
+value do you remember this was the syntax that we use for accessing a key value for a dictionary
+right so we want to compare the value that is at my hand with the value that is no present
+at the root okay and the way to access that value is this root followed by this is square
+bar bracket and this name of the key where you store those value and the key name was value
+so we want to make this check in the positive case when let's say this value is less than
+root value what do we want to do I mean we want to know go to the left subtree and then search with
+the correct position of this value and insert there right so what so now in a simple way not
+declarative way if you want to say what you want to do you can say that now go to this left subtree
+and insert this in the left subtree okay so this is very easy to you know understand that if my
+value is less than the root value I know that the place for this current value is in the left
+subtree so can I again I mean say that just go to the you know or maybe you know call this BST
+insert function again on this new root which is the left child of my you know current root
+and try to figure out where to insert it so instead of giving the complete logic again what I can
+actually in a very succinct way say that why not call this function again on the on a different
+input right because right now I can say that you go to the you know left root on the left subtree
+and then insert this value and that's done and you repeat this process keep repeating this
+process until you hit this none value because no what you have to do for none is already included
+here in the logic okay since you you have already said what to do if you encounter none here
+maybe here you can be a little bit more lazy and then describe your whole process by just saying
+that okay I want to repeat the same set of action maybe I by calling the same function again at this
+not with this new you know parameters or argument so need to be more precise let me write down
+what I want to say so here what we are trying to do is we're trying to say that no you call so
+so I know I know two thing that no my left subtree has to be updated right because no this new
+element is less than the root element so it will somewhere go into the left subtree and left
+subtree has to be updated in some you know all modified in some way so that this new element
+can be accommodated in the left subtree is what we want to do so the way to say that is my
+root so my you know current roots left subtree is how so no this index
+helps us access the left subtree okay so what is the left of the root is what we are trying to
+update okay so we are trying to update it and how do we want to update it we are saying that now
+I want to call this BST insert
+with the new argument okay so what I want to say is no you pass now to BST insert the left
+subtree which is no access to using this and then this value okay and the justification
+what is the justification for calling this function because I know that my value should go to
+the left subtree so what I'm saying is you insert this value into the left subtree and how to get
+the left subtree of the currently by you know using this syntax so this syntax remember this is
+not different than this one right originally this function was called on root but now since I know
+that it is less than the root I am calling again the same function on the left subtree of the
+no this you know main tree and this is the way to you know call the same function BST insert
+and remember I mean this is why we call it you know recursive function because you know inside
+the definition of BST insert we are again calling BST insert but in this call the argument
+is not same okay now we are calling the same BST insert with a different argument and this
+difference in argument actually reflects the difference know in the tree that where we want to
+now store this value okay and once you know call this function on this you know different tree
+which is a subtree left subtree of the main tree with the same value the return of return type
+of this function will itself be a tree okay so and what will be the tree the updated tree okay so
+what is the tree after insertion so now you will get the updated left subtree you know as an
+output as a return from here and that you want to assign to the current roots left side right
+because this is what we you know want to do right saying that now go to the left subtree and insert
+this value is same as you know as saying that you update I explicitly pass you the left subtree
+and the value and you return me a new you know tree with this value kept there and then
+assign this to my current left subtree so this is no another way of saying the same thing okay so
+if you don't do this assignment you know then nothing happens right because this function is
+called it returns something which you are not trying to use to update your current tree because
+your current tree is this you know represented by this root and you want to update the left subtree
+of your current subtree now after insertion you know this insertion happens and since this returns
+the updated tree I want to insert that into the left and side okay so now please I mean this may
+be a little troublesome troublesome to many of you due to the recursive nature of thinking but
+it's not that difficult if you spend some time I hope you will be able to make sense of what I said
+just now okay so this is the recursive call and so what the function here is doing is calling
+itself okay so let me write it down the function calls itself
+with the
+with the left child as
+did you know right
+or the new root better say
+okay so when I decided that this element should go to my you know left subtree I again
+ask you know call the same function with a different argument and the argument is now the
+left side of the current no root that I was in okay so it will go and do you know it's job
+but if this is not the case let's say you know if this is not the case so what what should
+write for the L's case
+okay you guess the L's case so what will the L's case I mean assuming that there are no two
+elements are let's say equal so they're all distinct so if value is not less than the root value
+the value should be greater than the root value right and in that case what would you like to do
+you'd like to do just the opposite of what you did just now right we would like to update our
+right subtree right by inserting this new element into my right subtree and how to do that so can we
+copy the same you know syntax here and then maybe
+we paste it here and what what are the changes that you need to do here instead of
+saying that I want to update my left subtree I want to say that now I want to update my
+right subtree and what shall I put there so the new value inserted in the
+right subtree of my current thing this is what no I want again so what does it function does
+here the function calls itself with the right child as new you know
+so what are we doing here
+the function call itself with the
+the right child as the new row okay so so this is what the function is intended to do and so
+depending upon what is the situation it will either call the same function on the left subtree or
+the right subtree okay and since this is recursive in nature I mean if you don't you know find
+there again the none case I mean you call this function again and again until you hit this
+because no when when this function is again called remember with a different route and value
+what will happen so the function definition says that the next call again checks this in the very
+beginning this is the very first step of the next call also okay so so remember I mean we have
+written this function only one time so this in the logic of execution but this is not the
+this whole definition of function is not the execution of the function when you call this
+function with some argument the whole you know this program sequence will be executed one after
+another another and if you know a function it is calling again itself inside you know it's
+outer call then the current call actually gets suspended and no the number so the implementation
+or the compiler implements this kind of calls in such a way so that it stores all the information
+about the current call and then you know put it in some form of a track data structure and tries to
+call again the same function on some smaller input and try to execute that function so again I
+mean if this happens to call itself no due to the kind of data it has so the second call also
+will be put on hold and then the third call will start executing so that's why I mean this may be
+a little non you know intuitive or I mean a little difficult or tricky for you but if you think
+closely I mean just write down these things and try to execute this code on a given tree structure
+you will be able to figure out I mean how the control flows when you actually run this kind of
+program okay so I will come again to this but let me first you know finish the logic of this
+program so this is the right thing and then at the end what you do is so remember I need to return
+something right because in these cases we have not returned anything right so since you updated
+the route you have to return this route okay we need to return this updated route otherwise
+this program is not complete right because in the base case you return something explicitly
+okay and you have to always return the updated subtree right so what if it is not the base case
+I mean you have updated certainly the route but you if you don't return it I mean it is not
+available to the outer function okay so that's why it's very much important to you know return it
+explicitly here okay and I mean there can be alternative way of implementation but in our way
+of implementation what we are saying is we are always explicitly returning you know the updated
+tree and then using that updated tree to update my current you know route trick so this is what
+no we are doing so that's why I mean I'm explicitly returning this route and I will use it to
+maybe you know update me horizontally okay so good so now since we have this thing there are
+a couple of things that I already noted one was the base case right this none kind of situation
+where recursion because since this function is recursive in nature you know it needs some
+stopping point right I mean when will this kind of recursive logic stop so this base case is always
+you have to clearly identify what is the base case when you identify that now there will be no
+further call to the same function and you want to stop and you know maybe put the value there
+and return this thing okay so this is what we called you know the base case recursion requires
+a stopping point so in a BST we stop when we reach this none okay this is the only line where a
+new dictionary is actually created so every other call simply you know moves through existing
+you know dictionary and then tries to come at the right position okay so another thing that I
+pointed was this you know persistent thing that the state persists so the and the compiler which
+tries to you know implement this kind of logic always maintains a call stack you know something
+called call stack again we will not go into the detail of what how exactly this is but
+in a broad sense I mean when I mean for example in this case when BST insert calls itself
+the current function execution is suspended or when it calls the function again okay and it stays
+in the memory I mean it's not that you suspend it and you forget about everything because you need
+to remember this information when you come back from the call okay when the call let's say the
+execution of you know this call this particular call now ends okay so this is again recursive
+called to the same function so when execution of this so this is you know calling a function right
+inside itself so when execution of this ends you want to again return back to the main function
+that called this thing to do some remaining job right because there are some something remaining
+right you want to assign the value that is written from this you know next this you know call to
+the same function recursive call to the same function and assign that into the root and then
+return it so you you don't want to lose you know these steps so that's why you want to come back
+to this so this control flow is you know managed by compiler and this is how it happens and that
+temporarily it will suspend the execution of this thing because remember it cannot execute you know
+this line until it has you know completely evaluated this expression right and assign that
+expression into this thing so it needs to suspend because you know evaluating this expression is
+not possible without you know calling the same function again so that's why I mean it's suspending
+so if you understand the semantics of assignment operation properly then it should not be that
+difficult right because the you know the semantics of assignment operation says that you have to
+first evaluate the right hand side expression and then only you can assign it to the left hand
+side okay so anything that comes after this assignment cannot actually happen if the right hand
+side expression is not evaluated so it has to be suspended right I mean until everything but then
+when you go to evaluate this right hand side is a new function call although on the same function
+but it's a new call to the same function so it will start again you know call it will pass a value
+and the whole execution of this you know body of the function definition will start with a new
+argument okay and until that execution ends you don't get this exact value for this expression
+and if you don't get exact value for this expression you cannot continue execution of this
+so this is a kind of a you know temporary preemption of the current call calling it on the small
+on calling the same function on a smaller input and waiting till the function call returns me
+some value and then proceeding with my current call okay so this way I mean you go you may go
+quite a lot I mean deep down this kind of a function call and then when you returning you are
+actually trying to you know finish whatever was the remaining in your caller function okay so there
+are one one there is a caller function and there is a you know call function right so the one who calls
+this same function again is called caller and then the one is which is being called is you know
+call call function so this logic is very important to understand and it should not be difficult if you
+understand the semantics of assignment okay so just try to work so it in that logical sense
+that we discussed earlier and you will be able to make no sense so the suspension is what I would
+okay so let me maybe use a diagram that I have here to describe the same thing you know this
+state persistent thing or you know this call stack thing so I have written some description of
+this so you can just read this and offline to understand what we discuss now but a good visual
+representation of the same thing is presented here okay so what we are saying here is that
+that if you want to insert 40 right into the into a BST which is already know like this
+now you have done all these insertions already so your BST will be some will look something like
+this right and if you want to insert 40 to this BST so what you will do you will call this
+function right which is let me first you know compile this code you know before we
+do any further execution now let me finish it so this is already complete so
+this function is already and let me also compile this piece of code which is responsible for
+printing the tree and this is working properly now we come to this description of the same
+no function calls okay so when function calls when a recursive function call happens what happens
+and can we look and understand it visually so this is what is being explained here so inserting
+40 into our BST which already has know this kind of a structure what how this control flows
+is what I am going to discuss now in the step one what you do is you call this function insert
+function with no 40 and the root node 10 right because no currently our root node is 10 so if
+you call it with you know 10 what happens so inside this function call it compares and it finds
+that 40 is greater than 10 so it says that now go to the right right so going to write means
+again calling with this same same function insert function with 40 but with a modified node right
+I think you know the the order of node is just the opposite of what no we have written here right
+I mean so so first you pass the no root node and then the value but I mean never mind I mean you
+you can you know keep in mind that this is the first okay so we need to pass this to information
+node and 40 so assume here I mean the 40 is the value and the node position is no 10 so when you
+call with which this insert function with no 10 then and you know value 40 so it goes and checks
+the condition and the again calls the same BST insert function with the value same value 40 but now
+at a different node right because no 40 was greater than 10 so it now calls the same you know
+BST insert function on this smaller substrate and while calling this function you have to always
+pass the root node and the value that you want to okay so when this call happens this you know
+subcall to the right subtree happens so what happens the main call in which you have again
+call this same function so the main call I mean this call which our step one gets suspended okay so
+it is paused now why it's paused because it's you know waiting for this particular call to in
+and return value and then only this call can go ahead right because this is this was the
+as a no semantic surface assignment now what happens so this is you know pause right so your
+execution of the first call to this insert is actually paused at this point and then you again
+call the same function with different argument and this call again starts executing remember
+this is this is paused this isn't this is halted at the moment when this is executing so when this
+is executing again you check 40 you know with respect to the 50 and you figure out that now what
+you should go to the left subtree so if it has to go to the left subtree you again call the same
+function with a different node value why because the left subtree is root was 30 so you call it with
+this root node 30 so I mean this is not the correct way to call I mean this is not syntactically
+current but I'm trying to just explain you the logic I mean you can replace this syntax with the
+exact functions in text that we have written above and everything will work fine like like instead
+of you know instead we have BST insert and we have just the opposite order of passing things and
+no you cannot pass value I mean you have to pass the exact dictionary right so but I mean keeping
+all those things aside let's try to you know follow the main logic of the function call and
+no it's suspension till the inner call gets completed now remember now when you when again
+this insert you know obviously insert is called on a new node with the same value this execution
+is also halted okay so the second execution which is started for the function call is also halted
+and a third execution or function call starts again and that function call is you know again
+insert the same value at the different node position at right I mean for a different you know
+subtree which is no represented here okay so again I mean it goes and checks so when you call it
+with this you know this logic is executed and it figures out now you have to go right okay so now
+you have to go right and you know when you see what is at the right of 30 I mean I have not
+represented here but it there is a none here right so right of 30 is a none so you want again
+want to call this function with a none so when you call this function again with none remember
+this execution also is halted right so this third you know call to the function is also halted
+and it again calls into goes into the fourth steps and calls the same function again on a new input
+but this time the new input is you know new node is none okay and you know this is a interesting
+point right I mean because we have already taken care of this logic inside our code in the very
+you know beginning which is the base case you remember the base case let me you know bring
+you the code the base case what we check was if our root becomes none then at that moment I
+am not calling any other you know function right I am simply returning the value okay so this chain
+of calls that we we have seen just now when we started with the root node it went down deep down
+no until this point but at this point so it hits the base case and the base case is this none case
+and it's none none we're seeing that node is now none it can actually create a small you know
+dictionary and return to you so after this return happens what where do you go I mean your control
+flows back to this call it because this was suspended this was the last suspended function call
+okay so you will go back to this last suspended function call back to step three and since you
+are waiting for this insert which happened now you can complete your execution of that no particular
+function no call and update update accordingly okay and when you're you know this function call
+again you know completes you go back to this you know function call and you resume from where you
+pause you complete the logic and then similarly you go back to 40 okay so this is how it happens
+right so back to step three you go now where you know called with this you know 30 remember
+the step three you called with this 30 right and you you suspended this function because no
+sorry you suspended that function you know temporarily because you wanted this result to be
+available right before you can proceed so now since you have those values and now you can
+proceed execution of that okay and once the execution is complete for that call again
+the previous call which was suspended in step two this call now gets resume you know with because
+I mean now it has the value which it wants to use to assign the variable on the left hand side
+right so it can use that value and you know that function call again complete and when that is
+complete it again returns some value okay which can be used by the very first function call
+that was suspended and when that function call gets this value the whole execution actually
+okay so this is how actually the recursive you know function call no we get simply maintained okay
+so function starts calling itself and the caller function gets suspended the moment it
+start calling you know it calls the call function but the call function again I mean start executing
+and depending upon the logic and the data kind of input it took it may again either return a value
+or it may call another same function again one more time so in your stack you will have now two
+function waiting for again the next execution to finish and then return value but
+termination of this kind of chain has to be guaranteed by the programmer right because if you
+don't take care of this base case then you see I mean there is a you know infinite recursion that
+may keep going down where will you stop okay so it is very important to identify what will be my
+stopping logic and that is what we encode here is a base case okay so we encode the stopping logic
+in the base case and then you know try to encode other logics no when to call the same function on
+the left subtree or right subtree is what we have encoded in the code okay so just so with this I
+mean we now know how this whole control flow works when you call a recursive function and again
+this is the same thing in a big tutorial form I mean and you can go through it again offline okay
+so please go through it you know but it is slowly to understand exactly how the control
+for this kind of recursive call okay now okay now just to you know show you that you know things
+that problem working properly so since we have already created a BST insert function now can we
+use that BST insert function to do actual insert right so for that what we say is we create
+empty tree initially which is done let's say I mean I have a very empty tree which is
+represented by a my tree and I want to insert certain element into this my tree okay so what I can
+do is I can just call my you know BST insert no one by one for each of these elements right because
+these elements have to be inserted in this order which first 10 then 50 30 70 20 and then 40
+so what the syntax here is doing is that I am calling the same function which is no this BST insert
+function okay by passing my tree and the values in the order which is given here because see
+this is the syntax no for well in insertion sequence and this is the insertion is released
+it will pick one by one all these elements and then call this BST insert
+with the existing tree which is initially you know none
+with these values and whatever it you know returns
+I use it to update my current tree okay and this is how it should work right because if you
+don't assign it to my tree then every time my tree is you know none so you have to we want to
+assign it to my tree so my tree gets updated after every instruction and we want to repeat this
+thing until this whole all of these elements are inserted so this logic should be you know
+clear to you it's not a very difficult logic and then what we are doing is that we are also
+displaying our partially constructed tree from inside this for loop and after every insertion how
+the tree looks like okay and if you run this let us see what happens so when we run this you can
+see this is how it is building so I mean this kind of a visual proof of the correctness of our
+function that when you are inserting 10 so this is what you know we wanted to pre right when we are
+inserting 10 so this is what happens initially you had none right because we start with none so
+so your root becomes now none and you left child and right child both are none so
+so instead of none we write n here capital N here but it means none both the left hand right
+right hand child said none so when you insert 50 in the second iteration okay you already had
+you know this tree right and then the 50 goes to the right child remember 10 was the root left
+notice none right node was none which is now updated to the 50 followed by this right because
+you know 50 also has to child right by default we always know just to maintain this structural
+you know invariant what we say whenever you create a new node you just create you know to child
+for that node and just keep you know assign them value now so now this is what should happen right when
+your second iteration goes and this is what's happening right because it's being printed from you
+know inside this code block when you insert 30 this is what happens right 30 goes into the left
+child of 50 remember this was the root node for 50 and the left child now becomes no 30 and again
+I mean in a similar way for 30 you're left and right and none because and this is what we follow
+to maintain the structural invariant and the right child should be none right you're not changing
+the right child of 50 okay so the whole logic is you know working properly and you can just go
+through slowly one by one to see whether you know you get exactly the kind of clear that you
+expected in the beginning okay so you know this is this is all about basically that I wanted to
+discuss today but remember that you know in any data structure you not only insert you also
+may want to you know delete something from the data structure and you may also want to
+search whether a particular element is you know presented the data structure or not and
+you know the purpose of search may be different in different cases I mean in some cases you may
+just for example in the case of BST we may want to just search whether a value appears in my
+BST or not and if the value appears somewhere just return me the the subtree where this value appears
+as the root value okay so this may be no one of the search requirement on our BST and I
+would request you to take it as a homework and implement this search function okay so you can
+think again I mean in a similar way the implemented insert function and try to come up with maybe
+a BST search function no which is recursive in nature you may also try to no think can you
+implement this kind of you know search on BST without using regression okay so take this as
+homework for you so let me you know I have already written it for you so can you implement you know
+if you follow the how BST works okay now based on that understanding of BST can you write down
+a BST search function the one version I requested you to write as a recursive function where
+if you have been given a BST by providing root of the BST and a target value that you want to
+search in the BST it should return the you know the root where or the node where this value exists
+if it exists if it doesn't exist then you can in that case no return none so this is a function
+signature that I have no provided you and can you do the same exercise by writing not as a recursive
+function but as a maybe iterative function I mean you can use even loops to do this okay so think
+about this problem and try to solve this properly I mean these two examples at least try to
+complete the implementation for these two functions signature is what I'm asking you to okay so
+so with this I would like to conclude not today's lecture so please spend some time working
+through this example and especially solving this assignment problem and I will meet you in the next
+video. Thank you.

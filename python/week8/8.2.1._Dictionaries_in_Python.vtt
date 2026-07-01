@@ -1,0 +1,1481 @@
+WEBVTT
+
+00:00.000 --> 00:14.960
+Hello and welcome back to Python Core and Applied Concept for Reliable Data Sence Workflow.
+
+00:14.960 --> 00:23.240
+So in the last video we concluded our discussion of functions and today we will now begin
+
+00:23.240 --> 00:28.080
+the discussion of an important data structure in Python which is called Dixnary.
+
+00:28.640 --> 00:32.400
+Okay, so let me begin the discussion of Dixnary.
+
+00:32.400 --> 00:40.480
+We just like list Dixnary is no other data structure which is very popular in Python
+
+00:40.480 --> 00:46.160
+and the closest that you can relate it to is something called structure in C.
+
+00:46.160 --> 00:52.480
+Although I mean it's not good to relate data structure into programming languages
+
+00:52.480 --> 00:57.280
+and you can never have no one to one kind of correspondence between data structure
+
+00:57.280 --> 01:01.680
+depending on different programming language. But if you're coming from a C background
+
+01:01.680 --> 01:09.200
+you may find it you know easy to relate it to structures but no let me you know discuss this
+
+01:09.200 --> 01:14.160
+from very you know scratch I mean even if you don't know about the structure don't worry.
+
+01:14.160 --> 01:21.280
+So Dixnary in Python is a data structure that stores data as key value pair.
+
+01:21.440 --> 01:29.280
+Okay now in the list if you remember we could store multiple data entries in the single list
+
+01:29.280 --> 01:36.000
+right and the way to access those entries in the list was using indices right one two three
+
+01:36.000 --> 01:44.800
+zero one two three. So by default I can access any entry in the list using its corresponding index
+
+01:44.880 --> 01:52.160
+so that was a you know a way to access elements in a list but Dixnary provides you a more
+
+01:52.960 --> 02:00.480
+explicit you know sometimes very you know helpful way of accessing element while other key
+
+02:00.480 --> 02:06.000
+okay so keys are like you know names for those values that you can store in a Dixnary okay
+
+02:06.000 --> 02:11.280
+so it is all the advantages of you know list and on top of now you know unlike you know
+
+02:11.440 --> 02:17.760
+numerical indices Dixnary use meaningful keys to organize and access data so this is a core
+
+02:17.760 --> 02:24.240
+of Dixnary so you have both key and value pair so you can give meaningful name in in in
+
+02:24.240 --> 02:30.400
+in in form of keys and for those meaningful names you can actually assign values which
+
+02:30.400 --> 02:35.040
+which are called actual values okay so that's why we call key value pair so there may be multiple
+
+02:35.040 --> 02:41.760
+key value pair in the you know same Dixnary just like you know list you can have multiple values
+
+02:41.760 --> 02:49.120
+you know kept at different indices here you may have multiple values you know kept using or
+
+02:49.120 --> 02:54.880
+you know kept using this key values okay so if you want to access later you can use this key value
+
+02:54.880 --> 03:03.200
+so let's talk about syntax and semantics of Dixnary by creating through very you know elementary
+
+03:04.160 --> 03:10.160
+so to begin with now if you want to let's say create a empty you know so let's learn about
+
+03:10.160 --> 03:16.720
+the syntax by using these small examples okay and semantics as well so if you want to let's say
+
+03:16.720 --> 03:25.280
+create a empty list in Python so let me call this list empty you know sorry the Dixnary
+
+03:25.520 --> 03:34.640
+if I want to you know create an empty Dixnary then no this is the syntax that I normally prefer okay
+
+03:34.640 --> 03:40.320
+so you can you know simply start a curly brace and in it and this represents a you know Dixnary
+
+03:40.320 --> 03:45.840
+I mean if you write something like this it means that you have created an empty Dixnary and the
+
+03:45.840 --> 03:50.880
+name that you have assigned is empty Dix you could have chosen any other name here instead of
+
+03:50.880 --> 03:58.400
+no empty Dix but I'm just keeping this name not as an informative you know name so that we can
+
+03:58.960 --> 04:07.680
+know what we can alternatively also you know create this you know empty list by calling
+
+04:08.880 --> 04:14.560
+for this you know Dixnary constructor so no Python has a Dixnary constructor which let me
+
+04:15.520 --> 04:25.920
+create another empty Dixnary Dixnary and let's call it something different no this is an
+
+04:25.920 --> 04:34.720
+alternative way of creating a predixnary and you can call this method okay so the semantics of
+
+04:34.720 --> 04:43.200
+both these syntax are same either you write this way or you write no this way in both the cases
+
+04:43.200 --> 04:49.600
+you are actually creating a no empty Dixnary okay so this this you know constructor dict
+
+04:51.520 --> 04:56.000
+actually creates empty Dixnary you know if you pass no values here I mean it will create
+
+04:57.040 --> 05:03.200
+some Dixnary with initial values okay so this is the no way to create you know empty Dixnary
+
+05:03.200 --> 05:08.240
+in Python for example what if I let's say print
+
+05:12.880 --> 05:13.840
+let me print both
+
+05:16.480 --> 05:22.160
+empty Dix here what shall I expect when I print this
+
+05:23.760 --> 05:28.480
+what you see I expect empty Dixnary because this is what was here
+
+05:28.560 --> 05:34.400
+from what if in the other case if I print let me print the
+
+05:37.200 --> 05:43.440
+this alternative way of creating empty Dixnary if I have empty Dixnary alternative
+
+05:43.440 --> 05:49.520
+than if I again print it you see again you have the same empty list okay so all the I mean
+
+05:49.520 --> 05:55.920
+these two look different from the syntax point of view the semantics is same okay so we can
+
+05:56.000 --> 06:02.320
+get the same effect of creating empty list what if you want to create a list with some initial value
+
+06:02.320 --> 06:10.240
+let's so let me you know create you know sorry create a Dixnary with which contains no information
+
+06:10.240 --> 06:20.800
+about students okay so let's call it student Dixnary and then so the way to create
+
+06:21.280 --> 06:27.920
+again so if I wanted to empty Dixnary this this is this was not enough but if I want some values
+
+06:27.920 --> 06:35.120
+to be stored in this Dixnary from the beginning I can also initialize them the first thing so
+
+06:35.120 --> 06:43.840
+you're normally when we know right key we use strings as key values okay so that's most
+
+06:43.840 --> 06:50.160
+no convenient and no natural way to use no key values so here what I say is I
+
+06:50.240 --> 06:56.320
+not write down my first key is the name of this student okay this indicates that now I'm talking
+
+06:56.320 --> 07:00.480
+about the name of this student and let's say I have one student in my class
+
+07:03.360 --> 07:08.480
+heartic okay so heartics it also be my string because this is the name
+
+07:10.480 --> 07:17.280
+and if I talk about the age so let's know put some again I mean the age can be here the key
+
+07:17.360 --> 07:22.960
+can be the strings so key can be in a more general thing key can be any you know immutable
+
+07:24.240 --> 07:30.880
+no data types but here I mean we are using simple strings to refer to some meaningful you know
+
+07:30.880 --> 07:37.440
+values which we want to hit by these keys okay so the age actually represents the age and let's
+
+07:38.000 --> 07:47.040
+call the age is not 20 and then let me put some also great corresponding to this is student
+
+07:48.800 --> 07:57.840
+so the way to do this is we create another key which is called great and we assign some value
+
+07:57.840 --> 08:07.200
+corresponding to this key let's assign the grade A and finally let me have the courses that
+
+08:07.440 --> 08:15.760
+this student has taken already okay courses maybe another key that this student has taken and then
+
+08:17.120 --> 08:21.120
+in the courses I may have no multiple courses so no more convenient ways I mean I create a
+
+08:21.120 --> 08:28.320
+list which stores all the courses that he has let's take it so in this case let me say that he
+
+08:28.320 --> 08:39.920
+is taking math course and he has also taken some science courses okay so this is how we can
+
+08:39.920 --> 08:48.320
+actually create a no list which is not empty okay so this is student list okay which has
+
+08:48.320 --> 08:55.360
+interest of one of the student I mean no okay so let me know what happens if I print this
+
+08:56.000 --> 09:01.200
+okay to see whether this has been created properly or not we can just print this
+
+09:05.520 --> 09:10.960
+and see what happens so when I print this dictionary that we created just now you can see
+
+09:11.840 --> 09:19.200
+all these you know key value pair appear right so the name is hard the age is 20 great this one
+
+09:19.200 --> 09:23.600
+and courses that he has taken is this one okay so remember in this case no you have
+
+09:24.400 --> 09:30.320
+in the courses here you have a mutable data types right this is the list itself so the value
+
+09:30.320 --> 09:37.200
+is mutable so later on if you want you can actually add some more courses to this list okay so this
+
+09:37.200 --> 09:45.440
+is how we can initialize our dictionary with some initial values sheet of no always initializing
+
+09:46.400 --> 09:54.240
+as a empty again I mean using our dict constructed you could do the same thing I mean let's say
+
+09:54.240 --> 10:02.240
+I mean instead of this if I want to now define the teacher one of the teacher of the class then
+
+10:04.080 --> 10:10.320
+using the alternate method so I what I call is I call this no dict constructed and then
+
+10:10.400 --> 10:18.720
+is it up you know just empty of parenthesis what I put it is all the value that you want to
+
+10:18.720 --> 10:25.840
+initialize this dictionary with so you have no key value pair okay so the way to assign this key
+
+10:25.840 --> 10:32.960
+value pair here is you name you know give the name of the key and then assign the value okay so
+
+10:32.960 --> 10:38.320
+here I mean what you can do is you can give it you know the name of the teacher is and is
+
+10:38.320 --> 10:44.960
+it up no code and we use this kind of you know we assign our name to be let's say
+
+10:47.280 --> 10:57.120
+be shake and subject that I teach maybe maths okay
+
+10:57.760 --> 11:07.840
+and then my years of experience one can know from this data structure
+
+11:11.520 --> 11:19.360
+it's five and that's it because this is again an alternate way of creating it so I by default follow
+
+11:19.360 --> 11:24.080
+the first one I mean if I want to initialize but this is again another way by which you can
+
+11:24.720 --> 11:32.960
+create a dictionary okay and now what if I print it so can we just check the semantics also
+
+11:32.960 --> 11:43.920
+or by printing it whether it has created a dictionary that we intended to create it okay so
+
+11:48.000 --> 11:52.400
+and you see you you get the no same no similar kind of dictionary right with key value pair
+
+11:53.040 --> 11:59.440
+no although I mean not one thing I mean I have not given this key as a string right I have just
+
+12:00.160 --> 12:06.080
+no written the string without putting it them in code and by default what it takes is this
+
+12:06.080 --> 12:11.760
+string them as a string okay so this is the you know internal working of Python Python
+
+12:11.760 --> 12:18.640
+texture of that so you don't need to actually put them in you know this partition so you can
+
+12:18.640 --> 12:25.680
+simply write the name of the key and then assign the values okay so this is difference in syntax
+
+12:25.680 --> 12:32.000
+but as you see the semantics is more or less same I mean you get the same thing okay so good so
+
+12:32.000 --> 12:43.920
+now we know how to create you know different you know simple dictionaries inside Python programming
+
+12:43.920 --> 12:50.880
+language now as I mentioned I mean the keys can be various you know different immutable data types
+
+12:50.880 --> 12:56.960
+also right so so it may not make sense right now but in some circumstances this might come
+
+12:56.960 --> 13:04.080
+as handy okay so let me know first know or I don't what do I want to say so in the place of key
+
+13:04.080 --> 13:10.880
+you you need not always write down no strings like this yes also string like name age or this
+
+13:10.880 --> 13:17.360
+kind of thing so you can also use any immutable data type that you can not come up with so that's
+
+13:17.360 --> 13:25.280
+possible for example you know if I want to create a simple example let me call it mixed let's say
+
+13:25.280 --> 13:36.720
+you know call it mixed keys example okay and in this mixed key what I do is I create an open
+
+13:36.880 --> 13:44.160
+dictionary you know very first thing I keep as no simple string key let's say you know
+
+13:44.160 --> 13:53.040
+follow string key okay this is normal not type that we have been discussing so far here you keep
+
+13:53.200 --> 14:02.240
+in any any value let's call it a value one we keep here
+
+14:05.360 --> 14:12.960
+the second when when you're initializing this kind of dictionary for the second key I can
+
+14:12.960 --> 14:21.040
+I know you simply one two three so this is also no perfectly valid okay so we need not always
+
+14:21.120 --> 14:28.240
+give no string to the left hand side of this colon so in key value I can simply write it down this
+
+14:28.240 --> 14:36.720
+no one two three which is no integer and since integer are also you know immutable data types
+
+14:36.720 --> 14:42.880
+you can actually write it there and you can write anything here let's say you know call value
+
+14:42.960 --> 14:50.320
+that we write here this no call value do okay similarly what are the other you know I'm not a
+
+14:50.320 --> 14:57.520
+type that you can think of which are no immutable so what about tuples we can also write don't
+
+14:57.520 --> 15:03.680
+tuple on the left hand side of this colon okay so I mean this may look no weird right now
+
+15:04.320 --> 15:10.320
+you may not find it no useful but no in some cases you may find it to be useful for example let's
+
+15:10.320 --> 15:17.280
+say if I want to know I'm working with some geometry right and I want to store the coordinates like
+
+15:17.280 --> 15:25.520
+X and Y coordinate of a point you know in in the plane or no in in euclidean space in that case you
+
+15:25.520 --> 15:30.960
+can actually write this in X Y G or X Y kind of thing on the left hand side and on the right hand
+
+15:30.960 --> 15:35.760
+side you can actually write on the exact value of those no X Y coordinate instead of not creating
+
+15:35.760 --> 15:45.840
+these X no Y and G separate keys right so so that may be useful in some cases so but no I leave
+
+15:45.840 --> 15:52.160
+it to you to think about what can be you know good use cases for this kind of you know more
+
+15:53.360 --> 15:58.480
+general immutable types which can appear on as key on the left hand side okay for example here
+
+15:58.480 --> 16:04.320
+I mean for simplicity to show you that this syntax is perfectly valid I you know created some
+
+16:04.320 --> 16:10.080
+no arbitrary key which I called you know 1 comma 2 which is a tuple right this is a tuple
+
+16:10.080 --> 16:20.320
+and I assign some value to it and let's say what are the some other I mean can we also write down
+
+16:20.320 --> 16:27.280
+this you know Boolean kind of immutable data types towards as a key this is also perfectly valid
+
+16:27.360 --> 16:36.960
+okay so if you write down now I have some value let's say for value 4 okay so so this is no
+
+16:36.960 --> 16:42.240
+perfectly allowed I mean if I now want to compile this what will happen let us try to
+
+16:43.840 --> 16:49.600
+compile this and see so there is no error right so by the accepted all of this that we have
+
+16:49.760 --> 16:56.640
+written just now so value can also be any data type you know just like you know
+
+16:57.920 --> 17:03.360
+just as a way we have created keys as different data types value can also be you know different
+
+17:03.360 --> 17:10.320
+data type and here there is no restriction that the values that you keep in the dictionary has to
+
+17:10.320 --> 17:16.560
+be immutable they can be even you know mutable okay for example let me let me you know now creator
+
+17:16.560 --> 17:23.520
+another dictionary which has so instead of mixed key we have now mixed type of let's say values
+
+17:25.360 --> 17:30.560
+in this dictionary okay so we again want to create a dictionary let me create a dictionary
+
+17:30.560 --> 17:35.760
+but there are multiple or key value pair the very first key value pair is let's say the name itself
+
+17:35.840 --> 17:44.000
+okay so name that the name is you know some name maybe
+
+17:48.160 --> 17:55.840
+and what about the again we can repeat the same thing right from here you take all these things
+
+17:58.480 --> 18:03.920
+great and this the courses I mean we have already seen no one such thing right where
+
+18:04.640 --> 18:22.320
+the courses was let me copy this right so in this case you can see you know in the
+
+18:23.200 --> 18:28.640
+value field you have string here here you have no integer here again you have a string
+
+18:28.720 --> 18:37.360
+but here you have a you know mutable that type right and this is list you cannot write this
+
+18:37.360 --> 18:43.760
+on the left hand side of a dictionary I mean on the left hand side of the colon as a key okay so
+
+18:43.760 --> 18:49.920
+you cannot create a key which is a list okay so no this is the difference that I wanted to
+
+18:49.920 --> 18:54.080
+to mention here you can also have no dictionary right because dictionary is also
+
+18:54.160 --> 19:00.160
+mutable that type you can simply write down a dictionary which let's say I mean in this case
+
+19:00.160 --> 19:06.720
+if you want to give some extra information about this student you can maybe say now these are
+
+19:06.720 --> 19:14.400
+some extra information that I want to pass okay info and what is the info key what what does it
+
+19:14.400 --> 19:20.320
+contain so it contains a dictionary where you may want to talk about the city okay you may want
+
+19:20.320 --> 19:32.000
+to talk about the city right let's say you know call it either way and then you can now talk
+
+19:32.000 --> 19:41.680
+about the zip code right I mean you can create a meaningful dictionary to you know store useful
+
+19:41.680 --> 19:51.280
+information something like this okay so this is no perfectly no valid thing to do in
+
+19:52.800 --> 19:59.520
+python okay so okay so so so this is what I wanted to mention that now the difference that you
+
+19:59.520 --> 20:06.080
+should note here is this kind of data types the list data types and the dictionary data type which
+
+20:07.040 --> 20:13.040
+come on the right hand side of colon when you know define a dictionary but they're not allowed
+
+20:13.040 --> 20:23.360
+on the left hand side okay so what if I know so that is some error so maybe I forward some comma
+
+20:23.440 --> 20:36.560
+somewhere let me just after this we have to separate all this key value pair with comma so hopefully
+
+20:36.560 --> 20:46.560
+if I compile this now this is no word okay so now we know how to create no no dictionary right
+
+20:46.640 --> 20:53.280
+simple dictionary you know into dictionary as well as how to do what are different types of
+
+20:53.280 --> 20:59.600
+key that you can create okay so in the case you can have actually these tuples okay and there's
+
+20:59.600 --> 21:06.000
+no boolean values which are immutable but you cannot have no list or dictionary in the key value
+
+21:06.000 --> 21:12.080
+but least and dictionary can appear as a value inside the dictionary okay this is all we
+
+21:12.080 --> 21:17.360
+wanted to know now the next question is that no one's you know define some data structure you
+
+21:17.360 --> 21:23.520
+also want to access the element of the data station like for for example in the dictionary if I
+
+21:23.520 --> 21:30.160
+want to access some value of the dictionary corresponding to a key how to know go about doing
+
+21:30.160 --> 21:37.920
+that okay so the simple way is to use this you know bracket notation okay this is grand bracket
+
+21:38.000 --> 21:43.520
+this and so again I mean let me you know bring a dictionary quickly for you
+
+21:46.960 --> 21:52.240
+let me so let's assume that we have you know this dictionary
+
+21:53.920 --> 21:58.560
+now again a student with name age you know this major minor information and then
+
+21:58.560 --> 22:05.760
+grade point and I want to actually as the name of the student okay in this case you know it's
+
+22:05.760 --> 22:10.960
+Bob right so how to access it now access means I want to access it and store it somewhere let's say
+
+22:11.520 --> 22:15.760
+okay so what we are going to do is we want to see how to
+
+22:18.960 --> 22:30.080
+access values using key okay so the first thing is I want to know maybe
+
+22:30.560 --> 22:42.480
+we have the student name and store it in a student name no variable so how to do that so this is
+
+22:42.480 --> 22:47.920
+no exact syntax how we can do it so we write the dictionary name which is no student and then
+
+22:47.920 --> 22:56.720
+we pass you know inside this bracket this key value for which we want to know on the exact value okay
+
+22:56.800 --> 23:02.960
+so the name of the key you have to pass inside this bracket so first you know name the dictionary
+
+23:02.960 --> 23:08.480
+and then in the square bracket you have to pass the key for which you want to know the value
+
+23:08.480 --> 23:13.680
+so for example in this case I want to know the name of the student so student followed by name
+
+23:13.680 --> 23:20.960
+and that will return us Bob and the Bob will be stored in student name okay so what about
+
+23:20.960 --> 23:26.880
+now the age so if you want to know the age of the student so in this case now it's 22 so again
+
+23:29.280 --> 23:31.520
+maybe no copy this thing I'm
+
+23:33.920 --> 23:41.440
+bested here and then change the student name to maybe student age so what shall I write
+
+23:42.640 --> 23:50.480
+here instead of the name key I want to now access the age key and age key has this
+
+23:50.480 --> 23:56.480
+22 so now if our understanding of the semantics is correct then if I print this student name and
+
+23:56.480 --> 24:04.240
+student age what shall I get here is the name Bob and the age 22 okay this is how you know we
+
+24:04.240 --> 24:14.480
+expect this to know so let me you know print it so what if I print now let's say
+
+24:14.560 --> 24:28.240
+in the very first case no what I'm trying to do is I'm trying to print the name okay
+
+24:28.960 --> 24:35.200
+and where did I store the name in the student name
+
+24:36.080 --> 24:45.040
+no very good and if my way of accessing the values in the dictionary is correct then this should
+
+24:45.040 --> 24:51.760
+return me the no correct name that I have accessed so what about you know age we can have no
+
+24:51.760 --> 25:04.160
+same you can print it let's print the same thing with this being now age instead of name and
+
+25:05.680 --> 25:12.720
+a variable that where we store this age is this variable and if you print it so what do we
+
+25:12.720 --> 25:22.080
+first shall we expect do you see so this is the semantics that we expected and this is correct
+
+25:22.880 --> 25:29.440
+so our method of accessing no different now values corresponding to key the dictionary is correct
+
+25:30.400 --> 25:37.120
+now what will happen I mean let's say I mean there should we know I mean this square bracket
+
+25:37.120 --> 25:43.600
+helps us and I access different no value for corresponding to different keys in the dictionary
+
+25:44.320 --> 25:52.800
+but what if I pass some key which is not there inside the dictionary is for example in this case
+
+25:52.800 --> 25:58.640
+let's say I've not stored the full number of this student here but what if I you know want to
+
+25:58.640 --> 26:06.080
+access the full number the student doing the same in a method so shall we try it so what I'm
+
+26:06.080 --> 26:16.240
+saying is let me not try to access something which is not present in the what I'm trying to do
+
+26:16.320 --> 26:17.840
+here is now I'm accessing
+
+26:25.360 --> 26:35.200
+full number which is not already there in the dictionary so let let's no try to compile this and
+
+26:35.200 --> 26:43.040
+see what happens I mean do we get something and inform so when we compile it I mean
+
+26:43.440 --> 26:50.640
+the no Python actually tells us that this is not there right so the key there there is a key error
+
+26:50.640 --> 26:56.640
+that happened there why because no full number is not there so so it will throw you this no error
+
+26:56.640 --> 27:04.080
+measures okay so this will not okay so there is an error right when you compile and try to run
+
+27:04.080 --> 27:10.240
+this code so if you have not defined something and if you want to access now this way that will be a
+
+27:10.240 --> 27:18.640
+problem okay so you know this is what we wanted to see here and now assuming let's say now we have
+
+27:18.640 --> 27:26.960
+not we are not accessing something which we have not defined now what if we want to maybe you know
+
+27:26.960 --> 27:34.240
+access so now just as we discuss in the case of list we have to be a little careful with
+
+27:34.240 --> 27:40.480
+you know multiple values in the dictionary also now if you if your dictionary has you know some
+
+27:40.480 --> 27:47.440
+of the values or values corresponding to some keys are multiple then you know while accessing you
+
+27:47.440 --> 27:53.520
+have to be a little careful I mean whether you want to actually access it just for as a copy or you
+
+27:53.520 --> 28:00.240
+want to you know access it and change the value so since multiple you know data types can be
+
+28:01.200 --> 28:06.800
+changed later on so you have to be very careful about your intention of accessing those
+
+28:07.600 --> 28:13.120
+no key so do you want to change those key or you just want to access it read it and then use it in
+
+28:13.120 --> 28:18.160
+some other computation and don't want to change the actual dictionary okay so this would be very
+
+28:18.160 --> 28:27.920
+clear in your mind so so your quick example let me again you know bring up so what we are
+
+28:27.920 --> 28:32.800
+trying to emphasize here is we want to talk about working with mutable values in the dictionary okay
+
+28:32.800 --> 28:36.880
+so in this case let me know bring again the same similar
+
+28:44.160 --> 28:55.280
+okay so so let's say we have a student on dictionary where there's a second key value pair has
+
+28:55.280 --> 29:01.600
+value as a mutable data type right here we have a list now you can actually access this list
+
+29:01.600 --> 29:08.000
+using the way we say right so this is about the age right so this list corresponding the age
+
+29:08.000 --> 29:21.200
+information okay so what if I want to know access this age in student age so let's say call it
+
+29:21.920 --> 29:31.440
+student age and then how to access this list so we can just name the key value and pass it here
+
+29:32.400 --> 29:38.720
+and the effect will be that we so this no student age here refers to another mutable list that is
+
+29:38.720 --> 29:49.920
+there inside this don't explain what will happen let's say if I now try to modify this student
+
+29:50.240 --> 29:56.800
+variable and since the student age variable has a list I can actually access the elements of
+
+29:56.800 --> 30:03.920
+list right using this variable and let's say I want to change the value at the position one
+
+30:05.120 --> 30:13.040
+and let's just want to set it zero now since no student age has a list inside it certainly I'm in
+
+30:13.120 --> 30:20.080
+this variable or this list you know value at the index one will change so what was this student
+
+30:20.080 --> 30:26.480
+is initially having 22 24 and 26 right so it was position one so position one was this position
+
+30:26.480 --> 30:35.040
+because no list start with zero so if I set that position one value to zero certainly I mean I
+
+30:35.040 --> 30:42.400
+can expect that in the student age variable that I have created right now this should change but
+
+30:42.400 --> 30:49.600
+will it change in the original student dictionary so this is what we are trying to discuss right now
+
+30:51.360 --> 30:56.800
+it turns out that this will be a change here as well you know in the original dictionary
+
+30:56.800 --> 31:02.240
+why because this was no mutable data type and when you assign this actually you know you assign
+
+31:03.440 --> 31:08.800
+this variable reference to the same list that is there in the dictionary data structure
+
+31:09.360 --> 31:14.160
+okay it's not that I mean you have passed a complete copy of this list to this student age
+
+31:14.160 --> 31:20.960
+so this assignment simply you know gives a new name a student age to the same you know object
+
+31:20.960 --> 31:28.080
+that is there in memory which this age is also referring to okay this is very important to keep
+
+31:28.080 --> 31:35.840
+in mind and you know the way to see here is that if you now you know print this you will see
+
+31:36.000 --> 31:44.560
+what will happen to the student that structure that we created so let me print
+
+31:55.120 --> 32:03.360
+what student and then see what happens to do you see the change here okay so this is what we
+
+32:03.360 --> 32:09.280
+wanted to highlight with this example that you know so now what we want to discuss is if there is
+
+32:09.280 --> 32:19.280
+a error let's say using the normal method of access which tries to access some key and if the
+
+32:19.280 --> 32:23.680
+key does not exist then in the previous case we saw that there were the error measures right like
+
+32:23.680 --> 32:31.280
+this so in this case if you remember I mean we tried to access this for number and for number
+
+32:31.440 --> 32:38.480
+was not there already in the dictionary data structure so it was an error so a safe way to
+
+32:38.480 --> 32:45.440
+no access element without getting this you know error message is to use the get method in Python
+
+32:45.440 --> 32:51.920
+corresponding to every dictionary okay so for instance I mean what we are saying here is that
+
+32:52.000 --> 32:59.600
+this kind of get method that we are going to discuss right now is a safe way of
+
+33:01.280 --> 33:06.640
+not returning values of dictionary keys if the not dictionary key does not exist right
+
+33:06.640 --> 33:11.680
+in any that case it will not return us a non-value okay so this get method
+
+33:12.640 --> 33:25.120
+returns non if key does not exist that's not exist
+
+33:28.000 --> 33:35.520
+does not exist okay so can we have a quick check of this so let me know bring the exact no code
+
+33:35.600 --> 33:48.800
+for this and then see you so the way to have a safe access is this one so every say phone
+
+33:48.800 --> 33:55.600
+now is equal to student.get and then phone number we pass as a key value even if the phone number
+
+33:55.600 --> 34:01.040
+is not there something will be written and that value should be none in this case is what
+
+34:01.040 --> 34:07.920
+now we are claiming so if you print this what what do we expect here so can we just run this
+
+34:07.920 --> 34:17.520
+be support and see maybe get a none right so the get with the fall value also can be used okay so
+
+34:17.520 --> 34:23.440
+if you don't want none value to be now thrown then alternative is you provide to this
+
+34:23.920 --> 34:32.560
+not get method the default value that you want to you know get stored into the variable which
+
+34:32.560 --> 34:40.640
+is trying to access this key value okay so again I mean to be more precise if I don't want this
+
+34:40.640 --> 34:46.080
+none value to be now passed and then say if I want to pass some other value in this case
+
+34:46.800 --> 34:54.320
+let me bring the code here so if I so this is an alternate way of using the get method so you pass
+
+34:54.320 --> 34:59.520
+on the key value if the value is not available you may want to you know return some meaningful
+
+34:59.520 --> 35:06.240
+information like you know not provided instead of you know none okay so so you can pass
+
+35:06.240 --> 35:10.560
+any other information you want here which you think is you know meaningful and then if you
+
+35:10.960 --> 35:17.040
+again print in this case you will see what's the value pass the value pass this you know not provided
+
+35:18.720 --> 35:28.960
+so these are some no ways of accessing the keys in a safe in python if the keys value are not
+
+35:29.040 --> 35:43.280
+they're already okay now that we have seen how to create dictionary and access
+
+35:43.920 --> 35:54.400
+its entries we want to know about how to update and modify dictionary so how to for example add
+
+35:54.720 --> 36:01.120
+new key value pair to any dictionary that is already existing okay so again let me now bring
+
+36:01.120 --> 36:07.200
+quickly dictionary first dictionary here let's call you know this dictionary to be
+
+36:09.840 --> 36:15.760
+student dictionary which has these three fields and what we want to do is we want to add now
+
+36:15.760 --> 36:21.920
+new key value pair okay for example for this you know student I may want to add this
+
+36:21.920 --> 36:28.640
+minor major information and the GPA so how to do that so the way to do this is
+
+36:30.160 --> 36:37.440
+have just kind of a statement okay so the important thing to note here is so this is the how we
+
+36:37.440 --> 36:44.720
+remember you we accessed also the value corresponding to key right so adding the dictionary name followed
+
+36:44.960 --> 36:52.320
+by the no key where you want to assign the value you use this no square bracket to access
+
+36:52.320 --> 36:58.000
+now that thing and then you can use the simple assignment operation that we have studied and
+
+36:58.000 --> 37:06.000
+here you can know put this as well as you so remember that this is not there okay so the major key
+
+37:06.000 --> 37:11.760
+is not there but this will not give you an error why because you are not accessing this element
+
+37:11.840 --> 37:19.760
+what it the semantics the internal semantics of Python say that if this key is not let's say
+
+37:19.760 --> 37:26.480
+available already then you create this key and then add this value okay and that's why I mean
+
+37:26.480 --> 37:31.440
+this will not throw you an error message unlike the previous case where no when we use the square
+
+37:31.440 --> 37:37.360
+bracket to access some key which was not already there you got the error message okay in both
+
+37:37.440 --> 37:42.720
+this case as you will not get the error message and if you want to know print now let's say
+
+37:43.440 --> 37:45.200
+your student placed
+
+37:50.320 --> 37:56.800
+okay and this point what will we get now you see we started with it all in name and age right
+
+37:57.440 --> 38:03.600
+but now it also has these other key values that we added that run here okay this is how you
+
+38:03.600 --> 38:10.640
+can not add things you can also modify existing thing in a plane where I mean and you can guess maybe
+
+38:10.640 --> 38:16.800
+how how to do that for the same let's say my student that we are talking about we can update
+
+38:16.800 --> 38:23.280
+the existing value by now using something as similar that we have done with list also
+
+38:24.480 --> 38:30.240
+okay so what about if I want to change the age to 21 now nine set of 20 and then
+
+38:31.120 --> 38:37.520
+no GPA to 3.8 so I can simply I know use this kind of syntax and assign values and it will be
+
+38:37.520 --> 38:46.320
+changed okay so just to see whether what we did make sense and is accepted by Python we can print
+
+38:46.320 --> 38:54.160
+here and then see for the result you see I mean the age has been now updated to 21 and the
+
+38:54.240 --> 39:01.840
+GPA has been updated to 3.8 and this is the simple syntax to do this okay now instead of you know
+
+39:01.840 --> 39:07.920
+doing know these update 1 by 1 what you can do is you can now also have multiple update okay
+
+39:09.600 --> 39:17.280
+no update no by that so instead of you know doing all these update 1 by 1 what we can say is
+
+39:17.280 --> 39:23.680
+we can call this update method and do it in one go okay so we can update multiple values
+
+39:23.840 --> 39:31.440
+at once so for example what just not to be concrete no let's take another example and so you so
+
+39:31.440 --> 39:43.200
+what I'm saying is we can use some syntax like this where I am just saying dictionary.update
+
+39:43.200 --> 39:49.120
+which is no what is the dictionary in them student and then update and you know in this no parenthesis
+
+39:49.120 --> 39:55.040
+inside this parenthesis you again open this dictionary you know curly notation and then say that
+
+39:55.040 --> 40:01.440
+age I want to update to 22 I also want to you know maybe add you know in the update you don't only
+
+40:01.440 --> 40:06.960
+want to maybe modify things no because no for modifying we know we may also want to add some new
+
+40:07.520 --> 40:12.240
+no key value pairs so that also you can simply say here in this way and the graduation
+
+40:12.240 --> 40:17.680
+unexpected graduation here is this way so what it will do is it will you know update the existing
+
+40:18.160 --> 40:23.840
+with the current value and if the keys are not already there then it will create this new key
+
+40:23.840 --> 40:29.200
+and you know update your dictionary accordingly okay so this is the you know syntax so remember
+
+40:29.200 --> 40:38.880
+to call this update method on this dictionary student and this is how not to know the exact
+
+40:38.960 --> 40:42.960
+semantics I mean we can just print and see what happened to our
+
+40:44.960 --> 40:49.760
+student if you know like I said remember we we mentioned what is the major but we did not
+
+40:49.760 --> 40:55.760
+mention what is the minor you know there's a graduation here and if I do this update now can I
+
+40:55.760 --> 41:04.080
+see those reflected in the original dictionary so let me run it and now you see you you have all
+
+41:04.080 --> 41:09.280
+those information right you you have stood as minor as well as the graduation year as additional
+
+41:09.280 --> 41:20.800
+field so we can also you know do update on nested dictionary but there you have to be a little
+
+41:20.800 --> 41:29.360
+careful you know some and you may you know encounter some not very hard to identify you know bugs
+
+41:29.600 --> 41:36.560
+if you are not careful so we can have you know dictionaries inside dictionaries also okay and in
+
+41:36.560 --> 41:46.800
+that case if you want to let's say modify the you know inner dictionary then you have to be a
+
+41:46.800 --> 41:53.120
+little careful you cannot do with no simply by no the way we are doing here for example again to
+
+41:53.120 --> 42:00.400
+make it more concrete let me know bring a dictionary which has a dictionary inside it
+
+42:01.200 --> 42:07.600
+so in this case our dictionary is again a student dictionary but not previous one where we have name
+
+42:07.600 --> 42:14.880
+as at least but then the grades in the grade no key we the value itself is a dictionary okay so
+
+42:14.880 --> 42:22.880
+this is why we call it a nested dictionary okay so dictionary has another outer dictionary has a
+
+42:22.880 --> 42:29.680
+key whose value itself is a dictionary remember this is a dictionary so in the grade I am willing to
+
+42:29.680 --> 42:34.960
+let's say or I want to store units for different subject that he has taken like maths and science
+
+42:34.960 --> 42:40.000
+and these are the values other you know grades that he obtained in this no subject so this is let's
+
+42:40.000 --> 42:47.200
+say our current dictionary which is a nested dictionary and if I want to now upgrade the grade let's
+
+42:47.200 --> 42:55.760
+say if I want to know upgrade the grade and maybe you know include one more no subject maybe
+
+42:55.760 --> 43:01.840
+right I mean he has taken let's say English now and you want to add this to the previous one okay so
+
+43:01.920 --> 43:13.760
+what if we call the update method that we use just now let me ask you what will happen if I
+
+43:13.760 --> 43:19.840
+do something like this okay so what I'm saying is you know in the grades no go to the student
+
+43:19.840 --> 43:27.840
+or student dictionary and update and in the grade field I want to say that I add this one
+
+43:27.840 --> 43:33.120
+so what will be the effect of this one I mean more do you guess I mean will this
+
+43:34.000 --> 43:39.680
+English be added here in this existing one or something else will happen
+
+43:44.880 --> 43:51.120
+okay so can we print and see I mean what happens if I do something like this if I open now
+
+43:51.600 --> 44:02.000
+student what is your guess what will happen you see in the grade I mean we only have now English
+
+44:02.000 --> 44:10.560
+grade right because this is how we say that you update the student dictionary so you have
+
+44:10.560 --> 44:18.160
+called this update on the student dictionary and then said that update the grades as this one so
+
+44:18.160 --> 44:25.040
+what it does it assigns this dictionary as the grade and it loses the initial to values that you
+
+44:25.040 --> 44:31.040
+had in the beginning okay so if your intention is just to add this one thing then you don't call
+
+44:31.920 --> 44:40.400
+the update on the student dictionary okay so you have to call this update method somewhere else
+
+44:40.400 --> 44:46.160
+right and what is the correct no place where you should try to you know add this so
+
+44:47.120 --> 44:52.720
+so in this case since we lost it so let me again maybe you know create the same
+
+44:54.320 --> 44:59.280
+dictionary here just repeating it because we lost try it when we updated we lost this math and
+
+44:59.280 --> 45:05.760
+science so now we again have let's say math and science and now we want to upgrade this dictionary
+
+45:05.760 --> 45:12.560
+and not the outer dictionary so now the correct syntax to do this should be to first access that
+
+45:12.800 --> 45:17.760
+key and then call update method on that okay so please think about it
+
+45:18.960 --> 45:25.840
+completely carefully and try to convince yourself that this is what we should do if we want to
+
+45:25.840 --> 45:32.960
+really upgrade this grade and add one more you know English language here okay up to this point
+
+45:33.920 --> 45:41.920
+so what shall we do we shall first access it no student grades and so when we say student grades
+
+45:41.920 --> 45:49.520
+so what does this mean so this itself is accessing you know now this dictionary
+
+45:51.520 --> 45:56.560
+and what we are saying is now we want to update we want to call update on this dictionary instead
+
+45:56.560 --> 46:03.120
+of the outer dictionary so when you do this update and then you add this to no new key value pair
+
+46:03.120 --> 46:10.240
+you will see that your old values are not replaced okay so can we now print and see again
+
+46:12.880 --> 46:15.360
+what happens to this one
+
+46:26.800 --> 46:31.680
+now you see we did not erase the previous you know values in the dictionary the
+
+46:31.680 --> 46:38.320
+inner dictionary but we know append its some values which are these values right so this is
+
+46:39.120 --> 46:44.960
+now all about updating values in a similar way you can also
+
+46:46.000 --> 46:51.360
+any move values from the dictionary I guess this is not quite possible to remove existing value
+
+46:51.360 --> 46:59.760
+from dictionary and the way to do that is to know use this no pop method which we also
+
+46:59.760 --> 47:07.280
+discussing in the case of I think list right so for instance if I have let's say a dictionary
+
+47:08.400 --> 47:16.480
+which is like this one we have grades of all these things and if I want to know let's remove some
+
+47:16.480 --> 47:24.560
+specific value pair from this grade okay so let's say I want to know pop the history thing from
+
+47:24.560 --> 47:33.440
+here okay so or remove the history value so what I can do is I can write a syntax like this
+
+47:33.520 --> 47:40.000
+that you from the grade you pop the history and whatever it is remaining you keep in the
+
+47:40.000 --> 47:45.600
+remote grade and then if you print the remote grade what you will see is
+
+47:50.960 --> 47:52.560
+can we now see the
+
+47:57.760 --> 48:02.880
+more removed one and what is in the remote one and then what is in the remaining one so
+
+48:02.960 --> 48:07.200
+the remaining one should be in the original grade right so let me
+
+48:08.160 --> 48:14.720
+print without this to see what happens if I print this you see in the remove
+
+48:16.000 --> 48:23.280
+one which is which we stored here we got this no 78 which is the history grade and the remaining
+
+48:23.280 --> 48:29.280
+one which means the original grade now does not have key value pair corresponding to history
+
+48:30.240 --> 48:39.840
+okay so this is how you can actually not remove entries from no key value pair from your dictionary
+
+48:39.840 --> 48:44.960
+if you want to clear everything from you know that dictionary you can actually say that no
+
+48:46.320 --> 48:51.680
+dictionary got clear okay so this will clear everything for example in this particular case if I
+
+48:51.680 --> 49:00.480
+want to completely flush out everything from this no grades dictionary so what I say is I
+
+49:02.000 --> 49:08.720
+will call this grades dot clear method and this will actually it is everything from this
+
+49:08.720 --> 49:16.160
+dictionary and after that if you want to print again or maybe print these grades
+
+49:17.040 --> 49:27.600
+so can we see what happened so the grade is empty now you can completely get rid of this whole
+
+49:27.600 --> 49:36.320
+dictionary by saying that now you delete the entire you know no grade thing and okay so so here
+
+49:36.320 --> 49:40.960
+what I said is now we flushed out everything from the dictionary so dictionary is empty but I can
+
+49:41.040 --> 49:45.520
+also say that no you delete the dictionary completely
+
+49:50.160 --> 49:54.640
+for example this action and then you print it said
+
+49:58.640 --> 50:06.240
+grades what what shall we expect we see we we expect a name error because there is nothing
+
+50:06.240 --> 50:13.440
+called grade now after we have done this action okay so this is all about you know removing items
+
+50:13.440 --> 50:26.400
+from a dictionary now let's discuss some very common dictionary method and operation that we use
+
+50:26.400 --> 50:33.440
+most of the time when we are working with dictionary so okay so so the very first kind of
+
+50:33.920 --> 50:41.120
+no thing that we want to do is no access all the keys or you know values of dictionary or even
+
+50:41.120 --> 50:46.560
+all the items of the dictionary you know what about what is the way to you know list all of them
+
+50:46.560 --> 50:53.120
+or access all of them okay so for instance I mean let me again give you a concrete example what
+
+50:53.200 --> 50:58.960
+we are praying to say here is if we have let's say our dictionary like this
+
+51:02.320 --> 51:07.840
+and we want to get all the keys in the dictionary let's say okay so how to access all the keys
+
+51:07.840 --> 51:12.720
+in the dictionary so we are only interested about no keys and not the values let's say so the
+
+51:12.720 --> 51:20.800
+now ways you call this dictionary dot key method okay so very quick way of accessing all the
+
+51:21.600 --> 51:30.880
+keys of the dictionary that we are talking about maybe use this syntax so if we print
+
+51:32.320 --> 51:36.560
+inventory so in this case no inventory was our dictionary so inventory dot keys
+
+51:36.560 --> 51:43.600
+now this will return all the keys and I'm just now casting it to list so that now I can print
+
+51:44.000 --> 51:52.800
+clear now so you okay so if I do this then you can see and when we run this we see all the
+
+51:53.600 --> 52:00.800
+keys in this one okay similarly we can also no print only the values and no no access all the
+
+52:00.800 --> 52:08.800
+values of in the dictionary and not their key so a syntax which allows us to do this
+
+52:09.760 --> 52:17.840
+is very similar to this one except the value part okay so we use the same things here I
+
+52:17.840 --> 52:24.800
+prefer to remember we use inventory which is our dictionary dot value so this dot value method
+
+52:25.680 --> 52:31.120
+we'll get us the values which is stored here and I again no cost it to list
+
+52:32.000 --> 52:37.360
+for no better printing so what shall we expect here 10 5 and 8 is what we can expect
+
+52:37.520 --> 52:44.000
+so this is how we can access all the values okay so the semantics is exactly what we can expect here
+
+52:45.280 --> 52:50.800
+now what about if you want to you know get this pair itself and let's store it in some list
+
+52:52.320 --> 52:58.960
+okay as tuple maybe okay so if I want to no get this no key value pair as tuple and then
+
+52:59.600 --> 53:06.960
+no maybe store it in some list so what I can do is I can say no give me that using dictionary dot
+
+53:06.960 --> 53:12.800
+items so there is no three method that we are using here for us first one is dictionary dot key
+
+53:12.800 --> 53:17.520
+which gives you only key then dictionary dot values which gives you not only values and then
+
+53:18.080 --> 53:25.040
+the dictionary dot item gives you both this key value pair as tuple okay so what I'm telling you
+
+53:25.040 --> 53:31.760
+right now is that what if I want to store all this key value pair in a list so then I can
+
+53:32.240 --> 53:40.400
+you call I can use syntax which is not like this so dictionary dot item so this items will return
+
+53:40.400 --> 53:47.360
+all these no key value pairs tuples inside the list okay and let me just see what happens
+
+53:47.360 --> 53:54.000
+you see I mean these are the tuples that you get and you can use the same you know length
+
+53:54.000 --> 54:00.240
+function to you know get the length of you know dictionary to to say I mean how many you know
+
+54:00.240 --> 54:07.680
+keys are there in this no dictionary okay this is also no possible so you can use the same
+
+54:07.680 --> 54:13.840
+thing that we use in the case of list now you can iterate so since we can access these keys
+
+54:13.840 --> 54:20.640
+and values now you know we can also iterate over them so there's no very much possible okay
+
+54:20.640 --> 54:26.960
+because we could access them so we can actually iterate over them and do some actions which we
+
+54:26.960 --> 54:33.120
+want to you know refer to where we want to refer to these keys or values okay so like it's just
+
+54:33.120 --> 54:37.600
+like I mean it rating over loops you wanted to iterate over different elements of loop and do
+
+54:37.600 --> 54:42.960
+something according to what you could access or where you are present in the case of dictionary also
+
+54:42.960 --> 54:48.320
+we can iterate over no different key value no pairs in the dictionary and do something that we
+
+54:48.320 --> 54:55.440
+want to do with those no key value pair okay so we can iterate through keys okay so so we can
+
+54:55.440 --> 55:01.200
+iterate through key value pair and we can iterate through values also so all of this is no possible
+
+55:01.200 --> 55:11.600
+so for example again I mean let me bring quickly dictionary which contains the student scores here
+
+55:13.120 --> 55:19.280
+let's say this is the dictionary which no contains the student score here and if I want to iterate
+
+55:19.280 --> 55:25.840
+through keys let's say now first we know we want to iterate through keys so what we can
+
+55:28.400 --> 55:33.920
+and what are the keys remember they're a student name right so what we can say is
+
+55:35.600 --> 55:43.840
+we can use the syntax like this so for student in student scores
+
+55:43.840 --> 55:53.120
+okay so by by default when you know write down no for student in student score so this student
+
+55:54.160 --> 56:00.800
+takes the value of keys okay so you don't need to explicitly write no dot key so you can simply write
+
+56:00.800 --> 56:07.600
+no for a student in student scores so the dictionary name and by default it takes no iterate over
+
+56:08.080 --> 56:16.000
+key values okay so what is there in the student for each of these you know iteration these value that
+
+56:16.000 --> 56:23.680
+is present here as key the student names okay and if you print what is there in this what you
+
+56:23.680 --> 56:31.360
+expect is all this student so the iteration will cause printing of these key values is what we
+
+56:31.360 --> 56:37.920
+are expecting here so let me print it and so you so you see I mean when we print it what we get
+
+56:37.920 --> 56:45.520
+in a student here is not the by default this key values okay but if you want to you know iterate
+
+56:45.520 --> 56:55.360
+over no different no items of this thing and maybe you know not now and print these no student
+
+56:55.360 --> 57:02.160
+as well as there is score so we can actually do this no key value iteration also okay so for that
+
+57:02.160 --> 57:10.160
+again we can use something similar as we have seen do recall I mean our previous discussion of items
+
+57:10.160 --> 57:16.080
+here if you remember this item actually returns key value pair so we can use something like that
+
+57:16.080 --> 57:23.200
+to get both the values now if you want okay for example in this case what we can do is if you
+
+57:23.200 --> 57:28.320
+want to print score for different let's say student then we can use this syntax
+
+57:35.280 --> 57:42.240
+for a student in for a student know how much score in student scores dot item you see students
+
+57:42.240 --> 57:48.240
+score dot item contain tuples right key value pairs and list of key value pairs so now you are
+
+57:48.240 --> 57:56.400
+saying that take the key to be student and no score to be put in this score and then you print
+
+57:56.400 --> 58:02.080
+both no student and score okay so this is how you can access both the field information or whatever
+
+58:02.080 --> 58:08.960
+is important for you using this kind of syntax okay so let me now run this to see what happens
+
+58:09.680 --> 58:18.800
+and you see we could print all these things right so this is how you know we can you you can
+
+58:18.800 --> 58:25.200
+actually iterate over the items instead of it trading over only the you know keys or it's
+
+58:25.200 --> 58:32.080
+trading over the values okay so good so now we know how to iterate over keys iterate over values
+
+58:32.080 --> 58:38.080
+and how to iterate over you know items so I don't think I have discussed how to iterate over
+
+58:38.080 --> 58:44.720
+no values right so to iterate over values again actually you can use you know dictionary dot no
+
+58:44.720 --> 58:51.440
+value I think we have already we have listed it right this is what we discussed there so no need
+
+58:51.440 --> 58:58.880
+to discuss it again so if you want to use you can use actually for loop and do I trace it to do some
+
+58:59.680 --> 59:06.080
+meaningful let's say computation by trading over values also the way we did for this to think
+
+59:06.560 --> 59:13.440
+okay so with this we would like to no conclude our discussion of dictionary with a few observations
+
+59:13.440 --> 59:19.280
+for dictionaries are better than list certainly in some cases when you want to look up information
+
+59:19.280 --> 59:25.120
+by meaningful keys right for example you know the same student data you could have created using
+
+59:25.120 --> 59:32.480
+you know three different list and by default you might have no assume that every index correspond
+
+59:32.480 --> 59:39.520
+to the same entry for example you know Alice has age 20 and grade 85 okay and simple little
+
+59:39.520 --> 59:45.440
+this kind of thing but then the method of accessing information regarding every student may not be
+
+59:45.440 --> 59:50.320
+that simple I mean you can do in principle but then you know go through this code to figure
+
+59:50.320 --> 59:55.280
+out that no this is not that simple okay and this is not explicit way of doing it you have to always
+
+59:55.280 --> 01:00:02.000
+keep in mind you have to get the indices of Bob to know what was his no age and what was his grades okay
+
+01:00:02.080 --> 01:00:07.760
+so of you know although it's possible to do everything know with list but it's not that convenient
+
+01:00:07.760 --> 01:00:11.600
+and that's why we have this dictionary that the structure here things are more explicit and
+
+01:00:11.600 --> 01:00:16.400
+hence efficient in this case you can see for Alice all the information I could keep at one place
+
+01:00:16.400 --> 01:00:23.200
+and if I want to access I can simply say that no for Bob give me the grade so you can just say
+
+01:00:23.200 --> 01:00:28.800
+you know students go to Bob and then get that grade so it is very easy to access and effort to
+
+01:00:28.800 --> 01:00:37.200
+know values in a dictionary because it's organized in a very nice way and it's a very structured
+
+01:00:37.200 --> 01:00:41.840
+way of representing things right I mean you not only give the values but you also give the name
+
+01:00:41.840 --> 01:00:47.680
+that those values correspond to so that's why I mean these are self-documenting nature dictionary
+
+01:00:47.680 --> 01:00:54.720
+where you have no meaningful keys to represent what values they correspond to and it may be very
+
+01:00:54.720 --> 01:01:00.000
+convenient in most of the programming exercises and we will do some of them in the programming classes
+
+01:01:00.000 --> 01:01:05.680
+and you'll see dictionaries are very very useful in now implementing those kind of programming
+
+01:01:05.680 --> 01:01:10.560
+our computational tasks okay so with this I would like to conclude to this lecture I will
+
+01:01:10.560 --> 01:01:14.560
+meet you in the next video till then goodbye
+

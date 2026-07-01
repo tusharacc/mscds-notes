@@ -1,0 +1,1505 @@
+WEBVTT
+
+00:00.000 --> 00:15.840
+Hello and welcome back to Python Core and Applied Concepts for a level data sense workflow.
+
+00:15.840 --> 00:24.320
+In the last video we started the discussion about functions, we saw how to know or went
+
+00:24.320 --> 00:32.560
+to write functions. I mean we discuss about the scenarios or situations where we think
+
+00:32.560 --> 00:39.040
+that we should write function instead of big monolithic code. So what are those hints
+
+00:39.040 --> 00:45.280
+that we get when that kind of situation arises when we are sure that we should instead write
+
+00:45.280 --> 00:51.040
+a function instead of writing a big monolithic code. This was in our discussion in the last
+
+00:51.040 --> 00:59.360
+class. So let me recap it very quickly. So right we started with the discussion around the
+
+00:59.360 --> 01:04.560
+need for a function right. So the three previous that we discussed very briefly was how
+
+01:04.560 --> 01:10.880
+the usability if you know want your code to be reused again and again by yourself as well as
+
+01:10.880 --> 01:17.040
+third party then you should most probably write function and not flat codes. So this was our first
+
+01:17.040 --> 01:23.280
+point. Then we talked about decomposition aspects of you know writing function also.
+
+01:23.840 --> 01:30.720
+When your task is very difficult or big if you want to solve some you know complex problem
+
+01:31.760 --> 01:37.040
+which if you don't decompose into smaller problems becomes really hard to tackle at once.
+
+01:37.040 --> 01:41.280
+So that's also a good sign that you should think about functions. You should think about
+
+01:41.760 --> 01:49.360
+subproblems as well as solving those subproblems using functions. Then the third point was abstraction
+
+01:49.360 --> 01:56.480
+right. The function helps you abstract with the detail of how you implement it. So someone who
+
+01:56.480 --> 02:01.920
+wants to use your function need not know all the detail of your function but can work with your
+
+02:01.920 --> 02:07.120
+function by you know ingest the interface or the no contract of your function or signature of
+
+02:07.120 --> 02:11.840
+your function which looks just like this. So with the proper description of function in
+
+02:11.840 --> 02:18.320
+natural language you can you know make other people use your function efficiently without any
+
+02:18.320 --> 02:24.480
+problem. This was the abstract view or logical view of the function that again motivates us to
+
+02:24.480 --> 02:30.240
+write function in many places where we want other to use our code without being you know bothered
+
+02:30.240 --> 02:34.160
+about how the code is actually implemented or how the function is actually implemented.
+
+02:34.960 --> 02:39.840
+So we discuss it then we also discuss about the basic syntax and semantics of function
+
+02:40.480 --> 02:46.080
+which included how to write functions whatever different you know component of defining a function
+
+02:46.080 --> 02:52.320
+like you have a depth and definitely a name for the function followed by body and then there
+
+02:52.320 --> 02:57.760
+must be a no return which returns the value that you want this function to detect. This was
+
+02:58.320 --> 03:06.160
+no very briefly that we talked about function syntax in the last part then we also said that
+
+03:06.160 --> 03:11.600
+this is only the syntax the actual semantics comes when you you know call this function so this
+
+03:11.600 --> 03:17.360
+is just definition so when you define things these things are not calculated but when you want to
+
+03:17.360 --> 03:22.960
+use this function you call these functions with their name and by passing the actual value for
+
+03:23.040 --> 03:29.440
+this parameter which we called no argument to this function to get it to get that is else no
+
+03:29.440 --> 03:34.640
+evaluated okay so that that's what we say you know calling the function and we have seen two very
+
+03:34.640 --> 03:40.800
+popular you know ways of calling a function by passing arguments one was this positive
+
+03:40.800 --> 03:47.760
+positional argument concept where you don't need to explicitly tell what are the arguments that
+
+03:47.760 --> 03:52.400
+you are passing I mean you don't need to name the argument but you can just pass the values but
+
+03:52.400 --> 03:58.160
+in that case you need to maintain the order in which the function actually defines the parameter
+
+03:58.160 --> 04:04.080
+when you pass this argument to the parameter okay so this was no positional way where you can
+
+04:04.080 --> 04:10.480
+actually avoid no giving this names of parameter like length width and no color in this case
+
+04:10.480 --> 04:17.120
+but you can simply call this function by passing the value to this parameter but you have to maintain
+
+04:17.200 --> 04:22.000
+the order in which you know you pass this thing so this is what we discussed in the other cases
+
+04:22.000 --> 04:30.240
+when your function may have lot of let's say parameter or arguments defined then you may not
+
+04:30.240 --> 04:35.840
+recall the order exact order in which these parameters were defined so in those cases we can
+
+04:35.840 --> 04:42.560
+also name the parameters and then pass the value explicitly by saying what these values correspond
+
+04:42.640 --> 04:47.680
+or which parameter these values correspond to okay so that is most of the time you know very
+
+04:47.680 --> 04:55.360
+convenient for us and we use this in case of any confusion and then there are you know otherwise
+
+04:55.360 --> 05:01.200
+where you can mix both positional and keyword arguments together but here when you mix them you
+
+05:01.200 --> 05:07.280
+have to no keep in mind that you can only use positional arguments in the beginning and once you
+
+05:07.280 --> 05:13.520
+have used any you know keyword argument then from then onward you cannot use positional
+
+05:13.520 --> 05:18.480
+arguments so this is one restriction that we have to you know follow when we try to mix them
+
+05:19.120 --> 05:25.920
+so depending upon what is your you know what what is your you know exact condition I mean you
+
+05:25.920 --> 05:32.720
+can use any of these three way of passing values to function parameters so you know just practice
+
+05:32.720 --> 05:38.160
+some no more solving some more problems small problems where functions are naturally
+
+05:38.880 --> 05:45.760
+you know more desirable so and try to use these three types of you know argument passing to
+
+05:45.760 --> 05:51.680
+you know be confident about using them okay so now we'll continue our discussion and we will talk
+
+05:51.680 --> 05:58.720
+about the nature of arguments that we pass to function okay so normally you pass some data
+
+05:58.800 --> 06:05.520
+you know as a no argument to the function parameter and those think can be mutable as well as
+
+06:05.520 --> 06:12.480
+immutable right we have you know seen that now there are data types like number strings and
+
+06:12.480 --> 06:18.080
+tuples which are immutable data types no one use once you define them I mean you cannot change
+
+06:18.080 --> 06:24.320
+them so this is what we know mean by immutable so you know you cannot so it cannot be changed
+
+06:24.320 --> 06:31.600
+after creation and when functions receives this kind of immutable not types they are essentially
+
+06:31.600 --> 06:38.160
+receiving a copy right and you cannot change the original thing by changing that copy so so the
+
+06:38.160 --> 06:45.520
+problem that so why we are discussing this is because of you know the side effect that function might
+
+06:45.520 --> 06:51.040
+have so when we say side effect we want to know whether the argument that we want we are passing
+
+06:51.040 --> 06:57.040
+to the function is the function actually changing those argument or not okay or is it simply you
+
+06:57.040 --> 07:01.840
+know using the value of those you know argument which you pass as maybe variable to the function
+
+07:01.840 --> 07:08.160
+so this is a very important point to keep in mind when you're writing a function or using a
+
+07:08.160 --> 07:13.760
+function which is written by someone else so you want to be sure what are the effects of the
+
+07:13.760 --> 07:19.120
+function is does it only return me the result value or it also changes some other variable you
+
+07:20.080 --> 07:27.200
+and these things would be very you know explicit okay but in most of the cases you know by the
+
+07:27.200 --> 07:31.920
+nature of the argument you can actually guess whether these things will be changed or not so for
+
+07:31.920 --> 07:37.200
+example if the arguments are immutable not data types then they will not be changed but then
+
+07:37.200 --> 07:43.680
+when arguments are immutable data types for example list dictionary or set in those cases you should
+
+07:43.680 --> 07:49.440
+be very careful I mean if you want it not to be changed then you better pass a deep no copy kind
+
+07:49.440 --> 07:56.640
+of thing you pass a copy of the actual you know data rather than the whole data itself okay so just
+
+07:56.640 --> 08:02.000
+to highlight this I mean I will give you two short examples one for immutable data types and one
+
+08:02.000 --> 08:06.480
+for immutable data types and we will be able to see what is the difference you know in the context
+
+08:06.480 --> 08:13.120
+of these exact examples so let me write down the very you know first example which
+
+08:15.120 --> 08:20.960
+is about immutable data types so for example let's say you want to update you know a score
+
+08:21.600 --> 08:27.120
+by some you know margin let's say which we call bonus okay so we can define a small you know
+
+08:27.200 --> 08:34.400
+function like this which is let's say definition is no update on maybe score
+
+08:36.160 --> 08:39.520
+and then you you pass the original score
+
+08:43.520 --> 08:50.720
+and then this bonus bonus is the amount by which I want to update this score so so the implementation
+
+08:50.800 --> 08:58.080
+what I do is you know my actual implementation is let's say a score is score
+
+08:59.920 --> 09:08.560
+plus okay so the important thing that I want to highlight here is that no see I mean we we are
+
+09:08.560 --> 09:13.680
+changing you know one of the argument which is a score right the very first argument which you
+
+09:13.680 --> 09:20.880
+pass to this function we are inside the function we are trying to change that you know value
+
+09:20.880 --> 09:27.200
+right score to score plus bonus okay so now we want to you know know what is the effect of this
+
+09:27.200 --> 09:32.800
+to the let's the original value which has been no pass to us okay so this score you know make
+
+09:32.800 --> 09:38.880
+come as a you know variable name to us I mean to this function when it is called so we would like
+
+09:39.040 --> 09:44.960
+to analyze and see whether changing it inside the function will actually change the original value
+
+09:44.960 --> 09:52.480
+or not so this is no our intention so this this is what the our function does and then let's say
+
+09:52.480 --> 10:06.720
+what we return is value score okay now we would like to see what is the effect of this function so
+
+10:06.720 --> 10:11.600
+let me you know so this is just the definition of the function so to see the effect we need to
+
+10:11.600 --> 10:21.840
+you know call this function so let me call this function and let's say initialize some variable
+
+10:21.840 --> 10:29.680
+where we store some initial let's score so this variable original score has some no original score
+
+10:29.680 --> 10:35.680
+which you would like to pass this update score function and then update this okay so now
+
+10:36.880 --> 10:42.880
+if let's I want to call this function okay and get let's say the new score that I
+
+10:47.200 --> 10:53.360
+no one to obtain by updating the current score is is what we call new score here and then we
+
+10:56.160 --> 11:03.200
+update the score using update score function and here what I'm passing is this in original
+
+11:03.840 --> 11:10.960
+okay so what in just no copy this so the very first argument is original score and then let's say
+
+11:10.960 --> 11:18.160
+I mean we want to you know in case it by value 20 okay so I hope you understand the no meaning of
+
+11:18.160 --> 11:22.800
+this instruction so what we are doing is we we just defined a function which we called update
+
+11:22.800 --> 11:28.640
+score and now we are calling update score with this you know original score value that I have just
+
+11:28.720 --> 11:34.080
+no initialize right original score is no hundred so I pass this original score to this one
+
+11:34.080 --> 11:38.960
+and then the value by which I want to update it is the second argument right this bonus is this
+
+11:38.960 --> 11:44.240
+20 so when I call this function this will certainly return some value right and what is the written
+
+11:44.240 --> 11:51.280
+value is the new score that it no calculates and that value I have stored in the new score thing
+
+11:51.280 --> 11:57.840
+okay now if we want to let's say no try if you want to see you know what happens to the
+
+11:58.400 --> 12:04.480
+the original score that we have defined here after let's say you execute this statement because
+
+12:04.480 --> 12:10.320
+no executing you know this statement means calling this function once right this is what we are doing
+
+12:10.320 --> 12:16.000
+we are making a call to the function and when you make a call to the function and when you have
+
+12:16.000 --> 12:23.520
+passed some arguments I want to see after the call has you know executed successfully what will
+
+12:23.520 --> 12:28.320
+happen to the argument value and what is this argument value that we are interested right now
+
+12:28.880 --> 12:37.200
+original score okay so to do that I mean what we need to do can we print the value of this
+
+12:37.200 --> 12:51.360
+original score so let me uh what we can do is we can say here print let's say
+
+12:51.520 --> 13:05.920
+original score maybe you know before function call okay
+
+13:06.240 --> 13:14.720
+okay and then I know if I just print what is
+
+13:21.120 --> 13:28.480
+score here so we know so what is this original score before no function call and if I want to do
+
+13:28.480 --> 13:35.120
+know the same thing uh after the original score has been so let me you know print copy paste the
+
+13:35.120 --> 13:51.520
+same thing and I want to see what happened to this original score so after function execution
+
+13:51.520 --> 13:59.200
+maybe okay after the function execution if you want to see again now what is my original
+
+13:59.280 --> 14:05.680
+score you know this will print okay and we would also like to let's just see the what is the value
+
+14:05.680 --> 14:11.760
+of the new score okay so let me you know print that also so
+
+14:16.480 --> 14:22.080
+what is our new score after function execution so that value should come in
+
+14:22.240 --> 14:35.360
+new score okay so so let me so so the value that it returns in this you know so remember I
+
+14:35.360 --> 14:40.480
+mean the new score will have value of this score right which is no calculated here inside this
+
+14:40.480 --> 14:46.080
+function so now I want to see what happens to so what do I get in new score and what is the
+
+14:46.080 --> 14:52.880
+original score after the function execution okay so if we uh run this piece of code now to see
+
+14:52.880 --> 15:00.480
+what happens so what we see is that original score before function call was 100 okay and again
+
+15:00.480 --> 15:07.120
+if you want to query your original score so what is the the inside this no original score variable
+
+15:07.120 --> 15:13.840
+that we have defined here after this function has been let's execute it so at that moment also
+
+15:13.840 --> 15:18.240
+we see that the original score did not change okay so we are safe right because no this original
+
+15:18.240 --> 15:25.280
+score contained a data type which was immutable okay so that's how you know that that's what we can
+
+15:25.280 --> 15:31.680
+see here clearly right that no we we have this value 100 even after the call but then when you see
+
+15:31.680 --> 15:38.480
+the new score I mean you see the updated value 120 okay so what happened no in principle when you
+
+15:38.480 --> 15:45.040
+pass this you know a copy of this value was passed which was 100 and that copy was you know
+
+15:45.920 --> 15:58.160
+used to assign this new variable score okay the new updated value which is no 100 plus 20 so 120
+
+15:58.160 --> 16:04.160
+and this was returned and this value was you know again kept in this new score okay so this is how
+
+16:04.800 --> 16:12.320
+this is what is the exact cement takes off how no execution works when you call it with immutable
+
+16:12.320 --> 16:18.720
+no data type okay so this variable was not changed this is important to keep in mind okay again
+
+16:18.720 --> 16:24.240
+I mean just to no contrast this with mutable data types we will you know take a similar example here
+
+16:25.120 --> 16:31.920
+where we will try to work with mutable data type and we'll see what is there so in this case I
+
+16:31.920 --> 16:39.280
+mean let's say try to no work with list instead of you know integer so because we know that list
+
+16:39.280 --> 16:46.000
+is a mutable data type and let's say we want to no maintain a roster where we want to no list
+
+16:46.000 --> 16:52.000
+all the student name okay so no one good function to no maintain that roster will be to add and
+
+16:52.000 --> 16:56.880
+use student let's say which which also changes the roster okay so that's why we are no defining
+
+16:56.960 --> 17:06.400
+this kind of function so the function that I'm trying to define right now is a new let's say
+
+17:06.960 --> 17:14.720
+edition of a student name in the existing roster so let's say what we say is no add student
+
+17:16.640 --> 17:22.400
+is what is my you know function that I'm trying to define and the very first
+
+17:22.400 --> 17:30.320
+no argument which I pass here is a list I mean I know this is intended to be list right now you
+
+17:30.320 --> 17:35.760
+don't know it right because we have not defined the function body so so my intention is to no keep
+
+17:35.760 --> 17:43.680
+make this you know roster list okay mutable data type and then given any let's say student name
+
+17:47.280 --> 17:51.600
+I would want to no append it to the end of this let's say roster so this is my you know
+
+17:51.600 --> 18:00.400
+intention of the function so you can now guess what should be the okay so what should be the
+
+18:00.400 --> 18:09.600
+statement that I shall write inside I want to append something to the existing you know roster so
+
+18:09.600 --> 18:14.240
+if roster is a list we have already seen this kind of in build function which can
+
+18:15.040 --> 18:23.600
+append something to our list and remember that when we discussed list we said that this kind of
+
+18:24.480 --> 18:30.080
+our method call will actually change the original list right so so it was called on roster so it
+
+18:30.080 --> 18:36.720
+has a side effect of changing the list right it will change your original list so student name is
+
+18:36.720 --> 18:44.960
+what we want to add so this most probably you know based on our you know current understanding of
+
+18:44.960 --> 18:52.320
+list and its prospective methods we know that this will have a side effect and it will modify the
+
+18:52.320 --> 19:01.200
+original list okay so so let me now again I mean do something you know similar as we so so let me
+
+19:01.200 --> 19:08.400
+first so this function no need not return anything I mean it's not necessary for every function to
+
+19:08.400 --> 19:17.520
+returns explicitly I have a return statement so we'll see that as we go ahead but let me you know
+
+19:17.520 --> 19:27.040
+finish it and then what we can have we can again I mean start let's say
+
+19:31.200 --> 19:41.760
+so let's say this is our roster class students which if I initialize with you know one student name
+
+19:41.760 --> 19:51.600
+let's say Hardik is already in the roster and then I want to maybe add another student so let me
+
+19:51.920 --> 20:05.040
+add so let me know use this so I passed the original
+
+20:07.680 --> 20:14.400
+the student list to this you know add student function that we have defined just now and just
+
+20:14.400 --> 20:21.280
+give one more name as a new entry to this so let's say no no is what I want to add to this
+
+20:21.600 --> 20:29.200
+cluster so so what do I want to see now I mean I want to see that no what's the status of this
+
+20:30.400 --> 20:36.800
+class student before and after we call this function okay because remember this is the point
+
+20:36.800 --> 20:43.040
+where we are actually calling the function right so I want to see what is the effect of execution
+
+20:43.040 --> 20:51.040
+of this function on this list class students so to see that I I can actually print it before just
+
+20:51.040 --> 20:56.400
+before this one and just after this one right so this is what we can do so what we can say is
+
+20:56.400 --> 21:07.040
+let me have a print statement just before it so we want to see what is so before function
+
+21:07.280 --> 21:22.480
+equal before function or we want to see what is there in this list which I call class students
+
+21:26.240 --> 21:29.200
+okay so what is there you know inside this thing
+
+21:29.360 --> 21:42.320
+when I call this no class student so and we want to just have similar things after the execution
+
+21:42.320 --> 21:49.280
+of the functions let me copy this and we can again paste the same piece of code here and we can
+
+21:49.280 --> 21:58.080
+say is after let's the function call after function call again we want to see what is the status
+
+21:58.160 --> 22:06.880
+of the same no list will use the same thing now if we and no this is the original list that we have
+
+22:06.880 --> 22:16.160
+created okay so remember that this is the original list that we have created now what do we expect
+
+22:16.160 --> 22:22.640
+as an you know outcome when we execute this code and when this function call has been made once
+
+22:22.640 --> 22:28.800
+so what is the effect that we want to see here in in this print okay since this is a mutable
+
+22:29.360 --> 22:36.960
+not a type we expect that this no roster which is no we which took the value of you know this class
+
+22:36.960 --> 22:44.400
+student initially we we expect it to change so this this is what is our expectation and now
+
+22:45.360 --> 22:52.960
+to put this on this piece of code and see what happened you see I printed the same
+
+22:55.200 --> 23:03.120
+you know variable this class student before and after also and in this case if I print them before
+
+23:03.120 --> 23:08.000
+and after I can see a difference because this was a mutable not a type this was list so here I
+
+23:08.000 --> 23:14.880
+mean when you pass this you know list to this roster you don't actually pass a copy instead
+
+23:14.880 --> 23:22.480
+what you are passing is the you know the actual thing and so if you make a change you your change
+
+23:22.480 --> 23:29.360
+is reflected in the other place also okay so this was very you know small to I mean these were two
+
+23:29.360 --> 23:36.720
+very small example but very you know you listed above the fact that how function can change
+
+23:36.800 --> 23:41.360
+you know the arguments also and you should be very careful if you are passing a mutable argument
+
+23:41.360 --> 23:46.160
+then I mean you know for sure that that's not changed right and this is what we saw here let me
+
+23:46.160 --> 23:51.680
+printed this original score that we passed you know instead you know in a place of this score
+
+23:53.040 --> 23:57.680
+we saw that there was no change right because here initially also we observed 100 and after
+
+23:57.680 --> 24:03.920
+the call also we observed 100 but in this case you can see now I use something very you know similar
+
+24:03.920 --> 24:11.120
+but no I in this case since the argument was mutable at a time we could see a change before
+
+24:11.120 --> 24:20.000
+and after the function call okay so great so with this no now we you know conclude the discussion
+
+24:20.000 --> 24:28.480
+of this particular part of function I mean which is about the mutable any mutable at a time now
+
+24:28.560 --> 24:36.080
+we want to go to another important concepts which we very often use in the context of function
+
+24:36.080 --> 24:44.160
+which is called default argument okay so what a default argument so default arguments are I mean
+
+24:44.160 --> 24:51.760
+they allow you to define parameters with preset values in function definitions okay so
+
+24:51.760 --> 25:00.240
+sometime you know sometime I mean some of the arguments for a function can be guessed actually
+
+25:00.240 --> 25:05.360
+okay so so for example I mean if you are writing some function which has multiple parameter
+
+25:05.360 --> 25:11.040
+and some of the parameter always let's say take some values by default you know for most of
+
+25:11.040 --> 25:17.840
+the you know function calls then in that case it is a good idea to you know explicitly tell
+
+25:18.800 --> 25:25.760
+Python that now these arguments by default take this kind of value so you assume by default
+
+25:25.760 --> 25:31.280
+this value if user does not want to specify explicitly some other value so this is the intention
+
+25:31.280 --> 25:36.400
+of you know having this kind of not default arguments so default arguments allow you to define
+
+25:36.400 --> 25:42.800
+some of the parameters with preset values in function definition okay now if caller does not want to
+
+25:42.800 --> 25:49.120
+provide that argument then these default values are used so this is what the you know default this
+
+25:49.120 --> 25:55.520
+is what we called default arguments in you know Python and I user need not provide them explicitly
+
+25:55.520 --> 26:02.160
+so let me sum to this so what very said this now is what he's mentioned here okay so default
+
+26:02.160 --> 26:08.640
+arguments allow you to define parameters with preset values and you know need not actually provide
+
+26:08.720 --> 26:15.200
+those value when you're calling no function just I mean against to give it a concrete
+
+26:16.240 --> 26:23.200
+context we can start with a simple function and try to see for example let's say if you want to order
+
+26:23.200 --> 26:31.680
+a copy okay if you want to order a copy and you know your copy machine has some function inside
+
+26:32.240 --> 26:36.960
+it which automates the whole process of let's say making copy for you so
+
+26:37.280 --> 26:44.080
+most of the time I mean since no maybe even people are taking lists so when you want to order a
+
+26:44.080 --> 26:49.280
+copy you have to specify what is the type of the copy you know what size of copy you want you know
+
+26:49.280 --> 26:55.200
+medium or large size or do you want you know sugar or not and if you want sugar how much you know
+
+26:55.200 --> 27:01.280
+sugar you want you want little amount I amount or no no amount so all of this now can be
+
+27:01.280 --> 27:08.960
+you know should be provided to make you or you can give you no proper copy but then in no
+
+27:08.960 --> 27:14.320
+most of the cases we know that most of the people who want to come for copy they prefer let's say
+
+27:14.320 --> 27:21.760
+medium size cup and then they also expect some amount of sugar which may be quantified by
+
+27:21.760 --> 27:27.120
+let's say if you know no sugar is zero if you know very little sugar is one if no some sugar is
+
+27:27.360 --> 27:32.000
+two and then if you know a little more sugar is three then most of the time you know you would say
+
+27:32.000 --> 27:38.080
+that we want sugar quantity to be two we want you know size to be medium and then type of the
+
+27:38.080 --> 27:44.480
+copy you of course you want to ask from the customer because it varies most of the time based on
+
+27:44.480 --> 27:50.800
+your you know past observation so you can actually then define this no order of copy kind of
+
+27:50.800 --> 27:56.480
+function inside Python okay let me you know just try to mimic this you know copy thing using a
+
+27:56.480 --> 28:03.920
+function so let me if I want to know I don't know function to order this copy so this order
+
+28:03.920 --> 28:14.080
+copy function would try to mimic what we said just now let's say okay so we are ordering our
+
+28:14.080 --> 28:20.080
+copy and so let's say three things there are three argument that typically you know
+
+28:21.040 --> 28:25.280
+people want to choose from one is know the type of the copy let's say we call it not simply type
+
+28:26.080 --> 28:32.480
+and then second one is the size of the copy and the size by default let's say I want to
+
+28:34.000 --> 28:37.680
+I know and most of the people come and they offer you know order medium size so
+
+28:38.400 --> 28:43.600
+if they don't specify I would by default let's consider the size to be medium so so this is
+
+28:43.600 --> 28:48.320
+you know my this is the second argument that I have given here is my default argument so this
+
+28:48.320 --> 28:54.480
+is how I specify that the default value for this argument should be taken as medium if let's
+
+28:54.480 --> 29:01.520
+say user does not specify anything okay so this is the way to indicate that this argument is
+
+29:01.520 --> 29:08.480
+not default argument and also about the you know let's a sugar content if user does not
+
+29:08.480 --> 29:13.920
+specify anything that I maybe know I want to keep it at a level two okay so let's say your
+
+29:13.920 --> 29:19.040
+your sugar amount of sugar is represented by three levels zero one two or four level zero one
+
+29:20.000 --> 29:25.760
+so then I want to you know maybe keep two as a you know by default level for making this
+
+29:25.760 --> 29:32.160
+copy so and instead of writing the complete no function which actually makes the copy let's
+
+29:32.160 --> 29:39.040
+say for you let me you know make it by just returning some I mean just no returning a print
+
+29:39.040 --> 29:46.480
+statement maybe that's more than enough for not to simulate this whole thing so what we say
+
+29:46.480 --> 29:54.960
+that no we are trying to no give you one you know let's say no by default medium size copy of this
+
+29:54.960 --> 30:02.640
+type with no two level of sugar is what you know we want to by default print but if it
+
+30:02.640 --> 30:08.160
+now user gives some other value for this type and sugar and you know this size then that will be
+
+30:08.240 --> 30:17.280
+printed so what we want to print is just I'm giving you one no some say I mean the size of
+
+30:18.240 --> 30:23.440
+coffee and then let's say medium size of coffee what type of coffee that maybe you know
+
+30:23.440 --> 30:36.000
+latte or espresso and coffee with some amount of sugar I mean which you can specify or I can take
+
+30:36.080 --> 30:47.680
+by default okay so let's say you know this is what I want to return when you call this function
+
+30:48.320 --> 30:54.480
+now if you so you certainly have to give one argument right type because type is not a you know
+
+30:55.280 --> 31:00.240
+pre-do you know type cannot take any default value because this is not how we have defined this
+
+31:00.320 --> 31:06.400
+function so so let's say I mean if I want to call this function using default values of
+
+31:07.200 --> 31:13.680
+the argument which is which can take some default value then so the first not in first
+
+31:13.680 --> 31:21.520
+attempt what we were doing is we were trying to use the defaults okay so we have to make a
+
+31:21.520 --> 31:28.960
+function called so let's say the function call that we make is now order coffee
+
+31:34.160 --> 31:39.840
+and then we pass you have to pass at least one parameter okay so let's say the type of the
+
+31:39.840 --> 31:47.200
+coffee that now we want to pass first time is let's say call it now that day okay and if you
+
+31:47.520 --> 31:55.440
+now order this kind of no coffee and let's say print whatever is returned to us okay
+
+31:59.600 --> 32:06.480
+okay so so what do we expect here I mean remember I mean when I make a actual function call which is
+
+32:06.480 --> 32:15.680
+this no expression from here to here I'm passing only the first argument right so I'm
+
+32:15.760 --> 32:20.240
+no by default this is the positional argument way in which we are passing the argument okay
+
+32:20.240 --> 32:25.120
+and we are passing only the first argument so by default it will assign this to time okay and
+
+32:25.120 --> 32:32.640
+other two which we are you know sides and no sugar content we have not provided here right if we
+
+32:32.640 --> 32:38.400
+we are making a function call where the original function which has been defined has three arguments
+
+32:38.400 --> 32:43.600
+but we are passing only one argument so this would work why because we have some default value
+
+32:43.680 --> 32:49.040
+if you let's say if you had not defined these things no this portion here and this portion here
+
+32:49.040 --> 32:55.280
+then in that case it would not throw some error but since you have defined it to be some no
+
+32:55.280 --> 33:02.160
+default value you can expect this to work properly and assign these values by default so now if I
+
+33:02.160 --> 33:11.040
+want to maybe no run this and see what's the effect of this run can you see so this is what we
+
+33:11.040 --> 33:19.440
+expected right so one medium let it copy with two sugar levels okay so how could it take this
+
+33:19.440 --> 33:27.920
+you know medium you know the size because the default value of this size was medium okay so
+
+33:27.920 --> 33:33.920
+even if I did not provide anything here it automatically took this medium value for the size
+
+33:33.920 --> 33:39.760
+and this you know two value for the sugar level okay so this is how we you know we can
+
+33:40.400 --> 33:46.640
+use this default value but I mean I mean since you have written it as a default value I need not
+
+33:46.640 --> 33:52.960
+always take default value you can explicitly also you know provide this to the function for example
+
+33:52.960 --> 34:00.000
+again I mean in this case let's say let me copy make another function call to the same function
+
+34:00.640 --> 34:08.800
+and I may say that this time I need some other copy copy type let's do a special
+
+34:12.000 --> 34:20.960
+and I may want to specify that this time you know my size be you know something maybe different
+
+34:20.960 --> 34:28.240
+from what is the usual thing I want to large special so I can say this and I want a little less sugar
+
+34:28.240 --> 34:35.280
+maybe so then in that case I can specify a sugar level also right because like I can I know
+
+34:35.280 --> 34:41.920
+right here you know instead of do the default value I can actually pass this one value okay and now
+
+34:41.920 --> 34:50.480
+if you are you know try to print it and see what happens you see our one large espresso copy with
+
+34:50.480 --> 34:57.840
+one sugar level so this is how we can use the default argument feature of functions inside
+
+34:57.920 --> 35:06.160
+Python no programming language and this no makes your life no easy and it's not it's not only you know
+
+35:06.160 --> 35:14.880
+so this is very useful for especially users right because they they can call function with fewer
+
+35:14.880 --> 35:21.360
+arguments I mean if they want to accept the default value okay and for most of the you know cases
+
+35:21.360 --> 35:26.080
+where you know that the default value will be this it is actually useful right so these are
+
+35:26.240 --> 35:33.440
+some benefit of using this default value so one is the flexibility that function can be called
+
+35:33.440 --> 35:39.360
+with fewer arguments you have seen right now right we we passed only late and then this function
+
+35:39.360 --> 35:47.920
+work perfectly second is no you can actually know somehow we realize this common use cases
+
+35:47.920 --> 35:53.840
+you know in a simpler way by just writing this and not asking every time and you know provide
+
+35:53.840 --> 35:59.200
+reasonable behavior out of the box I mean even if you don't want to bother user or clear
+
+35:59.200 --> 36:05.520
+to line to provide every other detail you can assume those as default value and another no
+
+36:05.520 --> 36:11.280
+important thing is this no backward compatibility okay so we'll come to this backward
+
+36:11.280 --> 36:18.640
+compatibility soon and see how you know how I mean having default values provides no backward
+
+36:18.640 --> 36:25.200
+compatibility in some of the cases okay so adding new parameters without breaking existing code
+
+36:25.200 --> 36:29.840
+is what we want to discuss specifically in this in our case so we will talk about no
+
+36:30.560 --> 36:40.160
+these things but no let me you know give you another quick example of maybe this kind of no
+
+36:42.080 --> 36:47.120
+so so another you know quick example of this default you know argument maybe you know
+
+36:47.200 --> 36:51.280
+like scheduling a meeting let's say if you want to schedule a meeting or team meeting or a
+
+36:51.280 --> 36:57.600
+zoom meeting so what are the things that you want to specify you know you want to specify why you
+
+36:57.600 --> 37:03.280
+are calling for this let's say meeting what should be the no duration for the meeting and who
+
+37:03.280 --> 37:10.080
+how many participants let's say you are expecting and whether you want to meet online or offline I
+
+37:10.080 --> 37:15.280
+mean so let's say if you are scheduling a meeting and that meeting may be online or offline
+
+37:16.240 --> 37:23.840
+that meeting may have some no topic of discussion how how long it should know go so let's say if
+
+37:23.840 --> 37:29.760
+you want to write a function to schedule no such a meeting so some of the arguments may you know go
+
+37:29.760 --> 37:35.600
+as no default argument for example I mean by default I can you know I may want to assume that my
+
+37:35.600 --> 37:42.240
+meeting goes only for maybe you know 60 minutes or my number of participants no by default is no
+
+37:42.240 --> 37:48.800
+10 or less and when I'm scheduling it I mean by default I can assume that this is you know online
+
+37:48.800 --> 37:55.120
+until I specify it okay so in that case now if you want to write down a function to simulate
+
+37:55.120 --> 38:01.040
+this kind of behavior what will be in our function so can we write down something like this let me
+
+38:01.040 --> 38:18.800
+here now so what if I you know all right in something like this okay so this is our schedule
+
+38:18.800 --> 38:25.360
+meeting you know function that we have written we specify topic we specify also duration
+
+38:26.000 --> 38:32.720
+participants and and again I mean here you can see we have specified these you know duration
+
+38:32.720 --> 38:38.320
+participant and online as a default argument right so you can only give the topic name and then
+
+38:38.320 --> 38:45.920
+call this function right and this will be executed properly I mean there will not be any error when
+
+38:45.920 --> 38:53.760
+you try to no run this function or call this function okay so for example like say you know if I
+
+38:53.760 --> 38:59.360
+want to just you know call a meeting for let's say daily stand up kind of thing so you can quickly
+
+38:59.360 --> 39:06.800
+say that no I want to call this meeting by you know calling this schedule function right so let's say
+
+39:06.800 --> 39:18.000
+call this schedule no meeting if I call this schedule meeting with only let's say the topic okay so
+
+39:18.320 --> 39:30.560
+let's say I mean topic is now okay so if I don't pass anything else so I pass only the first
+
+39:30.560 --> 39:38.400
+argument so the by default no duration will be taken as 60 and participants are expected to be
+
+39:38.400 --> 39:44.480
+10 and this should be no online mode okay so that these are the you know arguments value that we
+
+39:44.480 --> 39:55.360
+expect to be you know passed on when we call it this way to see what is written I can actually print
+
+39:55.360 --> 40:08.080
+this value and then see what happens and this is what we you know expected right so we expected
+
+40:08.400 --> 40:17.040
+that so daily stand so this is no daily stand up for a 60 minute 10 people and online mode
+
+40:20.160 --> 40:26.320
+now if you want to specify things or you know other things also you can you know maybe you know
+
+40:26.320 --> 40:31.600
+call this is a quarterly meeting which should go for a longer period let's say no 120 minutes and
+
+40:31.600 --> 40:37.600
+the number of participants are less also more 25 and you don't want it to be on you want it to be
+
+40:37.920 --> 40:42.800
+offline so in that case what we can do is we know we can call the same function
+
+40:45.600 --> 40:53.280
+with not the default argument but with some other argument so for instance I mean in this case let's say
+
+40:55.600 --> 40:59.920
+if I call you know this function with this kind of arguments schedule meeting
+
+41:00.880 --> 41:08.320
+no quarterly review and number of participants are 25 duration is 120 minutes and you know this
+
+41:08.320 --> 41:13.520
+is not online no this is offline so in that case if I now print it
+
+41:16.640 --> 41:22.240
+you can see that no meeting has been scheduled for 120 minutes with 25 people and this is
+
+41:22.240 --> 41:26.960
+in person why because this online is false okay and if online is false then I want to
+
+41:27.200 --> 41:32.560
+print that this is in person meeting this is you know these are some very simple examples where
+
+41:32.560 --> 41:41.280
+you can see that the default argument you know idea in Python especially I mean works very well
+
+41:41.280 --> 41:47.360
+and it can be very convenient most of the time when you know what should be the you know most
+
+41:47.360 --> 41:53.040
+used let's say value for some of the arguments for your function that you are defined okay so use
+
+41:53.440 --> 41:59.040
+now carefully I mean this can be very useful so we don't need to know any other example maybe at
+
+41:59.040 --> 42:06.800
+this point so the last thing that I want to know highlight about this default argument is that
+
+42:06.800 --> 42:15.440
+it can in some cases help in backward compatibility okay so what is backward compatibility by the
+
+42:15.440 --> 42:21.360
+way when we talk about our code let's say you have developed some function okay or you have
+
+42:21.520 --> 42:28.640
+developed some library which has many functions written already and you have a large user base also
+
+42:28.640 --> 42:33.120
+okay so many people are currently using your library they have already developed many you know
+
+42:33.120 --> 42:40.080
+applications software relying on your you know library functions okay now so you have a you know
+
+42:40.080 --> 42:45.200
+let's a large user base I mean where your function has already been called multiple times in many
+
+42:45.200 --> 42:50.960
+applications which are not running right now okay and now you know suddenly want to maybe
+
+42:50.960 --> 42:57.840
+upgrade your function with some new feature okay you think that your function can be you know maybe
+
+42:57.840 --> 43:04.240
+made more general or more you know flexible in no dealing with some different kind of you know
+
+43:04.240 --> 43:10.560
+scenarios also so in that case you want to you know modify your function okay and you want to
+
+43:10.560 --> 43:17.360
+modify it but then I mean if you modify your function you also don't want you know those
+
+43:17.360 --> 43:22.880
+earlier calls of the functions to break okay so this is what we call you know compatibility so can
+
+43:22.880 --> 43:31.280
+can I know upgrade my let's say library or any function or module that I have written in a safe way
+
+43:31.280 --> 43:36.800
+so that if someone else has been using it in no in his application it does not break I mean he does
+
+43:36.800 --> 43:43.520
+not you know need to go back to his you know whole applications software and then change the
+
+43:43.520 --> 43:49.520
+quote again to just make sure that things work with my no current or the upgraded library so this
+
+43:49.520 --> 43:55.440
+is what we call you know backward no compatibility here I mean when we say backward complete this is what
+
+43:55.440 --> 44:01.360
+you know I mean so just to give you again a very concrete you know example maybe
+
+44:06.560 --> 44:11.040
+so if you don't have let's say no default argument kind of thing you know then
+
+44:11.840 --> 44:17.280
+this this kind of things may become a little or I'm not saying that no having the default
+
+44:17.280 --> 44:23.040
+argument gives you by default also this no backward compatibility issue you know
+
+44:24.000 --> 44:29.120
+you know in all the cases but in most of the cases you can actually use or in many cases you can
+
+44:29.120 --> 44:35.040
+use this default argument to solve this no backward compatibility kind of issue so again I mean
+
+44:35.040 --> 44:42.000
+as a concrete problem let's start with you know existing function let's say that is already
+
+44:42.000 --> 44:49.520
+being used in many places so for instance I mean in this case let me write down a function with
+
+44:49.520 --> 44:57.360
+simply no processes some no data and at least I mean it converts you know any upper case into
+
+44:57.360 --> 45:03.600
+lower case you know kind of data so this is a data processing kind of function which given any
+
+45:03.600 --> 45:11.600
+input converts it into no lower case no strings okay so so a simple definition like this
+
+45:11.680 --> 45:24.320
+where we have this plus is data function let's say which takes some data no as input
+
+45:26.000 --> 45:36.560
+and it may be you know it calls and this no input this
+
+45:36.560 --> 45:44.000
+lower method so data dot lower to just know make it no lower case I mean if you have written
+
+45:44.000 --> 45:49.200
+something in upper case and it will be made automatically into the lower case so this function
+
+45:50.720 --> 45:54.640
+now let's say I mean this you have no earlier developed this function this this is very simple
+
+45:54.640 --> 45:58.560
+function but you know is it I mean just for example we have taken this simple function but it
+
+45:58.560 --> 46:03.840
+can be any you know complicated function also so for in this case this has a very simple
+
+46:03.840 --> 46:11.360
+role right converts into no lower case so let's say and some you know other you know user have
+
+46:11.360 --> 46:17.920
+used your function at multiple places and call it multiple places so let's call it at least once
+
+46:17.920 --> 46:22.880
+on this you know let's say hello so if I can copy the same thing and
+
+46:24.560 --> 46:31.600
+finished here so let's say so this kind of you know so this is calling this function right this
+
+46:31.600 --> 46:35.680
+is the definition of the function this is call of this function now if someone else has written
+
+46:35.680 --> 46:39.840
+a you know application program they where this function has been called multiple times in at
+
+46:39.840 --> 46:45.840
+multiple places because this is what we are saying that this this function have been you know
+
+46:45.840 --> 46:50.480
+called throughout a lot let's say code base so this is our scenario so what happens when we
+
+46:50.480 --> 46:57.600
+call this function so what is the immediate effect since we have not defined it we have not
+
+46:57.840 --> 47:03.600
+run this block we got this error but if you run it and then it converts into lower case so this
+
+47:03.600 --> 47:08.960
+works perfectly and it has been used at multiple times now if you imagine you want to extend this
+
+47:08.960 --> 47:16.400
+function by adding some new feature I mean or a new parameter to control this case handling now
+
+47:16.400 --> 47:24.080
+in all the cases maybe you don't want to you know you know convert this data processing let's say
+
+47:24.160 --> 47:33.120
+function now you want to make it you know you want to add an extra feature which also tells whether to
+
+47:34.080 --> 47:40.160
+change the given input into lower case or not I mean let's say so this is the no minimal change
+
+47:40.160 --> 47:46.480
+that we can expect at the time to generalize this function or make it more useful to a wider
+
+47:46.480 --> 47:51.360
+you know variety of application what we are saying that we want to now extend this function
+
+47:51.840 --> 47:54.720
+so let's say instead of so let me copy here
+
+47:59.520 --> 48:05.840
+you want to extend the feature or we want to extend this function to add some new feature here
+
+48:06.720 --> 48:16.640
+so this should be a good block okay and now I want to explicitly maybe you know give
+
+48:16.800 --> 48:23.280
+another option to the user to make it no more you know useful or more generally in or applied
+
+48:23.280 --> 48:29.440
+in other cases I want to maybe explicitly know whether I the user want to process this to lower
+
+48:29.440 --> 48:37.600
+case or not so here's an option if he you know says true in as a second argument it will be
+
+48:37.600 --> 48:44.320
+actually converted to lower case if it says no I mean I mean pulse then in that case I would
+
+48:44.320 --> 48:50.480
+say that okay so I would just I mean maybe I made the data itself so I will not process it so
+
+48:53.760 --> 49:00.480
+so inside the function you know definition what is the minimal change that I need to do at this
+
+49:00.480 --> 49:07.840
+point of time to make it happen so for it to be meaningful what I'm saying is to this lower
+
+49:07.920 --> 49:14.480
+to lower indicates the condition which if it is true then only I want to maybe you know
+
+49:17.920 --> 49:27.760
+return maybe you know that lower that's why let's say if I want to change the function in a
+
+49:27.760 --> 49:36.080
+minimal way like this where I want return data to lower only if this second argument is no
+
+49:36.640 --> 49:43.120
+given as true to me in other case I don't want to you know maybe return not at or lower but I
+
+49:43.120 --> 49:48.880
+just want to return the data okay now now let's say this is how I want to upgrade my function
+
+49:49.920 --> 49:55.840
+okay now if you want to upgrade your function you know in this way so let me define it
+
+49:58.080 --> 50:03.440
+so what happens is now since your function no earlier function was you know use at many places
+
+50:03.440 --> 50:09.920
+in application no software for many of the no other client that might have used your library
+
+50:10.480 --> 50:16.960
+so whenever in all those places where you know this thing was calling it on a single argument it
+
+50:16.960 --> 50:23.360
+it may actually so it will start failing right because now you are not the your new function
+
+50:23.360 --> 50:32.080
+definition actually expect another argument but that is not you know present in the no previous
+
+50:32.080 --> 50:38.160
+function calls previous function call only as no assume one argument and so this should no give
+
+50:38.160 --> 50:44.000
+you there a message so let's say I mean if I just to replicate I mean all you know visualize
+
+50:44.000 --> 50:49.920
+what happens to the this kind of calls that was already there in some other application now if I
+
+50:49.920 --> 50:58.880
+again try to run it you get an error right and it says exactly what we discussed right now that
+
+50:58.880 --> 51:04.320
+it's missing one required positional argument which is to lower why because your new function
+
+51:04.320 --> 51:13.600
+definition actually ask this no second argument now so so no this is no one very small example to
+
+51:13.600 --> 51:19.040
+illustrate that some of modification that you may want or new feature that you may want to add
+
+51:19.600 --> 51:24.480
+as a less a new argument to your function which gives maybe more flexibility to your user
+
+51:25.280 --> 51:33.200
+may you know cause no error in the existing you know called base if you go without less a default
+
+51:33.200 --> 51:39.120
+argument way but now you can actually handle this kind of situation very well by defining this
+
+51:39.120 --> 51:45.360
+to lower as a you know default argument so what we can do is we can instead of making this
+
+51:46.400 --> 51:51.760
+as a you know normal argument we can make this additional argument that you have added right now
+
+51:52.560 --> 51:58.800
+default argument so that I mean user may optionally want to not give the value for this second
+
+51:58.800 --> 52:04.560
+argument and in that case the behavior is the default behavior that we were anywhere I mean giving
+
+52:04.560 --> 52:11.920
+you know earlier so if you if you can actually map your current you know default behavior to
+
+52:11.920 --> 52:18.320
+the previous you know default behavior appropriately then the things will be done so again to be no
+
+52:18.320 --> 52:24.400
+more precise I mean in this given case how can we maybe you know handle this situation now for
+
+52:24.400 --> 52:32.800
+this particular function so can we you know use default arguments here I mean instead of using
+
+52:32.800 --> 52:39.120
+so can we make this too lower to be you know default argument and then have similar value as
+
+52:39.120 --> 52:45.120
+the previous you know process data function and not breaking another earlier part of the code
+
+52:45.120 --> 52:51.120
+so now we can certainly do it right and we have seen example like this earlier so instead of
+
+52:51.120 --> 52:58.240
+saying that the second additional argument that I have you know provided or added to my
+
+52:58.240 --> 53:06.320
+process data let's say now function so the first was of course the data but the second one was
+
+53:07.360 --> 53:15.040
+to lower which indicated whether to no make it lower case or not okay so instead of saying
+
+53:15.040 --> 53:25.040
+that this is a normal argument I can say that this is a so default so I would like to send the
+
+53:25.040 --> 53:31.440
+default value may be true whenever user does not want to specify it so this gives user not the
+
+53:31.440 --> 53:37.600
+flexibility not to specify this argument while calling this function okay and but still we are
+
+53:37.600 --> 53:44.640
+taking some value no which can help us mimic the behavior that we were having in the previous cases
+
+53:45.680 --> 53:52.640
+okay so two things are important one is giving user flexibility not to use it and still you know
+
+53:52.640 --> 53:57.840
+run it without any error and the second thing is I mean you have to do it in such a way so that the
+
+53:57.840 --> 54:04.720
+default value that you pass finally you know converts or translates the function the current
+
+54:04.720 --> 54:11.760
+function behavior to the previous function behavior okay so I know I would ask you to verify the
+
+54:11.760 --> 54:18.080
+second thing that I told just now I mean one thing is for sure that when you make it default user
+
+54:18.080 --> 54:24.480
+can not give this any still run this function without you know any error mess has been thrown to him
+
+54:24.480 --> 54:30.720
+but the second thing is whether the you know semantics of this new function is exactly same to the
+
+54:30.720 --> 54:38.240
+previous one is what you need to verify after okay now if I you know write something like this
+
+54:38.320 --> 54:41.760
+that if so we again I mean take the same definition that we have
+
+54:43.680 --> 54:50.000
+we want to if to lower is not true then with that case we want to do a lower case
+
+54:51.680 --> 54:59.440
+transformation of the current data otherwise you know in the general case what we want to say is
+
+55:00.000 --> 55:06.240
+we want to return the data itself whatever data was given to us okay so now in this case you will
+
+55:06.480 --> 55:11.040
+see I mean you you can actually check and see that the behavior is exactly same as the previous
+
+55:11.680 --> 55:16.480
+you know function that we have written but now you are providing you know additional feature
+
+55:17.200 --> 55:23.520
+in your you know function where the I mean user can control it and pass you know pulse to get
+
+55:24.080 --> 55:30.640
+not change the data okay and the so so old code still works and new functionalities I will
+
+55:30.640 --> 55:34.720
+be able to the user write without breaking any of the existing let's application software that
+
+55:34.720 --> 55:41.200
+you might have you what's the good check of this so a very good check is again I mean call
+
+55:42.480 --> 55:48.960
+on the thing that it broke earlier right if you call on this thing you know process data and then
+
+55:50.720 --> 55:55.600
+so before that I mean so remember I mean it was breaking earlier right if I don't compile this
+
+55:55.600 --> 56:01.920
+you know cell and it still run it should break right it is breaking why because it's taking the
+
+56:01.920 --> 56:07.600
+previous value of the no function I mean this is taking this definition of the function so it's
+
+56:07.600 --> 56:13.920
+failing but as soon as you you know compile this definition which accepts a default argument and
+
+56:13.920 --> 56:19.760
+then maybe we again run this piece of code you see I mean it's not breaking although we have
+
+56:19.760 --> 56:25.120
+provided the new feature feature right here it's you know you you have an option of providing
+
+56:25.120 --> 56:30.400
+whether you want to convert it to lowercase or not okay I mean you can actually quickly check
+
+56:30.400 --> 56:38.240
+whether this new feature has been added or not so it can say is process and data and you provide
+
+56:38.240 --> 56:48.560
+something or maybe on the same argument maybe but then I mean if you say that no I I don't want to
+
+56:49.760 --> 56:56.080
+know make it lowercase I just want as it is so and in this case if I you know run this function
+
+56:56.160 --> 57:02.720
+you see I get the same thing right so this is how we can add new feature you know without breaking
+
+57:02.720 --> 57:09.520
+the previous code in many cases by using this default argument okay so this is a very
+
+57:09.520 --> 57:15.440
+interesting use case of default argument where and then this is the summary of what we have been
+
+57:15.440 --> 57:21.360
+discussing so far on libraries and the first thing that is written is libraries and API maybe used
+
+57:21.760 --> 57:26.480
+not thousands of users you have written already something so you don't want to break the
+
+57:26.480 --> 57:32.800
+existing function call you know and create this runtime no issues so default arguments provide you
+
+57:33.840 --> 57:39.920
+cloud developer to evolve their API or there you know whatever library they have built safely
+
+57:41.920 --> 57:47.360
+and I mean especially this is important in public Python library and large scale production
+
+57:47.360 --> 57:53.440
+system and those kind of software which are meant to stay for no long right I mean like
+
+57:54.800 --> 58:01.840
+you know modules in MATLAB or those kind of you know science tool boxes that you build which
+
+58:02.480 --> 58:09.760
+is to be used again and again by user and not developed on top of that so so remember so the key
+
+58:09.760 --> 58:14.880
+idea to remember is that default argument allow you to add new parameters to a function while
+
+58:14.960 --> 58:20.640
+preserving its original behavior for existing code so this is very very important so this provides you
+
+58:20.640 --> 58:26.240
+stability ease of maintenance and minimal refactoring you don't have to go and change again and
+
+58:26.240 --> 58:32.240
+again whenever lecture library is updated or know the software on which you have no one
+
+58:32.240 --> 58:40.000
+defined your own application software is changed okay so this is the how things you know works
+
+58:40.000 --> 58:46.560
+and then there is no one very so we will continue again I mean in the next lecture from here
+
+58:46.560 --> 58:53.520
+onward so for today I would like to conclude lecture here thank you very much I'll see you in the next
+
+58:53.520 --> 59:01.280
+week
+

@@ -1,0 +1,535 @@
+start	end	text
+0	13240	Hello and welcome back to Python, Core and Applied Concept for Reliable Data Sence Workflow.
+13240	19640	Today we will continue our discussion of Functions from nowhere we left in the last class.
+19640	27480	So if you recall, in the last class, our main topic of discussion was default arguments,
+27480	33480	or Functions. So sometimes we may not or I mean user may not want to call the function by
+33480	39960	explicitly giving you all the values of the function parameters. So some of the function
+39960	47280	parameters, most of the time may expect the same value. So in those kind of situation
+47280	53640	where Functions can be called, you know, using your argument, it's good to make some of
+53640	61560	the argument as default argument. So the nice thing about default argument is that it's not
+61560	67140	that you cannot provide value for those default arguments, but it gives you this additional
+67140	74400	flexibility of not providing that value every time. Okay. So if you don't provide that value,
+74400	82680	know, at some function call, then by default function, this no function call is free to assume
+82760	88760	some default value for that kind of parameter, which we call default parameter. So we talked
+88760	95480	about this. We saw some of the advantages of using this default argument like this flexibility,
+95480	100600	that one, you know, that we talked about, that function can be called with your argument,
+100600	110520	then readability. I mean, if your function, you know, call, let's say, includes fewer arguments,
+110600	116120	of course, I mean, it's far more, you know, readable, right? Your code does not every time has
+116120	121000	all these no extra information, which may be, you know, guessed by default in most of the cases.
+121000	128360	Okay. So at multiple places, your function call may look much simpler than what it could be,
+128360	133320	if you have, if you are, let's say, first to pass every argument, every, you know, other time,
+133400	140600	when you call the function, okay? And so, so this is the reason that we discussed, I mean,
+140600	147000	we use these default arguments. And one reason was this backward compatibility also, right? And for
+147000	153960	this, I took some, you know, example and showed that how this, you know, backward compatibility can
+153960	159080	be an issue. So when you have written a function, which has already been, let's say, used in
+160040	165720	many applications of many other, let's say, developer. And now you want to, you know,
+165720	171320	make your function more efficient, or maybe you want to add some new feature to your function,
+172760	177720	you know, which maybe, you know, in terms of some new argument passing, some new argument,
+177720	184040	then how to maintain the, you know, already developed code, which was developed based on your
+184120	189400	function, not to, no break. I mean, how to, you know, prevent breaking those, you know, existing code,
+192280	197000	in the presence of the update or upgrade you want to do for your own code. So this was
+197640	203480	what we call backward compatibility. We don't want the existing code to break when you upgrade
+203480	209800	your code using some, or adding some new feature by introducing some new parameter. So in that case,
+209800	215320	also default arguments were very, you know, nice way to deal with. And we, we saw one example,
+215320	222120	also it, this process dot example, where we explicitly talked about what was the problem.
+222120	228200	And what will happen if you don't have this feature of default argument, and if you just
+228200	234440	increase argument while one, all, you know, future called to the function in the existing software,
+234760	240280	actually break. But if you put it as a default argument, then even those functions will, you know,
+240280	246920	work as, it is those, for example, will also work as my expected. Yes, this was our discussion
+246920	254440	in the last class. So let's continue our discussion of, you know, default argument for,
+255160	261400	for a little while, and then we will go to the next topic. So we know why this is important,
+261400	268440	right? In the real project, and we also learned about how to use it. But, you know, there may be some
+268440	273320	confusion while using default argument, if you don't know the exact semantics of how these
+273320	280360	default arguments know work in Python, okay? So it's important to know the exact nature of this
+280360	286360	default argument. And it is a little bit different than, you know, other kind of, you know,
+286360	291400	function definition and function call. So as I said, I mean, in the beginning that when you define
+291400	296920	a function, you're just defining the syntax, right? And when you call that function, then the
+296920	304440	semantics come into picture because at that moment, the function, you know, gets executed or
+304440	310520	the execution of the function is start, okay? So you define function only once, and then you call
+310600	316040	that function at multiple places, right? So in that sense, I mean, you're again, and again,
+316040	320680	trying to, you know, invoke that function and execute the same code that you have written earlier
+320680	325800	at, let's say, one separate place or, you know, in a separate fight. So with the default argument,
+325800	335080	I mean, it is very important to keep in mind that the default argument, you know, value that you
+335160	344840	assign while defining the function using this kind of expression, these only evaluate once.
+344840	349640	I mean, when the function is not defined and not at every, you know, function call. I mean,
+349640	355640	so this might be a little counter, you know, intuitive or, you know, not so normal. I mean,
+355640	360760	in the context of, you know, function definition and its call, but I want to, you know, highlight this
+360840	367240	specifically because it may cause a lot of error. I mean, it may be root cause of many of the
+367240	373320	future errors that you may introduce in your code without realizing, okay? So in Python,
+374520	379240	this is what I want to say, you know, say in Python default arguments are evaluated at the time of
+380440	385560	a function is defined and not when the function is caught, and this is very, very, very important,
+386280	391800	so when you are defining your function at that time itself, I mean, this, you know, expression,
+391800	399000	which you want to assign to default argument, you know, gets evaluated or executed, okay?
+399000	404280	So once that's assigned, I mean, you know, so next time I mean, when you call again the function,
+404280	409240	it's not that this, you know, evaluation of this expression will again take place and then it will
+409240	415240	be assigned to this default argument, okay? So, so function call may have multiple arguments,
+415240	420040	what I am, you know, mentioning here is only the default argument because you see, I mean,
+420040	426680	this is how we, you know, indicated that this argument is default argument by, you know,
+426680	431160	assigning some value, some expression to that default argument, okay? There may be multiple other,
+431160	436920	you know, arguments, but what we are right now saying is when a function call have some
+437640	444360	argument and some of them are default argument, so when you define the function at that moment,
+444360	451480	itself, that expression, you know, gets evaluated and assigned to this default, you know, parameters,
+452120	458280	okay? So this is very, you know, important and we'll see, I mean, some, some example where you can
+458920	465480	be, you know, observer did no difference in behavior than what you might expect in the usual case,
+466360	472360	so this means that the expression used as a default value is executed once and the resulting
+472360	477800	object is stored as part of the function object itself, okay? So, so what happens when you define
+477800	483560	something like this? So, Python evaluates this expression and at the time of the definition,
+483560	488440	itself, I mean, once you define and compile this, this happens, it will, evaluates to expression
+488440	494760	and then stores the evaluated result as default value for argument, this argument, this particular
+494760	503080	argument which you intend to be a default argument, okay? Then it, you know, in all other
+503080	509000	next, you know, function call, it does not again evaluate this expression and you know, put it in
+509000	515000	this one, but instead it uses the same, you know, expression that it has assigned to this argument,
+515640	522760	you know, in the very first time when you compile this function, okay? And so one of the,
+522760	529320	you know, important implication of this is that, you know, because the default value is
+529320	537000	reused across function call, if your default, you know, if your expression for the default,
+537000	543880	you know, argument are mutable, you know, data types such as list, dictionary or set,
+543880	550920	this can lead to unexpected behavior, okay? Any modification to the default object persists across
+551560	557560	subsequent calls, okay? So you cannot, so let's say, I mean, if the default argument has been
+559560	564760	initialized to some mutable data types, like list, for example, I mean, let's the very simplest
+564760	570200	kind of, so let me, you know, talk in context, I mean, just by writing maybe some, you know,
+570200	576840	function, so for, for instance, I mean, let's say if we want to write a very simple function,
+576840	583880	which always adds something to a list kind of container, okay? So, so my, you know, simple function
+583880	590360	may look something, you know, like this, so let me, you know, define it, so let's say, define a
+590360	598840	function and let's call it, you know, add item, okay? And what, what, what I do is this add item
+598840	603560	actually keeps adding, you know, items to, uh, already, let's say, you know, existing list,
+603720	609560	which user may not want to give you, you know, every time, okay? So, by default, it, you know,
+609560	615480	it, it expect you to, you know, create, let's say, that list, as an empty list, in the beginning,
+615480	622520	okay? So one way, so one way to think about this function is, like, so we want to pass the item
+622520	628280	that we want to add to the, you know, list or the container, so let's call our list here container,
+629240	635800	now which contains all these items, okay? And I, uh, by default, let's say, if you don't want to pass
+635800	641160	every time on this container, I, what I say is, I mean, I make it a default argument and
+641160	646200	initialize the value to the, to, to, to be our empty list. So this is the default value as an
+646200	655160	empty list, okay? Now, uh, what happens when I, uh, so I have not defined the complete function,
+655160	660680	so let's make call it a container. So the main body says that now we want to
+662360	668600	append this thing, the item that came to us to this container, this is what I want to do right now.
+670200	678600	And then maybe I just want to know, uh, return the container, okay? So this, this may be a very
+678600	682840	simple function, okay? Now, uh, the calling, uh, this function,
+684440	691080	multiple time without providing container, uh, explicitly should also work, right?
+692200	696840	And what do you expect? I mean, if you don't provide, you know, container, uh, naturally
+696840	702520	after seeing this, you know, definition and attending the last lecture, we would, you know,
+703000	708760	start to believe that container will be, you know, initialize to empty every time, uh, if you
+709320	714440	don't pass it explicitly, okay? So one way is you can pass the container explicitly, okay? So
+714440	718840	that's, you know, the safest way I mean, you pass the container explicitly, but then let's say if
+718840	725560	someone wants to keep calling this function, uh, with no different item, but does not want to pass
+725640	732360	the container itself. So, you know, many of you may, uh, you know, guess that this container will
+732360	738200	get initialized to empty because that's how the, you know, that's how, uh, you know, it was working
+738200	743640	in the previous class, right? I mean, it was, you know, getting initialized to the default value
+743640	749880	and then that value was used, okay? So what we expect is, uh, you know, what, most of you may expect
+749960	757160	that this container in each call may get initialized to this empty, uh, placed, okay? But to,
+757800	763480	know, our surprise, I mean, this is not the, okay, when you call this function, uh, this container,
+763480	769880	this, no, expression is evaluated only once, the expression is this, no, empty list and it is
+769880	775960	assigned to container, uh, no, once, uh, and for all because this has to be executed only once
+775960	782360	when you compile this, uh, let's say, good block, okay? And after that, whenever you make a call to
+782360	787160	this, it will not, you know, get created in each of the calls, if you don't provide this as an
+787160	792360	explicit argument, okay? And it will keep adding on the previous list that it has created. So,
+793000	800280	what I'm trying to say is, let's compile this, uh, good block. And then, uh, if you want to
+800600	809640	use it, let me add a cell and then call this function, now we call this function at item,
+810440	815560	okay? And let's say, no, the intended, no way of using it is, no, I just want to add,
+815560	824120	let's say one item, let me call this my first item. And I don't pass the second, uh,
+824120	830200	no argument, uh, explicitly because I mean, I, I had this flexibility, uh, it is defined as a
+830200	838200	default argument. So, I know by default, it should take, uh, empty list and when I execute this statement,
+840440	845320	this is what you expect, right? So, what, what do you get as, uh, no, the output?
+845560	853160	This container itself, right? I mean, uh, where you have, uh, this, no, fast,
+853800	858040	not appearing here because, because we added this to the empty list because it was, you know,
+858040	864200	initially created as empty and then, uh, you added this item, which was our, you know,
+864200	870040	fast, this is string fast into the list, so it, it gives you. So, now, many of you might,
+870440	876120	you know, start believing that if I call the same thing, let's say, uh, maybe again.
+879960	883960	So, what shall I expect at this moment? I mean, if I call the same function again,
+884600	890280	so, no, if I, and I, if I don't understand the semantics well, then I would assume that the
+890280	895240	container, since again, I'm not passing the container, uh, you know, value explicitly,
+895240	899800	it might initialize it with, you know, empty value and again, put the, you know,
+899800	906440	fast in as the only element in the list and return, right? But what happens when we execute it here?
+908280	913880	You see the difference, okay? So, so it's not initializing again this container with the
+914600	919800	empty list, okay? And what's the reason for that? Because, you know, when you, uh, define this,
+920360	927480	uh, function and you initialize it and run it. So, this evaluation, uh, of expression,
+928040	933240	only takes place for that first time and it assigns that value to this container. And since
+933240	937640	container is a mutable data types, remember, I mean, list is also mutable data type, which you
+937640	944040	can alter later on after defining, okay? So, so that's why I mean, it does not keep creating,
+944040	948520	you know, this mutable data type, every time the function is called, it, it creates this
+948520	953640	only once when function is defined and, you know, compile, okay? So, that's why I mean,
+953640	958120	you see a difference here, right? We made the same function, we made a call to the same function,
+958760	963240	again, with the same, you know, argument, we were expecting that we should have only, you know,
+963240	968680	fast in the list, but now you see there are two first, first in the list, okay? So, this is very,
+968680	975880	you know, important, keep it in your, in mind while using this kind of, you know, operation on
+975880	982600	any mutable data type and if you're implementing and if you're using making any parameter, default,
+982600	988440	you know, argument or parameter, then you should keep this in mind. Otherwise, this may cause a lot
+988440	995800	of no problem. Okay, great. So, now that we have already discussed it, so what can we, I mean,
+995800	1001800	let's, I mean, if our intention was to, you know, do something like what we said initially that
+1001800	1007560	if someone does not provide, you know, this container, then I would like to always initialize that
+1007560	1012680	container to be an empty, you know, list. So, you can do that, right? I mean, you can,
+1013560	1018520	write that, you know, explain and indicate that explicitly, you know, inside your code.
+1018520	1024200	And a nice way to, you know, do this kind of thing is to avoid this issue and, you know, not
+1024280	1030280	initialize this, you know, container as, you know, empty in the beginning, rather than it, you know,
+1030280	1034120	you can, you know, most of the time in the programmers, you know, commonly use this none,
+1035080	1041560	as a, you know, a sentinel value and create the mutable object inside the function body instead
+1041560	1047080	of, you know, creating just at the time when the, you know, function is being called. Okay,
+1047080	1052600	so what I'm saying is I mean, let me, you know, copy and paste it. So, possible, you know,
+1052600	1060360	good solution to this, maybe, and that, you know, instead of, you know, initializing this container
+1060360	1067000	to this mutable data type here, which is no list, but I can say, I don't want to initialize it
+1067000	1073640	to let's say empty list. And I say, I want it to be none by default. It's still, you know,
+1074520	1081800	default, you know, parameter. So, you may avoid giving any value for this container,
+1082440	1089720	but now it's not a, you know, mutable data type. So, I say, it's none here. And whatever I wanted
+1089720	1095720	to do, you know, or intended to do earlier, I'm to initialize this, you know, container as an empty
+1095720	1103720	thing, if you don't, you know, if it if you don't provide the value explicitly, then you can write
+1103720	1111400	that logic inside the function, you know, definition. So, what I would do here is I can write something
+1111400	1121640	like this that if your no container, you know, is let's say initialize or if your function is called
+1121640	1127960	with a default, by not providing default argument, in that case, no, your container will be
+1129240	1132840	none, right? Because this is the default value, it don't text.
+1136040	1143720	And then in this particular case, when you don't provide some value, I want to each time,
+1143720	1150760	maybe, you know, initialize this container to empty, okay, something like this. And then you do
+1150760	1155480	whatever you were doing, you know, earlier, right? So, this is what we were doing earlier.
+1156360	1164280	So, you got, I hope you get the message that instead of doing here, you know, at the function
+1165800	1172920	call itself for this argument, because, no, this is executed only once. And I intended to execute it
+1172920	1179560	every time when the container is not given to you, I can encode that logic inside the function
+1179560	1186200	definition itself, okay? Instead of here saying that I initialize the empty list, I say that I
+1186200	1192120	initialize empty list here, whenever I see that there is no, let's argument past and at the
+1192120	1198200	second place. Okay, I go inside the function, I execute the function and I see that whenever
+1198200	1204360	container is none, I always, you know, initialize it as a empty list. And this should solve your
+1204840	1208600	problem. If your intention is that, then, you know, you should write your function in this way,
+1208600	1213080	okay? So, let me, you know, so you, I mean, let me, you know, first compile this space of code.
+1216120	1220600	And then, you know, add new block and maybe, you know, just call the same functions, maybe,
+1220600	1229720	the same way, the way we, so you see, we got first, and what if I ask,
+1230680	1236200	or if I, you know, run the same thing again in the new code block?
+1238840	1243960	Now, you see, I mean, you get the behavior that you expected in the, you know, previous scenario,
+1243960	1250600	where I initialize the list as empty list in the very beginning in the function call itself,
+1250600	1256680	okay? A function, okay? So, so this, this is the, you know, distinction that will help you,
+1256680	1264280	avoid many, you know, errors, unintentional error in future. So, keep, keep, keep, keep,
+1264280	1269160	keep this in mind, okay? So, the safe use of default argument is using this kind of, you know,
+1269720	1276200	nothing, okay? So, you can, you know, put this default argument as, you can make these default
+1276200	1282920	arguments completely safe, and you can assume they are safe, when they are some, you know,
+1283000	1289240	immutable types like integer float strings or tuples, but whenever you are dealing with mutable types,
+1289240	1294920	and if you want them to initialize every time, you better encode that logic inside the function
+1294920	1301080	itself, okay? So, this is what I wanted to tell regarding this. So, these are, you know,
+1301080	1306520	the key takeaways from the previous lecture and the, you know, current lecture that we,
+1306520	1311400	we can define function using this, we can call function with positional or keyword argument
+1311400	1317800	that we have, you know, defined in previous classes. Positional arguments must come before keyword
+1317800	1322680	argument is what we discussed already, right? Once you use any keyword argument, you cannot use,
+1324280	1328600	you know, positional argument after that keyword argument. So, keep that in mind, and you should
+1328600	1335160	be very careful when working with immutable, you know, arguments, with mutable arguments,
+1335160	1340120	immutable arguments are, okay? They create, you know, by default, when you pass, there's some immutable
+1340120	1344040	arguments, they create, you know, copies of the original one and the originals one are not
+1344680	1350280	changed. This also we discuss in the previous lecture. So, please, if you don't recall, go back and see
+1350920	1357000	mutable arguments are which, you know, may create no problem. So, if you don't want to change your,
+1357000	1363560	you know, mutable objects that you are passing as argument, so better, no pass, no deep copy of that,
+1363560	1370600	and not the original object, okay? And you always use none for mutable default parameter to
+1370600	1377000	avoid shared state issues like what we discussed just now, okay? So, these are some very important,
+1377960	1383640	you know, notes that we can, you know, derive from our previous lecture and keep that in mind.
+1384520	1391720	So, now, let's continue our discussion on function and talk something, you know, very interesting
+1391720	1398200	regarding the type of value that a function can return. And what are the variations
+1399560	1406760	in the return value that a function can return, okay? So, function can return, I mean,
+1406760	1414120	function of a body can have, you know, one return, no return or multiple returns as well, okay?
+1414120	1420120	And function can also return, you know, one value or multiple values, you know, using something
+1420120	1425560	that takes no sugar, okay? So, both of this is what we are going to discuss today. So,
+1425560	1431960	the return statement, you know, you know, when function, so return statement is how the function
+1431960	1439160	communicates, you know, it's a result to the caller, it immediately exits the function and passes back,
+1439160	1446760	specified value, okay? So, we have seen some return statement, right, where we wanted to,
+1446760	1453720	let's say, return some value from which we might have, you know, calculated inside our function
+1453720	1459720	and we wanted to, you know, communicate to the, you know, caller function. So, you can explicitly
+1459720	1467480	return those values using the return statement. So, the easiest way is this explicit, so return,
+1467480	1472760	I mean, so we'll first talk about, you know, what is, what do we mean, my explicit and implicit
+1472760	1479800	return, okay? So, in explicit return function, specify exactly what to return, okay?
+1480440	1486840	For example, you know, very simple example, let me, you know, we have seen, I mean, this kind of
+1486840	1494520	thing earlier, but let me again, if you want to calculate, let's say, discount on some, you know,
+1494520	1501960	price and if you let's say, no, no, no, no, price of the object and the discount percentage,
+1501960	1507160	you may want to write a function which calculates this discount for you and returns the final price,
+1507160	1512040	let's say, for, you know, that object. So, what is the function that we want to write is,
+1514760	1525640	calculate this count. So, what it takes as input is, you know, price and then maybe
+1526120	1539160	discount percentage, okay? And then the function body starts, now it does something, right?
+1539160	1545240	It calculates the final price after the discount, okay? So, so maybe, you know, it will, first,
+1545240	1556440	calculate the discount amount maybe and then, you know, subtract it from the original price,
+1556440	1564760	what will the discount amount? So, this is price multiplied by your discount percentage that
+1565000	1567640	you know, get from here, right? So, this discount portion.
+1573560	1577720	And then, I don't divide it by, I mean, 100. So, this is what you're going to calculate,
+1577720	1581320	write the discount amount and then, we, our final price,
+1586120	1593400	price is same as the price that you know, gave initially the actual price of the object and then,
+1594120	1602680	you did, you just subtract this discount amount, okay? And this is what we know,
+1603320	1607960	we get at the final price and the function goal was actually to return this final price.
+1607960	1616200	So, so what we can say is return explicitly this value, okay, which is now our final price,
+1616200	1625000	sorry, final price, okay? So, this is now explicitly returning the, you know, calculated value,
+1625000	1630360	okay? So, this is what we call explicit return. So, you can define a function and, you know,
+1630360	1639720	use it in this form also, okay? Where this is explicitly written, okay? So, so this is,
+1639720	1647960	you know, first type or first kind, first one way to use this kind of return statement.
+1647960	1654360	So, another thing is, I mean, we can, you know, we may not, you know, want to, let's say,
+1654360	1659400	return something explicitly using return statement and maybe you just want to maybe print it,
+1660280	1665240	the price, I mean, same, same function we can write where what we are saying is, now we don't
+1665960	1671320	want to return the value, but let's say your only purpose is the print or the recipe, okay,
+1671320	1675720	print the recipe. So, then we don't use this return statement because we don't want a value to
+1675720	1680120	be returned by this function, the only purpose of the function is calculate it and so it, okay?
+1680120	1683800	In that case, you know, we cannot gain, I mean, copy in this whole thing.
+1685560	1691720	And we can say that we, we want to know, you know, don't want to calculate actually, but we
+1691720	1700760	want to just display, you know, display the discount or the final, you know, or receive and you do
+1700760	1708200	all the same, you know, actions and then you may be, you just, you know, print all these things
+1708200	1714440	to the, you know, final user, okay? So, maybe, I don't want to write a return here, but maybe,
+1714440	1722440	I just want to maybe, let's me write it here, we just want to print, you know, these, these are,
+1722440	1727400	what was the final, you know, initial price, what was a discount amount and what was the final price,
+1727400	1734040	if we, our purpose is to just print, we may do this and we may actually completely omit writing
+1734040	1739640	return, okay? So, no return statement, so it will automatically, no return. So, it's not that,
+1739640	1746360	I mean, you will get some, you know, error here, but no, the function will return, okay? So,
+1746360	1761640	let me, you know, run this, this compile, this, no hold, sorry, okay? Now, what if I, let's say,
+1761640	1777960	display, I mean, I call this function, which is my display discount, or I mean, it's a better
+1777960	1783640	call, it's no display receipt, right? Because you're not only showing the discount, but the complete,
+1783640	1794440	no receipt, so let me call it, okay? And when we call this function, let's say,
+1801480	1806360	with some value, let's see, you have to provide these two values, let's say, no, 100 was my original
+1806360	1813800	price and I, you know, give us discount percentage of maybe 20 percent, okay? So, in that case,
+1813800	1820280	if I, you know, want to print, what happens here? You see, I mean, I, you are,
+1822440	1827320	so what you return is your, what, why are we returning? Because this time, I mean, the,
+1827320	1835000	all of the function was not to return, so let's me, you know, just delete this thing, okay?
+1835000	1841240	So, if you don't want to return and just, you know, print these things, right? As output show,
+1841240	1847800	in that case, we can run this and you see, and the action of the function execution is that,
+1847800	1852200	you know, you print all these things on your screen, and this was, you know, purpose of this function,
+1852200	1858920	this display receipt. But one thing to note here is, I mean, although we are not using any
+1859080	1868600	return, you know, this command or keyword while defining this function, function always returns
+1868600	1874600	something, okay? So, whether you do it explicitly, or if you don't, you know, provide this
+1874600	1881000	information, so by default, what function does is that it returns, you the non-value, you know,
+1881640	1886200	automatically, okay? So, if you have no return statement in your function definition,
+1886680	1892680	it does not mean that function does not returns a value. So, function always returns a value,
+1892680	1897640	and in those cases where you have not written, let's say, any return statement, the function will
+1897640	1903960	return a value, which is none, okay? So, I mean, and again, I mean, this may be, you know,
+1903960	1909480	mistaking to, this may mistreat many of you that, if you have not written a return statement,
+1909480	1914280	function is not returning something. No, function is always returning something, which you can,
+1914440	1920680	you know, collect or observe by, you know, storing that in a return value, okay?
+1920680	1925480	So, although we have not written anything here, I mean, this kind of statement that I'm going
+1925480	1936920	to write down right now, so let me, so this is perfectly, you know, a valid display.
+1937720	1945880	In short, it is what we have written right now, right? And if I, let's say, put that value,
+1945880	1954920	when let me know all the same thing, okay? Let me know, comment out this thing,
+1955640	1960360	and what I'm right now doing is, you know, you store whatever the function returns
+1961000	1965720	into result, and you know, many of you might, you know, believe that function is not returning,
+1965720	1971320	and I think this may, you know, preserve some error or something like that, and it may not return,
+1971320	1977960	you know, anything. But I mean, function actually returns always this none value, if you don't
+1977960	1984360	provide this no return statement. So, the result that we get here inside this, you know, result
+1984360	1992440	variable should be, you know, none, and we want to show this side. So, let me, if I want to
+1993400	1999960	see also what the function has returned in this case, in this particular case, I would like to print it,
+1999960	2005720	right? So, let me, you know, print. So, what, what this function return?
+2006120	2022760	function return, and I want to see what it returns in this, you know, variable result, which,
+2023640	2030280	which I'm using to collect the return value, okay? So, now what happens if I, you know,
+2030360	2034040	this piece of code, and I want to see what happened to this result.
+2035960	2037000	So, what's the problem?
+2043320	2047000	Okay, so I did not close this, okay? So, this, I should write it,
+2048120	2049640	go to here, and then,
+2053400	2059640	if I run it, this is what I get, okay? So, function return, none, and this is what I mentioned,
+2060600	2065640	although this function, you know, does not have any return statement, and when I, you know,
+2065640	2069880	call this function and try to store the return value, it returns something very,
+2069880	2075160	and the value return was none. So, keep this in mind, the default return value is always done,
+2075160	2081480	okay? So, none. So, when a function does not have a return statement, or has a return without
+2081480	2086680	any value. So, this is, you know, another condition that, no, may occur, many a time that your
+2086680	2093480	function, you know, may not have return, or it may have return, but it is not, no returning,
+2093480	2099480	anything explicitly, any value, then Python automatically returns, none value. So, we have already
+2099480	2105960	seen, you know, one example where there was no return statement, right? But we can have also,
+2105960	2113800	I mean, some, you know, examples where you are not actually, you are using actually return,
+2113800	2119560	but you may not know return something explicitly, okay? So, both of these are possible.
+2119560	2125400	So, we already saw one example of such thing. So, but the other kind of, you know,
+2125400	2130600	example. So, let me, you know, give you one more example, at least before we go ahead.
+2130600	2139560	So, what if I want to process, let's say, this is very, you know, interesting function.
+2139560	2146520	So, we have already seen one example where, we did not, sorry, return anything. There was no
+2146520	2152440	return statement, but now in this case, let's say, if I define something like this, no process
+2152440	2160200	data, and you pass, you know, this data. So, it's sometimes, you know, return data, right?
+2161000	2166120	But it's sometimes, you know, there's not return anything. So, maybe, so I have not written
+2166680	2171560	this piece of course. So, you know, if it goes to this point, then it will certainly, you know,
+2171560	2177720	give you error. But let's say, you know, for now, I mean, I'm just concerned about this part,
+2177720	2183560	where, you know, if you hit this branch somehow, and when will you hit, if your data has, no,
+2183560	2187320	is let's say, you know, empty, I mean, if you pass empty list kind of thing here,
+2187880	2192200	then you hit this branch and you, you want to return, but you are not returning, you know,
+2192840	2200120	and any value here, right? So, what if I then know stored that value and then try to see what
+2200120	2208040	happened, I mean, in this particular case. So, what I'm trying to say is, let me call this function,
+2208040	2217480	and then, let me call, you know, result one. And in the result one, what I'm saying is,
+2217480	2226840	I call this process, let's say, data function. And when I'm calling it, I want this branch to be,
+2226840	2233320	you know, executed. And for that to happen, what I can do is, I can just keep passing empty list.
+2233320	2238040	So, you know, in that case, it knows that no data is empty. So, not data means, I mean,
+2238040	2245080	no data being true means data is actually, you know, empty, empty list. And this will get executed,
+2245080	2250520	okay? So, it will simply return. And you're not returning any value here, remember, I mean,
+2250520	2255960	although you are returning from the function by saying explicit, not returned statement,
+2255960	2261160	but then no value is being passed. So, if no value is being passed, in this case, you know,
+2261160	2267880	this is executed and the return happens where this root, but no value is passed. So, what can I
+2267880	2276120	expect in this, no result one? Okay? So, I want to, no, no, with that, I mean, this, no result one
+2276120	2282280	is, no, no, not, let's say. So, by default, what I say right now is that it should return and
+2282280	2294040	non-value, okay? So, we can actually print it and just check it. So, if I want to check, let's say,
+2294920	2306040	that my result one is, no, no, not. So, let's select it. I mean, by default, I got none in the
+2306040	2310200	previous case. In this case, also, I want to check. I claimed that it should return none,
+2311560	2316920	but let me check it. I mean, so, if you print this, so, if this is, no, none, then this would,
+2317800	2332200	return us true value. Okay? So, this is what we get. Okay? So, it returns true, no, none value,
+2332200	2336440	and that's how, you know, when you compare this result one with none, you get a true value.
+2337480	2343080	Okay, great. So, now, we have seen that if you default return value is none, whether you,
+2343720	2349640	don't try this return statement or you write return statement without providing any return value
+2349640	2355320	in both the cases you get this none value. So, so, that we have, we have to, you know, keep in mind
+2355320	2360680	where we are writing a function. Now, the next thing that I want to highlight is that function can
+2360680	2364920	have multiple return statement, right? I mean, I mean, in the previous case, also, if you see,
+2364920	2369000	if you observe, I mean, you have multiple return statement, right? We have one return here,
+2369000	2375240	one return here. So, that's perfectly, you know, or valid code structure. So, by syntax,
+2375240	2381080	you know, rule, this is not some, this is not an invalid syntax for Python's program. So,
+2381080	2390680	Python, cavern, multiple return, you know, points, but how, how so, I mean, irrespective of how
+2390680	2396760	many return, you have no return inside your function, only one will execute per function call.
+2397400	2404760	And the first return encounter actually ends the function. And it will depend upon what you are
+2404760	2411160	passing as argument, right? Because the argument will decide the exact control flow of the function,
+2411160	2417000	and it will tell you which of the branches to execute or not to execute. And when you get to your
+2417000	2425960	first return, the function gets, you know, encounters the end of the execution of. So, it is an
+2425960	2433000	indication that now you shouldn't execute. So, this is what is meant by, you know, multiple
+2433000	2440760	return paths. So, for example, a very simple, let me, you know, bring this code to you,
+2440760	2450280	or convenience, or assume that this is the simple function that we, you know, want to write to
+2451240	2456920	check temperature, okay? And then depending upon what is the temperature, you may, you know, want to print
+2458040	2465480	something, and maybe, you know, just return. So, one way can be that you, you know, return that thing
+2465480	2470440	into, you know, return this kind of, you know, strings depending upon this condition, like, if
+2470440	2476200	temperature is greater than 90, I want to just return this string. We said that it's too hot,
+2476840	2482200	indoor, you know, maybe, you know, save this somewhere, web in the color function, call this
+2482200	2488360	check temperature, it also wants this string to maybe, you know, store as a message, let's say,
+2488360	2493160	for later use by some other program, okay? So, this may be a very simple, you know, kind of function,
+2493160	2498840	where we can see there are multiple returns, right? But all of these returns are, you know, inside,
+2498920	2505880	you know, different, if, then else, construct. And you know, when you execute this function,
+2506440	2513080	with some concrete value for temperature, you will eat one of these, you know, branch,
+2513080	2517240	and whichever is the first branch, let's say, you hit, if your temperature is 100, you will hit
+2517240	2526680	this branch, and this return will be, you know, encountered, I mean, and immediately you execute
+2526680	2531000	this return and get out of the function, and all this part of the code will not be executed.
+2531560	2536200	So, this is what, you know, we said that only one, you know, return will be executed,
+2536760	2541240	no power function, call. Okay, although there are so many returns here, right?
+2544840	2550440	So, so we can actually check it, right? So, let me, you know, call this function, and then,
+2551400	2557880	let's say, you know, the very first message that now we want to store is,
+2559240	2564280	corresponding to the argument, let me call it 100, okay? So, check temperature,
+2569400	2576840	temperature, and when we pass 95, okay? So, what do you expect? I mean, in this case, since,
+2577000	2581320	you know, it's 95, it's more than this. So, I expect in my message one, you know, this information,
+2581320	2586680	that, you know, it's too hot to stay indoor, okay? And what if I, you know, pass some other value,
+2586680	2592760	should it let me, you know, pass some other value, and then, we try to see what happens now,
+2592760	2594520	but what can be our message?
+2597560	2601960	It's two. So, when, when I say, let's say, I want to hit some other branch, let's say, in this case,
+2602120	2615320	20. So, if you hit 20, you see, I mean, your temperature, you're saying less than 32. So,
+2615320	2621480	no, most probably, no, this is the branch, this is the first branch that will, that you will hit,
+2621480	2626440	and when you hit this, this message should be written into your message still, right? And what
+2627160	2635800	let's call it one more time to see what happens when I, you know, call this with, so let me call
+2635800	2641880	this message three, and with the temperature, which is 80, let's say, I want to intentionally hit
+2641880	2647560	another branch, 80 will take me, maybe, no, here, it will not take me into this, but you know,
+2647560	2652840	you get into this only when you are greater than 90, you get here only if you are less than 32,
+2653400	2657880	but, you know, with 80, you can hit this branch, right? I'm sorry, you're here.
+2660120	2664840	Okay, and if I, you know, print, let's say, these messages, let's say,
+2664840	2686760	let me make it process two, and then, what if you print message three, we print all these messages,
+2686760	2692280	what, what, what can we, you know, expect here? See, this is exactly what we expected, right,
+2692360	2701880	because we hit, we execute only one of the written statement, okay? Now, some people might want to,
+2701880	2709160	or sub-programming, you know, might want to use these returns as, return statement as a way
+2709160	2714600	to hardly exit in order to validate, let's say, its input. So, if your function is
+2715320	2721240	expecting input to have some, you know, restricted set of value, and let's say, in case you don't
+2721240	2728840	get that set of, you know, value, you may want to, you know, return from the function by maybe
+2728840	2735080	displaying some, you know, interesting message, useful message, okay? So, that's how also many people
+2735080	2741160	pull out programmer, you know, use this kind of, you know, return statements, okay? So, in the
+2741160	2745160	context of, you know, for example, the present problem that we were, you know, discussing this
+2745640	2750920	temperature, I mean, if your temperature value is some arbitrary number, or maybe, you know,
+2750920	2755400	let's say, not temperature is not a good thing to talk in this context, if you are calculating,
+2755400	2764840	let's say, grade, okay? And, for, for a given, let's say, no, no, number. So, if you're, you know,
+2764840	2771160	average, you don't want your average grade to be, you know, less than 0, or, you know, greater than,
+2771160	2776840	no, no, 100, right? Because let's say, if you are grading, you know, you're trying to derive
+2776840	2782200	a little rate for your, you know, exam, and you have been provided the average that a student
+2782200	2787640	get by, you know, we're doing weighted average of all the component. So, in that case, you never
+2787640	2792600	expect your average to be, you know, less than 0, or greater than 100, if there is no negative
+2792600	2799240	marking kind of nothing in your evaluation component. So, if your average score that you get
+2799800	2805000	for against which you want to, you know, calculate the letter rate is outside, let's say, this range,
+2805000	2812200	you know, which not, you know, less than 0, or, no, greater than 100, you use, it's kind of a
+2812200	2817720	hint that something, you know, wrong, and you don't want to execute this whole, you know, function,
+2817720	2821960	which will calculate for you the grade, and maybe you just want to return with the, you know,
+2821960	2827320	invalid average kind of, you know, message to the user. So, in that case, you can actually use
+2827960	2834120	you know, return statement also, by inside some conditional, it just checks whether, you know,
+2834120	2839560	your input is in the range that you expected, okay. Again, I mean, just know for a quick reference,
+2839560	2849240	I will just bring back this function for you, and, so what we are saying that, you know, some
+2849240	2856120	people may want to use early returns for validation also. For example, in this case, you know,
+2856120	2861160	you can use early return for input validation. If your whole goal is to calculate letter rates,
+2862280	2868920	no, for, for given average that a student has now obtained in class, if you know that, this is the
+2868920	2875000	condition, which, which should not be there, you can use this kind of return statement to,
+2875000	2879800	you know, print this kind of message, which can be very helpful, and then return from the
+2879800	2884520	function earlier. If this is not the case, then you go ahead and then calculate this, you know,
+2884600	2893240	return, return, whatever is the grade, okay. So, this is what many of you might find, you know,
+2893240	2898360	useful when you are writing your actual code. So, now, three examples of, you know, this,
+2898360	2907640	let me again, so you hear, I mean, if we try to call this again, same thing. So, you can expect,
+2907640	2913000	I mean, in this case, and in this case, we should get this message right average.
+2913880	2916280	So, invalid average. So, if we run this,
+2919480	2923240	and then if you know, you have to print also like this three value, you need to print it.
+2924920	2927240	So, let me print this three, you know,
+2927640	2947880	this is what, you know, we expected, okay. So, good. So, now, we know that, you know, function,
+2947880	2953080	so this, you know, return statement can be used in multiple ways, that, you know, multiple
+2953080	2957640	position in multiple number of times, but only one of it, you know, gets executed.
+2958600	2965080	The next thing that, that is remaining is to discuss that, your function can return multiple
+2965080	2969720	values also, you know, simultaneously, you know, in all the previous example, we were only,
+2969720	2974760	you know, returning one value, right. But what if you want to, you know, return multiple,
+2974760	2981000	you know, different values, which you might have computed inside your function instead of,
+2981320	2987560	you know, every time, only returning one, you know, value. So, you can use, you know, return
+2987560	2993240	statement to do that also, okay. So, Python allows returning multiple values from a single function.
+2994760	3000680	So, if you don't do anything, so, by, by default, what happens is that these values are automatically
+3000680	3006840	packed into a tuple, and it's, you know, returned as a tuple, okay. So, so, let me know again,
+3007800	3013960	so, you are very concrete example to illustrate this, not automating,
+3013960	3021800	automated, not toppling kind of, sorry, coupling kind. So, automatic, you know, this
+3023400	3025960	tuple making, you know, kind of activity. So,
+3026600	3036440	oh, again, I mean, assume that this is our code. Let me bring a function here,
+3039160	3042600	which is, you know, analyze score. Let's say, again, I mean, we are working with this course,
+3042600	3048760	and it returns multiple statistics about scores. So, the function input is score.
+3049080	3055800	So, if you don't provide score, you can handle it, again, using, you know, the return,
+3057000	3061000	separate type of, you know, return, where it returns, no, 0, 0, 0, 0, if you don't provide
+3061000	3065880	90 score at all, okay. Or, I mean, let's say, you know, you provide an empty, let's list.
+3067080	3072360	But if you provide a non-empty list, then, you know, it will go and calculate the average,
+3073000	3079480	okay, and highest marks, and the lowest marks, let's say, and then it, no, finally, returns this
+3079480	3083160	average, highest and lowest, because we are interested in all these three, let's say,
+3083160	3087960	property, when you are, you know, deciding a letter, you know, even before, let's say,
+3087960	3091080	you decide later, get, you may want to know what is the average, what is the highest,
+3091080	3095320	and what is the lowest, instead of doing, you know, plain calculation, as we did in the previous,
+3095320	3101480	okay. So, we want to return our function, we want our function to return this three values,
+3101480	3105640	average, highest and lowest, and this is the easiest way to say. So, I mean, you just separate
+3105640	3112200	the values that you want to return to these commas, and this will return a tuple.
+3114040	3118840	Of this, so a tuple is actually, you know, in this case, this tuple has no three values, and
+3118840	3125000	this is no one entity itself, okay, and you can actually collect this tuple in multiple ways.
+3125000	3128920	I mean, if you want to collect, no, these values in separate variables, you can actually use
+3129160	3135080	syntactic sugar, and do this unpacking. So, see, by default, it is, you know, packing all
+3135080	3140120	these three values that you are returning into one tuple, okay. So, so what it is written is,
+3140120	3145800	you know, one entity. So, but if you want to, again, you know, observe or, let's say,
+3145800	3151720	collect these values that is being written by function, you know, return statement into different
+3151720	3158200	variable, you can do it immediately, you don't need to, you know, again unpack this manually.
+3158200	3162360	So, Python will, you know, unpack it automatically for you.
+3163000	3166120	So, for example, I mean, if you let's say, let me, you know, make a call to this
+3168440	3173800	function. So, what we can say is, you want to call this function and maybe
+3174760	3180760	store the value that it returns. So, let's say, the value that I want to return, I want to
+3181400	3195080	store in maybe average and the highest and maybe the lowest that I want to return, I keep it
+3195080	3203080	in low. So, so this is what we can, you know, use to collect, okay. So, whenever you call this
+3203080	3209560	function, you know, analyze score function, you have to pass this list of scores. So, what I'm
+3209640	3217800	doing is I'm trying to call this function and then pass some list of numbers, let me pass some list
+3217800	3239480	of number, rectify some numbers. So, okay. So, these are the numbers, let's say,
+3239720	3246600	pass and I, you know, store it into this one and then if I want to print, what are these,
+3246600	3254360	you know, average, you know, high and low values. Now, I can simply print it using a print statement
+3256840	3265480	something like this. So, I print these average high and low values and the actual values,
+3265720	3271560	these average that I collected and this high and low. And I want to see what happens, okay.
+3271560	3277560	So, that does, I know, can Python do it automatically, this kind of unpacking of tuples that
+3277560	3284200	is being written by this function. So, to do that, I mean, we can actually print it and then see
+3285160	3291640	if we run this piece of code. So, this is what you get, right. So, inside average, you get this value.
+3292200	3298040	This is what I'm perfectly and you don't have to do it unpacking. This is a nice syntactic
+3298040	3303080	sugar where you can just write like this, separate it again, this value, you know, this variable
+3303080	3308200	with commerce and it will collect the values written by this. So, so what goes here inside this
+3308200	3315320	average, okay. What goes inside there, here is this average variable is the value written by this
+3315320	3322280	one, okay. Similarly, you know, this collects the value which is more written into this one
+3322840	3327720	and this low collects the value which is written in this lowest one, okay.
+3329400	3334920	So, so instead of that, I mean, you can actually, you may want to return it into a single variable.
+3334920	3340120	So, but then you have to do this unpacking on your own, okay. So, what I'm not trying to say is
+3340600	3347800	that we can maybe, you know, so an alternative way to collect this value maybe, you know,
+3347800	3355400	into a single variable, let's say called rigid, okay. And I again, you know, call the same function,
+3355400	3361720	maybe, you know, analyze score with all the same argument that we passed earlier.
+3362600	3369640	So, in this case, you know, what do you expect? I mean, so since we know that, you know,
+3369640	3374600	these average highest and lowest are always written as a tuple. So, inside the result,
+3374600	3384840	you will see a tuple which has the same value, okay. So, can we run it and see what is the value
+3384840	3393240	inside this result? So, if I want to print a result, so let me print that.
+3400600	3403320	Let me print the values that I want to.
+3403320	3424360	So, I can print the value which I want to know in this result, okay. I know what is the value
+3424360	3433560	that I want to see here? I mean, before I say this, this is it, okay.
+3441240	3449400	Now, if you print again, you see, now, you get a value inside result, which is actually a tuple,
+3449400	3455320	a tuple where all the values are same, but this is no one object, okay. This is one object,
+3455320	3461160	one tuple. But here in this case, we created three variables, no separate variables and all those
+3461160	3467800	variables, you know, these variables, you know, contain the first, second and, you know, third value
+3467800	3473800	inside the tuple, okay. So, depending upon what you want to do with the return value, you can
+3473880	3482680	use any of this, no, for your case, okay. So, good. So, I think I would like to,
+3482680	3487880	so these are the main takeaways. I mean, from today's lecture, that return immediately
+3487880	3492840	exits the function and sends back the value. So, this is how return, now this function will
+3492840	3499480	communicate with the color function. So, if there is no return statement, the function automatically
+3499480	3505800	returns none. If no return statement does not mean that there is no return value. So, return
+3505800	3510600	value is always none. I mean, if there is no return statement, you may have multiple return
+3510600	3516840	statement, which is a perfectly valid thing in Python, but only one of them will, you know,
+3516840	3524360	execute path call, okay. And early details can be used sometimes, no, for input validation and
+3524360	3530840	edge case analysis, okay. So, you can do, no, edge case analysis and input validation using early
+3530840	3536920	return, some programmers actually use this kind of notary. Now, multiple values can be return
+3536920	3543800	and are automatically packaged as tuple. So, this is what we know talk, we just know that, no,
+3543800	3548200	if you want to return multiple value, you can actually mention all those variables with the
+3548200	3553960	return statement separated by comma. And the way the usual way is that they are actually
+3553960	3559720	made into a tuple and then return. So, you can collect, no, those individual value
+3560760	3566200	by doing by, you know, taking help from Python and automatically unpacking that tuple
+3566200	3571080	by writing separate variables or if you want, you can actually collect that as a single,
+3571080	3577000	you know, tuple also inside of one variable, okay. So, all of this is not possible in Python, okay.
+3577000	3582520	So, with this, I would like to conclude today's lecture and we will continue with no function
+3582520	3588520	and discussions around functioning in the next lecture. Till then, good bye, I'll see you in the next video. Bye.

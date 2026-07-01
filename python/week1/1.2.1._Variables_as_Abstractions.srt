@@ -1,0 +1,1868 @@
+1
+00:00:00,000 --> 00:00:19,440
+Hello and welcome back to the Python Core and Applied Concept.
+
+2
+00:00:19,440 --> 00:00:25,960
+We are going to start Model 2 today and the main content of Model 2 will be the basic
+
+3
+00:00:25,960 --> 00:00:32,680
+building blocks of Python programming language which are now variable data types expression.
+
+4
+00:00:32,680 --> 00:00:38,240
+So let us now begin the discussion by moving to the slides.
+
+5
+00:00:38,240 --> 00:00:41,720
+So this is our slide, title slide which says that now we are going to discuss today the
+
+6
+00:00:41,720 --> 00:00:50,960
+building blocks, variables, data types and expressions in Python.
+
+7
+00:00:50,960 --> 00:00:56,440
+So before we start the discussion of the basic building blocks of Python, let me quickly
+
+8
+00:00:56,440 --> 00:00:59,720
+recap what we discussed so far.
+
+9
+00:00:59,720 --> 00:01:04,120
+So we have already discussed the difference between syntax and semantics for programming
+
+10
+00:01:04,120 --> 00:01:06,720
+language in detail in the last module.
+
+11
+00:01:06,720 --> 00:01:12,240
+We understood that for defining programming language, you need to clearly define what
+
+12
+00:01:12,240 --> 00:01:17,760
+all you can write in that programming language or what can be accepted as a valid program
+
+13
+00:01:17,760 --> 00:01:19,920
+in the programming language.
+
+14
+00:01:19,920 --> 00:01:24,920
+And these things are described using the syntax of programming language, sometimes we
+
+15
+00:01:24,920 --> 00:01:32,680
+call syntax is what describe this notion of what is a valid or what is an invalid structurally
+
+16
+00:01:32,680 --> 00:01:35,480
+valid or invalid program in a programming language.
+
+17
+00:01:35,480 --> 00:01:41,200
+And the meaning of those structurally valid program is what we refer to as normally semantics.
+
+18
+00:01:41,200 --> 00:01:47,840
+So the only way to describe semantics or the most common way in which the programming
+
+19
+00:01:47,840 --> 00:01:53,360
+language designers would want to describe the semantics of a programming language is in
+
+20
+00:01:53,360 --> 00:01:54,360
+English, right?
+
+21
+00:01:54,360 --> 00:01:59,720
+And we describe the meaning of a program by describing what will be the effect of executing
+
+22
+00:01:59,720 --> 00:02:03,720
+that program on the state of machine that is running that program, okay?
+
+23
+00:02:03,720 --> 00:02:09,080
+And if you recall, we also discussed the complexity involved in this process of describing
+
+24
+00:02:09,080 --> 00:02:14,480
+the meaning or semantics of a programming language because if you want to know the true
+
+25
+00:02:14,480 --> 00:02:20,800
+or semantics, then you have to describe the effect of execution of that program on the
+
+26
+00:02:20,800 --> 00:02:23,640
+exact machine, which we also refer to as concrete machine, right?
+
+27
+00:02:23,640 --> 00:02:25,240
+This is very complex.
+
+28
+00:02:25,240 --> 00:02:29,840
+And you know, if you want to reason at that level, it becomes very difficult to write and
+
+29
+00:02:29,840 --> 00:02:33,480
+reason any, let's say, you know, non-trivial and useful program.
+
+30
+00:02:33,480 --> 00:02:37,760
+So that's why we move to the concept of high level programming languages, right?
+
+31
+00:02:37,760 --> 00:02:44,000
+I mean, we say that high level programming languages help us abstract out these concrete
+
+32
+00:02:44,000 --> 00:02:48,960
+machine details by assuming some abstract machine where, you know, the number of details
+
+33
+00:02:48,960 --> 00:02:49,960
+are not so high.
+
+34
+00:02:49,960 --> 00:02:53,960
+I mean, you don't every time need to think in terms of what's changing inside the machine
+
+35
+00:02:53,960 --> 00:02:54,960
+rather than that.
+
+36
+00:02:54,960 --> 00:02:58,720
+You can think in terms of, you know, abstract concepts like what we are going to discuss
+
+37
+00:02:58,720 --> 00:03:04,000
+today, variables and expressions and how these, you know, abstract concepts of, you know,
+
+38
+00:03:04,000 --> 00:03:09,080
+variable and expression can help us figure out, you know, the change of the state of our
+
+39
+00:03:09,080 --> 00:03:11,680
+abstract machine that we want to know work with.
+
+40
+00:03:11,680 --> 00:03:14,840
+So underlying every high level programming language, there is an abstract machine which
+
+41
+00:03:14,840 --> 00:03:20,920
+is far more simpler than our concrete machine, which we will actually run the program.
+
+42
+00:03:20,920 --> 00:03:25,080
+But I mean, reasoning on top of the abstract machine is sufficient for, you know, ensuring
+
+43
+00:03:25,080 --> 00:03:29,480
+that your program behaves exactly the same way as you want when it's, you know, executed
+
+44
+00:03:29,480 --> 00:03:32,120
+even on the non-trivial machine or concrete machine, okay?
+
+45
+00:03:32,120 --> 00:03:37,040
+So the programming language, a compiler and interpreted take care of all these, you know,
+
+46
+00:03:37,040 --> 00:03:38,040
+abstraction.
+
+47
+00:03:38,040 --> 00:03:43,960
+I mean, we don't need to, you know, we don't need to actually care about how these things
+
+48
+00:03:43,960 --> 00:03:47,480
+are getting executed inside the machine, but if you can, you know, reason about these
+
+49
+00:03:47,480 --> 00:03:51,160
+things at the subtracting machine level, then it should be enough, okay?
+
+50
+00:03:51,160 --> 00:03:55,320
+And we also, if you remember, emphasize, you know, the evolving role of a programmer,
+
+51
+00:03:55,320 --> 00:03:59,720
+you know, from, you know, being a code created to a code validator, now as moving forward
+
+52
+00:03:59,720 --> 00:04:04,800
+since we are using, you know, LLM and other kind of agents, very, you know, aggressively
+
+53
+00:04:04,800 --> 00:04:07,520
+in code development, you know, for good reasons.
+
+54
+00:04:07,520 --> 00:04:11,640
+So we need to somehow ensure, you know, we are, you know, almost never writing our code
+
+55
+00:04:11,640 --> 00:04:13,640
+from the various scratch.
+
+56
+00:04:13,640 --> 00:04:19,280
+So no, there is no pressing need to ensure that whatever code we get generated using these
+
+57
+00:04:19,280 --> 00:04:22,760
+LLM or any agent, we have a better understanding of that code.
+
+58
+00:04:22,760 --> 00:04:27,360
+No, in the sense that we, we can be sure that the code actually does what we intended it
+
+59
+00:04:27,360 --> 00:04:28,360
+to do, right?
+
+60
+00:04:28,360 --> 00:04:33,000
+Because the only, you know, assurance that we have right now is that we gave a natural
+
+61
+00:04:33,000 --> 00:04:36,720
+language prompt with somehow described our intent of computation.
+
+62
+00:04:36,720 --> 00:04:41,280
+And these LLMs may have produced, you know, the correct or a line code which achieves
+
+63
+00:04:41,280 --> 00:04:45,960
+those intences, but there is no guarantee, most of the time, these LLM has its needs.
+
+64
+00:04:45,960 --> 00:04:49,400
+And they know they create, you know, any agent can create, you know, wrong result.
+
+65
+00:04:49,400 --> 00:04:53,720
+So we should be able to understand or at least validate once we get the code, whether
+
+66
+00:04:53,720 --> 00:04:57,000
+the code is doing exactly the same thing that we wanted it to do, okay?
+
+67
+00:04:57,000 --> 00:05:01,440
+So that, that's one of the reason why we have designed this course, not keeping in mind
+
+68
+00:05:01,440 --> 00:05:05,520
+that we will focus most of the time on semantics and try to understand the meaning of the
+
+69
+00:05:05,520 --> 00:05:09,960
+program, you know, better so that we are in a position whenever we get the code, we can,
+
+70
+00:05:09,960 --> 00:05:15,120
+you know, assure ourselves that the code is actually aligned with our implementation, okay?
+
+71
+00:05:15,120 --> 00:05:20,040
+So with this, you know, I think we can go ahead with our discussion of today's topic,
+
+72
+00:05:20,040 --> 00:05:26,120
+which is mostly about the very basic building blocks in Python, which are, you know, like
+
+73
+00:05:26,120 --> 00:05:30,280
+the concepts of what is variable, what is expression, you know, and what is the meaning
+
+74
+00:05:30,280 --> 00:05:34,360
+of, you know, these variables and expression and some simple statement in Python programming
+
+75
+00:05:34,360 --> 00:05:35,360
+language.
+
+76
+00:05:35,360 --> 00:05:42,120
+So this is roughly our plan, we will start with variable and identifier, then we will
+
+77
+00:05:42,120 --> 00:05:45,520
+see that there is something, you know, called keywords, which is available in most of the
+
+78
+00:05:45,520 --> 00:05:50,920
+programming languages, we then move to some of the, you know, typing, you know, feature
+
+79
+00:05:50,920 --> 00:05:55,320
+or, you know, typing facility that is available in site, Python programming languages,
+
+80
+00:05:55,320 --> 00:06:03,240
+like language, like, you know, typing, strong typing and, you know, static typing.
+
+81
+00:06:03,240 --> 00:06:06,520
+So let's start with the discussion, you know, on variables, okay?
+
+82
+00:06:06,520 --> 00:06:12,680
+So now remember, I mean, in any, you know, imperative programming language, which is mostly
+
+83
+00:06:12,680 --> 00:06:17,640
+derived from the Turing machine concept and Turing machine and nothing but, you know,
+
+84
+00:06:17,640 --> 00:06:21,280
+machine with some control unit with, you know, infinite memory type, right?
+
+85
+00:06:21,280 --> 00:06:28,400
+So all of these imperative programming paradigm, primarily, you know, rely on, you know,
+
+86
+00:06:28,400 --> 00:06:32,080
+giving computer a sequence of commands, which can change its state.
+
+87
+00:06:32,080 --> 00:06:35,840
+Now, when we say change it, state means change, it's no state of the memory, okay?
+
+88
+00:06:35,840 --> 00:06:41,040
+And in fact, this is not only a way in which we can get any, you know, meaningful computation
+
+89
+00:06:41,040 --> 00:06:42,960
+done by these imperative programming languages.
+
+90
+00:06:42,960 --> 00:06:47,440
+So underlying in theory is that, you know, we try to design or we try to, you know, come
+
+91
+00:06:47,440 --> 00:06:54,000
+up with a sequence of instruction, which can do appropriate changes in the state of memory.
+
+92
+00:06:54,000 --> 00:06:58,640
+And if we are able to observe these changes, so observing these changes is nothing but, you
+
+93
+00:06:58,640 --> 00:07:01,280
+know, what we call as computation, okay?
+
+94
+00:07:01,280 --> 00:07:06,800
+So, you know, by ensuring that the machine changes its state in a particular way.
+
+95
+00:07:06,800 --> 00:07:11,600
+And by observing this, you know, change of state of the machine, we can observe the,
+
+96
+00:07:11,600 --> 00:07:15,360
+you know, output of the computation that we want to, you know, perform, okay?
+
+97
+00:07:15,440 --> 00:07:19,440
+Because I mean, most of the time we are making in the process of how we compute something
+
+98
+00:07:19,440 --> 00:07:23,120
+using pen and paper, right? So when you write some, when you take a task of computing,
+
+99
+00:07:23,120 --> 00:07:27,520
+let's say some function using pen and paper, what you start always is with some input, right?
+
+100
+00:07:27,520 --> 00:07:32,160
+You, you start with the input and then in between you compute lots of intermediate results
+
+101
+00:07:32,160 --> 00:07:35,520
+and final results is what you know, want to maybe compute.
+
+102
+00:07:35,520 --> 00:07:40,160
+So you store all these intermediate results, you know, by writing them on pen and paper.
+
+103
+00:07:40,160 --> 00:07:42,960
+So the idea in any imperative programming language is that,
+
+104
+00:07:42,960 --> 00:07:47,600
+you know, instead of this pen and paper, now can we use the memory of these machines to,
+
+105
+00:07:47,600 --> 00:07:52,480
+you know, or, you know, do the same kind of navigation inside this machine, right?
+
+106
+00:07:52,480 --> 00:07:55,840
+Rather than writing on pen and paper, can we start with some, you know, variable,
+
+107
+00:07:55,840 --> 00:08:00,320
+which will have these initial values, you know, which are input to our function?
+
+108
+00:08:00,320 --> 00:08:03,920
+And then we calculate all these intermediate values, which are necessary for, let's say,
+
+109
+00:08:03,920 --> 00:08:07,360
+calculating the complex function that we finally want to compute.
+
+110
+00:08:07,360 --> 00:08:12,000
+And can we keep temporarily stored them in some other valuable or, you know,
+
+111
+00:08:12,000 --> 00:08:16,000
+intermediate valuable and finally come to the conclusion where program returns us,
+
+112
+00:08:16,000 --> 00:08:17,440
+the final complex value, okay?
+
+113
+00:08:17,440 --> 00:08:20,400
+So this is the idea of an imperative programming language that we,
+
+114
+00:08:21,280 --> 00:08:27,360
+and, you know, all that we can do is, you know, design these sequence of instructions in
+
+115
+00:08:27,360 --> 00:08:32,160
+appropriate way so that they do these, you know, changes of state of machine,
+
+116
+00:08:32,800 --> 00:08:37,200
+so that the final result reflects the computation that we want to achieve, okay?
+
+117
+00:08:37,200 --> 00:08:43,360
+Now, the reality is that to do all these, I mean, you have to use all the,
+
+118
+00:08:43,360 --> 00:08:48,400
+if you want to be, you know, purest, you have to talk in terms of the language of hardware, okay?
+
+119
+00:08:48,400 --> 00:08:53,040
+Because data is stored in memory locations, you know, each of which has some numeric,
+
+120
+00:08:53,040 --> 00:08:55,760
+you know, address, you know, which may, you know, look something like,
+
+121
+00:08:57,520 --> 00:08:58,640
+something like this, right?
+
+122
+00:08:58,640 --> 00:09:03,600
+So these are, you know, addresses of memory, you know, and CPU operates on data in the
+
+123
+00:09:03,600 --> 00:09:09,040
+registers. So if you really want to communicate with this machine directly, let's say,
+
+124
+00:09:09,040 --> 00:09:12,640
+you have to talk in terms of these kind of, you know, addresses and then, you know,
+
+125
+00:09:12,640 --> 00:09:16,000
+interact with CPU instructions, which are, which CPU can understand, okay?
+
+126
+00:09:16,000 --> 00:09:19,840
+But all of this becomes very, you know, challenging and that's why we need, you know,
+
+127
+00:09:19,840 --> 00:09:25,520
+this idea of variable, okay? So variable, you know, takes us from memory address to meaningful names,
+
+128
+00:09:25,520 --> 00:09:30,640
+okay? So we somehow want ourself to be free from, you know, manipulating, you know,
+
+129
+00:09:31,200 --> 00:09:36,960
+addresses and direct CPU instruction and work at a high level. So variable, you know, in that
+
+130
+00:09:36,960 --> 00:09:41,200
+sense, you know, provides us this, you know, fast level of, or layer of abstraction, where,
+
+131
+00:09:41,200 --> 00:09:45,120
+what we want to say is that I don't want to care where this variable is getting stored in
+
+132
+00:09:45,120 --> 00:09:50,400
+site memory, but I would like to call it by some name, which is, that's a convenient for, you know,
+
+133
+00:09:50,400 --> 00:09:54,880
+some meaningful name, which I can remember throughout the development of this program.
+
+134
+00:09:54,880 --> 00:09:59,200
+So that's how I mean these variables are very important in any programming languages.
+
+135
+00:09:59,200 --> 00:10:02,960
+So you can assume, or you can, you know, see variable at the first layer of abstraction,
+
+136
+00:10:03,680 --> 00:10:09,120
+which makes our life very easy, you know, instead of, you know, referring to this exact memory
+
+137
+00:10:09,120 --> 00:10:13,360
+location, we would refer to the same location using these variable names, which are far more,
+
+138
+00:10:13,360 --> 00:10:19,120
+you know, easy for us to remember and work with. So, we need an abstraction, you know,
+
+139
+00:10:19,120 --> 00:10:25,040
+this is our problem and the solution is, we can get this communication done very effectively,
+
+140
+00:10:25,120 --> 00:10:28,480
+if we have variable names, which are, you know, meaningful in nature, so that, you know,
+
+141
+00:10:28,480 --> 00:10:33,040
+we can recall what is the purpose of each variable. And then, in the process of computation,
+
+142
+00:10:33,040 --> 00:10:38,080
+we would like to come up with a program statement, which can appropriately change the value of this,
+
+143
+00:10:38,080 --> 00:10:43,200
+you know, variables to reflect what we want to finally can create. Okay, so what is a variable then?
+
+144
+00:10:43,200 --> 00:10:48,640
+A variable is a, you know, named alias or labeled for a memory location, okay? So you can,
+
+145
+00:10:48,640 --> 00:10:52,960
+you know, assume for all, you know, practically, in that variable, like sticky notes, okay,
+
+146
+00:10:52,960 --> 00:10:57,280
+with a name, okay, you can write, you know, name on that and stick into boxes and boxes and
+
+147
+00:10:57,280 --> 00:11:01,200
+nothing, but, you know, these memory locations that contain values. So, although, finally,
+
+148
+00:11:01,200 --> 00:11:04,400
+the values are being, you know, stored in memory location, you are referring to those,
+
+149
+00:11:04,400 --> 00:11:08,960
+you know, values by using these variable names, okay? So this allows us to think in terms of
+
+150
+00:11:08,960 --> 00:11:13,840
+problem domain and not the hardware domain, okay? Because if we are freed from the complexities of,
+
+151
+00:11:13,840 --> 00:11:18,400
+with this hardware domain, then we can focus more on the problem and how to solve that problem,
+
+152
+00:11:18,400 --> 00:11:22,240
+the solution, that problem. So that's why, you know, these variables, you know, provide a very,
+
+153
+00:11:22,240 --> 00:11:27,360
+you know, first layer of abstraction, which is not always essentially in any high-level programming
+
+154
+00:11:27,360 --> 00:11:35,520
+language. Okay, so now, you know, it's time to move into the Jupyter Notebook and we will try to
+
+155
+00:11:35,520 --> 00:11:39,760
+explore this, you know, by doing some hands-on exploration around variable. We will, you know,
+
+156
+00:11:39,760 --> 00:11:45,680
+try to explore how to define this or, I mean, how, what is the syntax or the semantics of this
+
+157
+00:11:45,680 --> 00:11:50,000
+variable? Okay, so whenever we come across any new concept in the programming language, we will also
+
+158
+00:11:50,000 --> 00:11:54,800
+always want to try to ask the question. I mean, if I want to define this concept of variable
+
+159
+00:11:54,800 --> 00:11:59,520
+properly, I need to define two things. First one is, you know, syntax. How can I write variables
+
+160
+00:11:59,520 --> 00:12:04,000
+properly? Let's say instruction involving variables properly inside the programming language.
+
+161
+00:12:04,000 --> 00:12:07,760
+And the next question should be, so what is the meaning of a variable? You know, so meaning of a
+
+162
+00:12:07,760 --> 00:12:14,720
+variable can only be understood in, you know, in the context of how a variable, how changing a variable
+
+163
+00:12:14,720 --> 00:12:19,120
+can change this state of, you know, machine. So that's what is the semantics of a variable.
+
+164
+00:12:19,120 --> 00:12:28,080
+So, so let me now move on to Jupyter Notebook, which we will be using as a default ID for this course
+
+165
+00:12:28,080 --> 00:12:34,000
+and try to explain, you know, some of this feature, you know, inside the Jupyter Notebook.
+
+166
+00:12:35,120 --> 00:12:41,440
+So, let us try to go to that screen first and see whether everything works fine. So,
+
+167
+00:12:41,680 --> 00:12:48,480
+okay, so this is our Jupyter Notebook. I hope, yeah, so this is visible now. So, we can see,
+
+168
+00:12:49,200 --> 00:12:53,360
+this is Jupyter Notebook. So, since this is, you know, first time we are coming to Jupyter Notebook.
+
+169
+00:12:53,360 --> 00:12:59,920
+So, this as I, you know, discuss in the very first, you know, module, this is one of the popular
+
+170
+00:12:59,920 --> 00:13:04,320
+IDE that many people use and this is one of my favorite because, you know, you can see there,
+
+171
+00:13:04,320 --> 00:13:09,760
+inside Jupyter Notebook, you can write code blocks. So, these are, you know, called code blocks.
+
+172
+00:13:09,760 --> 00:13:14,560
+I mean, you can see when I click on, you know, let me click on this, when I, you know, click on
+
+173
+00:13:14,560 --> 00:13:20,240
+this particular code block, this, this, this, this was as code, right? So, so there are two types of,
+
+174
+00:13:20,240 --> 00:13:24,880
+you know, blocks normally which people use very frequently inside this Jupyter Notebook,
+
+175
+00:13:24,880 --> 00:13:29,600
+one is called code block and another one is model. So, for example, you know, this second block,
+
+176
+00:13:29,600 --> 00:13:33,680
+when I click, you see, I mean, here it changes to model down, you know, instead of code block,
+
+177
+00:13:33,680 --> 00:13:38,000
+now it says a small dot. So, this is now for writing comments or any descriptions. So,
+
+178
+00:13:38,080 --> 00:13:41,840
+for example, when I was preparing this tutorial, I use both of these features to,
+
+179
+00:13:41,840 --> 00:13:46,320
+nicely, you know, describe what we are discussing at a particular point of time inside the Jupyter
+
+180
+00:13:46,320 --> 00:13:53,440
+Notebook. So, this is a very handy, you know, IDE. If you want to both develop your code and also
+
+181
+00:13:53,440 --> 00:13:58,000
+describe it properly, maybe, you know, this is one of the best, you know, interface available.
+
+182
+00:13:58,000 --> 00:14:03,600
+So, please feel free to explore other ideas, but for this course, we will be working precisely
+
+183
+00:14:04,080 --> 00:14:07,920
+with, you know, these Jupyter Notebooks. So, you can see, I can run these code blocks.
+
+184
+00:14:07,920 --> 00:14:13,520
+Okay. So, shortcut is you, you know, if you are on a Mac, you can simultaneously,
+
+185
+00:14:13,520 --> 00:14:17,920
+you know, press shift return to just run this thing. Okay. And this cell runs. When you come to the
+
+186
+00:14:17,920 --> 00:14:21,120
+second, you know, you know, thing, this is no markdown. If you double click on this, you see,
+
+187
+00:14:21,120 --> 00:14:26,640
+you see the markdown, no, no, notations here. Okay. So, when we run it, we get things in
+
+188
+00:14:26,640 --> 00:14:31,600
+proper format, okay. So, so let's start with the variable first, okay. So, with the discussion
+
+189
+00:14:31,600 --> 00:14:35,600
+of variable, so what do we want to discuss here? So, we want to, you know, define the syntax first,
+
+190
+00:14:35,600 --> 00:14:42,000
+right? This is what we talk right now. To define a variable, you know, we first want to define
+
+191
+00:14:42,000 --> 00:14:47,680
+the syntax of a variable. So, syntax means, I mean, a rule which tells us how to write down or
+
+192
+00:14:47,680 --> 00:14:52,560
+declare a variable properly. Okay. So, to define a, so I, as we, you know, discuss variables are
+
+193
+00:14:52,560 --> 00:14:56,880
+nothing but, you know, labels or aliases that we, you know, give us name to these memory locations,
+
+194
+00:14:56,880 --> 00:15:00,960
+which are, you know, which may be either register or, you know, main memory. So, how to give them,
+
+195
+00:15:00,960 --> 00:15:06,720
+can we give write anything as name or there is some restriction on giving, you know, meaningful name?
+
+196
+00:15:06,720 --> 00:15:10,160
+Okay. So, so there are some restrictions. You can read the detail again in the reference manual,
+
+197
+00:15:10,160 --> 00:15:14,960
+but just to, you know, summarize, no, your variable name can start with letter or underscore,
+
+198
+00:15:14,960 --> 00:15:20,800
+and then follow with letters, you know, digit or underscore. Okay. So, so you, you see one thing that,
+
+199
+00:15:20,800 --> 00:15:25,280
+the digit cannot, you know, appear in the very beginning, you know, of the, any variable name.
+
+200
+00:15:25,280 --> 00:15:30,560
+Okay. So, this is no one restriction that Python developer have, you know, kept while defining variable
+
+201
+00:15:30,560 --> 00:15:34,400
+names, you should follow this. And it's case sensitive, you know, if you write something in
+
+202
+00:15:34,400 --> 00:15:37,760
+lower case and some other variable name in upper case, they will be considered as different,
+
+203
+00:15:37,760 --> 00:15:42,640
+not the same. So, can, so let me write down, you know, some of, you know, let's say, you know,
+
+204
+00:15:44,080 --> 00:15:47,760
+some, you know, valid variable name on some, maybe invalid variable name to, you know,
+
+205
+00:15:47,760 --> 00:15:53,760
+see it in no accent, whether, you know, Python accept it. So, so this is the cell, which can accept
+
+206
+00:15:53,760 --> 00:15:58,160
+some code. So, let me, you know, declare some variable name, like, you know, we can talk about
+
+207
+00:15:58,160 --> 00:16:02,880
+this course itself, you know, so what is the, you know, so I can use both, you know, letter and
+
+208
+00:16:02,880 --> 00:16:06,800
+underscore, right? So, for example, you know, our course, you know, name for our course is
+
+209
+00:16:08,080 --> 00:16:20,800
+Python, core and applied concepts, right? So, what, what I have to just now done is that,
+
+210
+00:16:20,880 --> 00:16:25,840
+I declared a variable, can you see my cursor? Yeah, I, I, you know, declared a variable, which is,
+
+211
+00:16:25,840 --> 00:16:30,960
+you know, course name, okay? And this is valid, where, you know, variable name, why? Because it
+
+212
+00:16:30,960 --> 00:16:36,080
+follows the syntax, okay? Because it, you know, it has, you know, lower or upper case letters,
+
+213
+00:16:36,080 --> 00:16:40,320
+you know, followed by some, you know, underscore, and then again, sequence of letters. And so,
+
+214
+00:16:40,320 --> 00:16:47,680
+you know, this is, and then I assigned a string to this, you know, a variable called course name,
+
+215
+00:16:47,760 --> 00:16:51,520
+okay? So, so this is, you know, what, so if you run this, I mean, you can see whether Python
+
+216
+00:16:51,520 --> 00:16:56,480
+accept it or not. So, it, so see, when I, you know, run this block, Python accepts, you know,
+
+217
+00:16:56,480 --> 00:17:01,440
+this variable name as a valid variable name, and this assignment also has a valid assignment. So,
+
+218
+00:17:01,440 --> 00:17:06,080
+there is no error that, you know, comes in, okay? Similarly, I mean, we can, you know, define,
+
+219
+00:17:06,080 --> 00:17:11,040
+so this was one variable which stored string, okay? So, can we define another variable,
+
+220
+00:17:11,520 --> 00:17:15,840
+which, kind of stored Boolean values? Like, you know, if I want to know the status of let's say,
+
+221
+00:17:15,840 --> 00:17:20,560
+the course, whether this course has started or not, okay? So, we know that the course has started,
+
+222
+00:17:20,560 --> 00:17:25,920
+right? So, that's why I'm here putting the value true. The true and false are two possible Boolean
+
+223
+00:17:25,920 --> 00:17:30,480
+values inside Python, which you can use, you know, in different ways. We will see when we come
+
+224
+00:17:30,480 --> 00:17:36,800
+to, you know, conditional how these Boolean, you know, data types becomes very useful in deciding
+
+225
+00:17:36,800 --> 00:17:41,200
+which branch to take, you know, inside your program. So, what, for the time being, I mean,
+
+226
+00:17:41,200 --> 00:17:47,600
+let's assume that I'm only using this Boolean to, let's say, you know, keep track of the status of
+
+227
+00:17:47,600 --> 00:17:51,200
+my course, you know, I want to know whether the course has started or not. Since its course has started,
+
+228
+00:17:51,200 --> 00:17:58,000
+we put it value, you know, true and try to run it. No, that doesn't mean compiler gives an area,
+
+229
+00:17:58,000 --> 00:18:02,880
+no, I mean, when we run it, you can see, I mean, it runs perfectly, all right, okay? Now, what about
+
+230
+00:18:02,880 --> 00:18:11,040
+some other, not type of, so let's say, if I want to talk about a number of students in this course,
+
+231
+00:18:11,040 --> 00:18:20,400
+which may be no more than 100, but let's say, say that the number number of students is equal to,
+
+232
+00:18:20,400 --> 00:18:26,240
+maybe, let's say, put a number here 100. This is another variable, which is trying to store
+
+233
+00:18:26,800 --> 00:18:32,720
+not data of type integer, right? So, if we try to run this, what do you guess? I mean, will Python accept
+
+234
+00:18:32,720 --> 00:18:39,360
+this? Okay, so let's try to, and it can see what's the answer. So, if we run it, can you see,
+
+235
+00:18:39,440 --> 00:18:45,840
+there is a error, right? Okay, so number of students, so syntax error, I cannot assign expression here,
+
+236
+00:18:45,840 --> 00:18:53,040
+maybe you mean equal to equal to instead of this. So, the problem here, no, so I mean, so this is a
+
+237
+00:18:53,040 --> 00:18:59,520
+syntax error, and the main reason is that, you know, while forming the name, okay, so while forming the
+
+238
+00:18:59,520 --> 00:19:06,160
+name of this variable, I have violated the, you know, rule of syntax, which is that you can either
+
+239
+00:19:06,560 --> 00:19:11,200
+use a no letter or underscore, but I have to do this hyphen, okay? So, this is the main reason,
+
+240
+00:19:11,200 --> 00:19:18,080
+and if we, you know, get rid of this, let's say, instead of this, if I write number of students,
+
+241
+00:19:19,840 --> 00:19:25,120
+if you get rid of that, and if we try to put underscore here, and if we run, you see, there is no
+
+242
+00:19:25,120 --> 00:19:30,000
+error, right? So, I mean, if one has to be, you know, careful, I mean, you cannot define
+
+243
+00:19:31,520 --> 00:19:35,440
+these variables in any way, okay? So, you can only use those things, which are allowed by the syntax
+
+244
+00:19:36,320 --> 00:19:40,160
+of the programming language, but fortunately, since these syntax are very formal, you know,
+
+245
+00:19:40,160 --> 00:19:45,360
+compiler can take care of, you know, these violations and can alert you, you know, at the compile
+
+246
+00:19:45,360 --> 00:19:51,520
+time itself, so you don't, you know, carry forward this kind of errors. So, what can we, you know,
+
+247
+00:19:51,520 --> 00:19:58,640
+another, you know, invalid name, I mean, if you, so if we want to see, what is the, so is the course
+
+248
+00:19:58,720 --> 00:20:05,360
+in its second term, or it's in first term, right now. So, the course, but we are doing right now,
+
+249
+00:20:05,360 --> 00:20:10,000
+is certainly, you know, in the first term, so I would like to say that no, second term status is,
+
+250
+00:20:10,000 --> 00:20:14,640
+you know, not true now, let's say it's false. So, it's false is another, no kind of, so,
+
+251
+00:20:16,400 --> 00:20:23,040
+the Boolean data type, which we want to store. So, what do you think, I mean, really,
+
+252
+00:20:23,760 --> 00:20:26,800
+except this one or the compiler will throw some error message.
+
+253
+00:20:30,880 --> 00:20:36,560
+Okay, so let's run and try to see what compiler does. So, when we run this, again, I mean, there is
+
+254
+00:20:36,560 --> 00:20:44,480
+a, you know, syntax error. And where, what is wrong here? The, the place, which is complaining in
+
+255
+00:20:44,480 --> 00:20:49,040
+this place, okay, so do you see the problem? I mean, we started this variable name with
+
+256
+00:20:50,000 --> 00:20:54,880
+a digit, right? And a digit was not allowed in the very beginning, okay? So, this is also not,
+
+257
+00:20:54,880 --> 00:21:00,160
+you know, accepted syntax for a variable name, okay? So, we should get rid of, you know,
+
+258
+00:21:00,160 --> 00:21:04,800
+this kind of wrong variable name because they are not allowed by the syntax. So, this is also
+
+259
+00:21:04,800 --> 00:21:11,680
+invalid, okay? So, so, so, no, so, no, let's comment it. So, the reason why this is not valid,
+
+260
+00:21:11,680 --> 00:21:15,920
+this is because number can't appear in the beginning, okay? So, what was the reason for the
+
+261
+00:21:15,920 --> 00:21:19,760
+earlier one when we had hyphen here? Because, you know, hypens are not allowed at all.
+
+262
+00:21:21,200 --> 00:21:27,600
+So, so, what about, I mean, if, if you write, you know, something like this. So, how many classes
+
+263
+00:21:27,600 --> 00:21:32,640
+are let's say there? So, so, is there a, you know, one class or two class in this particular,
+
+264
+00:21:32,640 --> 00:21:36,240
+let's say, offering of the course? So, if I want to say there is only one class, you know,
+
+265
+00:21:36,240 --> 00:21:40,400
+number of classes, if I want to represent this class. And, you know, I want to say that,
+
+266
+00:21:40,400 --> 00:21:44,080
+you know, there is only one class. So, I want a variable to store this, you know, number of classes.
+
+267
+00:21:44,080 --> 00:21:48,240
+So, in this case, let's say we have only one class going on right now. So, if you write one,
+
+268
+00:21:48,240 --> 00:21:53,600
+do you think this is a, you know, valid variable declaration and assignment inside Python?
+
+269
+00:21:54,960 --> 00:22:00,800
+And there's no particular case. I mean, I haven't violated any, right? I mean, we have only
+
+270
+00:22:00,800 --> 00:22:09,440
+used lowercase letters. So, it should be an acceptable, you know, variable name, my Python,
+
+271
+00:22:09,440 --> 00:22:14,480
+and it should, you know, accept this value one, right? So, but let us run and see what Python
+
+272
+00:22:15,280 --> 00:22:22,560
+says about this. Okay? So, so it says it's an invalid syntax. Okay? So, you cannot assign this
+
+273
+00:22:22,560 --> 00:22:28,720
+so value one to a class. So, so the reason here is not, you know, because we are violating the,
+
+274
+00:22:29,520 --> 00:22:36,800
+you know, syntax for variable name is because this class, no, identifier is reserved as a keyword.
+
+275
+00:22:36,880 --> 00:22:42,400
+Okay? So, Python, although it allows you a lot of freedom in defining the variable name,
+
+276
+00:22:42,400 --> 00:22:46,160
+according to, you know, the way you want, you know, which reflects maybe the meaning of,
+
+277
+00:22:46,160 --> 00:22:52,240
+or the intention of that variable in your program. But there are some identifiers or some names,
+
+278
+00:22:52,240 --> 00:22:57,600
+which Python results for its own use. Okay? So, because I mean, compiler need these, you know,
+
+279
+00:22:57,600 --> 00:23:03,040
+keywords for certain purposes. Okay? So, these keywords have some no reserved meaning. So,
+
+280
+00:23:03,120 --> 00:23:07,600
+that's why you have in Python results then. Okay? So, this class is one such keyword, which is
+
+281
+00:23:07,600 --> 00:23:12,400
+not available to you or any programmer to declare it as a, you know, normal variable and assigns
+
+282
+00:23:12,400 --> 00:23:16,240
+some value. Okay? So, these, this is, you know, reserved as keywords. And that's why Python,
+
+283
+00:23:16,240 --> 00:23:21,760
+you know, did not allow you to describe or define a variable with this particular keyword.
+
+284
+00:23:22,480 --> 00:23:27,520
+So, so now, I mean, this, you know, brings us naturally to our, you know, next topic, which is,
+
+285
+00:23:27,520 --> 00:23:31,760
+you know, keywords. So, what is keywords? So, keywords are actually reserved in Python. So,
+
+286
+00:23:31,760 --> 00:23:36,640
+for example, I mean, if you, you know, one, so, want to define different types of, you know,
+
+287
+00:23:36,640 --> 00:23:41,120
+sentences in our statement in your programming language, then you would need these keywords.
+
+288
+00:23:41,120 --> 00:23:46,640
+I mean, these keywords help you combine things properly to make a proper statement, which can be
+
+289
+00:23:46,640 --> 00:23:51,520
+executed inside Python. So, we need a lot of no such reserved keywords. So, that's why Python has
+
+290
+00:23:51,520 --> 00:23:57,200
+reserved some of these. And it says that you cannot be, you cannot use these keywords inside your
+
+291
+00:23:57,200 --> 00:24:02,880
+program as a variable. So, what are some keywords? Like, if while deaf, class, lambda, and true
+
+292
+00:24:02,880 --> 00:24:07,280
+faults. Okay? So, these, these have predefined semantics in the abstract machine. Like, if I say,
+
+293
+00:24:07,280 --> 00:24:13,040
+let's say, deaf, you know, I somehow hint the compiler of Python that I'm going to define a function.
+
+294
+00:24:13,040 --> 00:24:18,080
+Okay? Similarly, if I, you know, use this class keyword, I, you know, give a hint to the compiler
+
+295
+00:24:18,080 --> 00:24:22,160
+that I'm going to define a class inside and class as a particular meaning and already existing
+
+296
+00:24:22,320 --> 00:24:29,520
+in programming languages. So, we want compiler to know something using these, you know, keywords.
+
+297
+00:24:29,520 --> 00:24:34,000
+If you are, whether we are defining a function or we are defining a loop or, you know, we are
+
+298
+00:24:34,000 --> 00:24:37,920
+defining a, you know, if else conditional. So, for all of this, we need these, you know,
+
+299
+00:24:37,920 --> 00:24:42,800
+predefined semantics for, you know, these keywords. And that's why I mean, they're not available
+
+300
+00:24:42,800 --> 00:24:49,120
+for use inside a program as a variable name. Okay? So, you cannot use them as variable name.
+
+301
+00:24:49,120 --> 00:24:52,960
+So, you know, coming next, so what are some keywords in? So, these are, of course, some of the
+
+302
+00:24:52,960 --> 00:24:58,320
+keywords, but can we, you know, print all possible, you know, keywords inside Python? So, to do,
+
+303
+00:24:58,320 --> 00:25:02,640
+to do that. So, let me write a few line of code to show you some of the, you know,
+
+304
+00:25:02,640 --> 00:25:08,160
+available keywords. So, like, but before doing that, we have to, you know, import this, you know,
+
+305
+00:25:08,160 --> 00:25:16,160
+keyword, module inside Python, which will help us, you know, print all the keywords. So,
+
+306
+00:25:16,160 --> 00:25:20,320
+this is how we import some module, like, I mean, this is one of one file that we have started,
+
+307
+00:25:20,320 --> 00:25:24,640
+right? So, I have already imported it here. So, I may not need to import it there, but I mean,
+
+308
+00:25:24,640 --> 00:25:28,800
+since this is one file, so there are multiple, you know, models inside Python,
+
+309
+00:25:28,800 --> 00:25:32,240
+available, which you can use. So, there are many, you know, many functions, you know,
+
+310
+00:25:32,240 --> 00:25:37,760
+signature and, you know, implementation available in the Python standard library. And if you want to
+
+311
+00:25:37,760 --> 00:25:42,480
+use or utilize some of them, you know, without, again, you know, defining them, then you can just
+
+312
+00:25:42,480 --> 00:25:46,480
+import those modules. So, this is how we import a module inside Python. We say, you know, import
+
+313
+00:25:46,480 --> 00:25:52,080
+the module keyword, which we may have many other things, but I'm, you know, importing it for,
+
+314
+00:25:52,080 --> 00:25:56,080
+you know, particular purpose here. So, this is the way we work inside Python. We import something,
+
+315
+00:25:56,080 --> 00:26:01,520
+which is already existing. And then, no, maybe, we can go and use it. So, what, in this case, I,
+
+316
+00:26:01,520 --> 00:26:16,080
+want to, you know, print some of the, let's say keywords. So, from the, you know, keyword
+
+317
+00:26:16,080 --> 00:26:21,120
+model, I'm trying to, you know, print this keyword list, okay? So, that's why this, you know,
+
+318
+00:26:21,120 --> 00:26:29,120
+keyword list. And maybe, you know, I want to just say, let's say, not 10 keywords. So, so,
+
+319
+00:26:30,000 --> 00:26:33,920
+don't worry about it. You know, this exact syntax, if you don't understand it now, because these,
+
+320
+00:26:33,920 --> 00:26:38,880
+these, you know, colon and, you know, these square brackets, you know, represents lists. So,
+
+321
+00:26:38,880 --> 00:26:43,600
+we will, you know, talk about it when we go to list. But for now, I mean, what I'm trying to say,
+
+322
+00:26:43,600 --> 00:26:48,800
+is I'm just trying to print some of the, you know, available keywords inside Python, okay? So,
+
+323
+00:26:48,800 --> 00:26:54,560
+maybe just 10 or, or let's say, you know, 20 keywords, you know, if it is available inside Python,
+
+324
+00:26:54,560 --> 00:27:03,360
+let's, you know, print it. There may be more, okay? But let's say, you know, show me, and this is
+
+325
+00:27:03,360 --> 00:27:09,440
+just to show, let's say, the first 20, okay? So, what we're doing is we are trying to, you know,
+
+326
+00:27:10,320 --> 00:27:14,960
+ask, you know, Python to show us, maybe the first 20 keywords.
+
+327
+00:27:18,000 --> 00:27:21,920
+So, when we, you know, execute it, let's see, you know, what are the possible to see? So,
+
+328
+00:27:21,920 --> 00:27:26,240
+these are the, you know, first 20 keywords that is now available inside Python, like false,
+
+329
+00:27:26,800 --> 00:27:34,000
+none, true, and as assert, okay? So, some of them, I mean, there are more, you can, you know,
+
+330
+00:27:34,000 --> 00:27:38,640
+print maybe, you know, 30, the first 30 keywords, and then you see what happens. I mean, when we
+
+331
+00:27:38,640 --> 00:27:43,600
+print first 30, Python actually prints first 30. So, you know, in total, I remember Python has
+
+332
+00:27:43,600 --> 00:27:50,560
+35, you know, keywords. So, I mean, if you print 35, it will, you know, print 35, what, if I print 36,
+
+333
+00:27:51,280 --> 00:27:56,320
+necessarily prints, you know, 35 because, no, it has only 35, so it will print, you know, 35 keywords.
+
+334
+00:27:57,040 --> 00:28:01,840
+Okay, so, so this is all about keywords. So, keyword has predefined semantics in the abstract
+
+335
+00:28:01,840 --> 00:28:07,680
+machine that Python assumes, and it cannot be used as a variable name. So, these are the two things
+
+336
+00:28:07,680 --> 00:28:16,240
+that we need to somehow keep in mind when working with Python. Okay, so now, let's move to the next
+
+337
+00:28:16,720 --> 00:28:21,520
+topic, which is the basic, you know, act of assignment. So, so we have already seen an assignment,
+
+338
+00:28:21,520 --> 00:28:25,360
+right? We have seen multiple assignments that we have declared variable, and we have also,
+
+339
+00:28:26,240 --> 00:28:30,160
+we have not only declared variable, but also assigned some values to these variables, like,
+
+340
+00:28:30,160 --> 00:28:35,600
+like this one assigned a string value to course name, and this one assigned, you know,
+
+341
+00:28:35,600 --> 00:28:40,240
+this Boolean value to this variable, this, you know, started, and then we have number of students,
+
+342
+00:28:40,240 --> 00:28:45,200
+and 100, which is an integer, which has been assigned to, you know, these variables. So,
+
+343
+00:28:45,200 --> 00:28:55,520
+we have already seen some assignment. Okay, so, let me, you know, come here and show you some,
+
+344
+00:28:55,520 --> 00:29:01,280
+you know, more examples of, you know, basic assignment. So, when, when we assign something like
+
+345
+00:29:01,280 --> 00:29:07,600
+this, okay, so let's say, let me, you know, say, let's say, if I assign to this x or value 10,
+
+346
+00:29:07,600 --> 00:29:15,040
+so what are we doing? Okay, so we are essentially creating a label, okay, x, and pointing it to the
+
+347
+00:29:15,040 --> 00:29:20,160
+integer object 10, okay. So, in Python, you know, everything is, you know, object. So, this 10
+
+348
+00:29:20,160 --> 00:29:26,080
+is an integer object, you know, object of, you know, type integer, and so what, this statement does,
+
+349
+00:29:26,080 --> 00:29:32,240
+is it assigns a label, you know, x to this, you know, level x, pointing to this integer object 10,
+
+350
+00:29:32,240 --> 00:29:38,400
+okay. So, when you print, you know, let's say, when, whenever we print, let's say, this x,
+
+351
+00:29:38,400 --> 00:29:43,120
+what do we get? So, let us print this x and see what, what do we get? We get the value 10,
+
+352
+00:29:43,120 --> 00:29:50,080
+right? Now, it turns out that, you know, we can assign or we can create multiple level for the same
+
+353
+00:29:50,080 --> 00:29:55,200
+object, okay. For instance, I mean, in this case, you see, I mean, we have assigned x as a label
+
+354
+00:29:55,200 --> 00:30:01,680
+to this 10, but we can also say in the, you know, immediately next statement that we want to assign
+
+355
+00:30:02,480 --> 00:30:09,760
+another level, let's say, y to the same, you know, object that x was pointing to, okay.
+
+356
+00:30:09,760 --> 00:30:14,720
+If we write this, what we are saying is, now, y will also point to 10. This is what we mean,
+
+357
+00:30:14,720 --> 00:30:18,640
+I mean, we can create multiple levels for the same object, okay. So, to, again, check, I mean,
+
+358
+00:30:18,640 --> 00:30:29,680
+if you want to print, no, let's say, print, and this is how we print inside Python, we write
+
+359
+00:30:29,680 --> 00:30:35,760
+this print command, and then, let's say, value of, so what we are trying to print here is value of,
+
+360
+00:30:35,760 --> 00:30:43,280
+let's say, y, and then we have to pass this variable y and see what is the final outcome, okay.
+
+361
+00:30:44,560 --> 00:30:49,120
+So, original value, so this print, so when I run this, this print gets executed, so you get a
+
+362
+00:30:49,120 --> 00:30:54,720
+10 value here, and for the y, you know, we are printing again the value of y, which is here,
+
+363
+00:30:54,720 --> 00:31:00,880
+again, 10, okay. So, this is very, you know, interesting to see that, you know, we have assigned two
+
+364
+00:31:00,880 --> 00:31:05,520
+different levels to the same object, you know, of integer type, you know, 10. Now, what about,
+
+365
+00:31:06,640 --> 00:31:14,000
+so we know that these variables provide assigned abstraction, okay, but can we, you know, inspect
+
+366
+00:31:14,000 --> 00:31:20,880
+the abstraction, you know, and get to know, using, you know, these variables name that, what
+
+367
+00:31:20,880 --> 00:31:25,280
+objects these variables name are referring to, okay. So, these objects are certainly, you know,
+
+368
+00:31:25,280 --> 00:31:29,520
+some, you know, concrete data types, I mean, to which these variables are referring to,
+
+369
+00:31:29,520 --> 00:31:34,000
+but is there a way to, you know, figure out or inspect this abstraction? So, the ID function,
+
+370
+00:31:34,000 --> 00:31:38,480
+you can use us, the built-in ID function to get the unique identity of these objects,
+
+371
+00:31:38,480 --> 00:31:43,520
+which is essentially, you know, stored in memory addresses, you know, in the current running process.
+
+372
+00:31:43,520 --> 00:31:48,320
+So, ID can tell us about, you know, if you use ID on this variable, this ID function,
+
+373
+00:31:48,320 --> 00:31:53,200
+then we can actually figure out these unique IDs for these objects that these variables point to.
+
+374
+00:31:53,200 --> 00:31:56,560
+Now, this can be used to prove that two variables are referencing to the same object,
+
+375
+00:31:56,560 --> 00:32:02,320
+but you cannot use this ID to look up or manipulate data directly, okay. So, these are not exactly,
+
+376
+00:32:02,320 --> 00:32:06,640
+like, you know, pointers. So, many people who are coming from C, C++, background,
+
+377
+00:32:06,640 --> 00:32:10,080
+who are familiar with pointer, they may get a little confused and may, you know,
+
+378
+00:32:11,600 --> 00:32:15,440
+assume that, you know, these, you know, object references are nothing but pointer, but they're
+
+379
+00:32:15,440 --> 00:32:19,600
+not pointer. Actually, there is a subtle difference, which we'll, you know, say in some time.
+
+380
+00:32:19,600 --> 00:32:24,480
+But, you know, let's try to first, you know, see whether we can use this ID function to figure out
+
+381
+00:32:24,480 --> 00:32:28,400
+what is the, you know, ID of, let's say, X and Y that we have. Right now, we know that X and Y
+
+382
+00:32:28,400 --> 00:32:35,680
+point to the same variable, but can we confirm it? So, if we, let's say, print, let's say, first,
+
+383
+00:32:35,680 --> 00:32:46,480
+what I want to do is I want to print the ID of the object X, okay. So, ID of the object X,
+
+384
+00:32:46,480 --> 00:32:57,920
+we want to print. So, what we are writing here is ID of X, okay. And then, let's print a copy
+
+385
+00:32:57,920 --> 00:33:07,520
+this. And again, try to print the ID of object Y. And see whether we get same ID or different
+
+386
+00:33:07,520 --> 00:33:14,080
+IDs here. So, what do you see? I mean, if we print both of these, you know, statement,
+
+387
+00:33:14,080 --> 00:33:19,840
+then this is what we get, right? So, we get ID of object X as this one and ID of object Y as this
+
+388
+00:33:19,840 --> 00:33:24,720
+one. So, both, no, the object, both objects are same ID. It means, I mean, these X and Y are
+
+389
+00:33:24,720 --> 00:33:30,160
+referring to the same object, no, wherever it lies in the memories, it's actually referring to
+
+390
+00:33:30,160 --> 00:33:35,440
+the same object, okay. So, similarly, we can also use a function, another function called type
+
+391
+00:33:35,440 --> 00:33:40,560
+function to tell us the semantic type of the object, okay. So, this ID, you know, help us,
+
+392
+00:33:40,560 --> 00:33:44,720
+so since variables are abstraction, right? I mean, just by looking at the variable name, you cannot
+
+393
+00:33:44,720 --> 00:33:50,400
+say which object it is referring to or what is the type of the object that it is referring to.
+
+394
+00:33:50,400 --> 00:33:54,960
+Okay. So, for getting those, you know, details, we are using these ID and type functions.
+
+395
+00:33:54,960 --> 00:33:58,720
+The type function can tell you what is the type of data that is, you know, stored in this particular
+
+396
+00:33:58,720 --> 00:34:03,040
+variable. For example, again, I mean, using for the, you know, two variables that we have defined
+
+397
+00:34:03,120 --> 00:34:10,080
+above, if you want to know the type, what we can say is, you know, print for us, let's say,
+
+398
+00:34:11,840 --> 00:34:19,120
+the type of X, and what we write after this is
+
+399
+00:34:22,000 --> 00:34:32,240
+type of X, okay. And similarly, I mean, we let us copy this and try to use the same
+
+400
+00:34:32,320 --> 00:34:40,080
+or getting the type of Y, we change this to Y and type of Y. So, since they are, no,
+
+401
+00:34:40,080 --> 00:34:44,320
+my point in the same object, the type should be same and in this case, what is the type, type for
+
+402
+00:34:44,320 --> 00:34:50,240
+X and Y, both should be integer, right? So, let us print it. So, see, this type of X is no int and
+
+403
+00:34:50,240 --> 00:34:59,040
+type of Y is also int, okay. So, this is how we can actually inspect this abstraction and try to
+
+404
+00:34:59,040 --> 00:35:04,160
+figure out the exact detail of what this abstract variable, you know, is referring to and what is
+
+405
+00:35:04,160 --> 00:35:10,000
+the type of the object that it is referring to, okay. So, now, let's move on to the, you know,
+
+406
+00:35:10,000 --> 00:35:17,520
+next important thing, which would demonstrate the ability to rewind the same variable name to some
+
+407
+00:35:17,520 --> 00:35:22,880
+other object, okay. So, here, I mean, things go a little subtle and one should be very careful,
+
+408
+00:35:22,880 --> 00:35:28,080
+not to confuse, you know, these variable names and, you know, this early bending as, you know,
+
+409
+00:35:28,080 --> 00:35:33,040
+pointer, no, because I mean, that can be very confusing. So, let us, I know, try to just, you know,
+
+410
+00:35:33,040 --> 00:35:40,720
+see with some example what I want to, you know, if I say so X and Y are pointing, are not to
+
+411
+00:35:40,720 --> 00:35:43,840
+actually point it to the same memory location. So, if you are familiar with pointer, I mean,
+
+412
+00:35:43,840 --> 00:35:47,840
+this may be, you know, a place where you may get confused that X and Y are actually pointed to
+
+413
+00:35:47,920 --> 00:35:53,680
+the same memory location, no. So, X and Y point to the same object, but they are not, you know,
+
+414
+00:35:53,680 --> 00:35:57,840
+pointed to the same memory location, okay. In Python, a variable is not a memory container,
+
+415
+00:35:57,840 --> 00:36:02,720
+but this is important to understand. It's a name tag or a reference that points to an object
+
+416
+00:36:02,720 --> 00:36:07,440
+in the memory and not to a memory location. So, this is very, very important, especially if you
+
+417
+00:36:07,440 --> 00:36:13,600
+are working with immutable data types like, you know, integer, string or, you know, double,
+
+418
+00:36:13,600 --> 00:36:19,120
+then this is a great no point of confusion for, you know, many of the big newcomers. So,
+
+419
+00:36:19,120 --> 00:36:24,160
+to highlight this, let me now work out some example and then it will be clear. For example,
+
+420
+00:36:24,160 --> 00:36:30,800
+in the beginning, as you remember, I mean, we instantiated both X and Y with a value 10, right?
+
+421
+00:36:30,800 --> 00:36:35,120
+And that's why, that's how, you know, you know, that they point to the same object. But what?
+
+422
+00:36:35,440 --> 00:36:44,320
+If at this particular point, we change the value of Y to, let's say, 20, okay. And let's say,
+
+423
+00:36:44,320 --> 00:36:50,960
+we change the value of Y to the point of Y to 20. And then if we want to, no print, what is the,
+
+424
+00:36:50,960 --> 00:36:58,960
+no, current? After let's say, executing this instruction that, no, we assign Y to 22, Y,
+
+425
+00:36:58,960 --> 00:37:04,720
+if we want to see what's the value inside, let's say, the variable X. So, what's the, let's say,
+
+426
+00:37:04,720 --> 00:37:14,480
+current value? Okay, so what is the current value of, say, X at this particular moment? Okay,
+
+427
+00:37:14,480 --> 00:37:22,480
+so let me. So, do you think that changing Y will change X? No, no, if you consider them as
+
+428
+00:37:22,480 --> 00:37:27,200
+pointer, then certainly yes, right? Because both point to the same memory location. So, no matter
+
+429
+00:37:27,200 --> 00:37:33,120
+whether you change the value there, Y or Y or X, the change value should be reflected in both the
+
+430
+00:37:33,120 --> 00:37:39,200
+cases, right? So, I mean, if they are actually pointer, then the current value of X should also
+
+431
+00:37:39,200 --> 00:37:43,760
+change, right? But if you let's say, no print this, what do you get? You get the current value of
+
+432
+00:37:43,760 --> 00:37:51,840
+X is 10, but you have assigned a value 20 to Y, okay? So, no, the current value of X has is same
+
+433
+00:37:51,840 --> 00:37:56,000
+as the original value of X, right? Which was also the value of Y. So, these are not actually
+
+434
+00:37:56,000 --> 00:38:00,960
+pointer, right? So, this is a very, you know, a small example to show that changing Y does not change
+
+435
+00:38:00,960 --> 00:38:08,240
+X. And that's how, I mean, these are not exactly, you know, memory variables are not memory
+
+436
+00:38:08,240 --> 00:38:12,720
+container, okay? So, they're the point to the same object. So, this is how, I mean, so Python's,
+
+437
+00:38:12,720 --> 00:38:17,040
+you know, memory management and type system, take care of all of this for you. So, you don't need
+
+438
+00:38:17,040 --> 00:38:21,920
+to worry, but I mean, you need to keep with this distinction clearly in mind that when you change
+
+439
+00:38:21,920 --> 00:38:28,240
+the, so even if you assign, you know, Y to X, let's say here, and later on change the value of Y,
+
+440
+00:38:28,240 --> 00:38:33,680
+you are not changing the value of X. Similarly, let me again change the value of X to know some other
+
+441
+00:38:33,680 --> 00:38:41,600
+value, okay? So, 30, let's say. So, again, I mean, you can expect that the value of, you know, Y
+
+442
+00:38:41,600 --> 00:38:45,920
+by changing this. So, since this is changing the value of X, and if I want to print now the current
+
+443
+00:38:45,920 --> 00:38:56,000
+value of Y, what do you expect here, okay? So, based on our last discussion, what we expect here
+
+444
+00:38:56,160 --> 00:39:00,720
+is that no value of Y should not change, right? The value of Y should be 20. If we run this code,
+
+445
+00:39:01,840 --> 00:39:07,440
+this is what, you know, we get, which ensures that our understanding is now correct. We are not
+
+446
+00:39:07,440 --> 00:39:16,480
+confusing, you know, these variable names as pointer in C, okay? To be more clear, I mean, if you
+
+447
+00:39:16,480 --> 00:39:22,000
+want, you can also print the ID, okay? So, now, you see, I mean, Y and X are actually
+
+448
+00:39:22,160 --> 00:39:26,560
+pointing to different objects, okay? So, since they are pointing to different objects, you know,
+
+449
+00:39:26,560 --> 00:39:32,240
+if I just prove the ID of those objects, I should get, you know, different results, right? So,
+
+450
+00:39:32,240 --> 00:39:37,200
+we can confirm this again. So, by just printing now, maybe the ID, so let's, you know, print plus the
+
+451
+00:39:38,400 --> 00:39:51,520
+ID of object X. Let me print the ID of object X, and let's repeat the same instruction.
+
+452
+00:39:52,480 --> 00:40:00,720
+Okay, for variable Y, let's change X to Y here, and also here Y, and try to see. So, what do you
+
+453
+00:40:00,720 --> 00:40:08,080
+expect? I mean, now that we have assigned 20 to Y and 32X, if you print ID, what do you expect?
+
+454
+00:40:08,080 --> 00:40:12,560
+Do you get the same result or different things? So, in this case, you can see that we get
+
+455
+00:40:12,560 --> 00:40:17,680
+different, right? That X and Y are now pointing to two different objects, okay? And the ID for those
+
+456
+00:40:17,680 --> 00:40:21,360
+different objects are, you know, clearly, you know, distinct here, right? This is what we can figure out.
+
+457
+00:40:22,320 --> 00:40:26,960
+So, to summarize, you know, what we saw, you know, in this short video is that Python
+
+458
+00:40:26,960 --> 00:40:32,960
+hides the complexity of direct memory manipulation, okay? And pointers behind a, you know, safe,
+
+459
+00:40:32,960 --> 00:40:37,280
+high-level abstraction called object references, okay? So, these are called, no, object references. So,
+
+460
+00:40:37,280 --> 00:40:41,440
+variable are referencing two objects, not to memory location. This makes the language easier,
+
+461
+00:40:42,000 --> 00:40:48,320
+and you know, is it learned and used while being less prone to common memory management error?
+
+462
+00:40:48,320 --> 00:40:52,320
+Otherwise, you have to do everything on your own. I mean, if you are given, they can see, I mean,
+
+463
+00:40:52,320 --> 00:40:58,160
+you can manage your memory very efficiently, but then that is also, you know, a major cause of,
+
+464
+00:40:58,160 --> 00:41:03,360
+you know, memory errors and no other kind of error. So, Python tries to hide all these details,
+
+465
+00:41:03,360 --> 00:41:08,800
+you know, from you, and it still allows you enough freedom to work with it and write meaningful
+
+466
+00:41:08,800 --> 00:41:17,120
+programs, okay? So, this is all for today. So, thank you for watching this video. I will meet you
+
+467
+00:41:17,120 --> 00:41:27,440
+in the next video. Till then, goodbye. Thank you.
+

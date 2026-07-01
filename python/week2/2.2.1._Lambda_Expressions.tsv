@@ -1,0 +1,605 @@
+start	end	text
+0	20800	Welcome back to our discussion on Python's expression hierarchy.
+20800	28880	So if you recall from our last video, we have already discussed these three bottom layer
+28880	35760	of expressions. So the first one, we define very primitive expressions using different types
+35760	42960	of operator in Python programming language. And then we also talked about something called
+42960	50880	assignment expression, which is also called Walrus operator. And we saw that it is distinct
+50880	58240	from the assignment statement. And that distinction was very much important for writing
+58800	65280	semantically correct program. So syntax error are not a problem again to re-emphasize.
+65920	71200	If you do some syntax error with these Walrus operator, so somehow compiler or interpreter will
+72560	78640	catch this and report you bug. But we have to be very careful about the semantics of these
+79520	85920	Walrus operator or assignment expression when we are using it inside any complex,
+85920	91920	let's expression. So but again, I mean the status of these assignment or Walrus operator is
+91920	97600	expression. So they are valid expression and you can use it at any place where an expression can
+97600	106720	be used. Now in our progression of this hierarchy of Python expressions, the last remaining
+107600	113680	block is about lambda expression. So in today's video, we will talk about lambda expressions. I mean,
+114320	122320	water lambda expressions and what is its relevance and how to use it properly inside Python code.
+122960	128960	So without no further delay, let's move to our Jupyter Notebook and we'll continue our
+128960	140640	discussion from there. I hope you can see my Jupyter Notebook. So this is the place, if you recall,
+141600	149840	we concluded our last discussion. So we discussed this great assignment ambiguity where the
+149840	156880	similar looking expressions on which involve assignment statement as well as this Walrus operators,
+158320	164080	we have quite differently. We saw that while this second statement was
+164640	172080	happily accepted by the interpreter, the last statement that we have written could not be accepted.
+172080	180880	And the reason for that was that Python expected something here, whatever was present here to be an
+180880	187280	expression, but this is not an expression unlike this thing. So this was the reason why it did not
+187280	194640	accept this, but it happily accepted this one. So this kind of difference is a very subtle
+194640	200800	and you need to be careful with the semantics to figure out why one is accepted and why another
+200800	207680	one is not accepted. So now let's move on to the topic of today's discussion, which is lambda
+207680	216320	expressions. So what are lambda expressions? So you can see my cursor. So lambda expressions are
+216400	223040	no a way to create small anonymous functions, functions without name as an expression. So
+223040	228960	although we did not talk about function to this point, but since lambda expressions are also
+228960	236800	expressions, I find it justified to mention it at this point. So if you don't follow some of the
+236800	241920	concepts that we discussed in today's video, don't worry. I mean we are going to come back to
+242000	246640	the discussion of lambda expression again when we discuss, you know, function in detail. So at that
+246640	252400	point of time, you might be able to make sense of, you know, few things that may not be
+252400	259200	relatable in this video. Okay. So please, you know, just bear with me and continue the whole video,
+259200	265360	watching the whole video. It will make sense mostly, but if you don't follow everything, then I mean
+265360	270560	just wait for the lectures on functions and we will revisit these things in much more detail.
+270640	276160	So, so just in short, I mean, what is, you know, lambda expressions, they are a way to
+277040	283200	implement functions inside, you know, Python without giving functions any name. So that's why
+283200	289040	we are calling it anonymous functions. Okay. So, you know, think of it as, you know, quick one time
+289040	293840	use functions that you can create on the spot. So normally what happens, if you, if some,
+294400	300960	no piece of code in your program, you find it to be very relevant and maybe reusable at
+300960	306560	multiple times. We try to define functions, you know, using those course and we say that,
+307440	312640	we give it a name. I mean, this block of code, we normally assign a name, which is the function name.
+312640	318000	And then we can use those, you know, set of, you know, lines or collection of line at multiple
+318000	323280	places, wherever we need that kind of reasoning on, you know, logical calculation, not to happen.
+323280	328160	So that's, you know, overall, you know, agenda of defining functions in any programming language,
+328160	336160	that if you feel that your code is reusable, normally we give it a name and we use it at multiple,
+336160	339840	you know, different places. Okay. But I mean, lambda expression, you know,
+341040	344800	just the opposite purpose. I mean, let's say, I mean, if you want to define, you know,
+344800	351280	some functions or some set of expressions, which might not be that useful at multiple places,
+351280	356560	it may be, you know, used in just one or two, it's a multiple places in the same, you know,
+356560	362480	file, maybe. And it's very simple. The logic is very simple. Then in that case, we don't go ahead
+362480	368240	and define the whole, you know, function, you know, using and give it a name because that name
+368240	373280	may clutter the name space for your whole, you know, Python development environment. You also don't
+373280	378800	want to write lots of, you know, names or variables so that I mean, things are available for future
+378880	384640	use, right? And there is no conflict between, you know, names. So lambda expressions are, you know,
+384640	390320	one such a way where you don't assign normally names to functions, but then functions are defined.
+390960	396400	And this thing is called an expression instead of, you know, programming statement, we call,
+396400	401600	you know, these are the expression inside, you know, programming language like Python.
+401600	406880	So the basic syntax for the lambda expression is, you know, something like this,
+406960	413200	where you see, I mean, we write lambda to indicate that we are, you know, going to write a lambda,
+413200	418160	no function, which Python should accept as an expression itself. So the whole thing from,
+418160	423600	you know, from the beginning to the end is actually an expression, okay? And what's the,
+423600	428160	you know, way the exact syntax is you write lambda, which indicates to the compiler that we are
+428160	433040	going to, you know, write a lambda function. And then we pass all the parameters for the function,
+433040	438160	right? So function always does some computation. And to start the computation, it needs some input
+438160	442640	from you, but those inputs are nothing called parameters. So you may have one parameter, you may
+442640	448000	have two parameters, you may have multiple parameters, you may pass, you know, more than two
+448000	452800	parameters in list or dictionary inside of function. So all of these things again, we will come to
+452800	457920	the function discussion and there, we will be very detailed about, you know, this parameter,
+457920	462480	but for the time being, I just wanted to highlight the, you know, intention of passing parameter,
+462480	468240	because you want to compute something based on some initial value that the user will provide you.
+468240	474080	So that's what we call parameter. And then the expression is actually what computes the, you know,
+474080	479920	this, you know, complex value or, you know, complicated, you know, value that you want to calculate
+479920	486720	for your purpose, let's say. So this is the expression, okay? So let's try to define some very,
+487680	494000	very, very easy lambda functions for very simple functions.
+495600	500400	For example, one, let's say, you know, we try to, you know, create a lambda function,
+500400	505440	which tries to mimic this function, which calculates the square of any given number, okay?
+505440	511920	So if you have to, let's say, write a simple function in Python, which calculates the square of,
+511920	521920	you know, number, then, let me show you, I think it's visible. So you can see my
+523280	529520	Jupyter notebook. So what we have here is, we have defined a very simple, you know, function.
+529520	534640	So this is how we define a function, okay? So we said definition. So this deaf indicates that
+534640	538880	we are going to write a function. And then we give the name of the function that we are going to,
+539840	545040	you know, define right now, so which is, you know, our square function. So we say it squared.
+545040	549120	So square is the name that we have chosen, okay? So you can use any name. I mean, you want
+549760	556880	to use here to, let's say, name this function. So since square, you know, resembles the intention of
+556880	562960	the, or the purpose of the function. So we kept the name square here. And this is the argument.
+562960	568400	So inside parenthesis, what you pass is the argument. So normally, when we want to calculate a
+568400	573200	square, what do you want? We want to pass one number. And then we want to get the square of that
+573200	578160	number, okay? So this is how that, you know, a simple function, like, you know, square is defined,
+578160	584400	can be defined inside Python. So do you say deaf square and then pass argument. And in the return
+584400	589920	value, so what should you return? You should return X, no, raise to two, right? So you remember,
+589920	597200	I mean, this was our notation for exponentiation that we discussed in our last lecture. So
+597920	602720	if we define, you know, this function, you will see that this function will appropriately
+602720	607040	calculate the square of numbers. So for instance, I mean, let me just copy paste this code
+607680	614400	in the code block. So let us copy and paste this in the code block and, you know, try to run it.
+615120	619840	So when we run, we see there is no error. So syntactically, you know, this is a valid definition
+619840	626560	of a square function that we just now define a very simple function which computes a square of,
+626560	631120	you know, any number. So we are sure at this point, since this code block, you know,
+631120	635520	run properly, we know that there is no syntax error. But what about the semantics? And we also
+635520	643680	check this function, let's say on some simple input, like, what if I call this function on,
+643680	654880	let's say, two. So if we call this function on two, should you see, I mean, this is what we should
+654880	660960	get, right? I mean, when we compute the square of two, it raised two to the power, you know,
+662320	667760	two and which is four. So what about if I change it to, you know, square of, let's say eight,
+671120	677040	it returns 64, right? So, so semantically also, this function looks to be a correct implementation
+677040	683040	of the square function that we intended to, let's say, implement. So this, you know, one,
+683040	689920	no, simple way to define a square function and give it a name. So the square is the name,
+689920	695840	right? Whenever I want to apply this function to any argument, I use the, you know, this keyword
+695840	701120	square, right? Here I know what, this identified name out, this, you know, function in this square.
+701120	706480	Okay. So you can, you know, use it at multiple, you know, places, I mean, wherever, now you want,
+706480	711920	you can actually just to calculate a square of any number that you want. Okay. So a square of,
+711920	716960	let's say, you know, no, three, what about square of three, square of three? No.
+718480	723920	So, now lambda coming back to the, you know, there's lambda expression. So lambda expression
+723920	732560	gives you a way to not give this name square to this square function and still be able to calculate
+732560	738800	square. So how to define that? So let me know, you know, I mean, we may not, so we may want to,
+738800	743680	let's say, give name, but this expression itself, I can be used, you know, as a mean to compute
+743680	749520	this square without giving it a name. For the timing, let me, you know, show you in another,
+749520	757680	so let me add one code block here and let me know now define our lambda. So we can also,
+757680	762320	let's say, this is a alternate, you know, way to define the square function. So what we say is
+762400	773760	the square is nothing but lambda and then we pass x and what we return is, you know,
+777840	784720	two. Okay. So this is an alternate way to define the same, you know, square function and still
+784720	788880	give it a name. Okay. So we have given the square function a name, but instead of, you know,
+788880	795920	this kind of syntax where we use dev and then, you know, this return, what we say is, we use
+795920	802400	this expression and remember an expression can appear on the right hand side of an assignment,
+802400	807360	right? So this is a simple assignment statement that we were not talking in the previous class,
+807360	812560	right? Where square is a, you know, a variable that we have created, a name that we have created,
+812560	819440	and what we have assigned to it is an expression and what this expression resembles is a, you know,
+819440	825440	function. So what's the effect of this expression? So this expression is, you know, defining a function
+826480	831920	which takes as an input. So everything before this colon, you can see a colon, right? So between,
+831920	840080	you know, lambda and this colon, so everything between lambda and this colon are arguments of the
+840080	847200	function. Okay. And whatever you wanted to return, like here, you wanted to return this particular
+847200	854480	value, right? Or this expression. So that expression, we want to write here. Note that we don't,
+854480	859360	you know, write now this, you know, return keyword. No, that is a result by Python for defining
+859360	864080	your function in this particular way. Okay. So you don't need that. So this lambda expression,
+864640	871360	you know, is a concise expression also, right? You just write lambda x colon. Okay. So input and
+871360	877120	output, no, input parameter and the output expressions are just separated by a simple colon.
+877120	884400	And this expression itself is nothing but no function. Okay. So now if you define square in this
+884400	890080	way, which is a assignment expression, I don't know, simply said, where left hand side is a,
+890160	894640	you know, name that you have defined square and the right hand side is an expression. Okay.
+894640	898800	So you will see this will have the same effect. Okay. So now let's say if I,
+900320	905040	first let me check whether this is accepted or not. So when we run, you see this is accepted.
+905040	913600	So Python does not show any syntax error. So now let's, you know, create a next code block and try
+914080	922800	to again apply the same function square to maybe that's the same values. If you want to apply
+922800	934080	square to eight, you can see the values 64 and what about no square of two before? Now you might
+934080	938800	be confused that I mean we have defined two square, right? I mean one square here and one square
+939040	946720	here. So which one Python knows? So since no, this is the last code block we have run. So this is
+946720	951920	the value that or this is no meaning of the square that Python considered at this particular
+951920	957840	moment of time when I run this no code block. So you know, just remove this confusion. What I can
+957840	963280	say is I can know instead of saying square, I can say it's square one. Let's say this definition
+963360	968720	and then try to now apply square one to two. So that there is no scope of confusion. So now,
+968720	975120	you know, we have only square one and if you, sorry, so you have to run this code block for Python
+975120	980960	to know that what is square one? Once we have run this code block and if you now run this
+980960	986160	in the square one or two, then this is right. Okay. And similarly, I mean, we again, let's say
+986160	992000	run this code black block for Python to remember that the square is no, we find in this way.
+992000	998160	And then a square one is again doing the same job as a square, but just for a different name,
+998160	1004240	we have defined a new, given a new name, but you see, schematically, both functions are same.
+1005680	1010560	You can run it on any number of input and check. I mean, they give you the same, you know,
+1010560	1015200	output because the meaning or semantics of this expression exactly resemble the meaning of a
+1015200	1023680	function. Okay. Okay. So, so now that we have discussed the basic, you know,
+1025280	1029760	the most, you know, elementary way in which, you know, these lambda expressions can be used for,
+1030960	1036400	you know, defining these functions. I mean, we can see some complicated, you know, functions.
+1036400	1041600	So, I mean, here instead of maybe, you know, defining a square one also, let me, let me,
+1041600	1047680	I mean, create another code block. And so what I want to emphasize here is, and if you just use
+1047680	1053440	this expression, okay, and then, you know, you apply, let's say, the value,
+1058640	1067600	because this should come now inside. Okay. So, if you should see, this was an expression,
+1067600	1074080	I, you know, put it inside a parenthesis, and then if I apply value to this expression,
+1074640	1078400	this will give you the same result. I mean, so instead of, you know, defining and giving it a name,
+1079360	1084400	a priority, you can directly also use the same lambda expression to say that, hey, see,
+1084400	1090160	here is an expression. No, that is nothing but a function. And I want to evaluate this expression
+1090160	1094800	with this argument too, because, no, you need to pass some argument to a function too. No,
+1094800	1099600	evaluate it. Okay. So, so when you pass this argument to it, it will directly return you force.
+1099600	1103440	So, you don't even need to give this name square one when you are using this lambda kind of
+1103440	1107520	expression. So, what about, you know, let's check it on one more input before we go ahead.
+1108880	1113680	You see, I mean, we get the same things. So, you know, this gives the, the motivation of using,
+1113680	1119200	you know, this lambda expression that you don't actually need to give any name to the function.
+1119200	1125600	So, you can directly use them. Now, let's try to write some, you know, simple function.
+1125600	1132560	Let's say with multiple input, like, for example, if you want to, now, add, let's say, two numbers,
+1132560	1138240	okay. And I mean, define a function, which is, you know, add function. But now you want to use,
+1138240	1142640	you know, lambda expressions instead of, you know, the normal syntax for function definition. So,
+1143280	1148080	what shall be? So, so, what we want is, let me write down. Now, we want to write,
+1150960	1157600	function to add two numbers. And we want to maybe use, you know, lambda expressions to do that,
+1157600	1168320	lambda to add, no, two numbers is what we want. Okay. So, how to write down a simple function,
+1168320	1174880	which, let's say, takes two numbers as input and then, you know, it returns the addition of those
+1174880	1178480	two numbers. So, we know what operator actually corresponds to addition, right? This is what we
+1178480	1184720	discuss in the last class. But now, instead of writing, you know, function, in this format,
+1186640	1194320	we want to use something like, but this. Now, clearly, there is a difference that you can
+1194800	1200000	initially, our number of arguments were only one. Now, we have to pass two arguments, right?
+1200000	1204880	So, how to pass two arguments? This is what, you know, we want to emphasize, let's say,
+1204880	1210480	no, in this example. So, let me, I know, again, give it a name to the function, let's say, add.
+1211600	1221200	And what we want is to define a lambda expression. Okay. And now, the inputs are not, you know,
+1221280	1227520	input is not only one parameter, but two parameters. So, let me say input to my case is A and B.
+1228720	1234080	And I, you know, separate inputs from output using a Poland. And what is the output that I am
+1234880	1240640	willing to generate here in this case? A plus B, right? So, remember, this, this was, you know,
+1241360	1247280	arithmetic expression to calculate the sum of two numbers, right? So, if we write a simple
+1247280	1252720	statement like this and try to run it, so Python accepts it without, you know, either. So,
+1252720	1257840	you know, so the new syntax that we learned was this no comma. So, we can separate multiple
+1258800	1265440	parameters or input to function by this no comma and pass it to the function and then use a
+1265440	1271840	Poland to separate it from, you know, the output value that you want to generate and the output
+1271840	1276560	value is represented by this expression. So, remember, this is an expression what I have highlighted
+1276560	1282000	here, okay? And, you know, these are the, you know, input values that you pass to this lambda,
+1282000	1287840	okay? Now, we have, you know, successfully defined this, you know, function add using lambda
+1287840	1294000	expression. So, can we, you know, also define another function or let's actually test, you know,
+1294000	1302960	this function once. I mean, if let's say I have to run this function on, so let me, you know,
+1303440	1314400	print and then what if I'm, let's say, adding these numbers, let's say, let's say I want to pass
+1314400	1325680	five, no, I'm plus three, okay? And I want to, you know, see whether I get what I expected,
+1325680	1333200	okay? So, you know, five plus three should be equal to what do we get exactly that when I,
+1333200	1341760	you know, use my, sorry, add function. So, if I pass to this add, now five comma three,
+1342880	1351360	so select the value eight here, if I run it, you see? So, so this is, you know, how we're
+1351360	1357040	sprinting. So, adding five plus three, you know, printing this, you know, resulted in, you know,
+1357040	1365120	this is string, okay? And then this add five plus three, you know, is what it, you know,
+1365120	1370320	so how, what is the definition of this add? This definition is, you know, same as this one,
+1370320	1375440	and it is nothing but a function, which we define using lambda, okay? So, when this, you know,
+1375440	1379760	add is, you know, called with the argument five comma three, you know, which are separated by comma
+1380240	1388080	remember, then it returns the, you know, value a plus b, which is eight. So, this is true, right?
+1388080	1396160	So, that's how, I mean, we know that the function is working properly. So, now can we add, you know,
+1396160	1401520	again, I mean, one simple another example, instead of, you know, add, can you now, you know, quickly
+1401600	1408480	write down, you know, let's say multiply function, okay? Can you take, let's say two input
+1408480	1416000	and multiply them and define a function without using the function syntax, but rather, you know,
+1416000	1422640	using lambda syntax. So, just give it a try, okay? So, if you have to start and define something,
+1422640	1430240	like, you know, let's say multiply, okay? So, multiply is again a function that I want to define,
+1430240	1437280	and I want to take now, let's say two input, which I say X comma Y, you can, could have said,
+1437280	1444480	no, A, B, I'm just using a different variable name for this purpose. And how to make, you know,
+1444480	1453440	valid expression, which represents your, you know, multiplication of these two numbers X into Y,
+1453520	1459920	right? So, this is how we can write, right? And what is the way to check? Just run it and then see,
+1460640	1465040	okay? So, so now, now, comment this line so that, you know, we don't see any other output then just,
+1467840	1471520	okay? So, so this is, you know, well accepted. So, this definition is also accepted. So,
+1472480	1478800	similar to this, we can also print and then see. So, let me copy and paste it, you know,
+1479440	1481440	let's say, you know,
+1482960	1493200	multiply, five, no, into three, maybe here, now gives you what? So, what have we defined right now?
+1494880	1499840	Multiply, right? So, this is the name of the function that we have, you know, given to the
+1499840	1507120	lambda expression, okay? So, this no works as a valid function. So, you can actually use this name
+1507120	1511200	and then pass five comma three and see whether you're getting the same result or not.
+1513200	1519760	Okay? So, so this is, you know, valid result. And hence, we can be, you know, partially sure that
+1519760	1524960	our program is, you know, semantically correct. It's performing exactly what we wanted it to perform.
+1524960	1530800	So, so what we saw right now is how to use lambda expression and, you know, use,
+1531440	1536160	you know, and define, you know, function which takes, you know, multiple arguments, okay?
+1536960	1542080	Again, I mean, as I said, we'd be already discussed that we don't always, you know, need to,
+1543840	1548160	you know, define these, you know, add or multiply kind of name for functions. If you're using
+1548160	1552720	lambda expressions, you can maybe, you know, directly use lambda expression without, you know,
+1552720	1560080	defining these things. Okay? So, for example, I mean, you may mean directly, you know, calculate
+1560080	1565360	these things without even, you know, defining these things. For, for example, let me add a simple,
+1565360	1573200	you know, lambda expression which takes X as input and, you know, gives you the two times X as
+1573200	1578880	our output and directly apply it to some, let's say, number and then print the result. So, we
+1578880	1584800	have done, you know, something like this earlier, but let me do it again. What if, let's say,
+1584800	1590720	I say that I want to, you know, calculate some, you know, value, which I want to store in,
+1590720	1596240	you know, let's say, the result one where I don't want to, so maybe this calculation, I want to do
+1596240	1601120	only for once, you know, we, we are not interested in defining these functions, I mean, and keeping
+1601120	1610560	that at some place. So, what we are saying is we can say, lambda, so we can, you know, first,
+1610960	1618560	so define this nameless function, which is X multiplied by two. So, you now understand what this
+1618560	1624800	function will do, right? This function, this expression, you know, which is in, you know,
+1624800	1631440	indirectly defining a function and what the, the effect of the function is, I mean, it takes
+1631440	1639360	as input X and gives you two times X, okay. Now, what if I apply this function by using this
+1639440	1646400	expression directly to five. So, remember, I mean, you, you, you are, you know, applying this function
+1646400	1651600	by writing, you know, this expression and then followed by, you know, passing the arguments,
+1651600	1660080	which is, you know, only one argument in this case, okay. So, so if we do this, and then if you
+1660160	1669840	let's say, you know, print, if you print the result one, which I have stored here, so what do you
+1669840	1677360	expect, right? So, this is, you know, how you can directly use this expression. Now, without,
+1677360	1681600	you know, we may be defining a double order triple kind of function using this expression,
+1682400	1687680	okay. Another quick, you know, use of this may be, you know, we define, let me just,
+1688320	1693920	for more practice, let me define another value, you know, try to
+1695280	1701360	obtain this result to by again, applying some lambda expression, which is maybe, you know,
+1704800	1709680	maybe adding two numbers, okay. And then passing two numbers directly to it, okay. So,
+1718480	1720320	so,
+1727120	1732320	and when you know, since you have defined this function expression using two arguments,
+1732320	1736960	which are separated by comma, when you pass, you also need to separate them by the comma and then
+1736960	1746480	passing in this order, okay. And what if I print in this case, you know, print the value of, let's
+1746480	1755120	So it is all to what we expect 10 plus 15 should return mid 25 for it to be correct, right? So
+1757280	1764960	you see this is no what we got. So this is just to highlight that you can use Lambda directly also,
+1764960	1774000	okay. Now we go to the next concept which maybe slightly now complicated concept for many of
+1774000	1779760	you who are not so familiar with you know functions, but you know let me give it a try and you
+1779760	1786720	also focus on these you know particular examples which I know I'm trying to discuss under this example
+1786720	1792000	4. Lambda's with higher order function. So the concept of higher order function is that you know
+1792000	1799280	functions can be passed as an argument to functions. So it's not like till now I mean we were
+1799920	1805680	defining some no primitive functions we were always passing some data or variable as argument
+1805680	1813840	to functions, but no in Python functions are like first class citizens and they can be placed
+1813840	1817920	anywhere where a simple argument or a variable can be placed, okay. So this is called higher order
+1817920	1823200	functions. Again we are going to come back to this thing in much more detail when we talk about
+1824000	1830240	but just to highlight I mean how Lambda expressions can be used in different ways we will just take you
+1830240	1836240	know maybe one or two example of these map function and filter function which are already know
+1836240	1846480	available inside Python library. So map is you know one function which works on lists and tries to
+1846480	1851840	apply you know similar kind of operation on all the elements of a list, okay. So so map is very
+1851840	1861120	frequently used to you know function available in the standard library of Python to transform the
+1861120	1866720	values in a list in a certain way, okay. So if you want to let's say transform a multiple values
+1866720	1871840	so all the values inside the list in a particular way let's say your list has multiple number and maybe
+1871840	1878000	you want to compute the square of those numbers. So instead of going to each of these locations and
+1878000	1884320	doing this square applying this square function this MAC function at once I mean can apply this
+1884320	1890640	kind of you know square to all the values in the available in the list. So you know this helps you
+1890640	1895680	get rid of multiple you know looping and that kind of construct we will discuss you know later on
+1895680	1902000	but it's a very simple and you know elegant way to implement you know many list operations which
+1902000	1907280	require you know similar kind of operations to be applied on different you know elements in a list.
+1907280	1912720	For example I mean without getting into the detail of how you know this map is implemented let me know
+1912720	1918800	try to work out some example which will give you no again partial semantics of where this map and
+1918800	1925760	how maybe no lambda can be used effectively in combination with this map operator. So for
+1925760	1934560	example let me you know create a list of let's say numbers, okay. So let me you know begin with
+1934560	1943040	the clicking very simple list where the list has you know numbers like one two three four maybe five,
+1943040	1949200	okay. So let's have the list has you know this five number and you know using the you know
+1950080	1957360	map now I want to so what what we do is first let's say define a simple you know transformation on
+1957440	1964320	these numbers let's say I want to add or maybe five to each of these numbers, okay.
+1965760	1972800	In a sense so we define a simple function maybe without using let's say lambda first do it so
+1972800	1980240	we define a function whose job is to just add five let's say this is the job of the function, okay.
+1980240	1990800	So the function takes an argument x, okay. And what it returns is returns is
+1996560	2002880	five, okay. So this is a simple function that we have you know define, okay. So when you
+2003760	2009760	use this ad function and you know pass it an argument x what will it return it will return x plus
+2009760	2017840	five. So now using the map you know function which is an inbuilt function inside Python,
+2018880	2023840	you can actually add five to all the element of this list that we have defined by using one line
+2023840	2030080	of you know command. So let me write down this one one line of command. So let's say if I want
+2030080	2040400	result of not this map applying you know the map function on this list to be you know stored here.
+2040400	2049120	So what I say is I know I say I will apply I will know map all the values in the list two new
+2049120	2056720	values using a function, okay. So first you know map has to be you know passed. So there are two
+2056720	2061360	arguments to map that normally we pass. And the first argument is the function or the operation that
+2061360	2068960	you want to apply on each of the elements on off list. And the second argument will be the list
+2068960	2072960	itself, okay. So you have to give pass both these things, right. What kind of operation you want to
+2072960	2077360	apply on each element on the list and what is the list, okay. So there are two elements that you
+2077840	2085120	want to you know provide to this you know map function. So the very first thing is you know
+2086000	2091200	add five is what we want, right. So this is the kind of transformation we want to make on each
+2091200	2097680	of the element of the list. So we pass here you know add five. And then we also need to you know
+2097680	2104560	provide you know what are the what is the list on which we want to apply this, okay. And just
+2104640	2112880	no for no to be sure that whatever we you know or get is again a list finally I mean I just write
+2112880	2119600	this no thing. You can check you know even without writing this list but let's say for safety I want
+2119600	2127040	to ensure that no whatever I return and finally get is also a list, okay. So if I run this piece of
+2127520	2134480	code what happens. I mean there is no syntax error, okay. So it's of the no interpreter has
+2134480	2141600	accepted this code. But again I want to check whether what I have defined right now gives me
+2141600	2148560	correct results, okay. So I would like to print what is this no result map that I have calculated
+2148560	2154480	using you know this map function and that for I had five function and this number list.
+2155200	2168400	So let me not do that. Let us try to print and see whether know what we just calculated makes
+2168400	2178560	sense or not. So when you are going through these videos I mean please try to make sure that you
+2178560	2183760	open the Jupyter Notebook and then play around with the code. So this will give you no confidence
+2184240	2190320	writing code on your own and you know getting the correct semantics of what we are discussing
+2190320	2193600	right now, okay. So what we are saying is we want to
+2193680	2214560	do. Okay, so sorry, so this is what we want to be a print and see whether so what do you expect.
+2214560	2219520	I mean so what is our expectation can we write our expectation before we run this piece of code.
+2220160	2225840	So we wanted to add write something to all the number in the list right. We wanted to add
+2225840	2230560	five to all the number in the list. So what should be our expected result? We would like six.
+2231760	2243680	No, seven, eight, nine and ten. This is our expectation and now we should try to run it and see
+2243680	2249360	whether our expectation meets the actual computation or not. Okay, so let me run this
+2249360	2257840	piece of code and you see this is what no we get. So you know, cementically the code looks to be
+2257840	2268240	correct. Okay, so this is how you know you can use the map function. So what we discuss just now
+2268240	2275360	is only you know the map function and how it works. But now can we get rid of this function name
+2275920	2281920	not define a no complete no function name here by using lambda expressions and is still be able to
+2281920	2289680	do the same sort of job. Okay, so can we do that? So let's actually try to know write another
+2290560	2297360	statement which again, you know, calculates the same, same, you know, no resulting list. But
+2297360	2303600	you know, without maybe using these function add five and maybe using, you know, just lambda.
+2303600	2311360	So let me call it with a different name, let's call it result map and this time what I want is
+2311360	2315920	to use lambda. So that's why I have given I know meaningful name to indicate that this time
+2315920	2321760	we are not using the add five function that we have defined initially to calculate this kind of
+2321760	2330800	know things or transformation on a list. So what I want is I mean, let me copy the code from here.
+2330800	2337680	I mean this exact thing we want to copy from here and maybe paste here. And what we want to do
+2337680	2343280	is to get rid of this no add five. Okay, so this is our goal. Let's say we don't want to use now
+2343280	2348400	this add five instead of add five because add five is a function right which can be represented
+2348400	2355040	using a lambda expression we have seen right in previous cases how to not write a function name
+2355120	2361120	and it's still be able to compute the you know, effect of a function using this lambda expression.
+2361120	2368080	So can we get rid of add five here and write some meaningful lambda expression which will have
+2368080	2379440	same effect. Okay, so so let me now help you with some, you know, hence so how to write a
+2380080	2385520	no lambda expression which takes as an input x and returns to x plus five that should do the job
+2385520	2396960	right because that's what we want to do here. Okay, so how to do that so let me so we certainly
+2396960	2402160	need to bypass the second you know number but here in the first one we can be a little you know
+2402240	2406320	creative and what we can say is instead of you know passing the function my
+2408000	2418240	way directly pass you know this expression which is no lambda x colon x plus five.
+2421200	2423280	Okay, so you see this expression.
+2424000	2435200	If you try no use this expression instead of you know this name right add five and applying
+2435200	2441200	on this number. So first let's see I mean whether Python except is as a correct syntax or not.
+2442240	2450320	So let me run this piece up. So when we you know run so let me also you know comment out this
+2450400	2456000	code so that you don't see anything else. So now you see I mean this code is you know so this
+2456000	2461360	is well accepted right so Python accepted the you know previous code modified by this lambda
+2461360	2468320	expression. So this is a perfectly valid syntax but then what about the you know mini semantics
+2468320	2476160	LV also check by applying again on the same no same thing whether I'm this thing work. Okay,
+2476160	2481600	so let me copy and paste no the same thing here.
+2494640	2497120	So let me copy paste this thing.
+2497680	2508720	Okay, now in this case so what we're saying the map result may be you know
+2511600	2519760	with lambda may be lambda. Okay, so what we have applied is in this case lambda and we are not
+2519760	2527040	outputting result map but result map that I calculated using lambda right. So this is what
+2527040	2532720	we have calculated it now and we expect again I mean the same thing right. So shall we print it and say
+2534720	2540560	let us know or run this thing and you can see we get exactly same result right. So when you know
+2540560	2547680	uncomment let's the previous print also maybe here and then run both now it will be not clear.
+2547680	2553840	So you see so the map result is 6, 7, 8, 9 and you know map result with lambda is also
+2555920	2560880	so in a nutshell what we have seen is that you can use this map functions very efficiently
+2560880	2566320	with lambda expression and without you know using this add 5 because this add 5 was only
+2566320	2572240	for this temporary purpose maybe. Okay, so if that's the case why to define a new function and give
+2572240	2580720	it a name not only for this no purpose. So instead of doing that what we do is we don't define it
+2582080	2585680	if we don't define this thing.
+2585680	2598720	So let's continue with the lecture.
+2615840	2643200	Okay so
+2643200	2653120	So that's what we wanted to discuss here that we can use and very cleverly with
+2653120	2661680	a map to this kind of thing. Now let me go to another very commonly used, again I mean standard
+2661680	2667760	library function which is called filter which we again use on a list. So the job of filter is to
+2667920	2673680	filter out some of the elements of a list based on some condition let's say. We know how to
+2673680	2679280	write condition like we have seen some expressions, these Boolean expressions, logical expressions we
+2679280	2687280	can help us write down some to check some conditions. So here in this case again I'm maybe I just
+2687280	2702000	no copy paste the same number list. Okay and maybe just enlarge it with six, seven, now eight,
+2702720	2708800	maybe nine and ten, put some more numbers so that we when we filter we get some number at least.
+2710000	2715360	And let's say in this case I want to filter only the even numbers okay so we want to only filter
+2715360	2722720	even number and how to do that I mean again a very simple way to do that will be to define a
+2722720	2732720	you know is even function and use that function or with this filter okay and get the filter done.
+2732720	2739200	So so let's say I mean first attempt again we give using a name function. So in this case I mean
+2739200	2743520	if I have to define some function meaningful function which is the same job then I would most
+2744240	2758240	write the name as is even and then we take the value x and when we return what we return is
+2758240	2765920	you know x it was a you know modular division I think so we define by two right so modular division
+2766400	2774960	two gives you zero if it is even right so we return now can you make sense of this expression
+2774960	2782560	that I'm returning it this is modular division by two and modular division by two will return
+2782560	2789200	you zero only if the number is even right so the the whole expression that you are you know
+2789200	2796000	returning here is actually a Boolean expression right so finally you will return either true or
+2796720	2802480	false okay so if you don't recall I mean please go back to the previous know video and check
+2803440	2808960	what this expression means I mean this expression finally will evaluate to either true or false
+2808960	2815280	and it will evaluate to true in the cases where your no modular division gives you
+2816160	2821840	zero and that will be true only when it is even okay so we already have a you know function which
+2821840	2829760	takes you know any x and it turns true or false based on whether that x is even or not okay so this
+2829760	2835760	is a very simple you know implementation of function using a no Boolean which returns a Boolean
+2835760	2842080	kind of thing and now I can actually use this function to let's say collect maybe all the
+2842080	2849520	even numbers which is you know present in this you know initial list so what I say is I want to
+2849520	2856880	apply this filter and what is the filter that I want to apply so my filter is is even function okay
+2859200	2867760	and what I pass is this no list of numbers so when I do this I collect all the you know even
+2867840	2876720	number in this one and again just to make sure that I you know finally get a list I write here list
+2878160	2885600	okay so when I when I apply this again the first argument is the filter function which is
+2885600	2892560	you know is even which will tell us whether the number is you know no true or false no number
+2893120	2898560	whether this no check returns true or false and the second one is the whole list of numbers on
+2898560	2905360	which we want to apply this check okay so finally we get is no set of even numbers okay now
+2909520	2914000	now let me no copy paste to see whether
+2914480	2928080	so we have already applied this and what we want is to check whether this thing is correct or
+2928080	2935520	no the semantics of this should let me a print or even numbers and no which are you know in this
+2936480	2937120	even happy
+2942720	2949840	now can you see I mean when we run this code we get to 468 and 10 and all of them are even number okay
+2949840	2954880	now what what about now applying the same thing with you know lambda so let's know
+2956240	2961840	attempt to do this without defining a new or you know function is even but instead you know
+2961840	2968640	I want to use now lambda expression to do the same the option what I am intending to do is that
+2968640	2980160	I am trying to implement this filter with lambda so what shall be the code so can we write down
+2980160	2984720	the code for just opposite maybe maybe you know let's just calculate odd now instead of
+2985760	2990480	even if I have to calculate now or I mean this return all the odd numbers so how to
+2990560	2996560	know return it so maybe you know write this no odds here all the odds want to return
+2997600	3005040	and what about know the filter let's say apply filter and we will write something you know
+3005040	3010480	here right in the beginning we will write something and then finally we will apply you know
+3010480	3018480	this check function to and you have be a number okay so this is what we want so we have to
+3018480	3023520	fill this gap I mean what shall we write here so this should be a check now which we should
+3023520	3032240	be able to check whether given number x is odd or not so what shall we return if a number is odd
+3032240	3037840	so moderate division should return of 1 right instead of a 0 if it has to be odd can we write
+3037840	3044640	you know lambda expression for that so so if we write lambda let's say x is my input and then
+3044640	3055280	what I want to return is whether x modular division you know 2 is equal to is equal to 1
+3057120	3062960	remember I mean here I mean in case of even we wanted this to be 0 right but here in case of
+3062960	3072240	odd number I want it to be 1 okay so I return now this thing and just again to make sure that I
+3072320	3082240	get a list I just know or app it in this list thing and what if I you know run this so even numbers
+3082240	3087680	is you know we got printed from the previous one but if you know print again you know these odd
+3087680	3095120	numbers let's say whatever we have collected in this now odds if we again print it here let's say
+3096080	3105040	let me write down this now if you print all the odd numbers which is not collected in odds what do
+3105040	3114480	we get here you see we got the same you know we know 1 1 3 5 7 9 these numbers which are actually
+3114480	3122480	odd number so everything is no working as intended so we we have seen how to use a map and filter
+3122480	3128240	together with these lambda expressions and they're very you know convenient to use whenever you
+3128240	3136000	have something like this now I will conclude today's lecture with a slightly you know maybe you know
+3136000	3142960	complicated you know lambda expression but it's good to think about it because this will make
+3142960	3147280	the semantics of this lambda expression far more clear for you on the other hand if you don't
+3147280	3152080	follow this please no don't get demotivated we'll come back to it when we discuss again functions
+3152480	3158400	so what we are going to discuss now is no something what we call a function factory okay so now what
+3158400	3164560	I want to do is I want to define a function which will return functions okay so this is in
+3164560	3168800	different than what we have been doing till now so I want to define a function which you know
+3168800	3174640	returns different functions based on what we want let's say I want to create you know many
+3174640	3181280	functions which you know jobs are to multiply a given number with some number so let's say I
+3181280	3186960	want to create a function with a name double which I whenever given a number creates develop that
+3186960	3193200	but no I also want to you know create a number which let's say no triples number so so let's say
+3193200	3198160	name that number as triple so that number give whenever given as an argument creates no triple
+3198160	3203600	of that similarly I may want to create no one function for each of these kind of no thing I mean
+3203600	3208880	this may look very artificial to you but no I for example to be very simple let's say keep our
+3208880	3215520	function also to be very simple so I want to maybe you know create you know this you know
+3215520	3221280	multiplier functions maybe and I want to do it using a function itself so okay so I want to
+3221280	3227920	maybe write a function whose name I may want to give create multiplier and I have to give no by
+3227920	3232720	what factor you know this you know new function that I return should multiply a given number so
+3232720	3238400	that should be the factor one argument to this multiplier function and the final output that
+3238400	3244160	this multiplier function gives is a function itself okay which will return the you know function
+3244160	3249840	which is you know it useful for me to you know multiply a given number using that factor so so
+3249840	3255840	let me I mean write down you know in a very you know if you know first attempt of writing such a
+3255840	3265600	function so what we want to do is we want to maybe you know define a create multiplier
+3269360	3278640	multiplier function which takes a factor as an you know input okay and the whole job of this
+3278640	3285200	no function is to define a function okay so inside this function what we do what we want to
+3285200	3297600	actually do is we define another function which we are calling let's say let's say multiply here
+3298400	3308000	okay and multiply x okay so what the multiplier x does is it just returns
+3313840	3325760	it just returns x multiplied by this factor okay and what my you know original function returns
+3327840	3339200	is just this multiplier okay so what is multiplier so where did we you know so how can we return
+3339200	3345200	something like this because that thing has been already defined inside my function okay so what
+3345200	3351840	this create multiplier takes from you know outside is this factor and once it knows the factor it
+3351840	3358480	actually returns a whole function and the you remember you see this factor is used inside the
+3358480	3363920	definition of this multiplier function so just go through it slowly I mean if possible if you
+3363920	3370320	you know feel essential stop the video and think about what's actually going on here what is the
+3370320	3376480	input of this create multiplier function which is a factor and what is the output of this no function
+3377120	3383520	which is again a function itself okay now I want just to make more sense I mean I want let me
+3383520	3388640	I mean give you some concrete example let's say if I want to create a no function which let's
+3388640	3394480	say double you know whatever you give then what I will say I will say create instead of you know
+3394480	3401120	defining it a fresh here I can also define it you know in a completely fresh way right using
+3401360	3405360	expressions or whatever you want but I want to use let's say this create multiplier
+3408480	3413440	flyer okay and what's a live pass to the create multiplier
+3415280	3421520	two right so when I pass it to two it will create a you know multiplier you know function
+3421520	3427040	which will multiply by two and it will give it a name or double so double now becomes my function
+3427120	3432240	which will you know double whatever number I give to wait okay so for example I mean let me
+3433200	3440960	immediately maybe use this double to apply it to some maybe number and then
+3443360	3444000	so let me
+3444160	3459280	so maybe print you know double and apply double this number on 5 so what do you get what do you
+3459280	3468160	expect here so there is some error so double is not defined okay so there is no mismatch in
+3468320	3477520	the way I have defined double so okay now if so the double of 5 is 10 okay so can I also define
+3477520	3484080	your triple I mean in same way this is triple now as we discussed in the very beginning that
+3484080	3486880	this number should be able to so let me you know copy paste this one
+3490400	3496640	and then say that now I want to do different triple and what if I you know want to print what
+3496720	3504480	is the effect of my triple let's copy and paste it here instead of you know double
+3506640	3510320	now I want to print the triple and using this triple function okay
+3513600	3519680	triple function so what do you expect here see I mean we are getting exactly if we wanted right
+3519680	3525280	so we can create double triple and these kind of things and you can create no you know 10 times
+3525280	3531440	hour you know if you want to let's say define a function which is you know multiply it with 10
+3531440	3537200	times you can also say create multiplier and pass 10 like I mean let me create it and not use it
+3537200	3547840	maybe you want to multiply now with 10 so take you may so this time stand once there is nothing
+3547920	3559680	but let's say create multiply and then you pass it 10 you can also again check you know using
+3559680	3563120	the same method whether you know you can so again there is some error
+3563360	3581760	maybe you know some spelling mistake so I just copy it and paste here here okay so this is how
+3581760	3586720	you can create this no function but again if I ask you can you do it without defining this
+3587200	3593040	inside it okay so what we did here was now we we outputted no this multiplier function but before
+3593040	3598880	outputting this multiplier function we created this you know multiplier function inside the main
+3598880	3604960	function that you know was creating all this no function okay so can you get rid of you know this
+3605440	3611360	what I have highlighted here you know so let me you know copy this whole you know code and what I'm
+3611360	3616960	trying to ask you is copy and paste it here now what I'm trying to say is I mean can we do
+3617760	3624960	by not having this you know defined explicitly here okay so this is what you know we want to
+3625920	3634400	see and you should be able to guess you know what what what shall I do I mean if I don't want to
+3634400	3640800	define the function inside this you know main function no the whole no purpose of defining
+3640800	3647840	this multiplier here no is to use it here right in the return can I not define it here and still
+3647840	3654320	you know use something similar here in when I'm returning okay so so what I'm saying is I let's
+3654320	3662000	say if I comment these two lines of code and I still want to get the effect of multiplier here
+3662000	3667680	what shall I do I mean you should be able to guess at this point that we can use lambda expressions
+3668400	3676080	you know effectively to get rid of this definition inside the function okay so what about I mean if I
+3676560	3684240	right so what was it no job of this lambda function that you the function multiplier that you
+3684240	3690800	have defined inside x just to you know multiply that x you know with a factor right so instead of
+3690800	3699920	that we can also say this right that you take x as an input and then you return x multiplied by
+3701760	3706640	factor which you already know right because factor has been passed to you so if we use this
+3706640	3713920	expression you can see this expression has the same effect as this you know function okay
+3713920	3720400	so instead of you know returning that you can directly maybe you know return this thing okay
+3720400	3726720	and if I now try to run things and see whether I get the same result you see you get the same
+3726720	3735840	result it's a valid you know definition accepted by python and also the results are as intended okay
+3735840	3740240	so this is a perfectly you know correct way to do this so we could get rid of one definition of
+3740240	3747680	function inside this one now a third you know even more you know clever way to do you know
+3747680	3759520	something similar you know can be you know different I mean so what we are asking now in the
+3759520	3765280	third attempt is to can we you know instead of defining this function in this way can we define
+3765440	3771760	it using no lambda expressions so this is what I'm not asking you here so what what we are saying is
+3771760	3777280	no can we comment out all this code and then create multiplier using lambda expression because
+3777280	3783520	remember what we have written here is also a function right this itself is a function which takes
+3783520	3789760	you know some input what is the input that it takes factor and it turns to this function so can
+3789920	3794720	you know instead of writing this whole thing I mean this definition in this definition of
+3794720	3800720	function in this form can we convert this also as a lambda expression okay so this may look a
+3800720	3805760	little bit tricky to you at this moment but try to think about it I mean since it's a function
+3805760	3812160	we can always create a no nameless lambda expression out of this function okay so what I'm trying to
+3812160	3817680	say here is I mean is this a valid thing to do let me write it down so create maybe
+3819840	3828480	create multiplier okay so you see I mean you know I instead of defining this create multiplier
+3828480	3834080	function in this format which is normal no syntax for defining any function what I'm saying is
+3834080	3840960	can I define this create multiplier as a variable and then assign it some lambda expression which
+3840960	3845840	will have the same effect as if no we have defined the function so so what shall be the lambda
+3845840	3855680	expression then okay so the argument is no factor okay and so so this is no you see I mean
+3855680	3862880	the the argument was factor and what was the return type so what was the return value you see
+3862880	3867840	return value was a lambda expression itself okay so after colon or maybe you know we can copy
+3867840	3874160	from here exact thing right so what we want to return and for safety you use a parenthesis and
+3874160	3881440	then you know pass this do you see this is no valid one-line you know statement which again
+3881440	3887040	defines the same create multiplier function which will it should have the same meaning it from
+3887040	3896640	our discussion till now it's easy to see why no this is true okay so let me run this and see
+3896640	3901520	whether compiler accepts it without an error so certainly I mean it no accepts it without an
+3901520	3911280	error but what about again now if I want to not define like I mean if I want to just copy and
+3911280	3916720	paste this three line of code here just to check whether the semantics is also as intended
+3916720	3921600	because syntax wise it's perfect but what about semantics do we get the same semantics so let me
+3921600	3928640	run this piece of what again I know with this and you see the same meaning right so lambda expression
+3928800	3937040	can be very helpful in concisely representing function expressions and especially when you're
+3937040	3942960	using it no for maybe only one time and you know in cases where the function definition is not
+3942960	3949200	that complicated that you want to maybe write comment for describing it and especially if it is not
+3949200	3954880	reusable maybe you want to use it only for one time in that case also I mean you can simply use
+3954880	3961760	this lambda expression and avoid defining any new function so just to you know summarize the
+3961760	3969280	whole idea we want to know answer this question I mean through this lecture we try to answer this
+3969280	3977120	question that when would you use lambda expression okay so using lambda you know expression is you know
+3977120	3983200	perfect you know in the cases you know where for example you want to do calculation very
+3983200	3989120	no quickly okay so the very you know first thing is that if I want to do some no quick calculations maybe
+3993840	3999280	since then I have to know pray for this in our lambda expression also the kind of transformation
+3999280	4004400	which I want to capture with this lambda expression should be simple I mean it you should not
+4005440	4011760	know use lambda expression for very very complex transformation in that those cases it's better to
+4011760	4017120	define your function explicitly because that will no be more direct way of you know saying what
+4017120	4021440	you want to do rather than you know defining this complicated lambda expression so another thing
+4021440	4028560	that we would certainly want is that the transformation that we are trying to you know express using
+4028560	4038080	this lambda expression should be simple okay so we shall always write lambda expression for simple
+4038080	4042880	transformation you know another thing I mean that is you know important in that we discuss that you
+4042880	4049280	know if you know transformation that you are talking about right now is not reusable at multiple
+4049280	4055280	places it's only you know mean for one time maybe operation in that case again you can prefer
+4055280	4062080	using lambda expression over function so the third core criteria that you know that will help me
+4062640	4069040	to use lambda expression is one-time operation if no the operation that you want to perform or
+4070000	4076240	not define is a one-time operation then you better use it when to you know you use regular
+4076240	4081520	function so I mean when your logic is very complex let's say it's not very easy to define it in
+4081520	4087680	no one although I mean you can always define it in no terms of lambda expression but the expression
+4087760	4093360	may be very complex to make sense of so when your logic is complex you should most mostly know go
+4093360	4098160	to the regular function okay and define it using the syntax of the regular function so the very
+4098160	4104240	you know first you know kind of thing where I get a hint of you know going to regular function is
+4104240	4112880	no complex logic if the logic is complex better you know stick to regular function then I mean again
+4112880	4117600	I mean as we discussed previously I mean if the code has to already the function has to be used
+4117600	4123440	and reuse at multiple places in multiple files you know and then you must actually define it
+4123440	4127440	explicitly and give it a name because then that you can use that name multiple times in
+4127440	4133520	no different places okay so the next important thing to note is that you know our
+4135760	4142240	so you should write function when the code that you want to you know reuse multiple times okay
+4142880	4160000	so the code that you will reuse many times you better write functions for that and of course
+4160000	4166160	I mean code is you know reusable and logic is complex and when you want a clear documentation for
+4166160	4171600	that you certainly should use that okay so believe I mean let's you know suppose that your code is
+4171600	4176960	to be used by some other third party you know then you need to give the documentation of the code
+4176960	4181440	also very clearly and you cannot provide documentation inside a lambda expression okay so for that you
+4181440	4187200	need to write a proper function and also put enough documentation so that someone who is using your
+4187200	4193040	code should not be forced to look inside the implementation of the code rather than it can just
+4193040	4198240	look at the description of the code and use that code okay so if the code is meant for third party
+4198720	4204240	and if you want to document the code clearly then also you should define your you know functions
+4204240	4216000	using proper you know function definition so this is a moment you need clear documentation
+4220480	4226240	so these are some of the places where I can you know advise you to use lambda expressions
+4226240	4231760	and functions you know judicially based upon what's the current scenario okay so with this we
+4231760	4245280	would like to you know conclude this lecture I will see you in the next video thank you

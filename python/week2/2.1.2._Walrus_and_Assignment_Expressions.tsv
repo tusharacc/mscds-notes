@@ -1,0 +1,285 @@
+start	end	text
+0	13480	Welcome back and let's continue with the Python expression hierarchy that we started
+13480	16600	discussing in the last lecture.
+16600	22480	So you remember, I mean we already discussed about this basic concept of expression inside
+22480	32440	Python. We already talked about how to build simple arithmetic and logical expression
+32440	39040	and how to combine simple logical expression using logical, you know, this operator and
+39040	40880	you know, comparison operator.
+40880	45720	So we were saying that so today, you know, we will, so we already saw about expressions
+45720	46720	operators.
+46960	51280	So today, we want to discuss something very interesting, which is, you know, you know,
+51280	56080	you know, you can Python, which is called assignment expressions. So remember, this is not
+56080	60520	assignment, you know, statement in a, in a state, it's assignment expression and we
+60520	66720	will see some, you know, subtle differences and why we should be careful in dealing with
+66720	71960	this kind of expression. So this is also part of expression hierarchy. We'll discuss it
+71960	78080	again, we'll finally, you know, conclude today's lecture with lambda expressions. So let's
+78080	81680	move to the Jupyter notebook.
+81680	97360	So before we go to the no-worldless operator, which is also, you know, called the assignment
+97360	103840	expression. So let's, let me, you know, briefly talk about an important idea, which is
+103840	110680	known as operator overloading. Okay. So in Python, like, you know, in many other programming
+110680	118680	languages, you can use the same operator symbol for different data times and from the context
+118680	126160	compiler or interpreter can actually interpret the meaning of, or this operator is because
+126160	131800	you, remember, if you're using same operator in different context, they must have been
+131800	136520	a different meaning. Otherwise, you know, it will be invalid, right? So it should throw
+136520	141560	an error. But compiler and other, you know, programming languages know from the context,
+141560	143720	what should be the meaning for, let's say, these operators.
+143720	150480	For a very simple example, let's say, you know, if I want to combine, let's say, two
+150480	159360	natural number, let's say five. And, you know, maybe 10 using, let's say, this no plus
+159360	167600	operator. So what do I expect? I, you know, expect. So this expression, actually, the expression
+167600	175480	that we have written here represents arithmetic expression, right? And it sees, so this plus
+175480	180960	operator sees on its left hand side and right hand side, both a number. So from that,
+180960	187200	it guess that it's, you know, addition operation, we are talking about here and it will evaluate
+187200	192920	accordingly. So if we run it, I mean, what you see here is no number, no 15, right? So
+192920	199600	this is what we expected. But we can use the same addition operator and, you know, using
+199600	206600	the same addition operator, we can also combine strings. So what you can do is, I mean,
+206600	227440	if we, let's say, write print and then, maybe just add. So what we use here is this addition
+227440	235280	as a concatenation, okay? So it will just concatenate the first string, you know, behind
+235280	238560	the second, you know, the second string behind the first string, right? So this is the
+238560	245800	first string. When we combine this first string with the second string, using this plus
+245800	251880	operator. So here, the plus operator is not the arithmetic operator, okay? So from the
+251880	257440	context that, you know, this plus is trying to combine two strings, the compiler or
+257440	263520	interpreter will know that it's not the, you know, addition operation that the programmer
+263520	267960	is intending, okay? So it's the concatenation operation that the programmer is, you know,
+267960	275240	trying to convey. So let me print it and see, you can see right, what you print here is
+275240	283240	a hello one, okay? So this is very, you know, interesting concept in most of the programming
+283240	289160	language that you can use the same notation for different, you know, meaning. So, you know,
+289160	294200	so here, the semantics of, you know, plus is not, you know, attached to only addition,
+294200	300120	but it is also attached to string concatenation and that's something interesting. Not only
+300200	305480	to no string, I mean, you can also, you know, concatenate list. You'll see later on that
+305480	310160	strings are actually implemented using, you know, list fundamentally, I mean, list is
+310160	317760	the, you know, so you, you can, they are similar in the sense that now, if you want to use,
+317760	324360	let's say, the same plus notation and maybe we want to concatenate to list. So list lists
+324360	329160	are normally represented in this way. We'll come to list in detail later on, but, you know,
+329160	335320	these are not a tie and data structures, which help you organize data properly. So, for example,
+335320	340200	in your list, you have one and two and then maybe, you know, in my next list, if I have, let's say,
+340840	346760	three comma four, and if I want to use to combine these two lists, so I can use the same,
+346760	351320	you know, the operator and then, okay, so what you get finally is,
+351640	359400	one, two, three, four, right. So we have seen the same, you know, addition operator, which
+359400	364360	we knew as addition operator was actually used as a concatenation operator also, right,
+364360	371640	for strings and list. Okay. So with this, I mean, I have already discussed what I wanted to
+371640	377880	discuss from the previous class, and now let's move to this very interesting, you know, operator,
+378040	385640	which was not present in Python from the very beginning. So it was, you know, added very recently
+385640	390840	to Python programming language. So this is called Walrus Operator. So it looks very similar to
+390840	397880	the, you know, assignment operator, the assignment, you know, statement that you have already seen,
+397880	403640	but it's a bit no different. So for example, I mean in normal assignment statement, when you,
+403640	409800	you know, look at a normal assignment statement, what do you see? So we have some variable on
+409800	417240	the left hand side, right. So this is the no syntax of normal assignment operation, where you have,
+417240	421960	some variable on the left side of the assignment, and then on the right hand side, we have some
+421960	428920	complex, let's say, expression, which evaluates to some value. Okay. So you can have a complex
+428920	433240	expression on the right hand side, which will evaluate to some value and that value will finally
+433240	438440	get assigned to this x. Okay. So this, this was the semantic side. We briefly discussed, I think,
+438440	445800	in the previous classes. So this is the normal semantic surface, you know, assignment statement,
+445800	451080	and remember that this is a statement. So it does not have, so when you, you know, execute this
+451080	455480	statement, this statement will not have a value. The right hand side, which is an expression,
+455480	461160	which you want to assign to the left hand side, will have a value. But the overall statement
+461240	467560	does not evaluate when I say statement, I say this complete thing. Okay. So this will not evaluate
+467560	474280	to any value. So this is a no clear distinction when we call it statement, the statement does not
+474280	482280	evaluate to some value. Okay. So it's rubbish to just change the state of x, right? So bind x to
+482280	487800	the value. But when when we come to this world as operator, we will say that this is, you know,
+487800	494520	this not only changes the state of the variable, which appears on the left hand side,
+494520	503800	but this whole, you know, expression also evaluates to a value. So, so to be, you know, fully
+503800	509800	precise, what we say that this thing that you're looking here is not an expression. Okay. When you
+509880	517720	write x is equal to some expression, this as a whole is not an expression. Okay. But when you write,
+518360	524280	you know, you replace this assignment with a Walrus operator, the whole thing becomes an expression.
+524280	529960	Okay. For instance, I mean, if I have to let's say, if I let's say initiated, you know,
+530840	537640	this, you know, data, let's say data is some, you know, data structure like list of some length.
+537720	543000	And if you want to know check whether the, you know, length of the data structure,
+543720	549640	okay, is greater than 10. And then based on that, if you want to, you know, decide whether you
+549640	553960	want to do something or not in your program, then in one go, you maybe you can write, you know,
+553960	560440	this thing, this will work. Why? Because, you know, this thing, not only assigns this,
+560440	565480	you know, right hand side, which is the length of data structure to n left hand side, but also,
+565480	570520	this whole expression, I mean, this expression will evaluate to the final value of n that,
+570520	576120	you know, this expression assigns to. Okay. So we will come to it, you know, in the next block,
+576120	582280	I will show you some example to tell you clearly what it means. So you can actually, you know,
+582280	588200	replace this, you know, assignment with this Walrus operator and then the meaning actually changes.
+588200	593480	So meaning changes in the way that now it becomes an expression. So this is an expression.
+593480	599000	It both assigns the value of the right hand side, which is, you know, this was the right hand side,
+599000	606440	right, of this Walrus operator and it assigns its value to n and it also evaluates to the value,
+606440	611640	which is then assigned to, you know, 10, right? Because we will see, I mean,
+614280	619880	so assignment cannot be used inside a larger expression. So remember, I mean, this is a,
+620840	626680	you know, this thing or, you know, this whole thing that you're seeing here can never be,
+626680	630680	you know, used inside an expression and we'll see if you use it, I mean, then, you know,
+631560	639720	the interpreter will throw you some error. So to give you a very simple example of this,
+640440	650440	let me. So for example, what I say just now, I mean, we can just try to experiment with that,
+650440	658520	what will happen if I let's say print? Yeah. So this is a good example is very simple example to show
+658520	663960	you. So what do you think will happen when I run this block of code?
+664600	675480	So we'll, you know, Python accepted. No, right? It didn't accept it because,
+675480	681000	no, what will it print? I mean, you have not given, you know, some value for it to print, right?
+681000	688280	And so this was this was a statement in Python and you were not asking it to print. So maybe
+688280	693160	when you were writing it, what you intended was print the value of, you know, X, okay? But
+693960	698760	that's not how, you know, you can, you know, make Python to print the value of X because it will
+698760	704760	say that, you know, this is not an expression. So what it expected inside was an expression and
+704760	709800	since you did not pass an expression, it will, you know, throw you another. But what will happen,
+709800	716120	let's say, I mean, instead of, so let me open our new block and then go there and
+717080	724360	in. So what if I simply replace it with a Walrus operator. So if I now say print X,
+724360	731720	you know, Wal, NASA into five and also evaluated to five, then what will this print?
+732520	736760	So this is five, right? So what was the difference? I mean, the difference was that I mean,
+736760	744040	this is, this thing is not an expression, okay? But on the other hand, this thing is an expression.
+744040	749640	And remember expression always evaluates to some value, okay? So since this, this is an expression
+749640	754600	and it, you know, evaluates to value five. So that five values, you know, printed by this,
+755240	760760	you know, print, come on. Again, coming back to, let me, you know, did not discuss a,
+760760	765720	you know, a real example kind of. So the one that we were discussing here, I mean, trying to
+766600	771480	hint here. So we'll come to the same thing here and try to discuss it in more detail. So let's
+771480	776680	say now you have defined a data structure. For the time being, you know, assume that the data
+776680	781800	structure is list, list is nothing, you know, but simple, you know, sequence of lists is,
+781800	787160	you know, actually list what you understand. So formally, we will define in upcoming lectures,
+787160	792120	but you know, for now, just know, assume that, you know, list is nothing, but, you know,
+792200	801000	these numbers kept in this order, okay? So if let's say, I want to, you know,
+803800	809400	decide something based on the, let's say, length of list, okay? So let me write down a small piece
+809400	818200	of code to make sense. So let's say, so the traditional way to, you know, do branching based
+818280	822360	on, let's say the length of list would be to first calculate the length of list, right? I mean,
+822360	828280	if let's say I want to decide whether I shall do a set of action or another set of action down
+828280	833800	the line in my program based on the length of list. So what I need to do is first to capture the,
+835480	844440	maybe length of this list, which is data, okay? And then let's say what I am saying is if my
+844760	850520	end, which is nothing but, you know, length of list is let's say greater than three,
+851240	856840	then what I want is I want to do something, let's say. Just, I mean, instead of, you know,
+856840	862120	writing, you know, complex program right now, let's say, you know, write that, you know, I want to,
+863080	874920	or maybe, you know, maybe I want to do, do some thing, okay?
+879160	883240	Okay, so this something, you know, can be, you know, instead of, you know, printing that I want to
+883240	887640	do something, I can actually write a sequence of statement again here and do something,
+887720	894840	but, you know, for simplicity, let's avoid that. So, what do you think? I mean, will it execute
+894840	899480	this particular branch? I mean, in this case, when you have instantiated data with this list,
+901080	907880	yes, right? Because, any is the length of, you know, this list and the length of list is certainly
+907880	912840	in more than three, right? And so, this would print this, okay? So, let me print this.
+913800	919880	Right? So, it should, it printed, you know, this, you know, string that I have written here,
+919880	924760	it means that if you write a sequence of statement here, that will also get executed because,
+924760	928920	you know, program is hitting this particular branch because this condition has become true.
+929720	934440	Now, I mean, if you are dealing with, you know, if the only purpose of, let's say,
+934440	940920	N is to check, you know, for, you know, checking this condition, in this conditional, which is,
+940920	948840	you know, this one, then to some, you know, people, this may, this particular assignment statement
+948840	954040	may seem a little bit of an overkill. I mean, why shall I clutter my namespace with so many,
+954040	958920	you know, variable name, the only purpose of this variable is to check this, you know, condition.
+959560	966680	Okay? So, here, you know, Walrus operator comes very handy. And I think this is the only place
+966680	971560	where I am convinced that this Walrus operator can be, you know, more useful than this normal
+971560	977560	assignment statement. Okay? So, using the Walrus operator, what you can do is, you can actually
+977560	983320	combine both of this and, you know, one line of code and then, you know, you can get done.
+983320	999480	For example, I mean, here, what we can say is, we can directly use, you know, this N inside.
+1013320	1042760	All right? So, you can, you know, say it, so instead of writing it on a separate line, outside
+1042760	1047400	this, you know, conditionally, you can maybe, you know, write here itself. Okay? That, you know, I just
+1047400	1054520	know, give me the value of this length. I store it in N. And now, since this whole thing
+1056760	1061800	is an expression, it, it, it evaluates to some value. And what the value is, the value of N that
+1061800	1066680	it assigns. And that can be compared directly with this one. Okay? So, instead of writing two line
+1066680	1071400	of code, maybe, you know, one line of code will do the same purpose. So, no, same job. So, if we run it
+1071400	1079720	now, something again, let me just distinguish it, we can write it like this. You see, I mean,
+1079720	1084520	it has the same effect. So, maybe you can save, you know, one line of code by just, I mean,
+1085480	1090840	it's not saving you even the, in the namespace, because you're using the same, you know, N. So,
+1090840	1096520	you're actually having this N here. So, but it accidentally, I mean, saves you one line of code.
+1096520	1103240	So, no, this was very much debated when this, you know, particular Wallace operator was about to
+1103240	1109000	be added to the Python programming language. So, people debated whether we really needed it or not.
+1109000	1116200	And large segment of people did not agree whether we should add this Wallace operator to the Python,
+1116200	1123400	because it may create, you know, confusion while not creating that much value inside the Python
+1123400	1127960	programming, you know, language. So, I mean, it's your choice, but when, if you're using it,
+1127960	1133320	just be careful. This is what, no, I want to, you know, suggest it. And it may create a lot of
+1133320	1138760	confusion at, you know, different places, which we will, I will show you. But before that, let me,
+1138760	1145400	you know, tell you about some ways in which you can use this normal assignment statement.
+1145880	1150200	So, what are some, you know, valid patterns of these assignment statement is what we are going
+1150200	1155080	to, you know, discuss. So, I will show you some, you know, valid way in which you can, you know,
+1155080	1160120	use this assignment operator. The very, you know, simple way is, you know, already, right, because
+1160120	1166280	we can always assign some value to one variable, right? So, this is the most, maybe simplest way in
+1166280	1172040	which we use assignment operator, okay? So, you use it and it will print you some value. So,
+1172040	1176920	but you can also use, you know, change assignment. So, you know, simultaneously, you may want to,
+1176920	1180760	maybe assign, you know, multiple variables to the same value, let's say in your program,
+1180760	1185880	for some reason. So, you can use assignment operator in that way also. So, that's also valid,
+1185880	1189640	you know, syntax, which is well accepted, you know, inside Python. So, for example,
+1190280	1193880	if instead of only, you know, one variable, if I want to, let's say, you know,
+1194200	1202200	initialize many variables, let's say, A, B, C, all to the same value I can actually do in this way,
+1202200	1209240	okay? So, this is perfectly, you know, allowed. So, here I print.
+1215960	1221080	So, what will happen if you, you know, print, let's say, this, so, this, this, this,
+1221080	1235240	is showing you a chain value, right? So, so, this chain assignment will happen and it will,
+1235240	1245000	show you the value of, let's say, what will the value of A, value of A will be printed and then
+1245000	1265320	you will have no value of B, okay? So,
+1265320	1278040	so, so, if you, let's run this, let me run this piece of code and then,
+1280120	1285960	you see, the value of A, B, C are actually, you know, this five, right? All these three have been
+1285960	1294920	initialized to, right? So, we can also use, you know, this assignment to assign, let's say,
+1294920	1300680	different value to this, you know, variable, maybe you want to, you know, initialize multiple
+1300680	1305560	variables at the same time, but you may not want to give them the same value, right? I mean,
+1305560	1310600	because the previous one was very simplistic where you want A, B, C, all to get value five,
+1310680	1315800	but what if I want to, let's say, you know, give different value to, so, so, you can actually,
+1315800	1320040	if you let's see, you have two variables, you can actually use no tuple, something like tuple,
+1320040	1325880	so, if I want to, let's say, initialize X and Y, both simultaneously and I want to initialize
+1325880	1333160	them to, let's the value one and let's say two, so, I can simply write down this. So, Python takes
+1333160	1337880	care of this, you know, so, these things might not be, you know, available in other programming
+1337960	1343480	languages like C or, you know, other languages, but Python for, you know, gives you this, you know,
+1343480	1349320	freedom to write down a statement like this, this will be considered a valid assignment, a statement
+1349320	1356280	where all the job is done internally by Python to, you know, make sure that value one goes to X
+1356280	1361800	and the value two goes to Y in this particular case, okay? So, again, I mean, we can print and
+1362200	1372920	see whether we get the same value or not. So, let me, you know, let me print it here and then,
+1372920	1381480	let's see whether we're getting what we expected. So, if I want to, you know, print and see,
+1383000	1387240	whether your tuple and packing is working properly or not.
+1392120	1399240	So, will you, what do you expect here as a value of X? Do I get the same value?
+1399960	1406520	So, what is the value of X? So, I'll just print it and whatever the value of Y is.
+1406520	1427720	Okay? So, what do we expect here if you let's print here? So, tuple and packing is no
+1427720	1433480	successful and you see in the X, you have a value one and in Y, you have a value two. So,
+1433480	1440120	this is how, you know, that the semantics of this is exactly what we, you know, discuss right now,
+1440120	1446280	this is same as what, so it does, it automatically. So, what about, so you can have, you know, even more
+1446280	1451000	than, you know, two, right? You can have, you know, three, four, variable, which you want to initialize
+1451000	1458360	because then you can, you know, use this list kind of thing, right? X, Y, G. So, you, one thing,
+1458920	1462440	you have to make sure is that you have to remember the order. Otherwise, you know, you will miss
+1462440	1467800	some things because Python by default doesn't know which one to assign to which one if you don't,
+1467800	1472600	you know, follow the order. So, for example, in this case, if I want to assign X to one, I should write
+1472600	1481080	one first and not, no, later on and Y to, so I should write next to and then three. Okay? So,
+1481880	1490760	then only I mean Python will be, you know, able to print it and assign it this value. So,
+1491240	1495080	you, you have to remember order for sure. Otherwise, you know, you will miss up. So,
+1496840	1500760	instead of topple and packing, let's say, we call it list and packing.
+1503880	1511880	And here what we say is X, Y, and let's say also print this value
+1512520	1520520	and see whether we get what we want. You see, we, we, we, we are getting exactly the same result
+1520520	1528680	that we were, you know, intending to. So, now, let's, you know, get to the other, you know, so one,
+1528680	1536920	one important thing that I wanted to discuss before we conclude note today's, this video,
+1537000	1542520	this is called, you know, great assignment ambiguity. And so, this, this talks about the distinction
+1542520	1547720	between, this is to emphasize the distinction between this assignment statement and walless operator.
+1547720	1553320	So, tell me, I mean, you know, take your time and try to figure out what will be, let's say,
+1553320	1556840	the ether top executing this particular statement. If I am,
+1559320	1565400	we have just seen something like this, right? So, this is like a chain assignment that we saw
+1565480	1572440	just now. So, what will happen if I, let's say, execute this thing? So, is it a valid thing to run?
+1574200	1580040	Certainly, this is a valid thing, right? So, Python will run it and NASA in the value 5 to both
+1580040	1588520	of these. So, this is well accepted, okay? So, what about, no, this statement, what if I write?
+1588920	1612760	And then, if I write, let's say, so what if I, you know, run this line, what do you think
+1612920	1620760	Python will accept it or reject it? So, you remember, I mean, this is an expression, okay?
+1620760	1627000	So, since this is an expression, I can certainly evaluate it, right? So, I can, the value that it
+1627000	1633320	will evaluate to will be the value of x. And, you know, that will be returned. So, this, you know,
+1633320	1638920	right hand side will have value 5 and that will be added to this result, okay? So, this is not
+1638920	1644120	exactly the same way in which this happened, right? Here, you know, it knows that yet it has to
+1644120	1649080	assign this 5 to both of these, but here, some expression is getting evaluated and that's
+1649720	1656200	no slight difference when I write like this, okay? So, you can see Walrus in the parenthesis,
+1656200	1661480	okay? So, this parenthesis has a Walrus operator. So, this is a valid expression.
+1662280	1667400	So, that's how you can actually keep it inside parenthesis, okay? And the effect will be that
+1667400	1671960	this will be evaluated first. So, you will get the value 5 and it will be finally kept to
+1672440	1677160	result, okay? So, so, so, let me actually write down clearly. So, first one was an, you know,
+1677160	1682600	example to show you what we saw just now, which was your, you know, changed
+1684360	1696760	assignment, okay? The second one highlights that the Walrus operator actually gives you an
+1696760	1703080	expression finally and you can put expression inside parenthesis. So, there is no issue. So, if we,
+1703080	1718600	so Walrus in where the thesis is what we want to highlight it, okay? So, if we run it,
+1718600	1723240	again, let me run it and then see whether compiler, so compiler actually, you know,
+1723320	1727960	doesn't, you know, produce any other. So, syntactically, there is no issue at this point of time.
+1728600	1731800	So, can we also write down something like this?
+1739480	1744840	So, what is your, so, what I am, you know, trying to do right now? So, instead of, you know,
+1744840	1752040	Walrus, what we are trying to do is we want to keep this assignment in,
+1755560	1763160	says, okay? So, do you think there will be any issue or when Python will accept it as it is?
+1764760	1771320	Now, if you run it, we will see there is no syntax error, okay? And Python doesn't accept it.
+1771400	1776440	The main, you know, a reason is that, you know, your assignment is inside a parenthesis.
+1776440	1782040	So, you can only write things inside parenthesis if that particular thing is an expression,
+1782040	1786760	okay? So, although you can see the second one and third one looks pretty simple and right,
+1786760	1793320	I mean, this one and this one, but the way they are executed are actually different, okay?
+1793320	1798120	So, whenever there is a Python sees this, you know, parenthesis, it would consider that in
+1798120	1804200	something inside is an expression and would first try to evaluate this expression. And if it is,
+1804200	1810920	let's say, successful in evaluating this expression, then the value that it gets will be allocated
+1810920	1816840	to this result, okay? But since this is not an expression, no, this is an assignment statement,
+1816840	1821160	it will not throw you an error, okay? So, that's why I said in the very beginning, you should be
+1821160	1827240	very careful about the semantics and the working of, you know, these two look very similar looking
+1827240	1831960	things which are called, you know, assignment statement. So, one is clearly assignment statement
+1831960	1837560	and another one is, you know, Walrus, you know, operator which gives you an expression, okay?
+1837560	1842680	Also, you know, some people may, you know, consider this to be a very, you know, dangerous point
+1842680	1847320	because this expression evaluation of the, you know, Walrus expression which, you know,
+1847320	1852840	combines our left hand side and right hand side with a Walrus operator actually has a side
+1852920	1858040	effect on the state also, right? So, normally, we don't want our expressions to have side effects.
+1858040	1862280	So, when you, when a side effect, so when you evaluate an expression, what you get finally
+1862280	1867960	is an expression, but normally, we don't want the evaluation process itself to change the state
+1867960	1872920	of your abstract machine, okay? So, that's something, you know, by default, we, you know,
+1872920	1878360	assume in most of the programming, but in Python, if you are using especially this Walrus operator
+1878440	1883560	in expression, then you should be very careful that it not only, you know, evaluates to something,
+1883560	1888600	but it also changes the state of, you know, machine because it's a signs that value to a variable,
+1888600	1894360	okay? So, both of these things are, you know, done with the same statement and that's why it might,
+1894360	1898760	you know, cause confusion to some of them, but if you're careful, you can use it certainly
+1899480	1904840	for your advantage to say some line of code, which I showed you earlier, okay? So, with this,
+1904840	1909240	we will conclude today's, you know, session and I will meet you in the next lecture where we'll
+1909240	1920760	discuss Lambda expressions. Thank you.

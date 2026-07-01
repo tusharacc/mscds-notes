@@ -1,0 +1,244 @@
+Hello and welcome back to Python Core and Applied Concepts.
+So in today's lecture, we will be talking about expression which is the most natural
+next big concept in any programming language.
+So yeah, so let's begin the description by recapping what we just know recapping what
+we discussed in the previous lecture, let me go to the slide here.
+So this is a quick recap from our previous lecture, so what we discussed till now was you
+know about the syntax and semantics of any programming language.
+We said that no matter what programming language you want to study, you should always
+focus on all these two big concepts of syntax and semantics and try to learn the language
+by learning syntax and semantics.
+So that's what we will be doing today also, we will start with how to write and build
+correct expression inside Python and then we will talk about what these expressions actually
+mean.
+So no, how what they evaluate to, but we also talked about in the last lecture the concept
+of variables and type systems which are again the starting point in any programming language
+if you want to store values and manipulate them to compute something meaningful, then
+you need to have this concept of variable.
+So this concept of variable is very quote to any imperative programming language, though
+in functional programming language as we don't have the notion of variable as it is in imperative
+programming language, at least I mean variable don't help you change the state of the machine
+there.
+So this is a distinctive thing in an imperative programming language.
+So we have seen it in the last lecture and we also saw how variable can point to objects
+of different types or you know data types of which are you know essentially of different
+types like integer string, Boolean values, etc.
+So let's now take this forward today and try to build some more complex expression
+or complex entities in our programming language which is very much useful if you want to do
+any you know complex computation or computing if you want to write a function to compute any
+complex function, then you know these variables and this basic data type cannot or may not
+help you to a larger extent.
+So that's why I mean the notion of expression is important because this gives you a method
+to build more complex things out of these variables and type system.
+So this is what we will be doing today, let me put to the next slide.
+So this is in a nutshell what expression is, okay so this is no part of the grammar
+to form from simple value complex logic, okay so we want to know you know form complex
+logic, no complex thing which represent you know some let's say value when you compute
+them.
+So that's for that reason we need no expression.
+So an expression is a combination of values variables and operators that can be evaluated
+to produce a single resultant value.
+So this is important I mean expression will always you know evaluate to some value, okay
+so and you know this is very important as we will see I mean in letter today in the
+lecture that statements and other you know statement in programming language need not
+always you know evaluate to some value but when we talk about this concept of expression
+the semantics of expression comes from what value it actually evaluates to, okay so
+the meaning of expression is only in the value.
+So if the expression evaluates to some value then we can assign you know that value as
+the meaning to the expression, okay so let's know so yeah this is what we I said just
+know that no so in contrast with statement I mean these things will always have value.
+So this is the rough you know progression that we will follow in today's lecture so
+we will start with basic you know expression and how to define them we'll learn about operators
+different type of operator that is available there in Python and then we will talk about
+a very special kind of expression which we call assignment expression and finally we will
+conclude this lecture with the discussion around lambda expression so lambda expressions are
+also very interesting and the origin can be you know trace to functional programming languages
+so we'll very briefly look at what these lambda expressions are and how they can be useful
+in certain you know instances, okay so now without knowing any further delay let's move to
+the Jupyter Notebook and begin our discussion of expressions, okay so we are on our Jupyter Notebook
+so you know let me begin by giving you some very small example of what an expression will look like
+so for example I mean let's start with very basic mathematical operator and how to build
+you know small mathematical expressions out of you know simple data types like you know integer,
+okay so for to begin with let's you know start with these arithmetic operators and we know
+from mathematics that now there are so many arithmetic operators that we can use to combine
+no natural numbers or you know real numbers right I mean for example no addition is one
+arithmetic operator, subtraction is another arithmetic operator multiplication no division
+flow division model and exponent so these are also available in Python so if you want to you know
+mimic these let's say mathematical operations and somehow implement them inside Python you can
+actually use these you know operator to you know build expressions mathematical expressions in
+inside Python so let me write some simple mathematical expressions for example let me you know
+use this addition to so let's write it so let's try to no print what will happen if I let's say
+no add 10 and 3 okay so we just want to see whether I mean this is accepted by Python or not so
+is it a valid so right now what we are checking is is it a valid expression at all I mean
+does this plus is recognized in the same way as we understand it mathematics or it has some
+no different semantics so if you know I can you know run this then I know it's clear that Python
+accept this as a you know correct syntax and if you get the intended value so what you can
+infer is that the meaning is also same as you understand no addition to be so when we print
+this what do we get so let me print it is 30 right so Python accepted this syntax and also give a
+response which is 13 which closely matches you know your understanding of the addition right so
+so what about now if I want to let's say or use this maybe division operator
+is this division operator same as we expect or it's some different division operator so
+what do you know in guess here I mean if I so this is exact division operator right which
+you maybe want to use at this moment so this symbol actually represented division operator okay
+so what about the no but the similar looking operator which I have written here so let's say
+if I do the same division but now if I use this one which I call flow division so
+or what do you expect what shall we get at this moment so you see there is a no clear difference
+and this is exactly what we call flow division right I mean you know forget everything which
+is after this no floating point okay so so after decimal I mean we forget everything so
+right so if when you try to evaluate this expression the meaning is that you get the flow
+no division so similarly can we go and do some more just let's no experiment with a few more
+arithmetic expression to see whether we understand them properly so what about
+this modular division so okay so what will with the result when you divide 10 by 3 so what
+will be the final you know remainder that you get okay so that's what we can expect here right
+so this this represent no modular division and you see when you divide 10 by 3 so the remainder
+that you get is 1 right okay so so it's very you know important to you know keep in mind the
+distinction between these two these three so first one is no normal division operator the second
+one is flow division and the third one which you know uses you know this symbol actually builds
+an expression that evaluates to remainder okay so what about this exponent so so let's not
+try to see if you use this exponent so if I want to raise 1 to 2 get set 3
+so this is also accepted right so what we saw just now was that no all the arithmetic
+operation that we are used to in any mathematical computation are also available in Python
+and these are the you know precise syntax and they're corresponding semantics so semantics matches
+the semantic that we have in mind and the syntax is you know accepted by this programming language
+which is Python so now let's move to some you know other type of you know expressions you know
+which are you know for logical expressions okay so logical expression may not you know makes
+sense to you know many of you who has not come from programming background because you know you
+normally don't need them when you do you know mathematical computation or calculation because
+we mostly you know we are confined to functions which calculate over natural number and
+those you know can be easily captured using expressions that we have you know discussed
+still now I mean these are arithmetic expression but this you know Boolean expressions are very
+essential if you want to automate the process of computing so what do I mean by automating the
+process of computing so let's say I mean your complex you know chain of computation that you want
+mimic by writing a program if you have to decide at certain you know point or you have to take
+a call at a particular place in the computation that which brands I sell go I sell I so if some
+condition is true you may want to you know execute a set of instruction but if that condition is
+not true in the other case you may want to no execute some other type of you know instructions
+so this is called you know conditional and we'll come to it in the upcoming legend so to decide
+so what will you decide based on right so you will decide based on what is the state of
+computation okay and for taking this decision this you know logical expression this expression which
+contain this or they have this logical you know connectives or operator will be very useful okay
+so there are you know two you know primitive Boolean values which is available inside Python
+which are called true and false and we'll see that we we can combine these you know kind of
+Boolean values in meaningful ways to obtain more let's say complex you know unit for reasoning
+or deciding at a particular time what we want to do okay so these are called AND or and not
+operator they actually combine these no Boolean values to give you some you know output value so
+for example no we have already seen right this type of true is bull it means I mean true is a
+Boolean value okay so true similarly you know if false is also Boolean value but we can also
+combine you know true and false using some Boolean operator or logical operator okay so one of them
+is like I mean AND okay so let me now print so what will happen if I let's say
+try to do this so so remember that I mean this will not be accepted by you know Python
+interpreter if either syntax is you know wrong so if the syntax is wrong certainly it will not
+be you know accepted so if say it passes this interpreter it means the syntax is correct and if
+you get the same result as you know you want then you will you can be assured that the
+semantics is also what you understand it okay so for example if I try to combine this true
+and false let's say using AND operator so what will what do you expect so and operator combines
+no two logical expression and it will evaluate to true only if you know both of them are true
+otherwise if even if you know one of these bull logical expressions is let's say evaluates to
+false then this thing will certainly give you a false right so when we try to evaluate it what do
+we get we get a false value right which is you know what we know expected so but what about
+this or operator so if we let's say to the same thing let me copy it
+so when we you know just combine these two Boolean values with or you you get a true value
+right and this is the this is the intuition that we have in mind about or right so when we say
+either this or this so I will be happy if either this or this is true it means that you are
+know ready to accept true value whenever one of these things you know become true right so this
+exactly matches you know our you know intuition of or so what about not so if you know apply now
+let's say let me get this and then so what if we you know to print let me use not of false
+so what do you expect here I mean if you want to you know negate a false so what can I expect
+so negation of a fault will naturally give us a true right so do we get exactly yeah so this is
+what we get here right so so everything you know matches our intuition and our understanding
+semantics of you know these true and false and how these logical connectives can be used to
+you know combine them to get what you expect okay but no the question come that comes at this
+particular point in time is that how will we even you know get this true and false I mean because
+we don't explicitly want to write maybe true and false inside our program okay at a particular
+place if you want to check some conditions and then decide whether we should not take one set of
+action or another set of action most probably we will we would be interested in you know a condition
+which are you know derived from comparing the variables or the value of variable that is
+no present at particular point of time okay so at that point of time so for that you you need
+this comparison operator okay so the comparison operator are actually the reason or you know
+the primary way to you know get this you know true or false value okay so you don't get true
+and false by just writing not true and false you know normally we don't want to use you know
+these logical expression in that way we would like to derive these logical expression from
+variables which are existing in the program and by comparing their value okay so this comparison
+operator then you know turns out to be very useful so what a comparison operator they help us
+compare the state of you know this variable or the values of the variable with each other
+and then figure out whether you know our condition is true or not okay so so let me you know
+and discuss some of the comparison operator that is available in Python programming language the
+the very first one is this equality so if you want to check whether the value of one variable is
+equal to value of you know another variable most probably we will be using this equality okay so
+how to let me
+and do some easy checks for you here
+so you can know directly also you know compare some where we can
+so no for example let me keep some value in this variable let's say no x
+and then we go to another variable which is let's say no value 20 and now if I say x is equal
+to is equal to y and let's say if I want to print this thing so what do you expect at this
+particular no in this particular no code block what we have done is we instantiated x with
+value 10 and the variable y be instantiated with value 20 and then we are checking whether their values
+are same or not so so what is now our expected you know result at this point of time so
+it's false right because the value of x and y are not same so remember you know this this is
+you know comparison operator and not an assignment operator so some of you who have never done
+programming I mean you may be confused at this point of time so in mathematics when we do
+mathematics normally we we are always you know comparing things with you know each other when
+we okay so so there is nothing called you know an assignment in mathematics this is very unique
+to programming so because you want to store values you know somewhere in your memory so that's why
+you are doing assignment but when we use this you know are two equal to science together we what
+we mean is that we this becomes a logical expression this is you know no more a normal statement okay
+but on the other hand side have any if you look at this this is a you know a statement proper
+statement in programming language this is also an statement and both of this actually changes the
+you know state of machine no so so your first statement this changes the state of your abstract
+machine where the variables value you know gets changed to 10 whatever it was before you don't
+care I mean at this after execution of this you know instruction it gets changed to 10 similarly
+the you know assignment instruction y is equal to 20 changes the state of machine and makes it to
+you know 20 without changing the value of x okay so but here I mean when you you know print this
+this does not changes the state of machine okay so this is just so what is the effect of this
+you will evaluate this particular expression and the value that you you are getting is you know
+printed on the console so okay so this is a distinction between this
+combat let me yeah let me show what we so so the another one is not equal to okay and not
+equal to returns you true when both the numbers are not equal to so so let me you know again use this
+second so we knew here that x was not equal to the height y so what answers I
+as a line I expected this particular you know point so if I you know executed what do you expect
+so the previous ones was false right because x and y was not equal so when you said x equal to
+y it returns false but what if I say x not equal to y shall be printed see you get just the opposite
+no you get true right because this is true now this is no this expression this logical expression
+that we have written here boolean expression that is true because x and y is values are not same
+so can we check the other so let me you know or check the next one so what if we write x
+less than y so these are some you know like I mean you can assume that when you write x less than
+y you're claiming that x is less than y but if this is not true no considering the current value
+of your variables then the expression will evaluate to false right so in this example since x is
+actually less than y so what do you expect if I again you know print this one what is the last
+value that you have seen since x is less than you know y you see a value true okay so let me comment
+the previous one so that there is no confusion okay so let's see if you print only you know this
+one you see or you get a true value okay so again greater than is just opposite so you can just
+change this to greater than in you see the answer should flip okay so it returns you a false value
+okay so what about no less than equal to so in this case let's say if I have another
+now very full set which again has the same value let's say 10 so what do you expect in print
+so what shall I expect you know if I say x is less than equal to g let me comment out the
+previous one just so if I you know print this what do you expect I mean will we get true or false at
+this place true right because less than equal to means I mean either it should be less than or equal
+to and here it written true because of no the you know equality thing right not to do less than
+okay because when we say so if you print no x less than g let's say what do you think
+you get a false right so this is not less than this but this is less than equal to
+no less than or equal to g because of the no second thing being true that this is equal to j
+so similarly I know you have no greater than equal to so we'll not know in the interest of time
+we'll not just print it so you can just experiment with these things and now in all since you know
+you know you can combine these things you know that you can combine and you know for you know complex
+things also right because we know that you know these true and false can be combined using this
+and an odd thing so now for just one more example I mean maybe let me comment this out
+so what do you expect if I write you know print let's say x is less than equal to g or x is less than
+g or y is
+greater than g so what if we combine you know both these things so what we'll know this
+evaluate to you know that this will no evaluate to false right because x is not less than g
+but on the other hand you know that the right hand side of or y greater than g
+in this case will evaluate to true and you know from our previous discussion right that if one
+of no left hand side or right hand side of or is true then you know you get the value true right
+so what you can expect here is a true value you see so this is how we can actually you know compare
+the values of variable inside our program at a given point of time and we can also build complex
+logic by you know comparing multiple things and combining them using these logical operators so
+this is the advantage of having logical operator and comparison operator inside your programming
+or language so that at any point of time if you want to take decision or if you know want to
+you know create multiple branches at that particular point of time for executing different
+some sort of things and you want to you know decide all of this based on some condition which
+is complex condition on variable values then you can use this comparison operator as well as
+logical operator to combine them effectively to get what you want okay more of it you know we will
+see when we are come to or discuss these things okay so with this we know I would stop
+you know this lecture we'll continue in the discussion of expression in the next video thank you
+we'll see you in the next video

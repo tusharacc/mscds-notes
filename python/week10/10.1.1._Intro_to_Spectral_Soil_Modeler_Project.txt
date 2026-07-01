@@ -1,0 +1,348 @@
+Hello and welcome back to Python Core and Applied Concepts for Reliable Data Scenes
+workflow.
+So in today's lecture I'm going to discuss about one of the projects with which we want
+to conclude our lecture series on Python Core and Applied Concepts for Reliable Data
+Scenes to Workflow.
+So till now what we have seen was core Python programming and we have almost seen most
+of the important concepts from that area core Python programming.
+We also discussed about two simple data structure that I gave you as an assignment to implement
+so that should give you enough practice on the core Python programming segment.
+So the main goal of the lecture today is to introduce you to one concrete problem from
+Data Scenes domain which is not very simplistic and also not very complex in nature.
+So the idea is to not make you an expert in Data Scenes, I mean it's just to expose
+you to the overall workflow of let's say any Data Scenes or projects.
+So the workflow in different Data Scenes project may vary a lot depending upon the problem,
+the requirement or the final output that is expected of that project.
+But overall I mean if you understand these simple 5 to 6 step workflow you will be able
+to make those minute adjustment on your own by understanding the problem statement.
+So the goal here is to talk about that same 5 or 6 step workflow of Data Scenes project
+in the context of a concrete project which we want to call a spectral trial modular
+and automated workflow.
+So the goal is how to design Data Scenes project architecture.
+So with this goal let's continue our discussion.
+So this is our first slide which tries to emphasize that we are going to kickstart this project
+and this project is around spectral data to file inside.
+So there will be two things that we will be talking in this project about.
+What is spectral data in general and how it can be used effectively to gain some insight
+about the soil on which we live.
+And we will see that Data Scenes plays a very crucial role in solving this problem.
+So in this project you know Data Scenes is a center piece kind of thing.
+So we are not talking about a toy example so this is actually a real world problem
+and we are solving this real you know environmental problem with Data Scenes.
+So this is a very you know important slide and just I want to make it clear that since this is part of a project
+that you need to finally submit.
+I will avoid going to Jupyter Notebook if not essential.
+So even if I go there I go with the purpose of explaining the overall workflow
+and not to discuss the exact code or implementation of the ideas that I ask you to implement on your own.
+So the focus is will be on providing this clear context and the problem statement in a far more detailed way
+so that you don't have any ambiguity about what problem you are solving.
+And it will not focus on the exhaustive details of the implementation.
+So you are actually expected to figure out the exact implementation details on your own
+and you are free to use internet and any other resources that might be helpful for you.
+So to get our first draft of any code or understanding of what these concepts are
+I mean if you want to know more details about what these concepts exactly are,
+you can actually search web and not talk to GPT or any LLM agent.
+But then I mean finally the code that you prepare you should take full guarantee for that code
+and you should have a complete understanding of the code why that code should work
+and whether that is a correct no way to solve this problem or not.
+So you can actually explore all the online resources that is available
+and an overall workflow will be provided for your guidance.
+So the plan in the next three to four lectures is to just provide you this overall workflow
+and not go to GPT notebook if not absolutely necessary for the project description.
+Now let's come to the problem statement and why we are talking about why this project even matters.
+So at the center of this project is this global soil health challenge.
+I mean as we are proceeding ahead and countries are getting developed.
+So we are depending a lot or we are stressing out our soil resources a lot.
+So now soil quality is very important for almost every aspect of our life,
+for food security and climate change are heavily affected by what is the quality of soil
+and which you are living.
+So this project actually tries to somehow address that global soil health challenge.
+So these are some interesting fact that it is an interesting note at this point.
+That soil stores more carbon than the whole atmosphere.
+So while carbon dioxide may be harmful in the air,
+so it is equally important or useful when it is present in the soil.
+So that is why one of the target feature which this project also talks about is
+total organic carbon content of the soil.
+So we want to assess that and predict what will be the trend in future based on our ML pipeline that we create.
+So there will be some other target properties of soil that we will be talking about.
+But the total organic carbon is something that is very important for policy maker and farmers
+because it directly affects the quality of life that we will be living in that region.
+So every year billions of tons of fertile soil is being lost.
+But due to unsustainable agriculture practices, deforestation, overwishing and construction kind of activity.
+And this will put security in adverse way.
+If we do not preserve our soil organic carbon and essential component of soil,
+then in future we will have serious food security crisis.
+And climate changes, mitigation through this soil organic carbon is also one thing
+that people are looking at.
+So can we somehow bring back these CO2 kind of things into the soil where it is more useful?
+So that is why having accurate prediction of what is the soil organic content
+and how it is depleting or increasing over the time is really a helpful thing to do.
+Now we can do it in multiple ways.
+This soil analysis, one very simple way is you bring soil sample to the wet labs
+where chemist can help you assess what is the content of this less total organic carbon
+or any other soil property that you are interested in.
+And this has been the traditional approach to solve this problem.
+Even in India we have multiple isro centers and local agriculture universities
+which do regularly this soil health analysis by bringing sample from this varied region to lab
+and then analyzing them in lab to figure out this soil content.
+So this is already in existence but then this is as you can see very labor intensively.
+Every time when you have to do this analysis you have to go back to the field again
+and you know bring these samples.
+So this is not something which can be scalable and which can be used again and again
+if you want to let's say predict the soil health over a let's say elongated period of time
+to see how this is changing you know whether this is alarming or not.
+So if you want to do this practice again and again it requires a lot of human involvement.
+So certainly bringing samples to the lab to test it using some chemical analysis
+is not a way for future right.
+I mean if you want to do these kind of analysis regularly in different time zone
+then this is not a feasible practice.
+So that's why this project talks about hyperspectral remote sensing.
+So hyperspectral sensing goes beyond human vision okay.
+So what happens is normally we employ some high-regulation camera
+which can not only capture our human vision but also can capture beyond human vision you know a spectrums.
+So normally the camera that we put on satellite to let's say take a picture of our you know
+Earth or this you know geographical location which we are interested in.
+It has multiple spectral bands okay.
+So for human eye you know RGB red no being blue is all the sensual information that you need.
+I mean any picture which has a combination of these three things makes sense to us.
+No other things we cannot see but these cameras can actually capture very wide range of spectrum
+and normally we call them hyperspectral if you know they are you know the number of bands
+that they can capture goes beyond 200 plus or something like this no it even goes in thousands.
+So like I mean the full hyperspectral actually contains thousands of you know band or different wavelengths.
+I mean this camera capture images so each picture you know each at each pixel I mean which represents a geographical location on land.
+You have a full hyperspectral you know signature okay.
+So this is like you know providing a fingerprint for you know that particular on the soil location
+or that particular geographical location that you are taking picture of.
+Now what happens is let's say if this is you know one sample spectra that you observe by this satellite at a given pixel position.
+So remember I mean we are talking about only one you know pixel signature okay.
+So that one pixel on the ground you know represent you know some area right.
+I mean so when you take an image and let's see we are talking about this particular pixel.
+This picture so corresponding to some geographical location on the land itself okay.
+So for this geographical location no corresponding to this picture if I see what is the reflected.
+You know spectrum by this you know land that has been captured by my camera.
+So cameras has sensors and they you know capture at so there are multiple you know sensors in camera.
+And the number of sensor defines how you know high resolution your camera will have.
+So every let's say sensor captures one no pixel information which correspond to a land location.
+So what it means is that you know when you know erase gets you know reflected from this particular piece of land and then goes back to camera.
+What are the energy level for each of the wavelengths that it you know captures okay.
+So this is not we call you know amplitude of the wavelength that that is being captured.
+For example you know these are the wavelengths which are captured with very low amplitude okay.
+But on the other hand you know as you go across the higher bands so the horizontal line actually represents you know different wavelengths or different frequency.
+So for different frequency you will see there will be different you know amplitude that the sensor finally could capture.
+So why this is true because I mean there this becomes true because because you know soil different soil may have difference you know chemical components.
+And this chemical components somehow you know influences what kind of radiation the soil will absorb and not let it know go back to the camera.
+Okay so this absorption is what differs from different soil sample to difference and soil sample.
+So this is what I wanted to highlight here that human high I can only capture three you know color but multispectral and hyperspectral.
+No cameras can capture multiple bands information and when we say it capture band information what we are meaning is that.
+It is capturing the reflected radiation that is coming from that piece of land to the camera and the reflection you know amplitude of different wavelengths may not be exactly same right.
+We are not getting a horizontal curve you know flat curve kind of thing and these are the interesting thing that we want to note from that spectra okay.
+So some so what happens let me go to the no next slide and then it will create so why different materials have you know unique signature.
+So the reason is that every chemical you know bond vibrates at specific frequency and absorbs specific wavelength.
+So let's say if some chemical is present in let's a high quantity in your soil sample then that we know chemical we have certain you know behavior that no it only absorbs some wavelength.
+So some wavelengths no more aggressively than the other wavelengths for example maybe no total organic carbon absorbs these wavelengths no aggressively rather than other wavelengths.
+So here you will see a deep kind of things means the reflected no wavelengths are not high in you know amplitude okay.
+This is what you know this is why if your soil component or chemical composition of your soil change then you will see different kind of signature for the sample right because this may be.
+So this is a signature of one let's say soil you know region or pixel value but if you go to another pixel value and then try to see what is the signature that is being captured by camera it may be completely different.
+And I mean these are affected you know the reason for this kind of you know dips that you see in between are presence of different kind of chemical bond in the soil okay.
+For example you know presence of more organic carbon may you know create dips at certain points similarly presence of more let's say calcium carbonate which is another you know interesting property that normally soil centrist want to measure may cause some other wavelengths to you know.
+To see a deep here because they they actually absorb those kind of wavelengths no far more than let's say maybe this kind of a plant okay so by just looking at these dips you can figure out you know which of the component or less a soil chemical properties is present in your current sample.
+So instead of taking these samples to you know lab every time I mean these hyper spectral signatures are also a very you know nice way to or an alternate way to predict the you know content of those chemical composition inside your soil okay.
+So this is where you know we are going I mean we want to you know observe many such signatures and then maybe from their figure out some trend that can reflect
+whether you know total organic carbon is more or less or let's say some other properties more or less okay.
+So so this is what you know the problem statement is we want to predict soil organic carbon and also some you know other interesting property from by looking at what is reflected from let's say that soil sample.
+Let's say this is the soil sample and it reflects some some of the or maybe you know all of the no wavelengths but with different amplitude right it reflects some wavelength quite well but it does not reflect some wavelength no that well because it absurd most of you do to some.
+No soil property in this case let's say no keep in mind that soil organic carbon is what we are interested in but in the project I will give you you know multiple targets which represents different kind of soil no property.
+But for this you know particular slide let's assume that we are interested in soil organic carbon which is also you know chemical property of the soil.
+And for this particular sample what we see is that different wavelengths you know get reflected with different you know magnitude and these different magnitude actually reflect how much you know soil organic carbon is you know present in this one.
+So so what we want to so this is you know kind of a regression problem where you want to predict what will be the value of total organic carbon if my signature looks something like this.
+Okay so your signature may vary as I said right I mean one soil sample may have this kind of signature another soil sample may have the fear.
+So that may represent you know more of total organic carbon or less total organic carbon depending upon you know by and we can analyze that no by looking at lots of data only okay so but the final task is I mean whatever analysis we do we want to finally predict what is the soil organic no content.
+In that no sample okay so normally when you want to do machine learning on any type of data you always have you know this input output fear that you want your model to train on.
+Okay so here so what is the input so what is the input that you will give to your machine learning model while training this spectral reflectance that you capture from 200 pants this will be the input for each of this spectral signature.
+So since you you have not trained your model you have to start the training you need to also you know tell what was the observed let's say total organic carbon for this particular let's a first sample.
+So for first sample you will have a spectral signature as well as a lesson lab calculated total organic carbon content information okay so so this first pair that you give the machine learning model to train from will be your.
+You know this spectra and what is the corresponding total organic carbon that you could figure out by doing some better analysis okay similarly if let's say if you do this exercise for once and we have collected thousands of sample from you know various locations in the area where we are interested you know in the geographical location where we are interested and we took it to the lab.
+So what we do is we normally note the Jewish special location of these places from where we have picked this sample and we store that so that later on we can match what was the reflectance you know or the you know signature of these samples when I captured it using satellite so satellite is always you know capturing from the top.
+All the signature of all the sample that we want to collect okay so so anyway we will have an image which will have some pixels corresponding to each of the samples that we took to the lab okay so so understand the in a whole picture I mean what we have so maybe you know I have it in the next one okay so what we have is we have both this pair okay input output pair for many soil samples how can we have this because no our camera can not only picture you know captured picture of one.
+No soil sample it or one small location on land but it can simultaneously even at one go it can capture picture of multiple location on the ground okay so we keep that information that image which is we call spectral signature and we also collect soil sample from all those location and take that to lab so in the lab what we get is the actual total organic you know carbon that is present in those samples so we recorded no in some Excel file let's say
+no some CSB kind of format I mean we create an Excel file and then we ask our chemist to record for each soil sample know which are identified by let's say some soil sample ID what is the total organic carbon that they they could observe or they could figure out using their let's a chemical test okay so we store this information in one Excel file and then we also take the image captured by our satellite and from the geospatial location that we stored for each
+of these samples that we collected we can figure out that what will be the spectral signature of all these samples right from that one image we can actually figure out because in that one image has multiple pixel where many of these pixel correspond to the samples that we have collected and take into the lab okay so the so the for every soil sample what you will have finally is a spectral signature as well as what was the actual total organic carbon present in that sample okay
+and we can do it as many times as possible we can afford because this is as I said very labor intensive so you may not be able to let's say no collect millions of sample and do this no no wait and at least we can do hundreds of sample collection and then also collect their spectral signature using satellites okay so for the same soil sample we are we are collecting to information and it should be very clear to you know from now on what the very first information that you are collecting is from the satellite so what was the spectral signature of the soil sample that you know
+that was collected by the satellite and the second information that you get is from the chemist so when you take the sample to the chemist you ask them to do some you know chemical analysis and tell us what is that let's it content of the total organic carbon budget in this particular sample so for each sample you have this two pair and when I collect multiple sample and you know collect these two information corresponding to each of those sample then I will have a CSV file or you know Excel file
+where my inputs will be spectras you know these spectral signature which is nothing but you know information about 200 bands or 200 plus bands and the output value that I want to finally predict using my machine learning that I will train on this data will be those 12 total so you know soil organic carbon or you know total organic carbon that lab chem or chemist has you know calculated okay so so what will machine learn machine will try to
+see from this data set which has both spectra as well as the actual total organic content of the you know each sample machine will try to see at the spectra and try to learn how to predict total organic carbon okay so for every machine learning model there has to I mean
+those which as you know supervised learning you have to give this input output pair so whatever you want to predict we call it as output or target value okay
+and whatever you give as input we call it you know features on which we want to train the machine okay so for example the very obvious feature here is all these wavelength information what what what was the magnitude of each of these wavelength that was let's say you know reflected by this particular soil sample is what we call features
+and what is the target value you know here is the total organic no carbon that was observed by this chemical you know chemist in the lab okay so let's say if you have you know 700 or 800 sample that you have collected from different places
+and also collected their signature then in a CSV file you can easily you know store this data although I mean they will be stored by you know they will be given to you by different you know persons one from you know maybe
+store some other you know space organization and one from this you know chemical labs that you have sent the samples to so you have to collect both the sample and then then you have to know somehow identify that for each of the sample can you correctly identify what is the spectral signature and what is the actual soil organic carbon then we are in a position to do any machine learning task right
+because you need these many input output pair on which you want to train your machine learning model okay so in any supervised machine learning you always need this to you know pair of data for multiple samples so if you have you know many data of this kind where you know
+you have both these element of the pair the spectral signature as well as federal organic carbon then we can think of you know creating a model and then training them on this kind of data okay
+so this is what is you know in concise way if I want to tell you I mean what what do we want to learn so we want some you want to learn some function over a spectral signature that can tell us what will be the percentage total organic carbon and how we will do it you know using existing data that we already have.
+Now I mean I don't want to spend time here I mean just read it no no association key indicator for overall soil health and I mean presence of association answers nutrients no cycling and water retention if you can no predicted properly then
+you can actually improve soil structure and prevent erosion and it's very critical for carbon sequestration efforts I mean which I told you earlier that no CO2 is not good in air
+but carbon is very good in soil. If you can somehow push back some of these CO2 into soil
+in form of carbon then this is actually very good for overall health of soil as well as no us.
+So that's why I mean if you can predict soil organic carbon you can actually predict
+no crop productivity and all that kind of thing and shall we do something to
+let's say prevent this soil loss or this no total organic carbon loss from the soil
+in the area where we are interested in. So this is the overall workflow that I you know
+talk to you just now right so this is satellite which is taking you know image of some
+portion of land okay and if let's say we could build successfully a machine learning model
+that is very let's say you know accurate or satisfactoryly accurate to predict
+total organic carbon in the soil then so what will be what will the final product look like is
+what I'm trying to show you in this picture so this is into in pipeline so what we will we can do
+finally if we have those no machine learning models already let's say trained and you know
+available to us we can directly take satellite or any no aircraft data of that particular
+piece of land in which let's say we are interested okay and we can collect the hyper spectral images
+from these you know devices that is mounted on this satellite or other no vehicles some and
+this hyper spectral images will be nothing but spectral signature right and since I have trained
+my machine learning model to predict soil organic content by just looking at spectral signature
+my machine learning model will be able to tell me what is the soil carbon map okay for each
+of the pixel it can actually predict you what is the soil content or unless so what is the total
+organic carbon present in that particular piece of you know soil sample and if you can do that
+then what you will have finally is a map whereby region I mean you can automatically you know
+plot and show me what will be the total organic car what is the total organic carbon present in
+this piece of land okay and how it varies let's say along the no different landscape and geography
+that you are interested in now this kind of information can be very useful for farmers and
+policymakers now because no they can not decide depending upon what properties you are guessing in
+this case we are you know guessing total organic carbon but we can maybe you know also
+train model to guess maybe nitrogen in the you know soil and if the nitrogen is less then I mean
+they can maybe put some fertilizer to improve the nitrogen you know content of the soil so that's
+why I mean this this is a very you know realistic project where I mean if you have see the only
+bottleneck is this machine learning model right which we don't know right now we don't have
+but if you get a lot of sample that I told you in the last you know slide then we can maybe
+train machine learning model and once we have this machine learning model we can create software
+which can directly take the satellite images of the you know geographic location that you are
+interested in and finally produce you a map like this okay which you know clearly shows you how
+this no presence of total organic carbon varies from one location to another location and this is
+very informative right then we can inform policymakers that you know you need to provide farmers with
+some you know fertilizers that can improve these things or you need to make some policy that
+will make sure that the total organic carbon is not depleting in this region you know you slow
+down the rate of depletion of total organic carbon okay so this is the overall you know outcome that
+or the project you know vision okay so this is no into in pipeline after we have this but now the
+whole question is I mean since we don't have it we would like to our project actually aims
+towards building this machine learning model okay so I hope you know
+right now I mean you are clear about the no significance of this project right I mean if you
+once you train this machine learning model where they can be used and you also understand
+what will be the input while training machine learning model on this kind of data okay so so I
+hope you understand this context very well now by now so so this is not something very new in the
+world I mean many you know it does you know many developed countries like Israel and Brazil has
+already replaced you will you snatched their you know agriculture by doing this kind of you know
+precision agriculture so then we generally call this no precision agriculture can we use satellite
+data to accurately predict soil content and then you know use fertilizers in an informed way
+to let's say you know improve those missing content only in the location where it is missing rather
+than you know you know using you know these fertilizers blindly and then again you know producing
+some other kind of you know disasters so so this is you know what this projector is to handle
+why this becomes you know so challenging because you know these are some of the reasons why this is
+not so easy you know there is no you know simple physical law or you know mathematical law
+which can you know take these you know signatures and tell you what is a soil component right
+because it is very high dimensional problem first I mean the data is very high dimensional if you
+see I mean there are thousands of spectral information that you get as input and by looking at the
+trend on this thousand of you know you know band you have to actually predict what will be the
+structural organic carbon and also this is a very interesting I mean so every you know chemical
+come let's say compounded some absorption feature but in in a given soil sample you hardly have
+only one chemical you know compound right so normally a soil component or a soil will have
+you know multiple chemical you know compound which we call you know their chemical composition
+and each of these chemical you know compound has some different spectral signature and when they
+are present together I mean their spectral signature may you know mix with each other and then you
+cannot you know accurately predict why this dip is there I mean is it there because of this first
+property second property or third property because sometimes you know different kind of soil
+you know chemical composition may cause similar kind of you know absorption feature or reflectance
+feature so in that case so this is what we call you know spectral mixing so it actually it's not
+that easy to say that you know this particular wavelength is let's absorb more by this compound only
+okay so there may be other compounds also that may you know suppress the amplitude of wavelength
+there plus there are no atmospheric interference when you know capture a satellite image in between
+you know your satellite and the land there is an atmosphere right and atmosphere continuously
+keep changing right in in in in let's say you know winter you have a different atmosphere in
+monsoon you have a different atmosphere so when these rays you know are reflected from ground they do
+not you know reach the satellite cameras with the same you know amplitude that they were reflected
+from the ground okay because you know a water molecules in in the air may capture some of those
+no wavelength further and then cause some you know interference which does not give you act
+you know correct the correct data that you want to train on okay and then sometimes these
+relationships are very non-linear and no physics and mathematics normally I mean work well when
+you have simple relationship and you can express it in some mathematical equation so that's why
+I mean in this kind of situation I mean machine learning methods actually side and that's why you
+know machine ML methods are you know becoming more and more useful in this kind of area where you
+know you want to predict this kind of complex high dimensional you know you know features I mean
+you can you want to train and predict based on this kind of you know complex high dimensional
+which are non-linear in nature okay so that's why we are going to machine learning you know models
+so these you know this is our projects road map so we will see you know into in you know project
+development in this kind of current project so into in data science no pipeline with the very
+first step is no data wrangling where you get the raw spectra and then you have to clean that
+data say okay so I will provide you with you know this initial data where you know your input
+saw actually spectra as well as these chemical composition of the soil that has been measured by let's
+say no you know this kind of this laboratory so you this will be available to you but then you
+may need to do some you know data cleaning because many a times you don't get this data in the most
+no clean for I mean they may have some impurity there may be some missing values in the data
+and you have to take care of all that before you start you know your machine learning or training
+process of for the machine learning you know model then this you know data raw data may not be
+always the best kind of data on which you want to train your model so this is also very important
+and that this is called feature engineering so normally no machine learning machine or you know
+these ML models learn well when you do some sort of prepossessing on this data and you know filter
+out some features which are really important for the learning perspective and this is one
+information you know where domain knowledge comes very you know handy because soil scientist has
+been let's say working in this area for quite long and they more or less know what kind of
+preprocessing on a data helps you know figure out some certain property from that kind of data okay
+so these are these are this is what we call you know feature engineering and I will tell you about
+some of the you know preprocessing that normally soils and this do on this hyper spectral data
+so that the feature can be you know the feature can clearly indicate what is the content of different
+let's say chemical composition in in the soil okay so there are some you know feature important
+feature really and there are some you know preprocessing technique which are really prevalent in
+this domain and I will tell you about that I will tell you about the signature of those functions
+and maybe ask you to implement now those functions which will do some sort of preprocessing on
+the spectra before before we start now our model building the face then once you have no clean data
+and let's say improved in a feature improved data then we will start the whole process of
+model building where we will you know initialize the model and then we will try to you know
+but train the model in a way so that no the prediction is good okay and while doing this we will not
+restrict to one method but no I encourage you to take a look at four or five different method
+released in the project description so so that no you can have a look at those different methods
+you can search web about how those method roughly works you don't need to know all the detail of
+these you know algorithms but you just need to figure out what is the you know key idea behind
+this algorithm and how to you know implement those algorithm inside Python Python mostly has
+available you know libraries which implements most of these algorithms so you don't have to write
+anything from a stat but you need to at least know the interface of using those functions right the
+way we you know said that we should write always nice dog strings so that anyone can know use
+our functions in future so a Python developer has already implemented most of these commonly
+or you know well known algorithms ML algorithms that you know people use for training models so you
+can you know simply import their modules and use these models directly by knowing the interface
+clearly okay so so this is not something that you need to build from a stat but no functions are
+already there for you know training the model you know and you know predicting or you know
+getting the score or prediction score of this model so but then you need to do at least you know
+this initial data cleaning and feature engineering before you can you know invoke this model and of
+course for using this function you need to know some functionality of this algorithm so that basic
+functionality you should no figure out on your own by looking on way once we build model we don't stop
+there because you know many people can build model but whether those models are reliable or not is
+what we want to you know check and once you get the model can we do post you know analysis to
+figure out what are the features that let's say help most for you know in deciding this soil
+organic carbon so this is what we call feature importance analysis so now not maybe all of the
+multi spectra which is available there was helpful in predicting let's say total organic carbon so
+what were those no wavelengths or the region of wavelengths that help machine learning model most
+let's say learning about all predicting soil organic carbon okay so this is what you know we also
+do so this we call post model analysis we try to come up with what is the score what can we talk
+about some quantitative metric by which we can tell that no this model is better predicting better
+than other one or not and then also so if let's say this model is the best one among the
+available model so what we are the feature that help this model most in predicting this kind of
+no carbon content or any other nutrient contents so learning objective is you know you will be
+able to frame real world problem as ML task you can in a process an engineer feature from raw data
+so this is what we will learn I mean I will give you signature and you have to implement it
+you will build and evaluate regression models you know effectively at least four five regression
+model I will ask you to you know build and you know train from the scratch and then we will do
+this interpretation of this model to get scientific insight that really what were the important
+feature that helped our machine learning model to learn best and you know predict in a nice way
+I mean the soil composition and how to communicate these results to domain experts because no domain
+expert may not know all the ML that you know but they may want know these information that you
+derive out of your whole project in form of some plots or some graphs no so that it's easy for
+them to visualize and make sense or you know derive some nice insight from the whole experimentation
+that you have done okay so this communication is equally you know important it's not
+your task does not in that just getting this model so you you should be able to present it to
+the you know field expert and they should be able to get you know good insight by looking at
+your whole you know approach or your final data so communication is very you know essential
+so so today we just discussed know why and what we are going to do and the project implementation
+will teach you how to do it okay and in the process of doing it you will eventually know about
+know something about Winopanda numtapai and other python library that is no available
+with you so with this I would like to conclude today's lecture and I will also share
+these data with you so start exploring them and in the next lecture I will talk about the
+detailed you know pipeline how to do this kind of problem solving in a stepwise step manner again
+without showing you the exact code okay and asking you to do this on your own so thank you I will
+see you in the next video

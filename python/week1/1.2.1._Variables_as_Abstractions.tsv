@@ -1,0 +1,468 @@
+start	end	text
+0	19440	Hello and welcome back to the Python Core and Applied Concept.
+19440	25960	We are going to start Model 2 today and the main content of Model 2 will be the basic
+25960	32680	building blocks of Python programming language which are now variable data types expression.
+32680	38240	So let us now begin the discussion by moving to the slides.
+38240	41720	So this is our slide, title slide which says that now we are going to discuss today the
+41720	50960	building blocks, variables, data types and expressions in Python.
+50960	56440	So before we start the discussion of the basic building blocks of Python, let me quickly
+56440	59720	recap what we discussed so far.
+59720	64120	So we have already discussed the difference between syntax and semantics for programming
+64120	66720	language in detail in the last module.
+66720	72240	We understood that for defining programming language, you need to clearly define what
+72240	77760	all you can write in that programming language or what can be accepted as a valid program
+77760	79920	in the programming language.
+79920	84920	And these things are described using the syntax of programming language, sometimes we
+84920	92680	call syntax is what describe this notion of what is a valid or what is an invalid structurally
+92680	95480	valid or invalid program in a programming language.
+95480	101200	And the meaning of those structurally valid program is what we refer to as normally semantics.
+101200	107840	So the only way to describe semantics or the most common way in which the programming
+107840	113360	language designers would want to describe the semantics of a programming language is in
+113360	114360	English, right?
+114360	119720	And we describe the meaning of a program by describing what will be the effect of executing
+119720	123720	that program on the state of machine that is running that program, okay?
+123720	129080	And if you recall, we also discussed the complexity involved in this process of describing
+129080	134480	the meaning or semantics of a programming language because if you want to know the true
+134480	140800	or semantics, then you have to describe the effect of execution of that program on the
+140800	143640	exact machine, which we also refer to as concrete machine, right?
+143640	145240	This is very complex.
+145240	149840	And you know, if you want to reason at that level, it becomes very difficult to write and
+149840	153480	reason any, let's say, you know, non-trivial and useful program.
+153480	157760	So that's why we move to the concept of high level programming languages, right?
+157760	164000	I mean, we say that high level programming languages help us abstract out these concrete
+164000	168960	machine details by assuming some abstract machine where, you know, the number of details
+168960	169960	are not so high.
+169960	173960	I mean, you don't every time need to think in terms of what's changing inside the machine
+173960	174960	rather than that.
+174960	178720	You can think in terms of, you know, abstract concepts like what we are going to discuss
+178720	184000	today, variables and expressions and how these, you know, abstract concepts of, you know,
+184000	189080	variable and expression can help us figure out, you know, the change of the state of our
+189080	191680	abstract machine that we want to know work with.
+191680	194840	So underlying every high level programming language, there is an abstract machine which
+194840	200920	is far more simpler than our concrete machine, which we will actually run the program.
+200920	205080	But I mean, reasoning on top of the abstract machine is sufficient for, you know, ensuring
+205080	209480	that your program behaves exactly the same way as you want when it's, you know, executed
+209480	212120	even on the non-trivial machine or concrete machine, okay?
+212120	217040	So the programming language, a compiler and interpreted take care of all these, you know,
+217040	218040	abstraction.
+218040	223960	I mean, we don't need to, you know, we don't need to actually care about how these things
+223960	227480	are getting executed inside the machine, but if you can, you know, reason about these
+227480	231160	things at the subtracting machine level, then it should be enough, okay?
+231160	235320	And we also, if you remember, emphasize, you know, the evolving role of a programmer,
+235320	239720	you know, from, you know, being a code created to a code validator, now as moving forward
+239720	244800	since we are using, you know, LLM and other kind of agents, very, you know, aggressively
+244800	247520	in code development, you know, for good reasons.
+247520	251640	So we need to somehow ensure, you know, we are, you know, almost never writing our code
+251640	253640	from the various scratch.
+253640	259280	So no, there is no pressing need to ensure that whatever code we get generated using these
+259280	262760	LLM or any agent, we have a better understanding of that code.
+262760	267360	No, in the sense that we, we can be sure that the code actually does what we intended it
+267360	268360	to do, right?
+268360	273000	Because the only, you know, assurance that we have right now is that we gave a natural
+273000	276720	language prompt with somehow described our intent of computation.
+276720	281280	And these LLMs may have produced, you know, the correct or a line code which achieves
+281280	285960	those intences, but there is no guarantee, most of the time, these LLM has its needs.
+285960	289400	And they know they create, you know, any agent can create, you know, wrong result.
+289400	293720	So we should be able to understand or at least validate once we get the code, whether
+293720	297000	the code is doing exactly the same thing that we wanted it to do, okay?
+297000	301440	So that, that's one of the reason why we have designed this course, not keeping in mind
+301440	305520	that we will focus most of the time on semantics and try to understand the meaning of the
+305520	309960	program, you know, better so that we are in a position whenever we get the code, we can,
+309960	315120	you know, assure ourselves that the code is actually aligned with our implementation, okay?
+315120	320040	So with this, you know, I think we can go ahead with our discussion of today's topic,
+320040	326120	which is mostly about the very basic building blocks in Python, which are, you know, like
+326120	330280	the concepts of what is variable, what is expression, you know, and what is the meaning
+330280	334360	of, you know, these variables and expression and some simple statement in Python programming
+334360	335360	language.
+335360	342120	So this is roughly our plan, we will start with variable and identifier, then we will
+342120	345520	see that there is something, you know, called keywords, which is available in most of the
+345520	350920	programming languages, we then move to some of the, you know, typing, you know, feature
+350920	355320	or, you know, typing facility that is available in site, Python programming languages,
+355320	363240	like language, like, you know, typing, strong typing and, you know, static typing.
+363240	366520	So let's start with the discussion, you know, on variables, okay?
+366520	372680	So now remember, I mean, in any, you know, imperative programming language, which is mostly
+372680	377640	derived from the Turing machine concept and Turing machine and nothing but, you know,
+377640	381280	machine with some control unit with, you know, infinite memory type, right?
+381280	388400	So all of these imperative programming paradigm, primarily, you know, rely on, you know,
+388400	392080	giving computer a sequence of commands, which can change its state.
+392080	395840	Now, when we say change it, state means change, it's no state of the memory, okay?
+395840	401040	And in fact, this is not only a way in which we can get any, you know, meaningful computation
+401040	402960	done by these imperative programming languages.
+402960	407440	So underlying in theory is that, you know, we try to design or we try to, you know, come
+407440	414000	up with a sequence of instruction, which can do appropriate changes in the state of memory.
+414000	418640	And if we are able to observe these changes, so observing these changes is nothing but, you
+418640	421280	know, what we call as computation, okay?
+421280	426800	So, you know, by ensuring that the machine changes its state in a particular way.
+426800	431600	And by observing this, you know, change of state of the machine, we can observe the,
+431600	435360	you know, output of the computation that we want to, you know, perform, okay?
+435440	439440	Because I mean, most of the time we are making in the process of how we compute something
+439440	443120	using pen and paper, right? So when you write some, when you take a task of computing,
+443120	447520	let's say some function using pen and paper, what you start always is with some input, right?
+447520	452160	You, you start with the input and then in between you compute lots of intermediate results
+452160	455520	and final results is what you know, want to maybe compute.
+455520	460160	So you store all these intermediate results, you know, by writing them on pen and paper.
+460160	462960	So the idea in any imperative programming language is that,
+462960	467600	you know, instead of this pen and paper, now can we use the memory of these machines to,
+467600	472480	you know, or, you know, do the same kind of navigation inside this machine, right?
+472480	475840	Rather than writing on pen and paper, can we start with some, you know, variable,
+475840	480320	which will have these initial values, you know, which are input to our function?
+480320	483920	And then we calculate all these intermediate values, which are necessary for, let's say,
+483920	487360	calculating the complex function that we finally want to compute.
+487360	492000	And can we keep temporarily stored them in some other valuable or, you know,
+492000	496000	intermediate valuable and finally come to the conclusion where program returns us,
+496000	497440	the final complex value, okay?
+497440	500400	So this is the idea of an imperative programming language that we,
+501280	507360	and, you know, all that we can do is, you know, design these sequence of instructions in
+507360	512160	appropriate way so that they do these, you know, changes of state of machine,
+512800	517200	so that the final result reflects the computation that we want to achieve, okay?
+517200	523360	Now, the reality is that to do all these, I mean, you have to use all the,
+523360	528400	if you want to be, you know, purest, you have to talk in terms of the language of hardware, okay?
+528400	533040	Because data is stored in memory locations, you know, each of which has some numeric,
+533040	535760	you know, address, you know, which may, you know, look something like,
+537520	538640	something like this, right?
+538640	543600	So these are, you know, addresses of memory, you know, and CPU operates on data in the
+543600	549040	registers. So if you really want to communicate with this machine directly, let's say,
+549040	552640	you have to talk in terms of these kind of, you know, addresses and then, you know,
+552640	556000	interact with CPU instructions, which are, which CPU can understand, okay?
+556000	559840	But all of this becomes very, you know, challenging and that's why we need, you know,
+559840	565520	this idea of variable, okay? So variable, you know, takes us from memory address to meaningful names,
+565520	570640	okay? So we somehow want ourself to be free from, you know, manipulating, you know,
+571200	576960	addresses and direct CPU instruction and work at a high level. So variable, you know, in that
+576960	581200	sense, you know, provides us this, you know, fast level of, or layer of abstraction, where,
+581200	585120	what we want to say is that I don't want to care where this variable is getting stored in
+585120	590400	site memory, but I would like to call it by some name, which is, that's a convenient for, you know,
+590400	594880	some meaningful name, which I can remember throughout the development of this program.
+594880	599200	So that's how I mean these variables are very important in any programming languages.
+599200	602960	So you can assume, or you can, you know, see variable at the first layer of abstraction,
+603680	609120	which makes our life very easy, you know, instead of, you know, referring to this exact memory
+609120	613360	location, we would refer to the same location using these variable names, which are far more,
+613360	619120	you know, easy for us to remember and work with. So, we need an abstraction, you know,
+619120	625040	this is our problem and the solution is, we can get this communication done very effectively,
+625120	628480	if we have variable names, which are, you know, meaningful in nature, so that, you know,
+628480	633040	we can recall what is the purpose of each variable. And then, in the process of computation,
+633040	638080	we would like to come up with a program statement, which can appropriately change the value of this,
+638080	643200	you know, variables to reflect what we want to finally can create. Okay, so what is a variable then?
+643200	648640	A variable is a, you know, named alias or labeled for a memory location, okay? So you can,
+648640	652960	you know, assume for all, you know, practically, in that variable, like sticky notes, okay,
+652960	657280	with a name, okay, you can write, you know, name on that and stick into boxes and boxes and
+657280	661200	nothing, but, you know, these memory locations that contain values. So, although, finally,
+661200	664400	the values are being, you know, stored in memory location, you are referring to those,
+664400	668960	you know, values by using these variable names, okay? So this allows us to think in terms of
+668960	673840	problem domain and not the hardware domain, okay? Because if we are freed from the complexities of,
+673840	678400	with this hardware domain, then we can focus more on the problem and how to solve that problem,
+678400	682240	the solution, that problem. So that's why, you know, these variables, you know, provide a very,
+682240	687360	you know, first layer of abstraction, which is not always essentially in any high-level programming
+687360	695520	language. Okay, so now, you know, it's time to move into the Jupyter Notebook and we will try to
+695520	699760	explore this, you know, by doing some hands-on exploration around variable. We will, you know,
+699760	705680	try to explore how to define this or, I mean, how, what is the syntax or the semantics of this
+705680	710000	variable? Okay, so whenever we come across any new concept in the programming language, we will also
+710000	714800	always want to try to ask the question. I mean, if I want to define this concept of variable
+714800	719520	properly, I need to define two things. First one is, you know, syntax. How can I write variables
+719520	724000	properly? Let's say instruction involving variables properly inside the programming language.
+724000	727760	And the next question should be, so what is the meaning of a variable? You know, so meaning of a
+727760	734720	variable can only be understood in, you know, in the context of how a variable, how changing a variable
+734720	739120	can change this state of, you know, machine. So that's what is the semantics of a variable.
+739120	748080	So, so let me now move on to Jupyter Notebook, which we will be using as a default ID for this course
+748080	754000	and try to explain, you know, some of this feature, you know, inside the Jupyter Notebook.
+755120	761440	So, let us try to go to that screen first and see whether everything works fine. So,
+761680	768480	okay, so this is our Jupyter Notebook. I hope, yeah, so this is visible now. So, we can see,
+769200	773360	this is Jupyter Notebook. So, since this is, you know, first time we are coming to Jupyter Notebook.
+773360	779920	So, this as I, you know, discuss in the very first, you know, module, this is one of the popular
+779920	784320	IDE that many people use and this is one of my favorite because, you know, you can see there,
+784320	789760	inside Jupyter Notebook, you can write code blocks. So, these are, you know, called code blocks.
+789760	794560	I mean, you can see when I click on, you know, let me click on this, when I, you know, click on
+794560	800240	this particular code block, this, this, this, this was as code, right? So, so there are two types of,
+800240	804880	you know, blocks normally which people use very frequently inside this Jupyter Notebook,
+804880	809600	one is called code block and another one is model. So, for example, you know, this second block,
+809600	813680	when I click, you see, I mean, here it changes to model down, you know, instead of code block,
+813680	818000	now it says a small dot. So, this is now for writing comments or any descriptions. So,
+818080	821840	for example, when I was preparing this tutorial, I use both of these features to,
+821840	826320	nicely, you know, describe what we are discussing at a particular point of time inside the Jupyter
+826320	833440	Notebook. So, this is a very handy, you know, IDE. If you want to both develop your code and also
+833440	838000	describe it properly, maybe, you know, this is one of the best, you know, interface available.
+838000	843600	So, please feel free to explore other ideas, but for this course, we will be working precisely
+844080	847920	with, you know, these Jupyter Notebooks. So, you can see, I can run these code blocks.
+847920	853520	Okay. So, shortcut is you, you know, if you are on a Mac, you can simultaneously,
+853520	857920	you know, press shift return to just run this thing. Okay. And this cell runs. When you come to the
+857920	861120	second, you know, you know, thing, this is no markdown. If you double click on this, you see,
+861120	866640	you see the markdown, no, no, notations here. Okay. So, when we run it, we get things in
+866640	871600	proper format, okay. So, so let's start with the variable first, okay. So, with the discussion
+871600	875600	of variable, so what do we want to discuss here? So, we want to, you know, define the syntax first,
+875600	882000	right? This is what we talk right now. To define a variable, you know, we first want to define
+882000	887680	the syntax of a variable. So, syntax means, I mean, a rule which tells us how to write down or
+887680	892560	declare a variable properly. Okay. So, to define a, so I, as we, you know, discuss variables are
+892560	896880	nothing but, you know, labels or aliases that we, you know, give us name to these memory locations,
+896880	900960	which are, you know, which may be either register or, you know, main memory. So, how to give them,
+900960	906720	can we give write anything as name or there is some restriction on giving, you know, meaningful name?
+906720	910160	Okay. So, so there are some restrictions. You can read the detail again in the reference manual,
+910160	914960	but just to, you know, summarize, no, your variable name can start with letter or underscore,
+914960	920800	and then follow with letters, you know, digit or underscore. Okay. So, so you, you see one thing that,
+920800	925280	the digit cannot, you know, appear in the very beginning, you know, of the, any variable name.
+925280	930560	Okay. So, this is no one restriction that Python developer have, you know, kept while defining variable
+930560	934400	names, you should follow this. And it's case sensitive, you know, if you write something in
+934400	937760	lower case and some other variable name in upper case, they will be considered as different,
+937760	942640	not the same. So, can, so let me write down, you know, some of, you know, let's say, you know,
+944080	947760	some, you know, valid variable name on some, maybe invalid variable name to, you know,
+947760	953760	see it in no accent, whether, you know, Python accept it. So, so this is the cell, which can accept
+953760	958160	some code. So, let me, you know, declare some variable name, like, you know, we can talk about
+958160	962880	this course itself, you know, so what is the, you know, so I can use both, you know, letter and
+962880	966800	underscore, right? So, for example, you know, our course, you know, name for our course is
+968080	980800	Python, core and applied concepts, right? So, what, what I have to just now done is that,
+980880	985840	I declared a variable, can you see my cursor? Yeah, I, I, you know, declared a variable, which is,
+985840	990960	you know, course name, okay? And this is valid, where, you know, variable name, why? Because it
+990960	996080	follows the syntax, okay? Because it, you know, it has, you know, lower or upper case letters,
+996080	1000320	you know, followed by some, you know, underscore, and then again, sequence of letters. And so,
+1000320	1007680	you know, this is, and then I assigned a string to this, you know, a variable called course name,
+1007760	1011520	okay? So, so this is, you know, what, so if you run this, I mean, you can see whether Python
+1011520	1016480	accept it or not. So, it, so see, when I, you know, run this block, Python accepts, you know,
+1016480	1021440	this variable name as a valid variable name, and this assignment also has a valid assignment. So,
+1021440	1026080	there is no error that, you know, comes in, okay? Similarly, I mean, we can, you know, define,
+1026080	1031040	so this was one variable which stored string, okay? So, can we define another variable,
+1031520	1035840	which, kind of stored Boolean values? Like, you know, if I want to know the status of let's say,
+1035840	1040560	the course, whether this course has started or not, okay? So, we know that the course has started,
+1040560	1045920	right? So, that's why I'm here putting the value true. The true and false are two possible Boolean
+1045920	1050480	values inside Python, which you can use, you know, in different ways. We will see when we come
+1050480	1056800	to, you know, conditional how these Boolean, you know, data types becomes very useful in deciding
+1056800	1061200	which branch to take, you know, inside your program. So, what, for the time being, I mean,
+1061200	1067600	let's assume that I'm only using this Boolean to, let's say, you know, keep track of the status of
+1067600	1071200	my course, you know, I want to know whether the course has started or not. Since its course has started,
+1071200	1078000	we put it value, you know, true and try to run it. No, that doesn't mean compiler gives an area,
+1078000	1082880	no, I mean, when we run it, you can see, I mean, it runs perfectly, all right, okay? Now, what about
+1082880	1091040	some other, not type of, so let's say, if I want to talk about a number of students in this course,
+1091040	1100400	which may be no more than 100, but let's say, say that the number number of students is equal to,
+1100400	1106240	maybe, let's say, put a number here 100. This is another variable, which is trying to store
+1106800	1112720	not data of type integer, right? So, if we try to run this, what do you guess? I mean, will Python accept
+1112720	1119360	this? Okay, so let's try to, and it can see what's the answer. So, if we run it, can you see,
+1119440	1125840	there is a error, right? Okay, so number of students, so syntax error, I cannot assign expression here,
+1125840	1133040	maybe you mean equal to equal to instead of this. So, the problem here, no, so I mean, so this is a
+1133040	1139520	syntax error, and the main reason is that, you know, while forming the name, okay, so while forming the
+1139520	1146160	name of this variable, I have violated the, you know, rule of syntax, which is that you can either
+1146560	1151200	use a no letter or underscore, but I have to do this hyphen, okay? So, this is the main reason,
+1151200	1158080	and if we, you know, get rid of this, let's say, instead of this, if I write number of students,
+1159840	1165120	if you get rid of that, and if we try to put underscore here, and if we run, you see, there is no
+1165120	1170000	error, right? So, I mean, if one has to be, you know, careful, I mean, you cannot define
+1171520	1175440	these variables in any way, okay? So, you can only use those things, which are allowed by the syntax
+1176320	1180160	of the programming language, but fortunately, since these syntax are very formal, you know,
+1180160	1185360	compiler can take care of, you know, these violations and can alert you, you know, at the compile
+1185360	1191520	time itself, so you don't, you know, carry forward this kind of errors. So, what can we, you know,
+1191520	1198640	another, you know, invalid name, I mean, if you, so if we want to see, what is the, so is the course
+1198720	1205360	in its second term, or it's in first term, right now. So, the course, but we are doing right now,
+1205360	1210000	is certainly, you know, in the first term, so I would like to say that no, second term status is,
+1210000	1214640	you know, not true now, let's say it's false. So, it's false is another, no kind of, so,
+1216400	1223040	the Boolean data type, which we want to store. So, what do you think, I mean, really,
+1223760	1226800	except this one or the compiler will throw some error message.
+1230880	1236560	Okay, so let's run and try to see what compiler does. So, when we run this, again, I mean, there is
+1236560	1244480	a, you know, syntax error. And where, what is wrong here? The, the place, which is complaining in
+1244480	1249040	this place, okay, so do you see the problem? I mean, we started this variable name with
+1250000	1254880	a digit, right? And a digit was not allowed in the very beginning, okay? So, this is also not,
+1254880	1260160	you know, accepted syntax for a variable name, okay? So, we should get rid of, you know,
+1260160	1264800	this kind of wrong variable name because they are not allowed by the syntax. So, this is also
+1264800	1271680	invalid, okay? So, so, so, no, so, no, let's comment it. So, the reason why this is not valid,
+1271680	1275920	this is because number can't appear in the beginning, okay? So, what was the reason for the
+1275920	1279760	earlier one when we had hyphen here? Because, you know, hypens are not allowed at all.
+1281200	1287600	So, so, what about, I mean, if, if you write, you know, something like this. So, how many classes
+1287600	1292640	are let's say there? So, so, is there a, you know, one class or two class in this particular,
+1292640	1296240	let's say, offering of the course? So, if I want to say there is only one class, you know,
+1296240	1300400	number of classes, if I want to represent this class. And, you know, I want to say that,
+1300400	1304080	you know, there is only one class. So, I want a variable to store this, you know, number of classes.
+1304080	1308240	So, in this case, let's say we have only one class going on right now. So, if you write one,
+1308240	1313600	do you think this is a, you know, valid variable declaration and assignment inside Python?
+1314960	1320800	And there's no particular case. I mean, I haven't violated any, right? I mean, we have only
+1320800	1329440	used lowercase letters. So, it should be an acceptable, you know, variable name, my Python,
+1329440	1334480	and it should, you know, accept this value one, right? So, but let us run and see what Python
+1335280	1342560	says about this. Okay? So, so it says it's an invalid syntax. Okay? So, you cannot assign this
+1342560	1348720	so value one to a class. So, so the reason here is not, you know, because we are violating the,
+1349520	1356800	you know, syntax for variable name is because this class, no, identifier is reserved as a keyword.
+1356880	1362400	Okay? So, Python, although it allows you a lot of freedom in defining the variable name,
+1362400	1366160	according to, you know, the way you want, you know, which reflects maybe the meaning of,
+1366160	1372240	or the intention of that variable in your program. But there are some identifiers or some names,
+1372240	1377600	which Python results for its own use. Okay? So, because I mean, compiler need these, you know,
+1377600	1383040	keywords for certain purposes. Okay? So, these keywords have some no reserved meaning. So,
+1383120	1387600	that's why you have in Python results then. Okay? So, this class is one such keyword, which is
+1387600	1392400	not available to you or any programmer to declare it as a, you know, normal variable and assigns
+1392400	1396240	some value. Okay? So, these, this is, you know, reserved as keywords. And that's why Python,
+1396240	1401760	you know, did not allow you to describe or define a variable with this particular keyword.
+1402480	1407520	So, so now, I mean, this, you know, brings us naturally to our, you know, next topic, which is,
+1407520	1411760	you know, keywords. So, what is keywords? So, keywords are actually reserved in Python. So,
+1411760	1416640	for example, I mean, if you, you know, one, so, want to define different types of, you know,
+1416640	1421120	sentences in our statement in your programming language, then you would need these keywords.
+1421120	1426640	I mean, these keywords help you combine things properly to make a proper statement, which can be
+1426640	1431520	executed inside Python. So, we need a lot of no such reserved keywords. So, that's why Python has
+1431520	1437200	reserved some of these. And it says that you cannot be, you cannot use these keywords inside your
+1437200	1442880	program as a variable. So, what are some keywords? Like, if while deaf, class, lambda, and true
+1442880	1447280	faults. Okay? So, these, these have predefined semantics in the abstract machine. Like, if I say,
+1447280	1453040	let's say, deaf, you know, I somehow hint the compiler of Python that I'm going to define a function.
+1453040	1458080	Okay? Similarly, if I, you know, use this class keyword, I, you know, give a hint to the compiler
+1458080	1462160	that I'm going to define a class inside and class as a particular meaning and already existing
+1462320	1469520	in programming languages. So, we want compiler to know something using these, you know, keywords.
+1469520	1474000	If you are, whether we are defining a function or we are defining a loop or, you know, we are
+1474000	1477920	defining a, you know, if else conditional. So, for all of this, we need these, you know,
+1477920	1482800	predefined semantics for, you know, these keywords. And that's why I mean, they're not available
+1482800	1489120	for use inside a program as a variable name. Okay? So, you cannot use them as variable name.
+1489120	1492960	So, you know, coming next, so what are some keywords in? So, these are, of course, some of the
+1492960	1498320	keywords, but can we, you know, print all possible, you know, keywords inside Python? So, to do,
+1498320	1502640	to do that. So, let me write a few line of code to show you some of the, you know,
+1502640	1508160	available keywords. So, like, but before doing that, we have to, you know, import this, you know,
+1508160	1516160	keyword, module inside Python, which will help us, you know, print all the keywords. So,
+1516160	1520320	this is how we import some module, like, I mean, this is one of one file that we have started,
+1520320	1524640	right? So, I have already imported it here. So, I may not need to import it there, but I mean,
+1524640	1528800	since this is one file, so there are multiple, you know, models inside Python,
+1528800	1532240	available, which you can use. So, there are many, you know, many functions, you know,
+1532240	1537760	signature and, you know, implementation available in the Python standard library. And if you want to
+1537760	1542480	use or utilize some of them, you know, without, again, you know, defining them, then you can just
+1542480	1546480	import those modules. So, this is how we import a module inside Python. We say, you know, import
+1546480	1552080	the module keyword, which we may have many other things, but I'm, you know, importing it for,
+1552080	1556080	you know, particular purpose here. So, this is the way we work inside Python. We import something,
+1556080	1561520	which is already existing. And then, no, maybe, we can go and use it. So, what, in this case, I,
+1561520	1576080	want to, you know, print some of the, let's say keywords. So, from the, you know, keyword
+1576080	1581120	model, I'm trying to, you know, print this keyword list, okay? So, that's why this, you know,
+1581120	1589120	keyword list. And maybe, you know, I want to just say, let's say, not 10 keywords. So, so,
+1590000	1593920	don't worry about it. You know, this exact syntax, if you don't understand it now, because these,
+1593920	1598880	these, you know, colon and, you know, these square brackets, you know, represents lists. So,
+1598880	1603600	we will, you know, talk about it when we go to list. But for now, I mean, what I'm trying to say,
+1603600	1608800	is I'm just trying to print some of the, you know, available keywords inside Python, okay? So,
+1608800	1614560	maybe just 10 or, or let's say, you know, 20 keywords, you know, if it is available inside Python,
+1614560	1623360	let's, you know, print it. There may be more, okay? But let's say, you know, show me, and this is
+1623360	1629440	just to show, let's say, the first 20, okay? So, what we're doing is we are trying to, you know,
+1630320	1634960	ask, you know, Python to show us, maybe the first 20 keywords.
+1638000	1641920	So, when we, you know, execute it, let's see, you know, what are the possible to see? So,
+1641920	1646240	these are the, you know, first 20 keywords that is now available inside Python, like false,
+1646800	1654000	none, true, and as assert, okay? So, some of them, I mean, there are more, you can, you know,
+1654000	1658640	print maybe, you know, 30, the first 30 keywords, and then you see what happens. I mean, when we
+1658640	1663600	print first 30, Python actually prints first 30. So, you know, in total, I remember Python has
+1663600	1670560	35, you know, keywords. So, I mean, if you print 35, it will, you know, print 35, what, if I print 36,
+1671280	1676320	necessarily prints, you know, 35 because, no, it has only 35, so it will print, you know, 35 keywords.
+1677040	1681840	Okay, so, so this is all about keywords. So, keyword has predefined semantics in the abstract
+1681840	1687680	machine that Python assumes, and it cannot be used as a variable name. So, these are the two things
+1687680	1696240	that we need to somehow keep in mind when working with Python. Okay, so now, let's move to the next
+1696720	1701520	topic, which is the basic, you know, act of assignment. So, so we have already seen an assignment,
+1701520	1705360	right? We have seen multiple assignments that we have declared variable, and we have also,
+1706240	1710160	we have not only declared variable, but also assigned some values to these variables, like,
+1710160	1715600	like this one assigned a string value to course name, and this one assigned, you know,
+1715600	1720240	this Boolean value to this variable, this, you know, started, and then we have number of students,
+1720240	1725200	and 100, which is an integer, which has been assigned to, you know, these variables. So,
+1725200	1735520	we have already seen some assignment. Okay, so, let me, you know, come here and show you some,
+1735520	1741280	you know, more examples of, you know, basic assignment. So, when, when we assign something like
+1741280	1747600	this, okay, so let's say, let me, you know, say, let's say, if I assign to this x or value 10,
+1747600	1755040	so what are we doing? Okay, so we are essentially creating a label, okay, x, and pointing it to the
+1755040	1760160	integer object 10, okay. So, in Python, you know, everything is, you know, object. So, this 10
+1760160	1766080	is an integer object, you know, object of, you know, type integer, and so what, this statement does,
+1766080	1772240	is it assigns a label, you know, x to this, you know, level x, pointing to this integer object 10,
+1772240	1778400	okay. So, when you print, you know, let's say, when, whenever we print, let's say, this x,
+1778400	1783120	what do we get? So, let us print this x and see what, what do we get? We get the value 10,
+1783120	1790080	right? Now, it turns out that, you know, we can assign or we can create multiple level for the same
+1790080	1795200	object, okay. For instance, I mean, in this case, you see, I mean, we have assigned x as a label
+1795200	1801680	to this 10, but we can also say in the, you know, immediately next statement that we want to assign
+1802480	1809760	another level, let's say, y to the same, you know, object that x was pointing to, okay.
+1809760	1814720	If we write this, what we are saying is, now, y will also point to 10. This is what we mean,
+1814720	1818640	I mean, we can create multiple levels for the same object, okay. So, to, again, check, I mean,
+1818640	1829680	if you want to print, no, let's say, print, and this is how we print inside Python, we write
+1829680	1835760	this print command, and then, let's say, value of, so what we are trying to print here is value of,
+1835760	1843280	let's say, y, and then we have to pass this variable y and see what is the final outcome, okay.
+1844560	1849120	So, original value, so this print, so when I run this, this print gets executed, so you get a
+1849120	1854720	10 value here, and for the y, you know, we are printing again the value of y, which is here,
+1854720	1860880	again, 10, okay. So, this is very, you know, interesting to see that, you know, we have assigned two
+1860880	1865520	different levels to the same object, you know, of integer type, you know, 10. Now, what about,
+1866640	1874000	so we know that these variables provide assigned abstraction, okay, but can we, you know, inspect
+1874000	1880880	the abstraction, you know, and get to know, using, you know, these variables name that, what
+1880880	1885280	objects these variables name are referring to, okay. So, these objects are certainly, you know,
+1885280	1889520	some, you know, concrete data types, I mean, to which these variables are referring to,
+1889520	1894000	but is there a way to, you know, figure out or inspect this abstraction? So, the ID function,
+1894000	1898480	you can use us, the built-in ID function to get the unique identity of these objects,
+1898480	1903520	which is essentially, you know, stored in memory addresses, you know, in the current running process.
+1903520	1908320	So, ID can tell us about, you know, if you use ID on this variable, this ID function,
+1908320	1913200	then we can actually figure out these unique IDs for these objects that these variables point to.
+1913200	1916560	Now, this can be used to prove that two variables are referencing to the same object,
+1916560	1922320	but you cannot use this ID to look up or manipulate data directly, okay. So, these are not exactly,
+1922320	1926640	like, you know, pointers. So, many people who are coming from C, C++, background,
+1926640	1930080	who are familiar with pointer, they may get a little confused and may, you know,
+1931600	1935440	assume that, you know, these, you know, object references are nothing but pointer, but they're
+1935440	1939600	not pointer. Actually, there is a subtle difference, which we'll, you know, say in some time.
+1939600	1944480	But, you know, let's try to first, you know, see whether we can use this ID function to figure out
+1944480	1948400	what is the, you know, ID of, let's say, X and Y that we have. Right now, we know that X and Y
+1948400	1955680	point to the same variable, but can we confirm it? So, if we, let's say, print, let's say, first,
+1955680	1966480	what I want to do is I want to print the ID of the object X, okay. So, ID of the object X,
+1966480	1977920	we want to print. So, what we are writing here is ID of X, okay. And then, let's print a copy
+1977920	1987520	this. And again, try to print the ID of object Y. And see whether we get same ID or different
+1987520	1994080	IDs here. So, what do you see? I mean, if we print both of these, you know, statement,
+1994080	1999840	then this is what we get, right? So, we get ID of object X as this one and ID of object Y as this
+1999840	2004720	one. So, both, no, the object, both objects are same ID. It means, I mean, these X and Y are
+2004720	2010160	referring to the same object, no, wherever it lies in the memories, it's actually referring to
+2010160	2015440	the same object, okay. So, similarly, we can also use a function, another function called type
+2015440	2020560	function to tell us the semantic type of the object, okay. So, this ID, you know, help us,
+2020560	2024720	so since variables are abstraction, right? I mean, just by looking at the variable name, you cannot
+2024720	2030400	say which object it is referring to or what is the type of the object that it is referring to.
+2030400	2034960	Okay. So, for getting those, you know, details, we are using these ID and type functions.
+2034960	2038720	The type function can tell you what is the type of data that is, you know, stored in this particular
+2038720	2043040	variable. For example, again, I mean, using for the, you know, two variables that we have defined
+2043120	2050080	above, if you want to know the type, what we can say is, you know, print for us, let's say,
+2051840	2059120	the type of X, and what we write after this is
+2062000	2072240	type of X, okay. And similarly, I mean, we let us copy this and try to use the same
+2072320	2080080	or getting the type of Y, we change this to Y and type of Y. So, since they are, no,
+2080080	2084320	my point in the same object, the type should be same and in this case, what is the type, type for
+2084320	2090240	X and Y, both should be integer, right? So, let us print it. So, see, this type of X is no int and
+2090240	2099040	type of Y is also int, okay. So, this is how we can actually inspect this abstraction and try to
+2099040	2104160	figure out the exact detail of what this abstract variable, you know, is referring to and what is
+2104160	2110000	the type of the object that it is referring to, okay. So, now, let's move on to the, you know,
+2110000	2117520	next important thing, which would demonstrate the ability to rewind the same variable name to some
+2117520	2122880	other object, okay. So, here, I mean, things go a little subtle and one should be very careful,
+2122880	2128080	not to confuse, you know, these variable names and, you know, this early bending as, you know,
+2128080	2133040	pointer, no, because I mean, that can be very confusing. So, let us, I know, try to just, you know,
+2133040	2140720	see with some example what I want to, you know, if I say so X and Y are pointing, are not to
+2140720	2143840	actually point it to the same memory location. So, if you are familiar with pointer, I mean,
+2143840	2147840	this may be, you know, a place where you may get confused that X and Y are actually pointed to
+2147920	2153680	the same memory location, no. So, X and Y point to the same object, but they are not, you know,
+2153680	2157840	pointed to the same memory location, okay. In Python, a variable is not a memory container,
+2157840	2162720	but this is important to understand. It's a name tag or a reference that points to an object
+2162720	2167440	in the memory and not to a memory location. So, this is very, very important, especially if you
+2167440	2173600	are working with immutable data types like, you know, integer, string or, you know, double,
+2173600	2179120	then this is a great no point of confusion for, you know, many of the big newcomers. So,
+2179120	2184160	to highlight this, let me now work out some example and then it will be clear. For example,
+2184160	2190800	in the beginning, as you remember, I mean, we instantiated both X and Y with a value 10, right?
+2190800	2195120	And that's why, that's how, you know, you know, that they point to the same object. But what?
+2195440	2204320	If at this particular point, we change the value of Y to, let's say, 20, okay. And let's say,
+2204320	2210960	we change the value of Y to the point of Y to 20. And then if we want to, no print, what is the,
+2210960	2218960	no, current? After let's say, executing this instruction that, no, we assign Y to 22, Y,
+2218960	2224720	if we want to see what's the value inside, let's say, the variable X. So, what's the, let's say,
+2224720	2234480	current value? Okay, so what is the current value of, say, X at this particular moment? Okay,
+2234480	2242480	so let me. So, do you think that changing Y will change X? No, no, if you consider them as
+2242480	2247200	pointer, then certainly yes, right? Because both point to the same memory location. So, no matter
+2247200	2253120	whether you change the value there, Y or Y or X, the change value should be reflected in both the
+2253120	2259200	cases, right? So, I mean, if they are actually pointer, then the current value of X should also
+2259200	2263760	change, right? But if you let's say, no print this, what do you get? You get the current value of
+2263760	2271840	X is 10, but you have assigned a value 20 to Y, okay? So, no, the current value of X has is same
+2271840	2276000	as the original value of X, right? Which was also the value of Y. So, these are not actually
+2276000	2280960	pointer, right? So, this is a very, you know, a small example to show that changing Y does not change
+2280960	2288240	X. And that's how, I mean, these are not exactly, you know, memory variables are not memory
+2288240	2292720	container, okay? So, they're the point to the same object. So, this is how, I mean, so Python's,
+2292720	2297040	you know, memory management and type system, take care of all of this for you. So, you don't need
+2297040	2301920	to worry, but I mean, you need to keep with this distinction clearly in mind that when you change
+2301920	2308240	the, so even if you assign, you know, Y to X, let's say here, and later on change the value of Y,
+2308240	2313680	you are not changing the value of X. Similarly, let me again change the value of X to know some other
+2313680	2321600	value, okay? So, 30, let's say. So, again, I mean, you can expect that the value of, you know, Y
+2321600	2325920	by changing this. So, since this is changing the value of X, and if I want to print now the current
+2325920	2336000	value of Y, what do you expect here, okay? So, based on our last discussion, what we expect here
+2336160	2340720	is that no value of Y should not change, right? The value of Y should be 20. If we run this code,
+2341840	2347440	this is what, you know, we get, which ensures that our understanding is now correct. We are not
+2347440	2356480	confusing, you know, these variable names as pointer in C, okay? To be more clear, I mean, if you
+2356480	2362000	want, you can also print the ID, okay? So, now, you see, I mean, Y and X are actually
+2362160	2366560	pointing to different objects, okay? So, since they are pointing to different objects, you know,
+2366560	2372240	if I just prove the ID of those objects, I should get, you know, different results, right? So,
+2372240	2377200	we can confirm this again. So, by just printing now, maybe the ID, so let's, you know, print plus the
+2378400	2391520	ID of object X. Let me print the ID of object X, and let's repeat the same instruction.
+2392480	2400720	Okay, for variable Y, let's change X to Y here, and also here Y, and try to see. So, what do you
+2400720	2408080	expect? I mean, now that we have assigned 20 to Y and 32X, if you print ID, what do you expect?
+2408080	2412560	Do you get the same result or different things? So, in this case, you can see that we get
+2412560	2417680	different, right? That X and Y are now pointing to two different objects, okay? And the ID for those
+2417680	2421360	different objects are, you know, clearly, you know, distinct here, right? This is what we can figure out.
+2422320	2426960	So, to summarize, you know, what we saw, you know, in this short video is that Python
+2426960	2432960	hides the complexity of direct memory manipulation, okay? And pointers behind a, you know, safe,
+2432960	2437280	high-level abstraction called object references, okay? So, these are called, no, object references. So,
+2437280	2441440	variable are referencing two objects, not to memory location. This makes the language easier,
+2442000	2448320	and you know, is it learned and used while being less prone to common memory management error?
+2448320	2452320	Otherwise, you have to do everything on your own. I mean, if you are given, they can see, I mean,
+2452320	2458160	you can manage your memory very efficiently, but then that is also, you know, a major cause of,
+2458160	2463360	you know, memory errors and no other kind of error. So, Python tries to hide all these details,
+2463360	2468800	you know, from you, and it still allows you enough freedom to work with it and write meaningful
+2468800	2477120	programs, okay? So, this is all for today. So, thank you for watching this video. I will meet you
+2477120	2487440	in the next video. Till then, goodbye. Thank you.

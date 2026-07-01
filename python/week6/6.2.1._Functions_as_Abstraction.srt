@@ -1,0 +1,1752 @@
+1
+00:00:00,000 --> 00:00:14,680
+Hello and welcome back to Python, core and applied concepts for reliable data sense workflow.
+
+2
+00:00:14,680 --> 00:00:21,120
+Today we will start a new module which is module 5 and this module will be mostly about
+
+3
+00:00:21,120 --> 00:00:25,400
+functions and they are using Python programming language.
+
+4
+00:00:25,400 --> 00:00:33,560
+So functions as another programming construct is a very important idea in any programming
+
+5
+00:00:33,560 --> 00:00:43,000
+language and it helps your whole core structure to keep very clean and structure so that any
+
+6
+00:00:43,000 --> 00:00:51,800
+future development can be benefited from this clean structure and its reusability perspective.
+
+7
+00:00:52,520 --> 00:00:58,280
+So we will talk about this in detail today how to create functions, how to use them,
+
+8
+00:00:58,280 --> 00:01:04,120
+what are some common pitfalls that you may encounter if you don't look at the function
+
+9
+00:01:04,120 --> 00:01:11,800
+arguments carefully. So all of that but first just start with no question that when do we
+
+10
+00:01:13,240 --> 00:01:20,440
+really know that we need to write a function. So functions normally you write functions to
+
+11
+00:01:20,440 --> 00:01:27,160
+organize your code you don't always want your single function or the main function to be
+
+12
+00:01:27,160 --> 00:01:35,880
+very big monolithic piece of code. So if you figure out that some piece of code is being repeated
+
+13
+00:01:35,880 --> 00:01:43,160
+again and again then that's kind of a good sign to isolate that block of code and make it a little
+
+14
+00:01:43,160 --> 00:01:50,280
+more abstract general in the sense that it can be used in multiple ways at multiple places.
+
+15
+00:01:51,000 --> 00:01:56,920
+So that's kind of a hint that you get when you see this kind of repetitive code.
+
+16
+00:01:59,400 --> 00:02:06,440
+That's what I'm going to discuss here. The three pillars of function utility is what we want to see.
+
+17
+00:02:06,520 --> 00:02:14,280
+So these three kind of behavior or these three kind of pattern will help you figure out whether you
+
+18
+00:02:14,280 --> 00:02:19,400
+should write a function for this particular piece of code or not. So the very first thing is no
+
+19
+00:02:19,400 --> 00:02:26,280
+reusability. So you write a function only once and then you can use it everywhere. So if you feel
+
+20
+00:02:26,280 --> 00:02:33,080
+that let's say a sequence of instructions which you have written for your current program can be
+
+21
+00:02:33,720 --> 00:02:39,160
+used at other places also maybe to solve some other problem in some other context.
+
+22
+00:02:39,880 --> 00:02:46,920
+Then and if you think this will repeat multiple times then it's a good idea to abstract out that
+
+23
+00:02:46,920 --> 00:02:57,240
+four line or five line of code into a separate function that you can call at any point and then
+
+24
+00:02:57,240 --> 00:03:03,480
+use it rather than writing those four line of code everywhere whenever it appears. So this is
+
+25
+00:03:03,480 --> 00:03:10,440
+very first sign when you would probably know that this is the best time to write a function instead
+
+26
+00:03:10,440 --> 00:03:15,400
+of writing this four line of instructions for not achieving this particular objective.
+
+27
+00:03:16,360 --> 00:03:23,480
+So reusability is the very first pillar or first observation that you can make when you know
+
+28
+00:03:23,480 --> 00:03:32,360
+that you now need to write a function. So the main idea is that you write no only once and use
+
+29
+00:03:32,360 --> 00:03:38,360
+it everywhere. So when you find yourself copying and pasting the same logic in multiple places
+
+30
+00:03:39,240 --> 00:03:45,320
+you have identified a perfect candidate for a function. So this is what we want to say
+
+31
+00:03:45,320 --> 00:03:51,800
+and function can in encapsulate common operations along you to debug and test them no ones
+
+32
+00:03:51,800 --> 00:03:56,440
+then deploy them anywhere. So this is also an advantage right if you isolate this four piece of
+
+33
+00:03:56,440 --> 00:04:03,240
+code at one place in in form of function you can maybe put all your effort to write it correctly
+
+34
+00:04:03,240 --> 00:04:08,600
+only once and then whenever you deploy it knowing any context and you can safely rely that these
+
+35
+00:04:08,600 --> 00:04:15,880
+four line of code actually does the job that it is intended to do. So this is not only
+
+36
+00:04:16,280 --> 00:04:23,160
+development time but also ensures somehow consistency right if you need to fix a bug or improve the
+
+37
+00:04:23,160 --> 00:04:28,840
+logic you only have to do it in one place. Later on if you find figure out let's say that this
+
+38
+00:04:28,840 --> 00:04:37,080
+four piece of you know four line of code can be improved and maybe made more can we make can we
+
+39
+00:04:37,080 --> 00:04:42,440
+made more efficient. So what you need to do is to just know look at that function and just
+
+40
+00:04:42,440 --> 00:04:49,080
+improve its no performance instead of you know going to every place where you have maybe return
+
+41
+00:04:49,080 --> 00:04:54,520
+the function or this four line of code and replacing those four line of code not each of these
+
+42
+00:04:54,520 --> 00:05:01,480
+places okay. So this is you know one example and here you can see I have given some you know
+
+43
+00:05:03,000 --> 00:05:09,240
+examples I mean like I mean if you want to let's calculate the area of room. So you can one
+
+44
+00:05:09,400 --> 00:05:14,920
+thing I mean you can do is you can always let's say you know multiplies no dimension and then
+
+45
+00:05:14,920 --> 00:05:20,120
+get the area for example if you want to no calculate area of room one followed by room two
+
+46
+00:05:20,120 --> 00:05:24,600
+then room three. So you can write down this kind of code this is perfectly you know all right I
+
+47
+00:05:24,600 --> 00:05:30,600
+mean it will give you the desired result but then this is not the most or it's not the best way
+
+48
+00:05:30,600 --> 00:05:37,480
+to do this kind of job rather than it I mean we can maybe define some function which actually
+
+49
+00:05:37,480 --> 00:05:42,280
+calculates the area and you just pass the argument to the function and get the final result.
+
+50
+00:05:42,280 --> 00:05:49,320
+So area may be you know very simple you know very primitive simple example which might not highlight
+
+51
+00:05:49,320 --> 00:05:56,760
+the essence of what I wanted to say but you know I hope you get the point that I mean if you have
+
+52
+00:05:56,760 --> 00:06:02,680
+a come even complicated no piece of what let's say multiple line of code which you think can be
+
+53
+00:06:02,680 --> 00:06:09,320
+used at multiple places it's best to you know write down them in form of a function and then use
+
+54
+00:06:09,320 --> 00:06:15,240
+call function at all those places where you know these things are needed okay. So some other
+
+55
+00:06:15,240 --> 00:06:19,720
+example like material cost or printing cost if you want to calculate always and it's better to write
+
+56
+00:06:19,720 --> 00:06:25,400
+down functions instead of you know doing those things look at you can write down these no sequence
+
+57
+00:06:25,400 --> 00:06:31,960
+of instructions to perform them again and again here although I mean there's no one instruction
+
+58
+00:06:31,960 --> 00:06:37,000
+computes what you desire so it may may not be the best you know candidate for function but then
+
+59
+00:06:37,000 --> 00:06:43,320
+I mean in general we want or we would like to convert our no code structure in this form of a
+
+60
+00:06:43,320 --> 00:06:49,880
+modular structure where mostly we use functions no for whatever task we want to get it done okay.
+
+61
+00:06:49,880 --> 00:06:57,400
+So this is the first no thing that comes I mean this is the first kind of no pattern that appears
+
+62
+00:06:57,400 --> 00:07:04,920
+when we feel that we should write function okay. The second kind of thing is the complexity of the
+
+63
+00:07:04,920 --> 00:07:12,440
+problem if the problem that you're solving is very let's say complex okay and you can solve that
+
+64
+00:07:12,440 --> 00:07:20,040
+problem by writing you know a large piece of code but then that's not a good idea right because
+
+65
+00:07:20,280 --> 00:07:27,880
+thinking about the whole logic in one go may be very difficult right and in computer science this
+
+66
+00:07:27,880 --> 00:07:35,640
+is a very common practice that when you encounter difficult problem normally we used this concept
+
+67
+00:07:35,640 --> 00:07:41,080
+of divide and conquer right we try to think I mean what if I can solve you know multiple simple
+
+68
+00:07:41,080 --> 00:07:47,240
+problems can I combine in some way the solution of those simple problems to solve my bigger problem.
+
+69
+00:07:47,240 --> 00:07:56,200
+So this is no called divide and conquer and I would know argue that the success of computer science
+
+70
+00:07:56,200 --> 00:08:01,880
+heavily realized on these kind of principles where you can think decompose the main problem into
+
+71
+00:08:01,880 --> 00:08:08,600
+you know simpler problem and try to solve those simpler problem first and then combine the solutions
+
+72
+00:08:08,600 --> 00:08:14,040
+of those simpler problem in a meaningful way to get the solution of no the bigger problem.
+
+73
+00:08:14,040 --> 00:08:18,600
+Remember this is not you know thumb roll or this is not something that will work all the time I
+
+74
+00:08:18,600 --> 00:08:24,440
+mean your your problems should have that kind of property so that you can decompose it you know
+
+75
+00:08:25,640 --> 00:08:30,680
+in smaller problem and it's not always possible but whenever it is possible I mean the suggestion is
+
+76
+00:08:30,680 --> 00:08:35,880
+you better decompose the problem into smaller problem and then try to solve those smaller problem
+
+77
+00:08:35,880 --> 00:08:40,840
+and then combine the solution to get the solution for the bigger problem and when you do this
+
+78
+00:08:41,800 --> 00:08:46,600
+you are essentially actually writing down again no simple functions to solve like study simple
+
+79
+00:08:46,600 --> 00:08:52,600
+problems so when you have all these functions ready which solves these you know various simple
+
+80
+00:08:52,600 --> 00:08:58,120
+problems what you can do is you can know call those functions one after another or you know combine
+
+81
+00:08:58,120 --> 00:09:04,520
+them in a meaningful way to get the solution of a bigger problem okay so this is very you know
+
+82
+00:09:04,520 --> 00:09:09,800
+useful technique that we again I mean always use in computer science complex problem becomes
+
+83
+00:09:09,800 --> 00:09:15,880
+very you know unmanageable I mean when you don't break it so it's better to break them you know in a
+
+84
+00:09:15,880 --> 00:09:25,160
+smaller you know focused pieces right which you can put your all energy to solve them right I mean
+
+85
+00:09:25,160 --> 00:09:30,120
+if you have multiple smaller problem and you're solving them one at a time you can devote all your
+
+86
+00:09:30,120 --> 00:09:35,160
+attention and energy into that smaller piece of you know writing in that smaller piece of code
+
+87
+00:09:35,160 --> 00:09:40,280
+and getting it correct now each function should have a single clear responsibility so when we
+
+88
+00:09:40,280 --> 00:09:44,920
+when we divide you know this problem into smaller problem we we know for sure that you know this
+
+89
+00:09:44,920 --> 00:09:50,280
+particular smaller problem will be solved by this function because it it somehow aligns with the
+
+90
+00:09:50,280 --> 00:09:55,800
+you know intention of the problem okay with the every no module or every every function that you
+
+91
+00:09:55,800 --> 00:10:03,320
+write has a very clear responsibility this approach makes code easier to understand also man you
+
+92
+00:10:03,320 --> 00:10:10,200
+can again I mean test them independently and also maintain it properly right so so all these you know
+
+93
+00:10:11,160 --> 00:10:17,240
+you know important feature of software development like you know testing or maintainability becomes
+
+94
+00:10:17,240 --> 00:10:21,880
+far more easier when you decompose the bigger problem into smaller problem and try to solve them
+
+95
+00:10:21,880 --> 00:10:26,680
+think of it like you know organizing a large project into a specialized teams where each team
+
+96
+00:10:26,760 --> 00:10:32,920
+you know handles one aspect of the problem okay so this you know conquer complexity through division is
+
+97
+00:10:32,920 --> 00:10:39,640
+a very you know useful tool it you know you can replace tangled you know monolithic dependency with
+
+98
+00:10:39,640 --> 00:10:48,440
+clean focused module that each you know will solve a specific part of the problem okay and when
+
+99
+00:10:48,440 --> 00:10:55,160
+you decompose things then at that moment of time it's very you know important to keep in mind that
+
+100
+00:10:55,240 --> 00:11:00,280
+how these you know different functions will interact with each other so they they should have
+
+101
+00:11:00,280 --> 00:11:04,840
+you know very clear established interface or you know boundary so you have to create stable
+
+102
+00:11:04,840 --> 00:11:10,920
+interfaces between components or to minimize coupling and maximize cohesion so so that I mean
+
+103
+00:11:10,920 --> 00:11:17,320
+they can be used you know the result of one can be used very easily by others so this is also what
+
+104
+00:11:17,320 --> 00:11:23,800
+you need to you know define properly so when you define the subproblems properly it becomes natural
+
+105
+00:11:23,800 --> 00:11:28,600
+to you know define these boundaries very clearly for the function that you know tries to solve those
+
+106
+00:11:28,600 --> 00:11:34,600
+subproblem okay another advantage know that you automatically get is that you can enable pedal
+
+107
+00:11:34,600 --> 00:11:40,680
+development right when you have isolated all these smaller problems now you can put you know multiple
+
+108
+00:11:40,680 --> 00:11:45,480
+teams to work simultaneously on these different you know modules are the different no problem that
+
+109
+00:11:45,480 --> 00:11:51,080
+you want to solve without you know integration complex so let's say I mean if you could divide
+
+110
+00:11:51,080 --> 00:11:57,000
+successfully and if you could establish this you know clear boundaries and you know interfaces
+
+111
+00:11:57,000 --> 00:12:03,160
+that will help them talk to each other without knowing the details of how the implementation has been
+
+112
+00:12:03,160 --> 00:12:10,520
+done then you can actually you know give these tasks to multiple teams and ask them to work simultaneously
+
+113
+00:12:10,520 --> 00:12:16,200
+on different models without no bothering about what will happen when I integrate the whole thing
+
+114
+00:12:16,840 --> 00:12:22,920
+into a single or enough project so so this again I mean that they're what I mean trying to use or
+
+115
+00:12:22,920 --> 00:12:32,200
+know making up you know having a practice of using functions as often as possible is or will also
+
+116
+00:12:32,200 --> 00:12:36,440
+reduce your time of development right because you can actually really get different tasks for
+
+117
+00:12:36,440 --> 00:12:44,440
+different people and what I said in the very beginning that you you can actually modify only
+
+118
+00:12:44,440 --> 00:12:51,320
+this piece of code and reuse it at multiple places is also an advantage that you can modify the
+
+119
+00:12:51,320 --> 00:12:56,840
+place or a scale individual component without destabilizing the entire system right in future if you
+
+120
+00:12:56,840 --> 00:13:02,520
+feel that you know some of the component my you know can be let's say improved for efficiency or
+
+121
+00:13:02,520 --> 00:13:08,680
+reliability or whatever you can actually safely do that without you know hindering the other
+
+122
+00:13:08,680 --> 00:13:14,200
+component right so this is this is what we are calling here you know evolutionary design you know
+
+123
+00:13:14,200 --> 00:13:19,720
+it supports actually evolutionary design where you figure out no at all at rest is that something
+
+124
+00:13:19,720 --> 00:13:26,120
+might be enhanced in in some some way okay and also I mean when you divide the whole problem and
+
+125
+00:13:26,120 --> 00:13:31,080
+we are when you are solving each of this problem the chances of localizing error is also
+
+126
+00:13:31,160 --> 00:13:38,040
+right here if some failure occurs let's say so you can actually localize the failure was caused
+
+127
+00:13:38,040 --> 00:13:44,840
+due to which of the component so that also becomes you know possible so all of these are actually
+
+128
+00:13:44,840 --> 00:13:50,920
+advantage and somehow you know can be categorized under this decomposition aspect of coming up with
+
+129
+00:13:50,920 --> 00:13:57,400
+the function okay so this is again I mean that I as I said hint to you I whenever you get some
+
+130
+00:13:57,400 --> 00:14:02,840
+complex problems just think about dividing it into simpler problems and then solving them for
+
+131
+00:14:02,840 --> 00:14:09,960
+example I mean one thing that we know almost know we know as a faculty member here always come up
+
+132
+00:14:09,960 --> 00:14:14,280
+with know this grading I mean although grading is not such a complex you know problem but still
+
+133
+00:14:14,280 --> 00:14:20,440
+we would like to if I have to know grade at the end of semester I would know think of this grading
+
+134
+00:14:20,440 --> 00:14:28,120
+activity as multiple you know sub problems which if I can achieve each I can maybe you know give
+
+135
+00:14:28,120 --> 00:14:32,680
+proper later grade to students so finally what we have to produce is a proper no later grade to
+
+136
+00:14:32,680 --> 00:14:37,960
+students but then before that we have to do a lot of activity right we have to you know evaluate
+
+137
+00:14:37,960 --> 00:14:42,360
+all the assignments you know everything and then we have to calculate weighted average of all these
+
+138
+00:14:42,360 --> 00:14:48,280
+things and then get the final later grade okay and you know many of these things are you know
+
+139
+00:14:48,920 --> 00:14:53,320
+changing throughout the semester so I mean if we keep track of these things separately and then
+
+140
+00:14:53,320 --> 00:14:59,000
+try to define them in form of know this modular structure of function or something like function then
+
+141
+00:14:59,000 --> 00:15:04,920
+it becomes very easy for us to you know produce later grade at the end of the semester okay
+
+142
+00:15:04,920 --> 00:15:11,240
+so this is one example that immediately came into my mind it is no not that complex but you can
+
+143
+00:15:11,240 --> 00:15:17,480
+imagine the hardest problem that you might have solved in your life and then try to look back
+
+144
+00:15:18,040 --> 00:15:23,640
+again go back to that problem and think back and see whether you can divide that problem into
+
+145
+00:15:23,640 --> 00:15:29,160
+smaller you know piece of code or a smaller you know sub problems that you can solve using
+
+146
+00:15:29,160 --> 00:15:34,920
+you know independent functions okay so this is you know one advantage another thing is know
+
+147
+00:15:34,920 --> 00:15:41,560
+this idea of abstraction so you know this this abstraction is a very no again I mean as
+
+148
+00:15:42,200 --> 00:15:49,560
+important idea as divided conquer in computer science because it helps you get rid of
+
+149
+00:15:50,600 --> 00:15:56,200
+the details which may not matter for the no bigger picture or the bigger you know system
+
+150
+00:15:56,200 --> 00:16:02,520
+of software to work so abstraction is no this idea where you can you know consider each of
+
+151
+00:16:02,520 --> 00:16:07,320
+these components which we are saying you know individual functions as a black box okay so
+
+152
+00:16:07,880 --> 00:16:13,080
+if you can consider them as a black box and if you know exactly how this you know black box behaves
+
+153
+00:16:13,880 --> 00:16:19,080
+while not knowing how these black box have been you know implemented then that gives
+
+154
+00:16:19,080 --> 00:16:24,760
+you added advantage right you can build on top of these functions very easily right if someone
+
+155
+00:16:24,760 --> 00:16:30,760
+has you know written nice reliable functions by describing properly what the function does
+
+156
+00:16:31,400 --> 00:16:36,360
+any third party can use those functions right we we're just looking at the you know description
+
+157
+00:16:36,440 --> 00:16:42,280
+of the function instead of the you know actual implementation of the function and we need not
+
+158
+00:16:42,280 --> 00:16:47,800
+worry about how it is implemented and this gives us tremendous you know strength in coming up
+
+159
+00:16:47,800 --> 00:16:53,720
+or solving bigger and complex problem because we don't now don't need to know deal with all the
+
+160
+00:16:53,720 --> 00:16:59,960
+no trivial details of every function implementation okay so but I mean for this kind of you know
+
+161
+00:16:59,960 --> 00:17:06,120
+abstraction to work perfectly you have to make the contract very clear right function has to
+
+162
+00:17:06,360 --> 00:17:12,360
+very clearly what it you know expects as input and what it will give as our output okay and
+
+163
+00:17:12,920 --> 00:17:17,640
+all the implementation details has to be hidden I mean if you can hide the implementation details
+
+164
+00:17:17,640 --> 00:17:22,360
+know well then there is nothing like it I mean then you have written or use the functions
+
+165
+00:17:22,360 --> 00:17:29,160
+you know strength in proper way and you know if if this is there then I mean it enables of course
+
+166
+00:17:29,160 --> 00:17:34,680
+collaboration among the team right so this separation imposed by clear contracts allows
+
+167
+00:17:35,240 --> 00:17:40,840
+you know different team members to work on separate modules efficiently relying on each
+
+168
+00:17:40,840 --> 00:17:46,760
+other's interfaces without understanding the no underlying detail okay so this this abstraction is
+
+169
+00:17:46,760 --> 00:17:52,200
+you know very very important I mean if you can abstract out all the detail and almost of the
+
+170
+00:17:52,200 --> 00:17:58,600
+detail in you know form of clear interface like you know this let's say I mean if some third
+
+171
+00:17:58,600 --> 00:18:03,480
+party or user want to use your you know function what he should be bothered about is only you know
+
+172
+00:18:03,560 --> 00:18:08,680
+what are the expected input and what is the you know output and a clear description of this not
+
+173
+00:18:08,680 --> 00:18:12,840
+the actual you know implementation so he should not be bothered with the implementation and if he
+
+174
+00:18:12,840 --> 00:18:18,680
+is not bothered with the implementation then he can quickly build on top your of your you know
+
+175
+00:18:18,680 --> 00:18:25,320
+function by using your function some nice project which is interested in you know solving this
+
+176
+00:18:25,320 --> 00:18:30,920
+or building very quickly okay this is also very important so function now you see I mean gives you
+
+177
+00:18:30,920 --> 00:18:37,800
+all these you know advantages which in some sense has used you know help computer science
+
+178
+00:18:39,080 --> 00:18:46,920
+lot I mean in you know past decades to you know in the development of systems and software okay
+
+179
+00:18:46,920 --> 00:18:54,120
+so that's why functions are you know so important so now let's now get to the minute details one
+
+180
+00:18:54,120 --> 00:19:03,080
+by one slowly so now let me go to this Jupiter notebook and so now let's start seeing
+
+181
+00:19:03,800 --> 00:19:07,960
+the actual implementation of function right I mean how to we have seen so many functions still
+
+182
+00:19:07,960 --> 00:19:13,560
+now in our discussion without you know explicitly are talking about how to define them you know
+
+183
+00:19:13,560 --> 00:19:19,560
+but now in today's lecture we will see how a function how how you can actually define a function
+
+184
+00:19:19,640 --> 00:19:25,640
+and then how you can call a function and how to pass you know parameters to a function in an
+
+185
+00:19:25,640 --> 00:19:31,880
+actual function called so let's start with a very you know basic which is the syntax okay syntax
+
+186
+00:19:31,880 --> 00:19:37,240
+of a function like any other construct we will first know we learn how to write a correct
+
+187
+00:19:37,240 --> 00:19:43,480
+function which is you know correct by syntax okay so this is the typical syntax of a function
+
+188
+00:19:43,560 --> 00:19:47,560
+that you can see here so let me increase the font a bit
+
+189
+00:19:59,080 --> 00:20:07,080
+okay so this is how the functions in text looks so we we write def for to indicate again I'm
+
+190
+00:20:07,080 --> 00:20:13,000
+comp python that we are going to define a function and followed by that we give a function name
+
+191
+00:20:13,000 --> 00:20:17,960
+here I have written you know function name but you can write down you know any valid identifier as
+
+192
+00:20:17,960 --> 00:20:24,440
+a function name here and then you can pass parameters to the function so parameters are like
+
+193
+00:20:24,440 --> 00:20:29,880
+argument so what will be the input to the function so this is what I was calling interface okay so
+
+194
+00:20:29,880 --> 00:20:34,680
+so inputs are also you know interface you know clear defining clearly what do you expect
+
+195
+00:20:35,720 --> 00:20:40,520
+as an argument for this function is very important and if you can clearly define that then
+
+196
+00:20:40,520 --> 00:20:46,760
+anyone can use it by just providing you know these no parameters as argument when calling this
+
+197
+00:20:46,760 --> 00:20:51,960
+function so these are parameters which you are defining you know inside this parenthesis which
+
+198
+00:20:51,960 --> 00:20:58,040
+you write just up to the function name and then this colon you know indicates that now you are
+
+199
+00:20:58,040 --> 00:21:04,760
+going to define the actual body of the function okay so it's a very good practice to write the
+
+200
+00:21:04,760 --> 00:21:11,640
+description of the function in the very beginning so what you see you know here as you know inside
+
+201
+00:21:11,640 --> 00:21:20,600
+this no quotation is a doc string okay so for you for your function to be reusable by any third
+
+202
+00:21:20,600 --> 00:21:27,000
+party you should try to write down the description of the function as clearly as you know possible
+
+203
+00:21:27,000 --> 00:21:32,680
+we will come to it again in the maybe next video and tell you some you know template you can use
+
+204
+00:21:32,680 --> 00:21:38,360
+to define you know the interface and working of your functions properly in the very beginning
+
+205
+00:21:38,360 --> 00:21:44,440
+itself okay so let's say someone else who doesn't know or have access to the source code of your
+
+206
+00:21:45,240 --> 00:21:50,280
+you know function and he still you know wants to know about how to use your function okay the way
+
+207
+00:21:50,280 --> 00:21:55,960
+I mean you know you try to get information about any let's say built-in or a standard library
+
+208
+00:21:55,960 --> 00:22:00,840
+function of Python is what someone wants to do with your function also you have written so if you
+
+209
+00:22:00,840 --> 00:22:05,960
+don't provide you know good doc string then he will not be able to get the details of your function
+
+210
+00:22:05,960 --> 00:22:10,440
+he has no other way but to know open up your function and see the implementation to figure out
+
+211
+00:22:10,440 --> 00:22:17,080
+what each argument means but the the doc string provides you a method or you know a way to describe
+
+212
+00:22:18,120 --> 00:22:24,440
+the behavior or the interface of your function using natural language like English okay so whatever
+
+213
+00:22:24,920 --> 00:22:31,880
+you write in this doc string can be accessed later on by any you know third party or user by using
+
+214
+00:22:31,880 --> 00:22:37,720
+just help function okay if he writes no help and then your function name this doc string will be printed
+
+215
+00:22:38,680 --> 00:22:44,920
+okay and this doc string I mean if you have written it properly user can know exactly by reading
+
+216
+00:22:44,920 --> 00:22:51,080
+this doc string what your function does okay so it can have a very nice natural language description
+
+217
+00:22:51,560 --> 00:22:57,320
+what is expected as input for your function and what your function calculates and what is the
+
+218
+00:22:57,320 --> 00:23:04,680
+you know format of output that you want to you know give or return from your function so all
+
+219
+00:23:04,680 --> 00:23:10,440
+this you can describe using you know English language in this doc string personnel okay so to
+
+220
+00:23:10,440 --> 00:23:15,480
+remember the doc string is the very you know in the beginning so just after the colon you start
+
+221
+00:23:15,480 --> 00:23:20,920
+this quotation mark and you write whatever you feel can be important for any you know third party
+
+222
+00:23:20,920 --> 00:23:25,960
+user when it he's using your function okay you can also mention I mean whether your function is
+
+223
+00:23:25,960 --> 00:23:31,400
+changing you know some argument which has been passed to it or not so this is called no generally
+
+224
+00:23:31,400 --> 00:23:37,080
+side effects so again we'll come back to it but just to mention that this is a important aspect
+
+225
+00:23:37,080 --> 00:23:43,400
+of writing a reusable function if you don't write doc string properly then your functions are
+
+226
+00:23:43,480 --> 00:23:50,920
+actually not reusable no no other person except you can maybe you know reuse it conveniently so it's
+
+227
+00:23:50,920 --> 00:23:55,800
+very important point and just keep in mind whenever you're writing a function spend some time
+
+228
+00:23:55,800 --> 00:24:01,800
+writing the doc string for your function then comes so you also this definition we have talked
+
+229
+00:24:01,800 --> 00:24:07,880
+about function name you talked about parameters and this doc string we know also talked about this
+
+230
+00:24:08,040 --> 00:24:14,360
+optional but no I would you know encourage to write doc string for every function that you know you
+
+231
+00:24:14,360 --> 00:24:20,520
+want to write you know for your purpose and if you think I mean you want it to be you reuse by
+
+232
+00:24:20,520 --> 00:24:25,800
+someone else then certainly try to write doc string then comes the function body say then whatever
+
+233
+00:24:25,800 --> 00:24:31,800
+you write you know after that and before return is the actual function body which will not do
+
+234
+00:24:31,800 --> 00:24:37,320
+the computation that you wanted to do for example in this case let's say we just wanted to know
+
+235
+00:24:37,320 --> 00:24:43,400
+some these two parameters and result that value so this is no simple you know statement which
+
+236
+00:24:44,360 --> 00:24:48,760
+implements this no intention okay so this is the function body or the actual code
+
+237
+00:24:50,600 --> 00:24:56,840
+for which we have written this function and then there is a return statement followed by
+
+238
+00:24:56,840 --> 00:25:02,600
+whatever you want to return I mean we'll see that we can return you know multiple things from inside
+
+239
+00:25:02,680 --> 00:25:08,520
+a function okay we may not want to return something you know explicitly like the way we have
+
+240
+00:25:08,520 --> 00:25:14,600
+done here and all of those you know variation we will not see as we go but this is more or less
+
+241
+00:25:14,600 --> 00:25:20,520
+the you know basic syntax of no function there are many variations possible and we will
+
+242
+00:25:20,520 --> 00:25:27,160
+no discuss them one by one so so just just to give you a practical example for example let's say
+
+243
+00:25:28,120 --> 00:25:34,760
+if you want to calculate total price of you know a number of objects let's say so I can actually
+
+244
+00:25:34,760 --> 00:25:40,840
+write down that code you know outside function also but I if you write it inside a function is
+
+245
+00:25:40,840 --> 00:25:48,200
+some much more in a modular style of coding so so for if you want to calculate the total price of
+
+246
+00:25:48,200 --> 00:25:55,800
+a let's say a number of you know pieces of certain type then what you need to pass it the quantity
+
+247
+00:25:55,800 --> 00:26:00,440
+and the unit price right if you pass quantity and unit price you can you know easily calculate
+
+248
+00:26:00,440 --> 00:26:06,680
+the total price right total so this is how you can maybe define a simple answers to to do job like
+
+249
+00:26:06,680 --> 00:26:14,120
+this okay where you define this calculate total price as the function name and pass two arguments
+
+250
+00:26:14,120 --> 00:26:19,320
+which which is any way necessary to calculate these things right so the quantity is the first
+
+251
+00:26:19,320 --> 00:26:23,800
+thing that you pass and then the unit price is the second thing so what is the price for every unit
+
+252
+00:26:23,800 --> 00:26:28,360
+and then inside the function you actually calculate the total you don't price to be quantity
+
+253
+00:26:29,080 --> 00:26:34,120
+multiplied by unit price and then you can return this total now whenever you want to you know
+
+254
+00:26:34,120 --> 00:26:38,840
+calculate total price you can simply call this function with this argument and this will return
+
+255
+00:26:38,840 --> 00:26:45,640
+you the value that you want it okay so you know something along the same line I mean another
+
+256
+00:26:45,640 --> 00:26:51,240
+function you can go through it in an offline mode but let me go ahead with now function calls okay
+
+257
+00:26:51,240 --> 00:26:56,440
+so what we have done so far is just define the function so defining the function does not
+
+258
+00:26:56,440 --> 00:27:03,800
+automatically mean that this function you know will be executed now it's like you know it's like
+
+259
+00:27:03,800 --> 00:27:10,280
+you know just defining the structure of the function or how this function will work when it is called
+
+260
+00:27:10,280 --> 00:27:17,320
+okay but if you don't call it then I mean there is no state change you know in the actual machine
+
+261
+00:27:17,480 --> 00:27:21,880
+or abstract machine that you are running okay this is just definition it gives the template
+
+262
+00:27:22,680 --> 00:27:27,560
+of set of actions or sequence of actions that will be executed when you call this function so
+
+263
+00:27:27,560 --> 00:27:33,160
+the important thing is that you you have to call this function to you know get this piece of code
+
+264
+00:27:33,160 --> 00:27:41,000
+executed so how to you know call functions so calling functions executed code with a specific
+
+265
+00:27:41,000 --> 00:27:46,200
+value the formal parameter in the definition becomes argument in the call okay so what we call
+
+266
+00:27:46,200 --> 00:27:51,160
+here is the you know as parameters you remember I mean these whatever you pass here inside this
+
+267
+00:27:51,160 --> 00:27:57,240
+function is called parameters so when you want this function to you know execute you have to call
+
+268
+00:27:57,240 --> 00:28:02,200
+this function with these parameters and when we call the function with this parameter we say that
+
+269
+00:28:02,200 --> 00:28:07,800
+we are passing argument you know which should be you know taken you know as you know value for this
+
+270
+00:28:07,800 --> 00:28:15,720
+parameter and then this function is to be done now when trying to you know call a function there
+
+271
+00:28:15,720 --> 00:28:23,960
+are multiple ways in which you can call a function so let me try to write some simple function and
+
+272
+00:28:23,960 --> 00:28:29,960
+then talk about these things in in that context so so there are multiple ways in which you can
+
+273
+00:28:29,960 --> 00:28:37,960
+actually pass this parameter values to the function so the very first way and the most you know used
+
+274
+00:28:38,440 --> 00:28:45,560
+this positional argument where you just pass the values for those you know parameter in the order
+
+275
+00:28:45,560 --> 00:28:53,080
+in which they were defined in the actual function okay so so for example let me define a very simple
+
+276
+00:28:53,080 --> 00:29:13,480
+function just for this purpose only so let's see a simple function like this which creates
+
+277
+00:29:13,480 --> 00:29:19,240
+a rectangle okay so creating a rectangle means I mean just no printing this that it has created
+
+278
+00:29:19,480 --> 00:29:27,400
+a rectangle with some you know area and some color okay so so if you pass you know length width
+
+279
+00:29:27,400 --> 00:29:33,800
+and color as an argument so let's say I mean if you want to create a rectangle with length 10
+
+280
+00:29:34,760 --> 00:29:39,480
+you know width 5 and color red then you will pass those three things as this
+
+281
+00:29:40,280 --> 00:29:45,800
+argument with a function and function will automatically take this value and then create or print
+
+282
+00:29:45,800 --> 00:29:52,200
+this statement for you which you know somehow you know is like simulating a creation of this rectangle
+
+283
+00:29:52,200 --> 00:29:58,040
+for you okay now how to call this you know function so so let's say this function is defined let me
+
+284
+00:29:58,040 --> 00:30:06,920
+run this piece of code okay so now since this function is defined what we want to do is we want to
+
+285
+00:30:08,520 --> 00:30:15,080
+call this function okay how to execute this function unless there's some parameters that we want
+
+286
+00:30:15,160 --> 00:30:24,120
+so the you know easiest way is to give the or the pass the parameters in order in which it has been
+
+287
+00:30:24,120 --> 00:30:29,480
+defined let's say the first thing that it expects is length okay so let me create some rectangle
+
+288
+00:30:29,480 --> 00:30:37,800
+for this so what we are trying to look at right now here this concept of
+
+289
+00:30:37,800 --> 00:30:48,520
+positional argument okay and in positional argument we will see that in the orders matter
+
+290
+00:30:53,000 --> 00:30:58,440
+okay so what does it mean that if I want to now create let's say this is this is already
+
+291
+00:30:58,440 --> 00:31:03,720
+we have written a function to create rectangle now if I want to create rectangles let me create
+
+292
+00:31:03,720 --> 00:31:12,120
+rectangle let me call it rectangle one so if I want to create a rectangle one then I need to call
+
+293
+00:31:12,120 --> 00:31:19,960
+this function create rectangle and I have to pass all these three values right so the first value
+
+294
+00:31:19,960 --> 00:31:26,440
+that I have to pass is the length value okay when in length I can no pass may be 10 for the width maybe
+
+295
+00:31:26,440 --> 00:31:40,200
+I pass no five and then no for the color I mean pass color like no blue okay now using these
+
+296
+00:31:40,200 --> 00:31:47,160
+you know value for the parameters which we which are right now arguments so my arguments are 10
+
+297
+00:31:47,160 --> 00:31:52,680
+five and blue that I pass which will be taken as param value for this parameter length width and
+
+298
+00:31:52,680 --> 00:31:58,760
+color so it will be masked in the order in which I have given okay so what it assumes is that the
+
+299
+00:31:58,760 --> 00:32:06,760
+length value that I want to pass is 10 so you know it assigns this 10 to this length and not to the
+
+300
+00:32:06,760 --> 00:32:12,600
+width okay so this is why we say that you know order matters okay so when you so the and these are
+
+301
+00:32:12,600 --> 00:32:18,440
+no positional arguments okay so in positional argument order matters and you have to give you
+
+302
+00:32:18,440 --> 00:32:24,200
+have to pass arguments in in the correct order then only a minute can you know print for you
+
+303
+00:32:24,200 --> 00:32:30,840
+this statement where you know the past argument you see is the length and second argument is the width
+
+304
+00:32:30,840 --> 00:32:38,280
+so if you pass no 10 and five what you can expect is 10 followed by five and the idea whatever
+
+305
+00:32:38,280 --> 00:32:46,280
+you want to print okay so this is what is very important so now if let's say we want to run this
+
+306
+00:32:46,280 --> 00:32:53,000
+so what will you expect so you you will expect a you know statement like this right
+
+307
+00:32:55,000 --> 00:32:59,800
+we are length and width are replaced by 10 and five and the idea is replaced by the value
+
+308
+00:32:59,800 --> 00:33:07,960
+no 50 right so now let's just run it and try to see whether we get what we expect if we
+
+309
+00:33:29,800 --> 00:33:32,760
+you
+
+310
+00:33:59,960 --> 00:34:11,000
+okay so let me know create another rectangle before we print the value so let me know create another
+
+311
+00:34:11,000 --> 00:34:18,200
+rectangle which is maybe rectangle just not by flipping these things into
+
+312
+00:34:18,200 --> 00:34:34,680
+okay so this is okay so I so this is the second rectangle that we created and you see I mean
+
+313
+00:34:34,680 --> 00:34:40,840
+I have just changed the order of you know 5 and 10 and then what we do is we print let's say
+
+314
+00:34:41,400 --> 00:34:45,400
+okay so whatever is you know returned we need to print it
+
+315
+00:34:50,840 --> 00:34:59,400
+and then followed by let me print for the other thing also when I try to print so whatever was
+
+316
+00:34:59,400 --> 00:35:04,920
+returned was actually stored in this variable right I mean so no that's why we were not able to
+
+317
+00:35:04,920 --> 00:35:10,600
+print something so it was actually or returned in this variable rectangle one and rectangle
+
+318
+00:35:11,160 --> 00:35:12,920
+and now we want to do is
+
+319
+00:35:20,520 --> 00:35:25,160
+and let me now you know print these two things and see this is what we know we expected right
+
+320
+00:35:25,160 --> 00:35:33,800
+so the blue rectangle it for the first call created a blue rectangle with this 10 and 5 in this
+
+321
+00:35:33,800 --> 00:35:40,120
+order it is no same but then you can see the order in which it has been printed length into
+
+322
+00:35:40,200 --> 00:35:48,520
+with okay so position actually no matters now now for many functions when you have many let's
+
+323
+00:35:48,520 --> 00:35:55,560
+say a lot of parameters so it's not possible always to keep in mind the order of those parameters
+
+324
+00:35:55,560 --> 00:36:02,840
+right so it's not always feasible to although you may recall what are the let's say input to the
+
+325
+00:36:02,840 --> 00:36:09,720
+functions required you may not recall the order in which these input has to be passed okay so you
+
+326
+00:36:09,720 --> 00:36:14,600
+may not recall the exact position of these let's say parameter so in that case there is an
+
+327
+00:36:14,600 --> 00:36:21,080
+alternative you know way of passing argument which is called you know keyword arguments so instead
+
+328
+00:36:21,080 --> 00:36:27,960
+of maintaining the order I what I say is I explicitly tell you that what this value is intended
+
+329
+00:36:27,960 --> 00:36:35,080
+for or no to which parameter you shall you know assign these arguments okay so this is what we
+
+330
+00:36:35,160 --> 00:36:41,000
+call you know keyword argument we explicitly say that you know this value should be attached to
+
+331
+00:36:41,000 --> 00:36:48,440
+you know this particular parameter by naming it okay for example in the same you know for the same
+
+332
+00:36:48,440 --> 00:36:56,440
+function if I have to let's say pass these no arguments so what we are going to do right now
+
+333
+00:36:57,240 --> 00:37:01,000
+is pass the same argument as keyword argument okay
+
+334
+00:37:09,720 --> 00:37:15,000
+so in this one you may pass in you know out of order you don't need to know you know when you
+
+335
+00:37:15,000 --> 00:37:19,800
+are using this keywords I mean you are telling explicitly that this particular value is for this
+
+336
+00:37:19,800 --> 00:37:25,560
+parameter then and the order does not matter okay so you can pass out of order so that's the
+
+337
+00:37:25,560 --> 00:37:35,720
+advantage of you know this keyword no arguments so you can here order does not matter okay this is
+
+338
+00:37:37,160 --> 00:37:42,360
+very helpful now if I want to let's say create another rectangle let's say
+
+339
+00:37:45,320 --> 00:37:53,640
+and this time no let's say call it rectangle 3 so in that case if I call the same let's say
+
+340
+00:37:53,720 --> 00:38:02,040
+what was the name of this function create rectangle and I if I don't recall what was the
+
+341
+00:38:02,040 --> 00:38:08,520
+you know exact order in which this argument or these parameters were defined when defining
+
+342
+00:38:08,520 --> 00:38:16,280
+function it no it's not a no it will not hamper my you know call okay so I can easily call without
+
+343
+00:38:17,080 --> 00:38:23,080
+no recalling or remembering this orders now what I say I can pass maybe the color as the first
+
+344
+00:38:23,240 --> 00:38:26,840
+argument okay so but here also you need to remember the
+
+345
+00:38:29,960 --> 00:38:33,800
+name of the parameter okay so the least that you need to remember is the name otherwise you will not
+
+346
+00:38:33,800 --> 00:38:40,120
+be able to call even using keyword no arguments so what I say in the color you pass may maybe you
+
+347
+00:38:40,120 --> 00:38:48,280
+agree okay and remember the color was not the first argument right if you see here the definition
+
+348
+00:38:48,360 --> 00:38:55,240
+the color was the last no parameter but I have no pass it as a no first argument okay so
+
+349
+00:38:55,240 --> 00:39:04,440
+but I have I'm explicitly saying that no pass in color the value green python knows I mean how
+
+350
+00:39:04,440 --> 00:39:09,960
+to execute this function it it doesn't have any ambiguity okay now you can you know whatever order
+
+351
+00:39:09,960 --> 00:39:17,720
+you want for the other three many for example in the width but I can say the pass the value
+
+352
+00:39:17,720 --> 00:39:30,200
+eight and in the length pass the value 12 okay so this this is this is a perfectly valid call of
+
+353
+00:39:30,200 --> 00:39:36,040
+the function okay and now if you want to maybe you know change this to so it's not only this I mean
+
+354
+00:39:36,040 --> 00:39:41,400
+you can no use any other order for example immediately after this if you want to create another
+
+355
+00:39:41,400 --> 00:39:49,720
+rectangle let's say rectangle four here what no I may want to do is to you know maybe pass the length
+
+356
+00:39:49,720 --> 00:39:59,320
+itself as a first thing okay why I may want to know pass the length as the first no argument
+
+357
+00:39:59,320 --> 00:40:05,560
+but since I have explicitly mentioned that the value in length is no whatever you want to you know
+
+358
+00:40:05,560 --> 00:40:13,240
+maybe you know some other value 15 and color you pass no some other color maybe now this time
+
+359
+00:40:16,280 --> 00:40:20,840
+yellow and then width you pass no any other value of it let's say no six
+
+360
+00:40:23,400 --> 00:40:28,760
+so this is also a perfectly valid no call to the function okay so this will not cause any
+
+361
+00:40:29,640 --> 00:40:36,760
+error and then if you just to check whether things have been passed appropriately or not what we
+
+362
+00:40:36,760 --> 00:40:47,240
+can do is we can print okay then maybe a triangle three no then followed by
+
+363
+00:40:47,240 --> 00:41:05,400
+rectangle four and if you know predict you see I mean it actually did exactly what we
+
+364
+00:41:05,400 --> 00:41:12,280
+intended to do right so this is very you know important and especially important if you have
+
+365
+00:41:12,280 --> 00:41:17,880
+not written function function yourself or you know even if you have written function yourself in
+
+366
+00:41:17,880 --> 00:41:23,720
+some let's say other module some other file you don't recall the exact you know order in which
+
+367
+00:41:23,720 --> 00:41:30,440
+the parameters were there it's better to be safe and use these keyword arguments okay and here
+
+368
+00:41:30,440 --> 00:41:35,720
+again I mean these dog string become very important like I mean if you have written the function
+
+369
+00:41:35,720 --> 00:41:40,280
+even yourself let's say and we have kept it in some other file you are working in a large project
+
+370
+00:41:40,680 --> 00:41:46,840
+you have opened another no Jupyter file and you want to now you know use your function you don't
+
+371
+00:41:46,840 --> 00:41:51,240
+recall I mean you don't need to actually open that file again so what you can do is you can simply
+
+372
+00:41:51,240 --> 00:41:56,760
+print help and your you know function name and if your description of the function the dog string
+
+373
+00:41:56,760 --> 00:42:02,120
+is but properly written there then everything will be printed for you okay and you can use those
+
+374
+00:42:02,120 --> 00:42:07,960
+you know parameter name to easily call your function yes so that's that's why also I mean it's
+
+375
+00:42:07,960 --> 00:42:13,880
+very important to write a descriptive dog string which can at least help you figure out what were the
+
+376
+00:42:14,840 --> 00:42:20,040
+you know arguments and what were the name of the parameters that this function was defined on
+
+377
+00:42:20,040 --> 00:42:25,160
+so so that I mean you can later on while passing the argument be very sure that if you use this
+
+378
+00:42:25,160 --> 00:42:30,360
+keyword you know these names as keyword and then pass the value the function will be executed
+
+379
+00:42:30,360 --> 00:42:37,400
+properly okay so good so now you can go either with this positional argument way or you can go
+
+380
+00:42:37,400 --> 00:42:45,160
+with this keyword argument way or you can also you know use both together okay it's perfectly
+
+381
+00:42:45,160 --> 00:42:51,320
+all right to you know mix and use both of this method I mean for some of the argument you can
+
+382
+00:42:51,320 --> 00:42:57,560
+actually use you know positional way of passing the argument and for some you can use keyword okay
+
+383
+00:42:57,560 --> 00:43:04,360
+for example let's say if I you know remember that the first you know if you know among you know
+
+384
+00:43:04,360 --> 00:43:11,080
+many of the key you know parameter if I remember the the first two where you know these parameter
+
+385
+00:43:11,640 --> 00:43:16,360
+then I can actually use positional argument there and later on if I forget what were the
+
+386
+00:43:16,360 --> 00:43:23,160
+order in which other arguments no appear I can use keyword argument for the again I mean as a
+
+387
+00:43:23,160 --> 00:43:28,680
+concrete example in the same you know space for the same function maybe you know we can again
+
+388
+00:43:28,680 --> 00:43:36,360
+call the same function to what we are saying is we can actually mix positional and keyword and
+
+389
+00:43:36,360 --> 00:43:41,720
+when doing this you know important thing is that whenever you mix positional argument and keyword
+
+390
+00:43:41,720 --> 00:43:47,880
+argument your positional argument should be in the beginning so okay so once you have you know
+
+391
+00:43:47,880 --> 00:43:53,640
+used any keyword argument you cannot use the positional argument and there is a no logic behind it
+
+392
+00:43:53,640 --> 00:43:59,960
+because you know if you can let's say remember the first two you you actually mention only the values
+
+393
+00:43:59,960 --> 00:44:04,280
+for the first two parameters and then start using you know keyword two but the moment you
+
+394
+00:44:04,280 --> 00:44:10,440
+started using keyword argument you are actually you you started playing with the order of the no
+
+395
+00:44:11,000 --> 00:44:17,240
+passing values and from that point on word python will only you know expect you to give keyword
+
+396
+00:44:17,640 --> 00:44:25,400
+argument because you have started you know you have somehow you know by passing some argument at
+
+397
+00:44:25,400 --> 00:44:33,560
+at the place of at the position of other argument you you tend to somehow I know confused from
+
+398
+00:44:34,200 --> 00:44:39,800
+that point on word python compiler or interpreter that what's what how should it interpret
+
+399
+00:44:39,800 --> 00:44:47,640
+a given value or what should be the corresponding no parameter for this particular argument okay
+
+400
+00:44:47,640 --> 00:44:53,320
+since you already disturbed it so better you give it as a keyword argument okay so I mean again
+
+401
+00:44:53,320 --> 00:44:57,960
+just to be you know concrete let me give you some examples so what I'm saying is that this is
+
+402
+00:44:59,320 --> 00:45:05,800
+so first let me show you some valid way to pass this mixed kind of argument so what we are
+
+403
+00:45:05,800 --> 00:45:10,600
+going to see some valid way in which we can mix this positional and keyword argument okay
+
+404
+00:45:14,280 --> 00:45:26,920
+and keyword argument and then keyword so keyword followed by position is not all over so
+
+405
+00:45:27,800 --> 00:45:35,960
+so the very first example is create maybe we can create another and maybe rectangle and then
+
+406
+00:45:38,360 --> 00:45:49,720
+ask we can call this function create rectangle and then let me say that no let's say I remember
+
+407
+00:45:50,600 --> 00:45:57,480
+that the first argument is length and second argument is let's say which so I can pass this to
+
+408
+00:45:57,480 --> 00:46:02,520
+and for the third onward if I don't recall exactly what was the order let's say
+
+409
+00:46:04,200 --> 00:46:10,120
+there were some other no argument also so and I don't recall now the order of the argument so I can
+
+410
+00:46:10,120 --> 00:46:17,000
+maybe just say argument after this point to be by just no calling the name
+
+411
+00:46:17,480 --> 00:46:26,360
+okay so this is a valid you know call so we can do it okay so so in this case I mean since
+
+412
+00:46:26,360 --> 00:46:32,360
+only one you know one of the argument was remaining it was not very beneficial but let's let me
+
+413
+00:46:32,360 --> 00:46:42,360
+you know copy page this to give you a more let me say that if someone only recalls that the first
+
+414
+00:46:42,360 --> 00:46:52,200
+argument was no length and then onward he doesn't remember whether the second argument was width
+
+415
+00:46:52,200 --> 00:46:59,000
+or color so in that case what he can do is you know he can say if he is confused he may want to
+
+416
+00:46:59,000 --> 00:47:05,320
+say that no color is maybe you know purple but I I don't know whether color and width come before
+
+417
+00:47:05,800 --> 00:47:12,920
+or another so in that case he can clearly maybe pass this so this is perfectly allowed okay
+
+418
+00:47:13,800 --> 00:47:20,440
+so why this is allowed because because in this case what so the moment I started using keyword
+
+419
+00:47:20,440 --> 00:47:27,240
+argument after that I'm not using you know positional argument so I can't simply you know pass seven
+
+420
+00:47:27,240 --> 00:47:33,720
+here so what I'm saying is this is not possible okay because you have already used the second
+
+421
+00:47:33,720 --> 00:47:40,280
+position to pass you know parameter which was not placed at the no seconds position so from
+
+422
+00:47:40,280 --> 00:47:45,960
+this point onward Python will be confused so Python will expect you to give exact keyword name
+
+423
+00:47:45,960 --> 00:47:52,520
+and then followed by the value okay so so the what I you know say this is not allowed so this is
+
+424
+00:47:52,520 --> 00:48:04,120
+no invalid but if you give no this parameter name and then pass this value seven this is perfect
+
+425
+00:48:04,120 --> 00:48:14,200
+for Python okay so there is no no issue okay so if we run this piece of what you will see that
+
+426
+00:48:14,200 --> 00:48:20,120
+no both of them run without an error okay but we can also know create some you know invalid
+
+427
+00:48:20,840 --> 00:48:29,160
+argument the the way I said I mean if you let me say so what I'm saying is I mean once you have
+
+428
+00:48:29,160 --> 00:48:35,000
+started using the keyword argument you cannot go back to the positional argument it's what we are
+
+429
+00:48:35,800 --> 00:48:41,240
+claiming here so for example lectave angle seven I created in the very first argument I use
+
+430
+00:48:41,240 --> 00:48:46,360
+that skewered argument so after this point Python is confused I mean Python expect you to give
+
+431
+00:48:46,440 --> 00:48:52,520
+you know all other argument also as you know keyword argument so you cannot give here you know five
+
+432
+00:48:52,520 --> 00:48:59,480
+and this blue even though I mean no they're incorrect order but this is not something expected by
+
+433
+00:48:59,480 --> 00:49:06,120
+Python so if you know do this if you run see in positional argument follows keyword argument okay
+
+434
+00:49:06,120 --> 00:49:11,320
+so that's the problem that you have initially given the first argument itself as a keyword
+
+435
+00:49:11,320 --> 00:49:16,840
+argument and then you are trying to give other argument as positional argument so which is not
+
+436
+00:49:17,560 --> 00:49:25,640
+what is expected no by Python okay so skip these things in mind and now we'll continue the
+
+437
+00:49:25,640 --> 00:49:33,080
+discussion of function again in the next video so for this video we'll conclude the lecture here
+
+438
+00:49:33,080 --> 00:49:36,520
+okay so I'll see you in the next video till then goodbye
+

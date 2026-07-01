@@ -1,0 +1,580 @@
+1
+00:00:00,000 --> 00:00:13,000
+Hello and welcome back to Python Core and Applied Concepts for Reliable Data Sins workflow.
+
+2
+00:00:13,000 --> 00:00:20,520
+In today's session, we will try to locate Python in the overall landscape of programming
+
+3
+00:00:20,520 --> 00:00:22,720
+language paradigms.
+
+4
+00:00:22,720 --> 00:00:31,080
+We will also discuss some of its core strength and weaknesses in regard to the broader programming
+
+5
+00:00:31,080 --> 00:00:34,680
+language in a landscape.
+
+6
+00:00:34,680 --> 00:00:39,720
+So this slide shows some of the core strength of Python.
+
+7
+00:00:39,720 --> 00:00:44,320
+So let us briefly go through them one by one.
+
+8
+00:00:44,320 --> 00:00:52,600
+The very first set of principles, which are also known as gen principles, are the set
+
+9
+00:00:52,600 --> 00:00:57,440
+of principles which Python developers have maintained from the very beginning.
+
+10
+00:00:57,440 --> 00:01:02,520
+And probably that's also one of the major reason why this programming language has
+
+11
+00:01:02,520 --> 00:01:09,040
+become so popular and it has attracted so many programmers towards itself.
+
+12
+00:01:09,040 --> 00:01:16,520
+This gen principles actually tries to summarize these very important features of 90 programming
+
+13
+00:01:16,520 --> 00:01:17,520
+language.
+
+14
+00:01:17,520 --> 00:01:23,120
+So it tries to give importance to readability in a programming language.
+
+15
+00:01:23,120 --> 00:01:29,160
+So we want to write code that's easy to read and understand, improving collaboration
+
+16
+00:01:29,160 --> 00:01:30,240
+and maintenance.
+
+17
+00:01:30,240 --> 00:01:36,240
+So if you notice, when we will come to coding in Python, you will notice the Python awards
+
+18
+00:01:36,240 --> 00:01:41,640
+unnecessary curly braces and those kind of construct which are not easy to read.
+
+19
+00:01:41,640 --> 00:01:48,040
+Instead, it relies on a lot of indentation, which is visually quite appealing and by just
+
+20
+00:01:48,040 --> 00:01:55,000
+looking at the structure of the code, the visual appearance is so nice that you can make
+
+21
+00:01:55,000 --> 00:01:57,720
+out which of the blocks are written together.
+
+22
+00:01:57,720 --> 00:02:03,920
+It avoids unnecessary curly braces, semicolon kind of thing and then tries to use indentation
+
+23
+00:02:03,920 --> 00:02:09,720
+in a proper way so that the code is more readable by just looking at the visual structure
+
+24
+00:02:09,720 --> 00:02:10,720
+of the code.
+
+25
+00:02:10,720 --> 00:02:16,160
+You can make out a lot about the semantic structure of the code as well.
+
+26
+00:02:16,160 --> 00:02:21,560
+So this was the first point in which Python scores are quite high.
+
+27
+00:02:21,560 --> 00:02:29,240
+The second important feature that developers try to maintain is try to be simple and straightforward
+
+28
+00:02:29,240 --> 00:02:30,240
+when writing code.
+
+29
+00:02:30,240 --> 00:02:36,280
+I mean, instead of doing some tricky things, I mean Python principles actually advocates
+
+30
+00:02:36,280 --> 00:02:37,280
+to use simplicity.
+
+31
+00:02:37,280 --> 00:02:41,600
+I mean, you be straightforward and clear in what you are writing.
+
+32
+00:02:41,600 --> 00:02:46,800
+And instead of being implicit in your code, you try to be always explicit about what you
+
+33
+00:02:46,800 --> 00:02:48,720
+want to do through this code.
+
+34
+00:02:48,720 --> 00:02:57,040
+So these three important features of readability, simplicity and explicitly, explicitness makes
+
+35
+00:02:57,040 --> 00:03:11,560
+Python more attractive for programmers want to write and develop code fast and accurately.
+
+36
+00:03:11,560 --> 00:03:18,280
+The second most important thing in Python is that it very nicely blends these three programming
+
+37
+00:03:18,280 --> 00:03:23,440
+paradigm which is known as imperative object oriented and functional.
+
+38
+00:03:23,440 --> 00:03:31,360
+So it inherits some of the property of object oriented programming as well as function programming.
+
+39
+00:03:31,360 --> 00:03:37,880
+So inherently, it's an imperative programming language where you can define variables,
+
+40
+00:03:37,880 --> 00:03:41,680
+you can change the value of variables and so on.
+
+41
+00:03:41,680 --> 00:03:47,480
+But you can also define classes and instantiate them with objects inside Python.
+
+42
+00:03:47,480 --> 00:03:53,240
+So whether you are used to working in an imperative programming paradigm or an object oriented
+
+43
+00:03:53,240 --> 00:04:00,160
+paradigm or purely functional paradigm, you will always find something familiar when you
+
+44
+00:04:00,160 --> 00:04:01,920
+migrate to Python.
+
+45
+00:04:01,920 --> 00:04:08,240
+Maybe this is also one of the reason why many people accepted Python as their language
+
+46
+00:04:08,240 --> 00:04:14,200
+of choice because it brings all these features in a nice way.
+
+47
+00:04:14,200 --> 00:04:20,900
+The other important feature of Python is that Python already has a very rich ecosystem
+
+48
+00:04:20,900 --> 00:04:27,560
+which consists of comprehensive standard library and extensive third-party modules that
+
+49
+00:04:27,560 --> 00:04:33,640
+you can immediately start using from the very first day you start writing programming
+
+50
+00:04:33,640 --> 00:04:35,640
+Python.
+
+51
+00:04:35,640 --> 00:04:40,480
+For example, in some of the very popular packages that people use when they were with
+
+52
+00:04:40,480 --> 00:04:46,080
+you know, data science in Mumbai, Panda and there is an extensive ecosystem which support
+
+53
+00:04:46,080 --> 00:04:51,720
+data science and machine learning kind of activity inside, you know, while being inside
+
+54
+00:04:51,720 --> 00:04:52,720
+Python.
+
+55
+00:04:52,720 --> 00:04:58,240
+So that's how Python becomes even more popular among those who want to use it as a language
+
+56
+00:04:58,240 --> 00:05:03,680
+to develop, you know, serial data science, you know, projects.
+
+57
+00:05:04,680 --> 00:05:11,280
+Again, to summarize, I mean, there are several factors contributing to Python's popularity.
+
+58
+00:05:11,280 --> 00:05:16,640
+I have listed here a few of them such as, you know, Jain of Python which, you know, emphasizes
+
+59
+00:05:16,640 --> 00:05:23,400
+on readability and simplicity, its multi paradigm nature where it, you know, very nicely blends
+
+60
+00:05:23,400 --> 00:05:28,920
+all these, you know, imperative object oriented and functional programming in style inside
+
+61
+00:05:28,920 --> 00:05:30,520
+the same language.
+
+62
+00:05:30,520 --> 00:05:34,840
+Then you have, you know, comprehensive standard library that you can, you know, start using
+
+63
+00:05:34,840 --> 00:05:37,440
+from the very first day.
+
+64
+00:05:37,440 --> 00:05:44,040
+Also you can easily extend the modules of, you know, Python to incorporate some new feature.
+
+65
+00:05:44,040 --> 00:05:48,360
+In particular, in the data science domain, I mean, we have a very extensive, you know,
+
+66
+00:05:48,360 --> 00:05:54,800
+rich library that makes the job of building any serious data science project very, you
+
+67
+00:05:54,800 --> 00:06:00,320
+know, easy and manageable inside the Python polycosystem.
+
+68
+00:06:00,320 --> 00:06:05,760
+All that said, not everything is, you know, good with Python, Python also comes with some
+
+69
+00:06:05,760 --> 00:06:06,760
+disadvantage.
+
+70
+00:06:06,760 --> 00:06:13,240
+And especially if you are not writing programs carefully, then you will, you know, hit
+
+71
+00:06:13,240 --> 00:06:14,760
+these one of these issues.
+
+72
+00:06:14,760 --> 00:06:19,640
+But the very first issue is that Python can do significantly, you know, more energy than
+
+73
+00:06:19,640 --> 00:06:20,640
+see.
+
+74
+00:06:20,640 --> 00:06:24,960
+And all these stats are based on the average user.
+
+75
+00:06:24,960 --> 00:06:29,440
+If you don't write programs, you know, properly and, you know, make it efficient.
+
+76
+00:06:29,440 --> 00:06:35,080
+On an average, you will consume 76 times more energy than see, you will, you know, end
+
+77
+00:06:35,080 --> 00:06:39,880
+up consuming, you know, more memory in Python, if you know, compare it to see.
+
+78
+00:06:39,880 --> 00:06:44,840
+And then due to its not interpreted nature of Python, in here is an inherently slower.
+
+79
+00:06:44,840 --> 00:06:45,840
+Okay.
+
+80
+00:06:45,840 --> 00:06:52,440
+So also, I mean, Python is, you know, dynamically type, which prevents, you know, some very,
+
+81
+00:06:52,440 --> 00:06:57,960
+you know, important compiler optimization that is present when you don't have dynamic
+
+82
+00:06:57,960 --> 00:07:00,520
+typing in the programming language.
+
+83
+00:07:00,520 --> 00:07:05,640
+So these are some of the, you know, pitfalls or you can say disadvantage of Python, and
+
+84
+00:07:05,640 --> 00:07:12,000
+especially, I mean, these kind of things affect you more if you are not programming, you
+
+85
+00:07:12,000 --> 00:07:17,240
+know, carefully, you know, that said, I mean, there are always ways to mitigate, you know,
+
+86
+00:07:17,240 --> 00:07:23,200
+these advantages by writing program a little carefully where I mean, Python provides, you
+
+87
+00:07:23,200 --> 00:07:28,480
+know, options of being, you know, careful, for example, I mean, some of the options, you
+
+88
+00:07:28,480 --> 00:07:32,760
+know, one of the, you know, good option is, you know, optional typing, although, I mean,
+
+89
+00:07:32,760 --> 00:07:38,840
+it's a dynamically typed language, you can sign types to, you know, variable and expression
+
+90
+00:07:38,840 --> 00:07:43,160
+and that helps it, you know, reduce some of these effects.
+
+91
+00:07:43,160 --> 00:07:48,560
+Also there is, you know, just in time compilation possible using, you know, number and Python,
+
+92
+00:07:48,560 --> 00:07:51,040
+which we will discuss later on in the course.
+
+93
+00:07:51,040 --> 00:07:55,960
+There is also static compilation, you know, possible, which improves performance.
+
+94
+00:07:55,960 --> 00:08:01,440
+And you know, Python provides some concurrency and efficient data structure that you can
+
+95
+00:08:01,440 --> 00:08:06,800
+use effectively to improve the performance of your overall program.
+
+96
+00:08:06,800 --> 00:08:13,040
+Also, if you, you know, handle the error gracefully, you know, inside the Python ecosystem,
+
+97
+00:08:13,040 --> 00:08:18,040
+you will have, you can avoid many crashes and hence, you know, you can save a lot of energy.
+
+98
+00:08:18,040 --> 00:08:23,400
+So although, so, I mean, in a nutshell, I mean, while Python comes with this advantage,
+
+99
+00:08:23,400 --> 00:08:30,240
+it also provides you options to mitigate some of these disadvantages by being a little
+
+100
+00:08:30,240 --> 00:08:34,800
+more careful in writing program and analyzing your program.
+
+101
+00:08:34,800 --> 00:08:41,680
+So I'd like to conclude this session by giving you an overview of the whole course structure.
+
+102
+00:08:41,680 --> 00:08:50,960
+So right now, I assume you to be, you know, a beginner with some or no prior Python, you
+
+103
+00:08:50,960 --> 00:08:51,960
+know, familiarity.
+
+104
+00:08:51,960 --> 00:08:58,960
+So slowly, we will, you know, dive deep into the core programming elements present in
+
+105
+00:08:58,960 --> 00:09:01,640
+the Python from the next session onward.
+
+106
+00:09:01,640 --> 00:09:07,120
+We will start with the syntax, you know, data types, you know, loops, you know, it's
+
+107
+00:09:07,120 --> 00:09:11,480
+iteration kind of thing and then we will, you know, move to how to define, you know,
+
+108
+00:09:11,480 --> 00:09:16,440
+functions, modules, which make your code, you know, more abstract and manageable.
+
+109
+00:09:16,440 --> 00:09:21,400
+And we will end this course with a, you know, data science concrete data science project
+
+110
+00:09:21,400 --> 00:09:26,600
+where I will discuss this project in detail with you and we will try to come up with
+
+111
+00:09:26,600 --> 00:09:29,960
+the complete solution for this, you know, project.
+
+112
+00:09:29,960 --> 00:09:38,120
+So at the end of this course, you can expect to learn a lot of, you know, data science tools
+
+113
+00:09:38,120 --> 00:09:43,520
+and techniques, which are already present in library and how to build a data science workflow
+
+114
+00:09:43,520 --> 00:09:50,960
+from the stretch inside this Python ecosystem.
+
+115
+00:09:50,960 --> 00:09:55,480
+In this slide, we can see the overall course structure in a little bit more detail where,
+
+116
+00:09:55,480 --> 00:09:59,280
+you know, we start with the introduction to Python programming, which is what we have
+
+117
+00:09:59,280 --> 00:10:00,280
+already covered.
+
+118
+00:10:00,280 --> 00:10:05,840
+We go to the formal syntax and the core, you know, construct inside, you know, Python programming
+
+119
+00:10:05,840 --> 00:10:11,400
+language and then we will discuss about, you know, how to, you know, look, how to write
+
+120
+00:10:11,400 --> 00:10:14,600
+loops, you know, properly inside Python.
+
+121
+00:10:14,600 --> 00:10:19,120
+Once we learn this, we will go to, you know, lists and related algorithms, then we move
+
+122
+00:10:19,120 --> 00:10:25,320
+to functions and later on we go and see how to, you know, handle this runtime error that
+
+123
+00:10:25,320 --> 00:10:26,320
+I was talking about.
+
+124
+00:10:26,320 --> 00:10:32,120
+I mean, how to write properly, you know, exception handling code inside Python.
+
+125
+00:10:32,120 --> 00:10:36,760
+We then move on to, you know, higher end, some higher end concept like recurs and dictionary
+
+126
+00:10:36,760 --> 00:10:42,320
+data structure and we would try to bring some real, you know, example of data structure
+
+127
+00:10:42,320 --> 00:10:45,800
+where recursion and dictionary becomes really, you know, useful.
+
+128
+00:10:45,800 --> 00:10:52,160
+So, you know, at this point in time, in our course, we will introduce you to one data
+
+129
+00:10:52,200 --> 00:10:59,880
+sense, you know, project and this project will help you understand how to design a overall,
+
+130
+00:10:59,880 --> 00:11:03,480
+you know, ML workflow inside Python itself, okay.
+
+131
+00:11:03,480 --> 00:11:12,840
+So, we will do some very, you know, foundational, you know, steps of any ML workflow like
+
+132
+00:11:12,840 --> 00:11:16,840
+exploratory data analysis, you know, machine learning and we will learn about the overall
+
+133
+00:11:16,840 --> 00:11:17,840
+machine learning pipeline.
+
+134
+00:11:17,840 --> 00:11:23,400
+I mean, how to create a model, how to train a model, how to hyper, do hyper, do hyper
+
+135
+00:11:23,400 --> 00:11:28,800
+parameter tuning and then after you get a model, how to, you know, do post model analysis
+
+136
+00:11:28,800 --> 00:11:32,600
+to figure out whether your model is reasonable or not.
+
+137
+00:11:32,600 --> 00:11:38,760
+So, this course is designed in a way so that I mean, you start from the very, you know,
+
+138
+00:11:38,760 --> 00:11:46,080
+basic and we go to a point where we can build a whole ML workflow from, you know, scratch
+
+139
+00:11:46,120 --> 00:11:48,320
+inside the Python ecosystem itself.
+
+140
+00:11:48,320 --> 00:11:55,800
+So, I hope, I mean, you will enjoy this learning process, wishing you all the best for upcoming
+
+141
+00:11:55,800 --> 00:11:57,560
+lecture from the next lecture onward.
+
+142
+00:11:57,560 --> 00:12:02,760
+We will dive deep into the core Python, you know, syntax and semantics.
+
+143
+00:12:02,760 --> 00:12:05,920
+So, that's until then, goodbye.
+
+144
+00:12:05,920 --> 00:12:07,720
+I will see you in the next video.
+
+145
+00:12:07,720 --> 00:12:07,920
+Bye.
+

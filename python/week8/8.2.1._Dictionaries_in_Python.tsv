@@ -1,0 +1,494 @@
+start	end	text
+0	14960	Hello and welcome back to Python Core and Applied Concept for Reliable Data Sence Workflow.
+14960	23240	So in the last video we concluded our discussion of functions and today we will now begin
+23240	28080	the discussion of an important data structure in Python which is called Dixnary.
+28640	32400	Okay, so let me begin the discussion of Dixnary.
+32400	40480	We just like list Dixnary is no other data structure which is very popular in Python
+40480	46160	and the closest that you can relate it to is something called structure in C.
+46160	52480	Although I mean it's not good to relate data structure into programming languages
+52480	57280	and you can never have no one to one kind of correspondence between data structure
+57280	61680	depending on different programming language. But if you're coming from a C background
+61680	69200	you may find it you know easy to relate it to structures but no let me you know discuss this
+69200	74160	from very you know scratch I mean even if you don't know about the structure don't worry.
+74160	81280	So Dixnary in Python is a data structure that stores data as key value pair.
+81440	89280	Okay now in the list if you remember we could store multiple data entries in the single list
+89280	96000	right and the way to access those entries in the list was using indices right one two three
+96000	104800	zero one two three. So by default I can access any entry in the list using its corresponding index
+104880	112160	so that was a you know a way to access elements in a list but Dixnary provides you a more
+112960	120480	explicit you know sometimes very you know helpful way of accessing element while other key
+120480	126000	okay so keys are like you know names for those values that you can store in a Dixnary okay
+126000	131280	so it is all the advantages of you know list and on top of now you know unlike you know
+131440	137760	numerical indices Dixnary use meaningful keys to organize and access data so this is a core
+137760	144240	of Dixnary so you have both key and value pair so you can give meaningful name in in in
+144240	150400	in in form of keys and for those meaningful names you can actually assign values which
+150400	155040	which are called actual values okay so that's why we call key value pair so there may be multiple
+155040	161760	key value pair in the you know same Dixnary just like you know list you can have multiple values
+161760	169120	you know kept at different indices here you may have multiple values you know kept using or
+169120	174880	you know kept using this key values okay so if you want to access later you can use this key value
+174880	183200	so let's talk about syntax and semantics of Dixnary by creating through very you know elementary
+184160	190160	so to begin with now if you want to let's say create a empty you know so let's learn about
+190160	196720	the syntax by using these small examples okay and semantics as well so if you want to let's say
+196720	205280	create a empty list in Python so let me call this list empty you know sorry the Dixnary
+205520	214640	if I want to you know create an empty Dixnary then no this is the syntax that I normally prefer okay
+214640	220320	so you can you know simply start a curly brace and in it and this represents a you know Dixnary
+220320	225840	I mean if you write something like this it means that you have created an empty Dixnary and the
+225840	230880	name that you have assigned is empty Dix you could have chosen any other name here instead of
+230880	238400	no empty Dix but I'm just keeping this name not as an informative you know name so that we can
+238960	247680	know what we can alternatively also you know create this you know empty list by calling
+248880	254560	for this you know Dixnary constructor so no Python has a Dixnary constructor which let me
+255520	265920	create another empty Dixnary Dixnary and let's call it something different no this is an
+265920	274720	alternative way of creating a predixnary and you can call this method okay so the semantics of
+274720	283200	both these syntax are same either you write this way or you write no this way in both the cases
+283200	289600	you are actually creating a no empty Dixnary okay so this this you know constructor dict
+291520	296000	actually creates empty Dixnary you know if you pass no values here I mean it will create
+297040	303200	some Dixnary with initial values okay so this is the no way to create you know empty Dixnary
+303200	308240	in Python for example what if I let's say print
+312880	313840	let me print both
+316480	322160	empty Dix here what shall I expect when I print this
+323760	328480	what you see I expect empty Dixnary because this is what was here
+328560	334400	from what if in the other case if I print let me print the
+337200	343440	this alternative way of creating empty Dixnary if I have empty Dixnary alternative
+343440	349520	than if I again print it you see again you have the same empty list okay so all the I mean
+349520	355920	these two look different from the syntax point of view the semantics is same okay so we can
+356000	362320	get the same effect of creating empty list what if you want to create a list with some initial value
+362320	370240	let's so let me you know create you know sorry create a Dixnary with which contains no information
+370240	380800	about students okay so let's call it student Dixnary and then so the way to create
+381280	387920	again so if I wanted to empty Dixnary this this is this was not enough but if I want some values
+387920	395120	to be stored in this Dixnary from the beginning I can also initialize them the first thing so
+395120	403840	you're normally when we know right key we use strings as key values okay so that's most
+403840	410160	no convenient and no natural way to use no key values so here what I say is I
+410240	416320	not write down my first key is the name of this student okay this indicates that now I'm talking
+416320	420480	about the name of this student and let's say I have one student in my class
+423360	428480	heartic okay so heartics it also be my string because this is the name
+430480	437280	and if I talk about the age so let's know put some again I mean the age can be here the key
+437360	442960	can be the strings so key can be in a more general thing key can be any you know immutable
+444240	450880	no data types but here I mean we are using simple strings to refer to some meaningful you know
+450880	457440	values which we want to hit by these keys okay so the age actually represents the age and let's
+458000	467040	call the age is not 20 and then let me put some also great corresponding to this is student
+468800	477840	so the way to do this is we create another key which is called great and we assign some value
+477840	487200	corresponding to this key let's assign the grade A and finally let me have the courses that
+487440	495760	this student has taken already okay courses maybe another key that this student has taken and then
+497120	501120	in the courses I may have no multiple courses so no more convenient ways I mean I create a
+501120	508320	list which stores all the courses that he has let's take it so in this case let me say that he
+508320	519920	is taking math course and he has also taken some science courses okay so this is how we can
+519920	528320	actually create a no list which is not empty okay so this is student list okay which has
+528320	535360	interest of one of the student I mean no okay so let me know what happens if I print this
+536000	541200	okay to see whether this has been created properly or not we can just print this
+545520	550960	and see what happens so when I print this dictionary that we created just now you can see
+551840	559200	all these you know key value pair appear right so the name is hard the age is 20 great this one
+559200	563600	and courses that he has taken is this one okay so remember in this case no you have
+564400	570320	in the courses here you have a mutable data types right this is the list itself so the value
+570320	577200	is mutable so later on if you want you can actually add some more courses to this list okay so this
+577200	585440	is how we can initialize our dictionary with some initial values sheet of no always initializing
+586400	594240	as a empty again I mean using our dict constructed you could do the same thing I mean let's say
+594240	602240	I mean instead of this if I want to now define the teacher one of the teacher of the class then
+604080	610320	using the alternate method so I what I call is I call this no dict constructed and then
+610400	618720	is it up you know just empty of parenthesis what I put it is all the value that you want to
+618720	625840	initialize this dictionary with so you have no key value pair okay so the way to assign this key
+625840	632960	value pair here is you name you know give the name of the key and then assign the value okay so
+632960	638320	here I mean what you can do is you can give it you know the name of the teacher is and is
+638320	644960	it up no code and we use this kind of you know we assign our name to be let's say
+647280	657120	be shake and subject that I teach maybe maths okay
+657760	667840	and then my years of experience one can know from this data structure
+671520	679360	it's five and that's it because this is again an alternate way of creating it so I by default follow
+679360	684080	the first one I mean if I want to initialize but this is again another way by which you can
+684720	692960	create a dictionary okay and now what if I print it so can we just check the semantics also
+692960	703920	or by printing it whether it has created a dictionary that we intended to create it okay so
+708000	712400	and you see you you get the no same no similar kind of dictionary right with key value pair
+713040	719440	no although I mean not one thing I mean I have not given this key as a string right I have just
+720160	726080	no written the string without putting it them in code and by default what it takes is this
+726080	731760	string them as a string okay so this is the you know internal working of Python Python
+731760	738640	texture of that so you don't need to actually put them in you know this partition so you can
+738640	745680	simply write the name of the key and then assign the values okay so this is difference in syntax
+745680	752000	but as you see the semantics is more or less same I mean you get the same thing okay so good so
+752000	763920	now we know how to create you know different you know simple dictionaries inside Python programming
+763920	770880	language now as I mentioned I mean the keys can be various you know different immutable data types
+770880	776960	also right so so it may not make sense right now but in some circumstances this might come
+776960	784080	as handy okay so let me know first know or I don't what do I want to say so in the place of key
+784080	790880	you you need not always write down no strings like this yes also string like name age or this
+790880	797360	kind of thing so you can also use any immutable data type that you can not come up with so that's
+797360	805280	possible for example you know if I want to create a simple example let me call it mixed let's say
+805280	816720	you know call it mixed keys example okay and in this mixed key what I do is I create an open
+816880	824160	dictionary you know very first thing I keep as no simple string key let's say you know
+824160	833040	follow string key okay this is normal not type that we have been discussing so far here you keep
+833200	842240	in any any value let's call it a value one we keep here
+845360	852960	the second when when you're initializing this kind of dictionary for the second key I can
+852960	861040	I know you simply one two three so this is also no perfectly valid okay so we need not always
+861120	868240	give no string to the left hand side of this colon so in key value I can simply write it down this
+868240	876720	no one two three which is no integer and since integer are also you know immutable data types
+876720	882880	you can actually write it there and you can write anything here let's say you know call value
+882960	890320	that we write here this no call value do okay similarly what are the other you know I'm not a
+890320	897520	type that you can think of which are no immutable so what about tuples we can also write don't
+897520	903680	tuple on the left hand side of this colon okay so I mean this may look no weird right now
+904320	910320	you may not find it no useful but no in some cases you may find it to be useful for example let's
+910320	917280	say if I want to know I'm working with some geometry right and I want to store the coordinates like
+917280	925520	X and Y coordinate of a point you know in in the plane or no in in euclidean space in that case you
+925520	930960	can actually write this in X Y G or X Y kind of thing on the left hand side and on the right hand
+930960	935760	side you can actually write on the exact value of those no X Y coordinate instead of not creating
+935760	945840	these X no Y and G separate keys right so so that may be useful in some cases so but no I leave
+945840	952160	it to you to think about what can be you know good use cases for this kind of you know more
+953360	958480	general immutable types which can appear on as key on the left hand side okay for example here
+958480	964320	I mean for simplicity to show you that this syntax is perfectly valid I you know created some
+964320	970080	no arbitrary key which I called you know 1 comma 2 which is a tuple right this is a tuple
+970080	980320	and I assign some value to it and let's say what are the some other I mean can we also write down
+980320	987280	this you know Boolean kind of immutable data types towards as a key this is also perfectly valid
+987360	996960	okay so if you write down now I have some value let's say for value 4 okay so so this is no
+996960	1002240	perfectly allowed I mean if I now want to compile this what will happen let us try to
+1003840	1009600	compile this and see so there is no error right so by the accepted all of this that we have
+1009760	1016640	written just now so value can also be any data type you know just like you know
+1017920	1023360	just as a way we have created keys as different data types value can also be you know different
+1023360	1030320	data type and here there is no restriction that the values that you keep in the dictionary has to
+1030320	1036560	be immutable they can be even you know mutable okay for example let me let me you know now creator
+1036560	1043520	another dictionary which has so instead of mixed key we have now mixed type of let's say values
+1045360	1050560	in this dictionary okay so we again want to create a dictionary let me create a dictionary
+1050560	1055760	but there are multiple or key value pair the very first key value pair is let's say the name itself
+1055840	1064000	okay so name that the name is you know some name maybe
+1068160	1075840	and what about the again we can repeat the same thing right from here you take all these things
+1078480	1083920	great and this the courses I mean we have already seen no one such thing right where
+1084640	1102320	the courses was let me copy this right so in this case you can see you know in the
+1103200	1108640	value field you have string here here you have no integer here again you have a string
+1108720	1117360	but here you have a you know mutable that type right and this is list you cannot write this
+1117360	1123760	on the left hand side of a dictionary I mean on the left hand side of the colon as a key okay so
+1123760	1129920	you cannot create a key which is a list okay so no this is the difference that I wanted to
+1129920	1134080	to mention here you can also have no dictionary right because dictionary is also
+1134160	1140160	mutable that type you can simply write down a dictionary which let's say I mean in this case
+1140160	1146720	if you want to give some extra information about this student you can maybe say now these are
+1146720	1154400	some extra information that I want to pass okay info and what is the info key what what does it
+1154400	1160320	contain so it contains a dictionary where you may want to talk about the city okay you may want
+1160320	1172000	to talk about the city right let's say you know call it either way and then you can now talk
+1172000	1181680	about the zip code right I mean you can create a meaningful dictionary to you know store useful
+1181680	1191280	information something like this okay so this is no perfectly no valid thing to do in
+1192800	1199520	python okay so okay so so so this is what I wanted to mention that now the difference that you
+1199520	1206080	should note here is this kind of data types the list data types and the dictionary data type which
+1207040	1213040	come on the right hand side of colon when you know define a dictionary but they're not allowed
+1213040	1223360	on the left hand side okay so what if I know so that is some error so maybe I forward some comma
+1223440	1236560	somewhere let me just after this we have to separate all this key value pair with comma so hopefully
+1236560	1246560	if I compile this now this is no word okay so now we know how to create no no dictionary right
+1246640	1253280	simple dictionary you know into dictionary as well as how to do what are different types of
+1253280	1259600	key that you can create okay so in the case you can have actually these tuples okay and there's
+1259600	1266000	no boolean values which are immutable but you cannot have no list or dictionary in the key value
+1266000	1272080	but least and dictionary can appear as a value inside the dictionary okay this is all we
+1272080	1277360	wanted to know now the next question is that no one's you know define some data structure you
+1277360	1283520	also want to access the element of the data station like for for example in the dictionary if I
+1283520	1290160	want to access some value of the dictionary corresponding to a key how to know go about doing
+1290160	1297920	that okay so the simple way is to use this you know bracket notation okay this is grand bracket
+1298000	1303520	this and so again I mean let me you know bring a dictionary quickly for you
+1306960	1312240	let me so let's assume that we have you know this dictionary
+1313920	1318560	now again a student with name age you know this major minor information and then
+1318560	1325760	grade point and I want to actually as the name of the student okay in this case you know it's
+1325760	1330960	Bob right so how to access it now access means I want to access it and store it somewhere let's say
+1331520	1335760	okay so what we are going to do is we want to see how to
+1338960	1350080	access values using key okay so the first thing is I want to know maybe
+1350560	1362480	we have the student name and store it in a student name no variable so how to do that so this is
+1362480	1367920	no exact syntax how we can do it so we write the dictionary name which is no student and then
+1367920	1376720	we pass you know inside this bracket this key value for which we want to know on the exact value okay
+1376800	1382960	so the name of the key you have to pass inside this bracket so first you know name the dictionary
+1382960	1388480	and then in the square bracket you have to pass the key for which you want to know the value
+1388480	1393680	so for example in this case I want to know the name of the student so student followed by name
+1393680	1400960	and that will return us Bob and the Bob will be stored in student name okay so what about
+1400960	1406880	now the age so if you want to know the age of the student so in this case now it's 22 so again
+1409280	1411520	maybe no copy this thing I'm
+1413920	1421440	bested here and then change the student name to maybe student age so what shall I write
+1422640	1430480	here instead of the name key I want to now access the age key and age key has this
+1430480	1436480	22 so now if our understanding of the semantics is correct then if I print this student name and
+1436480	1444240	student age what shall I get here is the name Bob and the age 22 okay this is how you know we
+1444240	1454480	expect this to know so let me you know print it so what if I print now let's say
+1454560	1468240	in the very first case no what I'm trying to do is I'm trying to print the name okay
+1468960	1475200	and where did I store the name in the student name
+1476080	1485040	no very good and if my way of accessing the values in the dictionary is correct then this should
+1485040	1491760	return me the no correct name that I have accessed so what about you know age we can have no
+1491760	1504160	same you can print it let's print the same thing with this being now age instead of name and
+1505680	1512720	a variable that where we store this age is this variable and if you print it so what do we
+1512720	1522080	first shall we expect do you see so this is the semantics that we expected and this is correct
+1522880	1529440	so our method of accessing no different now values corresponding to key the dictionary is correct
+1530400	1537120	now what will happen I mean let's say I mean there should we know I mean this square bracket
+1537120	1543600	helps us and I access different no value for corresponding to different keys in the dictionary
+1544320	1552800	but what if I pass some key which is not there inside the dictionary is for example in this case
+1552800	1558640	let's say I've not stored the full number of this student here but what if I you know want to
+1558640	1566080	access the full number the student doing the same in a method so shall we try it so what I'm
+1566080	1576240	saying is let me not try to access something which is not present in the what I'm trying to do
+1576320	1577840	here is now I'm accessing
+1585360	1595200	full number which is not already there in the dictionary so let let's no try to compile this and
+1595200	1603040	see what happens I mean do we get something and inform so when we compile it I mean
+1603440	1610640	the no Python actually tells us that this is not there right so the key there there is a key error
+1610640	1616640	that happened there why because no full number is not there so so it will throw you this no error
+1616640	1624080	measures okay so this will not okay so there is an error right when you compile and try to run
+1624080	1630240	this code so if you have not defined something and if you want to access now this way that will be a
+1630240	1638640	problem okay so you know this is what we wanted to see here and now assuming let's say now we have
+1638640	1646960	not we are not accessing something which we have not defined now what if we want to maybe you know
+1646960	1654240	access so now just as we discuss in the case of list we have to be a little careful with
+1654240	1660480	you know multiple values in the dictionary also now if you if your dictionary has you know some
+1660480	1667440	of the values or values corresponding to some keys are multiple then you know while accessing you
+1667440	1673520	have to be a little careful I mean whether you want to actually access it just for as a copy or you
+1673520	1680240	want to you know access it and change the value so since multiple you know data types can be
+1681200	1686800	changed later on so you have to be very careful about your intention of accessing those
+1687600	1693120	no key so do you want to change those key or you just want to access it read it and then use it in
+1693120	1698160	some other computation and don't want to change the actual dictionary okay so this would be very
+1698160	1707920	clear in your mind so so your quick example let me again you know bring up so what we are
+1707920	1712800	trying to emphasize here is we want to talk about working with mutable values in the dictionary okay
+1712800	1716880	so in this case let me know bring again the same similar
+1724160	1735280	okay so so let's say we have a student on dictionary where there's a second key value pair has
+1735280	1741600	value as a mutable data type right here we have a list now you can actually access this list
+1741600	1748000	using the way we say right so this is about the age right so this list corresponding the age
+1748000	1761200	information okay so what if I want to know access this age in student age so let's say call it
+1761920	1771440	student age and then how to access this list so we can just name the key value and pass it here
+1772400	1778720	and the effect will be that we so this no student age here refers to another mutable list that is
+1778720	1789920	there inside this don't explain what will happen let's say if I now try to modify this student
+1790240	1796800	variable and since the student age variable has a list I can actually access the elements of
+1796800	1803920	list right using this variable and let's say I want to change the value at the position one
+1805120	1813040	and let's just want to set it zero now since no student age has a list inside it certainly I'm in
+1813120	1820080	this variable or this list you know value at the index one will change so what was this student
+1820080	1826480	is initially having 22 24 and 26 right so it was position one so position one was this position
+1826480	1835040	because no list start with zero so if I set that position one value to zero certainly I mean I
+1835040	1842400	can expect that in the student age variable that I have created right now this should change but
+1842400	1849600	will it change in the original student dictionary so this is what we are trying to discuss right now
+1851360	1856800	it turns out that this will be a change here as well you know in the original dictionary
+1856800	1862240	why because this was no mutable data type and when you assign this actually you know you assign
+1863440	1868800	this variable reference to the same list that is there in the dictionary data structure
+1869360	1874160	okay it's not that I mean you have passed a complete copy of this list to this student age
+1874160	1880960	so this assignment simply you know gives a new name a student age to the same you know object
+1880960	1888080	that is there in memory which this age is also referring to okay this is very important to keep
+1888080	1895840	in mind and you know the way to see here is that if you now you know print this you will see
+1896000	1904560	what will happen to the student that structure that we created so let me print
+1915120	1923360	what student and then see what happens to do you see the change here okay so this is what we
+1923360	1929280	wanted to highlight with this example that you know so now what we want to discuss is if there is
+1929280	1939280	a error let's say using the normal method of access which tries to access some key and if the
+1939280	1943680	key does not exist then in the previous case we saw that there were the error measures right like
+1943680	1951280	this so in this case if you remember I mean we tried to access this for number and for number
+1951440	1958480	was not there already in the dictionary data structure so it was an error so a safe way to
+1958480	1965440	no access element without getting this you know error message is to use the get method in Python
+1965440	1971920	corresponding to every dictionary okay so for instance I mean what we are saying here is that
+1972000	1979600	this kind of get method that we are going to discuss right now is a safe way of
+1981280	1986640	not returning values of dictionary keys if the not dictionary key does not exist right
+1986640	1991680	in any that case it will not return us a non-value okay so this get method
+1992640	2005120	returns non if key does not exist that's not exist
+2008000	2015520	does not exist okay so can we have a quick check of this so let me know bring the exact no code
+2015600	2028800	for this and then see you so the way to have a safe access is this one so every say phone
+2028800	2035600	now is equal to student.get and then phone number we pass as a key value even if the phone number
+2035600	2041040	is not there something will be written and that value should be none in this case is what
+2041040	2047920	now we are claiming so if you print this what what do we expect here so can we just run this
+2047920	2057520	be support and see maybe get a none right so the get with the fall value also can be used okay so
+2057520	2063440	if you don't want none value to be now thrown then alternative is you provide to this
+2063920	2072560	not get method the default value that you want to you know get stored into the variable which
+2072560	2080640	is trying to access this key value okay so again I mean to be more precise if I don't want this
+2080640	2086080	none value to be now passed and then say if I want to pass some other value in this case
+2086800	2094320	let me bring the code here so if I so this is an alternate way of using the get method so you pass
+2094320	2099520	on the key value if the value is not available you may want to you know return some meaningful
+2099520	2106240	information like you know not provided instead of you know none okay so so you can pass
+2106240	2110560	any other information you want here which you think is you know meaningful and then if you
+2110960	2117040	again print in this case you will see what's the value pass the value pass this you know not provided
+2118720	2128960	so these are some no ways of accessing the keys in a safe in python if the keys value are not
+2129040	2143280	they're already okay now that we have seen how to create dictionary and access
+2143920	2154400	its entries we want to know about how to update and modify dictionary so how to for example add
+2154720	2161120	new key value pair to any dictionary that is already existing okay so again let me now bring
+2161120	2167200	quickly dictionary first dictionary here let's call you know this dictionary to be
+2169840	2175760	student dictionary which has these three fields and what we want to do is we want to add now
+2175760	2181920	new key value pair okay for example for this you know student I may want to add this
+2181920	2188640	minor major information and the GPA so how to do that so the way to do this is
+2190160	2197440	have just kind of a statement okay so the important thing to note here is so this is the how we
+2197440	2204720	remember you we accessed also the value corresponding to key right so adding the dictionary name followed
+2204960	2212320	by the no key where you want to assign the value you use this no square bracket to access
+2212320	2218000	now that thing and then you can use the simple assignment operation that we have studied and
+2218000	2226000	here you can know put this as well as you so remember that this is not there okay so the major key
+2226000	2231760	is not there but this will not give you an error why because you are not accessing this element
+2231840	2239760	what it the semantics the internal semantics of Python say that if this key is not let's say
+2239760	2246480	available already then you create this key and then add this value okay and that's why I mean
+2246480	2251440	this will not throw you an error message unlike the previous case where no when we use the square
+2251440	2257360	bracket to access some key which was not already there you got the error message okay in both
+2257440	2262720	this case as you will not get the error message and if you want to know print now let's say
+2263440	2265200	your student placed
+2270320	2276800	okay and this point what will we get now you see we started with it all in name and age right
+2277440	2283600	but now it also has these other key values that we added that run here okay this is how you
+2283600	2290640	can not add things you can also modify existing thing in a plane where I mean and you can guess maybe
+2290640	2296800	how how to do that for the same let's say my student that we are talking about we can update
+2296800	2303280	the existing value by now using something as similar that we have done with list also
+2304480	2310240	okay so what about if I want to change the age to 21 now nine set of 20 and then
+2311120	2317520	no GPA to 3.8 so I can simply I know use this kind of syntax and assign values and it will be
+2317520	2326320	changed okay so just to see whether what we did make sense and is accepted by Python we can print
+2326320	2334160	here and then see for the result you see I mean the age has been now updated to 21 and the
+2334240	2341840	GPA has been updated to 3.8 and this is the simple syntax to do this okay now instead of you know
+2341840	2347920	doing know these update 1 by 1 what you can do is you can now also have multiple update okay
+2349600	2357280	no update no by that so instead of you know doing all these update 1 by 1 what we can say is
+2357280	2363680	we can call this update method and do it in one go okay so we can update multiple values
+2363840	2371440	at once so for example what just not to be concrete no let's take another example and so you so
+2371440	2383200	what I'm saying is we can use some syntax like this where I am just saying dictionary.update
+2383200	2389120	which is no what is the dictionary in them student and then update and you know in this no parenthesis
+2389120	2395040	inside this parenthesis you again open this dictionary you know curly notation and then say that
+2395040	2401440	age I want to update to 22 I also want to you know maybe add you know in the update you don't only
+2401440	2406960	want to maybe modify things no because no for modifying we know we may also want to add some new
+2407520	2412240	no key value pairs so that also you can simply say here in this way and the graduation
+2412240	2417680	unexpected graduation here is this way so what it will do is it will you know update the existing
+2418160	2423840	with the current value and if the keys are not already there then it will create this new key
+2423840	2429200	and you know update your dictionary accordingly okay so this is the you know syntax so remember
+2429200	2438880	to call this update method on this dictionary student and this is how not to know the exact
+2438960	2442960	semantics I mean we can just print and see what happened to our
+2444960	2449760	student if you know like I said remember we we mentioned what is the major but we did not
+2449760	2455760	mention what is the minor you know there's a graduation here and if I do this update now can I
+2455760	2464080	see those reflected in the original dictionary so let me run it and now you see you you have all
+2464080	2469280	those information right you you have stood as minor as well as the graduation year as additional
+2469280	2480800	field so we can also you know do update on nested dictionary but there you have to be a little
+2480800	2489360	careful you know some and you may you know encounter some not very hard to identify you know bugs
+2489600	2496560	if you are not careful so we can have you know dictionaries inside dictionaries also okay and in
+2496560	2506800	that case if you want to let's say modify the you know inner dictionary then you have to be a
+2506800	2513120	little careful you cannot do with no simply by no the way we are doing here for example again to
+2513120	2520400	make it more concrete let me know bring a dictionary which has a dictionary inside it
+2521200	2527600	so in this case our dictionary is again a student dictionary but not previous one where we have name
+2527600	2534880	as at least but then the grades in the grade no key we the value itself is a dictionary okay so
+2534880	2542880	this is why we call it a nested dictionary okay so dictionary has another outer dictionary has a
+2542880	2549680	key whose value itself is a dictionary remember this is a dictionary so in the grade I am willing to
+2549680	2554960	let's say or I want to store units for different subject that he has taken like maths and science
+2554960	2560000	and these are the values other you know grades that he obtained in this no subject so this is let's
+2560000	2567200	say our current dictionary which is a nested dictionary and if I want to now upgrade the grade let's
+2567200	2575760	say if I want to know upgrade the grade and maybe you know include one more no subject maybe
+2575760	2581840	right I mean he has taken let's say English now and you want to add this to the previous one okay so
+2581920	2593760	what if we call the update method that we use just now let me ask you what will happen if I
+2593760	2599840	do something like this okay so what I'm saying is you know in the grades no go to the student
+2599840	2607840	or student dictionary and update and in the grade field I want to say that I add this one
+2607840	2613120	so what will be the effect of this one I mean more do you guess I mean will this
+2614000	2619680	English be added here in this existing one or something else will happen
+2624880	2631120	okay so can we print and see I mean what happens if I do something like this if I open now
+2631600	2642000	student what is your guess what will happen you see in the grade I mean we only have now English
+2642000	2650560	grade right because this is how we say that you update the student dictionary so you have
+2650560	2658160	called this update on the student dictionary and then said that update the grades as this one so
+2658160	2665040	what it does it assigns this dictionary as the grade and it loses the initial to values that you
+2665040	2671040	had in the beginning okay so if your intention is just to add this one thing then you don't call
+2671920	2680400	the update on the student dictionary okay so you have to call this update method somewhere else
+2680400	2686160	right and what is the correct no place where you should try to you know add this so
+2687120	2692720	so in this case since we lost it so let me again maybe you know create the same
+2694320	2699280	dictionary here just repeating it because we lost try it when we updated we lost this math and
+2699280	2705760	science so now we again have let's say math and science and now we want to upgrade this dictionary
+2705760	2712560	and not the outer dictionary so now the correct syntax to do this should be to first access that
+2712800	2717760	key and then call update method on that okay so please think about it
+2718960	2725840	completely carefully and try to convince yourself that this is what we should do if we want to
+2725840	2732960	really upgrade this grade and add one more you know English language here okay up to this point
+2733920	2741920	so what shall we do we shall first access it no student grades and so when we say student grades
+2741920	2749520	so what does this mean so this itself is accessing you know now this dictionary
+2751520	2756560	and what we are saying is now we want to update we want to call update on this dictionary instead
+2756560	2763120	of the outer dictionary so when you do this update and then you add this to no new key value pair
+2763120	2770240	you will see that your old values are not replaced okay so can we now print and see again
+2772880	2775360	what happens to this one
+2786800	2791680	now you see we did not erase the previous you know values in the dictionary the
+2791680	2798320	inner dictionary but we know append its some values which are these values right so this is
+2799120	2804960	now all about updating values in a similar way you can also
+2806000	2811360	any move values from the dictionary I guess this is not quite possible to remove existing value
+2811360	2819760	from dictionary and the way to do that is to know use this no pop method which we also
+2819760	2827280	discussing in the case of I think list right so for instance if I have let's say a dictionary
+2828400	2836480	which is like this one we have grades of all these things and if I want to know let's remove some
+2836480	2844560	specific value pair from this grade okay so let's say I want to know pop the history thing from
+2844560	2853440	here okay so or remove the history value so what I can do is I can write a syntax like this
+2853520	2860000	that you from the grade you pop the history and whatever it is remaining you keep in the
+2860000	2865600	remote grade and then if you print the remote grade what you will see is
+2870960	2872560	can we now see the
+2877760	2882880	more removed one and what is in the remote one and then what is in the remaining one so
+2882960	2887200	the remaining one should be in the original grade right so let me
+2888160	2894720	print without this to see what happens if I print this you see in the remove
+2896000	2903280	one which is which we stored here we got this no 78 which is the history grade and the remaining
+2903280	2909280	one which means the original grade now does not have key value pair corresponding to history
+2910240	2919840	okay so this is how you can actually not remove entries from no key value pair from your dictionary
+2919840	2924960	if you want to clear everything from you know that dictionary you can actually say that no
+2926320	2931680	dictionary got clear okay so this will clear everything for example in this particular case if I
+2931680	2940480	want to completely flush out everything from this no grades dictionary so what I say is I
+2942000	2948720	will call this grades dot clear method and this will actually it is everything from this
+2948720	2956160	dictionary and after that if you want to print again or maybe print these grades
+2957040	2967600	so can we see what happened so the grade is empty now you can completely get rid of this whole
+2967600	2976320	dictionary by saying that now you delete the entire you know no grade thing and okay so so here
+2976320	2980960	what I said is now we flushed out everything from the dictionary so dictionary is empty but I can
+2981040	2985520	also say that no you delete the dictionary completely
+2990160	2994640	for example this action and then you print it said
+2998640	3006240	grades what what shall we expect we see we we expect a name error because there is nothing
+3006240	3013440	called grade now after we have done this action okay so this is all about you know removing items
+3013440	3026400	from a dictionary now let's discuss some very common dictionary method and operation that we use
+3026400	3033440	most of the time when we are working with dictionary so okay so so the very first kind of
+3033920	3041120	no thing that we want to do is no access all the keys or you know values of dictionary or even
+3041120	3046560	all the items of the dictionary you know what about what is the way to you know list all of them
+3046560	3053120	or access all of them okay so for instance I mean let me again give you a concrete example what
+3053200	3058960	we are praying to say here is if we have let's say our dictionary like this
+3062320	3067840	and we want to get all the keys in the dictionary let's say okay so how to access all the keys
+3067840	3072720	in the dictionary so we are only interested about no keys and not the values let's say so the
+3072720	3080800	now ways you call this dictionary dot key method okay so very quick way of accessing all the
+3081600	3090880	keys of the dictionary that we are talking about maybe use this syntax so if we print
+3092320	3096560	inventory so in this case no inventory was our dictionary so inventory dot keys
+3096560	3103600	now this will return all the keys and I'm just now casting it to list so that now I can print
+3104000	3112800	clear now so you okay so if I do this then you can see and when we run this we see all the
+3113600	3120800	keys in this one okay similarly we can also no print only the values and no no access all the
+3120800	3128800	values of in the dictionary and not their key so a syntax which allows us to do this
+3129760	3137840	is very similar to this one except the value part okay so we use the same things here I
+3137840	3144800	prefer to remember we use inventory which is our dictionary dot value so this dot value method
+3145680	3151120	we'll get us the values which is stored here and I again no cost it to list
+3152000	3157360	for no better printing so what shall we expect here 10 5 and 8 is what we can expect
+3157520	3164000	so this is how we can access all the values okay so the semantics is exactly what we can expect here
+3165280	3170800	now what about if you want to you know get this pair itself and let's store it in some list
+3172320	3178960	okay as tuple maybe okay so if I want to no get this no key value pair as tuple and then
+3179600	3186960	no maybe store it in some list so what I can do is I can say no give me that using dictionary dot
+3186960	3192800	items so there is no three method that we are using here for us first one is dictionary dot key
+3192800	3197520	which gives you only key then dictionary dot values which gives you not only values and then
+3198080	3205040	the dictionary dot item gives you both this key value pair as tuple okay so what I'm telling you
+3205040	3211760	right now is that what if I want to store all this key value pair in a list so then I can
+3212240	3220400	you call I can use syntax which is not like this so dictionary dot item so this items will return
+3220400	3227360	all these no key value pairs tuples inside the list okay and let me just see what happens
+3227360	3234000	you see I mean these are the tuples that you get and you can use the same you know length
+3234000	3240240	function to you know get the length of you know dictionary to to say I mean how many you know
+3240240	3247680	keys are there in this no dictionary okay this is also no possible so you can use the same
+3247680	3253840	thing that we use in the case of list now you can iterate so since we can access these keys
+3253840	3260640	and values now you know we can also iterate over them so there's no very much possible okay
+3260640	3266960	because we could access them so we can actually iterate over them and do some actions which we
+3266960	3273120	want to you know refer to where we want to refer to these keys or values okay so like it's just
+3273120	3277600	like I mean it rating over loops you wanted to iterate over different elements of loop and do
+3277600	3282960	something according to what you could access or where you are present in the case of dictionary also
+3282960	3288320	we can iterate over no different key value no pairs in the dictionary and do something that we
+3288320	3295440	want to do with those no key value pair okay so we can iterate through keys okay so so we can
+3295440	3301200	iterate through key value pair and we can iterate through values also so all of this is no possible
+3301200	3311600	so for example again I mean let me bring quickly dictionary which contains the student scores here
+3313120	3319280	let's say this is the dictionary which no contains the student score here and if I want to iterate
+3319280	3325840	through keys let's say now first we know we want to iterate through keys so what we can
+3328400	3333920	and what are the keys remember they're a student name right so what we can say is
+3335600	3343840	we can use the syntax like this so for student in student scores
+3343840	3353120	okay so by by default when you know write down no for student in student score so this student
+3354160	3360800	takes the value of keys okay so you don't need to explicitly write no dot key so you can simply write
+3360800	3367600	no for a student in student scores so the dictionary name and by default it takes no iterate over
+3368080	3376000	key values okay so what is there in the student for each of these you know iteration these value that
+3376000	3383680	is present here as key the student names okay and if you print what is there in this what you
+3383680	3391360	expect is all this student so the iteration will cause printing of these key values is what we
+3391360	3397920	are expecting here so let me print it and so you so you see I mean when we print it what we get
+3397920	3405520	in a student here is not the by default this key values okay but if you want to you know iterate
+3405520	3415360	over no different no items of this thing and maybe you know not now and print these no student
+3415360	3422160	as well as there is score so we can actually do this no key value iteration also okay so for that
+3422160	3430160	again we can use something similar as we have seen do recall I mean our previous discussion of items
+3430160	3436080	here if you remember this item actually returns key value pair so we can use something like that
+3436080	3443200	to get both the values now if you want okay for example in this case what we can do is if you
+3443200	3448320	want to print score for different let's say student then we can use this syntax
+3455280	3462240	for a student in for a student know how much score in student scores dot item you see students
+3462240	3468240	score dot item contain tuples right key value pairs and list of key value pairs so now you are
+3468240	3476400	saying that take the key to be student and no score to be put in this score and then you print
+3476400	3482080	both no student and score okay so this is how you can access both the field information or whatever
+3482080	3488960	is important for you using this kind of syntax okay so let me now run this to see what happens
+3489680	3498800	and you see we could print all these things right so this is how you know we can you you can
+3498800	3505200	actually iterate over the items instead of it trading over only the you know keys or it's
+3505200	3512080	trading over the values okay so good so now we know how to iterate over keys iterate over values
+3512080	3518080	and how to iterate over you know items so I don't think I have discussed how to iterate over
+3518080	3524720	no values right so to iterate over values again actually you can use you know dictionary dot no
+3524720	3531440	value I think we have already we have listed it right this is what we discussed there so no need
+3531440	3538880	to discuss it again so if you want to use you can use actually for loop and do I trace it to do some
+3539680	3546080	meaningful let's say computation by trading over values also the way we did for this to think
+3546560	3553440	okay so with this we would like to no conclude our discussion of dictionary with a few observations
+3553440	3559280	for dictionaries are better than list certainly in some cases when you want to look up information
+3559280	3565120	by meaningful keys right for example you know the same student data you could have created using
+3565120	3572480	you know three different list and by default you might have no assume that every index correspond
+3572480	3579520	to the same entry for example you know Alice has age 20 and grade 85 okay and simple little
+3579520	3585440	this kind of thing but then the method of accessing information regarding every student may not be
+3585440	3590320	that simple I mean you can do in principle but then you know go through this code to figure
+3590320	3595280	out that no this is not that simple okay and this is not explicit way of doing it you have to always
+3595280	3602000	keep in mind you have to get the indices of Bob to know what was his no age and what was his grades okay
+3602080	3607760	so of you know although it's possible to do everything know with list but it's not that convenient
+3607760	3611600	and that's why we have this dictionary that the structure here things are more explicit and
+3611600	3616400	hence efficient in this case you can see for Alice all the information I could keep at one place
+3616400	3623200	and if I want to access I can simply say that no for Bob give me the grade so you can just say
+3623200	3628800	you know students go to Bob and then get that grade so it is very easy to access and effort to
+3628800	3637200	know values in a dictionary because it's organized in a very nice way and it's a very structured
+3637200	3641840	way of representing things right I mean you not only give the values but you also give the name
+3641840	3647680	that those values correspond to so that's why I mean these are self-documenting nature dictionary
+3647680	3654720	where you have no meaningful keys to represent what values they correspond to and it may be very
+3654720	3660000	convenient in most of the programming exercises and we will do some of them in the programming classes
+3660000	3665680	and you'll see dictionaries are very very useful in now implementing those kind of programming
+3665680	3670560	our computational tasks okay so with this I would like to conclude to this lecture I will
+3670560	3674560	meet you in the next video till then goodbye

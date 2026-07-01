@@ -1,0 +1,145 @@
+Hello and welcome back to Python Core and Applied Concepts for Reliable Data Sins workflow.
+In today's session, we will try to locate Python in the overall landscape of programming
+language paradigms.
+We will also discuss some of its core strength and weaknesses in regard to the broader programming
+language in a landscape.
+So this slide shows some of the core strength of Python.
+So let us briefly go through them one by one.
+The very first set of principles, which are also known as gen principles, are the set
+of principles which Python developers have maintained from the very beginning.
+And probably that's also one of the major reason why this programming language has
+become so popular and it has attracted so many programmers towards itself.
+This gen principles actually tries to summarize these very important features of 90 programming
+language.
+So it tries to give importance to readability in a programming language.
+So we want to write code that's easy to read and understand, improving collaboration
+and maintenance.
+So if you notice, when we will come to coding in Python, you will notice the Python awards
+unnecessary curly braces and those kind of construct which are not easy to read.
+Instead, it relies on a lot of indentation, which is visually quite appealing and by just
+looking at the structure of the code, the visual appearance is so nice that you can make
+out which of the blocks are written together.
+It avoids unnecessary curly braces, semicolon kind of thing and then tries to use indentation
+in a proper way so that the code is more readable by just looking at the visual structure
+of the code.
+You can make out a lot about the semantic structure of the code as well.
+So this was the first point in which Python scores are quite high.
+The second important feature that developers try to maintain is try to be simple and straightforward
+when writing code.
+I mean, instead of doing some tricky things, I mean Python principles actually advocates
+to use simplicity.
+I mean, you be straightforward and clear in what you are writing.
+And instead of being implicit in your code, you try to be always explicit about what you
+want to do through this code.
+So these three important features of readability, simplicity and explicitly, explicitness makes
+Python more attractive for programmers want to write and develop code fast and accurately.
+The second most important thing in Python is that it very nicely blends these three programming
+paradigm which is known as imperative object oriented and functional.
+So it inherits some of the property of object oriented programming as well as function programming.
+So inherently, it's an imperative programming language where you can define variables,
+you can change the value of variables and so on.
+But you can also define classes and instantiate them with objects inside Python.
+So whether you are used to working in an imperative programming paradigm or an object oriented
+paradigm or purely functional paradigm, you will always find something familiar when you
+migrate to Python.
+Maybe this is also one of the reason why many people accepted Python as their language
+of choice because it brings all these features in a nice way.
+The other important feature of Python is that Python already has a very rich ecosystem
+which consists of comprehensive standard library and extensive third-party modules that
+you can immediately start using from the very first day you start writing programming
+Python.
+For example, in some of the very popular packages that people use when they were with
+you know, data science in Mumbai, Panda and there is an extensive ecosystem which support
+data science and machine learning kind of activity inside, you know, while being inside
+Python.
+So that's how Python becomes even more popular among those who want to use it as a language
+to develop, you know, serial data science, you know, projects.
+Again, to summarize, I mean, there are several factors contributing to Python's popularity.
+I have listed here a few of them such as, you know, Jain of Python which, you know, emphasizes
+on readability and simplicity, its multi paradigm nature where it, you know, very nicely blends
+all these, you know, imperative object oriented and functional programming in style inside
+the same language.
+Then you have, you know, comprehensive standard library that you can, you know, start using
+from the very first day.
+Also you can easily extend the modules of, you know, Python to incorporate some new feature.
+In particular, in the data science domain, I mean, we have a very extensive, you know,
+rich library that makes the job of building any serious data science project very, you
+know, easy and manageable inside the Python polycosystem.
+All that said, not everything is, you know, good with Python, Python also comes with some
+disadvantage.
+And especially if you are not writing programs carefully, then you will, you know, hit
+these one of these issues.
+But the very first issue is that Python can do significantly, you know, more energy than
+see.
+And all these stats are based on the average user.
+If you don't write programs, you know, properly and, you know, make it efficient.
+On an average, you will consume 76 times more energy than see, you will, you know, end
+up consuming, you know, more memory in Python, if you know, compare it to see.
+And then due to its not interpreted nature of Python, in here is an inherently slower.
+Okay.
+So also, I mean, Python is, you know, dynamically type, which prevents, you know, some very,
+you know, important compiler optimization that is present when you don't have dynamic
+typing in the programming language.
+So these are some of the, you know, pitfalls or you can say disadvantage of Python, and
+especially, I mean, these kind of things affect you more if you are not programming, you
+know, carefully, you know, that said, I mean, there are always ways to mitigate, you know,
+these advantages by writing program a little carefully where I mean, Python provides, you
+know, options of being, you know, careful, for example, I mean, some of the options, you
+know, one of the, you know, good option is, you know, optional typing, although, I mean,
+it's a dynamically typed language, you can sign types to, you know, variable and expression
+and that helps it, you know, reduce some of these effects.
+Also there is, you know, just in time compilation possible using, you know, number and Python,
+which we will discuss later on in the course.
+There is also static compilation, you know, possible, which improves performance.
+And you know, Python provides some concurrency and efficient data structure that you can
+use effectively to improve the performance of your overall program.
+Also, if you, you know, handle the error gracefully, you know, inside the Python ecosystem,
+you will have, you can avoid many crashes and hence, you know, you can save a lot of energy.
+So although, so, I mean, in a nutshell, I mean, while Python comes with this advantage,
+it also provides you options to mitigate some of these disadvantages by being a little
+more careful in writing program and analyzing your program.
+So I'd like to conclude this session by giving you an overview of the whole course structure.
+So right now, I assume you to be, you know, a beginner with some or no prior Python, you
+know, familiarity.
+So slowly, we will, you know, dive deep into the core programming elements present in
+the Python from the next session onward.
+We will start with the syntax, you know, data types, you know, loops, you know, it's
+iteration kind of thing and then we will, you know, move to how to define, you know,
+functions, modules, which make your code, you know, more abstract and manageable.
+And we will end this course with a, you know, data science concrete data science project
+where I will discuss this project in detail with you and we will try to come up with
+the complete solution for this, you know, project.
+So at the end of this course, you can expect to learn a lot of, you know, data science tools
+and techniques, which are already present in library and how to build a data science workflow
+from the stretch inside this Python ecosystem.
+In this slide, we can see the overall course structure in a little bit more detail where,
+you know, we start with the introduction to Python programming, which is what we have
+already covered.
+We go to the formal syntax and the core, you know, construct inside, you know, Python programming
+language and then we will discuss about, you know, how to, you know, look, how to write
+loops, you know, properly inside Python.
+Once we learn this, we will go to, you know, lists and related algorithms, then we move
+to functions and later on we go and see how to, you know, handle this runtime error that
+I was talking about.
+I mean, how to write properly, you know, exception handling code inside Python.
+We then move on to, you know, higher end, some higher end concept like recurs and dictionary
+data structure and we would try to bring some real, you know, example of data structure
+where recursion and dictionary becomes really, you know, useful.
+So, you know, at this point in time, in our course, we will introduce you to one data
+sense, you know, project and this project will help you understand how to design a overall,
+you know, ML workflow inside Python itself, okay.
+So, we will do some very, you know, foundational, you know, steps of any ML workflow like
+exploratory data analysis, you know, machine learning and we will learn about the overall
+machine learning pipeline.
+I mean, how to create a model, how to train a model, how to hyper, do hyper, do hyper
+parameter tuning and then after you get a model, how to, you know, do post model analysis
+to figure out whether your model is reasonable or not.
+So, this course is designed in a way so that I mean, you start from the very, you know,
+basic and we go to a point where we can build a whole ML workflow from, you know, scratch
+inside the Python ecosystem itself.
+So, I hope, I mean, you will enjoy this learning process, wishing you all the best for upcoming
+lecture from the next lecture onward.
+We will dive deep into the core Python, you know, syntax and semantics.
+So, that's until then, goodbye.
+I will see you in the next video.
+Bye.

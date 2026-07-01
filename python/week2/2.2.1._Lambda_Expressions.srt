@@ -1,0 +1,2416 @@
+1
+00:00:00,000 --> 00:00:20,800
+Welcome back to our discussion on Python's expression hierarchy.
+
+2
+00:00:20,800 --> 00:00:28,880
+So if you recall from our last video, we have already discussed these three bottom layer
+
+3
+00:00:28,880 --> 00:00:35,760
+of expressions. So the first one, we define very primitive expressions using different types
+
+4
+00:00:35,760 --> 00:00:42,960
+of operator in Python programming language. And then we also talked about something called
+
+5
+00:00:42,960 --> 00:00:50,880
+assignment expression, which is also called Walrus operator. And we saw that it is distinct
+
+6
+00:00:50,880 --> 00:00:58,240
+from the assignment statement. And that distinction was very much important for writing
+
+7
+00:00:58,800 --> 00:01:05,280
+semantically correct program. So syntax error are not a problem again to re-emphasize.
+
+8
+00:01:05,920 --> 00:01:11,200
+If you do some syntax error with these Walrus operator, so somehow compiler or interpreter will
+
+9
+00:01:12,560 --> 00:01:18,640
+catch this and report you bug. But we have to be very careful about the semantics of these
+
+10
+00:01:19,520 --> 00:01:25,920
+Walrus operator or assignment expression when we are using it inside any complex,
+
+11
+00:01:25,920 --> 00:01:31,920
+let's expression. So but again, I mean the status of these assignment or Walrus operator is
+
+12
+00:01:31,920 --> 00:01:37,600
+expression. So they are valid expression and you can use it at any place where an expression can
+
+13
+00:01:37,600 --> 00:01:46,720
+be used. Now in our progression of this hierarchy of Python expressions, the last remaining
+
+14
+00:01:47,600 --> 00:01:53,680
+block is about lambda expression. So in today's video, we will talk about lambda expressions. I mean,
+
+15
+00:01:54,320 --> 00:02:02,320
+water lambda expressions and what is its relevance and how to use it properly inside Python code.
+
+16
+00:02:02,960 --> 00:02:08,960
+So without no further delay, let's move to our Jupyter Notebook and we'll continue our
+
+17
+00:02:08,960 --> 00:02:20,640
+discussion from there. I hope you can see my Jupyter Notebook. So this is the place, if you recall,
+
+18
+00:02:21,600 --> 00:02:29,840
+we concluded our last discussion. So we discussed this great assignment ambiguity where the
+
+19
+00:02:29,840 --> 00:02:36,880
+similar looking expressions on which involve assignment statement as well as this Walrus operators,
+
+20
+00:02:38,320 --> 00:02:44,080
+we have quite differently. We saw that while this second statement was
+
+21
+00:02:44,640 --> 00:02:52,080
+happily accepted by the interpreter, the last statement that we have written could not be accepted.
+
+22
+00:02:52,080 --> 00:03:00,880
+And the reason for that was that Python expected something here, whatever was present here to be an
+
+23
+00:03:00,880 --> 00:03:07,280
+expression, but this is not an expression unlike this thing. So this was the reason why it did not
+
+24
+00:03:07,280 --> 00:03:14,640
+accept this, but it happily accepted this one. So this kind of difference is a very subtle
+
+25
+00:03:14,640 --> 00:03:20,800
+and you need to be careful with the semantics to figure out why one is accepted and why another
+
+26
+00:03:20,800 --> 00:03:27,680
+one is not accepted. So now let's move on to the topic of today's discussion, which is lambda
+
+27
+00:03:27,680 --> 00:03:36,320
+expressions. So what are lambda expressions? So you can see my cursor. So lambda expressions are
+
+28
+00:03:36,400 --> 00:03:43,040
+no a way to create small anonymous functions, functions without name as an expression. So
+
+29
+00:03:43,040 --> 00:03:48,960
+although we did not talk about function to this point, but since lambda expressions are also
+
+30
+00:03:48,960 --> 00:03:56,800
+expressions, I find it justified to mention it at this point. So if you don't follow some of the
+
+31
+00:03:56,800 --> 00:04:01,920
+concepts that we discussed in today's video, don't worry. I mean we are going to come back to
+
+32
+00:04:02,000 --> 00:04:06,640
+the discussion of lambda expression again when we discuss, you know, function in detail. So at that
+
+33
+00:04:06,640 --> 00:04:12,400
+point of time, you might be able to make sense of, you know, few things that may not be
+
+34
+00:04:12,400 --> 00:04:19,200
+relatable in this video. Okay. So please, you know, just bear with me and continue the whole video,
+
+35
+00:04:19,200 --> 00:04:25,360
+watching the whole video. It will make sense mostly, but if you don't follow everything, then I mean
+
+36
+00:04:25,360 --> 00:04:30,560
+just wait for the lectures on functions and we will revisit these things in much more detail.
+
+37
+00:04:30,640 --> 00:04:36,160
+So, so just in short, I mean, what is, you know, lambda expressions, they are a way to
+
+38
+00:04:37,040 --> 00:04:43,200
+implement functions inside, you know, Python without giving functions any name. So that's why
+
+39
+00:04:43,200 --> 00:04:49,040
+we are calling it anonymous functions. Okay. So, you know, think of it as, you know, quick one time
+
+40
+00:04:49,040 --> 00:04:53,840
+use functions that you can create on the spot. So normally what happens, if you, if some,
+
+41
+00:04:54,400 --> 00:05:00,960
+no piece of code in your program, you find it to be very relevant and maybe reusable at
+
+42
+00:05:00,960 --> 00:05:06,560
+multiple times. We try to define functions, you know, using those course and we say that,
+
+43
+00:05:07,440 --> 00:05:12,640
+we give it a name. I mean, this block of code, we normally assign a name, which is the function name.
+
+44
+00:05:12,640 --> 00:05:18,000
+And then we can use those, you know, set of, you know, lines or collection of line at multiple
+
+45
+00:05:18,000 --> 00:05:23,280
+places, wherever we need that kind of reasoning on, you know, logical calculation, not to happen.
+
+46
+00:05:23,280 --> 00:05:28,160
+So that's, you know, overall, you know, agenda of defining functions in any programming language,
+
+47
+00:05:28,160 --> 00:05:36,160
+that if you feel that your code is reusable, normally we give it a name and we use it at multiple,
+
+48
+00:05:36,160 --> 00:05:39,840
+you know, different places. Okay. But I mean, lambda expression, you know,
+
+49
+00:05:41,040 --> 00:05:44,800
+just the opposite purpose. I mean, let's say, I mean, if you want to define, you know,
+
+50
+00:05:44,800 --> 00:05:51,280
+some functions or some set of expressions, which might not be that useful at multiple places,
+
+51
+00:05:51,280 --> 00:05:56,560
+it may be, you know, used in just one or two, it's a multiple places in the same, you know,
+
+52
+00:05:56,560 --> 00:06:02,480
+file, maybe. And it's very simple. The logic is very simple. Then in that case, we don't go ahead
+
+53
+00:06:02,480 --> 00:06:08,240
+and define the whole, you know, function, you know, using and give it a name because that name
+
+54
+00:06:08,240 --> 00:06:13,280
+may clutter the name space for your whole, you know, Python development environment. You also don't
+
+55
+00:06:13,280 --> 00:06:18,800
+want to write lots of, you know, names or variables so that I mean, things are available for future
+
+56
+00:06:18,880 --> 00:06:24,640
+use, right? And there is no conflict between, you know, names. So lambda expressions are, you know,
+
+57
+00:06:24,640 --> 00:06:30,320
+one such a way where you don't assign normally names to functions, but then functions are defined.
+
+58
+00:06:30,960 --> 00:06:36,400
+And this thing is called an expression instead of, you know, programming statement, we call,
+
+59
+00:06:36,400 --> 00:06:41,600
+you know, these are the expression inside, you know, programming language like Python.
+
+60
+00:06:41,600 --> 00:06:46,880
+So the basic syntax for the lambda expression is, you know, something like this,
+
+61
+00:06:46,960 --> 00:06:53,200
+where you see, I mean, we write lambda to indicate that we are, you know, going to write a lambda,
+
+62
+00:06:53,200 --> 00:06:58,160
+no function, which Python should accept as an expression itself. So the whole thing from,
+
+63
+00:06:58,160 --> 00:07:03,600
+you know, from the beginning to the end is actually an expression, okay? And what's the,
+
+64
+00:07:03,600 --> 00:07:08,160
+you know, way the exact syntax is you write lambda, which indicates to the compiler that we are
+
+65
+00:07:08,160 --> 00:07:13,040
+going to, you know, write a lambda function. And then we pass all the parameters for the function,
+
+66
+00:07:13,040 --> 00:07:18,160
+right? So function always does some computation. And to start the computation, it needs some input
+
+67
+00:07:18,160 --> 00:07:22,640
+from you, but those inputs are nothing called parameters. So you may have one parameter, you may
+
+68
+00:07:22,640 --> 00:07:28,000
+have two parameters, you may have multiple parameters, you may pass, you know, more than two
+
+69
+00:07:28,000 --> 00:07:32,800
+parameters in list or dictionary inside of function. So all of these things again, we will come to
+
+70
+00:07:32,800 --> 00:07:37,920
+the function discussion and there, we will be very detailed about, you know, this parameter,
+
+71
+00:07:37,920 --> 00:07:42,480
+but for the time being, I just wanted to highlight the, you know, intention of passing parameter,
+
+72
+00:07:42,480 --> 00:07:48,240
+because you want to compute something based on some initial value that the user will provide you.
+
+73
+00:07:48,240 --> 00:07:54,080
+So that's what we call parameter. And then the expression is actually what computes the, you know,
+
+74
+00:07:54,080 --> 00:07:59,920
+this, you know, complex value or, you know, complicated, you know, value that you want to calculate
+
+75
+00:07:59,920 --> 00:08:06,720
+for your purpose, let's say. So this is the expression, okay? So let's try to define some very,
+
+76
+00:08:07,680 --> 00:08:14,000
+very, very easy lambda functions for very simple functions.
+
+77
+00:08:15,600 --> 00:08:20,400
+For example, one, let's say, you know, we try to, you know, create a lambda function,
+
+78
+00:08:20,400 --> 00:08:25,440
+which tries to mimic this function, which calculates the square of any given number, okay?
+
+79
+00:08:25,440 --> 00:08:31,920
+So if you have to, let's say, write a simple function in Python, which calculates the square of,
+
+80
+00:08:31,920 --> 00:08:41,920
+you know, number, then, let me show you, I think it's visible. So you can see my
+
+81
+00:08:43,280 --> 00:08:49,520
+Jupyter notebook. So what we have here is, we have defined a very simple, you know, function.
+
+82
+00:08:49,520 --> 00:08:54,640
+So this is how we define a function, okay? So we said definition. So this deaf indicates that
+
+83
+00:08:54,640 --> 00:08:58,880
+we are going to write a function. And then we give the name of the function that we are going to,
+
+84
+00:08:59,840 --> 00:09:05,040
+you know, define right now, so which is, you know, our square function. So we say it squared.
+
+85
+00:09:05,040 --> 00:09:09,120
+So square is the name that we have chosen, okay? So you can use any name. I mean, you want
+
+86
+00:09:09,760 --> 00:09:16,880
+to use here to, let's say, name this function. So since square, you know, resembles the intention of
+
+87
+00:09:16,880 --> 00:09:22,960
+the, or the purpose of the function. So we kept the name square here. And this is the argument.
+
+88
+00:09:22,960 --> 00:09:28,400
+So inside parenthesis, what you pass is the argument. So normally, when we want to calculate a
+
+89
+00:09:28,400 --> 00:09:33,200
+square, what do you want? We want to pass one number. And then we want to get the square of that
+
+90
+00:09:33,200 --> 00:09:38,160
+number, okay? So this is how that, you know, a simple function, like, you know, square is defined,
+
+91
+00:09:38,160 --> 00:09:44,400
+can be defined inside Python. So do you say deaf square and then pass argument. And in the return
+
+92
+00:09:44,400 --> 00:09:49,920
+value, so what should you return? You should return X, no, raise to two, right? So you remember,
+
+93
+00:09:49,920 --> 00:09:57,200
+I mean, this was our notation for exponentiation that we discussed in our last lecture. So
+
+94
+00:09:57,920 --> 00:10:02,720
+if we define, you know, this function, you will see that this function will appropriately
+
+95
+00:10:02,720 --> 00:10:07,040
+calculate the square of numbers. So for instance, I mean, let me just copy paste this code
+
+96
+00:10:07,680 --> 00:10:14,400
+in the code block. So let us copy and paste this in the code block and, you know, try to run it.
+
+97
+00:10:15,120 --> 00:10:19,840
+So when we run, we see there is no error. So syntactically, you know, this is a valid definition
+
+98
+00:10:19,840 --> 00:10:26,560
+of a square function that we just now define a very simple function which computes a square of,
+
+99
+00:10:26,560 --> 00:10:31,120
+you know, any number. So we are sure at this point, since this code block, you know,
+
+100
+00:10:31,120 --> 00:10:35,520
+run properly, we know that there is no syntax error. But what about the semantics? And we also
+
+101
+00:10:35,520 --> 00:10:43,680
+check this function, let's say on some simple input, like, what if I call this function on,
+
+102
+00:10:43,680 --> 00:10:54,880
+let's say, two. So if we call this function on two, should you see, I mean, this is what we should
+
+103
+00:10:54,880 --> 00:11:00,960
+get, right? I mean, when we compute the square of two, it raised two to the power, you know,
+
+104
+00:11:02,320 --> 00:11:07,760
+two and which is four. So what about if I change it to, you know, square of, let's say eight,
+
+105
+00:11:11,120 --> 00:11:17,040
+it returns 64, right? So, so semantically also, this function looks to be a correct implementation
+
+106
+00:11:17,040 --> 00:11:23,040
+of the square function that we intended to, let's say, implement. So this, you know, one,
+
+107
+00:11:23,040 --> 00:11:29,920
+no, simple way to define a square function and give it a name. So the square is the name,
+
+108
+00:11:29,920 --> 00:11:35,840
+right? Whenever I want to apply this function to any argument, I use the, you know, this keyword
+
+109
+00:11:35,840 --> 00:11:41,120
+square, right? Here I know what, this identified name out, this, you know, function in this square.
+
+110
+00:11:41,120 --> 00:11:46,480
+Okay. So you can, you know, use it at multiple, you know, places, I mean, wherever, now you want,
+
+111
+00:11:46,480 --> 00:11:51,920
+you can actually just to calculate a square of any number that you want. Okay. So a square of,
+
+112
+00:11:51,920 --> 00:11:56,960
+let's say, you know, no, three, what about square of three, square of three? No.
+
+113
+00:11:58,480 --> 00:12:03,920
+So, now lambda coming back to the, you know, there's lambda expression. So lambda expression
+
+114
+00:12:03,920 --> 00:12:12,560
+gives you a way to not give this name square to this square function and still be able to calculate
+
+115
+00:12:12,560 --> 00:12:18,800
+square. So how to define that? So let me know, you know, I mean, we may not, so we may want to,
+
+116
+00:12:18,800 --> 00:12:23,680
+let's say, give name, but this expression itself, I can be used, you know, as a mean to compute
+
+117
+00:12:23,680 --> 00:12:29,520
+this square without giving it a name. For the timing, let me, you know, show you in another,
+
+118
+00:12:29,520 --> 00:12:37,680
+so let me add one code block here and let me know now define our lambda. So we can also,
+
+119
+00:12:37,680 --> 00:12:42,320
+let's say, this is a alternate, you know, way to define the square function. So what we say is
+
+120
+00:12:42,400 --> 00:12:53,760
+the square is nothing but lambda and then we pass x and what we return is, you know,
+
+121
+00:12:57,840 --> 00:13:04,720
+two. Okay. So this is an alternate way to define the same, you know, square function and still
+
+122
+00:13:04,720 --> 00:13:08,880
+give it a name. Okay. So we have given the square function a name, but instead of, you know,
+
+123
+00:13:08,880 --> 00:13:15,920
+this kind of syntax where we use dev and then, you know, this return, what we say is, we use
+
+124
+00:13:15,920 --> 00:13:22,400
+this expression and remember an expression can appear on the right hand side of an assignment,
+
+125
+00:13:22,400 --> 00:13:27,360
+right? So this is a simple assignment statement that we were not talking in the previous class,
+
+126
+00:13:27,360 --> 00:13:32,560
+right? Where square is a, you know, a variable that we have created, a name that we have created,
+
+127
+00:13:32,560 --> 00:13:39,440
+and what we have assigned to it is an expression and what this expression resembles is a, you know,
+
+128
+00:13:39,440 --> 00:13:45,440
+function. So what's the effect of this expression? So this expression is, you know, defining a function
+
+129
+00:13:46,480 --> 00:13:51,920
+which takes as an input. So everything before this colon, you can see a colon, right? So between,
+
+130
+00:13:51,920 --> 00:14:00,080
+you know, lambda and this colon, so everything between lambda and this colon are arguments of the
+
+131
+00:14:00,080 --> 00:14:07,200
+function. Okay. And whatever you wanted to return, like here, you wanted to return this particular
+
+132
+00:14:07,200 --> 00:14:14,480
+value, right? Or this expression. So that expression, we want to write here. Note that we don't,
+
+133
+00:14:14,480 --> 00:14:19,360
+you know, write now this, you know, return keyword. No, that is a result by Python for defining
+
+134
+00:14:19,360 --> 00:14:24,080
+your function in this particular way. Okay. So you don't need that. So this lambda expression,
+
+135
+00:14:24,640 --> 00:14:31,360
+you know, is a concise expression also, right? You just write lambda x colon. Okay. So input and
+
+136
+00:14:31,360 --> 00:14:37,120
+output, no, input parameter and the output expressions are just separated by a simple colon.
+
+137
+00:14:37,120 --> 00:14:44,400
+And this expression itself is nothing but no function. Okay. So now if you define square in this
+
+138
+00:14:44,400 --> 00:14:50,080
+way, which is a assignment expression, I don't know, simply said, where left hand side is a,
+
+139
+00:14:50,160 --> 00:14:54,640
+you know, name that you have defined square and the right hand side is an expression. Okay.
+
+140
+00:14:54,640 --> 00:14:58,800
+So you will see this will have the same effect. Okay. So now let's say if I,
+
+141
+00:15:00,320 --> 00:15:05,040
+first let me check whether this is accepted or not. So when we run, you see this is accepted.
+
+142
+00:15:05,040 --> 00:15:13,600
+So Python does not show any syntax error. So now let's, you know, create a next code block and try
+
+143
+00:15:14,080 --> 00:15:22,800
+to again apply the same function square to maybe that's the same values. If you want to apply
+
+144
+00:15:22,800 --> 00:15:34,080
+square to eight, you can see the values 64 and what about no square of two before? Now you might
+
+145
+00:15:34,080 --> 00:15:38,800
+be confused that I mean we have defined two square, right? I mean one square here and one square
+
+146
+00:15:39,040 --> 00:15:46,720
+here. So which one Python knows? So since no, this is the last code block we have run. So this is
+
+147
+00:15:46,720 --> 00:15:51,920
+the value that or this is no meaning of the square that Python considered at this particular
+
+148
+00:15:51,920 --> 00:15:57,840
+moment of time when I run this no code block. So you know, just remove this confusion. What I can
+
+149
+00:15:57,840 --> 00:16:03,280
+say is I can know instead of saying square, I can say it's square one. Let's say this definition
+
+150
+00:16:03,360 --> 00:16:08,720
+and then try to now apply square one to two. So that there is no scope of confusion. So now,
+
+151
+00:16:08,720 --> 00:16:15,120
+you know, we have only square one and if you, sorry, so you have to run this code block for Python
+
+152
+00:16:15,120 --> 00:16:20,960
+to know that what is square one? Once we have run this code block and if you now run this
+
+153
+00:16:20,960 --> 00:16:26,160
+in the square one or two, then this is right. Okay. And similarly, I mean, we again, let's say
+
+154
+00:16:26,160 --> 00:16:32,000
+run this code black block for Python to remember that the square is no, we find in this way.
+
+155
+00:16:32,000 --> 00:16:38,160
+And then a square one is again doing the same job as a square, but just for a different name,
+
+156
+00:16:38,160 --> 00:16:44,240
+we have defined a new, given a new name, but you see, schematically, both functions are same.
+
+157
+00:16:45,680 --> 00:16:50,560
+You can run it on any number of input and check. I mean, they give you the same, you know,
+
+158
+00:16:50,560 --> 00:16:55,200
+output because the meaning or semantics of this expression exactly resemble the meaning of a
+
+159
+00:16:55,200 --> 00:17:03,680
+function. Okay. Okay. So, so now that we have discussed the basic, you know,
+
+160
+00:17:05,280 --> 00:17:09,760
+the most, you know, elementary way in which, you know, these lambda expressions can be used for,
+
+161
+00:17:10,960 --> 00:17:16,400
+you know, defining these functions. I mean, we can see some complicated, you know, functions.
+
+162
+00:17:16,400 --> 00:17:21,600
+So, I mean, here instead of maybe, you know, defining a square one also, let me, let me,
+
+163
+00:17:21,600 --> 00:17:27,680
+I mean, create another code block. And so what I want to emphasize here is, and if you just use
+
+164
+00:17:27,680 --> 00:17:33,440
+this expression, okay, and then, you know, you apply, let's say, the value,
+
+165
+00:17:38,640 --> 00:17:47,600
+because this should come now inside. Okay. So, if you should see, this was an expression,
+
+166
+00:17:47,600 --> 00:17:54,080
+I, you know, put it inside a parenthesis, and then if I apply value to this expression,
+
+167
+00:17:54,640 --> 00:17:58,400
+this will give you the same result. I mean, so instead of, you know, defining and giving it a name,
+
+168
+00:17:59,360 --> 00:18:04,400
+a priority, you can directly also use the same lambda expression to say that, hey, see,
+
+169
+00:18:04,400 --> 00:18:10,160
+here is an expression. No, that is nothing but a function. And I want to evaluate this expression
+
+170
+00:18:10,160 --> 00:18:14,800
+with this argument too, because, no, you need to pass some argument to a function too. No,
+
+171
+00:18:14,800 --> 00:18:19,600
+evaluate it. Okay. So, so when you pass this argument to it, it will directly return you force.
+
+172
+00:18:19,600 --> 00:18:23,440
+So, you don't even need to give this name square one when you are using this lambda kind of
+
+173
+00:18:23,440 --> 00:18:27,520
+expression. So, what about, you know, let's check it on one more input before we go ahead.
+
+174
+00:18:28,880 --> 00:18:33,680
+You see, I mean, we get the same things. So, you know, this gives the, the motivation of using,
+
+175
+00:18:33,680 --> 00:18:39,200
+you know, this lambda expression that you don't actually need to give any name to the function.
+
+176
+00:18:39,200 --> 00:18:45,600
+So, you can directly use them. Now, let's try to write some, you know, simple function.
+
+177
+00:18:45,600 --> 00:18:52,560
+Let's say with multiple input, like, for example, if you want to, now, add, let's say, two numbers,
+
+178
+00:18:52,560 --> 00:18:58,240
+okay. And I mean, define a function, which is, you know, add function. But now you want to use,
+
+179
+00:18:58,240 --> 00:19:02,640
+you know, lambda expressions instead of, you know, the normal syntax for function definition. So,
+
+180
+00:19:03,280 --> 00:19:08,080
+what shall be? So, so, what we want is, let me write down. Now, we want to write,
+
+181
+00:19:10,960 --> 00:19:17,600
+function to add two numbers. And we want to maybe use, you know, lambda expressions to do that,
+
+182
+00:19:17,600 --> 00:19:28,320
+lambda to add, no, two numbers is what we want. Okay. So, how to write down a simple function,
+
+183
+00:19:28,320 --> 00:19:34,880
+which, let's say, takes two numbers as input and then, you know, it returns the addition of those
+
+184
+00:19:34,880 --> 00:19:38,480
+two numbers. So, we know what operator actually corresponds to addition, right? This is what we
+
+185
+00:19:38,480 --> 00:19:44,720
+discuss in the last class. But now, instead of writing, you know, function, in this format,
+
+186
+00:19:46,640 --> 00:19:54,320
+we want to use something like, but this. Now, clearly, there is a difference that you can
+
+187
+00:19:54,800 --> 00:20:00,000
+initially, our number of arguments were only one. Now, we have to pass two arguments, right?
+
+188
+00:20:00,000 --> 00:20:04,880
+So, how to pass two arguments? This is what, you know, we want to emphasize, let's say,
+
+189
+00:20:04,880 --> 00:20:10,480
+no, in this example. So, let me, I know, again, give it a name to the function, let's say, add.
+
+190
+00:20:11,600 --> 00:20:21,200
+And what we want is to define a lambda expression. Okay. And now, the inputs are not, you know,
+
+191
+00:20:21,280 --> 00:20:27,520
+input is not only one parameter, but two parameters. So, let me say input to my case is A and B.
+
+192
+00:20:28,720 --> 00:20:34,080
+And I, you know, separate inputs from output using a Poland. And what is the output that I am
+
+193
+00:20:34,880 --> 00:20:40,640
+willing to generate here in this case? A plus B, right? So, remember, this, this was, you know,
+
+194
+00:20:41,360 --> 00:20:47,280
+arithmetic expression to calculate the sum of two numbers, right? So, if we write a simple
+
+195
+00:20:47,280 --> 00:20:52,720
+statement like this and try to run it, so Python accepts it without, you know, either. So,
+
+196
+00:20:52,720 --> 00:20:57,840
+you know, so the new syntax that we learned was this no comma. So, we can separate multiple
+
+197
+00:20:58,800 --> 00:21:05,440
+parameters or input to function by this no comma and pass it to the function and then use a
+
+198
+00:21:05,440 --> 00:21:11,840
+Poland to separate it from, you know, the output value that you want to generate and the output
+
+199
+00:21:11,840 --> 00:21:16,560
+value is represented by this expression. So, remember, this is an expression what I have highlighted
+
+200
+00:21:16,560 --> 00:21:22,000
+here, okay? And, you know, these are the, you know, input values that you pass to this lambda,
+
+201
+00:21:22,000 --> 00:21:27,840
+okay? Now, we have, you know, successfully defined this, you know, function add using lambda
+
+202
+00:21:27,840 --> 00:21:34,000
+expression. So, can we, you know, also define another function or let's actually test, you know,
+
+203
+00:21:34,000 --> 00:21:42,960
+this function once. I mean, if let's say I have to run this function on, so let me, you know,
+
+204
+00:21:43,440 --> 00:21:54,400
+print and then what if I'm, let's say, adding these numbers, let's say, let's say I want to pass
+
+205
+00:21:54,400 --> 00:22:05,680
+five, no, I'm plus three, okay? And I want to, you know, see whether I get what I expected,
+
+206
+00:22:05,680 --> 00:22:13,200
+okay? So, you know, five plus three should be equal to what do we get exactly that when I,
+
+207
+00:22:13,200 --> 00:22:21,760
+you know, use my, sorry, add function. So, if I pass to this add, now five comma three,
+
+208
+00:22:22,880 --> 00:22:31,360
+so select the value eight here, if I run it, you see? So, so this is, you know, how we're
+
+209
+00:22:31,360 --> 00:22:37,040
+sprinting. So, adding five plus three, you know, printing this, you know, resulted in, you know,
+
+210
+00:22:37,040 --> 00:22:45,120
+this is string, okay? And then this add five plus three, you know, is what it, you know,
+
+211
+00:22:45,120 --> 00:22:50,320
+so how, what is the definition of this add? This definition is, you know, same as this one,
+
+212
+00:22:50,320 --> 00:22:55,440
+and it is nothing but a function, which we define using lambda, okay? So, when this, you know,
+
+213
+00:22:55,440 --> 00:22:59,760
+add is, you know, called with the argument five comma three, you know, which are separated by comma
+
+214
+00:23:00,240 --> 00:23:08,080
+remember, then it returns the, you know, value a plus b, which is eight. So, this is true, right?
+
+215
+00:23:08,080 --> 00:23:16,160
+So, that's how, I mean, we know that the function is working properly. So, now can we add, you know,
+
+216
+00:23:16,160 --> 00:23:21,520
+again, I mean, one simple another example, instead of, you know, add, can you now, you know, quickly
+
+217
+00:23:21,600 --> 00:23:28,480
+write down, you know, let's say multiply function, okay? Can you take, let's say two input
+
+218
+00:23:28,480 --> 00:23:36,000
+and multiply them and define a function without using the function syntax, but rather, you know,
+
+219
+00:23:36,000 --> 00:23:42,640
+using lambda syntax. So, just give it a try, okay? So, if you have to start and define something,
+
+220
+00:23:42,640 --> 00:23:50,240
+like, you know, let's say multiply, okay? So, multiply is again a function that I want to define,
+
+221
+00:23:50,240 --> 00:23:57,280
+and I want to take now, let's say two input, which I say X comma Y, you can, could have said,
+
+222
+00:23:57,280 --> 00:24:04,480
+no, A, B, I'm just using a different variable name for this purpose. And how to make, you know,
+
+223
+00:24:04,480 --> 00:24:13,440
+valid expression, which represents your, you know, multiplication of these two numbers X into Y,
+
+224
+00:24:13,520 --> 00:24:19,920
+right? So, this is how we can write, right? And what is the way to check? Just run it and then see,
+
+225
+00:24:20,640 --> 00:24:25,040
+okay? So, so now, now, comment this line so that, you know, we don't see any other output then just,
+
+226
+00:24:27,840 --> 00:24:31,520
+okay? So, so this is, you know, well accepted. So, this definition is also accepted. So,
+
+227
+00:24:32,480 --> 00:24:38,800
+similar to this, we can also print and then see. So, let me copy and paste it, you know,
+
+228
+00:24:39,440 --> 00:24:41,440
+let's say, you know,
+
+229
+00:24:42,960 --> 00:24:53,200
+multiply, five, no, into three, maybe here, now gives you what? So, what have we defined right now?
+
+230
+00:24:54,880 --> 00:24:59,840
+Multiply, right? So, this is the name of the function that we have, you know, given to the
+
+231
+00:24:59,840 --> 00:25:07,120
+lambda expression, okay? So, this no works as a valid function. So, you can actually use this name
+
+232
+00:25:07,120 --> 00:25:11,200
+and then pass five comma three and see whether you're getting the same result or not.
+
+233
+00:25:13,200 --> 00:25:19,760
+Okay? So, so this is, you know, valid result. And hence, we can be, you know, partially sure that
+
+234
+00:25:19,760 --> 00:25:24,960
+our program is, you know, semantically correct. It's performing exactly what we wanted it to perform.
+
+235
+00:25:24,960 --> 00:25:30,800
+So, so what we saw right now is how to use lambda expression and, you know, use,
+
+236
+00:25:31,440 --> 00:25:36,160
+you know, and define, you know, function which takes, you know, multiple arguments, okay?
+
+237
+00:25:36,960 --> 00:25:42,080
+Again, I mean, as I said, we'd be already discussed that we don't always, you know, need to,
+
+238
+00:25:43,840 --> 00:25:48,160
+you know, define these, you know, add or multiply kind of name for functions. If you're using
+
+239
+00:25:48,160 --> 00:25:52,720
+lambda expressions, you can maybe, you know, directly use lambda expression without, you know,
+
+240
+00:25:52,720 --> 00:26:00,080
+defining these things. Okay? So, for example, I mean, you may mean directly, you know, calculate
+
+241
+00:26:00,080 --> 00:26:05,360
+these things without even, you know, defining these things. For, for example, let me add a simple,
+
+242
+00:26:05,360 --> 00:26:13,200
+you know, lambda expression which takes X as input and, you know, gives you the two times X as
+
+243
+00:26:13,200 --> 00:26:18,880
+our output and directly apply it to some, let's say, number and then print the result. So, we
+
+244
+00:26:18,880 --> 00:26:24,800
+have done, you know, something like this earlier, but let me do it again. What if, let's say,
+
+245
+00:26:24,800 --> 00:26:30,720
+I say that I want to, you know, calculate some, you know, value, which I want to store in,
+
+246
+00:26:30,720 --> 00:26:36,240
+you know, let's say, the result one where I don't want to, so maybe this calculation, I want to do
+
+247
+00:26:36,240 --> 00:26:41,120
+only for once, you know, we, we are not interested in defining these functions, I mean, and keeping
+
+248
+00:26:41,120 --> 00:26:50,560
+that at some place. So, what we are saying is we can say, lambda, so we can, you know, first,
+
+249
+00:26:50,960 --> 00:26:58,560
+so define this nameless function, which is X multiplied by two. So, you now understand what this
+
+250
+00:26:58,560 --> 00:27:04,800
+function will do, right? This function, this expression, you know, which is in, you know,
+
+251
+00:27:04,800 --> 00:27:11,440
+indirectly defining a function and what the, the effect of the function is, I mean, it takes
+
+252
+00:27:11,440 --> 00:27:19,360
+as input X and gives you two times X, okay. Now, what if I apply this function by using this
+
+253
+00:27:19,440 --> 00:27:26,400
+expression directly to five. So, remember, I mean, you, you, you are, you know, applying this function
+
+254
+00:27:26,400 --> 00:27:31,600
+by writing, you know, this expression and then followed by, you know, passing the arguments,
+
+255
+00:27:31,600 --> 00:27:40,080
+which is, you know, only one argument in this case, okay. So, so if we do this, and then if you
+
+256
+00:27:40,160 --> 00:27:49,840
+let's say, you know, print, if you print the result one, which I have stored here, so what do you
+
+257
+00:27:49,840 --> 00:27:57,360
+expect, right? So, this is, you know, how you can directly use this expression. Now, without,
+
+258
+00:27:57,360 --> 00:28:01,600
+you know, we may be defining a double order triple kind of function using this expression,
+
+259
+00:28:02,400 --> 00:28:07,680
+okay. Another quick, you know, use of this may be, you know, we define, let me just,
+
+260
+00:28:08,320 --> 00:28:13,920
+for more practice, let me define another value, you know, try to
+
+261
+00:28:15,280 --> 00:28:21,360
+obtain this result to by again, applying some lambda expression, which is maybe, you know,
+
+262
+00:28:24,800 --> 00:28:29,680
+maybe adding two numbers, okay. And then passing two numbers directly to it, okay. So,
+
+263
+00:28:38,480 --> 00:28:40,320
+so,
+
+264
+00:28:47,120 --> 00:28:52,320
+and when you know, since you have defined this function expression using two arguments,
+
+265
+00:28:52,320 --> 00:28:56,960
+which are separated by comma, when you pass, you also need to separate them by the comma and then
+
+266
+00:28:56,960 --> 00:29:06,480
+passing in this order, okay. And what if I print in this case, you know, print the value of, let's
+
+267
+00:29:06,480 --> 00:29:15,120
+So it is all to what we expect 10 plus 15 should return mid 25 for it to be correct, right? So
+
+268
+00:29:17,280 --> 00:29:24,960
+you see this is no what we got. So this is just to highlight that you can use Lambda directly also,
+
+269
+00:29:24,960 --> 00:29:34,000
+okay. Now we go to the next concept which maybe slightly now complicated concept for many of
+
+270
+00:29:34,000 --> 00:29:39,760
+you who are not so familiar with you know functions, but you know let me give it a try and you
+
+271
+00:29:39,760 --> 00:29:46,720
+also focus on these you know particular examples which I know I'm trying to discuss under this example
+
+272
+00:29:46,720 --> 00:29:52,000
+4. Lambda's with higher order function. So the concept of higher order function is that you know
+
+273
+00:29:52,000 --> 00:29:59,280
+functions can be passed as an argument to functions. So it's not like till now I mean we were
+
+274
+00:29:59,920 --> 00:30:05,680
+defining some no primitive functions we were always passing some data or variable as argument
+
+275
+00:30:05,680 --> 00:30:13,840
+to functions, but no in Python functions are like first class citizens and they can be placed
+
+276
+00:30:13,840 --> 00:30:17,920
+anywhere where a simple argument or a variable can be placed, okay. So this is called higher order
+
+277
+00:30:17,920 --> 00:30:23,200
+functions. Again we are going to come back to this thing in much more detail when we talk about
+
+278
+00:30:24,000 --> 00:30:30,240
+but just to highlight I mean how Lambda expressions can be used in different ways we will just take you
+
+279
+00:30:30,240 --> 00:30:36,240
+know maybe one or two example of these map function and filter function which are already know
+
+280
+00:30:36,240 --> 00:30:46,480
+available inside Python library. So map is you know one function which works on lists and tries to
+
+281
+00:30:46,480 --> 00:30:51,840
+apply you know similar kind of operation on all the elements of a list, okay. So so map is very
+
+282
+00:30:51,840 --> 00:31:01,120
+frequently used to you know function available in the standard library of Python to transform the
+
+283
+00:31:01,120 --> 00:31:06,720
+values in a list in a certain way, okay. So if you want to let's say transform a multiple values
+
+284
+00:31:06,720 --> 00:31:11,840
+so all the values inside the list in a particular way let's say your list has multiple number and maybe
+
+285
+00:31:11,840 --> 00:31:18,000
+you want to compute the square of those numbers. So instead of going to each of these locations and
+
+286
+00:31:18,000 --> 00:31:24,320
+doing this square applying this square function this MAC function at once I mean can apply this
+
+287
+00:31:24,320 --> 00:31:30,640
+kind of you know square to all the values in the available in the list. So you know this helps you
+
+288
+00:31:30,640 --> 00:31:35,680
+get rid of multiple you know looping and that kind of construct we will discuss you know later on
+
+289
+00:31:35,680 --> 00:31:42,000
+but it's a very simple and you know elegant way to implement you know many list operations which
+
+290
+00:31:42,000 --> 00:31:47,280
+require you know similar kind of operations to be applied on different you know elements in a list.
+
+291
+00:31:47,280 --> 00:31:52,720
+For example I mean without getting into the detail of how you know this map is implemented let me know
+
+292
+00:31:52,720 --> 00:31:58,800
+try to work out some example which will give you no again partial semantics of where this map and
+
+293
+00:31:58,800 --> 00:32:05,760
+how maybe no lambda can be used effectively in combination with this map operator. So for
+
+294
+00:32:05,760 --> 00:32:14,560
+example let me you know create a list of let's say numbers, okay. So let me you know begin with
+
+295
+00:32:14,560 --> 00:32:23,040
+the clicking very simple list where the list has you know numbers like one two three four maybe five,
+
+296
+00:32:23,040 --> 00:32:29,200
+okay. So let's have the list has you know this five number and you know using the you know
+
+297
+00:32:30,080 --> 00:32:37,360
+map now I want to so what what we do is first let's say define a simple you know transformation on
+
+298
+00:32:37,440 --> 00:32:44,320
+these numbers let's say I want to add or maybe five to each of these numbers, okay.
+
+299
+00:32:45,760 --> 00:32:52,800
+In a sense so we define a simple function maybe without using let's say lambda first do it so
+
+300
+00:32:52,800 --> 00:33:00,240
+we define a function whose job is to just add five let's say this is the job of the function, okay.
+
+301
+00:33:00,240 --> 00:33:10,800
+So the function takes an argument x, okay. And what it returns is returns is
+
+302
+00:33:16,560 --> 00:33:22,880
+five, okay. So this is a simple function that we have you know define, okay. So when you
+
+303
+00:33:23,760 --> 00:33:29,760
+use this ad function and you know pass it an argument x what will it return it will return x plus
+
+304
+00:33:29,760 --> 00:33:37,840
+five. So now using the map you know function which is an inbuilt function inside Python,
+
+305
+00:33:38,880 --> 00:33:43,840
+you can actually add five to all the element of this list that we have defined by using one line
+
+306
+00:33:43,840 --> 00:33:50,080
+of you know command. So let me write down this one one line of command. So let's say if I want
+
+307
+00:33:50,080 --> 00:34:00,400
+result of not this map applying you know the map function on this list to be you know stored here.
+
+308
+00:34:00,400 --> 00:34:09,120
+So what I say is I know I say I will apply I will know map all the values in the list two new
+
+309
+00:34:09,120 --> 00:34:16,720
+values using a function, okay. So first you know map has to be you know passed. So there are two
+
+310
+00:34:16,720 --> 00:34:21,360
+arguments to map that normally we pass. And the first argument is the function or the operation that
+
+311
+00:34:21,360 --> 00:34:28,960
+you want to apply on each of the elements on off list. And the second argument will be the list
+
+312
+00:34:28,960 --> 00:34:32,960
+itself, okay. So you have to give pass both these things, right. What kind of operation you want to
+
+313
+00:34:32,960 --> 00:34:37,360
+apply on each element on the list and what is the list, okay. So there are two elements that you
+
+314
+00:34:37,840 --> 00:34:45,120
+want to you know provide to this you know map function. So the very first thing is you know
+
+315
+00:34:46,000 --> 00:34:51,200
+add five is what we want, right. So this is the kind of transformation we want to make on each
+
+316
+00:34:51,200 --> 00:34:57,680
+of the element of the list. So we pass here you know add five. And then we also need to you know
+
+317
+00:34:57,680 --> 00:35:04,560
+provide you know what are the what is the list on which we want to apply this, okay. And just
+
+318
+00:35:04,640 --> 00:35:12,880
+no for no to be sure that whatever we you know or get is again a list finally I mean I just write
+
+319
+00:35:12,880 --> 00:35:19,600
+this no thing. You can check you know even without writing this list but let's say for safety I want
+
+320
+00:35:19,600 --> 00:35:27,040
+to ensure that no whatever I return and finally get is also a list, okay. So if I run this piece of
+
+321
+00:35:27,520 --> 00:35:34,480
+code what happens. I mean there is no syntax error, okay. So it's of the no interpreter has
+
+322
+00:35:34,480 --> 00:35:41,600
+accepted this code. But again I want to check whether what I have defined right now gives me
+
+323
+00:35:41,600 --> 00:35:48,560
+correct results, okay. So I would like to print what is this no result map that I have calculated
+
+324
+00:35:48,560 --> 00:35:54,480
+using you know this map function and that for I had five function and this number list.
+
+325
+00:35:55,200 --> 00:36:08,400
+So let me not do that. Let us try to print and see whether know what we just calculated makes
+
+326
+00:36:08,400 --> 00:36:18,560
+sense or not. So when you are going through these videos I mean please try to make sure that you
+
+327
+00:36:18,560 --> 00:36:23,760
+open the Jupyter Notebook and then play around with the code. So this will give you no confidence
+
+328
+00:36:24,240 --> 00:36:30,320
+writing code on your own and you know getting the correct semantics of what we are discussing
+
+329
+00:36:30,320 --> 00:36:33,600
+right now, okay. So what we are saying is we want to
+
+330
+00:36:33,680 --> 00:36:54,560
+do. Okay, so sorry, so this is what we want to be a print and see whether so what do you expect.
+
+331
+00:36:54,560 --> 00:36:59,520
+I mean so what is our expectation can we write our expectation before we run this piece of code.
+
+332
+00:37:00,160 --> 00:37:05,840
+So we wanted to add write something to all the number in the list right. We wanted to add
+
+333
+00:37:05,840 --> 00:37:10,560
+five to all the number in the list. So what should be our expected result? We would like six.
+
+334
+00:37:11,760 --> 00:37:23,680
+No, seven, eight, nine and ten. This is our expectation and now we should try to run it and see
+
+335
+00:37:23,680 --> 00:37:29,360
+whether our expectation meets the actual computation or not. Okay, so let me run this
+
+336
+00:37:29,360 --> 00:37:37,840
+piece of code and you see this is what no we get. So you know, cementically the code looks to be
+
+337
+00:37:37,840 --> 00:37:48,240
+correct. Okay, so this is how you know you can use the map function. So what we discuss just now
+
+338
+00:37:48,240 --> 00:37:55,360
+is only you know the map function and how it works. But now can we get rid of this function name
+
+339
+00:37:55,920 --> 00:38:01,920
+not define a no complete no function name here by using lambda expressions and is still be able to
+
+340
+00:38:01,920 --> 00:38:09,680
+do the same sort of job. Okay, so can we do that? So let's actually try to know write another
+
+341
+00:38:10,560 --> 00:38:17,360
+statement which again, you know, calculates the same, same, you know, no resulting list. But
+
+342
+00:38:17,360 --> 00:38:23,600
+you know, without maybe using these function add five and maybe using, you know, just lambda.
+
+343
+00:38:23,600 --> 00:38:31,360
+So let me call it with a different name, let's call it result map and this time what I want is
+
+344
+00:38:31,360 --> 00:38:35,920
+to use lambda. So that's why I have given I know meaningful name to indicate that this time
+
+345
+00:38:35,920 --> 00:38:41,760
+we are not using the add five function that we have defined initially to calculate this kind of
+
+346
+00:38:41,760 --> 00:38:50,800
+know things or transformation on a list. So what I want is I mean, let me copy the code from here.
+
+347
+00:38:50,800 --> 00:38:57,680
+I mean this exact thing we want to copy from here and maybe paste here. And what we want to do
+
+348
+00:38:57,680 --> 00:39:03,280
+is to get rid of this no add five. Okay, so this is our goal. Let's say we don't want to use now
+
+349
+00:39:03,280 --> 00:39:08,400
+this add five instead of add five because add five is a function right which can be represented
+
+350
+00:39:08,400 --> 00:39:15,040
+using a lambda expression we have seen right in previous cases how to not write a function name
+
+351
+00:39:15,120 --> 00:39:21,120
+and it's still be able to compute the you know, effect of a function using this lambda expression.
+
+352
+00:39:21,120 --> 00:39:28,080
+So can we get rid of add five here and write some meaningful lambda expression which will have
+
+353
+00:39:28,080 --> 00:39:39,440
+same effect. Okay, so so let me now help you with some, you know, hence so how to write a
+
+354
+00:39:40,080 --> 00:39:45,520
+no lambda expression which takes as an input x and returns to x plus five that should do the job
+
+355
+00:39:45,520 --> 00:39:56,960
+right because that's what we want to do here. Okay, so how to do that so let me so we certainly
+
+356
+00:39:56,960 --> 00:40:02,160
+need to bypass the second you know number but here in the first one we can be a little you know
+
+357
+00:40:02,240 --> 00:40:06,320
+creative and what we can say is instead of you know passing the function my
+
+358
+00:40:08,000 --> 00:40:18,240
+way directly pass you know this expression which is no lambda x colon x plus five.
+
+359
+00:40:21,200 --> 00:40:23,280
+Okay, so you see this expression.
+
+360
+00:40:24,000 --> 00:40:35,200
+If you try no use this expression instead of you know this name right add five and applying
+
+361
+00:40:35,200 --> 00:40:41,200
+on this number. So first let's see I mean whether Python except is as a correct syntax or not.
+
+362
+00:40:42,240 --> 00:40:50,320
+So let me run this piece up. So when we you know run so let me also you know comment out this
+
+363
+00:40:50,400 --> 00:40:56,000
+code so that you don't see anything else. So now you see I mean this code is you know so this
+
+364
+00:40:56,000 --> 00:41:01,360
+is well accepted right so Python accepted the you know previous code modified by this lambda
+
+365
+00:41:01,360 --> 00:41:08,320
+expression. So this is a perfectly valid syntax but then what about the you know mini semantics
+
+366
+00:41:08,320 --> 00:41:16,160
+LV also check by applying again on the same no same thing whether I'm this thing work. Okay,
+
+367
+00:41:16,160 --> 00:41:21,600
+so let me copy and paste no the same thing here.
+
+368
+00:41:34,640 --> 00:41:37,120
+So let me copy paste this thing.
+
+369
+00:41:37,680 --> 00:41:48,720
+Okay, now in this case so what we're saying the map result may be you know
+
+370
+00:41:51,600 --> 00:41:59,760
+with lambda may be lambda. Okay, so what we have applied is in this case lambda and we are not
+
+371
+00:41:59,760 --> 00:42:07,040
+outputting result map but result map that I calculated using lambda right. So this is what
+
+372
+00:42:07,040 --> 00:42:12,720
+we have calculated it now and we expect again I mean the same thing right. So shall we print it and say
+
+373
+00:42:14,720 --> 00:42:20,560
+let us know or run this thing and you can see we get exactly same result right. So when you know
+
+374
+00:42:20,560 --> 00:42:27,680
+uncomment let's the previous print also maybe here and then run both now it will be not clear.
+
+375
+00:42:27,680 --> 00:42:33,840
+So you see so the map result is 6, 7, 8, 9 and you know map result with lambda is also
+
+376
+00:42:35,920 --> 00:42:40,880
+so in a nutshell what we have seen is that you can use this map functions very efficiently
+
+377
+00:42:40,880 --> 00:42:46,320
+with lambda expression and without you know using this add 5 because this add 5 was only
+
+378
+00:42:46,320 --> 00:42:52,240
+for this temporary purpose maybe. Okay, so if that's the case why to define a new function and give
+
+379
+00:42:52,240 --> 00:43:00,720
+it a name not only for this no purpose. So instead of doing that what we do is we don't define it
+
+380
+00:43:02,080 --> 00:43:05,680
+if we don't define this thing.
+
+381
+00:43:05,680 --> 00:43:18,720
+So let's continue with the lecture.
+
+382
+00:43:35,840 --> 00:44:03,200
+Okay so
+
+383
+00:44:03,200 --> 00:44:13,120
+So that's what we wanted to discuss here that we can use and very cleverly with
+
+384
+00:44:13,120 --> 00:44:21,680
+a map to this kind of thing. Now let me go to another very commonly used, again I mean standard
+
+385
+00:44:21,680 --> 00:44:27,760
+library function which is called filter which we again use on a list. So the job of filter is to
+
+386
+00:44:27,920 --> 00:44:33,680
+filter out some of the elements of a list based on some condition let's say. We know how to
+
+387
+00:44:33,680 --> 00:44:39,280
+write condition like we have seen some expressions, these Boolean expressions, logical expressions we
+
+388
+00:44:39,280 --> 00:44:47,280
+can help us write down some to check some conditions. So here in this case again I'm maybe I just
+
+389
+00:44:47,280 --> 00:45:02,000
+no copy paste the same number list. Okay and maybe just enlarge it with six, seven, now eight,
+
+390
+00:45:02,720 --> 00:45:08,800
+maybe nine and ten, put some more numbers so that we when we filter we get some number at least.
+
+391
+00:45:10,000 --> 00:45:15,360
+And let's say in this case I want to filter only the even numbers okay so we want to only filter
+
+392
+00:45:15,360 --> 00:45:22,720
+even number and how to do that I mean again a very simple way to do that will be to define a
+
+393
+00:45:22,720 --> 00:45:32,720
+you know is even function and use that function or with this filter okay and get the filter done.
+
+394
+00:45:32,720 --> 00:45:39,200
+So so let's say I mean first attempt again we give using a name function. So in this case I mean
+
+395
+00:45:39,200 --> 00:45:43,520
+if I have to define some function meaningful function which is the same job then I would most
+
+396
+00:45:44,240 --> 00:45:58,240
+write the name as is even and then we take the value x and when we return what we return is
+
+397
+00:45:58,240 --> 00:46:05,920
+you know x it was a you know modular division I think so we define by two right so modular division
+
+398
+00:46:06,400 --> 00:46:14,960
+two gives you zero if it is even right so we return now can you make sense of this expression
+
+399
+00:46:14,960 --> 00:46:22,560
+that I'm returning it this is modular division by two and modular division by two will return
+
+400
+00:46:22,560 --> 00:46:29,200
+you zero only if the number is even right so the the whole expression that you are you know
+
+401
+00:46:29,200 --> 00:46:36,000
+returning here is actually a Boolean expression right so finally you will return either true or
+
+402
+00:46:36,720 --> 00:46:42,480
+false okay so if you don't recall I mean please go back to the previous know video and check
+
+403
+00:46:43,440 --> 00:46:48,960
+what this expression means I mean this expression finally will evaluate to either true or false
+
+404
+00:46:48,960 --> 00:46:55,280
+and it will evaluate to true in the cases where your no modular division gives you
+
+405
+00:46:56,160 --> 00:47:01,840
+zero and that will be true only when it is even okay so we already have a you know function which
+
+406
+00:47:01,840 --> 00:47:09,760
+takes you know any x and it turns true or false based on whether that x is even or not okay so this
+
+407
+00:47:09,760 --> 00:47:15,760
+is a very simple you know implementation of function using a no Boolean which returns a Boolean
+
+408
+00:47:15,760 --> 00:47:22,080
+kind of thing and now I can actually use this function to let's say collect maybe all the
+
+409
+00:47:22,080 --> 00:47:29,520
+even numbers which is you know present in this you know initial list so what I say is I want to
+
+410
+00:47:29,520 --> 00:47:36,880
+apply this filter and what is the filter that I want to apply so my filter is is even function okay
+
+411
+00:47:39,200 --> 00:47:47,760
+and what I pass is this no list of numbers so when I do this I collect all the you know even
+
+412
+00:47:47,840 --> 00:47:56,720
+number in this one and again just to make sure that I you know finally get a list I write here list
+
+413
+00:47:58,160 --> 00:48:05,600
+okay so when I when I apply this again the first argument is the filter function which is
+
+414
+00:48:05,600 --> 00:48:12,560
+you know is even which will tell us whether the number is you know no true or false no number
+
+415
+00:48:13,120 --> 00:48:18,560
+whether this no check returns true or false and the second one is the whole list of numbers on
+
+416
+00:48:18,560 --> 00:48:25,360
+which we want to apply this check okay so finally we get is no set of even numbers okay now
+
+417
+00:48:29,520 --> 00:48:34,000
+now let me no copy paste to see whether
+
+418
+00:48:34,480 --> 00:48:48,080
+so we have already applied this and what we want is to check whether this thing is correct or
+
+419
+00:48:48,080 --> 00:48:55,520
+no the semantics of this should let me a print or even numbers and no which are you know in this
+
+420
+00:48:56,480 --> 00:48:57,120
+even happy
+
+421
+00:49:02,720 --> 00:49:09,840
+now can you see I mean when we run this code we get to 468 and 10 and all of them are even number okay
+
+422
+00:49:09,840 --> 00:49:14,880
+now what what about now applying the same thing with you know lambda so let's know
+
+423
+00:49:16,240 --> 00:49:21,840
+attempt to do this without defining a new or you know function is even but instead you know
+
+424
+00:49:21,840 --> 00:49:28,640
+I want to use now lambda expression to do the same the option what I am intending to do is that
+
+425
+00:49:28,640 --> 00:49:40,160
+I am trying to implement this filter with lambda so what shall be the code so can we write down
+
+426
+00:49:40,160 --> 00:49:44,720
+the code for just opposite maybe maybe you know let's just calculate odd now instead of
+
+427
+00:49:45,760 --> 00:49:50,480
+even if I have to calculate now or I mean this return all the odd numbers so how to
+
+428
+00:49:50,560 --> 00:49:56,560
+know return it so maybe you know write this no odds here all the odds want to return
+
+429
+00:49:57,600 --> 00:50:05,040
+and what about know the filter let's say apply filter and we will write something you know
+
+430
+00:50:05,040 --> 00:50:10,480
+here right in the beginning we will write something and then finally we will apply you know
+
+431
+00:50:10,480 --> 00:50:18,480
+this check function to and you have be a number okay so this is what we want so we have to
+
+432
+00:50:18,480 --> 00:50:23,520
+fill this gap I mean what shall we write here so this should be a check now which we should
+
+433
+00:50:23,520 --> 00:50:32,240
+be able to check whether given number x is odd or not so what shall we return if a number is odd
+
+434
+00:50:32,240 --> 00:50:37,840
+so moderate division should return of 1 right instead of a 0 if it has to be odd can we write
+
+435
+00:50:37,840 --> 00:50:44,640
+you know lambda expression for that so so if we write lambda let's say x is my input and then
+
+436
+00:50:44,640 --> 00:50:55,280
+what I want to return is whether x modular division you know 2 is equal to is equal to 1
+
+437
+00:50:57,120 --> 00:51:02,960
+remember I mean here I mean in case of even we wanted this to be 0 right but here in case of
+
+438
+00:51:02,960 --> 00:51:12,240
+odd number I want it to be 1 okay so I return now this thing and just again to make sure that I
+
+439
+00:51:12,320 --> 00:51:22,240
+get a list I just know or app it in this list thing and what if I you know run this so even numbers
+
+440
+00:51:22,240 --> 00:51:27,680
+is you know we got printed from the previous one but if you know print again you know these odd
+
+441
+00:51:27,680 --> 00:51:35,120
+numbers let's say whatever we have collected in this now odds if we again print it here let's say
+
+442
+00:51:36,080 --> 00:51:45,040
+let me write down this now if you print all the odd numbers which is not collected in odds what do
+
+443
+00:51:45,040 --> 00:51:54,480
+we get here you see we got the same you know we know 1 1 3 5 7 9 these numbers which are actually
+
+444
+00:51:54,480 --> 00:52:02,480
+odd number so everything is no working as intended so we we have seen how to use a map and filter
+
+445
+00:52:02,480 --> 00:52:08,240
+together with these lambda expressions and they're very you know convenient to use whenever you
+
+446
+00:52:08,240 --> 00:52:16,000
+have something like this now I will conclude today's lecture with a slightly you know maybe you know
+
+447
+00:52:16,000 --> 00:52:22,960
+complicated you know lambda expression but it's good to think about it because this will make
+
+448
+00:52:22,960 --> 00:52:27,280
+the semantics of this lambda expression far more clear for you on the other hand if you don't
+
+449
+00:52:27,280 --> 00:52:32,080
+follow this please no don't get demotivated we'll come back to it when we discuss again functions
+
+450
+00:52:32,480 --> 00:52:38,400
+so what we are going to discuss now is no something what we call a function factory okay so now what
+
+451
+00:52:38,400 --> 00:52:44,560
+I want to do is I want to define a function which will return functions okay so this is in
+
+452
+00:52:44,560 --> 00:52:48,800
+different than what we have been doing till now so I want to define a function which you know
+
+453
+00:52:48,800 --> 00:52:54,640
+returns different functions based on what we want let's say I want to create you know many
+
+454
+00:52:54,640 --> 00:53:01,280
+functions which you know jobs are to multiply a given number with some number so let's say I
+
+455
+00:53:01,280 --> 00:53:06,960
+want to create a function with a name double which I whenever given a number creates develop that
+
+456
+00:53:06,960 --> 00:53:13,200
+but no I also want to you know create a number which let's say no triples number so so let's say
+
+457
+00:53:13,200 --> 00:53:18,160
+name that number as triple so that number give whenever given as an argument creates no triple
+
+458
+00:53:18,160 --> 00:53:23,600
+of that similarly I may want to create no one function for each of these kind of no thing I mean
+
+459
+00:53:23,600 --> 00:53:28,880
+this may look very artificial to you but no I for example to be very simple let's say keep our
+
+460
+00:53:28,880 --> 00:53:35,520
+function also to be very simple so I want to maybe you know create you know this you know
+
+461
+00:53:35,520 --> 00:53:41,280
+multiplier functions maybe and I want to do it using a function itself so okay so I want to
+
+462
+00:53:41,280 --> 00:53:47,920
+maybe write a function whose name I may want to give create multiplier and I have to give no by
+
+463
+00:53:47,920 --> 00:53:52,720
+what factor you know this you know new function that I return should multiply a given number so
+
+464
+00:53:52,720 --> 00:53:58,400
+that should be the factor one argument to this multiplier function and the final output that
+
+465
+00:53:58,400 --> 00:54:04,160
+this multiplier function gives is a function itself okay which will return the you know function
+
+466
+00:54:04,160 --> 00:54:09,840
+which is you know it useful for me to you know multiply a given number using that factor so so
+
+467
+00:54:09,840 --> 00:54:15,840
+let me I mean write down you know in a very you know if you know first attempt of writing such a
+
+468
+00:54:15,840 --> 00:54:25,600
+function so what we want to do is we want to maybe you know define a create multiplier
+
+469
+00:54:29,360 --> 00:54:38,640
+multiplier function which takes a factor as an you know input okay and the whole job of this
+
+470
+00:54:38,640 --> 00:54:45,200
+no function is to define a function okay so inside this function what we do what we want to
+
+471
+00:54:45,200 --> 00:54:57,600
+actually do is we define another function which we are calling let's say let's say multiply here
+
+472
+00:54:58,400 --> 00:55:08,000
+okay and multiply x okay so what the multiplier x does is it just returns
+
+473
+00:55:13,840 --> 00:55:25,760
+it just returns x multiplied by this factor okay and what my you know original function returns
+
+474
+00:55:27,840 --> 00:55:39,200
+is just this multiplier okay so what is multiplier so where did we you know so how can we return
+
+475
+00:55:39,200 --> 00:55:45,200
+something like this because that thing has been already defined inside my function okay so what
+
+476
+00:55:45,200 --> 00:55:51,840
+this create multiplier takes from you know outside is this factor and once it knows the factor it
+
+477
+00:55:51,840 --> 00:55:58,480
+actually returns a whole function and the you remember you see this factor is used inside the
+
+478
+00:55:58,480 --> 00:56:03,920
+definition of this multiplier function so just go through it slowly I mean if possible if you
+
+479
+00:56:03,920 --> 00:56:10,320
+you know feel essential stop the video and think about what's actually going on here what is the
+
+480
+00:56:10,320 --> 00:56:16,480
+input of this create multiplier function which is a factor and what is the output of this no function
+
+481
+00:56:17,120 --> 00:56:23,520
+which is again a function itself okay now I want just to make more sense I mean I want let me
+
+482
+00:56:23,520 --> 00:56:28,640
+I mean give you some concrete example let's say if I want to create a no function which let's
+
+483
+00:56:28,640 --> 00:56:34,480
+say double you know whatever you give then what I will say I will say create instead of you know
+
+484
+00:56:34,480 --> 00:56:41,120
+defining it a fresh here I can also define it you know in a completely fresh way right using
+
+485
+00:56:41,360 --> 00:56:45,360
+expressions or whatever you want but I want to use let's say this create multiplier
+
+486
+00:56:48,480 --> 00:56:53,440
+flyer okay and what's a live pass to the create multiplier
+
+487
+00:56:55,280 --> 00:57:01,520
+two right so when I pass it to two it will create a you know multiplier you know function
+
+488
+00:57:01,520 --> 00:57:07,040
+which will multiply by two and it will give it a name or double so double now becomes my function
+
+489
+00:57:07,120 --> 00:57:12,240
+which will you know double whatever number I give to wait okay so for example I mean let me
+
+490
+00:57:13,200 --> 00:57:20,960
+immediately maybe use this double to apply it to some maybe number and then
+
+491
+00:57:23,360 --> 00:57:24,000
+so let me
+
+492
+00:57:24,160 --> 00:57:39,280
+so maybe print you know double and apply double this number on 5 so what do you get what do you
+
+493
+00:57:39,280 --> 00:57:48,160
+expect here so there is some error so double is not defined okay so there is no mismatch in
+
+494
+00:57:48,320 --> 00:57:57,520
+the way I have defined double so okay now if so the double of 5 is 10 okay so can I also define
+
+495
+00:57:57,520 --> 00:58:04,080
+your triple I mean in same way this is triple now as we discussed in the very beginning that
+
+496
+00:58:04,080 --> 00:58:06,880
+this number should be able to so let me you know copy paste this one
+
+497
+00:58:10,400 --> 00:58:16,640
+and then say that now I want to do different triple and what if I you know want to print what
+
+498
+00:58:16,720 --> 00:58:24,480
+is the effect of my triple let's copy and paste it here instead of you know double
+
+499
+00:58:26,640 --> 00:58:30,320
+now I want to print the triple and using this triple function okay
+
+500
+00:58:33,600 --> 00:58:39,680
+triple function so what do you expect here see I mean we are getting exactly if we wanted right
+
+501
+00:58:39,680 --> 00:58:45,280
+so we can create double triple and these kind of things and you can create no you know 10 times
+
+502
+00:58:45,280 --> 00:58:51,440
+hour you know if you want to let's say define a function which is you know multiply it with 10
+
+503
+00:58:51,440 --> 00:58:57,200
+times you can also say create multiplier and pass 10 like I mean let me create it and not use it
+
+504
+00:58:57,200 --> 00:59:07,840
+maybe you want to multiply now with 10 so take you may so this time stand once there is nothing
+
+505
+00:59:07,920 --> 00:59:19,680
+but let's say create multiply and then you pass it 10 you can also again check you know using
+
+506
+00:59:19,680 --> 00:59:23,120
+the same method whether you know you can so again there is some error
+
+507
+00:59:23,360 --> 00:59:41,760
+maybe you know some spelling mistake so I just copy it and paste here here okay so this is how
+
+508
+00:59:41,760 --> 00:59:46,720
+you can create this no function but again if I ask you can you do it without defining this
+
+509
+00:59:47,200 --> 00:59:53,040
+inside it okay so what we did here was now we we outputted no this multiplier function but before
+
+510
+00:59:53,040 --> 00:59:58,880
+outputting this multiplier function we created this you know multiplier function inside the main
+
+511
+00:59:58,880 --> 01:00:04,960
+function that you know was creating all this no function okay so can you get rid of you know this
+
+512
+01:00:05,440 --> 01:00:11,360
+what I have highlighted here you know so let me you know copy this whole you know code and what I'm
+
+513
+01:00:11,360 --> 01:00:16,960
+trying to ask you is copy and paste it here now what I'm trying to say is I mean can we do
+
+514
+01:00:17,760 --> 01:00:24,960
+by not having this you know defined explicitly here okay so this is what you know we want to
+
+515
+01:00:25,920 --> 01:00:34,400
+see and you should be able to guess you know what what what shall I do I mean if I don't want to
+
+516
+01:00:34,400 --> 01:00:40,800
+define the function inside this you know main function no the whole no purpose of defining
+
+517
+01:00:40,800 --> 01:00:47,840
+this multiplier here no is to use it here right in the return can I not define it here and still
+
+518
+01:00:47,840 --> 01:00:54,320
+you know use something similar here in when I'm returning okay so so what I'm saying is I let's
+
+519
+01:00:54,320 --> 01:01:02,000
+say if I comment these two lines of code and I still want to get the effect of multiplier here
+
+520
+01:01:02,000 --> 01:01:07,680
+what shall I do I mean you should be able to guess at this point that we can use lambda expressions
+
+521
+01:01:08,400 --> 01:01:16,080
+you know effectively to get rid of this definition inside the function okay so what about I mean if I
+
+522
+01:01:16,560 --> 01:01:24,240
+right so what was it no job of this lambda function that you the function multiplier that you
+
+523
+01:01:24,240 --> 01:01:30,800
+have defined inside x just to you know multiply that x you know with a factor right so instead of
+
+524
+01:01:30,800 --> 01:01:39,920
+that we can also say this right that you take x as an input and then you return x multiplied by
+
+525
+01:01:41,760 --> 01:01:46,640
+factor which you already know right because factor has been passed to you so if we use this
+
+526
+01:01:46,640 --> 01:01:53,920
+expression you can see this expression has the same effect as this you know function okay
+
+527
+01:01:53,920 --> 01:02:00,400
+so instead of you know returning that you can directly maybe you know return this thing okay
+
+528
+01:02:00,400 --> 01:02:06,720
+and if I now try to run things and see whether I get the same result you see you get the same
+
+529
+01:02:06,720 --> 01:02:15,840
+result it's a valid you know definition accepted by python and also the results are as intended okay
+
+530
+01:02:15,840 --> 01:02:20,240
+so this is a perfectly you know correct way to do this so we could get rid of one definition of
+
+531
+01:02:20,240 --> 01:02:27,680
+function inside this one now a third you know even more you know clever way to do you know
+
+532
+01:02:27,680 --> 01:02:39,520
+something similar you know can be you know different I mean so what we are asking now in the
+
+533
+01:02:39,520 --> 01:02:45,280
+third attempt is to can we you know instead of defining this function in this way can we define
+
+534
+01:02:45,440 --> 01:02:51,760
+it using no lambda expressions so this is what I'm not asking you here so what what we are saying is
+
+535
+01:02:51,760 --> 01:02:57,280
+no can we comment out all this code and then create multiplier using lambda expression because
+
+536
+01:02:57,280 --> 01:03:03,520
+remember what we have written here is also a function right this itself is a function which takes
+
+537
+01:03:03,520 --> 01:03:09,760
+you know some input what is the input that it takes factor and it turns to this function so can
+
+538
+01:03:09,920 --> 01:03:14,720
+you know instead of writing this whole thing I mean this definition in this definition of
+
+539
+01:03:14,720 --> 01:03:20,720
+function in this form can we convert this also as a lambda expression okay so this may look a
+
+540
+01:03:20,720 --> 01:03:25,760
+little bit tricky to you at this moment but try to think about it I mean since it's a function
+
+541
+01:03:25,760 --> 01:03:32,160
+we can always create a no nameless lambda expression out of this function okay so what I'm trying to
+
+542
+01:03:32,160 --> 01:03:37,680
+say here is I mean is this a valid thing to do let me write it down so create maybe
+
+543
+01:03:39,840 --> 01:03:48,480
+create multiplier okay so you see I mean you know I instead of defining this create multiplier
+
+544
+01:03:48,480 --> 01:03:54,080
+function in this format which is normal no syntax for defining any function what I'm saying is
+
+545
+01:03:54,080 --> 01:04:00,960
+can I define this create multiplier as a variable and then assign it some lambda expression which
+
+546
+01:04:00,960 --> 01:04:05,840
+will have the same effect as if no we have defined the function so so what shall be the lambda
+
+547
+01:04:05,840 --> 01:04:15,680
+expression then okay so the argument is no factor okay and so so this is no you see I mean
+
+548
+01:04:15,680 --> 01:04:22,880
+the the argument was factor and what was the return type so what was the return value you see
+
+549
+01:04:22,880 --> 01:04:27,840
+return value was a lambda expression itself okay so after colon or maybe you know we can copy
+
+550
+01:04:27,840 --> 01:04:34,160
+from here exact thing right so what we want to return and for safety you use a parenthesis and
+
+551
+01:04:34,160 --> 01:04:41,440
+then you know pass this do you see this is no valid one-line you know statement which again
+
+552
+01:04:41,440 --> 01:04:47,040
+defines the same create multiplier function which will it should have the same meaning it from
+
+553
+01:04:47,040 --> 01:04:56,640
+our discussion till now it's easy to see why no this is true okay so let me run this and see
+
+554
+01:04:56,640 --> 01:05:01,520
+whether compiler accepts it without an error so certainly I mean it no accepts it without an
+
+555
+01:05:01,520 --> 01:05:11,280
+error but what about again now if I want to not define like I mean if I want to just copy and
+
+556
+01:05:11,280 --> 01:05:16,720
+paste this three line of code here just to check whether the semantics is also as intended
+
+557
+01:05:16,720 --> 01:05:21,600
+because syntax wise it's perfect but what about semantics do we get the same semantics so let me
+
+558
+01:05:21,600 --> 01:05:28,640
+run this piece of what again I know with this and you see the same meaning right so lambda expression
+
+559
+01:05:28,800 --> 01:05:37,040
+can be very helpful in concisely representing function expressions and especially when you're
+
+560
+01:05:37,040 --> 01:05:42,960
+using it no for maybe only one time and you know in cases where the function definition is not
+
+561
+01:05:42,960 --> 01:05:49,200
+that complicated that you want to maybe write comment for describing it and especially if it is not
+
+562
+01:05:49,200 --> 01:05:54,880
+reusable maybe you want to use it only for one time in that case also I mean you can simply use
+
+563
+01:05:54,880 --> 01:06:01,760
+this lambda expression and avoid defining any new function so just to you know summarize the
+
+564
+01:06:01,760 --> 01:06:09,280
+whole idea we want to know answer this question I mean through this lecture we try to answer this
+
+565
+01:06:09,280 --> 01:06:17,120
+question that when would you use lambda expression okay so using lambda you know expression is you know
+
+566
+01:06:17,120 --> 01:06:23,200
+perfect you know in the cases you know where for example you want to do calculation very
+
+567
+01:06:23,200 --> 01:06:29,120
+no quickly okay so the very you know first thing is that if I want to do some no quick calculations maybe
+
+568
+01:06:33,840 --> 01:06:39,280
+since then I have to know pray for this in our lambda expression also the kind of transformation
+
+569
+01:06:39,280 --> 01:06:44,400
+which I want to capture with this lambda expression should be simple I mean it you should not
+
+570
+01:06:45,440 --> 01:06:51,760
+know use lambda expression for very very complex transformation in that those cases it's better to
+
+571
+01:06:51,760 --> 01:06:57,120
+define your function explicitly because that will no be more direct way of you know saying what
+
+572
+01:06:57,120 --> 01:07:01,440
+you want to do rather than you know defining this complicated lambda expression so another thing
+
+573
+01:07:01,440 --> 01:07:08,560
+that we would certainly want is that the transformation that we are trying to you know express using
+
+574
+01:07:08,560 --> 01:07:18,080
+this lambda expression should be simple okay so we shall always write lambda expression for simple
+
+575
+01:07:18,080 --> 01:07:22,880
+transformation you know another thing I mean that is you know important in that we discuss that you
+
+576
+01:07:22,880 --> 01:07:29,280
+know if you know transformation that you are talking about right now is not reusable at multiple
+
+577
+01:07:29,280 --> 01:07:35,280
+places it's only you know mean for one time maybe operation in that case again you can prefer
+
+578
+01:07:35,280 --> 01:07:42,080
+using lambda expression over function so the third core criteria that you know that will help me
+
+579
+01:07:42,640 --> 01:07:49,040
+to use lambda expression is one-time operation if no the operation that you want to perform or
+
+580
+01:07:50,000 --> 01:07:56,240
+not define is a one-time operation then you better use it when to you know you use regular
+
+581
+01:07:56,240 --> 01:08:01,520
+function so I mean when your logic is very complex let's say it's not very easy to define it in
+
+582
+01:08:01,520 --> 01:08:07,680
+no one although I mean you can always define it in no terms of lambda expression but the expression
+
+583
+01:08:07,760 --> 01:08:13,360
+may be very complex to make sense of so when your logic is complex you should most mostly know go
+
+584
+01:08:13,360 --> 01:08:18,160
+to the regular function okay and define it using the syntax of the regular function so the very
+
+585
+01:08:18,160 --> 01:08:24,240
+you know first you know kind of thing where I get a hint of you know going to regular function is
+
+586
+01:08:24,240 --> 01:08:32,880
+no complex logic if the logic is complex better you know stick to regular function then I mean again
+
+587
+01:08:32,880 --> 01:08:37,600
+I mean as we discussed previously I mean if the code has to already the function has to be used
+
+588
+01:08:37,600 --> 01:08:43,440
+and reuse at multiple places in multiple files you know and then you must actually define it
+
+589
+01:08:43,440 --> 01:08:47,440
+explicitly and give it a name because then that you can use that name multiple times in
+
+590
+01:08:47,440 --> 01:08:53,520
+no different places okay so the next important thing to note is that you know our
+
+591
+01:08:55,760 --> 01:09:02,240
+so you should write function when the code that you want to you know reuse multiple times okay
+
+592
+01:09:02,880 --> 01:09:20,000
+so the code that you will reuse many times you better write functions for that and of course
+
+593
+01:09:20,000 --> 01:09:26,160
+I mean code is you know reusable and logic is complex and when you want a clear documentation for
+
+594
+01:09:26,160 --> 01:09:31,600
+that you certainly should use that okay so believe I mean let's you know suppose that your code is
+
+595
+01:09:31,600 --> 01:09:36,960
+to be used by some other third party you know then you need to give the documentation of the code
+
+596
+01:09:36,960 --> 01:09:41,440
+also very clearly and you cannot provide documentation inside a lambda expression okay so for that you
+
+597
+01:09:41,440 --> 01:09:47,200
+need to write a proper function and also put enough documentation so that someone who is using your
+
+598
+01:09:47,200 --> 01:09:53,040
+code should not be forced to look inside the implementation of the code rather than it can just
+
+599
+01:09:53,040 --> 01:09:58,240
+look at the description of the code and use that code okay so if the code is meant for third party
+
+600
+01:09:58,720 --> 01:10:04,240
+and if you want to document the code clearly then also you should define your you know functions
+
+601
+01:10:04,240 --> 01:10:16,000
+using proper you know function definition so this is a moment you need clear documentation
+
+602
+01:10:20,480 --> 01:10:26,240
+so these are some of the places where I can you know advise you to use lambda expressions
+
+603
+01:10:26,240 --> 01:10:31,760
+and functions you know judicially based upon what's the current scenario okay so with this we
+
+604
+01:10:31,760 --> 01:10:45,280
+would like to you know conclude this lecture I will see you in the next video thank you
+

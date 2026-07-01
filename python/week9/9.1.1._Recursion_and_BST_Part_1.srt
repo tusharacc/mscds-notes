@@ -1,0 +1,940 @@
+1
+00:00:00,000 --> 00:00:16,560
+Hello and welcome back to Python Core and Applied Concept for a Labelled Data Science Work.
+
+2
+00:00:16,560 --> 00:00:25,920
+In today's video, we will discuss one of the very important concepts of recursion in
+
+3
+00:00:25,920 --> 00:00:27,920
+the context of function.
+
+4
+00:00:27,920 --> 00:00:38,480
+We will talk about what is a recursive function and to give you a clear and complete context,
+
+5
+00:00:38,480 --> 00:00:44,080
+I will use binary search tree as a data structure to show you how recursion actually works.
+
+6
+00:00:46,720 --> 00:00:55,920
+It's good to learn about recursive programming or recursive functions in the context of binary search tree.
+
+7
+00:00:55,920 --> 00:01:02,160
+But before we get into binary search tree, we would like to know why we have something like,
+
+8
+00:01:02,160 --> 00:01:09,200
+you know, binary search tree. So, in computer science, when we try to solve problems,
+
+9
+00:01:09,200 --> 00:01:16,640
+we normally require a lot of subroutine or solving problems. And one of the subproblems that
+
+10
+00:01:16,640 --> 00:01:23,680
+occur more frequently in computer science while solving any problem, almost of the problem
+
+11
+00:01:23,680 --> 00:01:31,440
+is sorting and searching. Because most of the time, we will be working with some data or collection
+
+12
+00:01:31,440 --> 00:01:38,800
+of data and we would like to update that data or we would like to search in the collection that we
+
+13
+00:01:38,800 --> 00:01:46,240
+have at hand at no present. So, maintaining a collection of data and then modifying that data
+
+14
+00:01:47,520 --> 00:01:53,200
+on the way when we are computing something or even proving that data is very common activity
+
+15
+00:01:53,280 --> 00:02:00,000
+in any programming exercise or problem solving exercise. So, that's why we need data structures,
+
+16
+00:02:00,000 --> 00:02:09,120
+which are nothing but methods to store retrieve and modify these collections of data effectively.
+
+17
+00:02:09,920 --> 00:02:17,200
+So, BST is one such data structure, which you will study in later courses also,
+
+18
+00:02:17,200 --> 00:02:22,160
+when you study data structure algorithm. But for today's context, we will talk very minimally
+
+19
+00:02:22,160 --> 00:02:28,400
+about BST. So, what is a BST? A BST is a tree like structure, is a tree data structure,
+
+20
+00:02:28,400 --> 00:02:34,560
+where every node has at most two children. If you remember, I mean, list is also data structure,
+
+21
+00:02:34,560 --> 00:02:42,720
+which is linear in nature, that for every element in the list, what comes before that element
+
+22
+00:02:42,720 --> 00:02:47,760
+and what comes after that element. So, these are two important information that you can maybe
+
+23
+00:02:47,760 --> 00:02:56,320
+write or tell me if I point to any element in the list. So, you have an element coming before
+
+24
+00:02:56,320 --> 00:03:00,560
+that element in the list or an element coming after that element in the list. Similarly,
+
+25
+00:03:00,560 --> 00:03:05,840
+tree is another data structure, which is not linear in nature in the sense that there is nothing
+
+26
+00:03:05,840 --> 00:03:12,080
+called before or after. Instead of that, we say that a tree has collection of nodes,
+
+27
+00:03:12,880 --> 00:03:20,640
+where each node has some children. And if you want to call your tree a binary search tree,
+
+28
+00:03:20,640 --> 00:03:27,840
+then the structural requirement is that every node in the tree can have at most two elements.
+
+29
+00:03:29,440 --> 00:03:33,840
+So, it can have no element. For example, I mean, this is a binary search tree.
+
+30
+00:03:34,800 --> 00:03:37,040
+And we are talking about the structure right now. Sorry,
+
+31
+00:03:39,920 --> 00:03:46,160
+let me go back to this one. So, this is a binary search tree, where we can see that these are the
+
+32
+00:03:46,160 --> 00:03:56,960
+nodes of the tree. And as you can see, this node 8, which has two children. So, this is what we
+
+33
+00:03:57,040 --> 00:04:04,240
+call left child of 8 and 10 is the right child of 8. So, this is a binary search tree and looking
+
+34
+00:04:04,240 --> 00:04:10,720
+at the structure, we can easily note that none of the node has more than two children.
+
+35
+00:04:10,720 --> 00:04:17,920
+So, some node may not have children. For example, this node 1 does not have any children.
+
+36
+00:04:18,480 --> 00:04:24,800
+On the other hand, if you look at this node 14, it has only one children. But none of the node
+
+37
+00:04:24,800 --> 00:04:29,760
+has more than two children. And this is the very first structural requirement for a binary
+
+38
+00:04:29,760 --> 00:04:37,040
+search tree that each node has at most two children. Now, beyond this structural requirement,
+
+39
+00:04:37,040 --> 00:04:43,520
+we also have this ordering property that must satisfy for a tree to be a binary search tree.
+
+40
+00:04:44,320 --> 00:04:47,920
+So, what is this ordering requirement? So, the ordering requirement is,
+
+41
+00:04:47,920 --> 00:04:54,560
+while forming the tree, you maintain these invariants or these constraints. And what is that
+
+42
+00:04:54,560 --> 00:05:01,360
+a constraint that the left child of any parent should always be less than the parent.
+
+43
+00:05:02,400 --> 00:05:08,080
+And the right child should be greater than the parent. So, for today's lecture,
+
+44
+00:05:08,960 --> 00:05:15,760
+we assume for the whole lecture that all the elements are distinctly, let's say,
+
+45
+00:05:16,400 --> 00:05:21,680
+your collection. So, we don't ask, what happens when nothing's are equal. So,
+
+46
+00:05:22,720 --> 00:05:26,800
+those things can be handled. But for simplicity, let's assume for today's lecture that everything
+
+47
+00:05:26,800 --> 00:05:35,200
+that comes to you are distinct in nature. In the sense that you can completely relate them to
+
+48
+00:05:35,200 --> 00:05:40,960
+each other and say clearly whether one is bigger than other or not. So, either A is less than B
+
+49
+00:05:40,960 --> 00:05:47,200
+or A is greater than B. So, let's forget about equality today. So, we are talking about
+
+50
+00:05:48,480 --> 00:05:55,200
+different types of elements where this relation, you know very clearly, you can relate
+
+51
+00:05:56,080 --> 00:06:01,360
+which one is no less than another one. And for simplicity again, we only consider numbers
+
+52
+00:06:01,360 --> 00:06:07,440
+in today's lecture. But then this can be easily generalized to any other type,
+
+53
+00:06:07,440 --> 00:06:12,240
+you know, data type which has this ordering relation. So, you can form a, you know,
+
+54
+00:06:12,240 --> 00:06:18,720
+VST kind of data structure or any data type that has some ordering relation. And you
+
+55
+00:06:18,720 --> 00:06:23,360
+should be clear about what is that ordering relation because you need that ordering relation
+
+56
+00:06:23,360 --> 00:06:27,440
+to check whether, you know, one element is bigger than other or not. So, for the time being,
+
+57
+00:06:27,440 --> 00:06:31,600
+let's assume that we are only working with less than numbers. Okay. And numbers clearly have
+
+58
+00:06:31,600 --> 00:06:37,520
+ordering relation which all of us understand. So, now, knowing that ordering relation or number,
+
+59
+00:06:37,520 --> 00:06:43,760
+I can see, you know, you can see that this is a perfect, you know, binding substrate, right?
+
+60
+00:06:43,760 --> 00:06:49,040
+Because if you go to any node, you know, the node becomes, you know, parent and then you look at
+
+61
+00:06:49,040 --> 00:06:54,080
+the child of the parents. And if you are at the right child, then the right child should have value
+
+62
+00:06:54,080 --> 00:06:58,480
+which is no greater than the parent and the left hand side should have value which is less than the
+
+63
+00:06:58,800 --> 00:07:06,480
+parent. Okay. And, again, I mean, it's not, it should not be, you know, true for only this,
+
+64
+00:07:06,480 --> 00:07:11,600
+but any node that you take. Okay. So, for example, if you look at, you know, eight,
+
+65
+00:07:13,520 --> 00:07:25,440
+okay. So, so you, so everything that comes in the, you know, left hand side. So, so remember,
+
+66
+00:07:25,440 --> 00:07:31,520
+I mean, when we look at eight and when we look at the left child of eight, we have three here,
+
+67
+00:07:31,520 --> 00:07:39,920
+right? Now, not only the left child three should be, you know, less than eight, but everything that
+
+68
+00:07:39,920 --> 00:07:45,600
+comes under this, you know, left subtree of this main tree should also be less than eight.
+
+69
+00:07:46,800 --> 00:07:52,640
+Okay. That's why you say, you know, both subtree are also BSTM and this property should, you know,
+
+70
+00:07:53,600 --> 00:07:59,520
+be true. I didn't know that you, you, you're, you take the left subtree of this whole thing,
+
+71
+00:08:00,160 --> 00:08:05,760
+eight, everything that comes here should be less than eight and everything on the right hand side
+
+72
+00:08:05,760 --> 00:08:10,560
+of the eight, which, which comes on the right subtree of eight should be greater than equal to,
+
+73
+00:08:11,360 --> 00:08:19,200
+you know, eight. And this should be true for every, no, place that you go. Okay. Every node that you
+
+74
+00:08:19,200 --> 00:08:30,400
+visit here. Okay. So, now, you know, we can validate here. I mean, very quickly, right? This is,
+
+75
+00:08:30,400 --> 00:08:37,520
+this should not be difficult for you to validate that this is a correct, you know, BSTM. All values
+
+76
+00:08:37,520 --> 00:08:43,440
+in the left subtree are less than equal to eight. Is it true? If you look at the left subtree of
+
+77
+00:08:44,240 --> 00:08:50,640
+eight, now this whole is a tree, a big tree. But if you look at the root of this, so, so,
+
+78
+00:08:50,640 --> 00:08:57,440
+eight is a, you know, unique node in this, no, bigger tree. Why? Because, no, eight does not have a
+
+79
+00:08:57,440 --> 00:09:04,480
+parent, as I said. Okay. So, so we call it the root node, from where every branch, you know,
+
+80
+00:09:05,440 --> 00:09:10,960
+starts or, you know, the tree starts actually. So, since it does not have any parent, we look at the,
+
+81
+00:09:11,040 --> 00:09:15,920
+no, left subtree of this, no, bigger tree and the right subtree of this bigger tree, which
+
+82
+00:09:15,920 --> 00:09:22,160
+appears at this node eight or this root eight. Now, everything here should be less than equal to eight.
+
+83
+00:09:22,160 --> 00:09:26,960
+And this is what is true, right? Because, no, what are the here? The three, one, six, four, seven,
+
+84
+00:09:26,960 --> 00:09:33,120
+right? And all of these are not less than eight. So, so, this is okay. All values in the right
+
+85
+00:09:33,120 --> 00:09:39,680
+subtree are also greater than eight. Is it correct? If you look here again, what are the values in the
+
+86
+00:09:39,680 --> 00:09:47,840
+right subtree of this tree? 10, 14 and 30. And in this case, also, we see that, no, all of them are
+
+87
+00:09:47,840 --> 00:09:55,120
+greater than eight. So, this is true, you know, for this eight, but it being only true for eight,
+
+88
+00:09:57,200 --> 00:10:02,080
+you know, does not guarantee that this is a BST. This has to be true for every node.
+
+89
+00:10:02,880 --> 00:10:07,120
+Okay. So, now, if you go to some other node, let's say three is the next node that I want to,
+
+90
+00:10:07,120 --> 00:10:14,720
+you know, see? So, can we do the same check here that everything on the left subtree of three is less
+
+91
+00:10:14,720 --> 00:10:20,880
+than three? There is only one thing, right? Which is one is certainly less than three. And if you look
+
+92
+00:10:20,880 --> 00:10:28,320
+at all, all the elements that appear on the right subtree of three, they are six, four, and seven,
+
+93
+00:10:28,320 --> 00:10:33,600
+and all of them are greater than three. So, right subtree has this where all values are greater than three.
+
+94
+00:10:34,320 --> 00:10:39,600
+So, for three, for the node three, also, this property holds, right? Same as none for the node eight.
+
+95
+00:10:41,200 --> 00:10:46,320
+And, and similarly, you can check for six as well, right? For six, if you look at six,
+
+96
+00:10:47,360 --> 00:10:53,280
+left child is no less than eight, and right child is greater than eight. Okay? And you can,
+
+97
+00:10:53,280 --> 00:10:59,600
+you know, check that this is true for 10 also, right? Because, you know, at 10, you can see
+
+98
+00:10:59,680 --> 00:11:04,640
+everything on the right. And so, remember, this 13 is not on the left subtree of 10, right? It is on the
+
+99
+00:11:04,640 --> 00:11:12,320
+right subtree of 10. And on the right subtree of 10, there are two numbers, 14 and 13, and both of
+
+100
+00:11:12,320 --> 00:11:18,560
+them are greater than 10. So, that's no perfectly alright. So, 10 qualifies, or I mean, this invariance
+
+101
+00:11:18,560 --> 00:11:24,560
+holds at this node 10 also. Similarly, you know, you can check for 14 also, there's no hold.
+
+102
+00:11:24,560 --> 00:11:29,680
+And for the leaf node, it no hold vacuously because there are no child, right? So, so this will
+
+103
+00:11:29,680 --> 00:11:34,880
+always be true. If there is no child, then how these properties will be violated. Okay? So,
+
+104
+00:11:35,280 --> 00:11:40,800
+that's why I mean, we call this a binary search tree. So, this is a valid binary search tree,
+
+105
+00:11:40,800 --> 00:11:48,560
+both structurally and by the property that is invariant at each node, that is true at each of these
+
+106
+00:11:48,640 --> 00:11:57,520
+nodes. Okay? So, now, I mean, so we don't need to, you know, discuss in detail about the
+
+107
+00:11:57,520 --> 00:12:03,680
+in order traversal, but you can look about this idea of, out of the class. So, if you do an
+
+108
+00:12:03,680 --> 00:12:09,280
+in order traversal of this, you know, binary search tree, so you will get a, you know, completely,
+
+109
+00:12:09,840 --> 00:12:16,480
+you know, sorted elements in the sorted order, okay? So, BST property is recursive. Every
+
+110
+00:12:16,480 --> 00:12:21,440
+sub tree must also satisfy the ordering constant. And this is what we, you know, discuss.
+
+111
+00:12:21,440 --> 00:12:28,800
+A different BST can represent the same set of values depending on the insertion order,
+
+112
+00:12:28,800 --> 00:12:36,400
+but all valid BST will produce same sorted sequence when traversed in this in order traversal.
+
+113
+00:12:36,400 --> 00:12:41,440
+Okay? So, okay. So, so other things are not important, but the thing that I want to, you know,
+
+114
+00:12:41,440 --> 00:12:49,920
+mention here is that we, we can generate different, you know, binary search tree with same set of
+
+115
+00:12:49,920 --> 00:12:55,200
+element, okay? So, there can be multiple BST, which are all valid, you know, BST. And if you
+
+116
+00:12:55,200 --> 00:13:01,840
+take the collection of elements that this BST have, it may be that they have this exactly same
+
+117
+00:13:01,840 --> 00:13:06,320
+no collection. So, it's quite possible. It depends upon how you start inserting this element.
+
+118
+00:13:07,280 --> 00:13:12,800
+And that's what we know we are going to, you know, discuss now, okay? So, but before, you know,
+
+119
+00:13:12,800 --> 00:13:18,560
+discussing that, you know, this should be clear that we can easily now represent, remember, I mean,
+
+120
+00:13:19,200 --> 00:13:29,040
+any BST, right? Any BST has this two value, right? Any node in the BST has a value as well as two
+
+121
+00:13:29,040 --> 00:13:34,720
+things. No, one is the left sub tree and another one is the right sub tree, okay? So, if you are,
+
+122
+00:13:34,720 --> 00:13:39,520
+you know, making a small, you know, BST by research tree with only one element, let's say 10.
+
+123
+00:13:40,240 --> 00:13:47,120
+So, what can be a good way to know represent that BST? So, we can represent that node using this kind
+
+124
+00:13:47,120 --> 00:13:53,920
+of node dictionary, where that node has the value 10. No, the value that we put at any node,
+
+125
+00:13:53,920 --> 00:14:00,080
+we can represent with this key value pair, which is the very first thing, you know, in the dictionary,
+
+126
+00:14:00,080 --> 00:14:09,680
+you know, you give the name value as key and then pass the exact value there, okay? And in the left,
+
+127
+00:14:11,760 --> 00:14:16,720
+you know, sub tree, I mean, this left, I mean, the second key here, which is left,
+
+128
+00:14:16,720 --> 00:14:22,080
+represents the left, you know, sub tree. Now, the left sub tree itself can be a bigger tree,
+
+129
+00:14:22,080 --> 00:14:27,840
+right? So, so there, you can actually put a dictionary itself, right? So, like, I mean, nodes are,
+
+130
+00:14:27,840 --> 00:14:32,480
+can be represented as dictionary, the whole BST can also be represented as dictionary. So,
+
+131
+00:14:32,480 --> 00:14:39,760
+you can put as the left sub tree, the whole dictionary here and using this right key,
+
+132
+00:14:39,760 --> 00:14:45,200
+you can represent the right sub tree, okay? So, for at any node, you only have to store this,
+
+133
+00:14:45,200 --> 00:14:49,840
+you know, three information, right? When you are standing at a node, you must know what is the
+
+134
+00:14:49,840 --> 00:14:57,600
+values for that node and you should also be able to tell me what is the left sub tree of that node,
+
+135
+00:14:58,080 --> 00:15:03,680
+what parent node and what is the right sub tree of that parent node, okay? So, BSTs can
+
+136
+00:15:03,680 --> 00:15:09,360
+naturally be defined as dictionary, right? I mean, dictionary is a very good way. And how are you
+
+137
+00:15:09,360 --> 00:15:16,400
+maintaining the structural property of BST by, you know, let's say defining node in this way?
+
+138
+00:15:17,760 --> 00:15:23,120
+Because remember, here we have only, you know, two fields, right? Which represents that's
+
+139
+00:15:23,120 --> 00:15:28,000
+no children's of the node. No one is the left and one is the right. So, at most, you have
+
+140
+00:15:28,000 --> 00:15:33,200
+only two children for any given node and there is one value for every node for sure, okay? So,
+
+141
+00:15:33,200 --> 00:15:40,800
+this structure itself tells us that, you know, this aligns with the structural constraint,
+
+142
+00:15:40,800 --> 00:15:45,920
+which is required for a binary sub tree. But still, we have not talked about the, you know,
+
+143
+00:15:45,920 --> 00:15:49,280
+value constraint that we defined earlier, right? That the value should also be, you know,
+
+144
+00:15:49,360 --> 00:15:54,400
+less than equal to the value of the parent should be no greater than all the values that
+
+145
+00:15:54,400 --> 00:15:58,720
+is present in the left sub tree and the value of the parent is less than all the values that
+
+146
+00:15:58,720 --> 00:16:03,840
+is present in the right sub tree, okay? Now, let's do this exercise one by one to see, you know,
+
+147
+00:16:03,840 --> 00:16:12,800
+how you can maybe, you know, create a binary substrate from scratch. Now, let's say, I mean,
+
+148
+00:16:12,880 --> 00:16:19,760
+our task is to create a BST, okay? And this is the, you know, order in which elements are coming
+
+149
+00:16:19,760 --> 00:16:24,800
+to you, okay? So, so you will not have the BST at one go, okay? The whole BST will not be
+
+150
+00:16:24,800 --> 00:16:30,640
+available to us in a single, you know, go. So, what we want to do is we want to build this
+
+151
+00:16:30,640 --> 00:16:37,920
+binary substrate one at a time, one element at a time, okay? So, let's say, this is the insertion
+
+152
+00:16:38,160 --> 00:16:45,040
+order that we want to, you know, follow that first element that I get is 10. So, I have to create
+
+153
+00:16:45,040 --> 00:16:50,880
+a BST which has only one element which is, you know, 10. So, in the very, and then followed by that,
+
+154
+00:16:50,880 --> 00:16:57,360
+I mean, I will have next element which I would like to add to my current existing, you know,
+
+155
+00:16:57,360 --> 00:17:05,200
+BST to enlarge it. And similarly, I will keep, you know, adding one more element every time until I
+
+156
+00:17:05,200 --> 00:17:10,880
+accommodate all these elements into my binary substrate. So, this is our goal, okay? Now,
+
+157
+00:17:10,880 --> 00:17:16,720
+if you understand the concept of the BST properly, then you should be able to follow another
+
+158
+00:17:16,720 --> 00:17:22,160
+following, you know, the upcoming discussion of inserting these elements one by one. So,
+
+159
+00:17:22,160 --> 00:17:30,000
+okay? So, this is a step by step, you know, process to do that. So, let me increase the font a little bit
+
+160
+00:17:30,480 --> 00:17:42,960
+here. Okay. Now, in the very first step, when you get 10, what do we do? We create the first node,
+
+161
+00:17:44,800 --> 00:17:52,080
+and this will be our root node, because the very first node that you insert into your tree is the
+
+162
+00:17:52,080 --> 00:17:57,200
+root node of your tree, okay? So, when I get 10, at that moment, I know that there is only one
+
+163
+00:17:57,200 --> 00:18:01,760
+element in my tree, right? Or only one node in my tree, and what is that node? 10.
+
+164
+00:18:03,200 --> 00:18:11,040
+But I can have, you know, two, you know, trees or sub trees later on, for which I have,
+
+165
+00:18:11,040 --> 00:18:17,200
+know, kept this placeholder as none for now. So, what I did is I created left as well as right
+
+166
+00:18:17,200 --> 00:18:21,920
+both and kept there none. So, this, you know, completely it is almost what we have written here,
+
+167
+00:18:21,920 --> 00:18:25,440
+right? So, a node can be defined in this way, you, where you give the value.
+
+168
+00:18:25,840 --> 00:18:33,360
+And for the left child, you say that right now, I don't have any left, you know, sub tree.
+
+169
+00:18:33,360 --> 00:18:38,320
+So, I keep there the value none. So, none, in a sense, you know, indicates that there is nothing
+
+170
+00:18:39,520 --> 00:18:44,960
+as a left sub tree right now available. So, I just keep there none. Later on, if I get some
+
+171
+00:18:44,960 --> 00:18:50,400
+values, which are less than 10, I would probably push them towards the left sub tree, okay?
+
+172
+00:18:50,400 --> 00:18:55,120
+And if I get some values, which are greater than 10, I will push them towards the right sub tree.
+
+173
+00:18:55,200 --> 00:19:01,920
+So, this is the intention of keeping this none at the moment when you create this first node 10,
+
+174
+00:19:03,120 --> 00:19:08,560
+okay? And, you know, this is maybe the exact way by which we can actually create this, you know,
+
+175
+00:19:08,560 --> 00:19:14,720
+node, which we may call no node 10, let's say, okay? So, what if, now, after inserting this
+
+176
+00:19:15,760 --> 00:19:20,640
+10, so our tree looks something, you know, like this, and then the next number 50 comes.
+
+177
+00:19:21,200 --> 00:19:30,880
+Okay? So, shall we create a, you know, new child of 10 and put 50 here or that is not allowed
+
+178
+00:19:30,880 --> 00:19:38,800
+structurally? Right? I mean, that may be a natural suicide that you create a new
+
+179
+00:19:38,800 --> 00:19:45,040
+children of 10 and then put 50 there, but we know that a binary search tree should not have more
+
+180
+00:19:45,120 --> 00:19:51,760
+than two child. So, you have to put, you know, 15, one of these two child positions, okay?
+
+181
+00:19:51,760 --> 00:19:56,880
+And we have already created this two child position and kept none there. So, what we do is, we
+
+182
+00:19:56,880 --> 00:20:04,960
+try to figure out which of the sub tree I should push 50 towards, okay? So, now, for that, what we
+
+183
+00:20:04,960 --> 00:20:11,760
+need to do is we have to, you know, use the second property, which is about the values or the
+
+184
+00:20:11,760 --> 00:20:18,320
+comparison of, or, you know, the relative values of what can happen or what can occur at the root node
+
+185
+00:20:18,320 --> 00:20:25,600
+and what can occur at light node subtree and left subtree. So, we know that everything on the right
+
+186
+00:20:25,600 --> 00:20:29,920
+subtree should be greater than or 10 and everything on the left subtree should be
+
+187
+00:20:31,440 --> 00:20:37,520
+less than 10, less than 10, right? So, can we insert 50 on the left hand side? No. Because as
+
+188
+00:20:37,600 --> 00:20:43,200
+as soon as you insert 50 on the left hand side and replace this none by, you know, 50,
+
+189
+00:20:44,000 --> 00:20:48,800
+what will happen? Now, you will valid one of the, you know, invariant that, you know, you will get
+
+190
+00:20:48,800 --> 00:20:57,280
+immediately a left child, which is, which has value larger than 10, right parent node. So,
+
+191
+00:20:57,280 --> 00:21:04,320
+that's why we've since, you know, 50 is greater than 10, we go to the right subtree, right? We
+
+192
+00:21:04,480 --> 00:21:10,080
+go to the right subtree and we find there is nothing none here. So, there is nothing, once you
+
+193
+00:21:10,080 --> 00:21:15,760
+encounter none, you know, there is nothing, no downside. So, better we put 50 here itself, you know.
+
+194
+00:21:15,760 --> 00:21:21,360
+So, when you put 50 here on the right hand side, you know, you have maintained, you know,
+
+195
+00:21:21,360 --> 00:21:27,280
+two thing, you have maintained the structural property of the tree that, you know, you did not
+
+196
+00:21:27,360 --> 00:21:33,600
+create a new, you know, child. And so, if the tree had initially at most to
+
+197
+00:21:35,200 --> 00:21:39,840
+child for every node, now also your tree will have, you know, at most to child for every node,
+
+198
+00:21:39,840 --> 00:21:45,440
+okay? And you have created here this node 50 and maintained this invariant that, you know,
+
+199
+00:21:45,440 --> 00:21:52,720
+50 is greater than 10, okay? But, you know, since you are getting a new node inside the tree,
+
+200
+00:21:52,800 --> 00:21:58,080
+what you can do immediately, you can put, you know, their children as not. And this we always want
+
+201
+00:21:58,080 --> 00:22:03,680
+to do, you know, for, you know, this symmetric region and preserving this structure. So, we don't
+
+202
+00:22:03,680 --> 00:22:09,360
+know add more than no two things. So, none right now means nothing, right? But, since we have
+
+203
+00:22:09,360 --> 00:22:15,280
+allocated only two children position for this 50, in future there is no way we can actually,
+
+204
+00:22:15,280 --> 00:22:20,000
+you know, create the third one, okay? So, we will always go and replace a none with some,
+
+205
+00:22:20,720 --> 00:22:25,040
+you know, new node. So, this is how we progress, okay? So, in the second step and you see,
+
+206
+00:22:25,040 --> 00:22:30,960
+I mean, after inserting 50, our tree looks like this. And then what will happen if you get the next
+
+207
+00:22:30,960 --> 00:22:37,680
+number as, let's say 30. So, when I get the next number as 30, I will compare it first with 10,
+
+208
+00:22:39,040 --> 00:22:46,640
+okay? And since 30 is greater than 10, we know that we cannot go or not towards the left
+
+209
+00:22:46,800 --> 00:22:50,880
+subtree and put 30 there, right? Because this will evaluate one of the rules. So, what we do is,
+
+210
+00:22:50,880 --> 00:22:57,360
+we go towards the right subtree and then compare 30 again with this 50. So, we know for sure that 30
+
+211
+00:22:57,360 --> 00:23:04,160
+should appear somewhere on this right subtree of 10, right? Why? Because 30 is greater than 10.
+
+212
+00:23:04,800 --> 00:23:09,440
+No, so, its correct place is somewhere down the line, down the line towards the right subtree.
+
+213
+00:23:10,800 --> 00:23:16,320
+But, we have not figured out it yet. So, what we go, two is we go and compare this 30 again
+
+214
+00:23:16,320 --> 00:23:21,040
+with the next, you know, number, which is, you know, the children, immediate children of 10,
+
+215
+00:23:21,040 --> 00:23:30,720
+this is 50. And we see that now 30 is less than 50, right? So, since 30 is less than 50, so,
+
+216
+00:23:30,720 --> 00:23:39,760
+shall it go to the left subtree of 50 or to the right subtree of 50? Since 30 is, you know,
+
+217
+00:23:39,760 --> 00:23:49,280
+less than 50, it should go to the left subtree of 50. So, can we do go, you know, further down here?
+
+218
+00:23:51,040 --> 00:23:58,880
+That is, we simply put 30 at this place. And the way to know insert 30 is,
+
+219
+00:23:59,600 --> 00:24:04,240
+we put 30 and then we mark its children to not value.
+
+220
+00:24:10,240 --> 00:24:16,960
+Okay, so now let's go to the next number that we want to insert in the list. So, right now,
+
+221
+00:24:17,920 --> 00:24:24,560
+our list looks something like this and we want to insert 70. So, what do you think should be
+
+222
+00:24:24,560 --> 00:24:31,840
+the correct position for 70? So, in the very first go, I would like to compare this 70 with the
+
+223
+00:24:31,920 --> 00:24:40,640
+root, which is 10. Since 70 is greater than the root, I should visit the right subtree of, you know,
+
+224
+00:24:40,640 --> 00:24:47,200
+this, right? And what was the right subtree? This was the right subtree. In the right subtree,
+
+225
+00:24:48,080 --> 00:24:56,160
+I go and compare again 70 with 50 and I figured out that 70 is greater than 50. So, it's, no,
+
+226
+00:24:56,240 --> 00:25:03,600
+place should be this position. Okay, so we go here and replace this non-value with 70.
+
+227
+00:25:04,480 --> 00:25:12,560
+And the updated list should look something like this. Okay, so at this point, now we are done with
+
+228
+00:25:12,560 --> 00:25:22,960
+our new list and at the end, I mean, when we put insert 20 and 40, our list should look something
+
+229
+00:25:23,040 --> 00:25:26,000
+like this, right? Because 20 will come to the left of 30.
+
+230
+00:25:32,240 --> 00:25:39,120
+Okay, so this is how we can actually, so this is the whole process of adding new element to a list.
+
+231
+00:25:40,640 --> 00:25:46,480
+Oh, sorry, to a binocistry and populating the binocistry one by one. So, we have now
+
+232
+00:25:47,280 --> 00:25:52,320
+seen the overall, you know, workflow of adding these elements to the list. So, can we now
+
+233
+00:25:53,280 --> 00:25:58,960
+also get a code corresponding to this workflow or the whatever we discuss the process that we
+
+234
+00:25:58,960 --> 00:26:06,880
+discuss, can we also convert into code which will actually create no binary surgery and update it
+
+235
+00:26:06,880 --> 00:26:14,800
+and search this binocistry.
+

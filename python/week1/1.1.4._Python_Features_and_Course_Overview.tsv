@@ -1,0 +1,146 @@
+start	end	text
+0	13000	Hello and welcome back to Python Core and Applied Concepts for Reliable Data Sins workflow.
+13000	20520	In today's session, we will try to locate Python in the overall landscape of programming
+20520	22720	language paradigms.
+22720	31080	We will also discuss some of its core strength and weaknesses in regard to the broader programming
+31080	34680	language in a landscape.
+34680	39720	So this slide shows some of the core strength of Python.
+39720	44320	So let us briefly go through them one by one.
+44320	52600	The very first set of principles, which are also known as gen principles, are the set
+52600	57440	of principles which Python developers have maintained from the very beginning.
+57440	62520	And probably that's also one of the major reason why this programming language has
+62520	69040	become so popular and it has attracted so many programmers towards itself.
+69040	76520	This gen principles actually tries to summarize these very important features of 90 programming
+76520	77520	language.
+77520	83120	So it tries to give importance to readability in a programming language.
+83120	89160	So we want to write code that's easy to read and understand, improving collaboration
+89160	90240	and maintenance.
+90240	96240	So if you notice, when we will come to coding in Python, you will notice the Python awards
+96240	101640	unnecessary curly braces and those kind of construct which are not easy to read.
+101640	108040	Instead, it relies on a lot of indentation, which is visually quite appealing and by just
+108040	115000	looking at the structure of the code, the visual appearance is so nice that you can make
+115000	117720	out which of the blocks are written together.
+117720	123920	It avoids unnecessary curly braces, semicolon kind of thing and then tries to use indentation
+123920	129720	in a proper way so that the code is more readable by just looking at the visual structure
+129720	130720	of the code.
+130720	136160	You can make out a lot about the semantic structure of the code as well.
+136160	141560	So this was the first point in which Python scores are quite high.
+141560	149240	The second important feature that developers try to maintain is try to be simple and straightforward
+149240	150240	when writing code.
+150240	156280	I mean, instead of doing some tricky things, I mean Python principles actually advocates
+156280	157280	to use simplicity.
+157280	161600	I mean, you be straightforward and clear in what you are writing.
+161600	166800	And instead of being implicit in your code, you try to be always explicit about what you
+166800	168720	want to do through this code.
+168720	177040	So these three important features of readability, simplicity and explicitly, explicitness makes
+177040	191560	Python more attractive for programmers want to write and develop code fast and accurately.
+191560	198280	The second most important thing in Python is that it very nicely blends these three programming
+198280	203440	paradigm which is known as imperative object oriented and functional.
+203440	211360	So it inherits some of the property of object oriented programming as well as function programming.
+211360	217880	So inherently, it's an imperative programming language where you can define variables,
+217880	221680	you can change the value of variables and so on.
+221680	227480	But you can also define classes and instantiate them with objects inside Python.
+227480	233240	So whether you are used to working in an imperative programming paradigm or an object oriented
+233240	240160	paradigm or purely functional paradigm, you will always find something familiar when you
+240160	241920	migrate to Python.
+241920	248240	Maybe this is also one of the reason why many people accepted Python as their language
+248240	254200	of choice because it brings all these features in a nice way.
+254200	260900	The other important feature of Python is that Python already has a very rich ecosystem
+260900	267560	which consists of comprehensive standard library and extensive third-party modules that
+267560	273640	you can immediately start using from the very first day you start writing programming
+273640	275640	Python.
+275640	280480	For example, in some of the very popular packages that people use when they were with
+280480	286080	you know, data science in Mumbai, Panda and there is an extensive ecosystem which support
+286080	291720	data science and machine learning kind of activity inside, you know, while being inside
+291720	292720	Python.
+292720	298240	So that's how Python becomes even more popular among those who want to use it as a language
+298240	303680	to develop, you know, serial data science, you know, projects.
+304680	311280	Again, to summarize, I mean, there are several factors contributing to Python's popularity.
+311280	316640	I have listed here a few of them such as, you know, Jain of Python which, you know, emphasizes
+316640	323400	on readability and simplicity, its multi paradigm nature where it, you know, very nicely blends
+323400	328920	all these, you know, imperative object oriented and functional programming in style inside
+328920	330520	the same language.
+330520	334840	Then you have, you know, comprehensive standard library that you can, you know, start using
+334840	337440	from the very first day.
+337440	344040	Also you can easily extend the modules of, you know, Python to incorporate some new feature.
+344040	348360	In particular, in the data science domain, I mean, we have a very extensive, you know,
+348360	354800	rich library that makes the job of building any serious data science project very, you
+354800	360320	know, easy and manageable inside the Python polycosystem.
+360320	365760	All that said, not everything is, you know, good with Python, Python also comes with some
+365760	366760	disadvantage.
+366760	373240	And especially if you are not writing programs carefully, then you will, you know, hit
+373240	374760	these one of these issues.
+374760	379640	But the very first issue is that Python can do significantly, you know, more energy than
+379640	380640	see.
+380640	384960	And all these stats are based on the average user.
+384960	389440	If you don't write programs, you know, properly and, you know, make it efficient.
+389440	395080	On an average, you will consume 76 times more energy than see, you will, you know, end
+395080	399880	up consuming, you know, more memory in Python, if you know, compare it to see.
+399880	404840	And then due to its not interpreted nature of Python, in here is an inherently slower.
+404840	405840	Okay.
+405840	412440	So also, I mean, Python is, you know, dynamically type, which prevents, you know, some very,
+412440	417960	you know, important compiler optimization that is present when you don't have dynamic
+417960	420520	typing in the programming language.
+420520	425640	So these are some of the, you know, pitfalls or you can say disadvantage of Python, and
+425640	432000	especially, I mean, these kind of things affect you more if you are not programming, you
+432000	437240	know, carefully, you know, that said, I mean, there are always ways to mitigate, you know,
+437240	443200	these advantages by writing program a little carefully where I mean, Python provides, you
+443200	448480	know, options of being, you know, careful, for example, I mean, some of the options, you
+448480	452760	know, one of the, you know, good option is, you know, optional typing, although, I mean,
+452760	458840	it's a dynamically typed language, you can sign types to, you know, variable and expression
+458840	463160	and that helps it, you know, reduce some of these effects.
+463160	468560	Also there is, you know, just in time compilation possible using, you know, number and Python,
+468560	471040	which we will discuss later on in the course.
+471040	475960	There is also static compilation, you know, possible, which improves performance.
+475960	481440	And you know, Python provides some concurrency and efficient data structure that you can
+481440	486800	use effectively to improve the performance of your overall program.
+486800	493040	Also, if you, you know, handle the error gracefully, you know, inside the Python ecosystem,
+493040	498040	you will have, you can avoid many crashes and hence, you know, you can save a lot of energy.
+498040	503400	So although, so, I mean, in a nutshell, I mean, while Python comes with this advantage,
+503400	510240	it also provides you options to mitigate some of these disadvantages by being a little
+510240	514800	more careful in writing program and analyzing your program.
+514800	521680	So I'd like to conclude this session by giving you an overview of the whole course structure.
+521680	530960	So right now, I assume you to be, you know, a beginner with some or no prior Python, you
+530960	531960	know, familiarity.
+531960	538960	So slowly, we will, you know, dive deep into the core programming elements present in
+538960	541640	the Python from the next session onward.
+541640	547120	We will start with the syntax, you know, data types, you know, loops, you know, it's
+547120	551480	iteration kind of thing and then we will, you know, move to how to define, you know,
+551480	556440	functions, modules, which make your code, you know, more abstract and manageable.
+556440	561400	And we will end this course with a, you know, data science concrete data science project
+561400	566600	where I will discuss this project in detail with you and we will try to come up with
+566600	569960	the complete solution for this, you know, project.
+569960	578120	So at the end of this course, you can expect to learn a lot of, you know, data science tools
+578120	583520	and techniques, which are already present in library and how to build a data science workflow
+583520	590960	from the stretch inside this Python ecosystem.
+590960	595480	In this slide, we can see the overall course structure in a little bit more detail where,
+595480	599280	you know, we start with the introduction to Python programming, which is what we have
+599280	600280	already covered.
+600280	605840	We go to the formal syntax and the core, you know, construct inside, you know, Python programming
+605840	611400	language and then we will discuss about, you know, how to, you know, look, how to write
+611400	614600	loops, you know, properly inside Python.
+614600	619120	Once we learn this, we will go to, you know, lists and related algorithms, then we move
+619120	625320	to functions and later on we go and see how to, you know, handle this runtime error that
+625320	626320	I was talking about.
+626320	632120	I mean, how to write properly, you know, exception handling code inside Python.
+632120	636760	We then move on to, you know, higher end, some higher end concept like recurs and dictionary
+636760	642320	data structure and we would try to bring some real, you know, example of data structure
+642320	645800	where recursion and dictionary becomes really, you know, useful.
+645800	652160	So, you know, at this point in time, in our course, we will introduce you to one data
+652200	659880	sense, you know, project and this project will help you understand how to design a overall,
+659880	663480	you know, ML workflow inside Python itself, okay.
+663480	672840	So, we will do some very, you know, foundational, you know, steps of any ML workflow like
+672840	676840	exploratory data analysis, you know, machine learning and we will learn about the overall
+676840	677840	machine learning pipeline.
+677840	683400	I mean, how to create a model, how to train a model, how to hyper, do hyper, do hyper
+683400	688800	parameter tuning and then after you get a model, how to, you know, do post model analysis
+688800	692600	to figure out whether your model is reasonable or not.
+692600	698760	So, this course is designed in a way so that I mean, you start from the very, you know,
+698760	706080	basic and we go to a point where we can build a whole ML workflow from, you know, scratch
+706120	708320	inside the Python ecosystem itself.
+708320	715800	So, I hope, I mean, you will enjoy this learning process, wishing you all the best for upcoming
+715800	717560	lecture from the next lecture onward.
+717560	722760	We will dive deep into the core Python, you know, syntax and semantics.
+722760	725920	So, that's until then, goodbye.
+725920	727720	I will see you in the next video.
+727720	727920	Bye.

@@ -1,0 +1,569 @@
+WEBVTT
+
+00:00.000 --> 00:14.400
+Hello and welcome back to Python core and applied concepts for reliable data sense workflow.
+
+00:14.400 --> 00:19.760
+In today's video we are going to look into the minute details of Python's type system,
+
+00:19.760 --> 00:24.640
+which are often neglected by beginner programmers in Python.
+
+00:25.200 --> 00:28.000
+Without further delay let's get into the slides.
+
+00:33.360 --> 00:38.160
+So this is in a nutshell what we are going to discuss in some detail.
+
+00:38.160 --> 00:43.760
+We are going to talk about Python's type system, which has these three interesting property,
+
+00:43.760 --> 00:49.440
+which are called dynamic typing, strong typing and optionally static typing.
+
+00:49.920 --> 00:57.840
+So the first two features, dynamic typing and strong typing somehow helps us get the program
+
+00:57.840 --> 01:04.800
+developed very fast. So it somehow helps us in developing program very fast because Python is
+
+01:04.800 --> 01:10.960
+flexible in how you can instantiate variable and how you can change type of those variables
+
+01:10.960 --> 01:16.160
+dynamically. Many of the programming languages does not have this feature. Once you define a type
+
+01:16.160 --> 01:22.000
+or associated type to a variable, you cannot change it later on. But unlike them, Python,
+
+01:22.000 --> 01:26.640
+for example, in this case, dynamic typing can see you can instantiate a variable with
+
+01:26.640 --> 01:32.320
+integer type and then let it happily assign it a string type. This is possible because Python
+
+01:32.320 --> 01:40.000
+compiler and interpreter allows that since Python developer thought this will help in speeding
+
+01:40.080 --> 01:47.120
+up the development of program quickly. So another feature which we will talk about is strong
+
+01:47.120 --> 01:52.000
+typing. Although I mean Python allows dynamic typing, it does not mean that Python is weekly type.
+
+01:52.000 --> 01:58.960
+I mean in the sense that it will not allow different types or incompatible type of object to be
+
+02:00.000 --> 02:05.360
+joined by some operator which expects some different types. So type is not checked strongly at the
+
+02:05.440 --> 02:12.400
+time when you are making complicated expression out of simple expression using some operator.
+
+02:12.400 --> 02:18.240
+And then there is a third option which we call optionally static typing which is present again
+
+02:18.240 --> 02:27.600
+in Python which one can use to the benefit of writing a reliable code. And also to help
+
+02:27.600 --> 02:34.160
+fear some static analysis tool to figure out some possible errors that it can hint you and then
+
+02:34.160 --> 02:43.600
+you can recover early on. So now it's time to again move to Jupyter notebook and see some
+
+02:43.600 --> 02:48.960
+hands on exploration around this topic to understand these things in a more clear way because
+
+02:48.960 --> 02:56.400
+these things are real. So let's move to the Jupyter notebook and try to observe the slight differences
+
+02:56.480 --> 03:04.720
+between these concepts surrounding Python's type system. So let us now go to the
+
+03:06.320 --> 03:12.960
+Jupyter notebook and this is the section that we are on Jupyter notebook. So let me
+
+03:14.480 --> 03:19.440
+take you through this Jupyter notebook to explain this silent feature of Python's type system.
+
+03:19.440 --> 03:25.040
+The very first one is called dynamic typing. So dynamic typing gives you the freedom of
+
+03:25.120 --> 03:32.160
+late binding. I mean you should not be worried about the type of variable or you should not
+
+03:33.120 --> 03:38.400
+bind the type of variables too tightly with the variable itself. So a variable is just a label
+
+03:38.400 --> 03:42.960
+that can be attached to any type of object. So this is what this dynamic typing means. So the
+
+03:42.960 --> 03:49.600
+type is associated with object and not with no variable. So variables are associated to these
+
+03:49.600 --> 03:54.480
+objects and objects that type. So if you let's associate a variable to a different object it
+
+03:54.480 --> 03:59.760
+types automatically changes. So the variable is just a name tag that can reference different type.
+
+03:59.760 --> 04:09.600
+So for instance I mean let me write a very simple code where I say instantiate this variable x
+
+04:09.600 --> 04:17.280
+with value 5. So in this case I mean you can see if you do this instantiation that x is an
+
+04:17.280 --> 04:32.240
+integral right. So if you print x you will get x as an integer if you print the type of
+
+04:32.240 --> 04:50.080
+x you will get no let me know. You see when we assign x value 5 and when print we say
+
+04:50.080 --> 04:57.280
+we get the type of x no as integer. But you know immediately after this statement we can also
+
+04:58.240 --> 05:06.960
+we are allowed to write this kind of statement where I assign a string value to this no variable.
+
+05:06.960 --> 05:12.560
+So now x is no string which is a perfectly valid thing to do in Python. Initially you started
+
+05:13.200 --> 05:19.680
+x with a value which has no type integer and now you are reassigning another type of object to
+
+05:19.760 --> 05:26.000
+the same variable x and after this if you again try to go through this print
+
+05:28.880 --> 05:39.440
+type of x. So compiler does not complain and what you get is the new type that is associated with
+
+05:39.440 --> 05:47.200
+the object to which this variable x no reference to. So we can easily reassign different objects
+
+05:47.200 --> 05:52.640
+to the same variable and once you reassign a different object then its type no is the type of
+
+05:52.640 --> 06:00.240
+the variable. So this is very important thing the type checking happens at runtime not at compile
+
+06:00.240 --> 06:06.800
+time and it enables rapid prototyping and polymorphic codes. So these are some of the pros that you
+
+06:06.800 --> 06:11.680
+can build code very quickly without worrying about the type. Otherwise in programming language like
+
+06:12.480 --> 06:17.440
+you have to think in a very big what type you are going to assign a particular variable and then
+
+06:17.440 --> 06:21.520
+you cannot change that run. So these things are not so easy to do in other programming languages
+
+06:22.480 --> 06:28.240
+but here in Python you can see you can this is a perfectly valid thing to do. But the
+
+06:28.240 --> 06:32.880
+columns are that type related errors can only be discovered when the specific line of code is
+
+06:32.880 --> 06:39.520
+being done. So it may cause also problems and some errors in the code which will not be
+
+06:39.520 --> 06:44.000
+easy to detect when you are developing the code it can only be caught when you are running the code
+
+06:44.000 --> 06:49.360
+because this type checking happens or type assignment happens only at the runtime. So this is
+
+06:49.360 --> 06:55.840
+a very important thing to keep in mind. So then there is this another concept of strong typing.
+
+06:55.840 --> 07:01.520
+Although Python allows you to assign different types of object to the same variable when you
+
+07:01.520 --> 07:08.960
+go along the program but it always ensures that the types are checked properly. So operations on
+
+07:08.960 --> 07:13.440
+objects are checked strictly. For instance here I mean you cannot so if you see this
+
+07:14.720 --> 07:21.680
+if you see this a particular expression where I am trying to add and string to integer Python
+
+07:21.680 --> 07:28.400
+will not do any implicit conversion of integers to string or string to integer and then accept
+
+07:28.400 --> 07:36.560
+this kind of ill form expressions. So this will cause a type error and it will say that
+
+07:36.640 --> 07:42.080
+string can only be concatenated to string. Python does not silently convert either string 5 to
+
+07:42.880 --> 07:48.560
+integer 5 or the integer 5 to string 5. Unlike weekly type language example in JavaScript that
+
+07:48.560 --> 07:55.200
+perform implicit conversion Python doesn't allow this. So the key distinction between dynamic and
+
+07:56.080 --> 08:00.960
+strong typing is that dynamic means flexible in what a variable can be. So that's why we begin
+
+08:01.040 --> 08:07.600
+call dynamic that the type of the variable can later on change depending upon what object it is
+
+08:07.600 --> 08:14.800
+referencing to. But strong here when we say strong typing is strong means rigid in what operations
+
+08:14.800 --> 08:19.840
+are allowed on those objects. So for example if you just copy paste the same thing if you want to
+
+08:21.600 --> 08:27.920
+run this program here inside Python. So if you try to run I mean so this is the error that you
+
+08:28.880 --> 08:34.960
+can only concatenate string not into the string. So this is what we call strong typing although
+
+08:35.600 --> 08:40.400
+it allows you flexibility of changing the type but at any moment of time when you are building
+
+08:40.400 --> 08:47.600
+a complex operation using simpler expression of different type then the operator should respect
+
+08:47.600 --> 08:53.680
+that. I mean if operator does not expect different types as input to build complex expression then
+
+08:53.680 --> 08:58.960
+you cannot give like I mean this no plus operator you know expect either both be string or both be
+
+08:58.960 --> 09:03.120
+you know integer. So it you know complains you so this is what we call strong typing.
+
+09:06.320 --> 09:11.760
+So this is the core principle that objects have a defined type okay and operations are checked
+
+09:11.760 --> 09:16.880
+for compatibility between types. So while defining operation you normally define what type of
+
+09:16.880 --> 09:23.120
+object it will not take as input to produce what type of no other object. So there is no implicit
+
+09:23.840 --> 09:33.040
+type no conversion that you know occurs in Python okay. So so this prevents you know hidden silent
+
+09:33.040 --> 09:38.560
+bugs the program fails you know fast and loudly when types are mixed incorrectly forcing the
+
+09:38.560 --> 09:43.760
+programmer to explicitly state their intent. So this is no this is strong typing is very you know
+
+09:43.760 --> 09:49.920
+interesting because it will not let this kind of you know error go down you know go unnoticed.
+
+09:50.480 --> 09:54.480
+It will the compiler will complain early on. So that's why you know this is strong typing is a very
+
+09:54.480 --> 10:02.160
+nice feature to have. Now the third very important property that I want to talk today is optional
+
+10:02.160 --> 10:12.880
+aesthetic typing although Python does not enforce you to assign a type for a variable or a function
+
+10:13.680 --> 10:19.680
+you can optionally do it okay. And the advantage of you know assigning types to any variable
+
+10:19.680 --> 10:26.080
+you know early on is that it can help compiler optimize in certain ways okay. So it can allow
+
+10:26.080 --> 10:31.680
+compiler to do a lot of optimizations which will not be possible otherwise. So that's why these
+
+10:31.680 --> 10:37.280
+optional typing are important. So and we should do it whenever we feel we are certain about the type
+
+10:37.360 --> 10:45.040
+and you know we want the program to only restrict to input or values of this variable of a certain type
+
+10:45.040 --> 10:50.640
+okay. For example I mean in this case you know you can actually let's say you know if you are
+
+10:50.640 --> 10:57.200
+declaring a name I mean a variable name which will have this value as a string you can also
+
+10:57.200 --> 11:02.080
+say explicitly here that you are expecting a string value here okay. Similarly for count I mean
+
+11:02.160 --> 11:09.680
+no this int is optional but we can tell the compiler that we are going to keep here an int okay.
+
+11:09.680 --> 11:15.200
+So this is not mandatory that's why we are calling it optional aesthetic typing you know even if
+
+11:15.200 --> 11:20.000
+you don't provide it no compile can figure out what is the type of this variable by just looking
+
+11:20.000 --> 11:25.040
+at the object which is being assigned. No last object that has been assigned to the variable but
+
+11:25.040 --> 11:29.040
+you can do it additionally here I mean if you feel I mean you are going to use this you know
+
+11:29.040 --> 11:33.680
+variable in this certain way then you can actually assign it. And then I mean let's say
+
+11:33.680 --> 11:41.200
+if you know put a string into the name variable which also has a type you know a string
+
+11:41.200 --> 11:47.040
+explicitly my mentioned here and similarly count has a type int explicitly mentioned here with
+
+11:47.040 --> 11:52.720
+a value of 42 now what if I define a function of this form no I am defining a function which is
+
+11:52.720 --> 11:58.160
+no greeting someone with this whole purpose of this function is to print you know this line that
+
+11:58.160 --> 12:03.200
+hello whatever name you give us you know input and in the name you expect a string right so this
+
+12:03.200 --> 12:08.880
+is how we can say or annotate type information in the argument also right this is a function
+
+12:08.880 --> 12:15.840
+definition and this you know name is the argument so the optional type that I have mentioned here
+
+12:15.840 --> 12:20.080
+is this you know this is string I could have left it but here let's say for this particular example
+
+12:20.080 --> 12:25.040
+I'm saying that it will take a string as an input and you know written as a string as an output
+
+12:25.040 --> 12:30.880
+why because you know you can see the 10 type is you know again a string okay so we can define
+
+12:30.880 --> 12:40.480
+something you know like this here but defining something like this at this place no does not
+
+12:40.480 --> 12:49.040
+ensure that you know Python compiler wait let's say or is you know bound to follow your
+
+12:49.040 --> 12:53.840
+optional typing I mean this is what you are telling I mean your intention but it is not bound to
+
+12:53.840 --> 13:01.600
+you know follow this for example let me you know try to you know run this same piece of code that
+
+13:01.600 --> 13:09.840
+we are trying to okay so let me copy and paste this definitions here no in the code block so if
+
+13:09.840 --> 13:16.160
+in the code block if I copy so I have defined name variable count variable and the function greet
+
+13:16.160 --> 13:21.920
+not all all here right I mean so so we so no so we know normal understanding you know let's say
+
+13:21.920 --> 13:29.120
+if I want to now execute this greet function okay if I want to know execute no greet function
+
+13:29.120 --> 13:33.600
+and if I pass you know my name let's say to this greet function my name is
+
+13:35.760 --> 13:42.640
+Abyssaic so what do I expect so so this is what I expect right hello we say so this is what
+
+13:42.640 --> 13:48.160
+we were printing okay so it took a string and it returned a string but I mean this you know
+
+13:48.800 --> 13:54.000
+remember I mean this is optional in Python so what if what do you expect if I let's say pass
+
+13:54.000 --> 14:01.920
+the same function greet instead of a string what if I you know pass it a number like say you know
+
+14:01.920 --> 14:10.560
+42 the select you know complain with a type error or syntax error something like this or
+
+14:10.560 --> 14:21.120
+especially except this and print something so what's your guess okay so let's try to know run it
+
+14:21.120 --> 14:25.920
+and see what's the real so you see I mean Python does not complain right so this is this might
+
+14:25.920 --> 14:30.320
+look surprising to some people know if it does not you know complain then what's the point of
+
+14:30.320 --> 14:36.800
+you know giving it a type right I mean I have declared it as a the argument to be a string type
+
+14:36.800 --> 14:42.240
+right I mean in this example if you look at the greet functions argument which is name which I
+
+14:42.240 --> 14:48.880
+want to be string but here I have no past 42 and we just saw that no Python does not do implicit
+
+14:48.880 --> 14:54.400
+conversion so it's not also the case that 42 has been converted into a string and then this function
+
+14:54.400 --> 15:00.640
+greet has accepted this as a you know valid input it's not you know it's not the case actually
+
+15:00.640 --> 15:06.400
+here okay so so why it still runs because Python ignores type hints during execution if it
+
+15:06.400 --> 15:12.800
+you know finds that the argument is not not of the type that was you know mentioned so then also
+
+15:12.800 --> 15:18.320
+it will accept it okay and dynamically it will try to you know assign type and you know use it okay
+
+15:18.320 --> 15:22.640
+so so this is why I mean we are calling it you know optional typing so this is not not only
+
+15:22.640 --> 15:28.160
+no optional from our side so always I mean giving type is always optional from our side but Python is
+
+15:28.160 --> 15:34.880
+all compiler is also you know free to ignore this type hints during execution if it finds you know
+
+15:35.040 --> 15:41.760
+if it can infer some no let's say valid type for the no argument that can let the function go
+
+15:41.760 --> 15:46.240
+with that type then it will actually allow it okay so my Python is not bound to follow this no
+
+15:46.240 --> 15:54.400
+optional type information that you provide okay so then I mean as we said I mean compiler gets
+
+15:54.400 --> 15:59.600
+benefit of some kind sort of optimization and also some static analysis tool which now just look
+
+15:59.600 --> 16:03.440
+at the structure of the code and tries to tell you whether there can be some chances of error
+
+16:03.600 --> 16:08.800
+or not or can they can there be some sort of you know error or probable error in the program
+
+16:08.800 --> 16:13.280
+they can also infer a lot of information from this you know optional typing so that's very
+
+16:14.160 --> 16:19.600
+although I mean this is not a mandatory thing for compiler to follow we normally advocate using
+
+16:19.600 --> 16:27.040
+these optional type as much as possible so that you get you know good hints you know very early
+
+16:27.040 --> 16:32.080
+on about possible errors in or bugs in your program okay so the static analysis tools which are
+
+16:32.080 --> 16:39.280
+you know most of which are you know embedded in most of the ID and they can help you figure out some
+
+16:39.280 --> 16:45.920
+you know runtime error or some other sort of error by using this no type hints so these are hints
+
+16:45.920 --> 16:52.160
+for these you know linters and ID but these are not something mandatory for the compiler to follow
+
+16:52.160 --> 16:57.920
+and Python interpreter you know or compiler ignores them not runtime so but I mean again I mean
+
+16:58.000 --> 17:04.480
+using this you know types also is you know helping us validate the code right our intention to
+
+17:04.480 --> 17:09.600
+some extent right because if you are writing code if you know what this particular input or this
+
+17:09.600 --> 17:15.920
+particular variable is intended to do so assigning a type to a variable is also like assigning
+
+17:15.920 --> 17:20.240
+partial meaning to another program okay although we have not assigned full meaning to the program
+
+17:20.240 --> 17:24.080
+but we are assigning you know partial meaning or somehow we are conveying our partial
+
+17:24.080 --> 17:30.400
+intention by assigning these optional types to this variable so this is also you know very much
+
+17:30.400 --> 17:37.520
+alliance with our intention in this program in this lecture series that we should have this
+
+17:37.520 --> 17:44.000
+you know validator mindset and we should try to employ that always I mean and whenever possible
+
+17:44.000 --> 17:48.960
+use tools and techniques available in the language that can help us you know validate either
+
+17:48.960 --> 17:56.000
+fully or partially the correctness of our program okay so this is all so in the nutshell
+
+17:56.560 --> 18:01.200
+no Python combines dynamic typing with the strong typing while offering optional static
+
+18:01.200 --> 18:06.800
+type hints for development you know tooling so these optional static types are more useful for
+
+18:06.800 --> 18:13.200
+compiler and these you know linters this is static analysis tool which can figure out many you
+
+18:13.200 --> 18:18.320
+know error in the code early on if you provide enough type information as no optional types
+
+18:19.200 --> 18:24.000
+so Python remains so just to summarize you know Python remains dynamically type
+
+18:24.000 --> 18:29.200
+better on time so you can you know build code very fast okay but it also gives you you know this
+
+18:29.200 --> 18:34.720
+optional static typing for development now this maintains both the flexibility of building code
+
+18:34.720 --> 18:40.480
+fast while enabling reliability whenever let's say we want you know our code to be not trustworthy
+
+18:40.480 --> 18:45.600
+and you know we are dealing with a critical code then we would love to write as many optional
+
+18:45.680 --> 18:50.640
+type as possible so that it can help static analysis tool figure out some of the program error
+
+18:50.640 --> 18:55.280
+and convey it to us in no so that we can repair those error or you know debug those error earlier
+
+18:55.280 --> 18:59.760
+but type hints are you know like formula specification of your you know you know functions
+
+18:59.760 --> 19:06.880
+contract so you know although you're not telling what is the exact nature of you know input
+
+19:06.880 --> 19:10.560
+output or the relationship between input output of the function that you're expecting at least
+
+19:10.560 --> 19:14.720
+you're not telling some partial information about what are the types of the input and output that
+
+19:14.720 --> 19:18.800
+is expected by this function so although this is not a complete you know formula specification
+
+19:18.800 --> 19:25.200
+this is a partial you know specification of your intention of computing something you know by
+
+19:25.200 --> 19:29.120
+this functions okay so so you know these type hints are like formula specification in some sense
+
+19:30.240 --> 19:36.960
+okay so with this I think we have covered enough regarding you know the types in Python system
+
+19:36.960 --> 19:41.040
+and please take your time to reflect on this idea these are very important idea
+
+19:41.760 --> 19:45.840
+and there are very subtle differences with you know most many of you may get confused if you
+
+19:45.840 --> 19:50.080
+you know don't pay attention to these things so please pay attention to you know these things and go
+
+19:50.080 --> 19:57.040
+back to through this script to family to familiarize yourself with these no ideas so I will see you
+
+19:57.040 --> 20:07.040
+in the next video till then goodbye
+
