@@ -1,0 +1,161 @@
+Hello and welcome back, so in this video we are going to start the important an important
+topic that is how arithmetic is done into the computers.
+So basically we are going to see how computations are done, what is the number system, ASCII
+versus binary, 2's complement, addition, multiplication etc etc.
+So we already know that what we already know that the computer only understands 0's and
+1's and the format that we use and the name of the format is the binary numbers.
+Here what we were seeing is a 32 bit number which has a most significant bit on to the
+left and the least significant bit on to the right.
+If I want to represent this number I can use a formula or I can use a model to represent
+or to calculate the number or the value it is representing.
+So basically what I do is I take every bit and every bit has a certain place value.
+So in this example if I want to convert this number what I need to do is take every bit
+so I take bit number 1, multiply it with the position value that is 2 to the power
+0, bit 1 times 2 to the power 0, bit 1 times 2 to the power 1, 1, 2 to the power 2, 2 to
+the power 3, 4, 5, 6, 7, 8 and so on and so forth up until 2 power 31 here.
+So this 32 bit word can represent 2 power 32 numbers between 0 to 2 power 32 – 1.
+What we have been using so far is a system of only unsigned or only positive numbers.
+So we have so far assumed that all the numbers are positive because here we are representing
+a number starting from 0 then positive 1, 2, 3, 4, 5 until 2 power 32 – 1.
+This representation is simply called unsigned representation.
+There are also alternative representations such as a binary representation and an ASCII
+representation.
+So does it make more sense to represent a decimal number in ASCII is something that
+we are going to probe here in this example and the reason why we are discussing it because
+if we change one format the representation from one format, representation of a number
+into to another format that changes how our arithmetic will be done or basically the storage
+need.
+So imagine this number here which is a billion I want to represent it into ASCII versus in
+binary.
+In ASCII we know that an ASCII character is a 8 bit long character that is ASCII is a
+format where we can use where we can represent values from 0 to 255.
+Imagine if each of these characters here was an ASCII character which means every character
+would take 8 bit, 8 bit, 8 bit, 8 bit, 8 bit and there are total 1, 2, 3, 4, 5, 6, 7, 8,
+9, 10 bits.
+So the total storage requirement if I represent 1 billion in ASCII format is going to be 8
+times number of bit 10 that is 80 bits.
+However if I use a binary format I would need much lesser than this.
+For example we know a billion can be so a billion is like 10 to the power 9 which I
+can say 10 to the power 3 times 10 to the power 3 times 10 to the power 3 right this
+is 1000, 1000, 1000 and this is roughly 2 power 10, 2 power 10, 2 power 10 which is
+2 power 30 roughly 2 power 30.
+So in order to represent this number 1 billion I would need only 30 bits in a binary format
+as compared to 80 bit into the ASCII format.
+So this binary scheme is much more storage efficient as compared to ASCII.
+In fact I would need only 30 bits because I can represent 2 power 30 number and this
+number will be in this range.
+So this is just the same thing what I wrote here.
+Now if we talk about the negative numbers we have 32 bits which can represent only 2
+power 32 numbers and so far we have all the numbers starting from 0 up until 2 to the
+power 32 minus 1 like we did in the previous the first slide.
+So we can represent from 0 to 2 power 232 minus 1 a total of 2 power 32 right total
+of 2 power 32 number because this is the value themselves and this is the number of values
+that we can or numbers that we can represent right.
+So we can represent 2 power 32 numbers starting from 0 up until this point but what if we
+want to represent negative numbers right.
+So what I am doing here is I am writing the binary notation and the decimal notation on
+to the left and to the right and if I were to represent also the negative number in the
+same 32 bit values what we usually do is that we use the first bit as a sign bit.
+So as long as it is 0 it is a positive number and if it is 1 it is a negative number and
+the way we do it we start from 0 so this is decimal 0 decimal 1 decimal 2 3 4 5 6 up until
+2 power 31 minus 1 not 2 power 32 minus 1 pay attention until this point which is roughly
+half of the total available range half of the values are used to represent the positive
+numbers and the remaining half is used to represent the negative numbers.
+The moment it becomes 1 we start with 2 power 31 but in the negative side then one more
+value it becomes minus 2 power 31 minus 1 minus 2 power 32 minus 2 and so on and so
+forth until we come to all ones and all ones represent minus 1 right.
+so difficult here but let me point out to some values here one thing remember that the
+first digit the MSB represent the sign so 0 is for positive and 1 is for negative right
+so these are all negative values these are all positive values with a 32 bit number we
+can represent 2 to the power 32 number but now we are dividing it into a range of 2 power 31
+and 2 power 31. So from 0 to 2 power 31 minus 1 so this is total 2 power 31 numbers this is
+also 2 power 31 minus 1 2 power 31 sorry because this is 2 power 31 minus 1 and if you add 0 it
+is going to be 2 power 31 and this is 2 power 31 so 2 power 32 numbers half for the positive
+number half for negative number. So from 0 0 0 0 0 to 0 to 0 all ones is 2 power 31 minus 1 then
+we come to negative side and this actually either you can write in this form or you can
+also write it in 2 power minus 2 power 31 plus 1 minus 2 power 32 power 31 plus 2 and so on and
+so forth right now I have two options either I can use this convention like I have shown you
+here I could have also used something else for example instead of using this set of digits to
+represent minus 2 power 31 I could have said this is minus 1 minus 2 minus 3 and this is 2 power 31
+right. So what format should I use of course I should use a format which simplifies my math
+but also gives me correct answer right. So I have two options one which is shown here which
+as a which is used in the practice but other could be something like this here right we
+in practice use this format and I will tell you why we use this format.
+So what we have here is again this is starting from 0 1 2 power 31 minus 1 and this is minus
+2 power 31 so on and so forth all up to minus 1. Now let us take an example of summing 1 with
+minus 2 so if I want to sum the value of 1 and minus 2 so I will take the value of 1 from here
+and minus 2 here so basically I am taking 0 0 0 something something up until 1 and minus 2
+is represented like shown here so 1 1 1 1 all ones up until I find a 0 if I sum this value what
+I get is so I can simplify this value like this and this is 0 0 0 and some values in between if
+I add these two values what I get is 1 0 is 1 1 0 is 1 1 0 is 1 sorry this this should be because
+this was 2 sorry this should be 1 1 what did I do so we are taking minus 2 yes so this is
+going to be 1 1 1 1 1 and this is going to be 0 sorry let me let me erase it out and let us do
+again so I want to do sum of 1 which is here so 0 0 0 0 0 up until 0 0 0 1 and I want to do
+minus 2 so 1 1 1 1 1 up until I reach 1 1 1 0 right if I sum these value this is going to give
+me 1 and 0 is 1 0 and 1 1 0 and 1 1 1 1 and because one value 0 and other is 1 so it is
+always going to be 1 which is all ones gives me minus 1 right and this is also what we expect
+this is because plus 1 minus 2 gives me minus 1 so this is only possible because we arrange
+this value into this particular order now let us take another example when we want to do plus 2
+and minus 1 so plus 2 is going to be what did I do it was 1 0 yeah okay so should have been
+should have been a mistake okay okay let me do 2 and minus 1 so 2 is basically 0 0 0 0 0 up until
+0 0 1 0 and minus 1 is going to be 1 1 1 1 1 1 1 1 1 let me see what I what mistake did I make
+there so I wanted to do 1 and minus 2 so 1 is so 1 was 1 and minus 2 was yeah okay so this was
+okay sorry I was confused so this was plus 1 from here and this was minus 2 from here yeah yeah so
+everything is fine because this is just writing the 4 digits here so 0 0 0 1 and 1 1 1 0 which
+gives you 1 1 1 1 yes yes yes correct okay yes sorry I got confused so now what I want to do
+is plus 2 and minus 1 so plus 2 is going to be something like this 0 0 0 0 0 and 1 0 and minus
+1 is from here so all is 1 1 1 1 1 if I add these values what I am going to have is 0 and 1 1 1 and
+1 is going to be 2 so I am going to write here 0 and a carry 1 1 and 1 0 keep on doing it until
+I find 0 and a carry here right for the time being I will discard this value because it is
+the 33rd value so I will for the timing I will just discard it but the resultant value here is
+I get is plus 1 which is also what I am expecting fine so this is something I was expecting and this
+is what I got and all of the math is working out as we expect to it to work if I talk in a
+mathematical value mathematical form actually the representation that we are using can be
+modelled as shown here so 2 power 0 bit value x 0 x 1 2 power 1 so on and so forth 2 power 30
+x 30 and then x 31 multiplied by minus 2 power 31 so this is the model by which these numbers
+can be represented right and because of this modelling all our mathematics work now coming
+to this 33rd bit actually what is happening here is we were adding all 0 1 0 and this value when
+I was adding this value so I got a carry from here I got a carry from here and I got a carry
+again so much that I actually crossed my boundary here right so if I have to so this bit position
+is basically telling me 1 more to this value so I can write 2 power 31 if I add plus 1 here it
+is going to become 2 power 31 plus 1 so which 1 and 1 will cancel out however here it was
+actually representing a value by minus 2 to the power 31 right so this place value is actually
+minus 2 power 31 this was already 0 but it actually became 0 because I overshooted my range so it was
+actually 2 power 31 because 1 plus in this value will this and that is why it was cancelled out so
+there was no 33rd register if you follow this model of course this was just to illustrate why
+we use a particular values into particular form of the values instead of following something like
+minus 1 minus 2 we follow this convention because we have this model because this model
+satisfies our mathematical requirements fine okay now imagine I want to use this
+number system to do some some of the other mathematics for example imagine I want to
+represent so let us say I want to represent minus 3 how do I do this thing so if I say
+let us say x is 3 so my value of positive 3 is this and I want to figure out how to
+compute the value of minus 3 of course if you look at this values 3 is just here so you can
+compute very easily but for a bigger number it could be a problem now what I am doing is let us
+say if x is what I have which is 3 so my 3 is some zeros and at the end it is going to be 0 0 1 1 if
+I invert this value let us say x bar it is going to become all ones until these two values are set
+and if I add these two values so what I am going to get is everything become 1 so I can say if I
+do x plus x bar what I get is 1 which is also sorry minus 1 because all ones is minus 1 which
+is also written here so if I shuffle these values take one value from here and there I can actually
+say that if I move this value here and take this value there so 1 plus x bar is actually
+minus x because if it goes there it becomes minus x so simply I can say the minus x if I
+want to figure out minus x so if I want to represent minus 3 what I need to do invert
+this value and add 1 which is also the 2s complement you might already been familiar with so you take
+these value all the values invert it like you did here and then add 1 to it so it will become
+1 1 1 1 all ones until 1 1 0 1 which you can also verify from here because the next value will be
+0 1 right let us do some more examples what you can also do is let us say if you want to
+do for 5 minus 5 and minus 6 so 5 we already know 5 is 0 1 0 1 and then a bunch of zeros in
+the front if I want to do minus 5 what I need to do is invert so this is 5 if I want to do 5 bar
+it is going to be all ones until this become 1 0 1 0 and then if I add 5 bar and 1 this becomes
+all ones 1 0 1 1 right and this is what minus 5 would look like if you want to do minus 6 let
+us say if you want to do minus 6 you can also do the same way we have done but the other way
+we can do is basically we know the formula is x plus x bar gives me minus 1 so if I do x bar
+minus 1 minus x and if I replace this value of x with 5 so it becomes minus 1 minus 5 so actually
+x bar is minus 6 so basically this value is equivalent to minus 6 you can also see from
+here if you decrease this value by 1 because this was minus 5 so minus 6 will be decreased
+value by 1 so it will be 1 0 1 0 there could be other ways to do it but this is a shortcut
+that you might want to use sometimes the same thing is spelled out here so this is 5 x minus
+5 would be invert this value so everything has been inverted and then added one value so this
+became 1 0 1 0 and then added one value so 1 becomes 1 0 1 1 but this value was actually
+decremented 1 0 1 0 right so hope this gives you an idea what 2's complement is what number
+system that we use and 2's complement is what we use in practice we will see some
+example and reasons why we use 2 complements in the next session thank you.

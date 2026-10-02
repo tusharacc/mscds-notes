@@ -1,0 +1,202 @@
+Hello and welcome back.
+Now we will start building our concepts on pipelining because pipelining is an important
+concept in computer design, computer architecture and we will begin with the basic pipeline
+and we will cure through different lectures, through different discussions we are going
+to build upon the concepts and we will add more and more complexity so that we come close
+to the real pipelining done into the processors.
+So before we move on let us look at the clocks, we have already discussed what clock cycles
+are, what clock speeds are, cycles are etc etc.
+You might also be wondering why do we even need a clock into our system.
+What happens is that in a microprocessor there might be different components that are operating
+in harmony with each other.
+For example you might first access, your instruction might access the instruction memory first
+then it goes to the register read, then it goes to ALU, then it goes to the data memory
+and then writes back to the register.
+So basically you can think of that your instruction flows through different components on a microprocessor.
+Now the thing is each of this circuit here may not take the same amount of time to perform
+its operation.
+For example a circuit X might take its input at time t i x, it might take a time t e x
+to execute the logic and it might produce an output at time t o x.
+But if each individual circuit has its own notion of processing, has its own overall
+completion time then it would be very difficult to process this instruction through this sequence
+of circuitry because one circuit might be faster, one circuit might still be processing
+something that it was processing before because it is a slower circuitry.
+So this might kind of create a problem in coordinating the task over this circuit.
+So the purpose of a cycle is that we want to coordinate among different circuitry so
+that each of these units know exactly when they have to start their operation basically
+when they have to work with the input, how much time that they have to execute the logic
+and when they should produce the output.
+Basically by what time they must be able to finish their operation.
+So clock is basically we have a rising edge here in a clock and then we have some high
+voltage stage and then we have low voltage stage and at this point the clock basically
+finishes, the cycle basically finishes.
+So what we do is all the circuitry onto the chip share a single clock signal, a square
+wave as shown here that tells every circuit when to accept the input.
+So basically the rising edge tells every circuitry so if all the circuits here they are following
+a single clock signal so every time there is a rising edge they all know that they must
+process their input.
+They also know once they are done with the input how much time that they have to process
+their operations so basically execute their logic and by the end of the square wave they
+must produce an output.
+So this is the notion of a clock because we want to coordinate the operation among different
+circuitries.
+Now before we move to the sequential circuit we also kind of want to touch upon the idea
+that if we look at let us say a AND gate what it does is it takes to input and produces
+an output.
+So depending upon the value of input the output changes and so on and so forth.
+So such circuit are called combinational circuit and where the function the output is a function
+of the input values that is all.
+If you change the input here the output will change accordingly of course there will be
+some internal delay here to process the logic some delay basically logic delay through the
+circuit but overall we can say such a circuit is called a combinational circuit which basically
+gives an output as a function of the input.
+But what we also want to do is that the problem that we have discussed here that circuits
+are different circuitry take different amount of time to execute their logic etc etc.
+What we want to do to synchronize all the circuitry what we essentially want to do here
+that you are seeing that this clock signal is basically we want the clock to act like
+a start and stop signal.
+So at the start of this cycle we are essentially we essentially require all the circuitry to
+do something like input and then process the logic and then process the output.
+This is what we essentially want to do with the signal.
+So a sequential circuit because here you are seeing the instruction is flowing through
+different circuitry so the sequential circuit we can define as the function of a sequential
+circuit is defined as a function of some input and some internal state.
+This will become more clear when we discuss the next part.
+So basically we have circuits which were combinational so input changes when the so when the input
+changes the output changes after of course some why after of course some time because
+you need some time to process through that logic circuit and this if this input changes
+here the processing will happen here and the output will come out and this output will
+become input to the next circuit.
+So if I change this input here from X to Y the output will change from O1 to O2 and the
+input to this value will change and so the output of this circuit.
+But when we want to implement a sequential circuit processing implement sequential processing
+of instructions what we want to do is we want to synchronize them and to ensure that everybody
+follows the rise of a wave and the fall of the wave.
+What we want to ensure is that we have a latch or sometimes also a flip flop we will take
+the example of latch which acts as a storage device that separates this circuit from each
+other.
+So the purpose of a latch here is to ensure that the input to the circuit combinational
+circuit or sequential circuit irrespective any logical any logic circuit do not change
+during a clock cycle that is the idea.
+As a rough example you can think of let us say this is your cycle and let us say some
+circuitry reads its input here then takes some amount of time to process and then produces
+an output.
+At the next rising edge this output may become input to some other circuitry but it is also
+possible that this circuit the first circuit is fast enough that it produces its output
+right over here or it might also be true that it simply processes it super fast and the
+output is processed here.
+By this time the another circuitry which we are talking about here may not be as fast
+as this first circuit so maybe this circuitry also reads at the rising edge.
+But it takes a lot of time let us say even until the end of this cycle to process its
+current operation and only at the beginning of this cycle it can do something right.
+So these in output values they must be latched over somewhere right.
+What we define is the latch is a storage device that separate the circuit and actually act
+as a storage unit that store the value and keep this value alive until for the entire
+cycle right.
+So there is a rough description of what latch is but the exact working is a slightly different
+thing.
+In the same example if I say that okay let us say the output was produced here and the
+latch is updated also at the rising edge only right because we said at the rising edge we
+are every circuit is going to take the input so let us also include the latch here.
+So at the rising edge latch is going to update itself with the last value it has seen so
+these values 1, 2 or 3 and if the second circuitry needs to read this value if it is after the
+latch it may read either here it may also read this latch value over here over here
+over here over here wherever it wants to read right.
+So it is a very simplified explanation the purpose of the latch is to make sure that
+the input to the circuit does not change the input to the circuit do not change during
+the clock cycle.
+So what happens is let us say we have a latch here and we have some logic circuit here a
+latch between these two circuits again and another circuit here.
+So imagine if the input here was let us say 8 and 6 at the rising edge of the clock cycle
+so what I will do is at the rising edge the input to the latch will be stored over here
+and they are kind of remain the same until the next rising edge so until the next rising
+edge latch if somebody reads the value of a latch it is going to read 8 and 6.
+Now these values will become input to the combinational circuit so this combinational
+circuits shown here could be anything as I already mentioned this circuit can read these
+values anytime during this cycle right.
+Of course we have asked all the circuitry to read as quickly as you see the rising edge
+but the purpose here is if this circuit wants to read it is going to read the same value
+from this latch throughout this cycle.
+Now this 8 and 6 will become input to this circuit and if let us say this was an adder
+it is going to produce a value let us say somewhere here towards the end of this cycle
+14 and this 14 will become the output of the circuit.
+Now at the next rising edge this 14 will be stored in this latch so basically this is
+the second rising edge at the second rising edge this latch is going to store this value
+14 inside of it and then at the second rising edge this combinational circuit this circuit
+shown here may use this value to perform its operation.
+By the time the second rising edge came it is also possible that these values got replaced
+and we got new values let us say 5 and 7 at the second rising edge these value will change
+and they will be updated at 5 and 7 they will become an input to this first circuit and
+then it will perform its operation.
+So it has one full cycle to see the input and perform the operation upon it.
+So latch is something that we are going to use as a storage unit between that between
+different circuitry to separate from each other and to make sure that they follow the
+clock as a start and stop signal.
+Now if you look at a single cycle design single state design we said the system will read
+its input at the rising edge and has one full cycle to perform its operation and complete
+it within one full cycle.
+So in this single cycle this instruction needs to go through the program counter go to the
+instruction memory read the register file do the math crunching on ALU latch on the
+address so that we can write on to the data memory and back on writing to the register
+file.
+So in one cycle the instruction needs to execute and pass through all these different circuitries.
+So to define the role of latches here let us look at what happens when we execute an
+instruction in a single cycle.
+So here we have tried to minimize the number of latches so we need a latch for the program
+counter because at every cycle at the every rising edge we want the program counter to
+be updated because we said in one cycle one instruction will be executed in the next cycle
+next instruction will be executed.
+So at every rising edge we need to update the program counter and for the register file
+I will for the time being will say that when we are reading we do not need a latch but
+when we are writing we will need a latch this part we will cover and understand in more
+details in the subsequent slide but for the sake of executing a single cycle design let
+us assume we will need again a latch to operate upon the register file as far as the writing
+is concerned.
+For the data memory part where we are going to load or store our data we will again need
+some addresses and that address will be latched upon based on the output of the ALU.
+So we have 3 latches here one is on the program counter one is on the register file and one
+is on the address register for the data memory.
+So at the rising edge as I already said a new PC is recorded which is shown here at
+the rising edge the result of the previous operation will be written back into the register
+file and at the falling edge here we do this kind of load and store operation on to the
+data memory.
+So this is let us build upon this concept what I just said and things will become much
+more clearer.
+So let us say at the first rising edge I have updated my program counter and this program
+counter tells me what is the next instruction I need to read and that value will tell where
+what instruction I need to fetch from the instruction memory.
+So basically I am here and I am executing my program counter I am updating my program
+counter based on it I am going to fetch my instruction memory stage and then I need to
+read the register file based on the instruction I have just fetched and without using a latch
+I am going to read it.
+For the timing I am saying without using the latch of course the reading does not require
+the latch but there is a latch shown here which I am not using at the time of reading
+it will become much more clear when we will talk about the multistage design and why pipelining
+requires half cycle to read half cycle to write etc etc.
+So with this instruction I am just going to read whatever is there into the register file
+because there must be some value stored into the register file and this instruction says
+tells what register I need to read R1 R2 whatever I will just read those file read those values
+and I am going to input these values into my ALU.
+Now the ALU will perform its operation and it is going to perform give me some output.
+So all these 3 instructions or all these 3 stages can be done before this time here until
+this point of time I can perform these let us say these 3 stages.
+Now at the falling edge whatever output I have got from my ALU needs to be latched onto
+the address register here.
+So if I have a load or store and if I want to access the data into the data memory I
+am going to talk about the addresses here and that part I need to latch over here and
+then I have the remaining half cycle to write onto my data memory as well as whatever I
+have into back into my register file.
+So at the next rising edge I am going to write in case I am taking the some data from the
+memory or simply the output of my ALU here.
+So at the rising edge I am going to the program counter I am updating my program counter then
+I am fetching my instruction from the instruction memory reading the register file the required
+register values depending upon the instruction feeding this value onto my ALU and all these
+3 are being performed during this period of time.
+Now I latch the output of the ALU onto this address and then I write onto the data memory
+over here and whatever value I need to update my register file is done over the second rising
+edge.
+So it kind of gives you an idea how single cycle design operates of course this portion
+of writing on the second rising edge is not a bit clear in my opinion but we will cover
+I know that we will cover it this into the next part which is multi-stage circuit designing.
+So with that I conclude this session here and we will see a multi-stage design into
+the next video thank you.

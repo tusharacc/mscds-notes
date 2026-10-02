@@ -1,0 +1,36 @@
+Now if you look at this figure what you see is that this is a host on one hand and also
+another host on to the other hand which can be anybody can be client and server and every
+layer talk to the corresponding layer on to the other side.
+So basically HTTP protocol talks to the HTTP protocol correspondingly on to the other side
+basically one HTTP on one host talks to HTTP on the other host and this happens with the
+help of HTTP message.
+Similarly the transport control transmission control protocol talks to other TCP corresponding
+TCP protocol on the other side using the TCP segments then you have the IP layer and then
+you have the network access layer.
+In this case you see an Ethernet interface it can also be a SONNET interface or something
+else as well which means if this was an Ethernet interface or it was a SONNET which is Synchronous
+Optical Networking or Synchronous Digital Hierarchy which works on the circuit switching
+mode irrespective of how these lower layer works the above layer work independent of
+the below layer of course the interface would change here but the operation of these layer
+would not change which means if I replace it with Ethernet or if I put SONNET here that's
+how I can just simply replace different layers in between without affecting the other layers
+here.
+Now just to conclude we have different models so we have the OSI model and then we have
+the TCP IP model and OSI model you have the application layer you have the presentation
+layer you have the session layer you have the transport layer then you have the network
+layer data link layer and the physical layer.
+In the TCP IP model these three become application layer all three layers are combined into one
+layer transport layer remains transport layer network layer becomes internet layer and
+these two layer are merged into network access layer.
+Now if you talk about the PDU that is a protocol data unit they become different with respect
+to different models so in case of OSI at this layer so I will change the pen so at
+these three layers they are called the information or the data is called the data or the message
+at the TCP at the transport layer it is called TCP segment or UDP in case of UDP it is called
+the datagram at the network layer it is called the packet at the data link layer it is called
+the frame and at the physical layer it becomes a bit or symbol.
+The same thing happens so application layer it is again called the data or the message
+transport layer it is called either the segment or the datagram it remains the packet at the
+internet layer and here it is typically called just a frame.
+If you also look at TCP IP over ethernet which means that the physical layer is carried in
+ethernet frames that is what this TCP IP over ethernet means we will continue our discussion
+on key concept on to the networking into the next lecture thank you so much.

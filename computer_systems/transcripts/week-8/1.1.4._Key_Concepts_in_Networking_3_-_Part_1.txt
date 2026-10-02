@@ -1,0 +1,39 @@
+A more important concept in the networking is the DHCP which is a dynamic host configuration
+protocol which basically a server service that dynamically assigns or leases an IP address
+and the related information to the network line.
+So whenever your host connects to the network it asks the DHCP server to get an IP address
+usually your router handle in your home setup or router handles all these dynamic configuration
+because a router today has become a very powerful device it does the switching part is thus
+the routing part also you can configure a firewall or a NAT onto it as well as it handles
+the DHCP and the other important aspects.
+So DHCP basically gives a computer which is newly connected to the network gives an
+IP address gives the subnet marks gives the default gateway gives the DNS server address
+etc etc which are necessary for any network for any computer to connect to the internet.
+So this unique address is used to identify the computer subnet marks gives information
+related to the network of which this net this computer has become part of default gateway
+is the point where the computer needs to point or send its packet when the packet has a destination
+which is not let's say not within the network and then the DNS server from which the DNS
+queries can be resolved is also relayed by the router to your client.
+Now imagine if your host is unable to get IP address from the DHCP server which means
+either the external stateful address configuration mechanism such as DHCP does not exist or when
+the primary configuration mechanism has failed for example let's say you cannot also configure
+the IP address manually because your network administrator has prevented a guest account
+from configuring its own IP address.
+So in that scenario what would happen to that computer in the absence of an DHCP server.
+So basically the host assigns itself an IP address from a special block of IP addresses
+called link local addresses.
+So link local addresses are within within the range of 169.254.00 in this network which
+is slash 16 network which means we have 2 to the power 16 host which is 65,536 addresses
+all the way up to 169.254.255.255.
+So from this block or from this network this is a sider notation which is a classless notation.
+From this range your computer is going to take an IP address for itself.
+Now the problem is imagine there are different address different computers which are not
+able to connect to the DHCP server and now everybody has resorted to this special block
+of address and has obtained an IP address from this range.
+So let's say from H1, H2, H3, H4 all the way up to let's say H10000.
+These 10000 computers somehow were not able to connect to DHCP and they all have resorted
+to taking an address from this link local address.
+The process by which this happens is called APIPA typically automatic private IP addressing.
+So everybody has resorted to this APIPA mechanism taken an IP from this range but the question
+is what would happen one when I talk to the outs when I want to talk to the outside world
+to what if there is a clash in the selection.

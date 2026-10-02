@@ -1,0 +1,209 @@
+Hello and welcome back and in this video we are going to look at the jump and link instruction
+into more details and we will see some examples of how the storage is.
+So basically your memory is managed during a call and return operation.
+So if I just quickly can recall we have seen that there is a special register but it is
+not a part of the register file called program counter which maintains the address of the
+instruction that is currently being executed.
+So program counter points to the instruction which is being currently executed on your
+code.
+So the code sits somewhere here into your memory and the program counter points to where
+exactly or which exact instruction that we are executing.
+So this register stores the address of that instruction that is being currently executed.
+Then when the procedure call is executed by invoking a jump and link we actually store
+the value of the PC.
+So when we are making a jump from one procedure to another procedure we need to remember when
+we were executing in procedure A so that when we return back we continue our execution
+from the next line and because we need to execute from the next line actually what we
+save is PC for plus 4 bytes.
+So the next value after the jump and link instruction is saved onto a register called
+RA.
+After that we jump to the procedures address basically we jump and link to the procedure
+B and the PC is basically adjusted accordingly.
+So the PC now basically points to the procedure B so that we can continue to the execution
+from that point.
+So if B is sitting somewhere here we will update the PC to point to this location so
+that we can execute continue our execution onto that point.
+Now it is possible that the jump and link may over return a relevant value in RA.
+It must be saved somewhere into the memory before invoking the JL instruction.
+In that case if the value gets overwritten and it becomes a problem because how do you
+return back to the caller after completing the callee procedure.
+So what is happening is imagine you have a procedure A and the procedure A says I will
+jump and link to B and this is procedure B which says I will jump and link to C and this
+is procedure C and it does something and comes back after that and so on.
+As long as it was a story of two procedures it was easy to manage with just the RA and
+PC and so on.
+However it was only until we encounter multiple jumps.
+So let me just clear out this slide.
+So what is happening is you have a register RA and it has some value inside of it and
+then you have a program counter which points to the current value where we are executing
+and this is your memory somewhere where you have procedure A.
+Now the program counter points currently to this position because we are executing
+here let us say this position is x and the next instruction is x plus 4.
+Right now program counter is x and it is saying I want to execute this operation and this
+operation actually says I want to go to procedure B.
+Let us say procedure A is sitting here at position y so starting from position y and
+this is let us say position z is where your procedure B is let us take an example procedure
+B and procedure A and B. Now when I say I want to jump and link to
+procedure B I want to move the control to the point where procedure B is located.
+So the procedure B is actually located at an address z so what I want to do is I want
+to change this value to z.
+So that the control can go to B and in order to save that where I have to come back after
+the execution of B I am going to save this x plus 4 into my return address.
+Now after B terminates let us say at this point B terminates I can restore all the
+values so after B completes its execution I can look at the return address into the
+return address register update the PC from whatever value it was let us say z, z prime
+blah blah blah I can update it directly to x plus 4 if PC is updated to x plus 4 I come
+back to the next instruction which was expected to be executed after this line of code.
+So this was easy when second procedure does not invoke another procedure.
+Now in case so now my program counter was initially x then x was updated to z then z
+was updated to z prime blah blah blah in procedure B. Let us say this procedure B calls another
+procedure procedure C and it does a jump and link on procedure C and let us say C sits
+here somewhere at W if I override this value whatever value it was in the program counter
+with W it is fine but following the previous steps I also need to update the return address.
+So imagine if z prime is where my procedure B was I must update the return address to
+z prime plus 4 which means I will override the value which was previously stored x plus
+4 and the moment I do this it becomes a problem because once C returns to B it is fine and
+it can do it with z prime plus 4 but now I do not have a way to see where I have to go
+back into A because I have just overwritten the value of x plus 4 in our example.
+So in order to avoid this thing what we really need to do is that you want to store important
+values such as dollar rA onto the stack before handing over your control to another procedure.
+So if my value of rA was stored onto the stack and then stack moved to procedure B and then
+procedure B moved to procedure C and again saving its return address onto stack I could
+always retrieve these values not from the register but from the memory and this way
+I can maintain a continuous flow basically I can maintain the returning of a callee function
+to the caller function.
+So basically the idea is the register is basically you can think of it as a scratch pad for procedure
+which may seem to volatile it seems to disappear every time we switch the procedure.
+So sometime when procedure A calls procedure B calls procedure C we must do return return
+return and then we want to store all the values belonging to A B or C onto the stack because
+the moment procedure A to B takes place or procedure B to C takes over the values into
+the register can get overwritten and with this understanding you must be careful into
+handing over the control to another procedure basically you want to make sure all the important
+values are stored somewhere onto the stack and these values are returned back to you
+once you want to come back to the caller function.
+So just to give you an idea let us say this is where I was and this is where my stack
+pointer is I must have my return address somewhere here I must also return the previous stack
+frame pointer and so on and so forth.
+So basically I store a lot of values where was a previous frame pointer because frame
+pointer also gets updated stack pointer also gets updated so stack pointer is basically
+top of the stack which can continuously updated and with reference to frame pointer.
+So give you an example if your frame pointer is here your frame started from here and
+your stack is here if you want to roll up and close this function what you can just
+do is if you update your stack pointer with the value stored into the frame pointer you
+actually go to the beginning of your activation record and you can actually forget whatever
+you have done into this memory.
+So this way you deallocate so this way you can come back and completely close the procedure
+as far as the memory is concerned.
+So when you call from one function to another function you also need to update the frame
+pointer that is why your frame pointer should the value of your frame pointer should also
+be stored onto the register or sorry onto the memory before handing over the control.
+Similarly you must also store the return address just we discussed in the previous slide and
+some couple of more things.
+Now just to summarize whenever a new procedure is called it must create space for all of
+its variable so if procedure A is there onto the stack whenever a new procedure is called
+it must create space for itself.
+Let us say A is the only procedure so it must create space for itself by updating the stack
+pointer before executing the J jump and link instruction they must save their relevant
+values onto the stack.
+So for A for example if A is calling B it must save the variables the arguments the
+return address and temps onto the stack before it can hand over to B. So if we just store
+8 values plus 4 values plus 1 value it must create 13 more storage 13 times 4 bytes take
+more space update the stack pointer until this point and put all these values here.
+So that when the control comes back to B A can actually resume working with all the original
+values it had.
+Similarly the arguments are copied into A 0 to A 3 register outside of the memory basically
+onto the procedure processor so that B can actually occupy them.
+Once the callee finishes it copies the return value into V 0 and frees up the stack by incrementing
+the stack pointer basically pointing to its original frame pointer and then recovering
+then the next procedure can recover its original value by loading these values back out to
+the register.
+So first we save values and then now we are loading values back to the register the responsibility
+of copies between stack and register may fall on the callee or the caller and now we
+are going to look at an example how the storage is actually managed into the memory.
+So in this example we have a very simple function and it is a leaf function basically it is
+a function that does not call any other function and what it does it basically takes 4 values
+as an argument do some operation onto them and return the outcome value.
+So basically it takes G and H the first two arguments adds them next two arguments adds
+them and find the difference between the two store it onto the variable F and returns the
+value F.
+In this example the caller took care of saving its return address and A 0 to A 3 so this
+is in A 0 this is in A 1 this is in A 2 this is in A 3 so the leaf example function can
+actually access them now what we do is we define this function with a label called leaf
+example and this is what we execute basically if we come to the skeleton or the main functioning
+of this function what it is doing is it takes the value into the first two arguments that
+is A 0 and A 1 adds them and store it into T 0.
+So basically this value is stored into T 0 the next two argument that is i and j computes
+a sum stores it into T 1 temporary variable T 1 and then finally finds the difference
+between T 0 and T 1 and stores it onto a register S 0 and now it moves the value into
+S 0 into variable into now it needs to return the value into this variable okay the reason
+why I use S 0 for this operation is because I am using a variable F and we know that for
+a variable we typically use S register storage register rather than a temporary register
+so that is why we have saved this value into S 0 we could have also used something else
+but we will come back to that later now because I have to return this value so I have saved
+the value into the difference into S 0 now I am moving this value of S 0 into a special
+register V 0 because this is going to be accessible to procedure the caller procedure so what
+I am doing because move is not supported so what I am actually doing is I am taking the
+value in S 0 adding it with 0 register value and storing the value into V 0 so this way
+I am storing the outcome that is the variable F which is currently stored in S 0 and I am
+moving this value to V 0 with this thing I am completing the operation which was expect
+which was expected from this function however I am also doing a couple of instruction above
+and below this operation which I will come back and also yes and after adding this value
+into V 0 I am jumping on to the return address sorry I forgot to tell this so after I have
+saved the value on V 0 I have to return so I saved the value in V 0 so this is a register
+outside on to the processor I saved the value and I am returning the control so return F
+means you must save the value into V 0 I mean we are saving it in V 0 and also returning
+the control back and that control is returned back using jump on the register value into
+RA because RA is already been saved by the caller function okay now what is also happening
+here is these four lines of code which is basically says which this program or this
+assembly code does is that it actually saves the value of the registers that we are using
+so this program assumes that because you are using T 0 T 1 and S 0 three register each
+register taking four bytes that is 12 byte total it believes that you might be you the
+caller function might have stored some valuable information on to these three registers so
+what I must do is I must save these values before overwriting these values and then I
+will load after I am done with my operation so this is a nice function nice entity which
+is basically trying to return the stack return the register file in the original form as
+it has received of course this is a nicer program and in practice it will not happen
+but it is just to give you an idea of what the callee can do so the callee is basically
+knows that it is going to use three register that is why it is decrementing the stack
+pointer by 12 because we need three register each register has four bytes or 12 bytes so stack
+pointer if it was here so it is creating space for three more values so it is decrementing the
+stack pointer from here to here to here so basically it will store three values on to the
+stack so what it does it has done add immediate of minus 12 constant into the stack pointer so
+it will decrement the stack create more room and then I take I store S 0 into stack pointer
+wherever the stack pointer is pointing then at an offset 4 T 0 at an offset 8 T 1 so if the stack
+pointer was let us say let us say the stack pointer original was here then I moved it to here what
+I am doing is I am storing the value back so I am storing at 0 offset the current stack pointer
+is here at 0 offset I am storing S 0 then I am storing at 4 offset T 0 and then T 1 let us say
+if this value was something else it should be like this right now after storing this value we have
+computed some operations here and then returning back what I am doing is I am story storing the
+value which were originally there into S 0 T 0 and T 1 these values are now on to the memory so
+I am retrieving the values from the memory and putting them back into the register so this is
+memory register memory register and then I am incrementing the stack pointer by 12 so basically
+4 8 12 and now it goes to the original position so this way I have returned the program in the
+original form as I have received what I could have done instead of using these registers I
+could have also taken another approach so what I could have done is and avoided the using the
+stack altogether is that instead of using S 0 here I could have rather saved the value directly
+into V 0 so this way I do not had to do I did not had to do this operation so this operation goes
+away because I do not now have to take care of the stack register S 0 because I am using
+V 0 directly and what I can also do instead of doing these operations what I can simply do is
+I do not care about T 0 and T 1 so the callee says I do not care about T 0 and T 1 and all
+the temporary register so I will overwrite them I do not care what the values were so I will just
+overwrite them so it was caller who is responsible to storing these temporary variables okay
+temporary registers store values which are of no values to the caller function and taking
+this assumption this callee function is actually utilizing T 0 and T 1 so if T 0 and T 1 are of
+no value it says I do not really need to store them onto the onto the stack I do not care
+because they are temporary value values even if there were some values the caller is ready to
+accept garbage value so I can eliminate these two lines similarly I can eliminate T 0 and T 1 and
+since I am not using S 0 anymore I can also just ignore saving S 0 and if I do this I can actually
+avoid fully to use stack pointer so just by optimizing how I wrote my code changing how I
+wrote and what register I used I can optimize the performance of my code itself and this way I
+have completely ignored or avoided using the stack altogether the reason is we have temporary
+register and the general assumption is any procedure caller or callee will only put those
+values into temporary register which are of temporary nature and has no let us say greater
+value so if some values are put on T 0 the caller is already ready to accept them to get garbage
+value or accept them to get their values overwritten if something is in T 0 and here we just ignored
+using S 0 because we could return the value directly from the special register V 0 right
+with this I hope you got the idea how the storage is managed into the memory in the next few
+short videos I am going to discuss some more examples and for now I would say if you can
+practice this thing by yourself you will understand the movement into the register into the memory
+thank you so much

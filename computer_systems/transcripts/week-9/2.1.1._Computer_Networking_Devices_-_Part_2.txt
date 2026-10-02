@@ -1,0 +1,49 @@
+and these devices basically work in half-duplex meaning that only one party at a time can
+communicate if we look between two endpoints right so if this is your hub and this is your
+device let's say it only works in half-duplex only one device can talk at a time and both
+devices cannot talk at the same time because otherwise a collision will happen and the
+signal sent by either of the side will be scrambled so the purpose of the hub again
+is it takes an input signal amplify it basically takes this signal and repeats it or broadcasts
+it to every other port every other connection on to the hub except for the input port and
+and because it is a multi-port repeater every signal even though it was not meant to be sent
+to let's say this device and this device these devices will still receive this broadcast signal
+or broadcast information which can be a security risk here I am also saying that there is only
+one collision domain which leads to by wasted bandwidth so with respect to collision domain
+we will see more in detail about collision domain and broadcast domain in the subsequent
+lectures but for time being let's just say that the collision domain is the area in which when
+two devices start to transmit at the same time collision happens so in this case in case of a
+hub whenever a device is transmitting let's say this PC is transmitting a it is supposed to go
+to every other host connect to the hub but at the same time if any other device BC or D start to
+transmit this collision will happen and this signal which let's say was supposed to be the
+original signal sent from A was supposed to go to B might also get a collision because of the signal
+that is coming from D because when D is sending hub will again repeat and then scrambling can
+happen soon after these devices were replaced by the switches but before we move forward there
+are two types of hubs one is an active hub and another one is a passive hub an active hub are
+the devices that have their own power supply so they can with their own power supply they can
+clean the signal boost the signal and then relay the signal along the network and it serves generally
+we can say it serves both as a repeater as well as the wiring center as far as the passive hub
+is concerned these hub collect wiring from the nodes basically power supply from an active hub
+and they simply can relay signal onto the network without cleaning and without boosting the channel
+because they have limited power supply so they do only a limited set of tasks while the active
+hubs have their own power supply and they can do much more than a passive hub now if we look at
+the repeaters and how we can summarize that they are if they make the network if we construct our
+network using just repeaters and hub it they make the network seem like it is a one large shared link
+and each bit or each signal is sent everywhere because everything is being sent from the input
+to every other output possible the overall throughput is limited right so at a time only
+one device is speaking and the total bandwidth let's say if it was n it is divided by total
+number of nodes into the network right so if there are four network holes the overall throughput
+can be divided by four because one of them can speak at a time they cannot support multiple
+technology unlike the gateway right which will also be the case fit with the other devices as
+well so they cannot basically interconnect between different rates and formats and they
+do not have any concept of buffer or interpret rates now moving forward if we look at the bridges
+bridges are layer two devices and these devices they work at layer two so they work with the
+MAC addresses and they have the capability to learn the MAC addresses right so they can learn
+over a period of time what MAC addresses or are on which side of the bridge right so basically
+these bridges they can segment the LAN so that these LAN can carry their own traffic right so
+these bridges are intelligent enough not to forward traffic from one LAN to another LAN based
+on the MAC address or destination MAC address in a frame it usually has two ports but it can also
+have multiple ports and given in the default setting where we usually have two ports there
+will be two collision domain right so two people let's say in these LAN can talk to each other
+because they are segregated from each other of course within one given LAN so LAN 1 and LAN 2
+only one will speak because we have a hub in LAN 1 and LAN 2 each so we have two collision domain
+so one collision domain here and one collision domain here in this particular example

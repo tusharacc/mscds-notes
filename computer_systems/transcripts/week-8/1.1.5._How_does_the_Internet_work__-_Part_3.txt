@@ -1,0 +1,44 @@
+Now, once this ISP router receives this information, it is going to forward this information to
+the DNS server, so source IP becomes, now this query is coming from here, destination
+is 8 8 4 4, source port and 53, I will just ignore the other details because it is going
+to be the same and also assume this, they have also not seen in the past, so they are
+going to ask the server and so on and so forth.
+Once the server resolves this value, it is going to send the response and between these
+two points, the response will look like as follows, so it is coming from this MAC address,
+so source becomes this MAC address, source IP becomes because it is end to end 8 8 4
+destination is end to end, so it becomes the destination 114, the destination MAC becomes
+1A which is the destination MAC of my router, 53 is the response and 9753 is the destination
+here and now the reply says that IIS.IC has an IP address 143.75.19.3, so now my router
+knows what is the IP address and this is also going to keep it and store it into the cache
+so that any future request can be resolved without asking the end DNS server.
+Now once my home router has it, now home router is going to forward this request, forward
+this response to my computer, so now it is going to change the source IP from whatever
+it was on the other side, now it becomes from this point going to dot 5 which is this point,
+it is coming from 9E here and it is going to 9F which is here, port is 53 because anyways
+it is always going to be 53 and the destination is going to be the same as it was chosen by
+my client and now after receiving this response, my computer is also going to make an entry
+into the DNS cache.
+Now once I have the IP address, I can initiate a three-way handshake, basically I am going
+to send my query to start a connection, so I am going to create a TCP sync message and
+I am going to use my MAC, destination MAC is going to be 9E, IP is going to be 1.5 and
+the destination is going to be 19.3 because it is end to end and this part is hop to hop.
+I am going to choose a random port but I am going to make a request on port 80.
+Once my packet reaches the router, my router is going to do a NAT just like before, now
+the response which was the source IP 1.5 changes to my WAN IP, so 192.168.1.5 becomes 115.20.97
+and 114, so it basically does a translation on to the IP address and now the request looks
+like it is coming from this port, this port, this remains unchanged, this remains unchanged,
+this part changes as compared to the original query, the destination also changes because
+now it is going to be the next hop and the source MAC also changes which is my WAN MAC,
+this will keep on happening until it reaches the end point, the server is going to respond
+with the sync act and the corresponding values, basically in between these two points the
+packet would look like it is coming from CB going to 1A, the source IP is 3 going to 114
+which is 114, from port 80 going to 1476 and after it reaches at this point on my home
+router it is going to do a reverse translation and because of this reverse translation this
+destination IP changes to from 114 to 1.5 which is shown here and also the MAC addresses changes
+from 9E going to 9F, next I am going to send a TCP act similar to my TCP sync, all the things
+will happen again, once I have this acknowledgement done I can start to send messages to my browser
+but to my web server and now the message will become HTTP get IIS.SE and similar things will
+happen here but now my system can communicate with each other, so this is how a simple query,
+simple request on your browser just to open a web page, a lot of things happen in the background
+which we are totally unaware of and a lot of computation and exchange happen between different
+entities onto the network, this is how the internet works in a simplified manner, thank you so much.

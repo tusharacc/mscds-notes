@@ -1,0 +1,188 @@
+okay hello everyone welcome back and in the previous session we have seen how to do addition
+and multiplications and now we are going to look at how the division is done and how the
+circuitry can be designed for the division operation because it is a very common operation
+and let's start with an example how do we do a division like in the in the old school way so
+I'll take an example let's say I have 795 and I want to divide it by 31 so in this example we
+have the dividend to be 795 and the divisor is 31 so the first thing I do is I take the divisor
+and check the first digit and see if I can divide 7 by 31 which is of course 7 is smaller
+than 31 so I need to put a 0 before it before I can borrow the next digit over here and when
+I compare 79 with 31 I find that 79 is bigger than so dividend is bigger than the divisor
+so I can divide it and in fact 31 times 2 is the greatest number is the is the number that is the
+greatest number which is smaller than 79 which gives me 62 here I write it over here and then
+subtract these two value which gives me a remainder of 17 now I can borrow the next
+number next digit here which gives me 5 175 which is bigger than 31 so I can try to look up for a
+number which is the greatest possible number in this situation which is smaller smaller than 175
+but is a multiple of 31 so in this scenario if I take 5 times 31 which gives me 155 which comes
+out to be 155 and then when I do the subtraction here gives me 20 as the remainder and 25 as the
+quotient right so here you see this is a 0 which we usually avoid we do not care about it because
+a number a number beginning with the number 0 at the beginning of a number does not make any sense
+but still it is the case it is the rule of division basically so let me just clear this
+out so basically if I want to design a circuitry for division I can formalize the rules of the
+division and the rules are basically you shift the divisor to the right compare it with the
+current dividend and if the divisor is larger you need to shift 0 as the next bit of the quotient
+and if the divisor is smaller then you subtract to get a new dividend and a shift one is the
+next bit of the quotient so just to give you an example another division is created here so we
+have dividend 1000 so basically 1001010 in decimal and the same rule will apply when we
+do binary operation but because we are familiar with division in the decimal number so we are
+taking this kind of specifically chosen example and we want it to be divided by then 1000 which
+is the divisor in this case so first thing I do I take 1000 and I see if I can divide 1 out of
+I can divide 1 by 1000 which is of course 1 is smaller than 1000 so I put a 0 so I can carry
+the next digit here and I see that 10 is still smaller than 1000 so I put another 0 in the
+quotient so that I can use the next bit and then 100 is still smaller than 1000 so I put another
+0 in the quotient and I take the next digit in the dividend so basically 1001 now is bigger
+than 1000 so I can do the division and I put a bit 1 here so sorry digit 1 here because we
+are still in decimal and 1000 times 1 gives me 1000 and the subtraction gives me 1 now I
+can borrow the next digit over here which gives me 10 now when I compare 10 with 1000 I see that
+10 1000 is much bigger than 10 so I need to borrow one more digit from the dividend which
+makes it 101 and to do that I put a 0 here and this 0 is actually has a significance now unlike
+these zeros that I put in the beginning now when I see 101 which is still bigger than sorry 1000
+1000 is still bigger than 101 so I need one more digit from the dividend so I put one more 0 here
+and I get 1010 and the dividend now basically bigger than the divisor so I can do the division
+and the division is only one time so I put one here and which gives me 1 times 1000 is 1000 here
+when I do the subtraction it gives me 10 as the remainder so this is the quotient that I got here
+and this is the remainder that I got here if you carefully look we can actually merge the dividend
+and the remainder in a single register that you will see in the subsequent slides that just by
+using one register we can merge the dividend and the remainder and just optimize our computation so
+what we have been doing here essentially is that if I put my divisor in a register let us say 1000
+and then I put my dividend into another register which is 1001010 what I am essentially doing here
+is I am shifting my divisor to the right and keep on doing the comparison and doing the
+subtraction if divisor is smaller than the dividend which will become much more clearer
+in the next example which I will show to you here here what we are doing exactly the same thing we
+have the same dividend here we have the same divisor here and the quotient field is here so
+what I am doing is I am taking my 32-bit dividend and the divisor and I am putting them into 64-bit
+register instead of 32-bit we are putting them into the 64-bit register as far as the divisor
+is concerned I am going to put the divisor here the 32-bit of the divisor here and a bunch of
+zeros to fill in this space and as far as the dividend is concerned I am going to put the
+dividend here the 32-bit for the dividend and a bunch of zeros in the front so essentially what
+I have to do is I have to shift the divisor to the right and keep on doing the comparison so these
+steps are shown here so if I write just like this so this is my this is my dividend and this is my
+divisor right so 1000 let us say place here and then followed by a few zeros and the dividend
+here 101010 with some prepended with zeros right so what I am doing here is I am looking at this
+divisor and dividend and I see this divisor is bigger than the dividend so I put a zero into
+the quotient and I keep on doing it until I keep on shifting it to the right so basically first
+zero says that divisor is bigger than dividend so I shift it one more place one more place one
+more place one more place which are not shown here but essentially what I am doing is I need
+to shift this divisor by 1 2 3 4 5 places so that the one in the divisor and one in the dividend
+aligns with each other like shown here so I did 1 2 3 4 5 zeros I put 5 zeros in my quotient
+so that I kept on shifting my divisor to the right and after which I know that these numbers
+are kind of in what I have expected so dividend is now bigger than my divisor now I can do a
+simple I can put a bit 1 here because 1 times this value is going to be smaller than this value so
+I put 1 here in the quotient now I do this subtraction now and I put the subtraction back
+into this dividend so subtracting these two value gives me 0 1 0 1 0 0 0 0 0 which is what
+I have written here 1 0 1 0 and a lot by a full bunch of zeros in the front now after I look at
+here now I again find myself in a situation where the dividend is smaller and the divisor
+is bigger so I need to again shift this value to the right so basically I put a 0 again into
+the quotient and I do it one more time so that it comes two places to the right so basically I did
+1 0 and 0 so that they align to each other and the dividend become bigger than the divisor and
+I put 1 because 1 times 1000 is smaller than 1 0 1 0 so which essentially gives me 1 0 1 0 into
+the quotient and if I subtract these two value I get 0 0 1 0 as a remainder which is what I
+got into the previous example as well right this is my quotient and this is my remainder here right
+the same thing here 10 the same thing here so basically the idea is you keep on shifting
+the you keep on shifting your divisor to the right and keep on observing if it became smaller
+than the dividend let us do one more example so basically I want to divide 7 by 2 so let us go
+to the next slide where I have spelled out everything so my initial values are my quotient
+is 0 so everything is said to be 0 and my divisor is 2 and my remainder or the dividend
+basically is 7 so I am doing this operation on 4 bits and to accommodate the shifting
+and all related operations I am using 8 bit registers so basically my divisor that is 2
+is 0 0 1 0 is written into the first into the high end of the register and then followed by
+a 0 for a couple of zeros and then my dividend is written at the lower half that is 0 1 1 1
+depended with some zeros into the front so this is my initial value so first thing I need to do
+is to compare device divisor and the remainder right instead of doing the comparison what I can
+also do is that I do this operation which is written here basically I do subtract my divisor
+from my remainder and see if that value is bigger than 0 or smaller than 0 so when I
+subtract this value from this value so essentially I am doing my remainder in this scenario is 0 0
+0 0 0 1 1 1 and divisor is 0 0 1 0 0 0 0 0 when I subtract these values what I get is 1 1 1 0 0
+and this cannot be subtracted so I need to take a carry from somewhere here so it will make 1 0
+that is 2 2 – 1 becomes 1 it was a carry over here because it was 2 when you took a carry so
+it became 1 1 and something here right over here which basically gives me an idea that this value
+is given out of this operation and we remember from the previous sessions that this value is
+negative because it is starting with the 1 so I know the subtraction gave me a negative value
+so remainder became less than 0 in that case I know I need to shift my dividend to the right
+so basically I need to shift my dividend to the right and shift 0 into my quotient so if I shift
+a 0 into my quotient does not makes any change right so basically what I am doing I am changing
+this value here so I shifted my divisor to the right so this value 1 which was written over here
+came at this place quotient basically when I shifted a 0 inside of it which was already 0 did
+not make any change and now I need to restore my remainder because this operation was actually
+not expected to happen because the value became less than 0 which means remainder was smaller
+and divisor was bigger so basically I just want to restore my state so what I can actually do
+in order to restore my value I can take the remainder as I computed it just now and add
+the value of my divisor to this value which is 0 0 1 0 0 0 0 0 when I add this value it becomes
+1 1 1 0 0 this becomes 0 because it becomes 2 and this will again 0 carry 1 0 and 1 which
+we will discard so the original value is now restored by adding the divisor back to the
+back to the remainder okay now in the next step what I will do I will do again the same thing
+that I did just now so what I will do is I will again check if remainder minus divisor gives me
+a positive value or a negative value so I did take the remainder and the divisor when I do
+the subtraction I get this value which tells me it is again a negative value which means I
+need to push a 0 into the quotient which does not change anything before and after doing that I what
+I also need to do is need to restore the value of the remainder so what I did is that the computed
+value of the remainder and the divisor are added to each other so when they are added to each other
+basically this value becomes so this value becomes 0 0 0 0 and it was already there so now
+I have restored my remainder and now I will shift my divisor by one place now I do the same step
+again which I will again basically I will just shorten the steps just due to the constraint of
+the space because again this divisor is bigger than this remainder so I just need to essentially
+I just need to shift it by one value to the right so it becomes quotient remains 0 0 0 0 divisor
+becomes becomes 0 0 0 0 1 0 0 and the remainder remains the same now at the fourth iteration
+something interesting is happening so when I computed remainder as remainder minus divisor
+when I subtract these two value what I get is a positive value so 0 0 0 0 0 1 1 because
+it is a positive value I need to put 1 into the quotient so I shifted 1 into quotient as shown
+here and this is essentially what I was expecting while doing the division right and now I do not
+need to restore the remainder I just need to shift my divisor by one position again so what
+I did is that I kept my remainder as is just shifted my quotient 1 by 1 place and my divisor
+by 1 place and my quotient was updated with 1 bit and this is what I get now in the fifth
+step when I do it again this value is again smaller than this value so the division will
+be again push 1 into the quotient that is become that becomes 0 0 1 1 I have to shift this value
+by 1 because it was a correct division so I shifted my divisor by 1 position so it instead
+of 0 0 1 0 it became 0 0 1 and the subtraction of these two value gave me a value 1 right so
+this is essentially what I am getting out of this division algorithm that I have just devised if
+you just want to verify so when I divide 7 by 2 I am expecting a quotient of 3 which is shown
+here and a remainder of 1 which is also shown here which means this division was correct and
+these steps that we have followed so far are correct and can be implemented into a circuitry
+so to implement it in a circuitry just like the multiplication we can start with a naive
+application naive arrangement of registers and the ALU so what I am doing is I am putting my
+divisor into a register with 64 bit again first 32 bit occupying the actual 32 bit divisor that
+I want to operate upon then I have an ALU unit which will actually do the subtraction because
+I am using subtraction when I am doing division and I need to write my remainder which I will
+divide into two part which will be taking 32 bits and a bunch of zeros in the beginning so
+my dividend goes over here in the remainder register which is written as remainder here then
+what I do is I take this value as an input to an ALU which is a subtractor subtract these two
+value and see if I need to continue with the subtraction or I need to shift my quotient with
+a zero so basically depending on the value if the if remainder minus division was positive or
+negative I will push a value here and similarly keep on updating this value here right so a
+comparison requires subtract that is why this ALU is a subtract unit and the sign of the result
+is examined if the negative sign is there the divisor is added back now again keep in mind just
+like multiplication division also is done as the following format so two operands are given and
+the division operation puts the outcome basically the remainder and the quotient into the implicit
+register which is high and low register and you need another operation in order to fetch like move
+from high and move from low that we saw into my multiplication when we were doing multiplication
+operation of course we can optimize the circuitry furthermore so that instead of using 64 bit of
+divisor which was shifting to the right continuously we can just use a 32 bit divisor register I
+store it in here instead of 32 bit ALU 64 bit ALU I can again use it into 32 bit ALU and I store
+my divisor oh sorry my dividend over here in in the same in the same 64 bit register and I instead
+of shifting it shifting this value to the right I can shift this value to the left so that it comes
+over the divisor and there is a control unit which can optimize the circuit right so this is how you
+can do if efficient division we did not go into further a much greater details but that gives you
+an idea of how we can implement division so if you follow the multiplication the multiplication
+circuitry that we design the same arguments can be applied here to make the circuitry much
+more efficient now another thing when we are dealing with the division is the involvement of
+the negative number right so one thing is if you are dealing with the negative numbers what we can
+do is we can convert them to the positive numbers and adjust the sign later basically if the sign
+disagree with each other like in this example so I will just go to this example so if the sign
+disagree with each other like in this case the quotient will be negative otherwise if the sign
+agree with each other the quotient will be positive right but anyways let us follow this
+example and when I divide 7 by 2 I get a quotient of 3 and a remainder of 1 this is when both the
+values divisor and dividend were positive so this is the dividend and this is the divisor here but
+when my dividend is negative and divisor is positive I can have a quotient of minus 3 and
+the remainder of minus 1 but I can also have a quotient of minus 4 and a remainder of plus
+1 so there can be multiple solution because if you if you take the divisor 2 if you do 2 times
+minus 4 plus 1 it is also going to give you positive 7 which is which was sorry negative 7
+which was the dividend in our original example so the convention that we follow is that the
+dividend and the remainder will have the same sign so instead of taking this solution what we
+say the dividend and the remainder will have the same sign that is why you see so dividend
+is positive remainder is positive dividend is negative remainder is negative positive
+positive negative negative and if the quotient as I said before if the quotient is negative
+I already explained to you quotient is negative only if the sign disagrees between these two
+like here like here in this case with that I can we concluded the basic operations how
+they are done into the into the machinery and into the next videos what we are going to do
+with the next week we are going to look at floating point operations floating point arithmetic
+because so far we have only considered the integers in our scenario thank you so much
+you

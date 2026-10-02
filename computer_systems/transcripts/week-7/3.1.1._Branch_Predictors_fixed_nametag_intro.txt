@@ -1,0 +1,127 @@
+Hello everyone, in today's session we are going to look at what branch predictors are
+and we are going to continue on our discussion about one of the methods that we were discussing
+of handling control hazards.
+So, in the previous lectures we have talked about control hazards and we have seen that
+there are four strategies that we can take.
+The first one is that whenever there is a branch decision to be made what we can do
+is that we can panic and do not do anything at all which basically means that we introduce
+a stall cycle when the branching decision is happening.
+The other approach is we can assume that the branch will not be taken and we start to fetch
+the next instruction into the program sequence which basically means if the branch is taken
+in that case my hardware needs to cancel the effect because of the wrong path instruction
+being fetched into the next cycle.
+The third option is we take a compiler assisted approach where the compiler tries to fill
+in the branch delay slot by fetching some instruction which can be independently executed
+while the decision about the branching is taken.
+So, we can take something which an instruction which is before the branching decision remove
+it from the original position and move it into the branch delay slot so that we execute
+something meaningful while the decision is being made.
+Of course, we also want to make sure that if a wrong prediction is done or if something
+goes wrong my program state is not lost into that scenario.
+And finally, we have a hardware assisted approach where we said that the hardware will assist
+us in making a smarter decision about what branch I am going to take.
+So, basically my hardware is going to do a prediction for me depending upon several components
+or several computations in terms of what direction a branch could possibly take.
+So, this is what we are going to discuss and this is the approach that is called the branch
+prediction in our approach.
+So, in my original pipeline when we were not doing a branch prediction in cycle 1, so in
+cycle 1 one of the instruction was executing.
+So, I fetch an instruction and let us say this instruction was about a branching instruction
+and once I fetch this instruction my program counter moves to plus 4 basically I point
+to the next instruction after fetching this instruction and when this instruction move
+to the cycle 2 I bring in the next instruction which is pointed by this PC plus 4 and I start
+to execute this instruction on to my instruction fetch stage.
+So, in this scenario my PC was pointing to the next instruction and this branching here
+was being resolved in the second cycle.
+If I do not take the branch this is fine and we can continue with this approach where we
+execute the next instruction, but in case this predict if this branch is being taken
+at this stage what will happen is that I need to not only cancel this instruction that I
+just have fetched, but this decision is also going to affect what next instruction I need
+to fetch in order to execute my instruction fetch cycle.
+So, basically if I can replace this decision here rather than always fetching PC plus 4
+basically the next instruction what if I introduce a hardware module which can do some computations
+to predict that this is possibly the next branch this is possibly a branch and either
+will it be taken or not taken given some history of this branch or some neighboring branch
+and so on and so forth.
+So, this is where we replace this block basically we call this block a branch predictor which
+helps us in predicting whether a branch will be taken or not taken.
+So, what we are doing essentially here so today's branch predictors they were designed
+originally in 80s and in late let us say early 90s today these branch predictor have
+an accuracy of approximately 96 95 percent about a given branch and it they can correctly
+predict if a given branch shall be taken or not taken which means that only at about 4
+percent of time this branch predictor is going to predict a wrong decision about whether
+a branch will be taken or not and only on those 4 percent chances only on 4 percent
+of occasions I am going to have a stall cycle or let us say something not useful being done.
+But other than that what we are going to have is a success of about more than let us say
+more generously we can say about 90 percent of the occasion we will be correct about what
+we are going to what direction this branch a given branch is going to take in the program
+execution and so that we can fetch the appropriate instruction accordingly based on this prediction.
+So, in order to build up branch predictor we can start with a simpler approach where
+we can we can design a branch predictor by doing a manual approach so bimodal predictor
+basically I will start with a simpler approach I will do a manual branch predictor and then
+we will generalize this notion into a more sophisticated branch predictor module.
+So, let us imagine my given program has 4 branches so I have branch 1,
+branch 2, branch 3 and branch 4 what I also have is a table of saturating counters.
+So, a saturating counter would be let us say I have a 2 bit counter so the possible values
+that it can take is from 0 0 0 1 1 0 and 1 1 and a saturating counter is basically it can change
+its value only until it reaches one of the extreme ends. So, if I increment this counter
+let us say my initial value was 0 0 and if I increment it it will become 0 1 if I increment
+it again it will become 1 0 if I increment it again it will become 1 1 and if I incremented
+one more time it will not increment to something else but it is going to remain as is so the
+maximum value that it will take is 1 1 and the same can be said if I decrement this counter
+the lowest value it can take is 0 0 so this is what a saturating counter is.
+Now let us assume for every branch I have a 2 bit saturating counter which I use to record
+some sort of history about a given branch let us say if this values were initially was let us say
+and if I come to a branch if I bring an instruction that is about branching and if that branch is
+being taken what I am going to do is that I am going to increment this counter by 1.
+So, every time I take a branch I do a plus 1 to that counter and every time that branch
+is not taken I do a decrement by 1 for the corresponding counter. So, basically if this
+value was 0 1 and let us say this branch was taken when this instruction was executed and
+the branch was taken I am going to increment this counter by 1 so this value will become 1 0.
+And let us say next time when I re-encounter this branch and that branch is taken again I am going
+to increment it by one more time that is 1 1 if that branch is taken one more time next let us
+say in the next iteration that branch is taken again I am going to increment it by 1 but because
+it is a saturating counter it is going to remain at 1 1. Let us say there is another branch which
+was initialized to 0 1 and when I executed this branch this branch was not taken so I am going
+to decrement this counter so this value will become 0 0. Next time when I re-execute this
+branch and this branch is again not taken I am going to decrement this value and this value will
+remain 0 0 similarly it will remain 0 0 until that branch is not taken of course it is also
+possible that in one of the scenario this branch is taken again so in that case I will do in case
+this branch was taken I will increment this counter by 1 so this value will become 0 1 and
+if it is taken again it is going to be incremented one more time and in this case this is going to
+be 1 0 so in this case every time it was not taken we will follow the same logic if not taken
+we will decrement the counter and if taken we are going to increment the counter.
+Now let us assume this counter was some given value let us say this counter was so this is
+my branch so initially this counter was let us say 1 1 this counter was 0 0 this counter
+was 1 0 and this counter was 0 1 every time I encounter this now if I encounter this branch
+Br 1 it basically my branch predictor will see the and look at this counter and is going to
+suggest that this branch is strongly biased towards being taken and if I have to make a
+prediction about it what I am going to say is that this branch is going to be taken because
+of the way its corresponding counter has recorded is history of execution right of course if this
+branch is taken my branch predictor is saying it is going to be taken so what I can do is I
+can fetch the corresponding instructions into the taken branch and start to execute those
+instructions rather than doing the conventional PC plus 4 based execution right if you look at
+the branch 2 every time I will encounter in such a scenario where the counter is saying 0 0 what
+I am going to say is my branch predictor is going to say that this branch is strongly biased
+towards not being taken so if I if this branch has to make a prediction what it is going to
+say that this branch will not be taken and accordingly it is going to it is going to
+fetch the next instruction as per PC plus 4 because I am not going to because this branch
+is not going to be taken so I am going to execute with the next instruction into the program order
+as far as the branch 3 is concerned this value is between 0 0 and 1 1 but it is more towards the
+positive the extreme end on to the positive side so my branch predictor is going to say that this
+branch is weakly biased towards being taken so my prediction is going to be that this branch is
+likely to be taken of course there are only two possibilities and because it is weakly biased
+towards being taken so I am going to say this branch is going to be taken and as far as branch
+4 is concerned we can say that this branch is weakly biased towards being not taken so the
+prediction is going to be not taken by my branch predictor so this scenario again is going to be
+working with PC plus 4 instruction in other scenarios it is going to work with the branch
+that is being taken and fetch the instruction from those branches where we are predicting it
+to be going into this into the program so basically this all idea is about predicting
+whether a branch will be taken or not so that we can bring in appropriate instructions so that
+we can do something useful while the decision of the branching is being taken and as I mentioned
+already before that the branch predictors are very accurate in these days and with the higher
+accuracy we can already start to do useful work and bring in appropriate instruction to execute
+and not introduce a stall cycle in the next video we are going to look at how we can further employ
+more details into this branch predictors what happens when these branch predictors are mapped
+to a real program which a lot of branches and all those things we are going to look
+at into the next video thank you so much.

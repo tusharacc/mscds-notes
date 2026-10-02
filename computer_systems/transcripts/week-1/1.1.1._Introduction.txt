@@ -1,0 +1,130 @@
+I am going to understand its functioning from the hardware's perspective in this short
+video ah lecture series . I have before we begin the course I would like to thank Professor
+Rajiv Balasubramanian of University of Uttar from whose course I have inspired my slides
+and sometimes I have taken some examples from his lectures into this ah course.
+So, let us look at how the first introductory lecture where I will try to motivate the need
+of understanding the computer systems especially from the hardware perspective .
+So, the first question that we should ask is that why do we even need to study hardware
+in today's time when everybody is talking about software optimization, algorithm optimization
+and more or less more or less like programming ah perspectives .
+So, here are 3 reasons the first one is the decline of Moore's law . So, Moore's law
+says that the number of transistor on a chip roughly doubles every 18 to 24 months . What
+that mean is that the number of transistor we can fit on a chip doubles every 2 roughly
+every 2 years . So, if you write a program today it is going to perform it is going to
+gain a performance improvement of 2 x automatically because of the improvement into the hardware
+. This law was proposed a long time back and it was doing ok, but today in in today's word
+this law is declining sort of sort of say it is not anymore as relevant as it was used
+to before by that I mean that today we are we cannot just double the number of transistor
+we cannot just put double the number of transistor that we have today in the next 2 years because
+of the limitations of the physics . So, this is a problem because if you are a
+computer programmer and you want to write a program and you want your program to gain
+performance over the period of time because the architecture will continue to evolve . Now
+you will not get a free lunch just because the number of transistors are increasing on
+the chip . So, what that means is that you need to understand the hardware how how how
+your computer has been organized what is the architecture. So, that you can optimize your
+programs you can optimize your compilers and operating system and so on and so forth .
+The other thing is that the computer systems today they are of different nature what they
+used to be a long time ago. So, today most of the processors are multi core processors
+which means that as a programmer you must have the ability to split your code in several
+threads and each of that thread should run off a different processor. So, that your program
+can get a performance improvement and take advantage of the hardware that is being offered
+today . The next reason is the there are new sort of platforms coming up for example, you have your
+mobile operating system you have your mobile operating system now you have your cloud
+infrastructure now and your regular PC or laptops already being there .
+Now if you write a program that program may run on a PC may run on a mobile operating system or
+a smart device or a tablet kind of scenario or it may also run on a on a on a on a system which
+is implemented on a cloud which means if you want your program to if you want to reason about how
+your program is performing or how your system is how your how your program is doing what it is
+doing you must understand these platforms and actually they are underlying architecture so
+that you can reason about your systems performance. So, these three reasons these three these three
+facts are actually the reason why we should read the hardware and actually if you look at the
+courses you take today most of them they talk about the software perspective, but it is really
+important to understand the hardware so that you can take a full advantage and you can actually
+create more efficient programs that performs really fast. So, if you are a programmer as I
+already mentioned or a chip or OS or compiler developer it is important for us to understand
+the hardware. This lecture series is based on a book by Patterson and Hennessey the book is
+called computer organization and design the hardware and software interface where this book
+takes gives an example of matrix vector multiplication and the books talk and this book talks about how
+simple matrix vector multiplication can be boosted in speed just by using some hardware level
+optimization by understanding the hardware where we are going to perform these operations. So,
+the first thing that this book says if you write a program which runs on a naive hardware
+you are going to get some performance let us say z and the book talks about that if you introduce
+data level parallelism your program is going to get an improved performance of 3.5 3.8x later on
+if you introduce and use loop unrolling in out of order execution your program is going to get a
+performance improvement of 2.3x on top of what you already have got by data level parallelism.
+Then we look at the memory organization or in particular concepts like cache blocking our
+program can take an improvement of 2.5x and furthermore the book talks about if you look
+at the thread level parallelism you can get 14x performance on top of what you are already
+getting. So, in total by using all the techniques and innovation proposed in the book you can boost
+up your matrix vector multiplication by 200 times of what it was originally. So, understanding
+the hardware is giving you free lunch in terms of performance of your program. So,
+it is so, I think it is a good reason to understand how computers are organized and
+what are their architecture and basically get improvement on our software on our programs.
+In this slide what you see is the innovation over a period of time starting from 1970s till
+2014 and so on. So, this example is from a textbook where you see roughly for this block
+of 20 years we were getting approximately 50 percent improvement every year following
+the Moore's law. So, every 2 years the performance basically doubles. So, every year you get a 50
+percent improvement and this is what you see here in this curve and from 2003 onwards what you see
+is a decline in the performance gain and which remains roughly like 22 percent per year and there
+must be something has happened. So, it is really important to understand what actually has caused
+this improvement of 50 percent per year for this 20 year stretch and then something has changed and
+then we are only getting 22 percent per year. To understand this there are actually two reasons,
+one is before this period of time we have already made use of all the low hanging fruits such as
+easy techniques that we could employ and now since all these fruits have been plugged there
+are no more techniques left at this point of time no more techniques were left which
+we can use to improve the performance. Whatever techniques we could introduce after this point
+of time actually affects the overall performance and the second important thing was the power
+wall which basically says that if you want to incorporate a change you will have to face
+the power wall basically the barrier by the power wall. So, what power wall says is something like
+this to understand what power wall is basically dynamic power on the chip is a function of the
+activity of the transistor basically the number of transistor which are turning on and off on your
+chip. So, how many transistors are there on your chip the dynamic power is a function of that
+activity similarly this also this dynamic power is also a function of the capacity of the capacitance
+of the transistors. So, because the number of transistors were increasing following the Moore's
+law. So, in this period of time in this stretch of 20 years we were following the Moore's law
+we were fitting more and more and more transistors on a given chip basically we were reducing the
+size of the transistor. So, their capacitance was going down and this also created an effect
+on the frequency or the clocks cycle of the transistor basically we were making transistor
+smaller and we were making the transistor faster that is what I would say at this point of time
+and we will discuss what clock cycles and clock says clock is in the subsequent lecture. So,
+what we have been doing in this stretch is that we were making the transistor smaller. So,
+we can fit more their capacitance going down because they are smaller. So, they can carry
+smaller. So, they become smaller and we were making them faster. So, the number of transistor
+on your chip for going up because they became smaller their capacitance has reduced we could
+also reduce the voltage at which the transistors operate and actually it is a square of voltage
+and the frequency and the speed that is the speed at which your transistors are turning on and off
+in a given second was also increasing. So, dynamic power is a function of these
+four factors and by following the Moore's law the overall effect of this formula was something like
+here shown at the bottom of the screen that is the power dissipated on the chip kept on increasing
+and once we hit the 100 watts per millimeter square barrier or the mark we encountered problems
+like thermal emergencies and we can also see that we can also guess that with that much energy being
+dissipated in a small area there was a problem of heating issues. So, with more heat being
+dissipated the chip will become hot and eventually will stop working and actually melt down. So,
+at this point of time if we are dissipating that much heat in a given area given area of a chip
+we need to take away the heat. So, you must take away the heat and the easy way to do it is to put
+a fin like structure called the heat sink and blow the heat using a fan which is a easy solution
+and which works well until unless you remain in this range of 100 to 150 watt energy 100 and 100
+watt heat dissipation, but if you want to use something more fancy such as liquid cooling you
+were the cost of your chip will increase and this may affect also in the terms. So, basically a
+fancy solution can also affect how much power is being drawn by the chip. So, all the manufacturers
+they were trying to reduce the heat generated on their chip. So, they wanted to keep it below
+the 100 watt per millimeter square and which was then following after which the another reason is
+that at point at this point of time we could not. So, once we hit a voltage of 1 volt for operating
+a transistor we could not further reduce it and because we could not reduce it further while we
+kept the activity and the capacitance following the previous trend we had to stop increasing the
+frequency basically to kind of balance this equation. So, that the dynamic power can remain
+under this 100 watt 150 watt range. So, basically this has been this we could not do further this
+we have stopped to do and the activity and the capacitance continue to follow the trend somewhat
+slowly, but the overall effect of these two factor cancelled out each other. So, that the
+dynamic power remain in the same range. So, what has happened is that the from this equation we
+can say the power became constant and to the frequency became stagnant and this is what we
+also see in the curve here. Here if you see the frequency of different processes produced after
+this point of time is roughly within a given range. So, the frequency became constant and
+the heat dissipation the heat the procedures or the architectural innovation to control the heat
+were moderate. So, moderate architecture innovation. So, these are the two reasons
+why you see a slow increase in the performance after this point of time, but before we were
+seeing around 50 percent per year improvement. So, I hope I could give you an idea of why we
+should understand how the processors how the CPUs have been performing before and what is the
+reason we should still consider their working to optimize our performance in today's time and with
+that I will and with that I will say that we will see in the next lecture the idea of clocks and
+some fundamental CPU performance measurements etcetera. Thank you.

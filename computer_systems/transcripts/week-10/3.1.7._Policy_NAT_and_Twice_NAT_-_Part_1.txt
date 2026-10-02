@@ -1,0 +1,43 @@
+All the four types of net that we have seen irrespective of whatever net we talked about,
+there were two things common.
+One is only one part of the packet, typically the source of the packet was used to make
+a decision.
+We were only matching on the source of the packet and we were only doing translation
+on one part of the packet that is only source for outbound packet or destination for inbound
+packet.
+So, two things remain common.
+Matching was done on one element, let's say only IP or only IP port pair, but matching
+was done only on one of the IP or one side of the IP port, only source IP was used or
+only source IP port pair was used.
+And the second was the translation was only done on one field that is only source was
+translated only source IP was translated for outbound packet or only source IP port pair
+was translated onto the outbound port and similarly for destination.
+But these two things remain same matching on one part and translation of one field matching
+on one field and translation on one field.
+What if I want to do match on multiple fields not just source but source and destination
+both?
+What if I just don't want to translate source but I want to translate both source and destination?
+How do we perform these two types of NATs?
+And the answer is the policy NAT and the twice NAT.
+In policy NAT it can be any type of four NATs that we have seen static NAT, static NAT,
+dynamic NAT, dynamic NAT, but the thing that changes is now we are going to match on both
+source and the destination of the packet.
+The typical use case for this type of translation is that we want to treat one type of we want
+to treat certain destination in one way and different destination in common or completely
+different way.
+So conditionally translate the traffic based on which destination we are talking to.
+If we are talking to this destination or we are talking to that destination based on this
+we want to make a decision.
+So remember here what we have now is that we have a policy dynamic path.
+We said any of the four combination there but just added with policy.
+So dynamic path means we are going to look at IP and port pair.
+We are going to translate IP and port pair but because we have policy here we are not
+just going to look at the destination IP port pair but not just the source of the IP port
+pair but we are also going to look at the destination.
+So here what I am doing is I am doing a dynamic path configuration in such a way that if my
+source is my network and if my source is my network but if I define a destination that
+is 4549 specifically this host then I need to do my source dynamic path to this IP address
+otherwise I do my source dynamic path on a specific IP address.
+So I have two IP addresses on the public site.
+What I am doing is if I am talking to this machine I am using 77 public IP otherwise
+I am using 66 for all type of other communication.

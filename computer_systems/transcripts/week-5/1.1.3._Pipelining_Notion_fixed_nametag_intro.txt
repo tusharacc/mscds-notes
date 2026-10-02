@@ -1,0 +1,167 @@
+Hello and welcome back and we are going to continue our discussion on single stage and
+multi stage circuit design and in the previous discussion we have talked about that in a
+single cycle design we have the instruction and that instruction need to be executed in
+so this instruction goes through different components and each of these components perform
+its operation and we have used three latches in that case one for the program counter which
+is updated on the rising edge one for the one for the register file which is again at the rising
+edge so at the rising edge at the rising edge but the thing here with the register file is
+that the result of the previous cycle is recorded at this rising edge so when the edge is rising
+for a cycle we update our program counter as well as the register file is updated but it is
+updated with the output of the previous cycle and then at the falling edge what we do is the
+addresses coming out so based on the competition in ALU are latched so that we have the remaining
+cycle to perform the operation on data memory or on to the register file together so if you
+want to instead of executing this entire instruction into a single cycle a single stage design if you
+want to break up our execution into multiple stages we need to separate each stage by a latch
+so we have the instruction memory just like before program counter just like before we have
+the register file just like before ALU as well as the data memory but each of these components
+are separated by a latch from each other so what happens in this scenario is that now at
+the beginning of a rising edge let us say here what we will do is we will update our program
+counter and then once the program counter is updated it is going to have one full cycle to
+perform the fetch of the instruction and that fetch of the instruction is going to become input
+to the next latch which is called latch 2 right so this latch 2 will be updated in the next rise
+of the cycle and it will actually become an input to the register file when we are operating on to
+the register file now we have one full cycle to do whatever we wanted to do then once this
+is updated we have the next rising edge the output of the register operation on the register
+file based on the instruction will become available at latch 3 and we have one full
+cycle to perform our operation here in this stage so basically this cycle here corresponds
+to this portion this cycle corresponds to this portion here and this next cycle corresponds to
+this area here then after the ALU is done what we have is the output of the ALU will be available
+at the rise of the fourth edge here so this will be available here and of course we have one full
+cycle to operate upon to the data memory part and this is how we are going to operate on to
+the data memory and then at the rise of the fifth edge what we have is we have the output
+here into the data memory or we may also have directly into we may also want to write the
+output of the ALU directly into the register not going through the data memory for example if we
+were doing this add operation and not load or store you may not want to go through this stage
+so at this rising edge what we will have is the input to all the register file so basically latch
+5 will activate and we have one full cycle to update the register file right so at this stage
+after this is done this value will be updated here so basically we have cycle 1 2 3 4 and 5
+cycles during which one instruction which was one cycle now one instruction has become 5 cycles
+so we write it here and this is how the system will break up single instruction single cycle
+to single instruction but in five stages so by doing all this did we gain anything out of this
+design are we going to gain anything by doing a multi-stage design by compartmentalizing this
+overall design of our system from sing from multiple cycle from single cycle to multiple
+cycle so this is what we are going to look and into this discussion so in order to understand
+the effect of the pipelining a good example could be how a car is produced so let us imagine we
+have an unpipelined car manufacturing unit where we have approximately take let us say 24 hours
+to produce a car and every 24 hours we have one car coming out so car a comes out of this car
+B comes out of this car come C comes out of this and C comes out of this so basically our
+throughput is 1 over 24 hour one car over 24 hours so this is our throughput right because
+we have different teams that work on different elements and they keep on building together
+to produce a car and it takes roughly let us say 24 hours for them to produce a car
+now if I compartmentalize this design as what is shown below if I pipeline this design by
+saying that let us assume that in order to produce a car we take three team for example
+one team produces an engine one team produces the chassis and work on the chassis and another
+team that works on the cosmetics let us say and we also assume let us say they still take 8 hours
+in each job but the only difference from the previous case is that these three stages these
+three teams are independent from each other so the idea is if team A finishes its job it
+will pass on its job to team B and team B will do after its after it is done with this job it
+is going to pass on its job to team C and so on and so forth the benefit is once a team is finished
+doing its job and handed over its job to the next stage it can continue to work on the next
+car so basically if this is car 1 and we said the engine team is going to take 8 hours 8 hours and
+8 hours so essentially we are still taking 24 hours to produce one car but the overall effect
+has changed because at this stage you see once we have the first car coming out we have the second
+car coming out in just 8 hours so we now have a throughput of one car over 8 hours of course
+one car is taking the same amount of time 24 hours but if you look at here we have one car
+coming out of the pipeline stage in 8 hours so our throughput which was 24 hours now has reduced
+to 8 hours which is a 3x gain it is only been possible because we said a team A once it has
+done its job on car 1 it has handed over its job to team B and it is started to work on car 2 once
+it is done here while B is working on car 1 what will happen is A will move to car 3 B will move
+to car 2 and C will move to car 1 so all three of them working together but all of them are
+working on different cars or different let us say instruction in our case so if you look at if you
+move away from this car manufacturing unit and we look at the instruction we might find that
+pipelining is going to help us in improving our performance just like the car production unit so
+what we can say is assume that there is an instruction and this instruction takes in a
+single stage design 100 picoseconds let us say this is 100 picoseconds so basically the throughput
+in this scenario is going to be one instruction every 1000 picoseconds because it is a single
+cycle design the entire instruction takes 1000 picoseconds so our throughput will be this is
+10 to the power minus 9 so it is going to be this is 10 to the power minus 12 and this is 3 so 10 to
+the power minus 9 so 1 billion instruction per second right because this is going to cancel out
+3 values so that will be 10 to the power 9 and 10 to the power 9 is 1 billion so our throughput
+is 1 billion instruction per second right now if I break down my instruction and let us say the
+instruction goes through the instruction memory unit and it also goes through the ALU and let
+us say it goes through the data memory stage only three stages so this is a three stage design and
+each one takes let us say roughly the third of what it was taking into the entire cycle so it is
+330 picoseconds here 333 picoseconds here 333 seconds here 33 picoseconds here so overall my
+instruction is instruction 1 still taking roughly the same amount of time so the overall time that
+it takes to perform one instruction is still appears to be the same but you will see the
+throughput will change so what is happening while my instruction 1 is being processed through the
+instruction memory stage no other instruction will start but once my instruction 1 is done
+on the instruction memory stage it will move to the ALU stage and then this instruction will move
+to the data memory stage however if there is another instruction I2 what it can do is by the
+time I1 starts on the ALU unit IM unit becomes free so I2 can occupy this unit and starts to
+work on the IM stage similarly it will begin the ALU stage once I1 is done with the ALU
+stage and it moves to the DM stage and after which it can move to this stage and during this
+period of time I3 can already start with the stage 1 so at this point of time instruction 3
+is being executed on the instruction memory stage instruction 2 is on the ALU stage and
+instruction 3 is on the DM stage so 3 different units 3 different stages are processing 3
+different instruction at the same time so the throughput if we use the same formula that we
+have used we have one instruction coming out of here then coming out of here then coming out
+of here so basically we have the throughput of 1 upon 333 picosecond which comes out to be 3
+billion instruction per second which is 3x of what we had in the unpipelined processing so
+our throughput has increased by 3 times however if you look at what is happening here that we
+have one instruction coming out in one cycle so here the cycle was something like this one big
+cycle and this cycle was 100 picosecond 1000 picosecond long and we had one instruction
+coming out of the pipeline right what about the pipeline stage the cycle is now 333 picosecond
+so the clock speed has gone up however the CPI has remained the same because now my cycle which
+was 1000 picosecond before is now 333 seconds 333 picoseconds because this is the clock you
+can think of a clock where A B and C I 1 I 2 I 3 can start to execute or I 4 I 3 I 2 can start
+to execute so at the beginning of this clock these 3 circuitries get activated but produces
+and performs an instruction and by the end of this cycle they must produce an output so the
+cycle has changed the notion of cycle has changed so after each cycle only one instruction is being
+produced or one CPI is being maintained but my throughput has changed the throughput has
+become 3x because my clock cycle my clock speed has gone up so my clock speed here was 1 upon
+1000 and now it is 1 upon 333 so it has increased up so pipeline stage has given me the throughput
+of 3x now let us look at what is happening just to summarize so does it take longer to finish each
+job no because before it was taking for one operation 1000 picose 1 instruction was 1000
+picosecond it is still taking me the same amount of time roughly 330 picoseconds plus 330 seconds
+plus 333 seconds picoseconds which roughly comes out to be the same amount of time but if you look
+at a series of jobs now the series of job has given me a throughput of 3x when we are producing
+a series of job in the previous case it was taking me 1000 plus 1000 plus 1000 let us say
+total of 3000 picoseconds to produce 3 instruction now my instruction are this one take 1000 this is
+100 and 1333 and this is 1666 basically in to execute three instruction which was 3000
+picoseconds before now it has reduced to let us say 1000 here and plus 333 picoseconds times
+2 because this and this or much simpler so 1000 1000 1000 1000 so before it was 4000
+picoseconds now it is 1333 3333 3333 so this is only going to take me this much amount of time
+so as a seek as a as a so as an overall performance when I am when I am working on
+a sequence of operation has improved while the individual job still takes the same amount of
+time so if you look at a big a huge number of operation operating the overall the average
+outcome will be improved to 3x in this scenario so what has happened here is that I
+have not made clear about the assumption so the this value is only coming out when we are assuming
+that there is no dependence among instruction which means when I was executing this instruction
+this instruction could already start when I1 was mid-stage if I1's output was essential to start
+the execution of I2 I2 would not have started at all because now I2 should wait for the output
+of I1 and similarly subsequent instruction so we in this example we kind of relaxed the dependence
+on different instructions so we said all the instructions are independent of each other and
+the second assumption is that we found we did not take into account the overheads coming out
+due to the latches so it might be possible that there is a latch in between every circuitry just
+like we have here so a latch between two stages so we have not taken account the overhead due
+to the latches between each stage so if each latch takes a let us say 150 picoseconds so this
+value will be 50 picoseconds more here and 50 picoseconds more here so this value which we said
+is going to be the same actually is going to become more than what it was before so for before
+once instruction were taking a thousand picoseconds but if you execute just one instruction it is
+going to take 1100 picoseconds because of the latch introduction. Now you might also
+wondering that if I introduced three stage pipeline I got 3x performance it is also
+possible if I design a five stage design I might get 5x performance and if I take a 10
+stage design would I get a 10x performance so if you look at the number of stages involved
+versus the performance the graph curves out to be something like this so you get a benefit
+over performance when you start to introduce more stages but later on this performance gain
+tapers out because of the overhead coming due to more latch more latches in more stages ideally
+somewhere between 15 to 25 stages helps us in getting a peak performance from the pipeline
+design. There is also if you look at number of stages being increased and against the power so
+if you have more and more circuitry more and more latches your improvement or your power
+consumption is going to kind of increase because of the increased circuitry and latches.
+So just to summarize what has happened the time in nanoseconds per instruction has goes up has
+gone up because of the latch because we have two latches and we have to take into account
+the amount of time each latch is going to consume each instruction takes more cycle to execute
+right because each instruction is now taking three smaller cycles as compared to one bigger
+cycle so then the cycle has number of cycle has remain number of cycle it takes for one instruction
+to fully execute has increased but the average CPI has roughly remained the same because we have
+seen that the cycle per instruction if you look at the stages has remained the same because before
+also it is going to be one cycle and he still now also one cycle per instruction.
+The clock speed has gone up so before it was 1 over 1000 now it is 1 over 333
+and the total execution time has gone down so before it was 1 billion instruction per second
+now it has become 3 billion instruction per second because of the 3x throughput
+and under the idle condition the speed up is basically we have the speed up is proportional
+or as a function of the pipe number of pipeline stages which also comes out to be the increase
+into the clock speed. So with this summary we will talk about more about the pipelining stages
+a five stage pipeline design into the next video thank you so much.

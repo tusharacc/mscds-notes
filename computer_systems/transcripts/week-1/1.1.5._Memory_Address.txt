@@ -1,0 +1,84 @@
+Now, we are going to look at how the compiler organizes the data into the memory and how
+does it know the location of every variable and because when you give a line of code your
+compiler need to produce a produce an assembly code which actually identifies all the operands
+in the location of those memory and this is what we are going to discuss in this particular
+slide. So, if I give if I take an example of C programming language you write something
+like main and you say integer a comma b comma c you say an integer array size 10 and so
+on and so forth or let us say there is also the operation a equal to b plus c when you
+give this code to your compiler the compiler needs to allocate space on to the memory for
+every variable that you are using in your program. So, we have a as a variable b c and
+d and your program your compiler allocates space to each of these variables right in
+order to do that your compiler deals with something called virtual memory or virtual
+memory address space which is a large and contiguous region of memory which your compiler
+or the program thinks that it has access to. So, it is it is not real it is virtual we will
+come to that part when we will discuss virtual memory, but your compiler works with virtual
+memory and basically allocates space for each of the variable that we are using in this given
+in the given high level code. So, your virtual memory starts with some base address starting
+from let us say 0 and goes up until to some point let us say 64 GB. Now, when your compiler
+sees the instructions that you have a 4 byte entity like integer a as I said here what it
+is going to do it is going to allocate some space on to the memory for this variable. So,
+what it is going to do because it knows it takes 4 bytes. So, starting from the initial location
+that we call the base address it is going to allocate the next 4 bytes to this integer a. So,
+1 2 3 and 4 bytes are given to integer a. So, in order to keep track where this variable is
+stored on to the memory what your compiler is going to do is that it is going to create a table
+and say I am going to store a and I have stored it on to a location which is offset by 0 from
+the base address. So, we are doing computation with respect to the base address for all the
+variables that we are going to see in this code. So, if you see int b which is the next variable
+that we have to allocate. So, compiler will allocate next 4 bytes to b and it says look I
+have stored b 4 in an offset of 4 from the base address which is also what is visible on to your
+screen. Similarly, c will be stored with an offset of 8 from the base address which is here and then
+b is going to start from an offset of 12 and the next 10 next 40 basically because we have the size
+of array is 10 times 4 because every integer is taking 4 bytes here. So, 40 bytes will be reserved
+for your array. So, this way your compiler will know where every variable is stored on to the
+virtual memory whenever it has to do some operation with it. So, now if I have an operation
+which says a equal to b plus c this operation is actually going to become an affair of identifying
+these variables into the memory. Before that let us assume that the base address because all the
+computations are being done with respect to the base address and this base address is stored in
+a temporary register called t 0. So, because it is a temporary thing. So, I am using a temporary
+register and I am saying that the base address is already been stored into a temporary register
+called t 0. So, in order to do this operation a equal to b plus c what I need to do is to first
+get this value b then do then get c from the memory and then do some operation and store this
+value a back on to the memory. So, what it will look like is first thing I have to do is to load
+a word because it is a 4 byte or 1 word. So, I need to 4 bit 4 byte or 1 word. So,
+I am going to load the word for the operand b. So, I am going to store this value into a
+register called s 0 and in order to get this value what I have to do is I have to look into
+the table and say where is the value of b is it is 4 offset offset by 4 from the base address which
+is stored here. So, basically from t 0 you have to go by an offset of 4 whatever value you get there
+you store this value into s 0. Similarly, for c what I can do is load the word into a register
+s 1 because it is a variable. So, I am using a variable register corresponding to a variable load
+this variable into load some value into s 1 and you have to go 8 offset of 8 from the base address
+and once you have this values this is basically your b and this is basically a value of c and
+now you can perform your operation a equal to b plus c. So, what you have to do is you have to
+add the value that you just got in s 0 and s 1 and store the resultant value into a register
+s 2. Once you have done the addition you want to put this value back into the variable that is you
+want to put this value back into the memory. So, you want to save the word whatever you
+have computed here and you want to save this word s 2 on to a location with respect to the
+base address on an offset of 0 because a is on the offset of 0. So, this instruction is going to put
+the value of a back to the memory this is how you your compiler basically organizes the data
+into the memory it is a simple way, but a simple instruction actually results in a lot of work for
+your for your processor bringing the values storing and loading the instructions and so on
+and so forth. So, it basically can fill in the appropriate memory addresses for the load and
+store instructions. There is one more way by which you can actually work on the values.
+So, for example up until now we were working with just variables what if you want to utilize
+immediate value such as you want to use constants in your program or instead of using variables
+you are using a constant for example on this slide we are using we are taking example that
+you want to put 1000 into some let us say into some operation. So, you need to put this value
+first into the register. So, you can operate upon it. So, until now we have seen something
+called add operation s 0 s 1 s 2 here we have two operands two values from the register as the
+input or the source and we have one as the output or the destination, but all of them are register
+based. So, all these values are into the register. Now, what I want to do instead of using a register
+what if I want to use a value that the compiler knows beforehand for example if there is a constant
+value that your C program is using how can we work upon that. So, for that we have add immediate
+and you can do something like s 0 s 1 and 1000. So, basically 1000 what we are doing here is we
+are replacing one operand instead of one register operand what we are doing is we are using a
+constant. So, an immediate instruction uses a constant number as one of the input. So,
+we have one input here and one input here and in order to implement basically you want to put a
+constant into the register and it will require. So, if you just want to work with the value of
+1000 you need to put into the register and the only way to put it into the register is you add
+it to a special register called 0 like it is shown here. So, what you are doing is you are
+adding 1000 into a special register which stores value 0 basically. So, if you add 0 with 1000 the
+resultant value is 1000 and then you store this value into s 0. So, it is because in miss we say
+so every instruction in the way this ISI has been designed requires at least one operand to be
+registered. So, we need one operand to be registered one destination and the constant value.
+And in the next class we will see some more topics more interesting topics more exercises
+until the next time I take leave from you. Thank you.

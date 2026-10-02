@@ -1,0 +1,129 @@
+Hi, should we start ok. So, hello everyone welcome back. So, in the previous example
+we have been dealing with integers and 32 bit values and in the next example we are
+going to deal with the characters because characters are most useful when dealing with
+let us say simple characters or strings or pixel value etcetera etcetera.
+So, the next example is going to tell us how we handle characters in assembly for example,
+you may be remembering from the previous session that we have used something called load word
+and store word to load 32 bit entities or 32 bit integers for example, we used in the
+last 2 examples that we have done. If you remember, if you pay attention carefully
+that these load and store instruction were operating on words which is a 32 bit entity
+right. This is something that we discussed in the previous class also, but if you look
+at the characters which are a smaller or smaller entities as compared to a word for example,
+in ASCII C employs the ASCII format where each character is represented using 8 bits
+or just 1 byte. So, instead of using load word instruction
+because it will be operating on 32 bits, we rather now need something a lighter version
+of this load instruction when we want to load a character. So, what I am essentially trying
+to convey here is that we the miss or any assembly language should provide a way to
+operate on byte sized entities or even half word size quantity. So, in miss you something
+have something called load byte and store byte when we are dealing with the single byte
+entity. So, load byte will load 1 byte and store byte will store 1 byte of information
+which is useful when we are dealing with let us say C characters and so on and so forth.
+Similarly, you have half words entities which is half of your word. So, it is represented
+using H. So, load half word and store half word which will be a 16 bit entity as compared
+to 8 bit entities on byte or 32 bit entity on word. So, in the next example we are going
+to work with the characters and as I already mentioned it is useful when dealing with let
+us say for example a string which is nothing but an array of character which ends with a special
+character a null character 0 at the end and just for your information that ASCII format
+uppercase a is 60 represented with 65 and lowercase a is 97 in ASCII format.
+So, in this example what we are going to do is basically work with the characters. So,
+the program the C program what it does here is we have a procedure which is void which
+returns which returns nothing but copies one string from one string to another string. So,
+basically it copies string y to string x and in this routine we initialize a variable i,
+we declare any variable i and then initialize it to value 0 and inside a while loop what we
+are doing is we are copying character by character all values into the array of character y all the
+characters of y into x and we are doing it until we copy the last character into string y the last
+character basically the null character which terminates the string once we copy this null
+character into x we can terminate our loop and proceed with the further commands that we might
+have. If it is not the last if it is not the null character what we are doing is we are only
+increasing the value of i 1. So, essentially what we are doing we are taking one character
+from y copying it to x increasing the value of i if it if the last character that we copied was
+not a null character or the end of the string we increase the value of i go to the next value in
+y string and keep on copying the character character by character. So, in essentially
+in order to convert this C program into assembly we have this routine string copy which does some
+instruction at the beginning because we are on a stack. So, we are going to process some values
+onto the stack we need to store some value onto the stack and essentially subsequently at the end
+of the program we will return this we will restore the status of the stack just like we did before
+but we will come back to this these steps later on because it depends on what registers we are
+using or what values or entities we are using. So, for now we are going to skip it and what we
+will do is essentially we need a register to represent i right. So, what I am doing here is
+I am initializing i into s 0 register and to initialize it to a value of 0. So, I am adding
+0 to 0 which gives me 0 and this value basically this register s 0 corresponds to the value of i.
+Then for the while loop I have a label L 1 and then every time I want to jump back into this loop
+I can use the instruction jump on label L 1 right. What I need to do is I need to figure out where
+is the where is in we need to figure out where y is stored into the memory and x is stored into
+the memory and because x and y are given as an argument. So, these values are going into
+argument register a 0 and a 1. So, essentially a 0 points to the first character into the x string
+and a 1 basically points to y 0. So, this is how a 0 register is going to point to the x 0 and a
+1 register argument register a 1 is going to the location of y 0. So, what I need to do is I need
+to get the address of x i and y i right. So, in order to compute that address of x i and y i what
+I need to do is I need to do essentially something like this. If I know where the address of first
+character is in the string y if I keep on adding the value of i I get the address of y i right.
+So, I will just remove this part basically I know where the first character is into the memory. So,
+a 1 points to so basically I can replace this value with dollar a 1 and i is represented using
+s 0. So, dollar s 0 which basically gives me the address of y. What is important to note here is
+that y 0 points to the first character of string y and the next character into the string is 1
+byte away from the first character right because remember every character just takes 1 byte.
+So, if I keep on adding 1 just like I am doing here. So, if I keep on adding 1 and 1 and 1 so
+on I will get to the next character and the next character and the next character. That is why
+just simply adding the base address for y and the value of i is going to give me the value of y i
+character. So, that is why I am doing dollar a 1 which is the address of y 0 and the current value
+of s 0 gives me the corresponding value of y i. Similarly, what I can also do is dollar a 0 which
+is points to the x 0 and sum it with x s 0 it is going to give me basically the address of x i right.
+So, what I am doing here in this line I am taking the value of a 1 and I am adding it adding this
+value to s 0 which gives me the resultant value is stored into register t 1. So,
+register t 1 points to let us say the address of y i and I load this character. So, I am loading
+this character from the current value in t 1 and store and loading it into t 2. So, basically t 2
+is where the y i characters is stored. Same thing what I am doing in the next line is a 0 added to
+s 0 and this value is stored into t 3 this is a temporary register. So, this is going to point
+to x i and then in this x i what I just need to do is take this value t 2 stored into t 2 and
+store this value at the address indicated by t 3. So, I am storing the byte t 2 remember t 2
+and storing it into t 3. So, basically t 3 is as I mentioned here. So, this is t 1 and this is t 3
+and t 2 is actually the value of the character and I am storing it into the location pointed
+by t 3. So, this way I am copying the y i into x i and the next thing that I have to do is to check
+is to see if the character that I have just copied which is residing in t 2 if it is equal to 0 if I
+have copied the null character just now I just need to terminate my loop and go to the next
+subsequent instruction which is in this case there is no subsequent instruction. So, I will
+proceed to cleaning up the stack, but anyways if that is not the case what I do is I simply add
+1 immediately add immediate value of 1 into the current value of s 0 which represents i and update
+the value of i and after this I jump back to loop. So, at this point we realize that all the
+registers that we have used in this in this program in this assembly code are temporary in
+nature except for s 0 which is a valuable register. So, what I am doing is as a call
+e what I need to do is I need to store the value of s 0 before I could actually use it into my
+program. So, temporary register we already know that temporary registers are temporary in nature
+and they can be overwritten. So, we do not care about them, but in order to accommodate the value
+into s 0 the previous value before this routine was called I immediately add 4 value I immediately
+add 4 into the stack pointer. So, basically I made space into the stack in order to store
+the value which is already residing in s 0. So, these two instruction basically what they
+are doing is saving what was there into s 0 onto the stack and then when I am returning
+I am loading them back and freeing up the stack. So, basically here I was decreasing the stack and
+here I am increasing the address of a stack and previous class we remember from the previous
+class that the stack grows downwards and shrinks on the when it rises up that is why these values
+are negative 4 and plus 4 just like the previous example and after which I will simply jump to my
+return address that is all that is all I am going to do and because we are not calling another
+function inside of it that is why we do not care about the storing the return address. So,
+this example was to give you how we deal with the characters in assembly.
+As far as the saving conventions are concerned now we can conclude and we can come up to a
+conclusion that if there might be some register which are saved by the caller and some registers
+which are saved by the callee. Now the callee usually tend to copy all the registers because
+the callee knows what register it is going to use typically apart from the temporary register
+it is going to use s registers and these values callee is going to store onto the stack before
+it can overwrite the values just like we did in the previous example where we stored the value
+of s 0 onto the stack and loaded back loaded the value of s 0 or restored the value of s 0 while
+returning to the caller function. So, in that case callee generally saves the register s however
+the caller is generally expected to store all the values which are of value which are of certain
+value to this caller. So, if a very conservative caller is there the conservative caller is also
+going to store the temporary register t 0 to t 9 before the control is handed over to the callee
+function. The callee would not bother to save this because the callee knows that these are the
+temporary register possibly they do not hold any important information with respect to the caller.
+However a conservative caller might want to save these values but it is up to the caller if it
+wants to save or not but typically these values are not saved but there is no harm in saving these
+values. Of course there will be a little bit of some instructions involved but if you want to be
+very conservative you want to make sure that all your state is totally restored when the function
+calls back you can also store these temporary registers. Of course you want to store your
+return address because it is about to get overwritten so the caller is already going
+to restore its own return address and of course all the argument that the caller might have got
+for itself before calling to the next function. So, all the t register a register and the return
+address are caller saved while all the s registers are callee saved. With that I conclude this
+session on assembly language and we will see some more interesting topic into the next class a
+miscellaneous topic which are related to the assembly language. Until the next class thank
+you so much.

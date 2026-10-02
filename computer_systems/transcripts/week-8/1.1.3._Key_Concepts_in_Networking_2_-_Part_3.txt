@@ -1,0 +1,49 @@
+As per the definition, the subdomain must be a file or a folder, right, so subdomain
+can be a file as well as folder.
+But what if I want to run some of my services on to another computer, let's say webmail.
+So what I would do is I would use this webmail.example.com which is basically a file, let's say I will
+use this file to point to this another computer where I want to run my webmail services.
+Now if I talk about the hostname, what is a hostname?
+A hostname for example wikipedia.org and en.wikipedia.org, this is a domain name mapped to a host which
+has an internet, which has an IP assigned to it.
+It might appear that en is a folder on to this host and everything related to English
+is running on inside that folder, right, this could be one case.
+But there could be another scenario where I want to host this thing, this English version
+of the website on to another computer.
+I can do so if en.wikipedia.org is basically another computer, another host with an IP
+address and this domain, this name is mapped to this IP address.
+So to summarize, a hostname can be a domain name as long as it is properly organized into
+your domain name system, which I will cover in the next slide.
+But a domain name can be a hostname as long as it has been assigned to an internet host
+and it has an associated IP address.
+Basically a domain name, whatever the domain name, TLD plus SLD or TLD plus SLD plus subdomain
+can be a hostname as long as it has been mapped properly to a host, right.
+A hostname can be a domain name as long as it is properly organized into your DNS.
+So as far as the DNS is concerned, so DNS is your domain name system which serves as
+a phone book for the internet which translates human friendly computer hostname into the
+IP address.
+We have the root level with dot, then you have the top level domain .com.org.hu.net,
+then you can have second level domains such as abc.com, imdb.com, ucla.hu, then you can
+have subdomains such as www or cs.ucla.hu, mail.ucla.hu and then you can have further
+pointing to a specific host such as pc15 into cs group ucla.hu.
+So this way you can find this computer, this is a host that you can find because it is
+properly organized into this DNS, right.
+So in our previous example both wikipedia.org and en.wikipedia.org are hostname because they
+both have an IP address assigned to them and as I said a domain name may be a hostname,
+so this domain name may be a hostname as long as they have been assigned to an internet
+host.
+Now a hostname may be a domain name if it is properly organized into DNS.
+So a hostname which is pc15 in this case can be a domain name because it is properly organized
+into the DNS.
+Now there is something more such as fqdn which is fully qualified domain name.
+If a domain name is completely specified including the top level domain of the internet then
+the hostname is said to be fqdn.
+For example you may have Saturn and Jupiter let's say, two hostname, this is a name of
+a computer hostname, this is another hostname and they can be part of a network called pc.
+So they are both part of pc and within pc they can be addressed with their hostname.
+So anybody in the pc can try to talk to each other using their name.
+The domain name of these devices will become Saturn.pc and Jupiter.pc and if this pc is
+part of second level domain such as pc.net or pc.com then Saturn.pc.net or Jupiter.pc.net
+will become a fully qualified domain name.
+The same thing here pc15.cs.ucla.edu is a fqdn and fqdn can be a host or a sub domain.
+Thank you so much.

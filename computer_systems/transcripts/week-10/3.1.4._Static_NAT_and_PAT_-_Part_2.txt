@@ -1,0 +1,46 @@
+now the response traffic how it will it look like so before it is just going to reverse
+so this was let's say let's take this example so 41 80 80 and this was 80 so the same thing
+is happening 41 dot 80 80 becomes the source this value never changes so source becomes
+destination now and the translation is also going to make sure that the response goes back according
+to the same rule that I had said before so now 41 will be translated to 44 same 42 will be
+translated to 44 now port 80 80 is going to become port 80 right so it's going to be the
+reverse of what has happened so static path is also bidirectional right because we have a static
+mapping of a port and an IP combination another use could be that when we want to use non-standard
+ports here in this example port 41 was hosting a website an HTTP version of my website on port
+80 80 right if I wanted to do it if I want to host my website on port 80 80 then in a regular
+scenario every client must write www.mysite.com colon 80 80 and this is totally inconvenient
+because no first of all nobody knows that you are hosting your website on port 80 port 80 80 or
+second thing it is too much to ask for a client to do this much of typing right so with static
+path what I have already done here is in this example let me just clear it out for you what
+I have done is anybody trying to access my website right anybody trying to access my
+www.mysite.com which by default is on port 80 anybody coming on port 80 I am automatically
+translating it to port 80 80 for whatever reasons I have and those reasons I will explain in the
+next example so this way if somebody just types www.site.com let's say HTTP colon www.site.com
+which also implies port 80 is automatically translated from port 80 to port 80 80 which
+also works in the reverse direction which means you can have a non-standard port outside and
+a standard port inside which is you know that all the SHS traffic is by default hosted on TCP
+port 22 and as an attacker I am very much interested in exploiting or exploring all
+the machines which are listening to port 22 which means if I am able to get a ping response from
+port 22 from a machine it only means that this port is open right what an attacker is doing is
+is trying to see if port 22 and 22 is open and then they can try specific attack onto that port
+right of course it does not necessarily mean that port 22 is actually SSH or something else but for
+a beginner we can we can assume that if port 22 is open SSH is also available on that machine and
+I can try some attack on the SSH protocol itself rather what I can do is I can host my SSH connection
+from outside world to inside on a non-standard port right let's say one two three four if I
+want to access my SSH I must access it on this port and then automatically do a translation to
+port 22 internally so if this is a secret knowledge which only I know anybody trying
+to scan for an open port 22 will not get any response because I do not have a translation
+rule for port 22 so generalizing this concept what I can do is I can create punch holes I
+can actually punch holes through a public through my particular public IP address which means I
+can let only few ports open on my IP address using static path and so anybody attempting
+otherwise is going to not have any response back so basically what I am doing is I am allowing
+a specific port on the external address to be forwarded to an specific port on the internal
+side in case of static net it was not possible because only IPs were touched and all the ports
+open on this IP will also be opened on the translated IP right so here what I have done is
+so what I can also do is if I am accessing SSH let's say this was SSH instead of allowing 22
+and then mapping back to let's say 21 22 instead what I can do is outside world needs to access
+1222 there must be a rule to translate 1222 to 22 port number and then only a translation will
+go through otherwise SSH will not be accessible and because SSH is sort of a private or let's
+say sensitive communication you do not really need public to be aware of what is happening
+here so you know your secret port number and that should be fine
+thank you so much

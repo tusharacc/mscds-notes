@@ -1,0 +1,205 @@
+Hello and welcome back and now we are going to look at a 5 stage pipeline design and we
+will build upon the concepts that we have seen so far and what we are going to do is
+we have again the same set of circuitry set same stages that we had here in the multi-stage
+design so first stage is the instruction memory then we do the register read then we perform
+some number crunching on ALU and then finally the data memory part followed by the register
+file write so in this stage first thing so every cycle so what we are going to assume that we are
+going to perform the first stage in cycle 1 the second stage in cycle 2 third stage in cycle 3
+and so on and so forth so the instruction which comes into this pipeline design the
+five stage pipeline design so if instruction 1 is here this instruction will be processed
+through five stages and this each stage is going to take one cycle to complete the operation
+so the first thing is when the instruction comes it is preceded by the program counter here so this
+is PC let me because I do not want to see this arrow moving along with my pen I do not know how
+can I remove this thing okay so now so when the instruction comes it is preceded by the
+program counter and this first stage is preceded by the program counter and this program counter
+is updated in cycle 1 and in cycle 1 what we have is the instruction memory stage from where
+we fetch the instruction so basically we fetch our instruction from the memory and then feed it
+to the second latch that can be the latch here which is called the latch 2 and after this cycle
+the latch 2 is done the latch 2 is updated and this latch 2 depending upon the value the instruction
+inside the instruction from the cycle 1 it will read the instruction into the second cycle from
+the register file here which then becomes the input for latch 3 at the beginning of the cycle
+3 and in cycle 3 these register operands along with the instruction goes into the ALU unit which
+produces an output and which becomes available at latch 4 at the beginning of cycle 4 and in
+cycle 4 we perform the data memory stage where we might want to load or store some value depending
+upon the output of the ALU and which becomes the input for latch 5 in cycle 5 and after cycle 5
+when the instruction is done writing into the register it completes its execution right by
+the time this instruction 1 has completed these IM stage the instruction memory stage it is
+at the register read stage into the cycle 2 now in cycle 2 because instruction memory stage is
+free a second instruction I2 can begin its execution and actually start its IM stage
+so it is again preceded by PC which is updated at this beginning of this second cycle similarly
+instruction 3 can begin at this stage PC in cycle 3 and at cycle 4 another instruction can
+begin and when we come to cycle 5 we have kind of warmed up our pipeline because now at cycle 5
+all our circuitry is being engaged or you can say all our instructions are being executed in
+parallel at different stages so this is kind of the operation at this cycle 5 so here at cycle 5
+we have I1 I2 doing I3 is at ALU I4 at register stage and I5 at the IM stage now let us look
+at more some more details into this execution let me just clear it out
+we have said that the register read stage in cycle 2 should happen in the second half of the
+cycle right and we have also kind of showing it here that the register right let us say
+instruction 1 is writing to register 1 and we have said it will take half a cycle to read or
+write into the register this is an assumption that we have made so if we have said the read
+must happen in the second half of the cycle and the write must happen in the first half of the
+cycle this is an assumption that we have made and which will make and I will make it clear why
+we made this assumption here the reason is if I write into the register in the first half of
+the cycle here imagine if there is an instruction I4 which is also working with register R1 by the
+time I am done with the first half of the cycle 5 so I have cycle 5 in the first half in this first
+half I am writing into the register and if you look at I4 which in this cycle 4 is at the register
+read state it can read the value from the same register R1 into the second half let us say let
+me change this part a little bit so let us say it is read okay not good let us say it is reading
+from the register so when it will read the value from the register in the second half what is
+happening is essentially that whatever was written by instruction 1 into R1 in the first
+half of the cycle is now available to instruction 4 from the same register but in the second half
+of the cycle so this way if I4 is dependent on a value which is produced by I1 this pipeline is
+going to work very well because I4 is now getting the updated value or we can also say if for any
+instruction which is dependent on the output of I1 must start or after thus so any instruction
+that is dependent on the output of instruction I1 must start at stage which is shown here through
+I4 and I5 now what happens if instead of I4 starting at this stage here it was started at
+let us say as I3 in this case if I3 was to read the same value as R1 and if it was performing a
+read let us say here this is second half of the cycle 4 if I3 is reading from the register R1
+in cycle 4 it would still read the older value from R1 because I1 has not yet finished writing
+into the cycle so irrespective of if it was half first half or second half it is still going to
+read stale values and thus if I3 was dependent on the output of I1 it would not work so the
+programmer must design in such a way that I3 if it is followed by I4 or any instruction that
+must start at least at the stages which are indicated by I4 and I5 here and that is the
+reason we say that the right must happen in the second half sorry read must happen in the second
+half but the right at the register must happen at the first half now let us do away with this
+assumption and let us say it takes full cycle to either read or either to write if this was the
+case and if let us say if I1 was taking one full cycle to write into the register the earliest
+time that an instruction can start which is dependent upon the value from I1 is at this stage
+only because now it will also take one full cycle to read but it can only start once this
+right has finished so this is the kind of dependence among instruction and this is the
+kind of arrangement that the programmer must make so that their instructions do not really
+overlap with each other and actually follow the pipeline design in an efficient way and this is
+also one of the reason why your performance through which so the performance tapers even
+when having multiple stages because it is quite possible after 15-20 cycle for 15-20 stages when
+15-20 instructions are executing in parallel to each other there is a high probability that one
+instruction is dependent on another instruction so when the instruction has to wait for the
+previous instruction to finish during that period of time it will not do anything and actually it
+will suffer it will affect the performance of the overall system now another thing here is this
+data memory stage where you see a bypass line so basically in cycle 3 here we have an output
+and this output is fed to L4 at cycle 4 and it is available to this stage until in the cycle 5
+latch 5 gets activated right here what you also see is something like a bypass here now why do
+we have a bypass here is because the ALU might not be doing an operation an ALU might be doing
+some operation and that value might not be required to write into the register for example
+if it was just an add operation between two registers and it was being returned directly
+to the register 3 let us say one of the registers so only thing that we are talking about is three
+registers and nowhere we are talking about a data memory unit while if it was a load instruction
+we might be loading some value or from the memory and in that case we might still want to write and
+process this stage and thus we have to pass through this value so in case if it is an
+instruction that does not require a data memory stage we can bypass cycle 4 now the question is
+if I were to bypass this stage could I just start my writing the register write operation
+in cycle 4 instead of cycle 5 now the problem is even if you do that the performance gain may
+not be as high as you might expect but in fact it could lead to a problem because while you
+are writing at this stage there could also be a possibility that somebody else is also writing
+into the same register because of the pipeline design and you are taking a shortcut only for
+a particular instruction and not considering the overall pipelines into the design so there
+might be a possibility that two people two instructions because you are trying to write
+before your turn some other circuitry some other instruction is also trying to write into that
+DM stage so in that case this might create a problem and thus during this period of time
+if you were to bypass this stage you will simply do nothing and remain idle and actually wait
+for the right stage in the cycle 5 for this particular figure
+because if you bring this register let us say here let us say you bring this register here
+what will happen is you will write into the first half and you will read here into the second half
+that might appear okay to you but what if there is a full cycle to read and full cycle to write
+so in this scenario you are creating a conflict between this moved register
+write and existing register read values now in the five stage pipeline design what happens is
+we use a PC of course so every instruction starts with the PC stage where PC becomes
+an input to the instruction memory stage where we bring so basically we use our PC to identify
+where is our instruction what we do is usually is at the beginning of every cycle we implement
+increment our PC by 4 because if you remember we are working with a 32-bit instruction 32-bit
+processor and the addresses are 4 byte apart so that is why this value is updated by 4 however
+in some cases this value might be incremented by some other value as well for example when
+we are talking about the branching so if we are branching the next instruction might not be the
+next instruction as per PC plus 4 or PC plus 4 plus 4 whatever the stage is so in case of branching
+this becomes actually an issue when we are executing in pipeline so imagine we were at let us say our
+program counter was here it gave us from where we need to it gave us the address from where we
+need to get our address and once we fetch that address that instruction is stored into L2 for
+cycle 2 and let us say that instruction was branch unequal on register R1 and R2 and you then need
+to jump to a location 100 offset now you will read this register value R1 and R2 and then you
+need to perform this branching comparison and take a decision let us assume that this branching
+operation itself is completed in the cycle to itself so basically my branch unequal R1 R2,
+basically I am reading the value of R1 and R2 in the second half of the cycle I am also comparing
+these two value R1 and R2 let us say by some subtractor and I am also taking a decision if
+I have to jump on to 100 offset or not I am doing entire sequence of operation here in cycle 2 in
+practice this will take much more than cycle 2 probably it will take more than cycle 2,
+cycle 3, cycle 4 which we will come later but for now let us assume this entire branching
+instruction completes within cycle 2 so we fetch the instruction and this instruction then was to
+suppose to read this register value based on this instruction itself so the instruction was branch
+unequal and also let us assume that the instruction totally completes up here now depending upon the
+value it might be possible that you do not need to jump and everything will work just as fine but
+what happens if you were to jump in that case you were to update your program counter by 4 instead
+of 4 you were to do a plus 100 right so your program counter which was pointing to an instruction
+and the next instruction that you were supposed to do on PC plus 4 now has to go PC plus 100
+in that scenario what will happen is can you start in the second pipeline it is a problem
+because by the time you finished your instruction memory stage a second instruction let us say I2
+already started and it already did it IM phase which was PC plus basically instruction 2 was
+PC plus 4 it did its stage and it is already ready to go to the register read stage but now
+the decision of the execution the decision of the program says I should not go on to PC plus 4 but
+rather the decision from this instruction says I must go to PC plus 100 the earliest position in
+the earliest location in this pipeline is this instruction 3 so the earliest I can start is at
+this stage where I can update my PC accordingly and initiate an instruction execution at the third
+pipeline so what happens with this instruction this instruction already loaded itself already
+was ready with the latches being populated but now I need to reverse all the execution
+and actually cancel out this pipeline and thus every job that I have done here needs to be
+and actually what will happen is I got an useful outcome here because it was a decision a useful
+output may come out of here but there is nothing useful that I have done here so I have got one
+stall cycle because of this jump instruction because this branch and equal has taken me
+somewhere else into the pipeline processing now if I take out and say that let us assume if I
+were to consider a more practical scenario where my branch and equal instruction does not finish
+in cycle 2 but rather it finishes at the end of cycle 4 let us say for some reason in practical
+case because it requires reading the register comparing the register and then updating the
+PC counters everything will require one more one more cycle so let us say this instruction finishes
+here then the earliest I can start with respect to this value would be where by the time I am
+finishing my branch and equal here an instruction has loaded here by the time it has done loading
+the instruction memory stage another instruction would be loaded here and by the time it is done
+another instruction would be loaded here now if I have to branch here now based on the logic here
+all these three stages will be wasted so if I am going to cycle 4 to finish my branch and equal I
+will have three stall cycles similarly if I have five I will have four stall cycles because this
+is also going to be wasted and actually I will come back to this original position because all
+these values will not be all these pipelines will be wasted as far as the ALU computation is
+considered in this pipeline stage the input from the cycle to the register read value becomes an
+input to the ALU ALU does the effective address computation for the load and store only so if
+it was an add operation we just need to write this value into this register and we do not really
+require an address onto the data memory but if it was a load and store operation the ALU
+need to do the computation so load will be something like offset on t3 so this will be
+computed over here and from where you want to load it in case of add operation it would
+just perform the add and then simply try to store into the register 5 now as far as the data
+memory stage is concerned if we are to read when we are talking about a load instruction and we
+will write when we are talking about the store instruction if you look at the store instruction
+store word we can actually finish right after the fourth cycle and we do not really need a fifth
+cycle because if I have to write a value into the store word instruction with the store word
+instruction the store word instruction does not operate with the register value so it will not
+write the outcome the store word says I need to store the operands into a destination in DM and
+that's it it does not update the register value so in that case this store word operation will
+write into DM and finish in four cycle itself but every other instruction more or less will take the
+fifth cycle as well the fifth cycle in this case so for example a load word is going to load the
+value and then load the value into the register right because the load word says read from the
+memory and load into the register while save says just save into the memory now finally at the stage
+what happens is we just write the result of the ALU computation whatever we have computed from
+the ALU computation or the load word into the register into the register file so that's what
+your five stage pipeline looks like now to summarize we have an instruction memory stage
+for every instruction that we are executing we have this register read ALU stage data memory
+and the register write stage so if you were operating with an add operation add instruction
+what we will do at the register read stage is that we will read r1 and r2 because this is what
+we need to do the ALU stage is going to compute read r1 plus r2 we are not writing anything into
+the data memory so we will not do anything will remain idle into the stage and finally at cycle
+5 we are going to write back the value into r3 if you look at the branch and equal we said
+our entire operation will finish once into the into the second cycle so basically after im once
+we have fetched the instruction we will finish our operation so read r1 and r2 compare set PC
+altogether into the register rate stage this is what we assumed and thus we were not doing
+anything into the subsequent stages if you talk about the load instruction first we need
+to read the register because then we need to so we what we want to do is to load value from
+8 offset of r3 so first we read the value of r3 then we at the ALU we compute r3 plus 8 we get
+the data and then we write into r6 we are not reading the value of r6 that is why we are not
+reading r3 here so we what we just did is that first we need to read so we read r3 in the register
+read value because we need the value stored into r3 and then we added 8 onto it so we move to the
+ALU stage computed and address with an offset of 8 onto the value of r3 then we got the data
+from this position into the data memory stage and then we wrote this value into r6 if we are to
+store the same thing what we need to do is that we need to read the value r3 as well as r6 then
+what we are doing is we are computing in offset of r3 plus 8 just like before and simply we are
+writing the data and that's why we do not need a right register stage when we are talking about
+the store operation so in the load operation we read the value we are loading the value from r3
+so we read r3 offset 8 from r3 at that location r3 plus 8 we got the data from r3 plus 8 and
+then we wrote in r6 here what we are doing is we are reading the value of r6 and then we are reading
+the value of r3 we are computing r3 plus 8 and then writing the data accordingly with that we
+finish our basic pipeline in computer architecture in the next video we will look at some conflicts
+and some hazards in a very short and a brief overview of these two important concepts thank you

@@ -1,0 +1,49 @@
+our discussion and now let's look at what is dynamic NAT again dynamic means your post
+translation attribute are going to be selected by the router and NAT means now we are only
+dealing with IP addresses so one IP will be translated to another IP address the purpose
+of for the use case for a dynamic NAT is to create a temporary static NAT which means
+you are going to assign a temporary dedicated public IP to each of your internal host as
+long as your public IP addresses are available and some of the use cases where we need this
+kind of setting is FTP right where one where the protocol makes a second connection back
+a second unique connection back to the client let's look at this into more details so as
+far as dynamic NAT is concerned let's imagine we have four hosts on the internal side so we
+our network is 10 7 7 0 slash 24 but we have now multiple IP addresses so we have 54 multiple
+public IP addresses 54 5 4 1 2 and 3 now my rule says you need to dynamic NAT all my network onto
+these three IPs so whenever request comes from me one of the IP will be taken from 54 5 4 1 to 3
+and it will be given back to a so basically the request from a translates to this request and
+imagine remember we are not touching the port numbers here so port number appear as as they
+were in the original request but only thing that changes is the IP so 71 becomes 1 72 becomes 2
+and 73 becomes 3 because that was the IP address available and now when B wants to make a communication
+or wants to send a packet no public IP is available so its packet are going to be dropped right so
+first thing is as long as you do not as long as you have IP addresses available you can only have
+dynamic NAT working now once A is done with the communication so the IP which was 54.5.4.1 is
+going to become available and next we can assign this IP to host number D and the communication
+can continue to happen now in dynamic NAT the benefit is it is unidirectional again because
+we need a dedicated communication but it is bidirectional like dynamic PAT which means as
+long as an IP is assigned to one host can remain bidirectional but if there is a policy which takes
+away the IP address it is going to remain unidirectional now if you look at FTP in FTP what
+happens is you have a control channel and you have a data channel so the control channel says
+my request is going to go on port number 21 and I am going to choose a random source port number
+let's say N when the connection is successful and the response comes back onto the data channel the
+response comes back from the server on port 20 and on port M which was already told during the
+communication or control through the control channel so if a rule was originally set for this
+combination for this port number and this port number my request that is coming back from port
+20 to port M is not going to be satisfied if we were using any kind of PATting there right so what
+I am going to do is if I had used dynamic PAT that data channel shall be dropped because my original
+rule was set for port number N and port number 21 right so my response was expected to come back
+on port N but now I am coming back with a response on port M so dynamic NAT is going to help me
+because I am only looking at the IP address and this is going to give me a temporary permanent
+public IP address on which whatever port you choose is going to be translated and sent through
+so the dynamic bi-directional mapping is happening in dynamic NAT if you have equal
+public and private IP address every host is going to get one public IP address you are going to get
+one permanent IP address but we are not saving any IP address right so you have one-to-one mapping
+so there is no conservation happening but as a disadvantage is that you have momentary connection
+sometime you have a connection right so A when it left this IP address it was reassigned to D and
+now when A wants to communicate it is unavailable because everything has been taken away by the
+remaining host so the connectivity you have for one moment and next connect next moment you do
+not have the connectivity so this is a disadvantage of dynamic NAT but if you need an explicit or
+unique mapping is required what you can do is you can configure multiple static NAT instead of
+having a one single dynamic NAT right so what is the benefit here is that you are temporarily
+getting some public IP and then you are changing it over the time so that if somebody is targeting
+one IP address from a security point of view it might be useful in some sense of a moving
+target defense thank you so much we will continue our discussion in the next video

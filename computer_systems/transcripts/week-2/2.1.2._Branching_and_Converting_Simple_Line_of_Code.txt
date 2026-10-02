@@ -1,0 +1,92 @@
+Hello and welcome back and we will continue our discussion on branching and converting
+simple line of code with branching into assembly instruction.
+So in the previous example we saw an if then else case and in this particular example we
+are going to look at a loop via while loop and how we can convert that into assembly
+code using branching and how that code is basically converted into assembly code using
+branching.
+So in this example what we have is that we have an array save and this save array the
+base address of this save array is stored into s6.
+We have two variables i and k which are stored into s3 and s4.
+And what we are doing in this program is that we are iterating over the value in save i
+and if it is equivalent we continue to increment the value and if they are not equal we are
+going to take an exit path.
+So this is what we want to implement in the C code and this is how your code looks like
+in the assembly.
+So what we are doing this is one version and I am going to do one more but let us do it
+one by one step by step.
+So what we are doing now is basically I want to do a loop so I define a label that is loop
+and I want to jump on this loop over and over again because this loop says you keep on doing
+this if this condition is satisfied you come here and you keep on doing the loop.
+That is what we want to do and if the condition is not met you go to the exit point so this
+is what your exit point is.
+The first thing I am doing here is doing some shift left logical and I am shifting the value
+by 2 and the reason why I am doing so is because we said that the register s6 indicates the
+value of save 0.
+So this is the point which this is the location which points to save 0.
+So I can say save 0 is stored into $s6 if I want to point to save 1 because my loop
+depends on these values.
+So I need to figure out where save 0 is save 1 is save 2 is save 3 is so on and so forth
+save i is.
+So this is where my save 0 is save 1 is 4 bytes ahead of s6 because every entity takes
+4 bytes similarly I can say save 2 is at say s6 plus 8 s6 plus 12 and so on and so forth.
+So this is what I have to do and where would save i be?
+So what I can actually do is I can write it something like this 4 times 0 4 times 1 and
+instead of 8 I can write it 4 times 2 I can write it 4 times 3 and save i will actually
+become 4 times i.
+So if I want to identify where save i is first thing I need to do is that I need to multiply
+the value in i by 4 and then add it to the value s6 and the way we do the multiplication
+and the way it is been implemented in this example is via shift left logical.
+So what I am doing is because i is being stored in s3 so I am shifting s3 by 2 position
+so 2 position shift is multiplication by 2 to the power 2 that is multiplication by 4
+so I am implementing 4 times i into this instruction.
+So this instruction does 4 times i and I am storing this value into t1.
+do is to add 4 times i with the value s6 so I want to add the value in t1 that I just
+computed to s6 and I am storing that value into t1.
+So this way I get the position the value for the location for save i.
+The next thing I am doing is I am loading the value indicated into this address so I
+just got the address of save i so what I am doing is I am loading the value indicated
+by that address and I am loading this value into a temporary variable t0.
+So basically I am load so this point basically loads the value actual value of save i into
+register t0 until now t1 and these values have only the position of the location of
+whatever we have computed so t1 denotes the position where save i is so with this value
+we can load the actual value of save i.
+Now what I am doing is next thing is I am doing if save i that is t0 we just did in
+the line above if save i is not equivalent to s5 that is k whenever they are not equal
+we take an exit path otherwise I increment the value of i by 1 so I am doing because
+i is in s3 so I am incrementing immediate value with 1 s3 and restoring the value and
+the value back to s3 and once I am done with that I am looping back to the loop label right
+so this way these two lines are converted into assembly code with some more lines there
+is a issue with this code I will give you a couple of seconds to think over it and then
+I will give you the solution I need to make some change into this particular code and
+if you spend like a few seconds I believe you can guess it.
+So from this version I have come down to another version of the same code where I do a something
+a slightly different the first thing I do in the next code is that I do shift left logical
+by two position s3 and t1 the same line that I wrote here but it is now outside the loop
+and then I am also doing the same thing I did here but outside of the loop so I did
+two lines which were before into the loop now I have taken them outside of the loop
+and I am continuing with the same thing in the loop itself so basically I have the same
+two lines into this loop but I have added two new values here so basically here I have
+added two new values and I have taken these two instruction outside of the loop can you
+guess why I did so.
+So if you remember from the previous slide our save I was $s6 plus 4 times the value
+of I right so this is what your first line does in this particular example in this the
+first example if we start the value of I equal to 0 and if this value was shifted by two
+position on to the left it remains 0 so I am adding s6 with 0 in this line right if
+was initially 0 we shifted it by two position to the left does not make any change so in
+this line I am adding s6 with 0 so it gives me basically save 0 in the next line because
+if I load the value this value was 0 and if I load the position like 0 value whatever
+the s0 was let us call it s0 plus 0 so s0 plus 0 is essentially s sorry s6 plus 0 is
+essentially s6 and s6 only indicates the value of save 0 in that case I am loading the value
+of save 0 then I am checking if save 0 is the same or not and then I am adding one more
+value to my s3 and s3 is I and I am incrementing the value of I by 1 so I equal to I plus 1 and
+then I continue to do the same thing the same thing can be done like this as well but it is
+just that I do not want to compute this values over and over again but rather I want to do it
+with manual increments so what I am doing is I did the same operation once and then I loaded
+the value I did the comparison I am adding the value by incrementing one and then rather than
+redoing all the shifts and doing and computing the save I am just adding the value plus 4 because
+I know it is going to take just four values so instead of doing a shift left logical I am
+just adding four and then continuing the loop so it is just the second variation of the same
+code and this is what we this is I mean there could be different variations but it is up to
+you how you want to implement it with that I thank you and in the next class we will see
+how procedure works and our procedure calls are actually handled into the into the memory
+and so on and so forth thank you.

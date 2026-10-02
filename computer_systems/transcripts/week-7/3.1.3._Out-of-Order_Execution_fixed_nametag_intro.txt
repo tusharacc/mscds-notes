@@ -1,0 +1,181 @@
+Until so far we have seen an in order execution of instruction which means that in in order
+pipeline what we have is that we have a pipe that has multiple stages and every instruction
+enters from one end of this pipe and comes out of the another end.
+So if instruction 1 let us say is stuck at stage 2 instruction 2 which is coming right
+after i1 cannot jump over i1 because we say that the execution must happen in the order
+of their entry into this pipeline.
+There could be scenarios where let us say i1 and i2 are 2 independent totally independent
+instruction and executing these 2 instruction should not be stalled let us say is executing
+the instruction 2 should not be stalled because instruction 1 is stuck or waiting for some
+value to appear.
+In those scenario where we want to do this kind of by this kind of overtaking of i2 overtaking
+of i1 by i2 those kind of execution is called out of order execution and this is what we
+are going to discuss because this is more like a practical approach to do the instruction
+execution.
+Because in practice there might be several instructions which are waiting in the pipeline
+let us say because of i1 let us say there are 50 instruction which are in behind this
+instruction 1 of course they cannot be fitted into the same pipeline.
+But still if these instruction i2 i3 i4 can move on and i1 can stay at where it is stalled
+these other instruction can basically execute if they can jump over this instruction and
+more importantly if we have the hardware and the resources to accommodate these instructions.
+So basically before we move to the out of order instruction let me add some more details
+into what my pipeline can actually look like in order or how my pipeline should evolve
+in order to make an out of order execution possible.
+So in this scenario what we have is that we still have an in order execution pipeline
+but we have multiple stages or multiple resources here in the ALU stage.
+So in the previous example my ALU was able to do some simple arithmetic so integer let
+us say integer there was an integer adder it could do a simple branching and some logical
+sorry some load and stores right.
+Now let me introduce some more parallel pipelines into the same system where I can do the instruction
+fetch stage then I can do the decode and the register read stage at the cycle 2 then I
+have the disk the data memory stage and I have the register write back stage.
+Now I have an integer adder, I also have a floating point adder, I have a floating point
+or integer multiplier and I have a floating point or integer divider and if you take a
+look at these hardware what you realize is that the different stage into this given hardware
+or different unit takes a different amount of time.
+So for example this adder integer adder takes just 1 cycle to complete its execution while
+this floating point adder is going to take about 4 cycles to complete its execution multiplier
+is taking here approximately 7 cycles while the division is taking 25 cycles to do its
+execution right.
+So basically what I want to ensure that with this multiple resources here because I have
+1 integer adder, floating point adder, multiplier and divider what I can actually do if instructions
+are independent of each other I can actually put them into different pipelines so basically
+I have multiple parallel pipelines and each pipeline can have a different number of stages.
+So imagine if I have a division which basically let us say works with writing a value into
+dollar 1 and then I have an adder which is taking dollar 2 and dollar 3 and storing the
+value into dollar 4.
+So what is happening at this stage is that the divider is working with these values which
+is independent of the next instruction so this is i1 and this is i2 and both instruction
+are independent of each other.
+So instruction 1 enters the pipeline so this is i1 in cycle 2 instruction 1 moves to this
+decode and register read phase and in the cycle 3 it moves towards this divider circuitry.
+So in cycle 3 when it was here the next instruction i2 can follow it so in cycle 1, cycle 2 and
+cycle 3 this was for i1 now instruction 2 can come into if phase into cycle 2 here in
+cycle 3 and at cycle 4 it can basically follow the adder path.
+So in the previous example where we have a limited let us say limited hardware this instruction
+while it was executing the division it could have not proceeded so i2 could have not proceeded
+until i1 finishes at this given single stage that we had.
+But now because I have sufficient hardware I can actually push i2 in cycle 4 to follow
+the adder path and what I also realize here is that because this integer adder takes one
+cycle only as compared to 25 cycles here this instruction i2 is actually going to finish
+out of the order despite being entering into the pipeline in order of the program.
+So this is actually happening because the operation that i1 the number of cycles that
+i1 required to complete this operation was much higher than i2 and what happens is it
+i2 can actually go ahead and write into the register.
+So this is one possibility that can happen but we do not really want that possibility
+to happen because it can create problems into how the registers are modified.
+So basically even though i2 is going to finish before i1 so i2 entered after i1 but it is
+going to finish before i1 now it is completing the execution out of the order but before
+they can commit their result into the hardware what I am going to ensure is that they do
+not commit until their order of execution or the order in which they enter into the
+pipeline is followed.
+So basically what I am doing here is as soon as i1 or sorry i2 finishes I am going to write
+its result into this temporary buffer so i2 is going to instead of writing onto the register
+and finalizing its results it is going to write its value into this temporary storage
+and wait for i1 to come after i1 has completed and return onto the register it can follow
+i1 and finish after i2.
+So basically i2 is going to write $4 value into this temporary storage similarly division
+will write its temporary value its value $1 into this temporary storage and once i1 finishes
+writing into the register and finalize its value so first $i1 will be written into the
+register and then $4 will be written into the register so RW phase so register write
+phase will be in the order of their entry into the program.
+So here what we are doing is we have an in order issue of the instruction we have out
+of order completion of the instruction and we have the in order commit of the instruction
+so they finalize their result only in the order they were supposed to do this thing
+and you might be wondering what could be a possible reason why we do not want to allow
+out of order commit is because it is possible there are two possibilities one is the reason
+is as a programmer when you are stepping through your program and you are trying to decode
+what is happening into your program if I allow an out of order commit into the register it
+is possible that you may not be able to figure out why a certain register is being changed
+even though I am expecting instruction 1 to finish before and modify register according
+to it right even though there is no dependency in between these two register so this is fine
+but it is not the best approach but there might be scenarios where they are dependent
+to each other.
+So one reason is there could be dependencies among instruction and we want to make sure
+these instruction execute in order and commit their order into the order they are defined
+into the program because there might be another instruction let us say I8 which dependent
+on this instruction and also this instruction but in between there might be another instruction
+that modifies these register and this is going to affect these value so basically one is
+the program the programmer the debugging could be problematic excuse me so one reason that
+the programming so the programming will not be able to realize what will happen what is
+happening with the register and why the registers are being arbitrarily modified second reason
+is that imagine if you are on a branch and you are doing some computation and finalizing
+your computation on to the register now imagine if that branch was revoked because you made
+a wrong prediction because something has gone wrong as you did not expect you need to cancel
+out whatever work you have done in that scenario it is possible that the changes you have made
+permanent into the register should be rolled back and because these changes are permanent
+you have already overwritten those values and the other branch that you are now going
+to take will require the older value into the register so basically it is going to create
+some inconsistency into your operation so basically this is the reason why we are in
+favor of doing in order issue on to the processor allow out of order completion of the instruction
+but we only allow in order commit into the final registers with that in mind let us look
+at what is an out of order processor implementation looks like so in this particular case I am
+going to introduce what units we have what kind of stages we have into an out of order
+processor and we are going to take a look at an example probably into the next video
+and then we are going to come back and talk about some more details about this out of
+order processor implementation so what I have here is a unit that is called a branch prediction
+and an instruction fetch basically this unit makes a prediction about a branch and says
+okay I am going to either take or not take a branch and I am going to fetch as many
+instruction as possible so that I can continue to execute my predicted branch or predicted
+direction of a given instruction or given branch so basically I make a prediction here and I try
+to fetch as many instruction as possible and I will put them in something called instruction
+fetch queue so basically I am fetching here 1 2 3 4 5 instruction and because this is the only
+this is a maximum instruction that my fetch queue can actually accommodate so basically is if there
+is no branch I mean of course if there is no branching happening I can already fetch as many
+as instruction here but I if I also have a branch I will make a guess and that is why this unit is
+called branch prediction and instruction fetch now the purpose of instruction fetch queue is
+that given that my program is going to execute and I am predicting that it is going in direction x
+or direction y I am already trying to run ahead of the program even though I was only supposed to
+execute the next instruction at a time right because you wanted to execute one instruction
+in the previous example because we have considered only one instruction process through one instructor
+one stage but given that we have a hardware for example here we have three ALUs so we can
+fetch as many instruction as we want as my hardware can accommodate so basically in this
+scenario I mean I want to make sure I fetch as many instruction also because I want to deal I
+want to optimize my fetch time because fetching might also take some time so I want to run ahead
+of my program and fetch as many instruction as possible next thing is a decode and a rename
+stage so this is something new that we have not talked about so but the purpose of the decode
+and the rename stages it takes the instruction from the instruction fetch queue and they
+basically put them into two you two hardware units one is called the issue queue and another
+is called the reorder buffer queue so what I doing here and the decode and the rename stage
+is that I am going to take an instruction I am going to rename it and I am going to put it into
+the issue queue so the issue queue is basically the one which dispatches these instruction once
+they are ready to be executed so our so this instruction one is operating on r1 and r2 and
+it is going to write its result into r1 right so what I am doing here is I am renaming this
+target instead of r1 I am dieting it to be t1 because I want to make sure the execution
+have can happen in whatever order in out of order but the eventual commit happens
+in order of their appearance into the program so basically I am renaming the target by t1
+and because r1 is used into instruction 2 here so I in the issue queue I am saying you need to
+pick a value from t1 and you need to use it as t1 here in the instruction 2 which has been
+renamed now similarly I am going to rename all these values and I am going to put all
+these instruction into the issue queue now what will happen my issue queue is going to look at
+these instruction which are pending into this issue queue and see which instruction is ready
+to be executed so for example let us say this instruction 1 is ready because r1 and r2 I can
+read already before and there is no instruction for which I am waiting and r1 and r2 being ready
+I am going to dispatch this instruction to one of the ALU unit and next what I need to do is my
+ALU unit is going to pick this instruction executed and produce an output what I have
+to suppose to do is in the conventional example that we have done what we do is we write this
+instruction directly into the register so in this scenario it could have been directly written to
+the r1 instruction but what I am trying to do here is instead of writing this result directly
+into permanent location what I am going to do is that I am going to write this result into my
+reorder buffer so because instruction 1 has a specific location reserved for this instruction
+into reorder buffer this value the output of r1 plus r2 is going to be written into t1 here and
+now we can actually discuss about the reorder buffer so basically this decode and renaming unit
+what it does is it takes an instruction reads those instruction in the order of the program puts
+them into this reorder buffer into in order of their appearance so basically instruction 1 will
+be occupying the first entry instruction 2 occupying the second entry third entry 4 entry 5 entry 6
+and so on imagine and also all these instruction are going to have a temporary location which is
+different than these 32 registers that we already have been talking about on to the
+processor so this is a separate location where all these instruction can write the results into
+the buffer now imagine when I dispatched t1 to an ALU then I dispatch t2 into let us say
+another ALU unit then I dispatch this value to another ALU unit and this value to another
+unit let us say this t4 basically is produced before any of the other instruction if I go
+ahead like I did in the previous example and I commit my results directly into t4 basically
+is r3 it might affect the value which is being utilized here right so t2 or instruction 2 is
+actually working with this value if I go ahead and commit and change this value of r3 this is
+going to change and affect the instruction execution of i2 so rather than doing this what
+I do is I write my result into t4 and then this instruction waits for all the instruction before
+it to commit complete once t1 is ready t2 is ready t3 is ready they will write their result
+into the corresponding register values and their commit is going to be in order again right so
+this is what an out of order processor implementation typically looks like and we are going to see some
+examples into the next video and we are going to see how this out of order processor implementation
+helps in gaining some performance thank you so much.

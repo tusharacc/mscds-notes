@@ -1,0 +1,181 @@
+Hello everyone, so welcome back to another session and today we are going to look at
+what von Neumann architecture is, Emdahl's law and some common principle when designing
+computer architecture.
+Von Neumann architecture is the architecture that we use today, there is two different
+kind of computers, one we can say is a fixed program computers, basically your calculator
+is an example of a fixed program computer where the functionality is very specific and
+it could not be reprogrammed because it is designed to do a very specific task.
+The von Neumann architecture says that a computer can also be in the form of a stored program
+computers, basically here we want to reprogram, we want to change the functionality of a computer,
+so what we do is we can store the instruction data and the program data into the memory
+when we want to execute a particular application and hence the name is stored program computer.
+So in von Neumann architecture which was proposed by John von Neumann in 1945, the
+idea was you want to change the functionality of your computer, so basically you bring your
+application into the memory as well as the data that you want to operate upon and that
+will be stored as a program onto the computer and the computer will execute it as per the
+instruction into the program.
+If you look at the von Neumann architecture, there are different units into such a computer
+in such a architecture basically, what we have is the first thing is your central processing
+unit and this central processing unit consists of a control unit, an ALU and a bunch of registers
+here and then we also have a separate memory unit as well as I O devices.
+We will go through each of these components one by one just to give you an idea, just
+to recap in case you already know these things, but this will help us understand how the computers
+are designed today and when we will talk about pipelining, this is going to be helpful
+in understanding the operations there.
+So as far as the central processing unit is concerned, it is the electronic circuit which
+is responsible for executing the instruction of a computer program, so this is typically
+called the brain of the computer.
+It is also sometimes referred as the microprocessor or the processor and it contains as I already
+mentioned the ALU, the control unit and a variety of registers.
+If you look at the control unit, this control unit basically tells the different entities
+of the computer for example, the ALU, the memory and the input output devices how to
+respond to a program instruction that it has just read.
+So basically control unit controls the operation of different components into the computer,
+so depending upon the instruction it will ask particular task, it will ask the different
+components into the computer to behave differently depending upon the requirement of the instruction.
+This control unit is also responsible for providing the timing and the control signal
+which might be required by the different computer components.
+So as a hint you may think of that control unit basically signals different components
+when to perform their operation.
+So for example, if you are to read from a input device, this control unit will provide
+the signal to this input device that will enable this input device to get itself prepared
+to record the input from the user.
+The second important and the key component of the CPU is your ALU which allows us to
+perform the arithmetic such as addition, subtraction etc. and the logical operations such as and
+or and not into the system.
+So this ALU is responsible for the arithmetic as well as the logical operations.
+Then we have registers, registers are high speed storage area and all the data that we
+want our CPU to work upon should be stored inside this register.
+And the reason is because the registers are very fast as compared to the memory which
+in term is much faster than the secondary memory which we will come in a bit.
+But we want our CPU to work with data and we do not want our CPUs to delay its operation
+because the data is being delayed by the device.
+So basically we move all the data inside the register and the registers are high speed
+storage areas onto the CPU itself.
+The first register is called the MAR, the memory address register which holds the memory
+location of the data that we want to access from the memory unit.
+Remember we are only talking about the memory location of the data while MDR, the memory
+data register holds that data that is being transferred to or from the memory.
+So MAR deals with the addresses while MDR deals with the data itself.
+When an arithmetic, when the ALU is performing some operation, some arithmetic operation
+or some logic operation, it might produce some intermediate results and those results
+are stored into the accumulator.
+As far as the program counter is concerned, we have already discussed that it contains
+the address of the next instruction to be executed.
+So wherever is the next instruction into our memory, it will point, it will contain the
+address of that next instruction while the CIR register, the current instruction register
+contains the instruction, the current instruction during the processing of that instruction.
+Now in order to make sure that all the components, all different components of our CPU are talking
+to each other, buses are designed to connect different components.
+So basically buses are the means by which the data is being transmitted from one part
+of the CPU to computer to another part of the computer, which connects all the major
+internal component to CPU in the memory and in a standard CPU system bus is compromised
+of a control bus, a data bus and the address bus.
+Now there are three dedicated buses.
+The first one is the address bus, which only carries the addresses of the data and not
+the data between the processor and the memory.
+So on these bus lines, these address bus lines, only the addresses of the data are transmitted
+and received.
+While the data bus is designed to carry the data between the processor, the memory unit
+and if required also input output devices.
+So this is a dedicated bus only for carrying the data across different components into
+the computer.
+While the control bus is designed to carry control signal or the command signal from
+the CPU or the status signal from the other devices in order to coordinate the activities
+among different components of the computer.
+Now the next unit is the memory unit, which consists of a RAM or the primary memory or
+the main memory as well and unlike the secondary memory such as a hard disk, which usually
+is slower than the primary memory.
+Now today we have SSD hard disk that might be close to the primary memory or the RAM
+of some let us say a decade old RAM, but still the RAM are treated as the primary memory
+and this memory is treated as to be fast and directly accessible to the CPU.
+We can split the RAM into different partition, which can be like contiguous party, contiguous
+allocation or non contiguous allocation, dynamic or static partition, which we will cover in
+some future lectures.
+But for now, we can say that we can split the RAM and each partition consists of an
+address and its content, which both of them are in the binary and the address will uniquely
+identify every location into the memory.
+When we are loading data from the permanent memory or the secondary memory hard drive
+into a faster directly accessible temporary RAM, it allows the CPU to operate onto the
+much faster because the hard disk, let us say was much slower, is much slower as compared
+to the primary memory and then when we are operating with the data, we bring that data
+into the register, which is even faster as compared to the primary memory.
+Now having said, having discussed this architecture, there is one law that even if you want, even
+if you have an architecture which has different components dedicated for a different task,
+what we always want to do is to improve the performance of your system.
+So Amdahl law says that if you want to improve the performance of the system, you might want
+to enhance some particular component.
+For example, your system has some memory unit, some CPU, some IO and you might want to work
+upon each one of them to improve the overall performance.
+However, if you want to improve the performance of let us say CPU, that is only going to help
+you as much as the importance of the CPU itself.
+Of course, CPU is the central component, but the idea is the design is very bottleneck
+driven, which means if there is a common component, if there is a component that is being accessed
+frequently, we might want to operate, we might want to enhance the performance of that component
+because it is being accessed by different instructions, different cycles very frequently
+and we do not want to waste resources on a component that has a very little impact on
+the overall performance.
+So the idea is Amdahl law says, for example here, let us say we have our web server which
+spends 40% of the time in the CPU and 60% of the time doing IO.
+So imagine if one operation on this web server takes 100 seconds and the CPU time according
+to the given data here would be 40 seconds spent on the CPU and 60 seconds spent on the
+IO operations.
+If I get a processor which is 10 times faster, which means before CPU was taking 40 seconds,
+now the CPU will take just 4 seconds because it is 10 times faster, what will happen is
+because of this improvement, the CPU part is affected only, however, my system is still
+going to spend 60 seconds on the IO.
+So the overall execution would be reduced to 64 seconds as compared to 100 seconds now.
+Of course, this is an improvement, but this improvement is only 36% reduction because
+we have improved it by 10 times, but the component was only attributing to the 40% of the system.
+So even if you make the fastest system, let us say fastest processor in this example,
+the maximum improvement that we can come up here is going to be 40% maximum because
+CPU accounts for 40% of the overall operation in this scenario.
+Another important common principle is that your system keeps on leaking the energy.
+So you need to keep your system running even if it is running on idle and not doing any
+operation.
+For example, you want to just keep your system turned on and your system will still need
+to utilize or waste some energy just to keep it alive.
+So basically we can say we can define like energy is defined as power times the amount
+of time that you spend.
+So for example, let us say if my system is utilizing 100 watts on high utilization and
+let us say 30 watts on low utilization or even when idle condition, the minimum energy
+that I am going to consume is going to be 30 watts in this scenario.
+So what I want to do is that I want to reduce this to some other values by some lower values
+for example, by putting my system on hibernation mode when I am not using it.
+supposedly 5 watt or 10 watt or something lower than 30 watts here.
+So if my system let us say in this example consumes 100 watts of energy and it takes
+let us say 10 seconds to perform an operation, it is going to consume about 1000 joule of
+energy.
+Now any performance improvement, the principle says any performance improvement is typically
+also going to improve my energy wastage or energy leakage because if my system becomes
+let us say instead of 10 second it takes let us say only 5 seconds now because I have double
+the performance of my system.
+Now it still takes 100 watt let us assume but it takes half of the time that it was
+taking before.
+So the total energy that I am going to consume at this stage is going to be 500 joules is
+compared to 1000 joule before.
+So this performance improvement, the 2x improvement is also affecting my energy leakage into the
+system.
+Now another rule is 90-10 rule which says that 10% of your program accounts for 90%
+of your execution time which basically means that in a program there might be a small portion
+that is being visited again and over again during the execution of that program and as
+a programmer you might want to optimize that 10% of this program or roughly smaller amount
+of the smaller portion of your program because that portion is generally keeps is visited
+over and over again and if you optimize that part you are going to optimize the overall
+execution time.
+Finally there is a principle of locality which can be further subdivided into temporal locality
+and spatial locality which says that if you access some data or some code, temporal locality
+says that that data or code will be reused in the near future.
+So this is the temporal locality which says if you are accessing some code or some data
+there is a high chance high probability that you will use the same data or the same code
+into the near future.
+Same thing can also be said that if you are accessing some data or code the chances are
+high that you are going to touch the code or the data sitting next to the code or the
+data that you have just touched.
+So basically there is a temporal locality like if you have touched upon some data there
+is a chance that you are going to reuse it that code or data will be used again in time
+or as far as the spatial locality is concerned that there is a high chance the nearby data
+or the code will be touched next.
+With those common principle I conclude the lecture today and we will see in the next
+lecture with some more exciting concepts so that we can move towards our pipelining stage.
+Thank you.

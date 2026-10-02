@@ -1,0 +1,58 @@
+So, the lookup algorithm, it depends on what type of protocol we are talking about.
+If you are talking about something at the Ethernet level or the MAC address level, which
+is a 48-bit address, what we need to do is, we need to find an exact match.
+Your MAC addresses are typically device specific, so every device, let's say device 1, device
+2, device 3, they can all come from different manufacturer, manufacturer 1, 2 and manufacturer
+3.
+They all are part of your network, but they all will have a different type of MAC address.
+So MAC address has a global identifier and a device specific identifier, two fields are
+there, so manufacturer specific bits and device specific bits.
+So because they are coming from all three different manufacturers, they might not have
+something common in between them.
+So just like in IP addresses where we take something like, every device inside the network
+follows a certain subnet mask, has a certain subnet mask.
+So all the devices are in a certain range, in a common range.
+So this part can be common for all the devices in your home network and only the last 8-bit
+or the last octet will differ.
+But in case of the MAC addresses, this is not the case.
+And this might not be always true, this might be true in some cases, but more often it will
+not be true.
+So usually we look for an exact match as far as a MAC address is concerned.
+And in case we are looking at an exact match, we can use different techniques.
+One simple example could be hashing.
+You take the MAC address, hash it and find the output port, which output port a device
+is connected to.
+Remember from the previous discussion that we have a switch and the switch learns the
+MAC address and as well as the port number.
+So basically what we want to know is that if I see a MAC address such as AAAA so on,
+which port should I select?
+Should I do a linear search in my table?
+Should I do a quick search such as hashing or something else?
+As far as the IP is concerned or the network layer is concerned where you can have IPv4
+or IPv6, we will stick to 32 bit version that is v4.
+What we use is called a longest prefix match.
+We try to find as specific match as possible or as long match as possible into the network
+following the logic that we have.
+Remember in a given network all the devices are hierarchically organized as in they share
+a few bits in their IP address with each other.
+So for example if it is a slash 24 network, which means the first 24 bit are same for
+every device and only the last 8 bit will differ.
+So if I can find a specific path, if I need to find a specific network, this is the network
+prefix part, network address and this is the host address.
+So network ID and host ID, this is HID, this is NID.
+When two routers are talking to each other, what they need to figure out is this where
+is a given destination address as far as their network ID is concerned.
+So they are looking for this network ID, so they will try to find more specific match
+onto this case.
+So that is the reason why we use longest prefix match that we are going to discuss in more
+details in the next few topics.
+What we use is we use a try and we also use a ternary content address memory.
+Now as far as the longest prefix match is concerned, we have every packet which has
+one destination IP address.
+So every packet has one destination and the role of the router is to look up into the
+table and then find that match.
+If we can find an exact match that would be great, but it is not always possible.
+So what we do is we use the longest address prefix that match the destination address
+and we try to find as specific route as possible that has the fewer hosts.
+Next we are going to look at some of the examples in the next video.
+Thank you so much.

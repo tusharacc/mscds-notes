@@ -1,0 +1,67 @@
+Let's continue our discussion on metal boxes and in particular in this video we are going
+to talk about load balancers, van accelerators and tunnelling.
+So we need load balancers to balance the load as their name implies.
+What happens is that imagine you have a website let's say www.xyz.com and if this website
+has too many customers, too many visitors, one server may not be able to handle the entire
+traffic.
+So what we want to do is we want to deploy this website on different servers so the same
+website is running on this server, is running on this server and also running on this server.
+Now the question comes, this server has a unique IP, let's say IP1, this is IP2 and
+this is IP3.
+If everybody is going to talk to one particular IP, let's say for a country like, for bigger
+countries where the population is very high, let's say we designated one computer and all
+the requests shall be catered by that particular server.
+But eventually what will happen is if the population goes up, the traffic goes up or
+traffic goes down, assigning a static server to a particular location shall not be very
+very useful.
+So what we do instead is that we implement the website onto different server like here.
+So the same website is running on different server with different dedicated IP but what
+we do is whenever a request come, the request come to a common, let's say server, common
+server or request distributing server or a load balancer and this load balancer depending
+on a specific traffic on a specific computer or a server is going to decide which is a
+suitable server to cater this request.
+So this way what we are doing is we are balancing the load handled by all the servers and trying
+to achieve an optimum situation where every server is eventually dealing with or contributing
+to the traffic management.
+The benefit, another benefit is that all the requests irrespective of which location it
+was coming from is always going to come to a common IP address and the purpose of this
+server or the purpose of this machine is just to distribute the load.
+Instead of handling the request, the purpose is just to redirect the request to a specific
+server onto my network.
+Now another benefit is in case one of the server fails, can I handle new TCP connection?
+The answer is yes because once a server fails, another server can take over like here what
+we are doing is this 10.003 is sending a gratuitous arc and saying that 10.0.0.1 has a Mac this.
+So basically it is taking over when 10.001 failed another server said I am going to take
+over for both this computer's request and my own request so that the server so the virtual
+IP address which is shown here or the load balancer here does not need to worry about
+it can still dispatch request to 10.001 because this server is acting as a replacement for
+10.001.
+So new connections of course we can handle but what about the existing connection?
+The existing connection which were already happening through let's say this failed server
+may fall because now this server is not going to respond and this server is unaware of what
+requests were being catered here.
+So as far as the new connections are concerned we can take over and we can work out but existing
+connection might drop but this is something which was also not possible when load balancer
+was not there if a server fails it fails and the request cannot be fulfilled.
+Now the next middle box is called a WAN accelerator or a WAN optimizer it is also sometime called
+application or bandwidth accelerator. The purpose of these devices is to cater some
+common services to all the host on your network such as buffering, compression, caching etc.
+So the idea is you may have a network let's say this is a network and this is also your
+network so this is your office one let's say and this is your office two and you have
+multiple computer connected here and let's say there are multiple computer and one server
+connected here.
+What we are going to do is imagine these computers were not able to handle let's say compression
+or they were not able to handle buffering as much let's say TCP window was very small.
+So what we can do is instead of upgrading every computer here what I can do is I can
+install an appliance right before the internet point so basically all the requests or all
+the communication happening from these computers passes through this appliance and what this
+appliance can do is that process those requests according to our requirements.
+For example, the simplest example is imagine all my computers were bad at compression so
+what my machine is going to do is my system is going to give an uncompressed file this
+uncompressed file this appliance is going to take this file and going to compress it
+on the other side there will be another appliance which will take a compressed file and it's
+going to give uncompressed file to my server.
+So instead of upgrading all my computers I have installed an appliance which was good
+at compression and decompression this way all the machines which were running on my
+one site or the or both the sites they were not required to be upgraded moreover they
+were not aware of compression decompression happening during their communication.

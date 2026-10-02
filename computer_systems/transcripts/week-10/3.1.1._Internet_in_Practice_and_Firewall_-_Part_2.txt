@@ -1,0 +1,43 @@
+and we are going to start our discussion with the firewall probably everybody knows about
+what a firewall is the firewall is to keep the fire away in the same sense in the network
+we have a firewall to keep some package some dangerous packet out of the network or to
+prevent any malicious activity so a firewall acts as a filter and this filter works on a
+packet by packet basis the firewall inspects the header of your packets typically the source and
+the destination IP address or the port numbers sometimes also looks at if somebody is trying
+to create connection inside or outside so looking at the sync packet where sync is so PCB packets
+where sync is set and ACK is not set because this is the connection initiation TCP in TCP3
+way handshake so we look at packets which has sync set but ACK reset sometimes we also look
+at the type of the messages and we may also go into deep packets inspection of the packet
+content probably hoping that the encryption is not placed and some communication is happening
+in plain but at the minimum the firewall look at the header of your packets because they can
+not be encrypted whatsoever they can be encapsulated that we will see subsequently
+internal link but still we can inspect the header and try to guess a try to make a guess
+about what kind of communication is happening some examples for packet filtering could be
+something like if I set a rule that blocks the IP protocol field 17 and you might be aware that
+this is equivalent to UDP this is this stands for UDP protocol and sometimes what I am also
+saying is along with this I want to make sure that I want to block source and destination port
+number 23 which communicates to telnet connection so basically if I set a rule like this what I am
+doing is I am blocking all the UDP flows as well as the telnet connections I can also try to block
+incoming TCP packets with sync set to 1 and X set to reset basically I am preventing external
+connections external request to make a connection inside my network so I am blocking the inbound
+TCP packets with sync set to 1 and X set to 0 but I am still allowing my internal clients to
+make connection outside because I am only applying this rule to this inbound packets
+right so there could be different combination of these kind of rules in order to summarize
+what we can say that the firewall applies a set of rules on each of the packet and every packet
+is inspected and the outcome of the inspection is whether this packet should be allowed to continue
+its journey or not every rule is basically a test on a packet and this rule there could
+be multiple rules running in combination to decide the destiny of a packet and more importantly the
+order of the rule matters a lot right you cannot have you can have multiple rules according to
+your requirements but their order is going to make a lot of difference into coming out
+with an outcome of over a packet so to give you an example imagine we have a network so
+Alice's network called 222.22 slash 16 and what we also have is Bob whose network is is called
+111.11 slash 16 and what we want to do is I want to allow Bob's certain host so basically I want
+allow Bob's host to connect to my network but I only want Bob to connect to this specific range
+of host onto my network so this is Alice's network this is Bob's network which is 222.22 slash 16
+and this is 111.11 slash 16 I want Bob's host all the host inside Bob's network to connect to Alice's
+network only on a specific range that is 222.2222 slash 24 so this was 16 and this is slash 24 so
+this is let's say think of as a subnet inside the Alice's network what I also want to do is
+that because Alice does not trust 2d inside Bob's network so if the Bob's network also has a subnet
+call 111.11.11 slash 24 and I do not want to allow these host to connect to my network at all and
+the third thing that I want to do is I do not want any other internet traffic so basically any
+other internet traffic is not allowed

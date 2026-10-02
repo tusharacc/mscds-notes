@@ -1,0 +1,159 @@
+So, now we are going to look at the exponent representation and we remember that we have
+in a single precision format we have 8 bits for the exponent and we can go from let us
+say all the way from 0 to 255 basically and this is what we had in the exponent field
+right and I think we discussed that instead of using values from 0 to 255 it would be
+better to use values from 127 and 128 right. So, basically this value becomes 128 and this
+value becomes 0. So, the idea here is that if you were to compare 2 numbers 2 floating
+point numbers it would have been better to look at these let us say when you are sorting
+some values or when you are just comparing 2 values if 1 is bigger than smaller if you
+just look at the exponent and if you compare this exponent you will be able to figure out
+if they are bigger numbers or the smaller number. So, what we have done in practice
+is that we have realigned these 8 bits to represent instead of 0 to 255 we say this
+is going to be – 127 this is going to be – 126 and so on 0 somewhere and then this
+value will be plus 128. I think we discussed this thing in the previous
+class as well that we go from all the way from – 127 to 128 because now with this
+value actually we are it is going to be easy to compare just by looking at the exponent
+because if the exponent is towards this side towards the lower end we can say this is a
+lower exponent value. So, basically this is a smaller fraction smaller floating point
+number while if you have this value here all ones basically represents is going to
+be a bigger number like a big floating point number.
+We also remember that we can have we can use the first bit here actually to represent the
+negative or the positive value. So, in the other case 0 was positive and 1 was negative
+rather we can do something like 0 is for negative and if the exponent starts with 1 it is going
+to be a positive value. So, basically if I were to put this value into the register
+so like I said here so it would be preferable to have a smallest exponent as 000 and the
+largest exponent as 1111 and it is a bias notation because before putting into my actual
+exponent I need to figure out what is this value.
+So, for example if I want to put my exponent to be 0 and in order to the true value of
+exponent is 0 what I need to do is I need to add some bias to it so that it can come
+into this range. So, what I do is my bias is 127 in this scenario so I add 0 plus 127
+which gives me 127 and I instead of putting 0 in my 8 bit exponent field what I am doing
+is I am going to put 127. So, basically I am going to put 0 and then 1 2 3 4 5 6 7 bits
+of 1 because this value comes out to be 127. So, I am putting a real exponent value while
+putting the real exponent value I am going to add this value with 128.
+However, if I were to read a value from a register let us say I read a value from the
+register which was 127 the real exponent value is going to be whatever I read minus 127 so
+this is going to be 0. So, my exponent is going to become to the power 0 if this value
+was 128. Now, if I were to put 2 to the power let us say 128 my exponent was 128 what I
+am going to do is I am going to add 127 to this value compute which is going to be 255
+and 255 I need to put into the register while storing this value into the register exponent
+I am going to put all ones.
+So, this is how I am going to store this value so in IEEE so the final representation actually
+changes to minus 1 to the power sign 1 is always going to be there so it remains unchanged
+this portion remains unchanged so 1 plus fraction times 2 to the power exponent minus the bias
+and in case of the single precision the bias is 127 while in case of the double precision
+where we were using 11 bits double precision the bias is 1023 out of the 10 bits that we
+are actually using so same thing mentioned here we use a bias of 127 since the exponent
+must have a value from 127 to 128 like here and similarly double precision uses 0 like
+here you see the maximum value 2555 actually represents 128 which is also the scenario
+that we covered here now another example is so far we have considered that the notation
+says there will always be a 1 to the left of the binary decimal point right what if
+I really want to represent 0 so because if I want to represent 0 with this convention
+if I do 1 is always going to be there so anyways I cannot represent 0 right with the notation
+we have discussed so far to accommodate that we have some special use cases so for example
+number 0 has a special code to implicit 1 does not get added so basically the code is
+0 so if you read a value from a register that says all 0s exponent 0 sign 0 fraction to
+be 0 this is going to be a 0 however if let us say this was also this was a sign bit this
+was the so this was sign bit this was exponent this was fraction however if everything is 0
+except that there are some positive values like 0 1 0 1 0 1 in the fraction field so the exponent
+is 0 but fraction is non-zero in that case it is used to represent terms which are very small
+in nature and they are called denom's because with 0 in exponent you remember when I read a
+value 0 the true exponent is going to be minus 127 which is like 2 to the power 127 which is very
+very very small values and these values they all together are called denom's value we are not going
+to discuss in detail about denom's but you can refer to the textbook I mentioned in the beginning
+at page number 200 or I think 220 something onto the textbook but anyways remember that all 0s
+is 0 exponent field being 0 and some non-zero fraction represents the denom's values similarly
+if you have the largest exponent value like the maximum exponent value all are 1 but the fraction
+field is 0 in this scenario this is used to represent plus or minus infinity depending
+upon the sign field if it is 0 or if it is 1 so it is going to be used to represent positive
+or negative infinity however if you have something like largest possible exponent all ones and some
+non-zero fraction like 1 0 1 0 1 0 0 0 1 1 this represents a special case which is a not a number
+values which are result of let us say dividing 0 by 0 or infinity minus infinity so basically
+what happened is that we have reserved the value 0 so in the exponent field we have 0 1 2 3 up to
+255 so because it was 8 bit field so 0 has been reserved for representing 0 or representing the
+denom's and 255 has been reserved to represent either infinity or a non-value so the actual
+value that we can use in our so the actual values which are at our disposal are starting
+from 1 to 254 so if I read a value 1 again as I told you in the previous slide you need
+to subtract from 127 so my actual range is minus 126 minus 125 0 somewhere plus 250 sorry because
+I will also reduce 127 from here so it will be plus 120 127 somewhere right 126 because this
+is 0 0 is been reserved this was 127 so it will be 126 because 125 254 minus 127 is going to give
+me plus 127 yes because the positive range was because the original range was minus 127 to plus
+128 we will remove one value so this is going to be minus 126 so one next value and one next
+value here so the largest value that I can represent is 1 plus 1 times 2 to the power
+the maximum fraction that is 127 and the smallest value that I can represent is basically 2 to the
+power minus 126 and of course D norm values right so this is the 1 because this value became 1
+plus 1 2 times 2 to the power 127 is the largest value and this is 1 plus 0 times so 1 plus 0 times
+2 to the power minus 126 so this is 2 to the power minus 126 plus some D norms yes this is
+correct yes because minus 127 2 plus 128 so minus 126 2 plus 127 because 254 minus 127 7 2 1 just
+to confirm because right so this is the real value so in the previous one of the previous session I
+said to you that what we computed there was just to build the concept but actual values are this
+because some values are reserved in our in our scenario okay let us look at some example so
+we things become much more clearer so imagine if I were to represent 17 in decimal number and I
+want to represent it into a binary number so what I essentially do is that I divided by 2 which
+gives me 8 as the quotient and the remainder becomes 1 then I divided by 2 again which gives
+me 4 and the quotient and the remainder is 0 divided by 2 again which gives me 2 0 as the
+remainder divide by 2 again which gives me 1 0 divide by 2 again which gives me remainder as 1
+so this is my 17 in binary if I look at the floating point this this numbers this values
+if I were to convert 0.75 into binary so for my integer values I was doing a division by 2 so
+2 to the dividing by 2 now in order to convert a value like this decimal values into binary instead
+of doing the division what I need to do is actually multiplication right because this is
+essentially 2 to the power because in a decimal number it is like so 17 is like 2 to the power 0
+and this is 2 to the power oh sorry if it is decimal number so 10 to the power 0 10 to the
+power 1 it is essentially I said before 10 to the power 1 7 times 10 to the power 0 which is 10
+plus 7 which gives me 17 so if something was there 0.4 it would have been 4 into 10 to the
+power minus 1 so for this operation we did division so this operation gives me multiplication
+the reverse of what I have done so for 0.75 what I need to do is to do a multiplication by 2 which
+gives me 1.5 so what I do is I take the decimal so I take this value and I add it to the fraction
+part right so this is binary decimal point and then I get this value I take it off and I get
+is 0.5 and I do times 2 which gives me 1.0 so I take one value here and remainder is so the
+remaining value is 0 and then it will be 0 0 0 0 right just to confirm if you do in binary because
+if this is binary so this is going to be 2 to the power minus 1 times 1 plus 2 to the power
+minus 2 times 1 and so on just zeros so this is 1 by 2 plus 1 by 2 to the power 2 which is 0.5
+plus 0.25 which essentially gives me 0.75 right this is what we wanted to compute in decimal
+now if you if you were to do another example what we can do is
+much faster to delete it like this
+so we can do another example something like let us say 0.63 in base 10 and if I want to do it in
+binary I will just multiply it by 2 which gives me 1.26 I take it off 1 which gives me 0.26 when
+multiplied by 2 gives me 0.52 so I put 0 here when I multiply by 2 again gives me 1.04 so I put 1
+here 0.04 times 2 which gives me 0.08 then 0.16 so basically 0 0 0 a whole lot of zeros this is
+how you can convert these values into binary now if I were to convert this value into the
+standard notation which I just computed which was something like 1.0.1 0 1 0 0 0 I can also
+represent it into the standard normalized form which says should be only one value to the left
+of the binary decimal point so it becomes 1.0 1 0 0 0 and because I have shifted it by one value
+it is going to be 2 to the power minus 1 right okay now let us convert this value into single
+precision and double precision format so because it is a negative value so I have to have one at
+the beginning right because this is going to be the sign of this field this is sign this is
+exponent and this is going to be the fraction field and for 0.75 when we converted it into
+binary it was 0.11 and in the standard form it is going to be 1.1 times 2 2 to the power minus
+1 right so this value we do not really represent so we do not need to care about it but we care
+about the fraction so the fraction value comes directly here followed by zeros now my real
+exponent value is minus 1 in order to store it into the register I need to add 127 to it which
+comes out to be 126 in this scenario so I need to store 126 value the value 126 in binary form
+in order to represent true exponent value of minus 1 so 126 will be 0 1 1 1 1 1 1 0 so this
+is how minus 0.75 will be represented in this format if I were to do into double precision so
+this is again going to be 1 because this is the sign then my exponent then my fraction 1
+followed by 51 zeros instead of 22 in the other hand now here instead of so the power remains
+the same so exponent remains the same but the bias changes and the bias is 1 0 2 3 which gives
+me 1 0 2 2 and I need to write down 1 0 2 2 into this 11 bit field which turns out to be 0 1 1 1
+1 1 1 1 1 1 1 1 0 I think this is 4 plus sorry this is oops this is 11 bits so 4 bits 4 bits
+and 3 bits yes just to confirm this is 0 1 1 1 4 ones and this value is 1 1 0 yes correct now
+in this example what we are doing is in the in the final example here that I want to convert
+this single precision number into a decimal number and I want to convert this value so I know this
+is a negative value because there is a 1 here which is easy to do then I need to figure out
+the fraction so in order to figure out the fraction I need to multiply 2 to the power minus 1 2 to the
+power minus 2 and so on and so forth so my normalized form is 1 plus because 1 is always
+there and I need to build up on the fraction so 0 times because the first bit is 0 times 2 to the
+power minus 1 plus 1 times 2 to the power minus 2 and all zeros only times 2 to the power sum
+value which I will compute from the from the fraction from the exponent field right so before
+that before I figure out what exponent value is let me solve this value which is 1 plus this value
+becomes 0 this becomes 0.25 which is basically 1.25 times 2 to the power sum value now this
+value here because I am reading from a register this value must be subtracted by 127 so this
+value in binary is nothing but 129 which I need to convert by subtracting from subtracting 127
+from it which gives me 2 so this value is actually 2 to the power 2 so 1.25 times 2 to the power 2
+which is 1.25 times 4 which is basically 5 so basically this number represents minus 5 this
+single precision value is minus 5 in decimal yes this is minus 5 in decimal just remember that
+the true exponent value before storing it into the register you have to add 127 in single precision
+or 1023 in double precision but when reading from a register to compute the true exponent
+value you have to subtract 127 from it with that example I conclude this session and in
+the next session we will look at more interesting computation and for floating point arithmetic
+thank you so much.

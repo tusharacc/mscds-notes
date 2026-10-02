@@ -1,0 +1,91 @@
+So, welcome back ok, welcome back. So, in this particular short lecture, I am going
+to talk about what clock is, what cycle is, which is a which is something I touched upon
+in the previous video and now I am going to discuss this important concept in slightly
+more detail. So, your computer is basically you can think of your processor in particular
+as something that is made up of multiple circuitry. So, imagine if this is an adder which takes
+some inputs and gives you an output and this output can go to let us say different circuitries
+or there is already some other circuitry which is there to make your CPU work, all this circuitries
+all these components are guided or controlled by a clock.
+Now, what a clock is, is basically is a voltage, a clock is a voltage which continuously oscillate
+from a low from a high voltage to a low voltage and then high voltage and so on and so forth.
+So, at the beginning of a clock, the voltage goes high, stays there for some period of
+time, then it comes back down, stays there for some period of time, then again it goes
+up, it rises up, stays there, comes back down, stays there for some time, goes up, stays
+there, goes down, stays there and so on and so forth. So, basically this oscillating voltage
+is what your clock is. So, I can say a clock is the clock width is basically one oscillation
+of the voltage from beginning. So, basically from this point of time when the voltage started
+to rise until it came back to the original position after being there for some certain
+period of time. So, it includes a high state and a low state. So, in a high state and a
+low state together form one clock. So, what does it mean for the circuitry here
+when I said that the clock guides your circuitry on to the processor is that at the beginning
+of a clock that is at this point of time or at this point of time or at this point of
+time or at this point of time your circuitry for example, here the adder will look at its
+input perform its operation and tries to conclude that operation within one cycle that is before
+the next spike in the voltage or next rise in the voltage come and it tries to finish
+that operation here. So, every circuitry at the beginning of a clock will look at its input
+perform whatever computation it is designed to do and then produce the output to its destination.
+Now, if the adder has a latency because it is performing some operation it must have
+some latency to perform that operation and if I say that the adder in this example take
+800 picoseconds to complete this operation what we can do is we can set the clock width
+to be 800 picoseconds which means that within one cycle which is 800 picoseconds wide the
+adder will look at its input perform its operation and will produce an output.
+So, this is what we say the adder will work the adder will do the instruction in one
+clock cycle. Now, given that the adder takes 800 picoseconds to perform one operation we can also
+see how many operations that adder can do within a given second. So, in one second
+this adder can perform these many operations. So, this was the width of your cycle. So,
+one instruction takes this was this many picoseconds. So, in one second it can perform
+these many operations. So, if I solve it further it will be 1 over 800 times 10 to the power minus
+12 because pico is minus 12. So, it is going to be 1000 over 800 times. So, 1000 over 800 times 10
+to the power 9 which is 1.25 giga operations. So, your adder will have 1.25 giga 10 to the
+power 9 operations it can do 10 to the 1.25 giga operations in one second where the clock
+is said to be 800 picoseconds and this is what your clock speed is when I denote it with the hertz
+it is the clock speed. So, your clock speed is how many.
+So, in this example there are 1.25 giga or 1.25 into 10 to the power 9
+rises into the voltage or 1.25 billion opportunities for the adder to do some
+operation 1.25 billion cycles 1.25 instruction that adder can do or perform.
+And of course, this is assuming that this instruction this entire instruction or the
+entire operation of the adder can complete within 1 CPI. So, the adder was able to do
+1 instruction 1 cycle per instruction to in order to do its operation it just took 1
+cycle. So, basically when I said in the beginning that 800 picoseconds is what
+an adder do and an adder requires to perform its operation I meant that within this period of time
+the adder circuitry here performs its operation. So, 1 CPI is basically
+1 cycle per instruction it takes 1 cycle to do 1 instruction. So, this 1.25 billion
+opportunities which we calculated here is when it takes 1 CPI for the circuitry.
+It is also possible that different circuitry takes different amount of time. So, let us say
+in this example it takes 700 it takes 600 picoseconds. So, in that scenario I would
+say that we would like to set the clock width to be as such that the slowest circuitry can
+perform its operation. So, here the slowest circuitry here is the adder. So, we set the clock width
+to be 800 picoseconds. It is also possible that some circuitry cannot perform their operation
+within 1 cycle per instruction. For example, when some circuitry is waiting for some
+input which is not available onto the chip. So, they will wait for the instruction to
+come for sorry for the data to come. So, in that case the or maybe hundreds of
+cycle it takes for the data to come into the circuitry as the input for that circuitry.
+In that case the cycle could be more than 1 CPI or for example, it could take 1.5 or 2
+cycle per instruction, but there is also scenarios when the circuitry can take less than 1
+cycle per instruction for example, when we talk about parallelism and so on.
+So, this is basically a quick understanding of what clocks are,
+clock width is and the cycles and the frequency of your circuitry.
+Now, with that in mind we come to the performance equation and the performance equation the first
+and the important performance equation is the CPU execution time. How much time does a program takes,
+how much CPU time does a program takes to complete its execution is defined as the number
+of CPU cycles that that program needs times the clock cycle time.
+And the clock cycle time as we already know is the inverse of the clock speed,
+just how we did 800 picoseconds what the clock cycle time clock width set and
+and the clock cycle time was 1 upon 800 picoseconds. So, we computed like 1.25 gigahertz.
+So, from that we are taking it we can also deduce the other way round as well.
+So, if we if a processor has a frequency of 3 gigahertz. So, basically doing 3 billion
+oscillation of voltage the clock basically takes 3 billion times in a second and if we take
+1 instruction 1 CPI 1 cycle per instruction. In this setting if a program runs for 10 seconds
+on such a such a processor how many clocks did it run for.
+So, because in 1 second this processor is doing assuming 1 CPI doing 3 billion operation.
+So, we will do 3 billion times 10. So, basically 30 billion
+clock cycles it ran for. Now, if I take another example where a program runs for
+2 billion clock cycles on a 1.5 gigahertz processor what is the execution time in second.
+So, if we use this formula here we are saying that we are using 2 billion clock cycles. So,
+we are taking 2 billion clock cycles like here this value and we are on a 1.5 gigahertz processor.
+So, because we have we have to compute the clock cycle time and we are given the speed. So,
+we are going to put 1 upon 1.5 gigahertz and if we solve this equation. So, it is 2 10 to the
+power 9 upon 1.5 into 10 to the power 9 because giga is 10 to the power 9 this will cancel out.
+So, it will give us 1.33 seconds. So, this program ran for 1.33
+seconds on this on the given example. So, with that I will stop here and in the next lecture
+we are going to look at the MISP, ISA and the related concepts. Thank you.

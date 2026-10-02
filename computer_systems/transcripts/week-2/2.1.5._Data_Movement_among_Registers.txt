@@ -1,0 +1,82 @@
+Hello again, so in this short video I am going to go over one more example of information
+or data movement among registers and the memory when the control is taken from one procedure
+to another procedure and this is a rather non-trivial example of this movement and basically
+we are going to look at how factorial or recursive computation of factorial is converted into
+assembly code and what happens to the return address, what happens to the registers, this
+is what we are going to look into this slide.
+So just to give you a recap that we have a function which takes an argument n computes
+its factorial and returns back an integer value.
+The way we do it in recursively is that if the value of n is less than 1 then we are
+going to return the value 1 otherwise what we return is a recursive call to the factorial
+function itself but with the decremented value of n by 1 and then multiply it with
+the value n.
+Now in this example what we have to do is that the first thing we have to do is see
+where the value of n is less than 1 and we say that there is a label called factorial
+or fact where we start with set on less than immediate and this is what we discussed before.
+So the first thing that we are going to discuss is set on less than and I think in the previous
+one of the previous lectures we discussed I told you that we are going to see it in
+the subsequent lecture.
+So the first thing that we have to do here is that you have to do if n is less than 1
+so something like branch on less than if you compare the argument so your argument
+is stored in a 0 and if it is less than 1 you do some operations.
+So this is what we expect to do you want to branch if the value of a 0 that is n is less
+than 1 unfortunately in miss it is not an instruction which is natively given rather
+this instruction is implemented using 2 instruction that is first is set on less than and then
+branch on equal.
+So basically what you do you compare 2 values and set a value set a value into the register
+let us say and then use that register value to do a decision.
+So basically what we are doing is we are taking the value of a 0 and comparing it with 1 and
+if a 0 is less than 1 we will set some value into the register so we will set 1 into some
+other register and we can check this value if it is 1 or 0 so if branch on equal depending
+upon it this value where you want to go.
+Because it is an intuitive operation and probably use a lot of time it is the same instructions
+because SLT and BEQ is implemented using a pseudo instruction which is not natively provided
+but actually implemented using the 2 native instructions but we are going to and you can
+directly use BLT but in this example we are going to use the native instruction.
+So basically what we are doing is we are taking the value of a 0 which is your n comparing
+it with value 1 and setting the value so immediate value 1 because we are dealing with a constant
+so if the value of n is less than 1 we are going to set the value t 0 that is t 0 to
+1 originally it is 0 if it is less than 1 we are going to set it to 1.
+Now we say if the value is equivalent to 0 so if the value is still 0 in t 0 then we
+are going to take the branch l 1 and which is where your which is here so if the value
+is 0 you have to continuously recursively call the fact function otherwise what you
+have to do is you have to return value 1.
+So if the value is 0 in register t 0 you go here otherwise so the default is what you
+do is return the value 1 so you add immediate 1 value 1 constant into the 0 register so
+basically 0 plus 1 is going to give you 1 and you return this value v 0 so you are returning
+the value v 1 via v 0 and you jump on the return address whoever has called you whichever
+was the function above the recursive function above you return that to that returning address
+so basically this portion gets executed when n is less than 1 and this portion gets executed
+when n is greater than equal to 1 and already mentioned here the caller is saving the argument
+so value of n and r a onto its stack space so basically the returning address is already
+saved and the temp register is never saved it is because it is a temporary value.
+Now what happens in the other situation is that you need to call factorial function so
+basically you need to call the factorial function that is you need to call the fact
+procedure via this label fact and before doing that what you need to do is you need to decrement
+the value of n by 1 so what you are doing here is you are taking the value of n decrementing
+it by 1 immediate value is stored into this so this is equivalent to n minus 1 and then
+you call factorial function right and this factorial function can automatically pick
+up the value from the decremented value from a 0 and continue to do the operation.
+Once you are done with this thing what you want to do is you also see that we are using
+two variables two registers that is a 0 and the other register that we are using is basically
+stack pointer wherever you are other register not variable so in order to accommodate these
+two registers onto the memory I am decrementing the memory by two positions two position to
+allocate four bytes two four bytes so basically decrementing it by 8 and at one position I
+am storing the stack pointer sorry returning address I said the other way so basically
+I am storing the returning address not stack pointer basically I am storing the returning
+address and the value of n these are the two important values that I am saving every time
+I make a call so I need to save the return address as well as the value of n from which
+I am calling the next recursion of the function so I am storing the value of n here and the
+returning address here onto the stack I am saving so I am saving this value onto the
+stack pointer 0 offset n and 4 offset returning address once I am done with the factorial
+I return to the I jump to the return address as said here so I need to restore the values
+of n and the returning address so I am saving here I am loading back and I am also shrinking
+the stack just the opposite of what I did here.
+Once I am unfolding it what I can do is I can multiply the value returned by v 0 so
+the return value multiplied by n and I can store that value back into the v 0 so this
+is equivalent to multiplication of n so this is n this is the return of the function from
+here whatever value I have got and then I am storing this value back and then I can
+jump back to my caller function.
+So this is again is a non-trivial example maybe if you do it by yourself may become
+a bit more clearer in the next lesson we will see some more examples I think one more example
+With that I will conclude this session thank you so much.

@@ -1,0 +1,68 @@
+We can also use WAN optimizer to increase the TCP throughput.
+Basically whenever I am sending a file, let's say a server is sending some file, this appliance
+can collect that file, those TCP segments and actually keep on responding very fast
+because it has a large local memory.
+So whatever segments are coming are being buffered here even though this machine was
+not able to buffer them all because of the low local memory.
+So this appliance is helping in creating a larger TCP window which means the server is
+able to send more data faster and they are being buffered into the machine and whenever
+this system is ready it is going to collect it.
+Same way we can do the caching of the file.
+So whenever I get some response for some query, let's say, I requested a page, page 1 and
+this page 1 came back and I catered this response to my requester.
+In case another host requests for the same page, what I can do is instead of making a
+query all the way through the internet, I can actually cater back the same page to the
+next query as long as this was a fresh query, as long as it was a temporal query not far
+away in time.
+So this way I can do caching and handle traffic much easier, much, much better and much faster
+in a much faster mechanism or much faster way.
+Another thing is the tunneling.
+The idea of tunneling is that we want to create a virtual point to point link.
+These are your physical switch 1, physical switch 2, physical switch 3, physical switch
+4.
+This is let's say your office 1 and this is your office 2.
+And what you want to do is you want to make a connection from one office to another office
+such that it appears as if you are connected direct to each other.
+Basically nobody can inspect what is happening in between, so you can use encryption of course,
+but what I actually want to do is I want to create an illusion of a direct link between
+two nodes.
+So the idea here is encapsulation or tunneling.
+What we do is we keep our actual packet inside another packet.
+So let's take an example here.
+Imagine we were not doing any tunneling.
+So my encrypted traffic, encrypted data, so my packet is here, my data is here, payload
+is here and I wanted to go from 1, 1, 1, 10.
+So this is the machine and this is my destination, so 2, 2, 2, 10.
+If I did not do any encapsulation, this machine receives, so imagine this machine was not
+there.
+So what will happen is this packet will go as if this was coming from 1, 1, 1, 10 and
+going to 2, 2, 2, 10.
+So this is the original request.
+I have an encrypted packet and now I am sending this packet from source to destination.
+So I am sending from here to here.
+If anybody intercepts this packet in between, they can see that 1, 1, 1, 10 and 2, 2, 2,
+10 are talking to each other.
+However, if I do an encapsulation and create a tunnel in such a way that my encrypted packet
+remains the same, it is the same as before, but now my IP header changes.
+Instead of 1, 1, 1, 10, now I am using a tunneling device and putting it as a source of this
+packet and the destination is the other part, the other device onto the other side of the
+internet.
+So if somebody intercepts a packet in between, they will assume that these two devices are
+communicating with each other and not these devices.
+So the idea of tunneling is to create a point-to-point illusion so that nobody in between is able
+to guess that host A and host B are actually talking to each other.
+There could be another host C and host D, host E and host F and all will appear as 1,
+1, 1, 1 talking to 2, 2, 2, dot 1.
+A more generalized or common idea is VPN, virtual private network, which is a technology
+by which we try to create communication through a proxy.
+Imagine 1, 2, 3, 4 is the IP that I have and I want to access 3, 4, 5, 6.
+It is possible that I am not able to connect to this device directly or this machine directly,
+maybe because of censorship, maybe because of some other constraint, but what I can rather
+do is I can connect to a server and that server can cater my request forward.
+So every time I send a request, it goes like this and every time a response comes, the
+VPN server is going to cater that response back to me.
+Of course, the requirement here is that we must fully trust the VPN service provider,
+otherwise they can also intercept our request and give us, let's say, fake response or
+do some malicious activities as well.
+Thank you so much.
+We will see NAT in the next video.

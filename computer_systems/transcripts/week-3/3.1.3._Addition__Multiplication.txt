@@ -1,0 +1,225 @@
+UNGSIK
+. Now, ah now we are going to see how addition
+multiplication and division is done into the hardware and we will start with the simpler
+operation that is addition which is similar to how we do addition in decimal arithmetic.
+Basically ah what we do is let us say here is example is we have the first value here
+and the value that we want to add is here and what we do is basically we perform bitwise.
+So, we take the bit 1 and bit 0 here add them and what we get is the resultant value here
+that is 1 and no carry is generated. So, we copy only 0 here and then so, we add
+these 3 value we get 0 and a carry is generated and this carry is carried forward. If you
+add 1 1 and 1 we get 1 here and 1 is also carried over. So, we keep on doing this and this is
+something similar what we are very familiar with into ah the addition into the decimal system.
+For the subtraction what we can do is is for example, if I want to write a minus b is the
+same as writing a plus minus of b and we know that if you want to represent minus of b is
+basically what we do is we do invert and plus 1 right because in order to represent a negative
+b what we do is we invert that value and add 1 to it because in 2's complement is represented
+like this and this is the operation that we need to this is the instruction that we need to resolve
+right. Now, some certain operations may also lead to overflows for example, if you are only
+dealing with unsigned numbers the overflow might happen when the last carry cannot be
+accommodated. So, the 33rd bit is also generated in that case an overflow has happened and if
+we are talking about a sign number the overflow can happen when the most significant bit is not
+the same as every bit to ah to its left or right however you see, but in general what you can say
+that if you ah the sum of 2 positive number becomes a negative value this is actually an overflow.
+So, when you take 2 large positive numbers and you add them and it basically turns the first bit
+the MSB bit becomes from 0 to 1 actually the positive value becomes a negative value that is
+that is when we call it as an overflow the same thing goes for the 2 negative values if 2 negative
+numbers are added and actually the resultant become positive that is also an overflow in
+the system the sum of a positive and the negative number will never lead to an overflow in order
+to handle all these condition we have a special instruction I mean the MIPS allows you to use
+specified sometimes you want to specify instruction that actually work with the unsigned integers and
+you do not want the flag for an overflow for example you do not want the overflow to I mean
+it can detect, but you do not want the overflow to throw an error or other instruction will have
+to be executed right. So, basically in order to do that for example you have some memory addresses
+and you are adding those memory addresses you do not want to throw an error or exception because
+overflow has happened, but it is fine you want to move to the next address that is fine. So,
+MIPS allows you to work with unsigned integers and never flag an overflow, but there are checks
+and balances which can also flag, but this particular way of using unsigned integers
+basically you try to avoid never flag an overflow basically never detect an overflow and other
+instruction will have to be executed because there could be some other relevance anyways.
+Now, coming to the multiplication because it is an important thing to understand and
+multiplication you have a multiplicand which is shown like here and the multiplier which is shown
+as 1001, but you can also change the values the output is going to remain the same. Let us take
+an example of let us say 56 times 43 a simple multiplication when you multiply 56 with 3 it
+is going to give you 8 and 168 and then what you write here is either an x or 0 however you write
+and then you multiply the value with 4. So, 24 and this is 22 and then you add it so this
+becomes 0 this becomes 4 and this becomes 2 this is the outcome of this multiplication.
+If you pay attention carefully because this is important when you were multiplying with 3 actually
+you were multiplying with a unit value of 3 that is why you multiplied and wrote it as s,
+but when we were multiplying with 4 actually we were multiplying the value the place value
+was actually 40 because it is 40 plus 3 that we are multiplying. So, that is why you wrote
+a cross or 0 here and then you wrote the value the product value here and then finally you added
+this value. With this in mind basically what I have done is I have put an example here which
+is 1000 times 1001 of course the way the multiplication happens here is you should see that when I take 1
+here and multiply it with this value what I am doing is actually taking the entire multiplicand
+as long as multiplier is 1. So, I because this value was 1 I wrote the multiplicand as is 1,
+0, 0, 0. If the multiplicand sorry multiplier is 0 what I write is 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+when the multiplier is 1 I copy the multiplicand as is like here 1, 0, 0, 0, 0. So, here and here
+I am copying the multiplicand as is because the multiplier corresponding between the multiplier
+was 1. Now let us look at from a perspective of a computer. What I am doing here in the
+multiplication is basically I am shifting the multiplier to the right and I am and I
+am shifting the multiplicand to the left. So, when the value was 1 I wrote the multiplicand
+here as is the next time I took the next value. So, basically I am shifting this value to
+the right. So, if this value from 1001 became 100 and then next step became 10 and then
+next step became 1. If you are looking at this multiplier alone, but from the perspective of
+the multiplicand what I am doing is I am shifting it to the left. So, first I wrote 1000 then I
+wrote 0, 0, 0 you can consider a 0 here. Similarly, I shifted it to the left again. So,
+it became 0, 0, 0, 0, 0 and then I shifted it one more time and I wrote 0, 0, 0. So, of course,
+this value depends on the multiplier bet, but what I am doing is essentially shifting
+multiplicand on to the left and the next bit of the multiplier is examined which is also a shift
+step and if this bit is 1 you just shifted the multiplicand and added to the product.
+And because there are 4 bits my operation was concluded into the 4 steps. One more thing you
+want to remember is that because if so in this example we took 56 and 43 and which produced 2408.
+So, if you take 2 digit number multiply it with 2 digit number what you get is a 4 digit number.
+The same is also true for a system let us say 2 bit system. So, because it was a decimal system
+let us say into the binary system if I take 2 bit number and multiply it with the 2 bit number
+the resultant will be a 4 bit number. There can be a 4 bit number. So, for example, the maximum
+that you can have with 2 bit is 1, 1 and which is also 1, 1 in this case. So, this is 3 times 3.
+So, the we know that the answer is going to be 9 when you multiply 1, 1 by 1, 1 we know the answer
+is 1, 1 and then 1, 1. So, it becomes 1, 0, 0, 1 which is again a 4 bit number. So, 2 bit
+number multiplied by 2 bit number can lead up to 4 bit number. The same is true for 3 bit number
+1, 1, 1 times 1, 1, 1 which will give me 1, 1, 0 I have already solved. So, that is why I am saying
+1, 1, 0, 0, 0, 1. So, 3 bit times 3 bit number is going to give me 6 bit. Similarly, 4 bit value
+with 4 bit value is going to give me an 8 bit value and so on and so forth. And this the reason
+why I am discussing this because the way the circuitry is designed here you are going to see
+64 bit numbers here in this first algorithm this hardware algorithm. Although our input and our
+registers are only 32 bit addresses we are using 64 bit values because the maximum that you can
+get when multiplying a 32 bit number with another 32 bit number is going to lead you to up until 64
+bit. That is why we are using a 64 bit multiplicand and 60 to 64 bit ALU in this scenario right.
+Let me just clear out this slide here right. So, with that in mind so the way we were doing
+computation just we were doing so multiplicand is 1000 and this is 1001. What we are going to do
+is that this hardware basically is preliminary version we will optimize it further but let us
+start with the multiplication how we can implement it into the hardware. So, multiplicand is a 64
+bit value. So, my multiplicand was 1000 so that 1000 in 32 bit will be written here and the leading
+values will be some zeros here and I have 64 bit values here. So, these 64 bit values become an
+input to an ALU and then I do some operations here right. So, that is why here I am going to
+have because with the 4 bit I could do it into the 4 steps with the 32 bit number I could end up
+doing 32 bit steps. So, this multiplicand might be shifted 32 times such as the original value
+becomes multiplicand all out of this value and actually become oh sorry because it is a 32 bit
+value. So, the first 32 bit values become the original multiplicand and then 32 zeros here right.
+So, this is just to give you an idea what we are doing here. So, what I am doing in this system is
+basically I am putting my multiplicand in a 64 bit unit where I wrote my multiplicand and then
+leading zeros and it becomes an input to an ALU. So, now the other value into the ALU which is
+actually doing all the addition here I do the product and this product becomes another input
+to this ALU right. So, something similar that I have been doing here is basically I do a product
+right at each step and then I keep on adding the sum instead of doing a final sum I am I can also
+do something like I am summing here then the resultant value then summing here then the
+resultant value and then summing here something like this I am doing it step by step to keep the
+simple hardware simple basically it is a preliminary version of implementation of multiplication.
+Now, the multiplier which was originally 32 bit and also stored in a 32 bit storage unit is kept
+on shifting on to the right right kept on shifting on to the right kept on shifting on to the right
+and depending on its value what we say is the multi the product value that we just got from
+the multiplicand times the running average the running sorry the running sum depends on the
+output of this value right. So, if the value is 1 we would like to retain it otherwise we just want
+to do not operate on to this value because essentially the value 0 adds nothing into the
+into the final value right and we keep on doing this until all our multiplier values
+are shifted to the maximum and so on and so forth. So, basically this is just an idea maybe
+it will become clearer when we will do an example. So, let us clear the sheet
+ok. So, our multiplier so the multiplicand initially was 1000 and then some leading
+zeros here and the multiplier was 1001. So, this 64 bit value become an input to an ALU. So,
+it became 1000 as an input and initially the product was all 0 right. So, initially it became
+000. So, the initial input will be 000. So, when I add this value what I get is let us say 1000 and
+this value depends on the value of the multiplier. So, the first bit of so the least significant
+bit of the multiplier is 1 which says ok you want to retain this value. So, what you do is you
+overwrite the existing value and you write it let us say 000 1000 you shift with the first
+operation right. So, because of this first bit what you get is 1000 the first step is basically
+you want to keep it as is. Now, in the next step what you will do is you are going to shift this
+value to the right. So, this will become let us say 100 and this value shifted to the left. So,
+this value become 1 0 0 0 and 0 right. So, what will happen now is this input which was
+000 before now becomes 1000. So, this input is going to become 1000 and this value which
+was 1000 before now is going to become like this. Now, what you will do is you will produce an
+addition of these 2 values. So, the addition will be 1 1 0 0 0 and when you perform this addition
+you see that the most significant bit is 0. So, what you are going to do is you are going to do
+you want to write into this product what you will say no because this value says it is 0. So,
+I will skip this part and this value still remains 1000. Now, next thing what I will do
+I will shift the multiplier to the right again. So, it becomes 1 0 and this value is shifted
+one more time and it becomes 1 0 0 0 0 0 and the input again becomes 1000 and this input changes
+to 1 0 0 0 0 0. Now, you add these 2 values and these 2 values will give you 1 0 1 0 0 0 right and
+if you look at this value here which is again 0. So, this value is again we are not going to
+store into the product. So, it says just discard this value. So, the value still into the product
+remains 1000. Now, next time you will do another shift. So, this value becomes 1 this value is
+faded into here again 1000 here you shift it one more time. So, it becomes 1 0 0 0 0 0 and 0 then
+you add. So, this value becomes the input value becomes 1000 000 you add these 2 values. So,
+the output becomes say ALU gives you 1000 here and 1 0 0 right. Now, this value being 1 we say
+this is the value this is the sum that we want to retain. So, the product which was originally
+1000 is now going to be replaced with 1 0 0 1 0 0 0 which is also what we computed just here
+1000 1 0 0 1 0 0 0. So, 1 0 0 1 0 0 0 right. So, this is a sequential operation where we
+have 1 multiplicand stored into a 64 bit hardware 64 bit ALU 32 bit multiplier and so on and so
+forth too many hardware we are also we can also imagine this system as if we have a clock which
+is ticking with every shift right. So, in the maximum you might need 32 cycles to perform this
+operation and this is just a simple example simple hardware setup, but in the next step what we are
+going to do is to optimize this hardware and basically avoid using 64 bit hardware in this
+scenario. So, this is the simplified version of the same operations for implementing same
+multiplication operation what we are doing now is we are keeping our multiplicand to be 32 bit
+just like just like the original value we are not extending it to a 64 bit value in the previous
+example. We now also have a 32 bit ALU, but what we have changed here is we kept the product at
+64 bit which was 64 bit in the previous example as well rather the logic here is this product
+space is going to be shared between the multiplier and the product itself right.
+So, the first 32 bit are going to be the product value. So, initially they are going to be 0 0 0
+and you can store your multiplier the 32 bit multiplier here. So, initially this is like
+32 bit of product and 32 bit of multiplier. Now, the logic is if I go back to this slide
+once you compute the operation this value remains unchanged no matter what happens here this value
+is going to remain unchanged for all the subsequent operation. Similarly, after 2 steps this value will
+be computed and it will remain same no matter what happens. So, the idea here is with every step with
+every shift into the multiplier the product is computed and that value remains the same right.
+So, before when there was no shifting done what we do is we can keep something like 32 for product
+32 bit for multiplier we take this if we take the first bit of the multiplier compute the or copy
+the multiplicand depending on this value and simply write the last bit into the product.
+And after I shift the value to the right I can also shift this value of the product because I
+know this value is not going to change. So, this is something logic that we are using here. So,
+beginning with 32 bit of product and 32 bit of multiplier the moment we do an operation we
+take one more bit because we are going to shift it to the right. So, it becomes 31 bit of multiplier
+33 bit of product 34 bit of product 30 bit of multiplier until it becomes 64 bit of product
+and 0 bit of multiplier. So, now we are basically changed the hardware according to what we want
+what we started with and this operation is much more efficient because there are less gates less
+operation less hardware units or less delays and also we are optimizing our hardware right.
+Now, this computation that I have shown to you it also going to work for the sign number. So,
+basically what you will need to do is if you have a negative number you represent them into
+a two complement form and this algorithm is also going to work for them as well.
+We can convert the negative number to positive simply let us say if you want to multiply 3 with
+minus 6 you can simply multiply 3 with 6 and change the sign if their original signs disagree
+in this case a negative will preside the product right. What you also need to understand that the
+product of the two 32 bit numbers can go up to 64 bit number. However, we know that in MIPS every
+register is just a 32 bit number. So, this is something that I have not told you before and
+this is what we are going to see how MIPS handles this thing. So, basically if we want to multiply
+two register values h 2 and h 3 we are not defining the destination. So, destination is
+missing what happens is that the system will compute the product and store it into two
+internal register two internal register which are referred to as high and low.
+So, first 32 bit are called high bit and low bit. Now, if you want to move this value because the
+outcome can be 64 bit and every register can only be 32 bit long. So, we will use two register
+internal register called high and low and if you want to use this values what you will do is you
+will use instruction move from high let us say into s 0 and move from low into s 1 which will
+move the high bits and low bits in s 0 and s 1 respectively. Similarly, we can have multiplication
+of unsigned numbers which will give you the unsigned version of this multiplication.
+Now, the previous algorithm that we designed the algorithm number 2 can be further changed and
+actually can be made faster. The idea here is we do not want to optimize on to the hardware we say
+we have a lot of hardware lots of transistors there lots of ALU units there why not make the
+algorithm much faster instead of doing one bit of a multiplier multiplying saving the values and
+then shifting why not do it in a faster mechanism we have an abundance of the hardware let us
+utilize this. So, the idea here is that we take in this setup what we are doing is we needed we
+do not want to use a clock basically we want to avoid a clocking system and what we want to do
+is essentially achieve something which can mimic like a clock less system. So, the previous algorithm
+requires a clock because we want to make sure that previous step is completed before we can
+do the shifting and or do the addition and so on and so forth. The present algorithm which I am
+presenting here can quickly set up most inputs it then has to wait for the result of the each
+adder to propagate down and faster because no clock is involved. However, there are more
+transistor more hardware involved so the more cost will be there. So, what I am doing is I keep the
+multiplicand as is I take the first bit of the multiplier multiply them and feed it to a adder
+similarly I take the multiplicand take the first bit like the second bit from the right the next
+bit to the least significant bit multiply it to the multiplicand the original multiplicand and
+then feed it to the adder what I get is a 32 bit output and because a 32 bit 32 bit I take the
+value out and the last bit becomes the first bit of the so LSB of the product 0. If I keep on doing
+this so I take the 32 bit output from here then I take the second bit of the multiplier multiply
+it with the multiplicand add them and then take the second bit out because these bits they do not
+really change over the period of time. So, I am taking out one bit at a time multiplying
+one bit of a multiplier to the multiply original multiplicand and keeping the addition until all
+the values are resolved right. This design can further be improved by let us say you have 32
+bit values that you want to add so what you can do you can have an adder here so you can have an
+adder here adder here adder here adder here pairwise adder so what we have is 32 bit values here 16
+adders here 8 4 2 1 adder. So, essentially what we are doing is we might need the same number of
+the adders but we are reducing the gate delay because here we have to wait this value has
+to wait for this output this value has to wait for this output and so on and so forth we are
+essentially reducing the delay and this delay can go up to log to the base 32 right these many values
+because we are reducing the gates I mean we are doing some operations to parallel and this
+might delay reduce or delay. In the next class we are going to look at the how division is
+performed and we will see how division actually can be optimised as well into the hardware thank
+you so much.

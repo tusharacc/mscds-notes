@@ -1,0 +1,152 @@
+Hello and welcome back and in this video we are going to look at some miscellaneous topic
+about the assembly language and they are some really interesting topics commonly used and they
+are really of practical purpose. So, basically the first thing that we want to talk about is
+large constant. If you remember that typically the instructions into MIPS have some certain
+format and some instruction they only allow to handle up to 16 bit constant or constant values
+which are not as great as you might want to use in practice. So, for example, any immediate
+instruction for example, immediate add allows you to specify only 16 bit constant values,
+because if you remember from the immediate values add immediate you want to add two values,
+but the constant values can only be represented by a 16 bit constant. What if you want to use a
+value which is bigger than 16 bit or a value which cannot be represented by 16 bit. In that
+case what we need to do is we need to use a special instruction. So, one of these special
+instruction is load upper immediate instruction which is basically is used to handle much more
+than 16 bit. So, imagine if you have a 32 bit value that you want to work upon with the immediate
+instruction. In that case what you are going to do is imagine this was your 32 bit value and it
+can be divided into two parts. Let us say this is the 16 bit part upper part and the next 16
+bit the lower lower part. If you want to work with this 16 bit value sorry 32 bit value the
+LUE instruction can be used to store 16 bit constant into the upper 16 bit of a register
+and combine it with an or immediate instruction to specify a 32 bit constant. So, let us say
+our goal here is just to load this 16 bit constant load the load a value immediate value of let us
+say 32 bit into a register. So, the register the target register is 32 bit fine and let us say the
+target register is temporary register T 0 because we know min miss all the registers are 32 bit.
+What we are doing is we are using an immediate instruction which allows you to only use 16 bit
+constant but my source is also 32 bit. So, the problem here is the instruction allows me only
+16 bit my source is 32 bit and my target is also 32 bit but the instruction only allows me to handle
+16 bit at a time. In order to deal with this situation we have special instructions such
+as load upper immediate what it is going to do is that it views the 32 bit source the 32
+bit value that you want to load into the register T 0 as two halves of 62 halves each with 16 bit.
+So, what load upper instruction load upper immediate is going to do is going to take
+the first 16 bit and is going to store into upper part of the target register. So, the 16 bits are
+going to be stored here and here what you will have is a bunch of a total of 16 zeros.
+Now, after which what you can do is you can use or immediate in T 0 and T 0 and take the value
+from B. So, essentially what I am doing is I am taking the value stored currently into T 0 which
+is which is something like this a piped with 0 and I am oring it with B or you can also view
+it something like 0 piped with B. So, basically it is going to take the value a and all zeros
+and it is going to do something like 0 0 0 whatever value was B. So, it will or these two
+value and this way what we are going to do these values are going to be replaced by when
+you do the or operation it is going to be replaced by the value in B. So, this way you
+have loaded the 32 bit source value into a target register which is of course, 32 bit.
+Other situation when you also want to do something let us say branch on equal S 0 and T 0 and some
+value here which is also some time is 16 bit which is also at most 16 bits. So,
+if you want to branch on this instruction branch on equal on the value of S 0 and T 0 it allows
+you to define or specify only a 16 bit value which means your program counter can only move
+so much that can be denoted with 16 bit value which means your program counter cannot move
+beyond a value which is which can be represented by 16 bit number. But however, if you want to do
+something like you want to move to a value which cannot be represented by 16 bit let us say
+something 2 power 17 some address that you want to move in that case what you need to do is to
+do some preprocessing. So, you need to do some computation like I just did here you are going
+to store that value into some temporary register let us say T 2 and then you are going to jump
+on that register value. So, you are going to essentially increase the program counter before
+increasing you will do some pre computation load that value whatever value 17 bit 16,
+18 bit whatever 32 bit and then jump on that register value this is what we are going to do.
+If you are if you were to use let us say a jump instruction a simple jump instruction which can
+allow you to specify only 26 bit constant if more are required again you need to do something similar
+that we just did now that you are going to store that particular value which is more than 26 bit
+store it into a register and jump on that register value fine. Another topic is if we look at
+the so we have started with the MIPS instruction set which is RISC and we also have CISC something
+like x86 and this is MIPS. In the beginning we started with MIPS because we said it is
+relatively easier to understand because things are simpler here but in practice when the chips
+were designed a few decades ago there were limited number of transistors onto the chip
+and we could not make a more complex we could only put a smaller computing entities or smaller
+computing units by utilizing whatever we had available but over the period of time with the
+Moore's law Moore transistors were fixed onto the chip. So, people said why not design some
+more complex instruction for example if you look at multiplied followed by addition which
+is a common sequence common operation people came up with multiply and accumulate as a new
+instruction. So, this single instruction can do the job of these two instructions combined.
+So, this basically instruction was possible because there were more transistors available
+we could design more and more complex instruction and which is basically led to this complex
+instruction set architecture. But we have realized that if you keep on making your chip more complex
+and more complex we will hit a power wall of course like we were like we seen before but also
+by keeping the chip set by keeping the instruction set simpler we can actually improve our clock speed
+improve our energy efficiency and introduce parallelism etc etc. So, people have realized
+over the period of time. So, Intel which has already started with the x86 architecture which
+uses a CISC basic which is a CISC system now they want to move let us say if they want to
+move to RISC they cannot just simply dump x86 instruction set because all their previous chips
+use x86 or CISC system what they have come up with actually is to convert CISC into RISC
+because we said RISC is not just easier but also has some performance advantages right.
+So, the modern Intel processor convert their x86 complex instruction into simpler. So,
+they take a instruction and they convert it into simpler instruction. So, that these micro
+operation actually may make a RISC instruction. So, the gist of this slide is that even if you
+have more transistor even if you can design more complex instruction set it is generally
+preferable to use a RISC instruction set and to maintain backward compatibility manufacturers
+which already have CISC systems they essentially convert their CISC into a RISC system by converting
+their complex instruction into a simpler instruction set. Now, let us talk about
+Indianness. Imagine you have some data stored onto the memory let us say this is the lower
+part of the memory and then you have a byte here a byte here a byte here a byte here and then this
+is higher address range. So, for example if it is 0x let us say 200 is this one 201 is this one
+202 is this one 3 is this one and 4 and this one and so on and so forth what happens if I read these
+values and store into a register. So, which byte goes into the register first basically if the first
+byte which I am reading onto the memory. So, I am reading from here to left to the right. So,
+the first byte that I am reading onto from the memory and if it is go it goes into the
+lower end of the register. So, first value that I am reading is 45 and it goes into the lower
+end of the register. So, this is your register this system is called a little Indian system.
+Next byte I am going to read is going to be 7B which is going to be stored into the next
+lower byte next least significant byte then the next byte here and the last value that I
+am reading here goes to the most significant byte. So, basically it is defined as the first
+byte which is read from the memory if it goes into the lower end of the register this is called
+a little Indian system and this is something that we see into the x86 architecture.
+On the contrary big and big Indian register is when the first read byte that is a 45 that we read
+here 0x45 goes into the big end of the register. So, the most significant byte and then 7B then
+87 then 7F such a system is called a big Indian register which is followed into which is a
+convention followed by MIPS and IBM. Now, one important thing here is how do we start a program.
+So, we have seen that we have a C program then we have the compiler then we have assembler and so on
+and so forth. What actually happens is first of all we have the programmer writes a C program
+x dot C y dot C z dot C etcetera. Compiler takes this program and converts that program
+into an assembly language program which is denoted as x in this case x dot s. So,
+what compiler does is takes the high level instruction and uses some pseudo instructions
+some labels etcetera and convert it into something intermediate between the high level program and
+the low level program which is still readable to us but it is the first step to going towards
+the machine code right but we use pseudo code etcetera in this case. So, we have the pseudo
+code pseudo instructions and labels and so on and so forth. After which the assembler takes
+the program that is x dot s and converts it into the machine underlying machine code the code that
+the machine can understand basically bits of zeros and ones right and this output is called
+x dot out in this case. In this case what we are doing is we take the assembly program which was
+partially human readable let us say and partially machine readable because I have said that this is
+the intermediate state between the high level program and the low level program. So, the
+assembler essentially takes the assembly language program converts into the bits that the machine
+can understand and actually converts all the pseudo instruction into real bits which represent
+each instruction represents label sorry replaces label with the actual addresses the address for
+a data element or the address where we want to jump. So, essentially everything here is zeros
+and ones then what you also have is some pre compiled library routine which is also already
+there. So, it is something that is already been compiled for you and already stays there and this
+is also some part that we will use in the subsequent step. Now, the next step is the linker takes this
+these object files and actually links them. So, imagine you have a program where we are
+using an data entity P and this data entity P was defined within this object file itself.
+So, the linker is basically going to say this P is already there into the file I am going to
+replace P with its corresponding address and so on and so forth. However, imagine if there is
+a entity which is Q but it is defined in some external file let us say y dot o and if I execute
+this file using Q which does not exist into this x dot o but y dot o the job of the linker is to
+find and resolve this reference. So, basically this program when it is when the assembler generates
+x dot o it sees Q but it says okay I am not able to figure out where Q is into x dot o. So,
+I am going to put it at the end of the file. So, the linker can help at the later stage and find
+the resolve this addresses. So, basically this will remain an empty location the linker when
+it takes these files tries to resolve this address corresponding to Q searches for the
+files and sees if it exists in somewhere else. For example, if it is there into y dot o it is
+going to find the address of Q and actually replace this value based on how it is defined
+into y. Another thing linker does for example, if you are using printf function and as I said
+there are some library routine which are already pre compiled for you what you can do is the linker
+is going to take the definition of printf make it part of the larger program and links them
+and puts it inside the same output file. So, basically if your program uses printf
+function it takes a definition from wherever it was into the library makes that definition
+part of your program puts it all together into a single file and produces a file in the case of
+C is called a dot out. So, that your program when it calls printf it does not have to go into the
+library routine external library routine, but it is already there inside your own program itself.
+This program is basically an executable file which can be executed on a machine because it
+has everything that it needs. Now, next thing we need to do is to load this program into the memory
+and the job of the entity that does this job is called the loader. So, loader basically takes
+a program makes space into the memory allocates and initializes the register and also handles
+the dynamic link libraries. Basically you had here static libraries function some function or
+some entities may change their addresses based on the runtime. So, the job of the loader is
+actually to resolve these dynamic linking and that dynamic linking is done while the
+program is loaded into the memory and after the program is loaded into the memory we can
+execute sequentially based on the program counter. Thank you.

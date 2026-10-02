@@ -1,0 +1,95 @@
+Okay, now we are going through a example of floating point operation in high level programming
+C and then we will see the equivalent in the assembly here and we will figure out some
+differences in as we have seen into the integer computation versus a floating point operation.
+So what I am essentially doing here is I have this procedure which takes the temperature
+in Fahrenheit and converts it into let us say into the degree Celsius.
+So basically what I am doing here is taking the Fahrenheit temperature subtracting 32
+from it and then multiplying it by 5 and dividing it by the resultant value by dividing by 9
+and return this value as a Fahrenheit to degree Celsius converter.
+So let us assume that my Fahrenheit value is stored into the register F12 and you might
+see here that I am only using even registers basically to make sure that my code is compatible
+with single precision and double precision floating point numbers.
+So the same code can be used into either precision that we are using.
+So first thing I do is I already got my temperature in Fahrenheit F12 what I need to do is I need
+to load the value of constant 5.
+So basically what I am doing here is I am reading this value of constant 5 this is a
+mass notation otherwise what you can also use is constant sorry constant 5 and if you
+have the global pointer and if it was stored somewhere let us say these constants are stored
+somewhere into the with respect to the global pointer but for simplicity let us just avoid
+constant 5 if it represents has already been loaded into the memory at this level.
+So what I am doing is I am loading the value 5 into F16 then loading the value 9 because
+I am using LWC1 that is the load operation for floating point numbers it is going to
+load floating value 5.0 right and similarly here so instead of 5 it is going to load 5.0
+and 9 instead of integer 9 it is going to load 9.0 right.
+Now what I am doing is I am dividing in a single precision F16 by F12 that is 5 by 9
+so 5.9 divide by 9.0 divide by 9.0 and storing this value back into F16 and then I am loading
+the value of constant 32 into another register called F18 subtracting this value so I have
+32 now I am subtracting this 32 from 12 so basically F12 – F18 gives me Fahrenheit
+– 32 and storing this value into F18 finally I am multiplying into single precision F18
+and F16 and storing it value into F0 and then I am returning back.
+One thing you might have noticed here that the multiplication that we had done before
+was in the form multiplication between two operands or even division between two operands
+and no third label or destination was given in that scenario because in both cases the
+resultant let us say in case of the multiplication the value or in case of the dividend the quotient
+and the remainder were stored into high and low register.
+But in case of floating point we do not have quotient and remainder rather we have a floating
+point number which can directly be stored into a register that is why we see into the
+multiplication as well as division a third destination or destination that is a third
+operand which is unlike the integer operation. Now from floating point some people have come
+up with something saying that when you are dealing with floating point operation they
+are much slower because you need to do some sort of conversion take care of the exponents
+match the exponent when we are doing addition and so on and so forth.
+So rather than using floating point operation floating point numbers what if I can convert
+all my numbers into a fixed point representation where every number is multiplied by the same
+factor. So fixed point representation basically this arithmetic uses integer only and assumes
+every number has the same factor. So to give you an example let us say we have the factor
+of 1 over 1000 and the fixed point representation for different numbers changes out to be something
+like this.
+So 1.46 can be written as 1.460 divided by 1000 which you compute if you compute it is
+again going to be 1.460. 1.7198 can be written as 1720 divided by 1000 of course we are going
+to lose some precision here because assume let us say we have only 4 decimal digit to
+handle we can only handle 4 decimal digit.
+But anyways this could be a representation for this number same for this number so I
+can write it by 5624000 divided by 1000 which again is nothing but just a different representation.
+Now doing operation here if I want to add 14601720 is going to be easier because just
+one second something has happened I need to do oops okay is going to be easier because
+now I am only operating on to the integers.
+In the previous case if I was supposed to do 1.46 and add 1.71 I had to do some conversion
+check for the exponents etc etc which would take multiple cycles. Now I can simply add
+these 2 values and in one cycle I can get the output of my addition of course when storing
+these values I need to retain the actual notation that is I need to figure out where the decimal
+point or the binary point is.
+So it will take let us say one more cycle or let us say just fewer cycle as compared
+to before because here it was the same sequence of operation was done for every number and
+then every time I was dealing with I had to do some operation here I represented all the
+number in the form of integers I compute the outcome of the arithmetic and before storing
+just for the one time I need to convert from the and I need to weigh in the factor that
+I have been using here. So this way you save on cycle basically it increases your programming
+effort of course lowers your precision but it gives you a faster performance because
+we are lowering the number of cycle that we need to perform this operation.
+Final topic for this for this discussion would be sub word parallelism imagine we have like
+we have 32 bit register all the registers are in this range so if I am adding 2 numbers
+so 2 32 bit registers what I am essentially doing is I am doing the add operation on all
+these bits. So if I were to just add let us say decimal value 1 and a decimal value 2
+which is 1 0 and followed by 0 0 0 all the 32 bits on register 1 and register 2 are going
+to be operated upon but in real world these values might not be our values or the numbers
+that we are handling might not be 32 bit wide enough for example pixel value is just 1 byte
+or 8 bit long similarly audio samples are half word long. So in this scenario it does not make
+sense to use all the 32 bits all the 32 bits sorry all the 32 bits to do this operation.
+So what I can essentially do is I can divide my register if I have a register of 32 bit and
+my adder circuit is also let us say 32 bit I can divide my register and I ask my adder to operate
+on 8 bit at a time basically if I add let us say 2 32 bit register essentially what I am doing is
+I am adding these values let us say b and b prime c and c prime d and d prime.
+So 8 bit values here 8 bit value here here here so basically I have 4 addition happening in
+parallelism so I am doing sub word parallelism the only catch here is I need to design my
+circuitry such that if a carry is generated let us say by adding a to a prime does not
+get carried over into b or b this addition happening over here. So I need to partition
+the carry chain within the ALU so that I can convert similarly for 8 bit what I can also do
+I can convert the 16 bit register into 4 64 bit adder into 4 16 bit adders or 8 8 bit adders.
+Apart from the operation the sub word parallelism also offers me the flexibility to load multiple
+values in a single fetch operation and add instruction can perform multiple parallel addition
+which is what we call sub word parallelism. So load word when I am loading 32 bit when
+I loaded 32 bit I actually loaded 4 values all together here. With that we conclude the
+floating point operations floating point arithmetic we see into the next session with
+some more exciting topics and some interesting computations thank you so much.
+.

@@ -1,0 +1,54 @@
+Hello and welcome back, so in our discussion on key concepts in networking, the central
+concept here are the naming which says that what to call computers, services, protocol,
+resources etcetera.
+Then we have seen the layering part basically the abstraction which is helpful in managing
+the complexity, then we have the protocols which means speaking the same language in
+terms of syntax and semantics and then we have the resource allocation which means we
+have to divide the scarce resources among competing parties such as memory, link bandwidth,
+spectrum, paths, etcetera, etcetera.
+One of the important concept is the socket and the process communication which is basically
+an interface that the operating system provides to its networking subsystem.
+Imagine when your data was traversing from one host over the internet and reaches to
+the other host and let's say there are different application running onto this host, how would
+your operating system identify which application should this data be delivered to, there is
+application 1, 2, 3, 4, 5, etcetera, how would I identify the delivery of the data to a different
+application or a process which is basically an application in execution.
+So these socket or the port numbers in particular help us in identifying different layers or
+different applications where the data must be delivered.
+So as far as the receiving host is concerned which means the entire host or the computer,
+we identify that computer or host or server using its unique identification address such
+as the IP address, IPv4 address in this case which is 32-bit address for example 1.2.3.4
+whatever.
+As far as the receiving host is concerned, there could be different many processes running
+and we need to identify it using a unique port such as the port number which is a 16-bit
+number, such as port 80 on which your HTTP services run.
+So this port number basically helps the operating system identify which process I need to deliver
+data from or to or get the data from.
+So the other party can, when a response comes, the other party is sure to send the response
+back.
+So let's imagine if your system is let's say IPX, want to communicate with IPY, it
+selects to talk to port 80 onto the server.
+So the server knows if a request is coming on port 80, it means somebody is requesting
+an HTTP, making an HTTP request and when it sends a request, it also selects a random
+port let's say R.
+So the request was sent from IPX port R and it was sent to IPY port 80 and the response
+on the other side would become coming from Y port 80 and then it will go to destination
+will become X.R.
+So that when this response comes to this host using this X.IP, it will then use the port
+are to identify which application made this request and correspondingly the data will
+be delivered to that application which is always a random number.
+This is a standard port because we are requesting a standard service and the operating system
+when choosing a source port chooses a random port.
+Now another important concept is the uniform resource identifier.
+We want to identify different resources.
+How do we identify a resource onto the internet?
+Which is basically URI is a unique sequence of characters which can identify a logical
+as well as a physical resource used by the web.
+It can be real world objects as well or the information resources such as any web page
+or book and a generic syntax of this URI is shown to the below.
+The URI can be divided into U R N and U R L and we will see the difference in between
+U R L and U R N in a while.
+But the generic syntax of a URI is you first define the scheme which is basically the protocol.
+Then you have the full authority which consists of the host name, the port number and the
+user info typically.
+Then you have a path onto this machine, onto this computer is required a query and a fragment.

@@ -1,0 +1,48 @@
+Now, if you move to the switches, switches are we can say multi-port bridges, they are
+layered to devices just like the bridge and the switches are treated generally as a combination
+of a hub and a bridge. They can support a full duplex communication because every switch
+forms its own collision domain which means this port and this port and this port are
+independent of each other. So, if this device is talking to this switch, this device can
+also talk to this switch and this device can also talk to this switch. Of course, if this
+link is half-duplex, these links are half-duplex, let's say if these are half-duplex links such
+as there is only single coaxial cable, this communication cannot move as if two parties
+talking to each other at the same time only because the link is half-duplex. But if you
+have a full-duplex link such as your LAN cable with twisted pair cables like where two cables
+are used for input, two cables are used for output, they can work in full-duplex mode
+without having any problem. But let's assume that we have half-duplex link at the moment,
+so they have multiple collision domains, so two signals cannot travel at a given link
+at the same time in opposite direction. However, we can say that it saves bandwidth because
+we have now multiple collision domain instead of one collision domain over the device and
+thus we also can say because the switch knows delivering the packet based on the MAC address,
+it only delivers information to the destination host only and not to every other host unlike
+the repeaters and the hub. Now, these switches have the capability to do self-learning, so
+initially every switch has a MAC address table, so you have a column called MAC address and
+then you have the port number associated with it. Now, initially this MAC address table
+will be empty and let's assume that we have PC1, so PCA which has MAC address as shown
+here, then you have PCB which has a MAC address as shown here and then you have a PCC which
+has a MAC address as shown here. Now, in case let's assume that A starts to transmit data
+to C, now A wants to send some data to C, at this point what will happen that the switch
+will receive this frame and what it will do is it will learn that the packet has come
+from this MAC address because the packet was going from A, it arrived at switch and the
+switch can learn that the source was AAAA and it also knows which port it is connected
+to, so it knows that it is connected to port 1, so what it will do is it will make an entry
+in its MAC address table as shown here. At this point this switch does not know where
+is C, it does not know if it is here, if it is here or somewhere else, so what it will
+do at this point of time it will do a broadcast just like a hub, so that it will send this
+frame to every other port which has an active host or which has a host connected to it,
+so eventually it will be delivered to all the other hosts and C will accept this communication,
+this packet or this frame because it was destined to CCCC. Even at this point switch does not
+know which port C is connected to, it might be possible that later C will respond and
+in that case switch will learn that C host which has a MAC address like this is connected
+on my port 3, so this way it can learn where C is connected to it and eventually if any
+time B starts to do the communication whenever a frame will come from host B it will learn
+its location and this way it can build up its MAC table and identify where every host
+is connected or every MAC address is connected more precisely. So to summarize we can say
+that the bridges or the switches they do traffic isolation basically they can prevent every port
+and basically form a segment out of the LAN such that because frame are only forwarded to the
+necessary segment because they can learn over a period of time where a given MAC address or where
+a given host is, so they can forward the frame only to the necessary segment and this way segments
+can support separate transmission, so this segment can independently operate from the other segment.
+In the next couple of videos we will move towards the router and we will see how different routers
+operate, what are the different technologies involved into a operation of the routing or a router.
+Thank you so much.

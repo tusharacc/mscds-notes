@@ -1,0 +1,41 @@
+Welcome back to our discussion on routers. Now we are going to look at how longest prefix
+match is implemented in the routers using one the software and two the hardware. Now
+we will start with the software first. As far as the longest prefix match implementation
+is concerned we can implement it with the binary try and we can also use let's say
+Patricha tree but for in this discussion we are going to focus on the binary try version.
+So a binary try as the name suggests binary which means a node can at max has two nodes,
+two child nodes and a try is a binary is a prefix tree or we can say it is a search tree
+right which basically encodes your routing table and it helps us in finding the route
+quickly as possible. So what you see on your screen is a routing table which has a prefix
+such as 0 star or 0 a wild card 1 0 wild card 1 0 1 wild card and the router says take the
+port number a b or c. In order to convert this routing table into a corresponding binary tree
+we start at a root node and we say there are two possibilities we can go to 0 or 1 right which
+also means that we can only have the maximum two nodes here so 0 and 1 so if you take the
+root 0 and anything else comes you can terminate and say that this is the point where you need to
+take node a. As far as the other entries are concerned which says 1 0 so I say 1 I go here
+I do not have any other entry so what I need to do is I need to go to 1 0 and formulate b there
+the port b is going to be taken when we have 1 and 0 matching anything else comes I will still
+take b. However I can also have if I have a more specific route so I have 1 0 1 so I'm going to
+take 1 0 1 and I'm going to mark it as c and along the path I have also created the second
+child which is 1 in this case but this child is empty so anyways if I end up here I'm going
+to jump back to the parent node same thing here if I end up here I'm going to jump back to the
+parent node. So in case if I have a input that says 1 0 1 1 sorry what I'm going to look at is
+I will start at my root node I will go to 1 then I will go to 0 then I will go to 1 and then if
+I go further because I do not have any further nodes so I can terminate my search here and say
+the output is going to be c. Let's take another example if I had 1 0 0 0 so I will start at the
+root node I go to 1 0 0 I have a node here but I cannot go further for the third 0 here so I
+will terminate my query here and since there is no node exist here so I will go back to the parent
+node and I'm going to pick the output as output b. Now another example of this I mean just to
+give you a reference the tries are also used to implement your phone book search when you're on
+your mobile phone if you type let's say if I want to type my name so usually this is like this so
+what I have to press is 2 and then I think 6 and then whatever is a corresponding number right so
+we have a b c at 2 d e f is 3 g h i j k l m and so something like this 2 6 and 5 and then 4 and so
+so my match happens based on this data structure. Now what is the benefit of using a try is that the
+moment I hit or the moment I find a match or the moment I have a match from my input query I can
+have quick match let's say in o let's say o n whatever is the maximum hit possible and in in
+this case n because we are talking about ipv4 address so we can have up to 32 nodes to search
+into for an ipv address right so we have a lookup is very fast but the worst-case scenario can go
+up to 32 nodes in case of an ipv4 address right so in this example you see another tree which
+has another prefix encoded so 1 1 1 is a so we have 1 0 as b 1 0 1 0 as c and 1 0 1 0 1 as
+d here so if I have a prefix let's say slash 32 prefix or let's say more realistic slash
+30 prefix then in that case I have to keep on looking and go up to at maximum 32 nodes

@@ -1,0 +1,45 @@
+so I have three rules which I will list out for you basically I want to allow Bob's host
+so I want to allow everybody on Bob's host so if the source is Bob's network so this
+is Bob's network and if they want to communicate to me Alice's network inside Alice's network
+specific range not the entire range but the specific range this is something I want to
+allow right this is what I wanted to do when I said that Alice wants Bob's all the host
+in Bob's network to connect on a specific subnet on Alice's network what I also don't
+want to do is that I do not want Trudy's machine which is on this network so entire all the
+machines in this network 2 power 8 machines on this network whenever they want to connect
+to my entire network so this was a subnet but this is for entire network I do not want
+any communication to happen so I am denying this combination and for the rest of the word
+if anything else is there I just don't want any communication so Alice does not want any
+to outside and outside to inside that's why this special combination is written here and
+now the question is what should be the order of the rules if I follow this option number
+A what will happen is I am applying the first applying the third rule first that is this
+rule first and then the second then the first rule but if I apply rule number 3 first which
+says I do not allow anything to happen any communication which means any packet whatsoever
+where it was coming or going shall be denied which mean essentially this rule will simply
+stop any communication and the effect of this rule will not come into picture same thing
+will happen with this option because rule number 3 is applied to all the packets which
+means every packet will be dropped so this is also not a correct option the third option is
+what if I apply rule number 1 which means I am applying I am allowing Bob's machines onto
+Alice's designated computer and then I am denying everybody else but the problem here is when I
+said allow Bob's network which is 111.11 which also includes Trudy's machine which means I am
+allowing Trudy's machine to at least communicate onto this network by this rule so Trudy will be
+able to communicate onto this sub network but I actually wanted that Trudy should not be able
+to communicate at all so this rule is also incorrect with respect to our requirements so
+the only option is remaining is this one and that is a correct option because what I am doing at
+first I am denying or blocking Trudy's machine first so this is what I am doing first then I
+am allowing everybody else onto the Bob's network to communicate and then I am disallowing anybody
+else into the world by applying this precedence of the rule Trudy is blocked then everybody else
+on Bob's network is allowed and then finally anybody else other than these requirements shall
+be blocked right so this is the correct option your firewalls can be of different type and
+briefly we can say there are two types stateless and stateful firewalls stateless firewalls they
+act as if they do not remember anything which means they need to treat every packet independently
+and thus they will do an examination on every packet independently irrespective of which
+flow they belong to as far as the stateful firewall are concerned they remember the
+connection level information which means if somebody is making a connection to a server
+and this packet was allowed in that case the reverse action the reverse response shall be
+shall be processed in accordance to how the connection was allowed if there was a specific
+queue if there was anything else to be done before so the return traffic shall also be
+allowed in this simple example so if connection was allowed so outgoing packet shall also be
+allowed because the connection level information says allow this connection right so these are
+the two type of firewalls and we will look at different type of middle boxes in the subsequent
+videos where we will look at the middle such as middle boxes such as van accelerators load
+balancers net and etc etc thank you so much

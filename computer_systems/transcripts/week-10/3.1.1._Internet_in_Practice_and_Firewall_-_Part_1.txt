@@ -1,0 +1,62 @@
+Hello everyone, today we are going to talk about middle boxes.
+These devices are generally not seen to the end users, but they play a very important
+role.
+They also have some sort of objections which we are going to discuss in today's session.
+So if you look at the internet, it was ideally thought to be a simple network model where
+everybody, every device will have a unique and fixed IP address basically leading to
+a globally unique identifier and everyone will be reachable from everywhere else and
+from everyone.
+As far as the network is concerned, it was thought to be that the network nodes will
+simply forward the packet and they will not participate in modifying or filtering the
+packets.
+So this was the expectation from an ideal internet design.
+But what we see in practice is that we have the host mobility happening.
+So one host, let's say H1 connected to network 1 switches to some other network while it
+is stationary or while it is moving from one location to another location.
+So there could be different types of mobility happening from one network to another network.
+Let's say because this was LAN connection and then this was wireless connection and
+today's most commonly you see something like Wi-Fi 2.5, now Wi-Fi 5 GHz.
+So sometimes you change your network while an active connection is going on.
+So you are stationary, the host is stationary into the physical location, but it changes
+the network that it is connected to or it could also be that host was moving from one
+location, physically moving from one location to another location and the range of the network
+because of the range of the network it switches from one network to another network.
+So mobility is happening and host changing its address while it moves or remains stationary.
+Address IP address are also depleting.
+We have IPv4 where we have 32 power 32 roughly 4 billion addresses, but if you look at the
+population in today probably 7 billion across the globe.
+Everybody having at least two devices, so 14 billion devices on an average or a rough
+estimate of how many devices are there, but this is quite a low estimate.
+Everybody usually has a phone, a laptop, a TV, smart TV, smart fridge, your smart home
+devices etc etc.
+So everybody is having more than on an average five devices.
+Of course not everybody will have it, but even if half of the population have it then
+still it is much more than what IPv4 can handle.
+There are security concerns, there are replicated services in which we use load balancing and
+this is also something that we are going to look as part of the middle boxes.
+We have performance concerns and incremental deployment happens.
+You started your network or your organization with some certain up to date device in certain
+period of time, then eventually what will happen some devices will fail, so you need
+to replace some of these devices and these devices will be updated as compared to the
+previous and existing working hardware.
+So eventually over a period of time the network you have is going to have different type of
+technology deployed in a given scenario.
+So these all challenges are there and to handle the problems here what we have in practice
+is called middle boxes.
+These middle boxes they break the simple network model and basically we say they violate the
+concept of the layering.
+We usually generally do not have a reason for it, but they are also responsible for
+some certain problems into the network.
+Despite all these problems and all these concerns, middle boxes are a practical necessity because
+they help us in solving real or pressing problems and it is also quite possible that they are
+not likely to go away from the network and thus we are going to discuss middle boxes
+from now onwards.
+Middle boxes are the intermediary devices.
+They are interposed between communicating hosts and usually we do not even realize that
+there are some middle boxes working behind the scenes.
+These boxes they exist, the network administrator and the network people know about them, but
+the end user who are using the network are totally unaware of what is happening or if
+some middle box has been placed into their communication network.
+Some middle boxes they have something like address translators, firewalls, traffic shaper,
+intrusion detection, transparent proxy, application accelerators and etc.
+We are going to look at some of the very important middle boxes in the upcoming sessions.

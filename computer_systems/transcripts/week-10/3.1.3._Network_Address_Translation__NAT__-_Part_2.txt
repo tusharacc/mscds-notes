@@ -1,0 +1,60 @@
+Now a similar thing is a static versus dynamic system.
+In a static translation, what I am going to have is that my post-translation attributes
+of a packet are explicitly defined.
+And if this is the case, then such a translation is called a static translation.
+So I have some IP address, let's say IP1, which translates to another IP, IP2.
+Of course, the pre-translation attributes must be explicitly defined so you know what
+IP you need to translate.
+So this is always explicitly defined.
+If you define the post-translation attribute explicitly, this is called static setting.
+However, if it is defined by a translation device on the fly at runtime, then it is called
+a dynamic setting.
+The same also applies for IP and IP port.
+Now what we can do is, a static translation, as I already said, the post-translation attributes
+are explicitly defined.
+So in case of NAT, it will be IP and in case of PAT, it is going to be IP and port pair.
+So pre-translation IP slash IP port are permanently mapped to one IP, so this IP is permanently
+mapped to another IP or this IP port is permanently mapped to another IP port pair.
+Which means it is a one-to-one translation because one IP or one IP port can only appear
+as one IP or one IP port.
+This is your static translation.
+In your static translation, for example, here what we have is, we have a server which has
+an IP 82642 and an internal machine 10.1.1, 10.1.1.11.
+What I am trying to do is, I am sending a packet out.
+So I am using my source IP, source port, destination IP, destination port.
+When this packet reaches my NAT device and because it is a static translation and I am
+also looking at NAT, so I am only going to translate my IP field to my public IP here.
+Everything else remains the same.
+When the server receives this request and it processes something and sends a response,
+now the response will send back to my public IP which was 73.8.221.2211.
+Once my NAT device receives it, it is going to do a translation back.
+So now this 73.8.2.11 will be translated to 10.1.1.11 and forwarded to my designated host.
+It might be very useful if you made a careful observation that when I was sending the packet
+out, my source was translated and when the response came, the destination was translated.
+So if an outgoing port source was translated and if it was an incoming port, then it was
+the destination field and because we are doing a static translation, this IP is always going
+to appear as this IP no matter what direction of the connection and because it was a NAT,
+only IP address was touched and port number remained as is.
+The next combination is dynamic translation.
+Pre-translation is always explicitly defined.
+Post-translation attributes are selected by router when the packet arrives, which means
+the final translation, they are not permanently mapped to your pre-translation attribute,
+but of course the scope of the translation is defined by the administrator, which translates
+one IP can appear as many or many can appear as one in the translation.
+So let's look at an example, dynamic PAT.
+I am doing PAT, which means I am going to look at IP and port both and I am doing dynamic
+translation, which means my PAT device is going to look at what to do.
+So I have two machines now 11 and 12 and they both are talking to the same server and same
+port, only difference is they have chosen a different port number, which also can be
+the same.
+It's not a problem.
+Let's say this was 3333.
+Now my translation device is going to take these requests, they are going to convert
+these IP to my public IP and I only have one public IP, so they both are converted to the
+same public IP, but their port number was chosen differently.
+So the overall combination of IP and port, so IP and port becomes unique.
+So my server is able to identify there are two unique requests and it can process these
+requests differently or however it was requested.
+If we combine these terms, we are going to come up with four combinations, that is static
+NAT, static PAT, dynamic PAT and dynamic NAT.
+We are going to go through all these combinations in the upcoming videos, thank you.

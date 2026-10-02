@@ -1,0 +1,174 @@
+Hello everyone, so in the previous class we have discussed about MISP instruction set,
+we have seen how the data is organized into the memory by the compiler and we have also
+seen how the immediate operands work and now we are going to elaborate a bit more on the
+memory organization, very quickly we will see how actually the data or the program and its data
+is organized into the memory and then we will look at some more MISP instruction in today's
+session. So the first thing that we remember from the previous session is that we have a register,
+a register file which contains 32 registers where we store some information and in order
+to compute some operation or in order to perform some operation on to the value,
+so the processor has these registers and the processor takes value in order to,
+so loads the value from the memory to this register and then we save the values stored
+in this register back onto the memory, so basically from the previous session we remember that the
+variables and the values that we need to operate on are bought into the register file and then
+we operate on to this thing. So in particular how the memory itself is organized for a given
+program is what we are going to discuss into this session, so we remember from the previous
+session that the program has an access to a large amount of contiguous memory and that memory
+basically is called virtual memory and how the program views that memory is what this slide
+tells you. So the first thing that we have, so this contiguous region may should start from
+an address, so let us say this is the address 0 and it can go up to let us say 64 GB in the storage
+and in this memory region the first thing that we store is the program itself, so the first item
+that goes into the memory or organized into the memory is the program itself, the instruction for
+the program itself, so if the program has let us say 400 instructions and each instruction is 4
+byte long, so this text instruction region will occupy 600 bytes because we remember that every
+instruction is 32 bit in MISP architecture and that's why if there are 400 instruction we take
+4 byte per instruction and that gives us 1600 bytes. Now from this point onwards we can actually
+start to store our variables and use the memory, the program can use the memory for its intended
+purpose. So the first thing before anything else gets stored onto the memory is your global
+variable and this is what this global memory region is denoted here. So if you have a program
+let us say in main in a C program you have some global variable integer a, b and c and if they
+are defined even before the program itself the global variables these variables will go inside
+into this global region and to identify where this region starts we have a special register
+that is called global pointer which points to the starting of this global region. So in this case
+the global pointer will store a value 1600 because our code or the instruction part has taken 1600
+bytes and from 1600 onwards we can store our global variable and depending upon how much
+how many variables you have global variables you have the size of this region may change from
+program to program. Now after this point whatever the requirement the memory requirement of the
+program is occupied or is occupied into the region which is shown as green part here and I will come
+to in more details that if your program has local variables such as let us say integer x, y and z
+and so on those variables will go on to this green region where you see stack and the heap.
+So there are two things here one is the stack which appears to grow from top to bottom as
+indicated into the figure and then you have heap which is used to store dynamic data which goes
+from low to high which grows in the opposite direction of the stack. So your stack is basically
+used to store local variables and everything you think everything your program thinks is useful
+and this grows from high address to a low address. So you have a stack pointer and then this is stack
+pointer is basically decremented so this is stack pointer decremented because we have high address
+here and the low address here so the stack is decremented in order to reflect that the stack
+is growing and in order to reflect that the stack is shrinking which will be in this direction we
+will decrement we will actually increment the value so we will come back to this point again
+but just keep in mind that because we have the lower addresses here and higher addresses here
+and the stack grows in the direction from top to bottom as shown as per this figure so in order to
+grow the stack we decrement the stack pointer the stack pointer is indicated or basically the stack
+pointer where the stack pointer is saved into a special register called $SP and in order to
+increment we decrement this stack pointer register or incremented in order to shrink the stack.
+Now with this in mind let us see what goes into this green region of the memory so this
+was 0 and this is 64 gigabyte now whenever you whenever a procedure is invoked the procedure
+will allocate itself on to this green region green memory region and this procedure when it
+is loaded into this memory it is called as its activation record so if there is so if we only
+have main so the main procedure will be loaded here and it will store its local variable inside
+this region and if main calls some other procedure that will allocate itself on to the stack and
+store its local variables and then if another procedure is there it will further be stored
+on to the stack and it will create its own space store its local variable and other useful
+information and so on and so forth. Once one of these procedure concludes its execution and wants
+to return back to the caller procedure it deallocates the memory it has occupied on to
+this green region similarly if the second procedure so the procedure that we call from
+main has finished executing it will deallocate the memory on to the mem on deallocate its allocated
+memory and free up the stack so basically we were growing the stack when we were calling the
+procedures and now we are shrinking the stack when we are returning back to the caller procedure.
+Now the start and the end of a frame or the activation record is indicated by
+frame pointer and stack pointer so for this main program you will have some starting point
+on to the memory and the special register frame pointer stores the address from where
+this main function or main procedure is starting and the stack pointer points to the end of this
+activation record so basically this is the start of a procedure this indicates the start of the
+procedure and this indicates the end of the procedure and for every procedure that we invoke
+we must have the same convention so every procedure which is loaded on to the stack
+will have some starting point and some ending point and they are reflected into the frame
+pointer and the stack pointer and these two register actually store the value only for
+the active procedure so if you are if the control is executing if the program is executing into
+this region these register FP and SP are going to indicate the start in the end of the currently
+activated procedure or currently activated activation record of course we will come back
+to the fact what happens when we move from one procedure to another procedure or when we call
+one function to another function these values must be stored somewhere for the currently
+executing procedure and we will come to that point but just keep in mind that every frame
+or every every procedure when it is loaded allocated some space onto the stack it is
+called an activation record and it started and are indicated by the frame pointer one
+more thing is that sometimes your program need to allocate some memory on to the on to the stack
+at the runtime and such allocation for example malloc in C programming is used to place dynamically
+allocated data and that data is stored on to the stack and how this memory region or this address
+space is handled is really up to the programmer but dynamically allocated data goes on to this
+green region but in a special portion that is called the dynamic data or the heap with this is
+with this in mind we will we will come back to this memory organization but just keep in mind
+because we will need this idea when we will talk about these addresses and offsets now imagine we
+have a C code which says A equal to B plus C but this is something called let's say global variable
+so your program looks like this you have a main function and the main function has A equal to B
+plus C but these variables were global variables A comma B comma C something like this now in this
+case this is how your assembly code will look like so we want to do a simple operation that is
+A equal to B plus C and the first line that you see it says add immediate to global pointer
+immediate value of thousand so this line basically reflects that there might be I mean assuming that
+there were 215 instructions and each instruction was 4 byte long thus the program itself took
+thousand bytes on to the memory and this is what we are storing into the global pointer so we are
+storing 1000 immediate value adding it to 0 which gives you which basically gives you so 1000 plus
+0 gives you 1000 and we are storing this value into the global pointer if you remember from the
+previous slide this is where your code is so 1000 is actually reflecting where your global pointer
+is so this is what we are doing in the first line to point to the global region and to point
+where the global region starts we are we computed how many instructions were there what was the size
+and thus we pointed to the beginning of the global region now because we have three global
+variables and they appear in the sequence of A B and C so if your global pointer is here let's
+say GP is equals to 1000 the first four byte will be allocated to A so first four byte the
+next four byte will be allocated to so 0 to 4 4 to 8 and then 8 to 12 will be allocated to C so
+with reference to global pointer this global pointer register I can point to the location of
+A B and C which are the global variables in this case so in order to perform this operation what
+I am doing is I need to load the value of B and value of C so the second line what it does
+is that it gets the address or gets the position of B into the memory so it says from the global
+pointer if you go on an offset of 4 because 0 to 4 is A 4 to 8 is B and 8 to 12 is C because
+each one takes 4 bytes or 32 bits we need to load B which is 4 offset from the global pointer so
+from with the 4 offset to the global pointer load the value and store it into a register S2 so this
+way we have loaded the value of B the same thing we do for C as well so we load a value which is
+offset of which is at offset 8 from the global pointer so offset 8 from global pointer will be
+this is offset 4 this is offset 8 and from 8 to 12 is C so we are loading the value basically B
+here and C here and then what we do is we add these two value S2 and S3 and store the value the
+resultant value into S1 which basically is a register that is storing which is basically
+storing the sum of these two value and after which what I can do is that the value stored
+into register S1 I can move it to the position indicated by my global pointer which is basically
+my global pointer is at 1000 which is pointing to variable A so I can store this value into
+8 just by saving this value into global pointer right so this is how your single line of code
+with global variable is converted to multiple lines of assembly language now the next line
+of instruction is more of for the next example I will present here so it assumes that there
+is an array of 10 elements which is also a global variable and this is what this line does so what
+we have is we have an array which is D so it has 10 elements as D0, D1, D2, D3 and so on and so
+forth because it is a contiguous memory so D will be allocated 40 bytes right after C so
+starting from 12 then the first 4 byte will be for D0 then the next 4 byte will be for D1 then
+next 4 byte for D2 and so on and so forth so from with respect to the global pointer if I take an
+offset of 12 I get the value that points to D0 so in the in this instruction what I am doing here
+is I am immediately adding I am adding an immediate value of 12 to the global pointer GP that is 1000
+plus 12 and storing this value 1012 into a register S4 so this S4 now points to D0 that is what this
+last line does into this code now building upon this what we are doing here is that I want to
+convert this C code that is D3 equal to D2 plus A and from the previous slide we know that the
+value of A is at GP or currently it is in S1 if you want to use a register so basically I want
+to add the value stored into A into a value in D2 and I want to store the result into D3 so what
+I will do because A is already there into the register S1 I will load the value for D2 first
+so from the previous slide we know the organization is something like this D0 D1 D2 and this is at
+offset of 12 and this value is stored in S4 right from the previous slide we know GP offset of 12
+is stored into S4 so S4 indicates the position of D0 so rather than using this value what I
+am doing is if I take an offset of 0 to 4 4 to 8 so this is 0 this is 4 this is 8 from here to
+12 I have the value of D2 so if I take an offset of 8 from S4 I get the value of D2 so I want to
+load this value into a temporary register T0 so I bought this value here and then I add this
+value on T0 with the value of A that is stored in S1 as I mentioned before and I am adding this
+and I am storing the resultant value into T0 and because I want to save the outcome into D3 so what
+I do is I save the value stored in T0 at the position of D3 which is here that is 12 offset
+from S4 because this was S4 so this way you can use the global pointers I mean this example
+basically builds on the global pointer region for the purpose of converting your C code into
+assembly instructions now just a quick recap of how different number system or different
+numeric representation work I'll briefly go over this single slide so you have an idea just in
+case you do not have what these numbers are and how they are represented so decimal number system
+basically we have let us say here 35 on base 10 is basically says you take 10 to the power 0
+multiply by 5 then you take the next position that is 10 to the power 1 and multiply the
+positional value 3 so if you compute this value it comes out to be 30 plus 5 35 so this is how
+decimal number system works where you have 0 to 9 10 symbols or 10 digits if you want to call
+in a binary system there are only 2 symbols 0 and 1 or 2 digits if you want to call and
+if a number is given like this to you can convert it by doing 2 to the power 0 multiply by 1 2 to
+the power 1 multiply by 1 2 to the power 2 multiply by 0 2 to the power 3 4 2 to the power 5 and if
+you compute this value you will figure out what this number is right similarly for the hexadecimal
+notation which is a compact notation or a close cousin of the binary system where we have instead
+of 2 we have 16 symbols starting from 0 to so basically 16 symbols 0 to 15 if you want to call
+but actually implemented using 10 numeric digits and 6 alphabets so 0 to 9 represents
+0 to 9 basically and then 10 is represented with a 11 is represented with b c d e and f and this
+is how these conversion looks like so basically your decimal 0 in binary is 0 0 0 0 in hexadecimal
+you can write 0 0 or one thing is the nomenclature for writing the hexadecimal values so when you
+write 0 x this indicates that the following value is a hexadecimal value so if you see 0 x 23 or
+23 on the base hex what you need to do is use 16 as the value to convert this number so 16 to the
+power 0 times 3 16 to the power 1 times 2 which will give you basically 16 twos are 32 plus 3
+35 value 35 in decimal the same thing here so it is 32 this is 34 and this is 1 again 35 and this
+is 35 with that in mind we will continue in the next class and we will see in the next lecture
+we will see what are control instruction what are more on the miss instruction and
+how we can do more complicated programming with respect to this more complicated assembly
+programming thank you so much.

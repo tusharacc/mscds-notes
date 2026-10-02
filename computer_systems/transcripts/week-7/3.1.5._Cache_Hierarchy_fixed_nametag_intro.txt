@@ -1,0 +1,123 @@
+Okay, now let us move to another important component of the processors which is going
+to help us improve our performance and this is what also going to be dictating the performance
+of to the system which is a cache or in general the hierarchy of the cache.
+So basically we have this instruction memory stage, we have the decode and register read,
+we have the ALU unit, then we have the data memory unit and then we have the register
+write stage if you want to call it and in this particular lecture I am going to focus
+on this system here which is my instruction memory and the data memory because I need
+to do access on to the memory and if my memory is slow I am going to not enjoy the benefits
+of all the things I have done so far. So all the pipelining, all the bypassing,
+all the out of order execution is going to be wasted if my memory is basically not efficient.
+If I take huge number of cycle to access these memories and I have no way to optimize it,
+it is going to affect my, it is going to nullify all the things I have done so far.
+So basically caches is what we utilize to improve on to the access into the memory or
+basically you already know what a cache is. So you bring some instruction,
+we bring some data and keep it in the cache which is faster than the memory and basically
+helps us if the data is being revisited into the near future. So if you look at our the system,
+if our processor all the things that we have done, so this is my motherboard and this is my
+processor, all the things that I have done let us say this is the core, somehow this is the core
+of my system. So this is my one core system and where all these pipelining registers,
+all these things happen and then what I also have is that I have a unit which is called the
+DIMM basically dual inline memory module if I am not wrong. So DIMM is basically,
+so it is called I think the DIMM is dual inline, yes, dual inline memory module and this has
+multiple chips on to it because my processor could only have some certain limited memory
+because it has so many components, so many circuitries and my program might require more
+memory. So rather than accommodating it on to this remaining part of my processor,
+what I have done is I have purchased a dedicated unit, let us say I have devised a dedicated unit
+which only is optimized for the storage. So this is a high density, low cost unit and it
+has multiple modules, multiple circuitries that act as my memory modules. So basically what I
+am doing is if my DIMM is which is has a high density, high amount of space that I need to
+search into and it is because it is a low cost system, my access to this memory if I need to
+bring any data or send any data to this memory, it is going to be slower. So here I could have
+very limited space, here I could have a lot of space let us say 16 gigabyte but accessing
+this memory can take as high as 300 cycles. This is not only limited by the fact that I have a
+slower hardware or slower memory but it is also something to do with the bandwidth that I have
+between the processor and the DIMM. So what I do in order to further improve my performance is that
+I utilize the area that is remaining on to my processor and I use it to define the hierarchy
+of caches which I can utilize further to get faster access to the data that I want to utilize
+into my program. So here is your CPU and the CPU is basically going to talk to your registers
+and if your data is already present into the register, the CPU is going to utilize them and
+do some operations. You can think of the register themselves as a cache because everything you
+wanted for a given instruction is already into this register so that the instruction can proceed.
+So this is a cache where the data that you are going to utilize into the near future is made
+available to the CPU. So register is the closest you can think of as a cache where we need to put
+our data. Now if my data is not available of course I need to bring it from to the memory.
+So if my data is residing here I need to bring this data into my register and before I bring
+this data into the register what I also do is I need to put them into the caches so that I can
+further improvise my performance. So basically what is happening here the register is a very
+small storage and you just want to keep only those values which your instructions are going
+to utilize next. In the very near future whatever value for example into the next instruction needs
+let us say dollar 1 and dollar 2. So you are going let us say some values and you are going
+to put those value into dollar 1 and dollar 2. It is a very small storage space and the benefit
+of this hardware is that the access is very fast in just one cycle you can read the value into the
+register. But if that value is not available you are going to bring it from to the memory.
+Now in order to avoid every time I bring a value from the memory what I introduce is an
+hierarchy of caches. So basically if my data is not found into this register what I am going to
+do is I am going to look into my layer 1 cache which is bigger in size as compared to the register
+but of course it takes more cycles to access as compared to the register as well. And if that
+value is found I am just going to bring this value back into my register and I am going to utilize
+this thing. If it is not found I am going to go into layer 2 cache which is much bigger than my
+layer 1 or level 1 cache which is 2 megabyte in size but of course with more storage more
+storage available to store more area available to store data which also means more area to
+search into which means it will take much more cycle as compared to the register and the level
+1 caches. Until this point everything was happening on the chip. Now everything after
+this is going to go off the chip. Now if the data is not found in the level 2 cache as well
+now I am forced to go to the memory and my memory is a very big storage area let us say
+16 GB storage where I need to access this data and it is going to take up to 300 cycles.
+When I retrieve my data from the memory I am also going to store this value on my way to register
+into my different caches that I have. So I am going to store it into L1, L2 cache and I am
+ultimately going to write it into the register. It is also possible that your program needs much
+more data than what you have let us say if this space was 1 GB but your program requires
+more than 1 GB to execute. So what we do is whatever is unused whatever pages that we have
+unused we can swap them with my swap space into my disk let us say my hard disk let us say in
+this example which has much higher storage but it also takes millions of cycles to execute and
+basically it requires milliseconds of access time because it is a very slow hardware but you
+can still bring in and bring out your data from to the memory and utilize and keep into the memory
+whatever is the more useful information of useful data is. Of course this memory is volatile while
+this hard disk is more permanent into the nature so whatever is there remains there and once you
+plug out your system the memory whatever the content is there into the memory is going to
+be wiped off. Now this is a general idea of what how caches are but in the model system you have
+the cache levels are becoming deeper so you have L3 cache L4 cache more and more cache being
+available and similarly this off chip thing is also becoming deeper so you can have a SSD here
+a flash drive which can have a capacity between let us say between 1 GB and 1 TB let us say 512
+GB and the access time much better than much worse than memory but of course possibly much
+better than the disk so in the microseconds the access right. So this is a general introduction
+about how caches are now let us see what happens or what is the principle that these caches utilize
+to improve the performance because my performance is not only dependent on my processor but it also
+on dependent on the memory from which I bring in and bring out my data too. So the caches they
+utilize two principles one is the temporal locality which says that if you have used some
+data in recently you are likely to use that data again so this is the reason why I want my data
+when I am bringing it from to the memory what I am doing is I am storing it into the register
+because I am going to use it now but I am also storing it into different levels of caches because
+the idea is if you have used is just now possibly you are also going to use it into the near future.
+The second is the spatial locality which says if you have used some data recently you are likely
+to access its neighbor right. So if you have used some data let us say a temporal locality say you
+are going to use a again into the near future but the spatial locality says if you have used a it
+is likely that you are also going to use data a plus 1. So if I am loading some value let us say
+from a location here into some register here I am going to fetch 4 bytes of data because this
+instruction only requires can support 4 bytes of data in our in our system but in practice what
+will happen is my fetch which is going to take 30 300 cycles that I have discussed here rather
+than bringing just 4 byte of data let me just bring let us say either 32 or 64 bytes of data
+right. So instead of bringing just 4 byte I am also bringing more data in the same cycle as much
+as I can support so that my spatial locality following the principle of spatial locality
+if any of the those 4 any of those chunk of data is required to be used into the near future I
+already have I already have them available into the my caches right. Now let us take a look at an
+example of how caches improve the performance. So imagine if there was no cache hierarchy and
+the access time for every instruction was let us say 300 cycles so every instruction
+requires 300 cycle to execute but if I have let us say 32 kilobyte one cycle L1 cache that
+has a hit rate of 95% my average access time will improve in such a way. So for example imagine I
+have 100 instruction that I am going to execute 95% of the time I am going to execute those
+instruction in one cycle because my data is available into the cache and by cycle I mean how
+much time is required to access the data from the memory. So the cycle here does not necessarily
+mean execution of instruction but is basically on to the access time for the data. So 95% accuracy
+here 100 instruction 95 instruction are going to have their data in one cycle and the remaining
+one that is a 5 instruction are going to have one cycle for the access to the cache and there
+will be a miss and then 300 is 300 cycle to get the data from the disk or from the memory.
+So in this case it is going to be 95 plus 5 into 301 which is going to be because it is going to
+be 5015 plus 95 and this is going to be 1600 because 1505 and this and on an average it is
+going to give me 16 cycle. So that is how you got 16 cycles here down from 300 cycles on an
+average just because of the introduction of a level 1 cache into the system. With more caches
+possibility of having an improvement the possibility of improving the performance becomes more but we
+are also limited by the amount of space that we can accommodate to these caches because instead
+of putting more caches maybe you want to put more cores of the processor. So with that in mind we
+conclude this lecture on out of order execution and the memory. Thank you so much for watching.

@@ -1,0 +1,47 @@
+As far as uniform resource name are concerned, it is a type of URI which provides only a
+unique name without the means of locating or retrieving the information.
+A URN only identifies the item such as the ISBN of a book.
+An ISBN of a book is a unique name for that book or unique number for that book but it
+does not tell you where do you need to go to find this book.
+And book is typically a physical word object but it can also be in digital form.
+An ISBN is just a mechanism to identify a specific book by identify the name of a specific
+book but where we need to find it we do not know.
+Just by using ISBN you cannot locate a book whereas a URL is a type of URI which also
+provides a mean of locating, retrieving any resource of information.
+Basically it provides a method for finding the resource or the information onto the website,
+onto the internet.
+A URL consists of a top level domain as well as a second level domain and together top
+level domain and second level domain form the domain name.
+Then you can have a sub domain, a transfer protocol, a directory path and a file name
+or a specific resource file name with some extension and this part is case sensitive.
+So lowercaseinfo and info are not the same.
+They are two different directories, they can be two different directories if the operating
+system supports on which this computer is running.
+Now let me spend a few minutes to discuss the domain names.
+So a domain name which does not include any sub domain is known as the apex domain or
+the root domain or the bare domain such as wikipedia.org.
+So we have TLD, NSLD and that's it.
+This is called a root domain or apex domain.
+Now a sub domain here is used to logically organize or logically separate a website into
+different sections.
+Basically this is a directory onto your computer.
+Directories are physical folders on an actual computer but this sub domain is actually a
+part of a URL that can be used to find a specific folder on your computer.
+So wikipedia.org, this was a domain name assigned to a host, basically an IP address.
+Onto this IP address there could be different directories to organize the website and these
+directories become your sub domain.
+So as per the definition our sub domains they can be used to do the routing to any file
+or the folder on the server machine or the host machine here.
+So this sub domain is basically for now you can think of it only as a directory onto your
+server or your host.
+Now what if I want to run different websites, let's say one website here in the directory
+www but I also want to run my webmail.
+Let's say webmail.example.com.
+So now this webmail essentially exists on the same computer same as my host where this
+domain has been mapped to.
+So as per the definition a host cannot be a sub domain which means this www cannot be
+a host which means it cannot be a computer as per the definition.
+It can be a directory or it can be a name only and not a host.
+But in practice this webmail.example.com is not a computer webmail is not a computer here
+but instead it is a name which points or it is a resource by which we point to another
+computer which can be called something else as well.

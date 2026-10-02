@@ -1,0 +1,191 @@
+Hello and welcome again and into this session we are going to look at ah into close details
+how control instruction work into MISP architecture.
+In particular we are going to look at the instruction format and the branching that
+happens into this MISP architecture . So, the first thing is that so far we have been
+talking about the assembly instructions ah we have seen the high level language.
+So, see in example in our examples and then we converted it into the assembly ah instruction,
+but ultimately what is need to be provided to the hardware is the 32 bit number ah 32
+bit string of 0s and 1s because the hardware understands only 0s and 1s.
+So, in this particular ah discussion we are going to talk about how ah one assembly instruction
+or one type of assembly instruction or other type of assembly instructions are converted
+into a 32 bit number or one word and how they are represented into the ah from assembly
+to the machine language basically the low level language .
+So, we know that in the MISP architecture we deal with the 32 bit numbers that is one
+word all the time and every instruction or the all the instruction into this MISP architecture
+can be divided broadly into 2 categories that is one is the R type instruction basically
+which uses ah multiple registers that is in this example for example ADD as an operation
+uses 3 registers and another is I type of instruction something that we have seen with
+the immediate ah operations. So, coming to the R type instructions what
+we have here is an example of adding 2 register values and storing them into the third register
+value. So, we have S 1 and S 2 2 register value and we are adding them and storing it
+into ah a temporary register T 0. So, this instruction this assembly instruction
+is converted into a 32 bit string and the structure looks something like this. So, the
+first 6 bit here tells you what is the operation about. So, every operation can have its own
+encoding. So, 0 0 0 0 0 is an encoding for the opcode ADD. So, no other operation can
+take this value similarly subtraction can have its own opcode multiplication has its
+own opcode and so on and so forth. So, the first 6 bit tells to the computer to the hardware
+that what is the operation is about. Next you have 3 registers and for each register
+we use 5 bits. So, we have source 1 another source and then destination indicated by the
+first 5 next 5 and the following 5 bits. So, until this point. So, we have 6 bit for
+opcode 5 bit for a source 5 bit for another source and 5 bit for the destination register.
+Now, you must be wondering why we are only using 5 bits to represent the register because
+I think you already know that we have only 32 register into the register file and in
+order to represent 32 we only need 5 bits because 2 to the power 5 is 32. So, 5 bits
+are just sufficient to uniquely note to uniquely identify every register. So, this register
+tells which number of registers. So, basically this number register this number register
+where is this register. So, where is this value is as particular to identify a register
+on the register file. The last 6 bit here indicates the type of
+function we are doing. So, what it means is that it tells you the wrinkle on the operation.
+For example, we might be doing the add operation on to bytes on to 2 bytes or on to word or
+4 bytes basically. So, this particular 6 bits tells the machine what type of operation that
+we are doing. So, it depends on the opcode that we are dealing and it is mod of operation
+which these specific 6 bits identify and it is a predefined value. So, for in this example
+we are doing 1 byte operation. So, this code will tell the hardware that we are doing a
+particular type of operation as far as the add opcode is concerned.
+Now the remaining 5 bit tells you the shift amount. Some operations some opcode requires
+doing shift operations such as shift left logical and shift right logical and these
+operation we need to define the amount of shift that we want to do and to indicate the
+amount of shift we have these 5 bits that indicates how much you want to shift a value
+particularly. Now again there are only 5 bits used to identify the shift amount because
+again 2 to the power 5 is 32 and each value in our each register has a 32 bit value the
+maximum you can shift a given value to the left or to the right is 32 because after you
+shift a value 32 times on to the left or 32 times on to the right I mean one combination
+at a time all the values will be basically reset. So, after doing 32 bit if you do 32
+shift if you do 33rd shift does not make any sense. So, in order to identify the 32 shifts
+we have 5 bits here dedicated for the shift amount. So, in total we have 6 and 6 12 and
+5 4s are 20. So, 32 bit instruction. So, the most of the party will not need to change
+your assembly instruction into the into this machine machine friendly codes, but just to
+give you an idea how it is done the this this is how an add operation is converted into
+machine instruction. Similar to R type instruction we have another
+type of instruction called I type where we take let us say only a fewer register as compared
+to the R type instruction. In this example we take we can think of the immediate operation
+the immediate operands that we have dealt with or the load word in the same word operation
+are of this type of instruction. So, what we have here is the first 6 bit again tells
+you what is the opcode is it an load word save word or an immediate add like we did
+like add immediate in the in the previous classes. The next 5 bit identifies a register
+the next 5 bytes again identifies a register. So, this 5 byte identifies a source. So, source
+is T 0 in this example and then we have another register S 3 which is identified the next
+5 bits and the amount of shift that we want is indicated by this 16 bit constant. So,
+32 in this case will be encoded in the next 16 bits. So, opcode register 1 register 2
+and then you have the amount of the this shift in the load word that we are using similarly
+in the same word it will be the same format. For example, in the add immediate you have
+the register 1 let us say S 0 0 and the immediate value or constant. So, that constant is going
+to be represented by the 16 bit value here. So, this will be your opcode register 1 register
+2 and this constant value. Similarly, we have some logical operations. So, we have
+logical operation such as shift left shift right in miss it is called shift left logical
+shift right logical what do what do they do is basically imagine if you have a number
+32 bit value stored into a register let us say 1 0 1 which is number 5 in decimal and
+with leading 0s to make up the 32 bit number. If I shift this value to the left by 1 position
+this value becomes from 1 0 1 if I shift it to the left it becomes 1 0 1 0 because you
+are shifting. So, you need to fill some value and that value will be 0. If I shift it by
+1 position to the left it is equivalent to multiplying it by 2 because 1 0 1 is 5 and
+1 0 1 0 is 10. So, shifting the value by to the left by 1 position is equivalent to multiplying
+that value by 2. If I shift it one more time. So, it will become 1 0 0 and 0 which again
+will be 20 because this is 2 power 0 2 power 1 2 power 2 4 2 power 3 2 power 4 16. So,
+16 plus 4 equivalent to 20. So, 16 plus 4 equivalent to 20. So, shifting by 2 position
+on to the left is like multiplying by 2 to the power 2 and so on and so forth. Similarly,
+to the right is an important thing just like the shifting to the left and as you can intuitively
+guess it is equivalent to a division operation. So, if I move 1 0 1 0 0 just in this example
+to the right by 1 position the resultant value become 1 0 1 0 because this value will be
+discarded on to the right and this value from 20 to becomes 10 and then if I shift it one
+more time to the right it becomes 1 0 1 which is 5. So, it is like dividing the value shifting
+by 1 position is dividing the value by 2 or shifting 2 position is equivalent to dividing
+the value by 2 to the power 2 and so on and so forth. Then you have bit by bit and operation
+bit by bit or operation and bit by bit not operation also supported into the MIPS instruction set.
+Okay now the important thing is the control instructions. What are control instruction
+and why do we even need them? In our program we might want to jump from one point to another
+and back and forth in order to execute our program in a certain fashion. We do not always
+want to follow a sequential execution operation. What we want is that to have the capability to
+move from any point of the program to any other point inside that program. To get that functionality
+or to get that capability we have control instruction which controls the flow of the
+instruction and there are a variety of instruction that allows you to do that.
+We can broadly classify into two kinds one is the conditional branch and one is the other one is
+the unconditional branch. As their name suggests conditional branching is when you want to do the
+jump given a condition is satisfied. This is when you use a conditional branching. When you want to
+do an unconditional branch when you do not want to depend or rely on the outcome of a condition
+and you just want to do a branch you do an unconditional branching. If you come to the
+that is the conditional branch it basically says you want to jump to a particular instruction given
+a condition is satisfied. So you want to jump to a particular instruction into your program.
+So your program might have multiple instruction. Let us say you are executing here. If a condition
+is satisfied and if you want to go to this particular location, particular address or
+particular instruction you can say it by denoting it by a label. So at the assembly level you will
+denote this thing by saying that okay I want to go to a position and that position is indicated
+by this label and the assembler and the compiler will automatically identify and automatically
+convert this label into underlying 32 bit address when compiling this program and if
+the given condition is met your program will jump to that computed location by the compiler
+by the compiler and the assembler. So the first operation which allows you to do a conditional
+branch is branch on equal which says we want to jump let us say branch on equal s1 s2 and I want
+to have a label l1. So your program has some certain line of code and let us say this is
+where you want to jump and you identify this sequence of instructions by l1 label. So branch
+on equal says if the values into s1 and s2 are equal jump to the l1 label. So if you are if after
+executing these many instruction you come to this instruction into the assembly language assembly
+program assembly code of your program if the condition is met that is s1 and s2 are equal
+to each other the value inside of them then you will jump to l1 you will jump to l1 only
+if these two registers are equal. In case these register values are not equal you will not jump
+to l1 rather you will continue the execution of your assembly code from the next line.
+Similarly you have branch on not equal which does the opposite of what branch on equal does
+that is if s1 and s2 are not equal to each other in that case you jump onto the l1 label.
+And in this example the label value is a label given to a section of your assembly code. So what
+jump is actually doing if your program was executing this instruction all of the sudden
+you want to want it to jump to another instruction and this instruction is basically stored somewhere
+into this memory. So what you are instructing your code execution is that your execution should
+go to a particular memory or particular instruction. So going to an instruction is basically pointing
+to the location of that instruction. So the computation of this instruction is automatically
+handed by handled by the compiler and the assembler when they are converting these values
+because all these values are predefined we know where the label is so the compiler can
+compute these value on the when the compiler is when the when the code is being assembled.
+There is a third kind there is a third type which is called set on less than which itself
+is not a branching instruction but what it does is that it sets a value comparing two register value
+so s1 and s2 we set the value if s1 is less than s2 we set a value based on this computation and
+then based on that value we can compute whether we have to jump or not. So we can do branch on
+equal or branch not on equal based on the outcome of set on less than value. We will come to this
+set on less than in a bit an example in a bit. For now let us move to the unconditional branch.
+So the unconditional branching says you want to jump and you know where you want to jump so you
+know the address of the instruction or the label of the instruction beforehand where you want to
+jump and you do not want to wait for any condition to happen you just say I want to jump and you
+specify the label and in that case the program will continue its execution from the label L1.
+The other kind is when you do not really know where the actual location is. So imagine in
+your program you are doing some computation and based on the outcome of those computation
+because runtime values may differ at each run and based on the outcome at the runtime you want to
+jump to a particular location. So let us say you did some computation and the computation gave you
+an result and that result is stored into this register S0. In that case if you want to jump
+to that particular location which is being computed and stored into register S0 you say
+jump to the value that is stored in this register. So JR is basically jump on the register value S0.
+So these are the two kind of branching that we commonly see and now we are going to do a simple
+example so you have an idea how these jumps and branchings are used in practice. So here what we
+have is a code a simple code which says if I equal to J you compute the sum of G and H otherwise
+you compute the difference of G and H and this is how this code is converted into the assembly
+and I will go through two versions of the same thing and the first version says that you should
+do branch when the value in S3 and S4 are not equal to each other. So essentially what we are
+saying is so okay before we go so G is stored into register S1, H is stored into register S2 and F is
+stored the position of basically the location of S is stored into I mean we are using S0 for the
+for the variable F and I and H are being used in register S3 and S4. So what we are saying is first
+thing I am doing is if these two values are not equal if I and J so if I and J are not equal to
+each other you should go to this level which is else in my programming in my assembly code and
+what I am doing essentially there is subtracting H from G and then storing the result into F.
+So basically I am subtracting S so I am doing S1 – S2 and storing the value into S0 and this
+is what this else part is doing and on the other hand if they are equal to each other so when they
+are not equal to each other so I is not equal to J I am doing this instruction but when they
+are equal to each other which I am not explicitly specifying so basically if they are not equal you
+jump on this position on this label otherwise you continue to execute this version this code
+which essentially says some S1 and S2 and store the value into S0. So basically this is the line
+of code which corresponds to this value. Now if you look at carefully after we execute this line
+what we have to do is to jump to this position here similarly in else as well after executing
+this line we have to continue with the next point. So let us call this point an exit point
+in case of the positive in case of this instruction we must explicitly say that you have to jump on to
+the label exit because if you do not say we come to this point but in the case of the else instruction
+after executing this assembly code you naturally come back you defaultly you come to this point
+as default right this is one version when where we are using branch on not equal the same thing
+could be done with branch on equal so what I am doing right now so in the previous example what
+I did I first defined the negative clause that is when they are not equal you should go here so
+basically I worked on this portion first so negative equal when they are not equal and then
+I defined this value now in the second version I will do the equal one equal version first so
+what I do is if S3 and S4 are equal to each other then you should perform the add operation
+so this add operation is basically in this new version is written into this label and what I am
+doing is if they are not equal then you default to subtracting these two values which is indicated
+here so subtracting these two values after which you have to jump to the exit point so you jump to
+the exit point and if automatically defaults to the exit point so I am using branch on not equal
+and branch on equal two versions of the same code but it is up to you how you want to use them
+because it is a simple if condition with that in mind we will continue with some more example
+into the next video I would talk about another example of looping where we will see how we can
+convert a while loop using the conditions into the assembly code thank you so much

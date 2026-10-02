@@ -1,0 +1,43 @@
+So, in order to solve this problem, what we can do is, we can do a multi-bit representation
+over one node.
+Right?
+So, I can design my trie as in a way that every edge represents a couple of bits or
+more than a couple of bits depending upon the setting.
+So, I can have, in this scenario, so if I have 1 1 1, what I can do is, I can start
+here, 1 1 is here, and then I can have 1 0 and 1 1 both representing A. Right?
+Because this is a wild card don't care condition, so both 1 1 1 0, 1 1 1 1 correspond to A,
+so two nodes represent the same entry, and similarly we can have the other entries, like
+in this case 1 0 1 0 and 1 0 1 1, 1 0 1 0 1 0 or 1 0 1 0 1 1 B.
+Now as far as the hardware is concerned, what we can do is, we can, we utilize typically
+a content addressable memory.
+A content addressable memory, a very close anonymous would be a hashing scheme where
+you take some input value and you hash it and you get an output, let's say output value
+in O1 time.
+Right?
+So, a content addressable memory is also something similar which basically takes a tag as an
+input or an address as an input and it produces a value or in our case it is going to produce
+a port number for us.
+And we have an exact match and everything happens in O1 in time.
+Right?
+So, content address memory, content addressable memory is used to take an address and find
+a value correspondingly.
+In order to acclimatize this cam for a router implementation, we use a ternary content addressable
+memory where we have a third matching state other than 0 and 1, that is an X or a dot
+dot don't care condition.
+So, what we have is, let's say if a word is stored as 10xx0, it is going to match on all
+four word 10000 or 01 or 10 or 11 in this example.
+Now, let's take an example of implementing a LPM via TCAM.
+Let's say these are our prefixes and this is our TCAM format.
+So, we have 0 slash 0 which means we have don't care, don't care, don't care.
+We have 1 0 and only 2 bits are concerned, so we have 1 0 and everything else is a don't
+care.
+Then we have 1 1 1 and 3 bits are our network ID, so 1 1 1 and after which I have don't
+care.
+And then I have 1 0 1 prefixes, side prefixes 3, so we have 1 0 1 and then an X.
+The only thing you need to be careful here is, you need to sort your prefixes according
+to the prefix length.
+So, what I have done is, I have kept the most specific information on the top, so these
+two are going to remain on the top, so 1 0 1 X is the first entry.
+Then I have 1 1 1 X, then I have 1 0 X X and then I have X X X X here.
+So, the most specific entry or the longer entry is kept at the front on the top.
+.

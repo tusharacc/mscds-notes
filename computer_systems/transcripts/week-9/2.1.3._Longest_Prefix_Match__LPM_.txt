@@ -1,0 +1,53 @@
+Welcome back. Now, we are going to look at some examples of longest prefix match and
+continue our discussion on the routers. Let us suppose that we have an IP address given
+to us and this IP address is shown into this these binary form right. So, every octet so
+we have some value here and this value I have already represented into the binary form right
+usually your IP address is something like a dot b dot c dot 8 right so dot d. So, this
+is octet 1 octet 2 octet 3 octet 4 and I have simply converted this octet into binary for
+the sake of convenience and to keep the discussion short right. So, you have an IP address let
+us say this is an IP address and this IP address comes to your router and your router needs
+to figure out which port should I send it to should I send it to output port number 1 should
+I send it to output port number 2 or should I send it to output port number 3. Now, your router has
+longest prefix match as its finding as its destination identifying mechanism or the protocol by which it
+will use the mapping. Now, next what it will do is it will take this IP address and try to find
+as many match into bits exact match as possible. So, we see that 1 0 0 1 0 0 0 matches in all the
+three output ports. Similarly, the next octet is also common and is found in the next three
+entries as well. Now, next we move to the next bit so we say 0 which is available here here here
+0 0 which is also available here here here here here here and as well as this one so we also have
+this one matching at every point. As soon as I move to the next bit which is 0 I see that this
+value is 1 and this value is also 1 so these are two not my option but what I have is a 0 match
+here. So, in that case I am going to pick this path and I am going to send my packet because I
+have the longest match with the output port 1 right. Had it been instead of 0 had it been 1 so
+I am going to change the page where we have 1 here 1 there so had it been 1 there what could have
+been that we will find no match here so this was not matching with the 1 but we have two matches
+with 1 in the next two entries and if I go further enough so I will find another more specific route
+because I will find more matches so I am going to pick up output port number 2. So, every time
+what I want to do is I want to find as long of a match as possible and choose as specific root
+as possible from the destination or from the output port because with more number of bits
+matching what I am going to do what I am doing is essentially finding more specific or more
+detailed route right or we can also say if I could have found until this point a match until
+this point I would have the possibility of only these many bits for host ID result so 2 power 4
+host possible so more specific route means less number of host right more specific route less
+number of hosts now let's look at another example where we have this IP address where we need to
+find a match onto these two points so we have 192 168 20 191 and we have two possible entries
+in your prefix table which is 192 168 20 and dot 16 and 0 and 0 so of course from these number
+you can already say this is 192 168 192 168 192 168 so we already have two octets matching now
+anyways you can also see that 20 is the more specific path and we can actually use it directly
+to come along this path but the operation actually happens into the binary and I will
+demonstrate that when I convert this IP addresses and prefixes I find a match of course these two
+octets were already matching so with respect to 0 we I also am able to find a match until 0 0 0
+but after that point I have 1 0 1 0 0 matching only which is anyways clear because it is 20
+and it is also 20 so we already have a more specific match as compared to this value right
+but anyways you should always convert to binary and compare right now in the next example we have
+68 211 6 and 120 and we see that we have 68 211 at least in the four entries and possibly this is
+not going to be a match but just to be sure we are going to convert everything into the binary
+and this way we see that the first octet matches across all the possible entries 211 so the moment
+we move from 1 1 0 1 so 1 1 0 1 0 0 we have a match until this point but the moment we see this
+one we do not have a match here so we avoid this path we can avoid this entry and we continue with
+the remaining entries so anyways we have this 1 1 1 1 1 1 1 1 here next what I am going to pick
+is the next bit in my IP in question which is 0 and we have a 1 here so this is a no this is 1
+this is a no this is 1 this is also a no but I have 0 which is a match so out of these matches
+this is more specific but if I look at more IP address more bits I will find even more specific
+path so I can say I have to pick this option anyways it would have been concluded at this
+point but just to continue our discussion we will do we have done as long as of a match
+as possible and the longest match terminates here and the output is going to be 1 thank you so much

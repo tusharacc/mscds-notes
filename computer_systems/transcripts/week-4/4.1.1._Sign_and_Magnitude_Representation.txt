@@ -1,0 +1,110 @@
+Ok, welcome back. So, until so far we have only discussed the integer values and in real
+world there are ah many values that we use are not integers for example, there are rational
+numbers that we need to represent into our ah into our ah use cases in applications.
+So, floating point is what we are going to discuss now because they are used to represent
+a wide range of real numbers ah and rational numbers also in in this ah in our in our computer
+world. So, floating point numbers as I have if I can give you an example like 3.5 times 10 to the
+power 9 is a is nothing but I can write it as 3 is because it is a decimal number. So, it I can write
+it 3 into 10 to the power 0 plus 5 times 10 to the power minus 1 and this whole summation times 10
+to the power 9 and this value is represented here in this scenario is presented in normalised
+scientific notation which says there can be only single non-zero digit to the left of the decimal
+point in case of decimal numbers and to the left of binary point in case of in case of a binary
+number. So, if you just take another example for a binary ah floating point which is shown here it
+is nothing but 1 times. So, this value 1 times 2 to the power 0 plus this value 0 times 2 to the
+power minus 1, 1 times 2 to the power minus 2, 0 times 2 to the power minus 3, 4, 5 and 1 times 3,
+4, 5, 1 times 2 to the power minus 6 and this whole summation is multiplied by 2 to the power
+minus 5. So, when we are dealing with this kind of notation in floating point some different
+computers or some different architecture can follow a different convention of representing
+floating numbers. In order to make sure a standard notation is used across different
+processor across different systems IEEE 754 standard defines how floating point numbers
+should be represented into the system and the benefit of doing this is that when you write a
+program into one architecture one system it should be reproducible into another system.
+If they use the same notation there will not be any confusion into how the numbers are represented
+this will simplify and this will actually be helpful to run programs across different systems.
+Now, what we use is sign and a magnitude representation basically we have a 32 bit
+ah register and out of the 32 bit register values the first bit is used as a sign of
+that particular floating point number. If you remember when we were dealing with integers we
+said this kind of this kind of sign and magnitude representation is not convenient for integers.
+However, in case of the floating point number we find that this representation helps us and
+simplifies the computation as compared to the integers where we use 2's complement as for the
+representation right. So, the first bit here is a sign bit which says if the number is shown is
+positive or negative then we have an exponent which is represented by 8 bits and a fraction
+value 23 bits right and one thing I forgot to mention in the previous slide is that this is
+again the normalized scientific notation which says you have only one value to the left of the
+binary decimal in this scenario right. So, if I take the same example again so,
+this was 1.01001 times 2 to the power minus 5 this is the example and I want to represent it
+into sign and magnitude representation. So, as I said what I can use is 1 bit for the sign the
+next 8 bit for the exponent and the 23 bits for the fraction. Now, the assumption here is that
+this value 1 is always going to be present there. I will come to the other use cases the end cases
+where this value might not be 1, but for now let us continue with our discussion that this
+value is always going to be 1 on to the left of the binary decimal point. So, because this is
+always going to be 1 we do not really need to show this value or need to store this value into
+the register. So, we can say 1 position. So, what I need to do is just store this fraction
+values here right. So, this whole fraction value gets stored into the fraction 23 bits. So, 0100.
+So, 01001 and followed by a bunch of 0s in the fraction field. Now, in the exponent field I have
+8 bits which means I can go from 0 all the way up to 255 to represent this exponent field. However,
+these are all positive values. So, what I want to do is I want to show the larger values as well as
+the smaller values. So, I can instead divide this range or rather change this range from 255 at the
+max to 128 to the max and from 0 to the minimum to 127 in minimum. So, basically this value or
+this range can be used to show values exponent values from 127 to 128 right. So, basically more
+exponent bits means. So, this field can be extended further like instead of 8 bits can
+we use 10 bits and so on and so forth. But before I come to that essentially my assumption
+is that we are only using normalized numbers. We are guaranteed that the number will be in
+the form of 1.xxxx and hence in IEEE 754 standard the 1 is implicit. So, the register value is read
+as –1 to the power the sign bit then times 1 plus f because 1 is always implicit. So,
+1 plus whatever fraction I wrote in my fraction fields times 2 to the power e the value stored
+here. Now, if the value is positive this s bit is going to be 0. So, this value becomes a positive
+value 1 if the value was negative. So, this value must have been 1. So, this will be –1 when I put
+1 here it becomes –1 to the power positive 1 which is –1. So, basically this is used for
+the sign value, but anyways the remaining field can be used to represent the numbers.
+Now, the question is instead of 8 bits what if I used 10 bits what was the gain for me in that
+scenario. So, having more bits let us say more exponent bits instead of 8 bits if I had used 10
+bits I would have a wider range of the numbers which is not necessarily more numbers than I what
+I was actually required to do. There are of course infinite numbers of real infinite real numbers,
+but by using 8 versus 10 bits what I can say when I was using 8 bits the smallest number I
+could have shown the smallest exponent I could have shown was 2 to the power –127 and the
+largest number I could have shown was 2 to the power 128. So, in this field in this range which
+is already a wider range I only have to show 2 to the power 32 numbers because my registers
+are only 32 bit in size. So, I can only show 2 to the power 32 numbers which will fit well
+within into this range. If I move from 8 bit to 10 bits what I am going to do is I am going to go
+from 2 to the power –511 to 2 to the power 512 and somewhere in between this wider range I would
+have the same 2 to the power 32 numbers, but just spread a bit apart from each other because when
+I used 8 bit from 8 to 10 bit I took some value from here which means I had some loss of fraction
+some loss of precision. So, these value might have spreaded a little bit, but the overall
+representation of these values remains the same. So, IEEE 754 for some say the so they
+realize that okay fine this is what we need to do. So, they chose 8 bit to represent an exponent.
+So, this is just the beginning of the representation sign in magnitude representation for floating
+point we will add more layers of complexity and more use case and scenarios how things
+are built up in this in this arithmetic floating point arithmetic. So, if I want to represent the
+largest number in this representation and the smallest number we can start with the simple
+exercise and then we will come to the actual computations. So, what I am going to show here
+is not the real answer, but it is good to go through this exercise so that we can build up
+up on the concepts. So, if I want to show the largest number what I really need to do in my
+754 format that I need to have 1 plus all the fraction bit to be set to 0 which is eventually
+going to be very close to 1 times 2 to the power the maximum value I can put here right which is
+2 to the power 128 and if I want to if I were to represent the smallest value so all the fraction
+field because 1 is always there and all the fraction bit becomes 0 times 2 to the power
+the smallest value my exponent can take which is 127. So, this is the range this is the smallest
+and the largest number that we can you that we can represent into this system which is of course
+we will refine more and we will see what is the real range, but this was just for the building
+the concept here right. So, this is also I have kind of shown here 2 times 2 to the power 128
+which in decimal becomes which is in 10 to the power becomes something like this and the smallest
+number is 1 times 2 to the power minus 127 which turns out to be this number right. So,
+if you want to use notation like gigabytes and all like gi not g right if my arithmetic for some
+reason goes beyond this number let us say when I was adding 2 numbers or multiplying 2 numbers
+goes beyond this range this is a scenario where I call that an overflow has occurred which is
+basically I want to represent a number larger than the maximum possible that I can show with
+this representation. Conversely, I can have an underflow when I am doing an operation which
+results in a number which is smaller than this value I encounter an underflow because I came
+about to a number which is a smaller than the minimum possible value that I can represent
+into this system. In order to work with those values imagine if you want to work with values
+which you believe are going to give you a result more than these values what we use is called a
+double precision format which basically double precision says instead of using one register
+what we are going to use is 232 bit register and again 1 bit is going to be the sign bit now
+instead of 8 I am going to use 11 bits for exponent and a much higher precision with
+52 bits instead of 23 bits here. So, we use 2 register 32 bit 32 bit and basically essentially
+using 64 bit and 64 bits are an age in this manner. So, the maximum number I can basically
+go here is the maximum range for this exponent could be 2 to the power 1024 in this scenario.
+So, in the next video we are going to look at how exponent representation actually works and
+we will go into the more details of exponent representation and the limitation and some
+special cases. Thank you.

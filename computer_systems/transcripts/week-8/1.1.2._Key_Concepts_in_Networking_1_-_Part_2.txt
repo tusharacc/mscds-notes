@@ -1,0 +1,38 @@
+Now as far as the application is concerned in this layering in this protocol abstraction
+as far as the application is concerned application talks using a language or a protocol in this
+example I have taken the example of in this case I have taken the example of HTTP so basically
+my application is talking HTTP language and what it does is I it just makes a request and it is
+only expecting a response to come back so basically the application is only worried about one thing
+that I make a request then I should get a response back and that's all how this happens is not a
+concern for this application at this moment because what we said in the beginning that every layer
+makes use of the services below and provides application or provide services to the layers
+above so the application layer which sits on the top is making use of all the layers below to ensure
+that the request it has placed goes through and a response be it a valid response or let's say some
+error comes back to it so in this request what this application is only doing it's saying that
+okay look I want to bring some resource which is hosted on this location and the exact part to the
+resource is this so I want to get www.cs.xyz.hu slash path to resource HTTP 1.1 I am running an
+agent which is Mozilla 5.0 and this CRLF signifies the end-of-line marker which is basically a
+carriage return line feed which is sort of a end-of-line marker so this basically signifies
+that the request ends here and in the response from the server on the other end comes as HTTP
+1.1 200 okay which means the resource is found and I'm sending you back on this date and time
+I'm running this server this was modified last on this date and time and the length of the content
+is this so this part is the header part same as here this is the header part and the end of the
+header is identified by CRLF and since the length of the content is 23 it is expecting
+23 characters into the response so if you count this is 4 this is 5 this is 4 5 6 7 8 9 10 11 12
+and if you also add two white spaces which comes out to be 12 plus 2 14 and 9 23 right so the
+application was only concerned about making a request and observing or receiving a response
+so through the abstraction what happened below was hidden from this application layer and that's
+what the purpose of abstraction or the layering is now when I made a request using get dot HTML
+dot index dot HTML my application created some information let's say a message and the message
+was passed on to the layer below in this layer which says I want this layer handles apps to app
+channel this app this layer put on some identifier or put on some header is specific to this layer
+to identify the application on the other side or here it is written as the connection ID
+similarly the same encapsulated information has been passed on to the host to host connectivity
+layer which again adds its own headers so that it can ensure host to host connectivity basically
+identify this source and destination and then it was passed on to the further down layer which
+adds its own header again to do to deliver the packet on to deliver the information on to the
+other side or the server in this case when the server receives this information the link address
+or the link hardware strips down its corresponding header and passes on the remaining part to the
+above layer the above layer strips downs header related to it and the same thing happens further
+more and finally the end or the application on the other side application layer on to the other
+side receives the message which was originally sent by the application on the user side

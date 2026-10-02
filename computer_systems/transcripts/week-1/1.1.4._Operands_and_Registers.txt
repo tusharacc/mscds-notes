@@ -1,0 +1,82 @@
+So, in the previous video we have seen and did some operations and did some operation
+at the assembly level and we were also looking at register when we are going to look at into
+more detail what memory is, how your processor operates on data and what it means to say
+a variable in a high level programming language and how your computer fetches its value and
+evaluates some operations in this particular slide.
+So, basically if you say in a high level programming language that you have defined a variable
+in that scenario we will say that a variable is basically a location into the memory where
+you store the value of the variable.
+So, you have basically you have a processor and then you have a memory.
+So, this is your processor and this is your memory which could be a much larger space
+for example, 8 gigabyte as compared to what we have here.
+So, you may have a register file 32 different registers or maybe less and your processor
+works with just these storage unit of course, the processor needs to get the value from
+the memory fetch them operate upon them and store them back on to the memory.
+So, this memory is a larger space as compared to the memory that we have on to the processor.
+So, if I write an operation something like add a, b, c your processor or these in order
+to execute this instruction we need to fetch these operands from the memory wherever they
+are stored maybe they are stored somewhere let us say in this particular location.
+So, your processor needs to identify and bring the value stored into these variable into
+this register here operate on to them store them let us say in a temporary register or
+any register let us say and put it back into the memory.
+This is what your processor is operating is this is how your processor is operating.
+So, basically we can say that the memory the processor the space in which the processor
+actually operates actually performs operation is very limited space you can think of it
+as a scratch pad you do some operations and you put it back on to the memory.
+So, as mentioned here in hardware each memory access is expensive
+because you need to fetch a value find a empty location into your register file or
+even replace some values into your register file and if a variable a is accessed repetitively
+it helps to bring the variable on to the chip on to the scratch pad.
+So, because you do not want to keep on putting and fetching it over and over again.
+The number of operands the variables in a SOE program can be very large,
+but the number of operands in an assembly language is fixed.
+So, there can be only so many registers so there is a limited space and we need to work
+with this limitation. In the MISP instruction set architecture we have 32 registers while in
+x86 architecture there are only 8 registers. So, why not more why not less maybe because
+when you have more register you have more operating cost more energy is required to
+maintain those registers and so on. And with less number of registers it could be a problem
+that you have to keep on fetching and putting the information back on to the memory.
+So, there is a trade off and basically design basically depending upon which architecture
+you are putting is utilizing defines the number of registers that you need.
+But anyways each register is a 32 bit
+wide location. So, your register can store a 32 bit value and the modern systems they can store
+much higher value such as 64 bits they can operate on 64 bit values directly or they can also handle
+64 bit memory location. So, for the sake of our lecture we will consider that our system is 32
+bit wide. So, you have a register which is 32 bit wide and it actually stores an address a value
+or let us say an address on to the memory. So, it points to a memory into the points to an address
+or location into the memory from where you need to either fetch or store the value.
+With a 32 bit system we can have approximately 4 billion such
+locations that is 2 to the power 32 roughly comes out to be 4 billion 4.29 something. So,
+how did we come up with this number? So, we have 2 power 32. So, 2 power 10 2 power 10 2 power 10
+2 power 2. So, this is 1 k 1 k 1 k and 4 and this is going to give you 1
+gig and this is 4. So, 4 gig location. So, this is 4 billion or 4 gig locations
+that this 32 bit system can handle. So, if every location handles or denotes 4 byte then
+32 bit architecture in this scenario is going to 4 byte times 4 billion locations which is 16 GB
+of memory that it can support. But if each memory location is denoting only 1 byte in that case this
+32 bit system can handle 4 GB of memory. Of course, the modern architecture they are they
+have much higher memory than 16 GBs. So, 32 bit architecture cannot take full advantage when
+full advantage of the memory because it cannot handle the addressing of a memory which is more
+than 16 gigabyte. Of course, there might be some way but in a simple setting it is just
+something that the 32 bit system cannot do. So, a 32 bit entity or the 4 bytes is referred
+to as 1 word. So, this is 1 word and to make your code more readable the registers are partitioned
+and some registers are called like S 0 to S 7 when you want to use or when you want to operate
+with the C variables or the Java variables. There could be also temporary variables such
+as T 0 and T 9 when you want to do some temporary operation. So, the operation that I wrote before
+add a comma b comma c actually turns out that we store the value of b and c into some registers
+because they are variable. So, S 1 and S 2 and then put the value into another register S 0.
+So, if we like I just said. So, your values must be first from the memory before the operation can
+the instruction can operate upon them. So, what we want to do is we want to load the word from
+the memory onto the register. So, what we are doing is we want to load the word into a temporary
+register from a memory address. So, if you know where this memory where the variable is on upon
+which you want to operate you need to load it into a register load the word into register by
+giving them the location of that operand and once you are done with that you want to store
+the value stored into this temporary register or any register and give where you want to save it
+onto the memory give the location where you want to save it. Of course, we have not defined how
+memory address is determined which we will cover in the some binary stuff. So, a simple thing
+probably already know, but just to give you a give an idea. So, 8 bits or 8 bits denoted with
+the lowercase b is equivalent to 1 byte 1 b with upper case b and 1 word is equivalent to 32 bits
+which is 4 bytes 1 kilobyte is 1024 bytes or to power 10 bytes. Similarly, 1 megabyte is 1024,
+1024 bytes or 2 power 20 bytes and 1 gigabyte is 2 power 30 bytes. So, 1024, 1024, 1024 bytes. So,
+a 32 bit memory address can refer to a number between 0 and 2 power 32 minus 1 and it can
+identify it identifies a byte in a 4 GB memory if the memory is 4 GB it is going to identify
+1 byte every address that we have. Thank you.

@@ -1,0 +1,160 @@
+Hello everyone and welcome back to this session where we are going to look further into details
+about pipelining hazards.
+So, we have seen and designed a five stage pipeline in the previous lectures and in this
+session we are going to go inside the details of data hazard and control hazard in particular.
+As we discussed already before the structural hazard is relatively easier to handle just
+by adding up more hardware.
+So, the focus of this session would be on the data and the control hazards.
+So, just as a recap in the previous sessions we have covered this five stage pipeline where
+an instruction comes into the pipeline for execution.
+So, basically this comes with the help of the PC and if an instruction comes in the
+pipeline it goes through the instruction memory phase first.
+So, it takes one cycle to do this stage then we go through and after we fetch this instruction
+from the instruction memory we go to the next stage which says we have to do the register
+read stage and we discuss that we will assume that the register read and the register write
+would only take half of the cycle.
+So, writing happening in the first half, reading happening in the second half.
+So, this is just an assumption we have made.
+So, just a recall and after we have fetched the operands as well as the instruction we
+go towards the next stage which is going to happen at the beginning of the next cycle
+that is cycle three and we go into the ALU where we feed it with the register operands
+as well as the instruction itself opcode itself.
+So, this ALU will produce and do some computation logical or arithmetic produces an output and
+this output goes to the data memory stage in the cycle four and then it can go to the
+register write stage in the cycle five depending upon the instructions or most of the instruction
+goes.
+phase except for the store word where we said that ends over the cycle number four.
+So, if you want to imagine this pipeline what we did not discuss in the previous session
+is that this might seem like that you have multiple hardware units which is basically
+operating rather I would suggest think of it as a pipeline where an instruction comes
+from the one end and goes out of the other end same instruction, but it goes to different
+stages right.
+So, this can be IM phase this can be register read phase this can be your ALU phase then
+DM stage and the register write stage.
+So, you have fixed hardware fixed stages through which each instruction goes through right.
+If you imagine if that is a pipeline and that is the reason the name pipeline the instruction
+comes from one end passes through all the stages and goes upon the successful execution
+goes out of the other end of the pipe and you can think of multiple instruction coming
+one after other.
+So, I 1 enters it goes through IM stage then it moves to the next stage.
+So, basically if I 1 was here I 2 was waiting outside when I 1 moved to the IRR stage R
+2 I 2 also moved to the next stage that is on IM stage and then it move further when
+instruction 1 was at ALU stage instruction 2 was at RR stage and instruction 3 could
+enter and execute over the IM stage.
+So, this is what we are actually showing.
+So, when I 1 is here I 2 could be here and I 3 could be executing its IM stage.
+So, that with this recap we are going to go through the pipelining and the hazards
+that we will encounter through different examples and different constraints.
+Just a recap in the structural hazard we said that different instruction in their different
+stages might be conflicting for the same resource right.
+For example, if we have instruction memory instruction memory and the data memory cache
+oops implemented into the same hardware it might be difficult or it might lead to conflict.
+So, it would be better to separate IM and the DM stage and facilitate with multiple
+read and at least one write port right.
+So, this way we you just need to have more hardware to resolve this structural hazards
+while in the data hazard an instruction cannot continue because a value that was that it
+is supposed to use is not being yet produced by an earlier instruction.
+So, basically an instruction was already executing another instruction came into the pipeline,
+but it has been waiting for I 1 in this example to finish.
+So, that it can consume the data of I 1 and in the control hazard as you might remember
+that in cycle 2 we said it takes one cycle to figure out which branch you were to jump.
+For example, in branching or let us say jump instruction you were to jump on in branch,
+but the decision comes out only after the end of the cycle 2.
+By the time another instruction has been fetched and has processed this IM stage, but depending
+upon the output of this cycle 2 that is the previous instruction our actual execution
+might differ.
+So, that is the reason why we say the control hazard takes the direction takes the execution
+of the program depending upon the outcome of the branching and thus we cannot thus
+because it does not know because it the instruction cannot continue further I mean you can do,
+but in case of failure this will be of no useful outcome.
+So, this was the control hazard and we will begin with the data hazard in this session
+first and before we begin let us think let us set up some definition.
+So, imagine you have instruction 1 which goes through all the 5 stages into the pipeline.
+So, you have your IM stage, register read stage, ALU stage, DM stage and your register
+write stage and then it produces some output let us say it is been written on register
+3 and we know this register write stage will take the first half of the 5th cycle because
+this is the 5th cycle and this instruction is going to produce the value of R 3 into
+this first half of the 5th cycle.
+So, this instruction I 1 can be denoted as the producer of a value in R 3.
+Now, imagine if there is another instruction I 2 which consumes this value basically utilizes
+this value for its execution in that case it needs the value from R 3 and it will consume
+this value that is why it is called the consumer of this value and we know that in order to
+consume this value this instruction needs to read this value and that can happen as
+early as the second half, so the second half of the register read phase.
+But of course, until this value is produced in the 5th cycle this I 2 cannot proceed its
+execution which means if I start my I 2 here like as in the case of the pipeline the earliest
+this I 2 can finish or this I 2 can completes its read operation is when this R R this register
+read stage is aligned on to the 5th cycle and the read can happen in the second half
+of the 5th cycle.
+So, everything in between might get stalled, so this stages might not produce anything
+while this instruction was waiting for this value to be produced.
+So, let us look at an example where we have no bypassing means every instruction will
+be executed one after the other and no bypassing means that in order for an instruction to
+consume a value it needs to use the values directly from the register, so a producer
+will produce some value and a consumer will only read that value from the produced register
+right, until the value is written into the register, so until the value has been written
+into the register next instruction cannot consume that value which is also logical because
+until you write into a register other instruction cannot read that value into the register.
+But of course, we will see another example of no bypassing in the next example where
+we can do something more to optimize our execution, so let us imagine this example let us consider
+this example where instruction 1 is doing R 1 plus R 2 and producing this value producing
+this and storing this sum into R 3 then you have I 2 which is instruction 2 consuming
+the value of R 3 you see here and R 4 which is independent of the previous values in producing
+a value of R 5, so basically I 2 has some data dependence on I 1 while I 3 is independent
+of all these both of these instruction because it is reading from R 7 and R 8 and none of
+these values were being either consumed or produced by I 1 and I 2, so in this example
+what will happen is first of all we have made clear that we are following a no bypassing
+scheme, so instruction 1 in the cycle 1 will execute its instruction phase instruction
+fetch stage in the cycle 2 it is going to go through a decode and register read stage
+and so far we have not discussed about the decode phase but we have discussed the register
+read phase, so for now we will consider that it is going to go through a register read
+stage and instruction 1 is going to read the value of R 1 and R 2 in this stage and
+these values are going to be used in the next cycle on the ALU to produce a value on R 3
+after which it is going to go to the next stage that is the data memory stage and the
+right stage, so this is the point where R 3 is going to be written let us say the first
+half of R 3 first half of the cycle 5 is where R 3 is going to be produced.
+Now if in the second cycle instruction 2 started to execute it will go into IF phase then it
+will go into the decode and register read stage and the decode stage is smart enough
+to realize that I R 3 which is coming from I 1 is not yet ready which means it cannot
+proceed further until this value has been produced by I 1, so because of this data dependence
+this instruction is going to remain into the same stage, so it will not produce to proceed
+to the next stage and rather it will move it will stay it will stay in the DR phase
+in cycle 4 and in cycle 4 it will try to read the value again and because the value is not
+yet ready it will continue to stay in this stage.
+So the decoder will be smart enough to realize that R 3 is not available, so it is going
+to say okay let me try one more cycle and I will try to read the value of R 3 into the
+next cycle, so in the next cycle the second half of the fifth cycle is when I 2 can perform
+its read operation and because of this successful read operation on R 3 and it R 4 was already
+available of course it could have already read this value here, so R 3 and R 4 are ready
+for instruction 2, so it can move to its ALU stage, so it will move to the ALU stage then
+it will move to the DM stage because it will produce a value that need to be let us say
+in case it was written to be data memory stage and then it will go to the register write
+stage which is where R 5 will be written.
+Now because of this dependency on the data we have seen that no useful work was get done
+into cycle 6 and cycle 7, so we got a stall cycle or a bubble into this into these 2 cycles
+because it is natural because I 2 was stuck into DR phase for 3 cycles rather it would
+have taken only 1 cycle, so 3 minus 1 is equals to 2 cycle stalls were there in this scenario.
+Now if you look at R 3 or sorry I 3, I 3 will come on cycle 3 and then it will complete
+its instruction phase instruction fetch into cycle 3 and then it wants to move to cycle
+to DR phase in cycle 4 but that would not be sufficient that would not be possible because
+instructions 2 is still sitting onto the DR stage, basically it is occupying the DR stage
+or DR resources onto the processor, so instruction 3 has to wait for DR stage to become available,
+so this is an in order execution where 1 instruction has to wait for another instruction to finish
+so that it can move towards the next stage of the pipeline.
+So there is no space and since there is no space into the pipeline I 3 cannot push forward,
+so it is going to continue to remain into I 3 phase, so sorry IF phase until it becomes
+until the DR phase becomes empty, so I 3 is going to remain into IF phase until cycle
+5 and once DR is available it will move in cycle 6 to DR phase then it will move to ALU
+then it will move to DM and then it will move to out of the pipeline into the register right
+phase and then out of the pipeline.
+So because of this data dependency we see 2 cycles were not utilized at all and we see
+2 stall cycles here and if we look at the best case scenario cycle per instruction basically
+if everything was in order and after the pipeline would have been warmed up properly it should
+have taken 1 cycle per instruction but in this case we have 2 cycles over 3 instruction,
+so it comes out to be roughly 1.66 cycles to execute every instruction assuming this
+number is coming after the pipeline has been warmed up totally.
+So because of this data dependence our execution cycle per instruction has increased and without
+bypassing we have seen that there is increase in the CPI.
+In the next video we are going to look at what happens or what is the idea of bypassing
+and how can it help us in improving the execution the overall execution of the pipeline, thank
+you so much.

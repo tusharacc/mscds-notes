@@ -1,0 +1,147 @@
+Hello and welcome back and in this particular short video we are going to look at how procedures
+are called and what happens on to the memory when one procedure calls to another procedure,
+how do we return from the callee procedures to the caller procedure and so on and so forth.
+So in this video we are going to talk about in bit more detail how the control flow shifts
+from one point to another point when one procedure calls another procedure. So we
+remember from the previous session that our memory has something like a contiguous region
+where we store our code first thing then we store our global values then we have our heap
+that grows from low address to high address and then we have our stack from high address
+to the lower address. So this is how we already know that our memory is. Now imagine we know
+that whenever so in this particular stack we are going to talk about this stack in this video so
+in this stack whenever a procedure is called this procedure makes room for itself on to the
+stack and then stores its local variable local values and so on and so forth. So imagine if
+there is a procedure A and this procedure whenever it is called it is going to allocate some space
+for itself onto the memory stack and this stack will grow downwards. Now if procedure A calls
+let us say procedure B then this procedure B is going to be allocated onto the stack again and
+this is stack is going to be used for procedure B. We also know from the previous session that
+every frame every activation record will have a frame pointer indicated or stored into the
+special registers frame pointer and the end by a stack pointer. So at this point it will be here
+and it will be here whenever procedure A calls procedure B it needs to make room for itself so
+what it will do is actually update the frame pointers and increment so sorry decrement the
+frame pointer decrement the stack pointer to grow the stack. So basically it is growing the stack
+in this direction and if procedure C is again comes so it will again decrement the stack pointer
+to make space for itself and for whatever variable it has. So if there are one integer here one integer
+here one integer here all these local variables are going to be stored here into their respective
+position so every procedure will have a dedicated space into the stack so that it can access its
+local variable and whatever it thinks is useful for it and when these procedure returns like
+come back to their go back to their caller procedures what they do is they deallocate
+the memory this is something that we have already discussed right so this is the thing we have
+already discussed. Now coming to the details of this thing now when a procedure calls another
+procedure we are saying that first thing a procedure is called along with some arguments
+and those arguments are stored into registers called argument register A1, A2, A0 and A3.
+So we pass on these arguments so that the callee procedure can have access to these
+values. So if A is calling B, A becomes the caller procedure and B becomes the callee
+okay how can I there is something wrong
+one second okay yes so B becomes the callee function now when A is calling B so the caller
+is calling a callee then the caller wants to pass on some arguments that it wants B
+to have access to and the way we do it is through argument register so caller will save
+these arguments into this argument register and the callee function can access these arguments
+through these registers. Similarly if B wants to return a value upon
+returning to its caller let us say it wants to return some value x it needs to store them
+onto special register V0 and V1 so that after the execution is of procedure B terminates
+which means everything that was allocated to B terminates onto the memory deallocated
+onto the memory A can still have access to these return value right so the return values
+are saved onto these register so that the caller function the original caller function
+can have access to these values right so we have talked about the arguments so we pass
+arguments we argument register and we return some values via V0 and V1 register special
+V1 and V0 register right because the reason is when I call one function to another function
+whatever I have into the memory region as a procedure it is not accessible it is in
+practice or it is expected that the other procedure cannot access so the procedure P
+which relies into this region after the memory should not have access to what my content
+or what my data is right so basically we must find a way a common point where we can save
+some values and pass on these values from one function to another function so argument
+register A1, A2, A3 and A0 are the register that holds the arguments that the caller function
+wants the callee to have similarly when we are returning because B can only write into
+this particular region and A does not have access to this region B wants to return the
+value so again it writes to a register so that A upon returning upon taking back the
+execution can read this value from this register onto the register file when I said that when
+returning from one function to the caller function the only thing that the returning
+function has to do is to actually increment the stack pointer or move the stack pointer
+upwards basically because the stack grows in this direction now when we are shrinking the stack we
+just have to move the stack pointer back to the upper position so this is higher address this is
+low address when we expand the stack we actually decrement keep on decrementing this stack pointer
+because this is high address so 100 and let us say 96, 90 to 88 and so on so we are decrementing
+when we want to grow the stack and when we are coming back or shrinking the stack we increment
+so when you are shrinking the stack that is your returning back you increment the stack
+pointer because when incrementing it will go in this direction now there is one more important
+thing that imagine and basically how the calling function how the procedures are called from A to
+B is something that we haven't talked about right now and this is what we will discuss now so imagine
+procedure A wants to call procedure B and this calling is implemented using a special instruction
+called jump and link and when I want to do jump and link from procedure A so procedure A is
+executing somewhere and procedure B let us say is sitting here if I want to call procedure B from
+procedure A I will do an instruction called jump and link and I will specify where you have to jump
+so imagine that is a label called B start and here this is where your procedure is sitting in
+this label and you have some code so when I jump and link from A to this label the code will move
+to the execution will move to this label and continue to execute here now one important thing
+is when the execution of B finishes the procedure B finishes we must return back to wherever A was
+executing but where do I return is a question because this procedure can be called from A B C
+or some other procedure and B does not really know where actually the call came before I discuss on
+to what and where and how we figure out let us imagine and let us consider something called
+program counter so the program counter is a special register or special point or special storage which
+basically not register special storage which basically indicates where your program is currently
+executing so imagine if this is 760 this instruction is basically located onto the memory on 760 then
+program counter will point to this location saying that we are executing this particular
+instruction now the next instruction will be at 764 because every instruction is 4 byte and so on
+and so forth when I am calling when I am jumping and linking from procedure A I know after executing
+this instruction I must return back and execute the next instruction that is 764 so what I do
+before I hand over the control to procedure B I store the next value that is 764 into a special
+register return address so before I hand over my control to procedure B I will store the return
+address into a special register called RA and if this B start is basically let us say executing on
+1064 when jump and link executes it basically changes the value of PC to 1064 so saves the
+value of return address into return address register changes the program counter basically
+where we are executing where should we execute or where should we move to execution of the program
+is 1064 so if this is 1064 memory so PC will be updated to 1064 so that the program can continue
+its execution from 1064 and when the execution finishes I return back and the return address
+I can retrieve from the return address register this way once I know where I have to return back
+so I can return it like instead of return I should say jump on return jump on the address
+is specified in the register RA so this is how your return will be implemented so this way your
+program execution will come back to wherever your procedure A was supposed to execute after
+this jump instruction so program counter will be then updated with the value of RA so that it can
+continue to execute from the next line what we what was expected right so just a summary of what
+I just mentioned here that when each procedure a function or a subroutine it maintains a scratch
+pad of the register value so the register values whenever you are inside a function it has access
+to register values and when you call another function and when basically when another procedure
+is called the new procedure takes over this is scratch pad so the new procedure can override
+the values into the register because it has the control so the values that you want to save as
+a caller you must save them before so that you can safely return to the caller so in this example
+in the previous example we just looked at where I should come back so when I should when I return
+from B to A what is the next line of instruction I should execute and that we did using a register
+address so RA is what we used so a couple of more things like parameter arguments are placed where
+the callee can see them so $A0, A1, A2, A3 are the registers through which we allow callee to see
+the arguments the control is transferred to the callee using jump and link and at this point the
+callee main creates a space for itself so basically it updates the frame pointer register and the stack
+pointer register because it needs to grow the stack also indicate where is the beginning of the
+frame and I think if I haven't already told you the frame pointer is basically the start of the
+frame start of the procedure and stack pointer is the end the current end of the of the procedure
+after this the procedure executes and it places the results where the caller can access it so
+basically in register value V0 and V1 and then the control is returned back to the caller by
+jumping on return dumping on the register value indicated by RA now there are 32 registers into
+the MISP system and here is the list of all the registers so register 0 is the special register
+0 which always stores the constant value 0 register 1 is a special register which is never
+accessible to anybody except for the assembler itself so it's as an assembly language programmer
+you will never use this special register 1 but other than that all the other registers are
+accessible to the programmer so you can use V0 and V1 to return the value of a procedure A0 to
+A3 the next four arguments the next four register for inputting the argument to a procedure then
+you can use the temporary register values and the variable temporary registers and the variable
+registers so T0 to T9 for temporary value and S0 to S7 so 10 registers for temporary values and
+8 registers for something more valuable I will come back to that then you have a global pointer
+which points to your global region stack pointer points to the top of the stack or top of the
+procedure or end of the procedure frame pointer indicates the initiation of the activation process
+activation record so basically for your activation record you have the start and end indicated by
+frame pointer and a stack pointer finally you have the return address register which stores
+where you need to return back after executing the current procedure as far as this temporary
+and the variable registers are concerned in a simple way you can think of you store something
+some values into this register if those values are of no use to you in future for example you
+use them for a temporary purpose and you may not use them into the future you store them into
+basically if some other procedure takes over and overrides these values you do not care so the
+caller does not care if these register values can get overwritten by some procedure however
+if you use some register to store values which are valuable to you you generally use and store
+them into variable registers S0 to S7 and before making a call from caller to callee you would
+want to store them somewhere so that you can restore them upon returning of the execution so
+either the caller does it by itself and it should be the way or a callee can also do it but you
+should not expect a callee to respect all these S0 to S7 so basically we will see two examples
+I will demonstrate you how callee can actually honor this requirement but generally it is a
+caller function who stores the more valuable values or variables into a S0 to S7 and then
+want to store them onto the memory before handing over to the control to some other
+callee procedure with that I thank you and in the next class we will see some more examples
+of to these execution thank you.

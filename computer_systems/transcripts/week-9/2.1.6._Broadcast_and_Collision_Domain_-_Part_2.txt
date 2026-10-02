@@ -1,0 +1,60 @@
+Now, if we look at the idea of collision, what we can say is that today we have the
+from the coaxial cable, we have moved to our RJ45 cables and where we have twisted pairs
+and we have 4 twisted pairs where we have 2 for in or 2 for receiving and 2 for output
+or sending. Today the LAN cable we can actually do a full-duplex communication and because
+we can do full-duplex communication, we will not have any collision at all, which means
+we can simply disable the CSMS CD protocol and we do not need to worry about the collision
+domain. But we are still worrying about the collision domain because it is quite possible
+that the switch which we are talking about is connected to a hub and because of this
+the switch interface to the hub will become half-duplex and we will need a CSMS CD to
+be enabled and which can lead to the collision. It is also possible that you have your defective
+network card and this defective network card is causing interference or is causing some
+scrambling onto the communication and thus we need to worry about the collision domain
+when we are designing the network. But to summarize we can say that the switch is a
+collision domain separator and each switch interface works as a separate collision domain.
+Now if you look at the router, these routers they break or separate the collision domain
+as well as the broadcast domain because a broadcast from one network does not necessarily
+can reach to another network. Of course it also depends on what type of broadcast that
+we are talking about. We have two types of broadcasts, one is a local broadcast where
+we say the packet destination IP is going to be 255, 255, 255 and 255 which means any
+host within a network sending this packet with this destination is going to reach to
+every other host within this network and when this packet reaches to the router, the router
+is going to drop it, the router is going to respond but it is going to drop it from crossing
+the LAN area. However we also have a direct broadcast address which we call DBA and the
+DBA is basically the address when your host ID in your IP address are all set to one.
+For example if your network is let's say slash 24, let's say 192.168.1.0 slash 24,
+if I make all the bits one here, so 192.168.1.255 is going to be my direct broadcast address
+for that network. Of course this IP address, let's say this is the network which has this
+kind of IP address. This router is unaware of what configuration is there, let's say
+there is another router here and this router is unaware about the configuration of N2.
+In that case it will assume that this is very perfectly a simple IP address, could be a
+single address as well. Remember that having a 255 at the end does not necessarily mean
+that it is a broadcast address. It can be a perfectly valid IP address for one host.
+So what it is going to do is it can possibly allow one of the hosts inside N1 to send this
+packet to N2. Of course R2 will realize that this is a directed broadcast address to this
+network and it is eventually going to drop that packet otherwise and because it is also
+a security risk to allow directed broadcast address, so your router is always going to
+prevent anything coming from outside world from going inside as far as the DBA is concerned.
+But that's why we said the routers, the broadcast message does not reach from one to another
+network because local broadcast does not anyways goes through and DBA goes through but the
+receiving router is going to drop it. Now in this example what we can do is we have,
+let's count the collision domain and the broadcast domain. So we have because we have a switch
+here so this is going to be collision domain. This is going to be a collision domain and
+this is also going to be a collision domain. Same thing here this is a collision domain,
+this is a collision domain, this is a collision domain and as far as the broadcast domain
+is concerned any broadcast on the left side of the router is going to remain on the left
+side and any broadcasting from the right side is going to be the right side. So we have
+6 collision domains and 2 broadcast domains in this particular example.
+Now if you look at the modern network we can have the wired network or the wireless network.
+So wired networks they use switch to reduce or eliminate the collisions and if we have
+half duplex link each switch port will become its own collision domain as we already discussed
+before but if we have the full duplex link then the possibility of the collision is eliminated
+entirely but we only care about it when we have hubs or repeaters in the picture.
+But if you talk about the gigabit ethernet or even faster connections there do not exist
+any hubs or repeater because every device needs to be in full duplex and in those cases
+we can ignore to consider the collision domains.
+But if you look at the wireless network such as your wifi which are operating at the same
+shared medium they are going to have their collision domain for example if we are transmitting
+at the same frequency then it is going to create some problem so we still have to worry
+about the collision domain and that's the reason we discussed these topics into detail.
+Thank you so much.

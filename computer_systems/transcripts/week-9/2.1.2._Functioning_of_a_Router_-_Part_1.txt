@@ -1,0 +1,50 @@
+Hello everyone, in this short video we are going to go over the functioning of a router
+which is a layer 3 device and we commonly use in our homes, in our offices and at various
+places to get the connectivity to the internet.
+So a router is a layer 3 device which routes the traffic between different networks.
+So this works at layer 3 which is the networking layer.
+So different networks connect to each other.
+And usually your router has fewer WAN ports and let's say it can have some LAN ports.
+But usually the WAN ports are fewer because typically you only have one ISP, so one connection
+in your WAN port.
+So if at home possibly you have a router, if you look carefully at the back of your
+you will find that there is one WAN port which is coloured as blue port typically and you
+have multiple LAN ports coloured typically as yellow ports.
+Because we need multiple LAN ports on the internal network while we only can have one
+ISP providing our network, so we only have one WAN port.
+So we say that usually it has fewer ports as compared to a switch where multiple LAN
+ports exist, let's say 8, 16 or something more than that.
+Each router has its own forwarding table which basically maps the destination address to
+the outgoing interface.
+And this is a typical setup of your home network, we do not usually see this switch because
+your router at home possibly has a switch built inside of itself.
+So what we only see is we have a host or we can have multiple hosts, H1, H2, H3 and so
+on and all these hosts are connected to your router which can be typically as a wireless
+router.
+Now the basic operation of a router is it receives a packet from inside or from outside
+network, it receives a packet, what it needs to do is to identify where this packet needs
+to go.
+So what this router does is it looks at the header of the packet and based on the information
+available into the header, it is going to look in the forwarding table to determine
+the output interface.
+So it extracts the information, relevant information from the header, looks into its address table
+and it needs to update the header if required, generally it decreases the time to live or
+updates the checksum etc etc and then puts it into the queue so that this packet can
+be sent to a particular output interface.
+So if it is coming from outside, outside word to internal word, so it will be something
+like this, so LAN 1 LAN 2 LAN 3 LAN 4 or if a packet is coming from the internal network,
+it has to send it to your WAN port outside.
+Either way it is going to queue this packet and this packet is going to an appropriate
+port.
+Now if we were to design a router, there are two different things which are the key or
+the decisive factor when we are designing a router.
+First thing is how do we place and what should be the behaviour of the lookup tables?
+Should I place a centralised table?
+Can I use a centralised table to store all the relevant information?
+Should I make a table specific to every line card that we have on our router device?
+And how should these LAN cards connect to each other?
+Should we have a common shared bus where everybody can access at a time such as in CSMA or CSMA
+CD setting but would that be beneficial for our high speed operation or should we apply
+some other sort of communication or some other sort of connection which is basically designing
+a specific switching fabric?
+So we are going to look at these details into more details.

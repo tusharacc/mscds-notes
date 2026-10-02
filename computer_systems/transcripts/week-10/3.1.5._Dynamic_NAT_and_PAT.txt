@@ -1,0 +1,61 @@
+Let's move to the dynamic version of PAT and NET and let's start with dynamic PAT first
+which means the post-translation attributes shall be selected by the router on the fly.
+This is the most common type of address translation and it is used mostly let's say in your home
+Wi-Fi router.
+So this is your router or any router, it has one public IP address, one IP address from
+your ISP and you have multiple machines connected onto the internal site.
+You can have your laptop, desktop, TV, fridge, whatever, watch, anything else, they all share
+one public IP address and this is what we do in this setting and this is where dynamic
+PAT is used.
+Let's see what dynamic PAT is going to look like.
+Now the idea here is the packet flow is in the outbound traffic which means client are
+going to use private IP address just like before we had.
+The only difference is that our rules is now you need to dynamic PAT the internal IP range
+which is your 10.6.6.0 slash 24 which means the entire network to your public IP address
+32.8.2.66.
+So if machine A wants to communicate to let's say destination is this machine so this is
+where A wants to communicate, this is 6 which means this is where B wants to communicate
+and this is also where C wants to communicate.
+So these three internal machines wants to talk to two outside machines.
+What will happen is whenever these requests are going to come we are going to look at
+their IP and port both.
+So we have an IP port here, a unique IP port here combination, a unique combination of
+IP port here.
+So what I am going to do is I am going to give them all the same IP address because
+I only have one public IP address but a different port number so 777788889999.
+This way whenever these requests go to these machines they will go out as a unique request
+and the benefit is whenever the response will come back we know which specific machine the
+request is coming back to us.
+So if the request is going to come back like here and if it is coming on same IP address
+with just IP address we cannot distinguish but with the combination of IP and port we
+can figure out that 8888 was assigned to host B, 9999 was assigned to host C and 7777 was
+assigned to host A.
+So this way the outside traffic which or the response that comes back to us we can actually
+cater back to the original requestor.
+Now the question is should we really need to re-randomize the source port?
+What if we did not re-randomize the source port in the same example?
+So in this example B and C are using 3333 as their source port and if we did not re-randomize
+these ports what might have happened is the request might go out as two identical requests
+because as far as the IP port are concerned and we are not re-randomizing which means
+these two requests are going to become identical to each other.
+So when the response will come back it is going to come back on the same IP port pair
+and at this point the translation device will not be able to identify to which destination
+this response is going back to.
+So we need to re-randomize the source port and we can also do something like we can re-randomize
+the source port for all the connections or we can also choose when there is a duplicate
+entry into my translation table.
+But rather than checking making a check here I would rather prefer to do a randomization
+for all the connections because this takes away the overhead of checking for duplicates
+into my translation table.
+Now the side effect of this dynamic path is that it is unidirectional which means if a
+response is coming back from the outside world it can only be catered as long as there is
+an entry into my translation table which means only if the connection was initiated from
+inside to outside world an entry was created in my table and if somebody else is trying
+to communicate from outside to inside let us say this machine is saying I want to connect
+112234 but I want to contact 3282.66 which is my public IP but on port 443 hoping that
+there is a website which is running on port 443 but because there is no connection or
+no entry inside this entry even though there was port 443 running here let us say my HTTP
+site was running here even in that case this communication will not go through because
+there is no entry available on to the translation table so the packets that are coming from
+hostd shall be dropped by the network right so this is where your dynamic path is utilized
+in practice next we are going to look at dynamic NAT in our next video thank you.

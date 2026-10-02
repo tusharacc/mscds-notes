@@ -1,0 +1,69 @@
+If you talk about the network, if you talk about the internet, in general it is a best
+effort packet delivery service.
+So of course there is no guarantee that the internet provides which says that I will definitely
+deliver your packet, but what internet rather promises is that I will try my best to deliver
+your packet.
+It means if you send some packets from your computer from one host to another, there is
+a chance that some of your packets may get lost during the travel through the internet.
+So it is only a best effort service and it is the end host that might need to ensure
+or the protocols running on this end host that need to ensure that the packets are delivered
+as we expect them to be delivered.
+Of course there is no guarantee there are different mechanisms, different layers, different
+protocols attempt different type of incorporate different type of mechanisms to ensure error
+free, in order, synchronous delivery, but later in this discussion we will see that
+that is not the case.
+Packets might still get lost, you might need to ask a retransmission of the lost packet,
+they might get delayed, they may arrive out of the order and you need to rearrange them
+and all lots of things happen behind the curtains.
+But before that what we can define is in the internet the power is at the edge.
+The communication or the protocol operation should occur at the end points whenever it
+is possible.
+That is why you know that a host usually when we discuss computer network is sliced into
+different layers for example 7 OSI layers or TCP IP model.
+So all these operations related to the communication and operation they happen at different layers
+at the end point basically on the host side.
+And the another important thing here is the programmability which means any new network
+service can be added at any time by anyone which means that the end hosts are programmable
+which means that the end hosts are really powerful in order to dictate how the internet
+will operate or what services will be offered on to the internet.
+When I said that the internet is a network of network, one fundamental problem in such
+a setting is that how do you name an entity or how do you name a resource on to this internet
+cloud.
+I mean I should not say cloud because cloud has a different meaning today.
+But in this blob what is the mechanism by which I should name an entity?
+How should I name my client?
+How should I name my server?
+And even after I have a naming convention how would I need or how would I search for
+a name into the network?
+This is one key question when we are designing a network or especially when we are designing
+a network of network.
+Now let's say you already have a mechanism by which you can name different entities which
+we have not discussed yet but we will see later on and you probably already know that
+it's the IP address or the host name or the domain name but let's say even if you have
+a naming convention how would you announce where you reside?
+Which means how would you announce in this example that IIIT is in what direction?
+So if an entity can announce its path that IIIT is in this direction so basically when
+IIIT client joined and if it can somehow announce onto the network that I am onto this side
+the neighboring nodes can learn and forward this information as long as they are participating
+in this announcement.
+Once I figured out let's say on this side the server has figured out where is IIIT how
+would I forward the traffic?
+Should I send the traffic on the shortest path?
+Would it be the always the best path?
+Would I send it to the least error prone path, least or the fastest path?
+So what mechanism would I use in order to transmit my information from one end to another
+end is another critical issue or critical topic to consider when we are talking about
+delivering the data or information.
+Now in case I want to withdraw my traffic, withdraw my route from the traffic can I also
+announce like I did IIIT is in the direction can I also announce IIIT is not in this direction?
+So if this feature is possible let's say I want to withdraw my route and I want to
+announce the same way I did the announcement before that IIIT is in this direction now
+I want to say IIIT is not in this direction if I can do so what would be the effect?
+Similarly if I can do this I can withdraw the route which was previously announced
+but what if a rogue entity in between also announced and uses this kind of announcement
+to maliciously create problems into the network?
+How would I handle this kind of problems?
+So all these issues are important when we are designing the network of network or simply
+when we are designing a very big network these issues are the fundamental issues that we
+need to understand and we will continue our discussion into the next lecture about some
+key concepts into the networking thank you so much.

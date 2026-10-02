@@ -1,0 +1,139 @@
+Hello and welcome back and in this example we are going to go over yet another example
+of bypassing and we are going to look at the load and the store sorry load and the store
+operation in this scenario and this is a interesting example because the store operations are kind
+of different and from the load instructions they both work out with the two register file,
+but the point of consumption is a slightly different thing in this example.
+So load instruction basically says that you have to read data from a memory which is dollar
+two plus eight apart find that value into the memory get the value and store it into
+dollar one while in this scenario in the store what we do is we store the value at
+dollar one and put it into eight plus dollar three into the memory right.
+So let us look at what happens in this example and so the data dependency is coming here
+in these two instruction is coming from this dollar one because we are reading a value
+from the memory loading it into the dollar one register and then we are reading this
+value from dollar one and storing it into this memory location which is S three dollar
+three plus eight apart right.
+So when I will be reading when I will be executing my instruction one I will go through the IF
+phase the data in the decode and the register reads phase then in ALU I will perform my
+dollar two plus eight and then from the disk I am going to read this value and I will bring
+this value for writing into dollar one.
+So the value or the point of production for dollar one is as early as this latch five.
+Now let us look at how I two is going to execute in this scenario.
+So I two is going to go perform its IF perform its decode and register phase and in the ALU
+stage if you look it is need to perform dollar three plus eight right which is independent
+of any values being produced into the previous example because the dependencies is coming
+from the register one dollar one and in the ALU stage we do not really need to worry about
+one so I can compute this address and then I need to find this address into the memory
+and then write the value of dollar one this is what this value is this instruction talks
+about.
+So the point of consumption for dollar three is at this point while the point of consumption
+for dollar one is at this stage and if you look here the point of production and point
+of consumption are according to our requirement basically consumption falls after point of
+production so we can bypass this value from latch five and this way instruction two instruction
+one can come out of here we can write the value in dollar one the dollar one value into
+the memory here and then instruction two can come out because does not have a register
+right but still it will come out of because we if you remember from the previous session
+the store word only finishes into the four cycles so it can already come out of here
+so there will be zero stall cycles with the help of the bypassing otherwise you know it
+could have been you need to write here and you cannot align your read until the second
+part which is again which is the second cycle until the second half of the fifth cycle so
+this is going to be here and then it will be two stall cycles unlike zero stall cycles
+here right now let me change this example a little bit and let us create a dependence
+data dependence instead of dollar one let me create it a dependence for dollar three
+so now what I am doing is I am going to load some value into dollar three instead of dollar
+one so if I one is executing from here I need to write a value into dollar three so point
+of production will be here I am going to read the value from the memory which is dollar
+two plus eight apart so this will become the point of production for dollar three right
+now if instruction two starts to execute here it is going to perform its if then it is going
+to perform its decode and register phase and it will realize that I need dollar three and
+dollar one and dollar three is coming from an instruction before so I have a data dependence
+if I even suspend my fetching let us say to the next stage so if I perform my dollar three
+plus eight here the point of consumption is at this stage which I cannot satisfy because
+my point of production is after the point of consumption so in the decode stage the
+instruction will realize that I cannot proceed further so it will be kept into the DR stage
+and now when it is at the DR stage in the next cycle so it is going to wait for one
+cycle so nothing will come out of here so let us say this comes out correctly nothing
+comes out of here because it has got stalled here so it is going to check if I can perform
+my ALU operation that is dollar three plus two here so this is my point of consumption
+for dollar three now the new point of consumption before it was supposed to be here so from
+there I have moved to here and I could have bypassed the value like here so it can perform
+its dollar three plus two in this stage so I2 will perform its dollar three plus two
+here then it can compute the address into the memory and write the value of I1 here
+so the point of consumption for dollar one is at this stage which is anyways not dependent
+on anything else so I2 will move forward this will be I2 and it will come out and it will
+perform its execution and completes its execution here so we will have one stall cycle if the
+case would have been load a value into dollar three and then find the memory based on dollar
+three and then store some value now let us move to a next example which is about what
+happens when the pipelining changes so far we have considered that the pipeline would
+be a five stage pipeline now let us look at an example where an instruction could take seven or
+nine stages depending upon the type of the instruction and we are also getting doing it
+doing away with the assumption that register read and register write could complete in one in half
+of a cycle so now we are saying that the register read and register write are going to take a one
+full cycle right so in this example what we have is a load word and an a load word instruction and
+an add instruction and the dependence is coming from as you can see the value in dollar one the
+register one because what we are doing is we are reading a value from the memory which is dollar
+two plus eight apart identified by dollar two plus eight apart location loading the value in
+and then adding it with dollar three and storing the value in dollar four if I were to execute
+add operation let us say how this pipeline suggests it says that first thing I need to
+do is to do two instruction fetches instead of one that we have considered before because
+our memory is so large that it requires me to do two instruction fetch to actually bring in
+the instruction then I need to do a decode operation which consumes two cycles instead
+of one in the previous example because my instruction is very complicated it's it requires
+lot more operations than I could do in one cycle then I perform my register read which
+again takes a full cycle and now I go to the ALU stage in both the example either I can go
+like this or I can go like this right in the both there are two branches here so if I were
+an add operation I would go to the ALU stage and then I will just go to the register write
+stage this would have been an add operation so this would have taken one two three four five
+six seven stages into the pipeline but if I were a load instruction I would go to the ALU
+compute the address access the disk memory disk data memory which again takes a lot of time because
+the memory is so large it cost me two cycles to perform the data memory stage and then finally
+I fetch the value and store it into the register via register write stage so the load would take
+me two more stages that is nine pipeline stages and of course if it was a store word then this
+stage would not be there so it would finish in eight stages right so now this is an example
+where we have different pipeline and we want to see what will happen if we execute these two
+instruction with and without bypassing so let's consider that there is no no bypassing happening
+in the beginning so all the instruction will exchange the values via registers only right so
+basically what will happen is that this load word is going to execute itself so it is going to
+perform let's say if if decode stage decode stage then it is going to perform the register
+read stage then it is going to go to the ALU stage then disk memory data memory data memory
+and register write stage so it is going to go over all the nine stages that it had to do
+one two three four five six seven eight nine yes nine stages that it has to go now the dependence
+is coming from dollar one and the value of dollar one is available as early as nowhere
+because the value is only available after the register write so if add operation needs to
+perform a read this read needs to be performed only after the register write stage because
+we are in the no pipelining no bypassing stage no pipe no bypassing configuration so my register
+read for the next instruction should happen only after my register write and instruction one so
+what I can do is I can align my register write over here and let's imagine if my instruction
+started here I to started here in the second cycle then it is going to perform its instruction
+fetch and then it is going to remain in the decode stage as long as it requires to resolve
+the data dependency so it is going to remain into decode stage until here so I stayed in decode
+stage one two three four five and six cycles where I could have just done it in two cycles so six
+minus two which means I had four stall cycles when no bypassing was available because I did
+six decode stages so in no bypassing I have got four stall cycles now let's consider let's
+consider an example where bypassing is available so what we are going to do is in no bypassing we
+have four stall cycles so no bypassing has four stall cycles now we will consume we will assume
+that the bypassing is allowed or enabled so what will happen the load instruction is again going
+to perform its regular operation so IF IF decode decode register read AL DM DM and register right
+so all nine stages and then I need to figure out where is the point of production for dollar
+one so the point of production for dollar one in instruction one is as early as this point so at
+this point which means at this stage I have the point of production for dollar one which is where
+the data dependence is arising so if I need to take this value consume this value the consumption
+point should come after this stage now if I look at the second instruction it is consuming dollar
+one and it is going to consume this value at the ALU stage right so this is where it should come
+after so what I need to do is I need to align the ALU ALU stage after this DM stage right so I need
+to align the ALU stage right after the data memory stage of instruction one so I can also
+perform the register read just before it of course because I need dollar three and dollar
+one I can perform the register read which is going to give me an outdated value of dollar one and
+updated value or let us say latest value of dollar three but we know that we can feed the
+value of dollar one from the previous instruction so we have already taken care of point of
+production and point of consumption so if I start my execution here the second instruction it is
+going to go IF IF and it is going to remain into the decode stage as long as it is required to
+fill the pipeline so basically now I am into my decode stage for four cycles actually I should
+have been only for two cycles so I have now with bypassing I only have two stall cycles so this
+way we could have utilized or reduce the number of stall cycles that we had into this pipeline
+of course depending upon different instruction different instruction their execution their
+point of consumption and point of production and of course the pipeline stage the O the
+computation of the stall cycles will differ and with a slight practice you would be able to figure
+out these stall cycles in any given example so this is the concept of pipelining with bypassing
+and no bypassing as far as that data has are discussed third next we are going to look at
+the control hazard and we will look at some of the options that we have to mitigate the control
+hazard into the pipeline thank you so much.

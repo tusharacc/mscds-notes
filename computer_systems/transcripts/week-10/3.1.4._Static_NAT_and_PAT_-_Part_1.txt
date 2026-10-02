@@ -1,0 +1,63 @@
+Let us discuss that there could be four possibilities of gnatting.
+So static gnat, static gnat, dynamic gnat and dynamic gnat.
+In practice they are all called gnatting approach.
+So you can think of gnat can be of two types, gnat, gnat and gnat basically packed.
+So these two terminology even though they have different meaning, they all together
+are called gnat.
+In general they are called gnat.
+So just keep this in mind.
+Of course different companies they call them these combination with different name such
+as full cone etc etc but the underlying concept remains the same.
+So just keep in mind that gnat can also be a super category of both gnat and gnat.
+So now let's continue our discussion and we briefly discuss static gnat already.
+Let's continue our discussion on static gnat first where we said that the post translation
+attributes, so post translation IP address is explicitly defined.
+And the typical use case of such kind of translation would be when we want to do a
+server on a private IP network.
+For example imagine this is my private network and this has a private IP address or in a
+private IP range and we already know that a private IP address is non-routable which
+means nobody from the outside world can reach to this IP address even if they know what
+is a correct IP address etc etc because this is a non-routable.
+Anybody trying to contact 10.2.2.33 they will not be able to do it because internet will
+not forward this request.
+So what I rather want to do is I want to make this internal resource available to the public.
+So what I can do is I can configure a static net and I say look this IP address always
+maps to my public IP address which is 73.8.2.33 and I have set my rule to remain static
+forever.
+So this is going to be static and this is a net so I am only defining my IP address
+to be translated.
+So anybody from the outside world now instead of approaching 10.2.2.33 what they need to
+do is they need to approach me on this particular IP address and once they send this request
+my translation device is going to translate this and it is going to forward this to actual
+IP 10.2.2.33.
+When my server receives it it is going to send a response and look carefully we have
+before it was destination which was being translated now we have the source that will
+be translated from 10.2.2.33 to 73.8.2.33 because it is a static translation.
+Now the key observation here is that we have when we are talking about the outbound connection
+we change the source and when it is an inbound connection we change the destination IP address
+in this kind of translation the translation is bidirectional which means once the connection
+is being set once the connection comes from the outside or from the inside it is always
+going to be happening meaning that if this machine tries to contact somebody outside
+or somebody outside tries to contact the internal machine the translation is always going to
+happen in the subsequent combination we will see sometimes that might not be the case and
+in those cases that translation might be unidirectional only or needs to be initiated from one direction
+in order to other direction to communicate in this case it is a bidirectional translation
+it can happen from inside to outside or outside to inside there is no prerequisite.
+Now if we look at static path which implies that we have a static translation of IP port
+to another IP port and there are multiple use cases when we need to use static path.
+Let's look at an example in the previous case I was hosting a website on one machine now imagine
+if I want to host multiple websites on multiple internal server not on one server but on different
+server or let's say different services on different servers now given that I only have
+one public IP address 73.8.2.44 if I map it to one IP address let's say on this host all my
+services must run on this machine if I were using static NAT but now what I want is I want
+different services to run on different server and that is not possible with static path so
+rather what I'm using is a static path what will happen now is that imagine from outside
+words somebody is trying to access HTTP website on port 80 and somebody is trying to access
+HTTPS website on port 443 if anybody is accessing port 80 they are now routed to 41 and anybody
+trying to access 443 version of my website and which is hosted on my 42 server right so this is
+HTTP and this is HTTPS how it is happening is that every time anybody is trying to contact IP
+port combination right we now look at IP and port combination so anybody trying to contact on my
+public IP with port number 80 I am saying it is always going to translate it is statically
+translated to 10.4.41 8080 or if somebody tries to access to port 443 it is statically translated
+to 10.4.42 colon 443 is mapped to this IP so this way when I am looking at IP and port combination
+I can decide statically a different mapping of different IP port combination

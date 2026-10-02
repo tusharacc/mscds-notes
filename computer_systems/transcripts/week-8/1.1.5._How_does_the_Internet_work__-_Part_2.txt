@@ -1,0 +1,44 @@
+What I will do is I will check my ARC table and I will see if there is a MAC address corresponding
+to 192.168.1.1.
+So first what I do is when I check my ARC table I see that this table is empty because
+the system is just booting up so ARC table is empty which means I must use my ARC first
+to figure out what these values should be which means my DNS query cannot proceed until
+I figure out the MAC address thus my operating system puts this packet into the memory because
+I want to proceed first with the ARC query so that I can resolve the address.
+So the next thing what it does is basically my operating system keeps the DNS query into
+the memory, shoots an ARC query, ARC request and the ARC request it runs on the link layer
+so it uses the source MAC address same as the source for my computer so 0019A751CD9F
+and the destination is to everybody onto the network because it's a broadcast and the message
+says whoever has an IP address 192.168.1.1 because this is what I am figuring out I am
+trying to figure out respond back with your MAC address and once I send this this goes
+onto the network this goes to everybody so everybody who receives this message is going
+to listen to this packet and inspect should I respond back or not because my router after
+listening to this request it is going to respond back and it says I have 192.168.1.1 and my MAC
+address is 0013FE196790 which is the same as the LAN MAC onto the LAN side not onto the WAN side
+and the same information can now be put into my DNS query what it also what my computer also does
+it saves this response into the ARP table it goes into my ARP table so that in future any time
+I make a request make a similar request I can resolve the MAC address using this cache entry
+once I have this all the required information now I am going to send off my DNS query so I just
+prepared my DNS query and the missing part is already with me I am just going to shoot this
+query to this 192.168.1.1 and the router is going to receive this query now the next thing
+router will do is that it will try to figure out because it's a DNS query have I ever seen
+www.iis.se before let's say by some other system onto the network and because it's a fresh setup
+we will assume that there was no query shot before nobody has responded and the router is
+also unaware of what is the IP address corresponding to this domain name so now the router will take
+over and now router will prepare a DNS query and the DNS will query will be prepared as follows
+I am going to create my source MAC I am going to use my MAC address onto the WAN side because I
+am shooting this query from my WAN port I am also going to use my own WAN IP which is the same as
+written here I am going to choose to shoot this query on the destination 53 UDP because this is
+a default one and my router is now going to choose a random port which is different from
+the original port my computer have chosen because this query is now being created by the router I
+am also going to use the destination IP as 8.8.4.4 because when my router was connected to the ISP
+the ISP has given me this destination IP so this is my DNS server so my ISP told me before at the
+time of connection I configured it into my router and now the destination MAC is something that is
+pending just like before and the content of the query is going to be the same now at this stage I
+will assume that the DNS query or the ARP request was already shot because this router was already
+talking to probably the next hop and you might also see that the MAC address into the destination
+is the next hops MAC address and not the MAC address of the destination the DNS server so
+basically ARP has already has happened and my router has already identified the next hop onto
+my connection and it is always going to put the next hop MAC address same thing here if it goes
+from here to here it is always going to be the next hop because the link layer if you remember
+is hop to hop network layer is end to end so this part is always going to be the next hops MAC address

@@ -1,0 +1,45 @@
+Now let's continue our discussion on to the key concepts into the networking.
+And the first concept here is the abstraction through protocol layering, which means I want
+to partition my system into different layers so that replacing a layer becomes easier.
+Even if the internet was or if the network was designed as a single layered system where
+different small components without a clear boundary in between them were placed next
+to each other.
+If this was the scenario then it would have possibly became difficult to replace one layer
+with another in case we introduce different sort of organization of functionality or protocols.
+So the people who designed the internet thought of rather than making a single layer with
+everything within itself, we should create the internet in such a way or in layers such
+a way that if we want to replace one layer or we want to replace certain functionality
+with another functionality or another layer, we could do so without affecting a lot of
+the other functionality or protocols.
+So typically or in fact the internet or the internet systems basically partitions the
+system into different layers such that every layer no matter what layer we are talking
+about relies on the services from the layers below.
+And it also exports its services to the layer above.
+The interface between two layers defines the interaction between these two layers.
+It hides the implementation detail and basically just like I said a layer can change without
+disturbing the other layers.
+So the first concept is we need to introduce an abstraction mechanism and that mechanism
+is the protocol layering.
+So application layer has certain protocols which are of one kind or they perform a similar
+kind of operation or similar class of operation.
+Another layer which can be application to application channel which deals with establishing
+connection from one application to another application and all sort of functionality
+or protocol can sit inside this layer.
+Similarly, we can have a host to host connectivity.
+So all the connection or network related protocols sit here and then you have the link and the
+hardware at the bottom which deals with the data which deals with the data link layer
+and the physical layer aspect of the communication.
+So if I want to replace this host to host connectivity with something else, it is easier
+to replace this layer with something else that we are looking for.
+Now if you look at the IP protocol, the IP protocol, the IP internet protocol suit contains
+a thin network layer which facilitates the interoperability among different type of networks.
+So basically you have a type of, you have network one here, network two here, network
+three here in order to make them talk to each other.
+Remember internet is a network of network.
+In order to enable these different network to talk to each other, we have a protocol
+called IP which makes this communication or interoperability possible and at the different
+layers, for example, like I said, application contains different protocol that the application
+talk over such as HTTP, FTP, TFTP, etc. Then you can have application to application.
+You have the network, thin network layer to facilitate the interoperability and then data
+link in the physical part.
+And this entire model is called the hourglass model.

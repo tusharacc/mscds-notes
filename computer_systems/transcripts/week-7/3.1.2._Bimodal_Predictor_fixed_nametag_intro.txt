@@ -1,0 +1,138 @@
+Hello and welcome back and now we are going to generalize our branch predictor, the simple
+branch predictor that we were devising and we have seen that we have taken an example
+where my program had 4 branches and we worked with 2 bit counters.
+Now let us assume that I want to make a generalized branch predictor with the 2 bit counters that
+I have.
+So basically what I am suggesting is that I have a table of multiple 2 bit saturating
+counters and in this given example I have 16,000 entries of 2 bit saturating counters.
+So I can have as many as 16,000 branches which is basically 16 times 2 to the power 10 which
+is 16 times 1024 that comes out to be 16,384 2 bit counters and this number is equivalent
+to 2 to the power 14 here.
+So basically I can accommodate a program until I have 2 to the power 14 branches into my
+program.
+as many as 2 to the power 14 branches if I have a table of 16,000 entries of 2 bit saturating
+counters.
+Now the problem here is I can have an hardware that accommodate 16,000 2 bit counters but
+the problem is how would I identify which counter belongs to which branch.
+Let us say this is branch 1, this is branch 2, this is branch 3 and so on and so forth.
+In order to identify what is a branch I need to use basically a branch is an instruction
+and in order to identify an instruction what I can use is its address and the address is
+something like what I can fetch from the PC directly.
+So if I take a PC which points to an instruction address which basically is an instruction
+I can utilize this PC value to identify which counter I am trying to look at.
+So every time I encounter a branch into my program I look at the PC and I use this PC
+to index into my table of saturating counters.
+But the problem here is that I have a 2 bit counter and my PC gives me a value which is
+32 bit.
+So in order to identify a 2 bit counter I am using a 32 bit value which is of course
+is inefficient way to implement the system.
+So what could be other ways by which we can utilize or by which we can identify a branch
+into this table of saturating counter.
+It turns out that given that I have 2 to the power 14 entries into my table it might be
+sufficient to use only 14 bits to identify a given branch into this table.
+So for example if I only had 2 to the power 2 counters which basically means 4 possibilities
+into my table of saturating counters.
+So 1, 2, 3, 4 instead of using all 32 bit into my program counter basically 32 bit address
+from my program counter what if I just use 4 bits into my system that should be sufficient
+to correctly identify my system of course sorry I can use 2 bits from my address to
+basically identify all 4 possibilities.
+So basically if I have 2 bit to identify an entry into the table the other way could
+be like if I have 2 bit to identify an entry into the table I could address up to 2 to
+the power 2.
+So the same thing here instead of using 32 bits what I am going to use is 14 bits to
+identify an entry into my table of saturating counter.
+So I take my branch so I take my PC value and what I do is I take some 14 bits inside
+this address and let us say if this was branch 1 I am going to use these 14 bits to identify
+my corresponding counter into the system.
+So if this value was let us say some value 13000 something something I go to the counter
+let us say if this was 13000123 so if I go to counter number 13000123 and I take a look
+at the value here and I make a prediction and if my prediction is right or wrong depending
+upon these values I update my counters.
+Now even in this approach the problem here is these 14 bits might not necessarily always
+give you a unique value for example if you take a branch 1 and let us say branch 2 and
+you pick their 14 bit value it is quite possible that these 14 bit values are identical to
+each other.
+Possibly they point to the same entry when we are talking about an entry into the table
+of saturating counters because of course the 32 bit address for these 2 branches is definitely
+unique however if I take a subset of this subset of 14 bits out of these 2 addresses
+it is not guaranteed that these counters are that these values are basically unique and
+this is possible that they point to a same entry which can actually create a problem
+because if this branch is taken this branch says I need to increment a counter by 1 while
+if this branch is not taken let us say this value this is going to say that I need to
+reduce the counter by 1 and actually this will create an interference among the behaviour
+of these branches thus what I need to do is I can do something more complicated and rather
+than using a simplified 14 bit values what I might be interested in doing is that I want
+to take something more on top of these 14 bits so that my values become let us say unique
+right.
+So, this is an attempt to make this table make this mapping into the table unique of
+course there is one more optimization let us say if there are only 20 entries into my
+20 branches into my program and this is a table which can accommodate 16384 counters
+it is very unlikely that one of these value will coincide with the other value because
+we are mapping 20 values to 16384 so one approach is given some certain number of estimate
+on the number of branches that you have if you have the table large enough such that
+the chances of collision are very less this could be one way which means if I can make
+this area as big as possible basically I am using in hardware that can accommodate a lot
+more entries than I actually required then the chances of collision are going to go down
+right this is one hardware based approach but the other approach is to use something
+more than let us say if my hardware cannot be extended further I am forced to work with
+let us say 14 bits here and 16000 entries here then there are some certain things that
+I can do in order to discuss this let me just clear out this screen and give you an idea
+of what will happen if I want to use multiple entries okay one way is I take this 14 bits
+and I combine them with something else let us say by doing an XOR and I come up with a new
+number which is again a 14 bit number and that number is going to be something that is likely
+to be unique as compared to the other values for example what I can do is I can work around
+with the history of the neighbouring branches to see if those branches were taken in the recent
+past or not or I can also work around with the history of the given branch itself and work around
+with that to identify if that branch is going to be taken or not so basically what I do is I take
+the 14 bit from the branch let us say BR1 I take the 14 bits and I combine it let us say with an
+XOR operation with 14 nearby branches so one approach is I work with my branch PC and I take
+this and I try to find an entry into my table of branch predictor and I try to find an entry
+corresponding to this BR branch PC and I make a prediction based on this value the other thing
+is I can take this branch PC I can augment it by using neighbouring branches and then I try to
+find an entry here so basically what I am doing here let us say if the 14 nearby branches were
+like taken not taken taken not taken taken taken and so on I can combine this information this
+history of neighbouring branches with my current counter and I can come up with a number let us
+say again a 14 bit let us say because we are doing a 14 bit XOR so 14 bit number which is going to
+point to an entry which is kind of saying that if I encountered a branch nearby to these 14
+branches the behaviour is going to be likely a given value right so basically depending upon
+how these branches performed I am talking about a next branch behaviour on these values same thing
+I can do let us say if my program does not have 14 neighbouring branches what I can also work around
+is that what is the history for my own branch in the recent past so if I take last 14 visits to
+these branches and I do the same thing taken not taken taken not taken and I come up with this
+number so this number when combined with my address basically my location into the program
+where I am how I was in the how I how this branch is performed in the recent past if I combine this
+information I can come up with a new counter and I see basically an entry and make a prediction
+based on this so there are these some different approaches by which these modern branch predictors
+combine information and try to make a prediction of course you can also have a fourth predictor
+which can say which strategy is going to work better for me so basically you can have a tournament
+predictor to predict that given a branch given a certain branch so basically it also works with
+a branch PC and it says given this value probably this approach is going to work out the best when
+you only work with the BRPC or it can also work better when you are talking about branch PC along
+with the neighbouring branches or this branch predictor can predict that you should only look
+at the history of the current branch and given the location into the program and this is going
+to be fine just as fine to make a prediction about the next branching decision so the modern
+branch predictor they use different kind of information to make a guess about the approach
+itself which approach is going to be better for you and different approaches basically take
+different mechanism to make a prediction about the branching about the branching decision now
+before we move on this is another important thing what happens if my given program let us
+say when it was executing hands over the CPU to some another program let us say this is P1
+and this is P2 and the context which has happened what will happen to these entries that I have
+just trained for my given program P1 one way is I save these values onto the memory once I save
+this value onto the main memory I move all these values I initialize this counter with whatever
+value let us say zero or whatever and then I retrain it for P2 but this is going to be a
+costly approach because it requires moving a lot of entries from and between this table and to the
+let us say some memory and then bringing them back and at that time you need to bring those
+values which were trained for P2 and then swap with the memory and this is going to be a costly
+affair so the general approach is that you can continue with so when the context which happened
+between P1 from P1 to P2 what happens is that these table remains as is so whatever training
+you have done for let us say from branch 1 to branch let us say 1000 these values are
+going to remain the same the next program needs to train based on these values so basically these
+values which were already present into this counter from the behavior of all the branches in P1 they
+became an initialization point for P2 right so P2 needs to train each of the counter based on
+its own execution and use that value for further prediction of course this may not be the best
+approach but this is better in terms of the amount of data movement in this required when
+a context which happened so if the context which is very frequent moving all these counter values
+to memory and back it is going to be a very costly affair that is why this initialization
+is left or the state of this table is left as is into the program into the next video what we
+are going to look at its multiple cycle instruction and how out of order execution
+is designed and executed with some example thank you so much.

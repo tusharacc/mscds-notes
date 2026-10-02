@@ -1,0 +1,35 @@
+Now, for the first question, you cannot talk to this outside word using an IP address that
+has been picked from this range because such IP addresses are non-routable IP addresses.
+Your router when it will see that the system is trying to connect to the outside word,
+is going to drop it. Even if the router forwards it, the next hop is going to drop it because
+these are non-routable IP addresses. Now, the second interesting question is about the clash
+of an IP address. For example, this H1 can pick an IP address 169.254.1.1. Same thing,
+different host, let's say H100 has also picked the same IP address. Now, the problem is in the
+internet we said that every host must have a unique IP address because we want to uniquely
+identify the host. Now, if everybody was allowed to take a PIPA and take its own IP address,
+how would I ensure that there are no duplicate IP addresses or there are no host, two different
+hosts that has the same IP address. In order to handle this situation, what we do is we take help
+of ARP. So, whenever a host let's say H1 picks an IP address I1, it announces and says who has I1.
+Although it has already taken I1, it will try to announce who has I1. If somebody else has taken
+this IP address, they will inform via ARP response that MAC address M has IP address 1. If I do not
+hear this kind of response, it means my selection of IP address was unique and nobody else has this
+IP address. In case you are not familiar with ARP address resolution protocol, so basically when
+you are let's say we are at the application layer, transport layer, internet layer and then network
+access layer. At this level, we just define the message. At this level, we define the connection
+type, let's say TCP. Here now we are trying to identify the IP address and we are moving from
+top to bottom. Once you know who you want to talk to, you also need to identify their MAC address
+because the network access layer or the data link layer in OSI model needs to have the MAC address.
+You might get the IP address from the DNS system. Let's say somehow you got it from the DNS system.
+Bypassing this step, how would you know the MAC address? Let's forget about the internet. Let's
+talk about within the network itself. If you are within a local area network, you know who you want
+to talk to, so you know the IP address of the person but you also need the MAC address. In order
+to resolve the MAC address, what you say is, what you do is, who has IP address 1, 2, 3, 6 in case
+you want to talk to this IP address and let's say this is the IP address, it is going to respond,
+this MAC address has 1, 2, 3, 6. So this way, ARP request resolves in getting the MAC address
+of the corresponding device and the same thing is used for in a PIPA. Basically, we use ARP. When
+you select an IP address I1, you shoot an ARP request saying who has I1. If nobody responds back,
+it means nobody has taken it. If somebody responds MAC address M has I1, it means you need to choose
+something else. Now with that, I also leave to you two things. One, what about IP and what about
+MAC? Can we not just use IP address or can we not just use MAC addresses? Why to have two different
+addresses at two different layers because this is layer 3, this is layer 2. Why do we need two
+type of addressing and why cannot we work with one address itself? Thank you so much.

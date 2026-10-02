@@ -1,0 +1,121 @@
+Ok, welcome back and now we are going to look at floating point addition and the example
+that I have laid out here is a decimal example, but the same thing will follow into the binary
+case as well.
+So, here what we want to do is to add 9.999 times 10 to the power 1 and add this value
+to 1.610 10 to the power minus 1.
+Here if you look carefully the exponents are different, the base is the same, but the exponents
+are different from each other to simplify what we do is first thing we convert to the
+larger exponent first, whoever is the smaller exponent value.
+So, basically here 9.999 times 10 to the power 1 remains the same, so 9.999 remains the same,
+but we convert this value into 10 to the power plus 1.
+So, in order to convert it into 10 to the power plus 1, what I can actually do is 10
+to the power 1 upon 10 to the power 1, so this basically comes over again, so instead
+of this, this become 10 to the power minus 2, so I can shift this decimal by 2 places,
+so 0.016 and I kind of here, so basically 0.016 because it was here, so it came from
+here to here and then here to here 0.16.
+What I also have at hand, I just lost a precision value from here, so it remained because I
+can only have when I shifted it to value, so I had 1, 2, 3, 4, 5 values, so I just dropped
+off one value because I can handle only 4 decimal digits in this example, so instead
+of working with this value, what I can actually I am working with is 0.016 and then they are
+both have the same exponent, so when I am adding them, what is going to happen is I
+can just add these 2 values which is turns out to be 10.015 10 to the power 1 because
+this is an addition, so they will both multiply with the same value.
+Now, this value that I have just gotten here 10.015 10 to the power 1 is not in the normalized
+form, so what I will do is I need to normalize it which means I need to put only one value
+at maximum to the left of the decimal point, so I normalize it by moving this point to
+this place which is basically shifting this value to 2, so this becomes normalized after
+which what I am going to do is to check if this value is within the range that I can
+represent in my single precision or if it is double precision competition, so in this
+scenario it is a small number not a big number and which is well within into this range,
+so I will ignore this part at this moment, but what I need to do is because I can only
+handle 4 decimal digits, I would like to change these 5 digits to a 4 digit value and in this
+scenario I round it up to 1.002 into 10 to the power 2, what I have not mentioned so
+far is how we did what happened at the point when we were actually converting this value
+as well, so when I had 1 point, so I had 1.610 10 to the power minus 1, so I already
+have 0.1610 right which already are 5 decimal digits, when I converted it into 10 to the
+power 1 which means I shifted it, so time 10 upon 10, so I need to shift this value
+by 1 more value 1 more place, so it became 0.016 because now I have 4 digits here, so
+1, 2, 3 and a 0 that I have appended already before, I can only handle 4 decimal digits
+as given in as a constraint into the problem, so I lost this value 1 and 0 here, so I am
+introducing imprecision, but anyways that is going to happen because my constraint is
+to only deal with 4 decimal digits, my system can only handle 4 decimal digits at a time.
+After this point, but when I added this value you see here I have 1, 2, 3, 4, 5 bits here,
+so if I had a circuitry and adder which can only handle let us say 32 bits, it is by from
+this computation it gives us an idea that there are some more bits available on to the
+left and on to the right to represent the smaller or the bigger values, so that we can handle the
+rounding up at the later stage, so we can have a much more let us say even though imprecise,
+but a much better rounding happening at this point because if I drop off this value at this
+point, if I terminate this value right away because I do not have space in my adder,
+I would get a much, much imprecise result as compared to rounding off because it would have
+been 1.001 instead of 1.002, but that depending upon if you have some more bits available or not,
+so this is what I have also shown if we had more fraction bits these errors would be minimized in
+the addition, but otherwise the convention of addition is much, much simpler as compared to
+what we will see into the multiplication, so the idea is just convert to the larger exponent,
+add the numbers, normalize the values, check for overflow and then round and re-normalize.
+If you look at the multiplication, it multiplication is a slightly it is not as difficult,
+but it requires a bit more attention for example, if I take 32.56 as a number and then I multiply
+it by 2729, first thing I need to do is I need to represent these values into the normal
+form which says it is going to be 3.256 into 10 to the power 1 and this is going to be 2.729
+into 10 to the power 1, what I need to do is I need to be careful when I am computing the
+exponent, here you got this number right away, but it might be possible that you are reading
+from a register right, in that scenario when you are reading from the register, you need to compute
+the exponent as we discussed before minus 127 or plus 127 when storing or when retrieving right,
+so like in the previous example I have the slide which said when you are moving from true exponent
+to the exponent in register becomes plus and when retrieving from the register it becomes
+minus 127, so when retrieving from the register it becomes you need to be careful and subtract
+this value before you can actually compute this operation, so this is the only part when you need
+to be very careful, once you have figured out what is the true exponent value, what you can do is you
+can multiply the exponent and the significance, so this is your fraction value and the fraction
+value along with this value before the binary decimal in this scenario sorry decimal point or
+binary point it becomes significant, so basically you need to multiply the significance and you
+also need to multiply the exponent, so this exponent because it is multiplication unlike
+addition they are going to multiply and 10 to the power it will become 1 plus 1 which is equivalent
+to 2 you will figure out what is the multiplication of the significant you need to locate the decimal
+point or the binary point normalize that value depending upon how many values you have on to
+the left or to the right of the or the of this point and then assign a sign and the signs assignment
+can happen simply just how we did into the multiplication with the integers.
+Now as far as the MISP instructions are concerned we have seen addition,
+subtraction, multiplication, division, load word in case of the instructions in case of the integers,
+now as far as these fraction points are concerned fraction sorry floating points are concerned we
+have something called add.s add.d which says I want to do addition on floating point numbers
+with single precision or double precision, similarly you have subtraction, single precision,
+double precision, multiplication, single precision, double precision and division
+with single precision or double precision. Now as far as the branching instructions are
+concerned which we had something like branch unequal when register S1 and register S2 are
+equal and you go to some label right, this was something in the case of integer domain,
+now it has changed a little bit which says compare if the 2 registers F1 and F2 that
+store floating point values if they are equal and the precision, single point or double point,
+single precision or double precision. Now the comparison which used to have in
+the integer domain 3 operands you compare the 2 values into the register and then point 2 where
+you need to jump now has changed from 2 operands from 3 operands to just 2 operands and actually
+this comparison is followed by another instruction which actually does the instruction which says
+branch on the previous comparison value if it is true jump to a label or you can also
+do branch on the comparison if that was false and jump to a label. So a single compact instruction
+that we had into the integer space now has become an instruction a sequence of 2 instruction into
+the floating point representation and the reason why we have 2 different instruction to execute a
+simple operation is because the older processor were only capable to process integer values with
+the addition of floating point numbers this processor was accompanied by another coprocessor
+that could actually do floating point operation floating point deal with floating point numbers.
+So this comparison actually is dependent on the branching is actually dependent on the output of
+this value and then we say branch on the output of the coprocessor if that was true. So basically
+these 2 coprocessor used to set an internal bit and then the hardware is inspected by a
+branch instruction which says branch on coprocessor 1 if it was true or if it is false.
+Now as far as the registers are concerned we already have seen here that the registers which
+can store this floating point values we have F0 to F31 so all these floating point values are
+going to be stored into our special register called F0 to F31 and if you want to store a
+double precision value. So in this scenario in the floating point representation we have
+single precision and double precision if you want to store a single precision value any one
+register is sufficient however if you want to store because the register anyways are 32 bit
+if you want to store a double precision value you need to use 2 register usually and actually
+it is a convention to use 2 register and the first register will store the first 32 bit and
+this and the next register is going to store the next 32 bit the convention is the register must
+always the first register must always be an even register so F4 F5 or F6 F7 or F10 F11 always
+starting with an even register so that we know that the value is basically a double precision
+value. Similar to that we have load and store instruction so load from coprocessor 1 and store
+to coprocessor 1 it must still use an integer register in the previous scenario in the integer
+use case it was always integer operands now we have at least one operand which is integer
+because the addresses here are still integers and not floating point.
+So when we are loading and storing with load LWC 1 and store on coprocessor 1 kind of instruction
+we must still use integer register for the communication of the address with that we will
+continue into the next session and we will go through an example and cover the remaining
+remaining important points on to the floating point arithmetic and computations. Thank you.

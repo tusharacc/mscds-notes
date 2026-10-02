@@ -1,0 +1,140 @@
+Hello and welcome back.
+So in this session we are going to go through some examples and see how instructions are
+executed different instruction are executed with and without bypassing and we are going
+to see the effect of bypassing on the overall execution.
+So this problem 0 is just to make you familiar with the execution and how the notations and
+how the different concepts we are going to utilize into this and the subsequent lecture.
+So basically we have two instructions here.
+So we have add instruction which is taking two values $2 and $3 and storing the sum into
+$1 and then we have another instruction which is add again taking this value produced here
+and then consuming it here $1 and $4 is being added and then return into the $5.
+So we need to care about two things one is when there is no bypassing available.
+So in that case instruction 1 in this scenario will go through its all five stages and going
+to produce the output that is $1 it is going to be produced into the first half of the
+fifth cycle.
+So basically this is where the point of production which is shown with the red dot here the point
+of production for $1 is and when instruction 2 starts to execute it can only consume this
+value into the second half of the fifth cycle which means it needs to be stalled until this
+stage.
+So basically if instruction 2 has already started its execution in cycle 2 when it was
+so this was cycle 1 this was cycle 2, 3, 4 and 5.
+In the next stage into the decode and the register read stage it will go the system
+is going to realize that we cannot move ahead because the value of $1 is not yet ready.
+So it is going to go install itself until the next stage even in that stage it will
+realize that the value is not ready only into the next cycle only in the next cycle
+it is going to proceed with the DR stage and read the value from the register which is
+now available and then move along the rest of the stages.
+So we have two stalls in this example instead of 1 DR we are performing 3 DR so 3 – 1
+stalls that we have stall cycles but with the bypassing if instruction 1 moves forward
+as before so instruction 1 moves to the IF stage, DR stage, AL stage, DM stage, RF stage
+but we know the addition of $2 and $3 would be available at the end of the ALU stage.
+So $1's point of production is available at the end of the next cycle in the end of
+the ALU stage or the third cycle as far as the instruction 2 is concerned if it moves
+along so IF stage first then data decode and register read stage second it is going to
+read $4 correctly but $1 is going to be some obsolete value some stale value but we are
+not worried because the point of consumption for $1 is at the next cycle that is at the
+ALU stage and this point of consumption actually falls for $1 and of course $4 as well falls
+after the point of production for $1.
+So point of production is before point of consumption for $1 thus this instruction
+moves and we bypass the value of $1 from ALU of instruction 1 to instruction 2 and then
+it can move forward without having any stall.
+So this is coming out instruction 1 this is coming out instruction 2 no stall was there
+here it was instruction 1 coming out nothing was coming out nothing was coming out and
+then instruction 2 came out right.
+So with this example we are going to move towards some more complicated examples and
+where we take two different or two heterogeneous instruction and we need to figure out what
+happens specifically with respect to the point of production and point of consumption.
+So first of all in this example we have changed the way stages were shown and this is going
+to be more helpful because this is a much easier way to understand where an instruction
+is and figuring out the different stages just like before here also we have aligned the
+instruction horizontally like as in the stages that we have designed before.
+So we will follow these notation this convention here.
+So here what we have is instruction 1 going inside and then instruction 1 going outside
+just like in a pipeline and we know this is producing a value in dollar 1 and that value
+in dollar 1 is being consumed by the next instruction.
+So for the instruction 1 this value is going to be available as long as let us consider
+there is no bypassing happening if there is no bypassing happening in that scenario this
+value is going to be available at the end of the 5th cycle only.
+So this is when your instruction 1 will come out and this is when dollar 1 is available
+that is the point of production for dollar 1.
+If you look at the load instruction here what we are going to do is we are going to consume
+the value of dollar 1 but it is important to note when this value is being consumed
+for dollar 1.
+So if I start my instruction here so it is going to the IFH then it is going to go to
+the DR phase and it will realize that dollar 1 is not available so I cannot move further
+so it will stay in the DR phase and then it is going to go again this value is not available
+so it is going to the DR phase one more time and at the end of this cycle it is going to
+read the value of dollar 1 that is the point of consumption in this scenario because consumption
+in this scenario can only happen after the value has been returned to the register.
+So we are going to read from the register and now I have this dollar 1 available so
+I can move forward and I can perform my operation likewise here.
+So one instruction I1 came out here then nothing useful got done here nothing useful got done
+here and then I2 got here.
+So overall we got two stall cycles when no bypassing was happening
+because I could not have performed my read until the value was available so I need to
+align my read according to the right value and these two cycles in between are going
+to become stalled because nothing can be performed in this point.
+Now if I take an example in the same set of instruction if I go from no bypassing to the
+bypassing let us see what happens.
+So in this example with bypassing instruction 1 is going to go here and then it is going
+to perform an addition and the value of dollar 1 is going to be available as early as the
+end of the ALU.
+Now if I look at load instruction it needs to take two register values I mean it dealing
+with two register values but I need to perform but my data dependency comes from dollar 1.
+Now this register dollar 1 we need to figure out where is the consumption point of this
+dollar 1.
+So the load instruction says you need to take the value in dollar 1 add 8 to it and find
+the memory and find the location which is being indicated by dollar 1 plus 8 and store
+that value into dollar 4.
+So basically this dollar 1 plus 8 is actually happening at my ALU because ALU is when I
+need to compute this dollar 1 plus 8 and then I go to the DM stage where I need to figure
+out where is this memory location and then fetch the value and store into register 4.
+So in this particular example my dollar 1 plus 8 is happening in the ALU stage which
+means the point of consumption for dollar 1 is at the beginning of this ALU shown into
+the second level and automatically we see that the value of the value of dollar 1 produced
+by instruction 1 is already being stored at L4.
+So I can fetch this value directly from the L4 and I can proceed with my computation.
+So I1 comes from this direction goes over here and then I2 can perform in psi f dr I2
+I2 I2 and it goes out of the pipeline from here without even having any stalls.
+So there will be zero stall cycles when I could bypass these values between the two
+instruction with the help of L4 in this example.
+Now let us look at another example where what we are doing is instead of two heterogeneous
+instruction now I am doing two load operations and the dependence is coming from L dollar
+1 and dollar 1 register 1 and register 1.
+So what I am going to do here is that I have a load instruction and my load instruction
+is doing dollar 2 plus 8 so basically this is going to happen here dollar 2 plus 8 I
+am going to figure out what is this value and this value I need to find into my DM and
+I need to fetch the value stored into that location let us say if that value is 40 and
+then I need to write that value 40 into dollar 1.
+So this is where my dollar 1 is being written into the register so at latch 5 is the earliest
+point when my dollar 1 is available.
+So I have point of production for dollar 1 at L5 this is L2 3 4 and 5 same thing what
+instruction 2 is going to do is it is going to perform is dollar 1 plus 8 so the value
+of dollar 1 plus 8 has to be performed in the ALU but this value the point of consumption
+of this value is before the point of production here and I cannot move further.
+So what this instruction execution look like is that instruction comes into the pipeline
+executes its IF the decode in the register stage I2 is going to execute and C is going
+to decode and C if I can have my values required values available with me but it will realize
+that this value dollar 1 is not going to be available.
+So it is going to stall itself and it is going to remain into the DR stage and at this stage
+it realizes that I need to perform dollar 1 plus 8 and this value dollar 1 is now available
+at L5.
+So what I can do is I can take this value from here and I can proceed on ALU stage because
+now this point of consumption falls after the point of production and then I can move
+to the DM stage then I can move to the I can move and fetch the value according to this
+dollar 1 plus 8 value from the memory and then write to the register.
+So I got my I1 coming out of here I2 coming out of here and nothing came out from here
+so I got one stall cycle in this scenario.
+So depending on the combination of the instruction and of course on this design of the pipeline
+bypassing of course can help when we are doing the instruction.
+So if it was not the case if it was not if no bypassing was available so in the same
+example what would have happened?
+So my value would have been produced here so my register read must have been aligned
+according to this write value so my read should have been done in this stage after this value
+was written here and then only I could proceed so this would have been also a stall cycle
+right.
+Similarly for the previous example if oh we did both with bypassing and no bypassing so
+two stalls and zero stalls similarly for this example bypassing helped in reducing
+the number of stall cycles we have.
+In the next video we are going to go towards another complicated example and we will also
+see an example of a different pipeline stage thank you so much.

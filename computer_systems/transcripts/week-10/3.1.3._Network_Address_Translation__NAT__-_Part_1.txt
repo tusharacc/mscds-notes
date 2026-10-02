@@ -1,0 +1,52 @@
+Hello everyone, let's continue our discussion on middle boxes and we will start network
+address translation in this series of discussion.
+So we know that we have an address depletion problem in IPv4 and it is quite possible that
+our organization when it started was smaller, so we made a request for a smaller range of
+IP addresses but as my business grew successful, my organization grew and I now need more IP
+addresses.
+The problem could be that one, no more IP addresses are available because all the IP
+addresses which were available with your ISP are taken away, two, another problem could
+be your range of IP address was here and the range which is available right now is here
+and everything in between has been taken.
+So this is yours, this is available and this is not available and now you are forced to
+use two different ranges of the IP addresses which might not be as convenient as using
+a single contiguous range of IP addresses for variety of reasons but anyways this is
+another problem but the issue is all the systems inside my network, they can communicate to
+each other with their local IP addresses or their private IP addresses.
+So do I really need to have every machine, do I need every machine to have a public IP
+address or can I rather just have a few public IP addresses and everybody talks to the rest
+of the world through these IP addresses.
+So the problem is we always are going to have a mismatch in the number of computers in my
+organization versus the required public IP addresses or the available public IP addresses
+right so we cannot reserve them because it's also expensive.
+This is where network address translation comes into picture.
+Network address translation allows you to do a mapping between a private to public IP
+address or a private to private IP address or a public to public IP address depending
+upon what is your requirement but this is the most common scenario that we see and this
+is what we are going to discuss as an example of as the setting for the network address
+translation.
+Of course NAT is a temporary solution while we are moving towards IPv4, we can also do
+NAT in IPv4 but it is generally not required.
+Now the terminology is that we are going to use router as my NAT device so I am assuming
+that the router is going to perform my NAT but the same can also apply to wire walls,
+load balancer etc etc.
+You might also be aware of what TCP and UDP ports are so port number 0 is a special port
+it is not used on to the network traffic or internet traffic but your local programs use
+when they want to communicate on to the same operating system.
+Then you have well known ports starting from 1 to 1023 and you require super user privilege
+in order to bind a network socket to an IP.
+Then you have register port that can be used without super user privilege and then you
+have some private or dynamic or empirical ports which is used for private customized
+or temporary services.
+Now let's look at what is NAT and something also relevant is PAT.
+Both NAT and the PAT technology modify the header in your packet.
+Now depending upon the type they modify different type of headers.
+If you look at the NAT the network address translation it is going to modify my layer
+3 headers that is my IPv4 headers only.
+So if my source IP was or destination IP was let's say some IP address I am only going
+to modify the IP address field.
+If I look at the port address translation it is going to modify both my IP along with
+the port to another IP along with another port.
+So basically this is where your NAT is and this is where your PAT is.
+So NAT only modifies IPv4 header one IP to another IP and PAT modifies one IP port pair
+to another IP port pair.

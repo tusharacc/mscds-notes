@@ -1,0 +1,41 @@
+So now in order to do this thing I had to match on two criteria the source as before
+but also as destination in this time and this is what your policy says.
+Policy net says that you are matching on both source and destination which was not possible
+before.
+Of course you have two different rules now before it was just one rule but this is how
+you are going to utilize your two different public IP address to talk to two different
+destination in two different ways.
+Even in this example we are only matching on two fields right we are matching on source
+and we are matching on destination however I am only translating my source.
+Now if I want to circumvent this thing and I want to translate both source and destination
+this is where your twice net is going to come into picture.
+So twice net means you need to do netting twice that is both source and destination
+are netted right.
+So to give you a comprehensive example let's talk about policy twice net.
+What we are doing here is policy means we are going to make a decision based on both
+source and destination so matching is happening on both and I am also doing a translation
+of both source and destination attributes.
+So I am translating my source using a dynamic path setting and destination using static
+net setting.
+So in this example we talk about imagine you have an organization and that organization
+by default talks to Google's DNS server that is 8888 and I do not want this server to be
+bothered for DNS queries because we have our own DNS server.
+One option is I go to every computer open its network setting and configure the destination
+DNS server that I want to do because it is an impractical approach in a larger organization
+what I am going to use is a policy twice net.
+So basically what I am saying here is if my source is within my network so if something
+is talking from my network so this is matching happening on source and my destination is
+8888 so another matching happening on destination so this is matching on source.
+Destination is also matching on destination then what I am going to do is I am going to
+change my source translate my source so this is one translation to 32855 otherwise I am
+going to do 329188.
+So basically let me just clear it out basically what is happening is if I am talking from
+within my network so if anybody is talking from my network trying to talk to this DNS
+server what I am doing is I need to change the source so my source is going to become
+328255 so my source is going to become 328255 and because this is PAT I am going to randomize
+the port number as well so this is 5555 and my destination which was originally 8888
+now becomes 329188 and port number remains the same because this is a DNS query standard
+port.
+So this way I have done matching on two attributes and translation of two attributes as well.
+This concludes our discussion on NAT where we have seen four types of common NATs and
+two different NATs with that we conclude this lecture thank you so much.

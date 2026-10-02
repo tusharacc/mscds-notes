@@ -1,0 +1,43 @@
+Hello everyone, welcome to this session of computer systems 2 course, in this course
+we are going to, in this particular section of this course we are going to look at the
+concepts of computer networks, different aspects of computer networks and key concepts regarding
+the networking portion. In the other portion we are going to look at the operating system
+part but I will be covering the computer networks aspect of the CS2 course. So we will start
+with a very important notion or I would say a key technology in today's world which is
+the internet which has become an integral part of our lives and we are going to look
+at some of the concepts. Internet originally was not designed as we use it today, it was
+originally designed to exchange information between different institutions but now today
+we use internet for a variety of purposes which were originally not thought of as an
+application of the internet. So to begin with we can look at the origin of the internet
+and what you see on your screen is an interface message processor which is a packet switching
+node to interconnect participant network to the ARPANET from the late 1960s to 1989. It was
+the first generation of the gateways which are known today as the router and interface
+message processor requires the connection to a host computer via bit serial interface
+so basically it requires an interface to connect to the computer and broadly this was a gateway.
+If you are familiar with ARPANET, so this is what ARPANET which is basically advanced
+research project agency network which was the first wide area packet switch network
+with distributed control and one of the first network to implement the TCP IP protocol suit.
+So this interface message processor basically is a gateway, today we do not even see a gateway
+in practice because your router has become so powerful that it includes a variety of
+networking devices such as switches, gateways etc but from a generic perspective a gateway
+provides interoperability between networks and contain devices such as protocol translator,
+impedance matcher, rate converters, fault isolators or the signal translators. Gateways
+are distinct from the routers or switches in a manner that they communicate with more
+than one protocol to connect multiple networks and it can operate on any of the seven layers
+of the OSI model which is the open systems interconnection model. So gateway originally
+were to become a way between or become a gate between different networks and this is where
+we got our internet booting up. So different organization for example this Harvard here
+was participating here, MIT was participating here, Utah was participating here, Xerox,
+SRI they all were connecting to each other forming a wide area network of course packet
+switch network as well and this is where your IMP was placed. So this was the key device
+which made this communication happen. Before this everything was circuit switch and now
+in the beginning during the inception of internet IMP played a major role to enable packet switching
+to happen. So if we have to define what internet is we can say that the internet is a publicly
+accessible network of interconnected computer networks which means anybody can access this
+network because it is a publicly accessible network and all the computer networks joined
+to this network of network are able to communicate with each other of course as long as some
+services are provided from one network to another network and what we do is that we
+use packet switching in order to transmit the data using the standard internet protocols.
+We can also say that the internet is a network of smaller networks such as any domestic network
+or academic network or business network or government networks which we use to carry
+information and services from one network to another network or with the network as well.

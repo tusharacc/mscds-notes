@@ -1,0 +1,83 @@
+So, now we are going to look at when to use signed and unsigned values, unsigned numbers
+and signed numbers basically you might already have an idea that when you want to work with
+only positive values you should work with unsigned numbers, but if you want to use signed
+values then you would want to use I mean when you want to use positive and negative both
+values you want to work with the signed values. So, in the unsigned case just as a reminder
+we have the value starting from 0 0 0 all the way up to 2 power 32 minus 1. So, this
+is the range of the unsigned value all numbers are positive and 1 in the most significant
+bit basically just tells you that it is really a big number that is all the most significant
+bit does, but if you look at the signed values what we have is starting from all 0s going
+up until 2 power 31 minus 1 then minus 2 power 31 up until minus 1 which is like all 1s right
+all 0s to all 1s. In this case signed values they can be used
+to represent positive and negative and actually the most significant bit in any number tells
+you that it is a negative number. So, this distinction enables us to represent twice
+as many numbers when we are sure that we do not need negative numbers. For example, if
+you have let us say you are counting some events. So, in that case your events are going
+to increase only and there will be no negative values in those cases you might want to use
+only positive values. So, that if you are counting an event if you
+use a signed value versus unsigned value you will only have a half of the range. So, with
+an unsigned number you can have twice as the range of the signed numbers right. Now, how
+it is handled into the MIPS basically consider the following example where we are setting
+on less than if t 0 is less than t 1 sorry. So, if t 1 contains a 32 bit number and this
+number is either smaller than 0 or greater than 0 we will set the value into t 0 right.
+So, imagine if t 1 contains this 32 bit number if you are not sure if it is a signed number
+or unsigned number you can never work with this instruction because this instruction says you
+have to compare t 1 and the 0 value and set the value accordingly. So, if t 1 is less than 0 we
+are going to set this value otherwise we are going to keep it reset. So, imagine if t 1 was
+less than 0 because it was a signed number let us say. So, here it is we are using a signed value
+and we are using unsigned value. So, in this case unsigned values t 1 actually becomes a very large
+value because we are dealing with unsigned value. So, this one only means that it is a very big
+number of course much bigger than 0. So, it is t 1 is bigger than 0 and thus we do not set t 0.
+So, we keep 0 into t 0 register but if we are using a signed number which means the number stored
+in t 1 the same number stored in t 1 actually will become a negative number because of the
+MSB being 1. So, in that case it is a negative number. So, this negative number of course is
+less than 0. So, we are going to set because t 1 is less than 0. So, we are going to set. So,
+the number in t 1 is less than 0 we are going to set 1 into t 0 register. So, the so the depending
+upon if it is a signed value or unsigned value we set we can we our operation the outcome of
+the operation changes. But the when you define integer or any value into your high level program
+the compiler keeps a track of what kind of number it was. So, if it was an unsigned number defined
+in your C program then the compiler is going to produce a code which uses an unsigned version
+of your of your operation. So, in this case set on less than with unsigned value. So,
+it is going to remember what kind of number it was because otherwise it can change the outcome
+of the operation and if the number was let us say a sign number in that case your compiler is
+going to produce this version of the instruction. Now, sign extension is also another common thing
+basically imagine you want to add some immediate value some register operand or some register
+operand and then you have a 16 bit value what we are doing is basically we want to add this
+16 bit sign numbers 16 bit value and add it let us say this 16 bit number must be is to be done
+some some some way operated with these operands some some values stored into this register.
+So, for example when doing an add with an immediate operand so this is a 16 bit value right but this
+is a 32 bit register now what we need to do is we need to extend this value if it was an unsigned
+number it would not be a problem because you can simply add this value into this and the resultant
+will on anyways will be 32 bits right but with the signed values if this value is a signed values
+what should we do the conversion is super simple what we do is we take the most significant bit
+and keep on filling the left most values. So, imagine if the value was 2 which is represented
+into 16 bit like this if we have to fill it if we have to extend it what we will do is we will take
+the most significant bit and fill the first 16 bit with this value right. So, first 16 bit will
+be zeros and then you simply copy this value but if it was let us say minus 2 which is represented
+like this. So, what I am doing is I am taking the most significant bit copying it to the first
+16 places and then copying the number itself. So, that is simple the idea is very simple you
+take this the most significant bit and use it to fill up the additional bits on to the left known
+as a sign extension this is the process that is called the sign extension right and it is it becomes
+more crucial because when we are dealing with sign numbers it can of course, affect the outcome if
+you do it incorrectly but in case of a 16 bit number. So, imagine if I want to represent 2 with
+4 bit it is just like this if I want to represent it with 8 bit it is just like this with 16 bit
+it is just like this. So, I keep on adding zeros but in this case it is a different story
+altogether when we are dealing with the sign numbers ok.
+Some other alternative representation so, we saw the story of binary versus ASCII we know that
+ASCII is inefficient as compared to the binary number representation and binary representation
+with the sign numbers we use 2 complements 2's complement there is also something called 1's
+complement where a negative number is only represented by inverting the bit of x right.
+So, basically just if you just invert the number that becomes the complement of that number and
+negative number is represented in that way another one is sign in magnitude where you use the first
+bit the most significant bit the MSB to represent the positive or the negative and the remaining
+31 bit to represent the number itself. However, if you deal with these 2 kind of
+representation the in order to work with these and the mathematics underlying mathematics would
+require a lot of conversion that is why we remove these we do not consider these representation in
+general because it becomes eventually it affects the performance of your operations that is why
+2's complement is still preferred and there could there is also one problem called 2 zeros.
+So, if you have let us say 0 and if you want to invert it let us say in this 1's complement so,
+zeros and if you inverted it becomes all 1's so, which 1 is 0 is it plus 0 is it minus 0 this
+is another problem that we so, both representation above suffer from 2 zeros. So, that is why we
+also ignore this kind of representation and rather use 2's complement in our practice.
+Thank you so much.
+Thank you.

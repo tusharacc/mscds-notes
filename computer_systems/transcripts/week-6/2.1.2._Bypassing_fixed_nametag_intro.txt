@@ -1,0 +1,133 @@
+Welcome back, so in the previous session we have seen how instruction execute into pipeline
+without the notion of bypassing and in this example we are going to look at what bypassing
+is how it can help us in executing the operation.
+So just to give you a quick recap in the previous example we had our instruction 1 executing
+in cycle 1 at IF stage instruction 1 here instruction 1 here in the next cycle and
+at fifth cycle it produced an output which was to be consumed by the next instruction.
+So in that case we said instruction 2 starts here and then it stage into I2 stage until
+it can perform the read and the read could only be performed in the second half so basically
+it will remain into the DR phase until this register right has happened.
+So we see that there were 2 cycles wastage as far as this data dependency was concerned
+and this was the scenario where the bypassing was happening and instead of doing instead
+of reading the values from the register directly the idea or the notion of bypassing is that
+you should be able to read values when they are available into the pipeline somewhere.
+So in case of no bypassing we set this idea that a read sorry a write can only happen
+or 2 instructions let us say I1 and I2 are going to exchange the values through registers
+because we are talking about data dependence so we are saying 2 registers are going to pass
+the values of the producer and the consumer are going to exchange values via registers only.
+However we know that the instruction 1 was producing an output into R3 and this R3 was
+consumed by R2 right this R3 was actually produced at the stage of ALU right so if this
+is the place where R3 was available we could have utilized the value of actual R3 right
+when it was available to be consumed instead of waiting for it to be written into the register
+what if I can utilize this value right after it has been produced by the producer.
+So this is the idea of bypassing and then we are going to go through some concepts around
+bypassing in this example. So here the instruction 1 and instruction 2 are the same instruction 1
+is going to take R1 and R2 like before and going to produce R3 I2 is going to take R3 and R4 R3
+being produced by I1 consumed at I2 and then we have I3 which is in the previous case it was
+independent and now we have R3 plus R8 basically R3 coming from one of the previous instruction
+so only change that has happened in this example is I3 has changed.
+So now before I could let us look at what happens when I1 was executing so it was I1
+executing here I1 also executing here at this stage then we have I1 then we have I1 and then
+we have I1 as far as this instructions are concerned we can also think about the latches
+which were placed in between these stages to separate them so this was this was L2 this was
+L3 this was L4 this was L5 now if I want to take a look at the time when this value was produced
+I can say that this value was actually produced by I3 at the end of the ALU stage so I can say
+this point was actually the point of production or POP for R3 right and similarly we have to
+figure out when R3 was being consumed by I2 right that we will come along let us look at
+what happens at different latches and how this value has travelled through the pipeline for R3
+with respect to I1. So when I1 was executing it started with the IF phase at cycle 1 and in
+data decode and register read stage it read the values from R1 and R2 and basically made
+these values available into L3 at this stage so at this stage in L3 imagine if this value was 5
+and this value was 7 so this value should have been 12 at this stage 5 and 7 was available after
+instruction 1 has read them from R1 and R2 at latch 3 once this value 5 and 7 are stored in L3
+the ALU was consuming this value and this values were coming from the latch 3 here so this was
+coming here and this value was these values were being utilized to compute this instruction 1 R1
+plus R2 so 12 was available in L4 after this point this value 12 move towards the next stage
+which was the DM stage and in L5 this value was available until it was written into R3 at this
+stage right so with respect to I1 this value 12 was available as early as this L4 latch so we could
+have utilized this value from L4 rather than waiting for it to be returned into the register
+value and cycle 5 so at the end of cycle 3 we could have already used this value into instruction
+2 so this is the idea so the point of production for this side 3 for this register 3 was at this
+stage and I could have utilized this value from L4 right now let us move to I2 where I2 was
+executing so I2 came here and then I2 went to the decode and read stage and I2 realized that I need
+to read a value and this value needs to come one value needs to come from R4 so basically I need
+to read one value R4 and one value R3 at this stage if I perform the read I can read the value
+of R4 correctly because it is already available let us assume but the value of R3 is going to
+be some old value of R3 right so if I perform the read here it is not going to work out so I need
+to move this so I need to take a decision if I really need to read this value or not should I
+really move to the next stage or not but if you look at this example these R3 and R4 as far as
+the instruction 2 is concerned if I move to the next stage let us say without stalling here and
+I move to the next stage this R3 and R4 are going to be consumed at the beginning of the ALU stage
+so this is the point of consumption for both R3 and R4 let us say but we are concerned about
+R3 because that is where the dependence is so I will call point of consumption for R3 is at
+the beginning of the cycle 4 if I could somehow bypass this value of R3 instead of coming from
+latch 3 because it was coming from latch 3 earlier which is like in between these stages
+which was coming from L2 for this case in this scenario for ALU it will be coming from L3 so
+instead of taking this value from L3 I could have a multiplexer which says depending upon
+my dependence rather than taking the value from L3 what if I could read this value from L4 if I
+could do that then in this scenario the instruction must have moved toward the next stage without any
+problem and actual execution could have already started in ALU at cycle 4 so just to so this
+probably gives you an idea that we need to be concerned about the point of consumption and
+point of production and a value can only be consumed after it has been produced so the idea
+is the point of consumption as long as it is after the point of production we can somehow bypass
+this value hence the name into the different instruction and avoid stalling the instruction
+so we have here different latches L2, L3, L4 and L5 we have I2 executing I1 executing here I1
+executing here I1 executing here I1 executing here and I1 executing here right as far as this
+ALU is concerned it is taking its value from here so it is taking two values R1 and R2 and it is
+producing a value here that is R3 and for this ALU two values are coming and both are coming from
+latch 3 when it has performed the read and stored the value into the latch right and this value goes
+R3 goes into oops R3 goes into this so instruction 1 and this is R3 now if I look at I2 it is going
+to start at execution at this decode and register stage I2 will perform a read operation and here
+I need to do a read I need to do an ALU on I2 so here I need to take two values that is R3 and R4
+so R4 and R3 is what I need at the beginning of this ALU stage so R4 is coming directly from the
+so when I performed my decode and the register rate I read some value for R4 wrote it into latch
+3 remember I am overwriting the value what was stored by I1 so when I2 was in this DR stage this
+is in cycle 3 I1 has already moved to the ALU stage right so this is I1 and this is I2 so I
+can overwrite this latch value here so L3 is now going to have some old value of R3 and the
+correct value of R4 so for this ALU operation R4 can come directly from L3 and R3 needs to
+come from L4 because this is where earliest in the pipeline R3 is sitting so if I perform this
+kind of bypassing of values my ALU can proceed further and then execute the instruction so this
+is when I2 will move to the IMDM stage and then finally it will move to the register write stage
+so this way earlier we have seen that there was some stall and in this scenario there will be no
+stall because we are bypassing the value from point of production to point of consumption right
+now let us look at R3 instruction 3 which is consuming again the value of R3 and one
+independent value of R8 independent in sense of the data dependence so what happens is I3 will
+move to the instruction fetch phase after completing this phase it can move to the next DR stage and it
+is going to read two values for R3 and R8 again R8 going to be the updated value but R3 is something
+which is it is going to read some outdated value so what it needs at the ALU stage is R8 and R3 as
+far as R8 is concerned it can come directly from the previous read that is from the latch 3 so this
+value can come from latch 3 but we need to figure out where is the value of R3 now now by the time
+I am this instruction 3 is sitting here by the time I came to this in this stage instruction 3
+came to this ALU stage I cannot take this value from L4 like in the case of I2 because by the
+time I came into the ALU stage I2 has already overwritten this value in L4 however when I1
+was moving ahead it was basically just copying the value of R3 into the next latches so basically
+the value of R3 when I1 was flowing it was flowing through different latches until it
+found and return into this value so by the time I came to this stage I3 came to ALU stage I2 was
+in DM stage which means this latch must have been overwritten so I cannot feed this value the value
+of R3 from latch 4 rather I need to take this value of R3 from latch 5 right so in this example
+if I fetch the value of R3 from L5 which is now the updated value and this value of L3 this value
+of R8 from L3 I can proceed further and I3 can continue its execution and the overall execution
+you see has no stall just because of the concept of bypassing so just to summarize when I1 was
+executing I1 was I executed its operation it performed a read and stored the value in let
+us say this was L2 this was L3 so the next stage for ALU is going to read the value from L3 because
+this is where both the registers were written by I1 so it can take both the values from the latches
+however as far as I2 is concerned because a value was being produced by a previous instruction it
+took one value from the latch previous latch because for this instruction I2 the read happened
+and then it overwritten the latch and then independent value that is R4 can be taken from
+L3 but the dependent value it needs to come from let us say this was latch 4 needs to come from L4
+and for the third instruction independent value can again come from its own previous stage that
+is DR stage so writing in latch 3 but the other value which is coming from 2 instruction before
+it needs to come from L5 so what we can say that we need to have an ALU so we need to have
+an ALU in this scenario such that which takes 2 input 1 input from here 1 input from here but
+the input is multiplexed it can come from either L5 L4 L3 same here L5 L4 and L3 in this scenario
+so if the value is coming from an instruction before me some instruction right before me the
+value I need to take is from L4 just like I will just erase this part so if the value of the data
+dependence is from the instruction right before me I need to take this value from L4 if the value
+is coming from an instruction that is 2 cycles before me then the value must be read from L5
+however if an if the value is coming from an instruction that is more than 2 cycle before me
+then I can directly read it from L3 right when you are more than 2 cycle behind in this particular
+pipeline you would have already written the value into the register and that register could be read
+and return into the latch 3 in its DNR phase right so this is how bypassing overall helps us
+in reducing the stalls and actually improving the performance of the system so in the next video
+we are going to go through different examples and we will see some combinations of bypassing
+so effect of bypassing over non bypassing of the instruction execution thank you so much.

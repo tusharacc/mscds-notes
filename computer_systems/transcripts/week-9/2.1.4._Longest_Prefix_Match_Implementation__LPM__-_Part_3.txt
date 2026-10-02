@@ -1,0 +1,40 @@
+Now, after I implement this into hardware, what is going to happen? Let's say my search
+word is 1011. The moment I insert this search, all the circuit is going to be activated and
+what I am going to have is that for 1011, I am going to have a match here, a match here,
+a match here and it is an X, so it is also going to be a match here. For the next bit
+which is 0 at the same time, so this all operation is happening in parallel because all circuits
+are activated altogether, so this is 101 and 1. What is going to happen is this is going
+to be a match for 0, this is also going to be a match for 0 and this is also going to
+be a match for 0 and this is not going to be a match because this is 1, so we are going
+to say this is not a match and anyways we can avoid it. Then we have another one, so
+match, match, match and then we have another one, match, match, match, so we have 3 matches
+and what we are going to do is we are going to pick the top most entry which is going to be the
+first entry which says according to this logic here is 00. So, this is how your TCAM works. Next,
+we move to the decision making on routers with respect to the line cards, so we have different
+line cards and we want different line cards to communicate with each other. Before we move
+forward what I did not tell you so far is the control plane and the data plane. A control plane
+is the plane basically which is like the decision making component of your hardware and the data
+plane is used to carry the data forward the data and so on. So, basically control plane is the
+brain and data plane are the hands to do some task. Now, in this router the first thing that
+we need to place is the routing table. Should I put a routing table, should I put a central routing
+table such as let us say in the control plane and then whenever a decision is to be taken every
+line card accesses this central table and eventually we are going to have a contention
+problem there. So, instead of having a central table bottleneck what we do is that every line
+card has a own copy of forwarding table. So, every line card maintains its own forwarding table
+locally so that the decision making can happen in the data plane based on whatever rules were
+set by the control plane earlier. The next thing is a switching fabric. If we look at the routing
+device and if we enable a shared bus among these line cards, so basically a shared bus we are going
+to have the same problem as if only one can speak at a time. So, with the shared bus we are going
+to have something like a CSM we will need something a protocol like CSM, a CD and so on and so forth.
+So, this is not going to be a very efficient utilization. So, what we rather use is a crossbar
+switch or a switch back plane in which if two input output pairs are not competing with each other
+they can send the information in the same time. So, let's say this line card is talking to this
+line card 2 and this line card is talking to this line card they can talk to each other in
+simultaneous in simultaneously without when they do not have any contention or competition. So,
+here 1 is talking to 4 let's say and 2 is talking to 6 and 3 is talking to 5 they are not competing
+with each other. So, they can talk or send the frame in the same time slot and how do we establish
+is using a crossbar switching. So, we have a crossbar so we have 1 2 3 4 5 6 port number
+here and we have a grid of connection we only activate these channels or we can activate as
+many channels as possible only if they are not competing with each other. So,
+if 1 and 4 are communicating so this will happen then 2 and 6 will happen and 3 and 5 will communicate
+with each other. We will continue our discussion in the next video. Thank you so much.

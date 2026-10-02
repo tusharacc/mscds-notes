@@ -1,0 +1,225 @@
+Hello and welcome back.
+In this session we are going to talk about the control hazards into the pipeline and
+we already introduced the concept of the hazards and we have seen that when a branching or
+a jump instruction comes into the pipeline and if you remember the example that we said
+it will take one full cycle, the second cycle to figure out where we are going to go if
+we take a branch or jump instruction.
+So figuring out the next instruction or the next value of the program counter takes one
+full cycle.
+So what should we do in the subsequent or so what should we do in that period of time
+when we are still figuring out where we have to go into the next cycle.
+So if I fetch a next instruction and if I do not go or do not execute that instruction
+basically whatever I had done for the next instruction that has to be kind of suppressed
+or kind of cancelled which means I would end up having a bubble into the pipeline in that
+scenario.
+So control hazard basically occur when we have to take a branching decision or a jump
+decision and there are multiple ways or multiple options that we can take when we are dealing
+with the control hazards.
+So imagine so here in the slide we have shown you 4 instructions so what 4 options or 4
+approaches to deal with the control hazards.
+Imagine if you have a let us say you have 100 instruction and if there was no hazard
+whatsoever these 100 instructions will execute in 100 cycles.
+This is the best case and no dependencies was there.
+It could have been the case that there are 20 branching instruction and depending upon
+the outcome of this branching instruction you might need to take more cycles because
+we know that figuring out where we will go in when deciding upon the branch will cost
+us some stall cycles.
+So imagine we have something like you are going to take a branch and you are going to
+have a logic here and then you are going to jump on a label let us say E and this label
+E when it is taken has some instruction that you need to execute.
+If you do not take this branch you execute let us say some part let us say the label
+is T I am just giving a label T but if you do not take this jump you do not branch on
+this label E you are anyways going to execute this instruction.
+So let us say there are 20 branching instruction in your program out of 100 instruction and
+it is possible that you take 8 times you take the branch so this is the branch that you
+have taken that is you jump on to the E label and 12 times you do not take a branch.
+So not taken and you follow label T so this is what you follow so basically this is a
+label and this is a label.
+So depending upon what we do one option is the first one is when we are still figuring
+out where the branch will jump.
+So in the second cycle when we are doing so if my instruction starts and my instruction
+says I have to do a branching the first option is do not do anything.
+So let us first figure out where the branch will go do not do anything while we are figuring
+So basically already do not proceed with the I am stage of the next instruction so if you
+remember from the previous setup so I can just give you so basically while we were figuring
+out if you remember we were figuring out our pipeline here sorry the branching here we
+had already fetched some instruction with PC plus 4 but if the branch was taken let
+us say somewhere else PC plus 100 we will go and then squash this instruction.
+So the first approach is when we are figuring out do not do anything here.
+If you do not do anything here that is a one approach which means you will have every time
+you encounter a branch you are going to have 20 stalls 20 bubbles into the pipeline.
+So this is the best case is when you will have 100 cycles to complete this instruction
+but with the first option when you are not doing anything when figuring out the branching
+you are going to end up consuming 120 cycles for executing these instructions.
+So this is the first approach I am just highlighting the label okay this cannot happen because
+of some reasons I wanted to highlight this thing actually so this is a label this is
+a label this is a label label and label.
+So the first approach is do not do anything the second approach is that you do something
+when you are figuring out.
+Now the second option is what we are more familiar with and we said that you might want
+to fetch the next instruction into your instruction according to your program counter.
+So basically while you are figuring out this branching decision let us just fetch the
+next instruction and possibly you are going to not take the branch and continue with the
+regular execution.
+This is what we have done in the example that we have discussed so you have different instruction
+let us say one of the instruction is branching you are executing this and now you are executing
+the branch while you are figuring out what is branch you already fetch the next instruction
+right after the branching this is right after the branching condition right.
+So basically if you are not taking the branch basically you are not jumping on the label
+E you are already bringing this instruction and the possibility is that you might continue
+to execute into that direction.
+So if this is the case and let us say this was the example where only 8 times you were
+jumping on the label and only and the rest of the 12 times you are following the sequence
+of instruction as is in that scenario you are only taking a penalty on 8 times.
+So basically only 8 times this instruction was not executed and rather you had to execute
+this part so it would have taken you 100 plus 8 that is 108 cycles to complete this instruction
+which is better than the previous approach of not doing anything at all right.
+So okay let me clear this part I wanted to highlight this part but for some reason.
+So oops I did it one more time so in the previous example I did 120 cycles I want
+to highlight this thing with the yellow.
+In the second option where we prefetched I mean we when we not prefetch but when we continue
+to proceed with the pipeline with the next instruction after the branching condition
+in this scenario we see that we would take 108 cycle in the worst case scenario which
+is better than 120 cycles when not doing anything right of course it is not as good as doing
+it in 100 cycle but we are trying to improve upon the penalty that we get.
+Now the next option is the option is called the branch delay slot basically the idea is
+let us say this is your branching condition you jump on some label you have a label let
+us say you have a label th I am purposefully making some space here and then you have your
+label here you do something here you do some operations here right.
+The next idea says imagine if your compiler so this is a compiler assisted approach so
+your compiler says that look while you are figuring out a branch there are two possibilities
+that either you take the T label or the E label but there is a possibility that there
+is some instruction somewhere in your program let us say somewhere above this instruction
+which needs to be executed let us say this is an instruction x y z and this instruction
+executes irrespective of what you do right.
+So if you have an instruction like this rather than executing that instruction at its original
+place what if I bring it here and execute it while you are figuring out your instruction
+so basically my move my this instruction x and z right after the branching of course
+it needs to be done in such a way that the overall outcome of the program does not change
+so you do not mess up with the program execution it is just that there might be some instruction
+which can be executed instead of the place where it is defined after the branching right.
+So if we can figure out the compiler is able to figure out some instruction that would
+help us because it is not for guarantee that there will always be a possibility of improving
+and filling up the branch delay slot so this is called your branch delay slot and nevertheless
+on an average practically this is going to give you something like 103 104 cycles because
+if you are successful in bringing such an instruction no matter what branch you take
+it is always going to be some useful work while you are figuring out your branch and
+once this instruction finishes you are already ready with your decision where you need to
+go to t or e and you can continue your instruction execution as far as this branching condition
+is concerned with t or e so on an average it is going to take you something better than
+the before so instead of 104 cycle I am going to say let us say going to take 108 instead
+of 108 I am going to take 103 or 104 cycle with this branch delay slot because I am ensuring
+something is getting done useful in this branch delay slot.
+While in the previous example it was a default branch was taken like I was in this case I
+was completely dependent on this not taken branch but now I am making an instruction
+I am trying to find an instruction and putting it there.
+The fourth option is what if I can make a smarter guess if my runtime execution if my
+system is able to figure out at runtime that I need to take a branch depending on the history
+of the program let us say this program is continuously executing and out of all the
+times I have taken a decision on a given branch x time I go into this part and y time
+I go on to the another branch so if I utilize the history of my execution if I can make
+a guess on to the runtime I can further improve my pipeline execution because now I am using
+some historical data let us say to figure out the branch instead of lingering on a fixed
+branch I am making a prediction on the runtime of course there is a possibility that I might
+be wrong but let us say even if I am able to make 18 time I am correct and 2 times I
+am incorrect in that case I am going to have an execution done in 102 cycles only if I
+am able to make correct prediction.
+So these are the 4 possibilities what we can do in order to handle with the control hazard
+we are going to look into detail about the branch delay slot because this is something
+interesting we have already discussed not doing anything of course there is nothing
+to discuss this part we have already discussed that you continue with the t label in this
+example this is something interesting that we will go into more details next.
+So let us think of branch delay slots as something that you can do to fill out the cycle right
+after your branching decision is being executed right.
+So basically you have a branch instruction you do something here you jump on a label
+and you can fill out this next cycle with some useful work instead of executing t or
+e altogether I mean just for this next cycle while you are figuring out your branching
+direction right.
+So with my branch I have multiple options what I can do so in this branch delay slot
+either I can bring some values which are before my branching instruction so I can bring some
+values some instructions before which were which exist before my branching or I can do
+something 2 other options I can do 2 more things depending upon the branch I have taken
+right.
+So if this is the branch that I have taken and this is the branch that I have not taken
+I could also bring some values from here right.
+So basically the idea is you want to move some instructions around from their original
+position so if this is a branch taken and this is a branch not taken.
+Let us say so the first example says you want to move some values some instruction
+which were written before your branching condition but now you want to move them after the branching
+condition and inside the delay slot.
+So basically if this is the way my program looked before so I am adding 2 values s 2
+and s 3 putting a value into s 1 and my branching decision is based on s 2 so I am taking a
+decision on the value of s 2 and then whatever the value of s 2 is I am going to jump in
+one point or continue my execution what if I just bring this value bring this instruction
+into my delay slot so my program becomes like this.
+So I move the add operation dollar 1 dollar 2 dollar s 1 dollar s 2 and dollar s 3 in
+the delay slot in this particular example because this add instruction is not affecting
+my branching condition at all I am free to move this instruction inside the delay slot
+had it had been something like I am instead of adding s 2 and s 3 and storing in let us
+s 1 I was storing something in s 2 which means my decision could have been affected
+if I had moved this instruction inside the delay slot so of course you need to make sure
+that the decision does not changes when you are moving something before the branching
+condition was defined right.
+So in that scenario this is going to be a useful work done during the slot and this
+is going to be helpful for us because we are doing something useful so in option A
+the 100 instructions 20 branching so this is option let us say this is option this is
+option number A this is 100 instruction that we are executing 20 branching condition and
+actual cycle that we would take would be 100 because we are utilizing something in
+the delay slot and it is always going to produce us something fruitful and nothing will be
+nothing is required to be scorched because by the time this delay slot finishes we have
+our branching decision and we can take the branch in whatever direction it was supposed
+to take us it is going to take 100 cycles only when we are able to find an instruction
+that we can move into the delay slot so let us assume we were able to find something to
+move into the delay slot.
+Now there are 2 more options let us say if you take the branch or if you do not take
+the branch in case I take the branch or not take the branch it would have also been useful
+if I can bring something from these branches so option B says or and both the option B
+and C says you need to prefetch the instruction right so if I could prefetch some values let
+us say some instruction which was sitting here while I am still figuring out which way
+I need to go so basically I am moving this instruction into this position and if I take
+this branch and if I take this option B basically I take the label E so I am going to write
+label E here so taken is label E one second so this is E and this is not taken is T and
+so basically if you take the label if you take the branch you go to this label E which is option
+B written here just an option is there so I am going to highlight it differently so there is no
+confusion this is option B this is option C this is option A I am going to write B here and C here
+so this is B and this is C and there will be one more operation option D which is like this okay
+so if I if I were to take a branch which is I am going to label E and if I could prefetch
+this instruction here it would have been useful only when I take this branch right so in the same
+thing if I could bring some instruction from here and put them here in the delay slot because
+I know the branch is not taken for certain amount of time I can execute something useful here of
+course when I am not taking the branch now it depends on the probability of taking the branch
+and not taking the branch so in this example what we are doing here is I am going to jump on a label
+depending on the condition and I am moving the jump instruction right into my delay slot so even
+before jumping I am bringing the first instruction from there which is T4 T5 and T6 and I am going
+to execute it while I am still figuring out this branch of course the condition to remember here
+or the precaution to take here is that if this instruction modifies some value some register
+which are also used into the other side of the branch for example if I am jumping here like in
+this example if I am jumping here the not taken branch if had it been using T4 T5 or T6 would have
+been affected so I cannot move any instruction which is going to create further problems such
+as let us say data dependence or because of this instruction some registers might get updated which
+might affect the other branch that I am going to take as long as we are going to remain in the same
+branch it is fine but if this branch is not taken then it is going to create a problem so you need
+to move only those instructions or you are able to move only those instruction in this delay slot
+from this option B and option C as long as they do not affect the other side of the branch so if
+I am moving something from the taken branch those instruction should not be affecting any instruction
+on the not taken branch or if I am moving something from the not taken branch it should
+not be able to affect anything on the taken branch so I need to keep in mind to not affect
+the other branch just because I am moving an instruction from one of the option B or C.
+Now let us assume if 80% of the time this branch was taken and only 20% of the time the branch was
+not taken had I move it move some instruction from here without creating any problem into this
+delay slot I could have success out of 20 branches I could have had success into 80% of the times
+which means I would have been successful on the 16 branches but 4 branches would have created a
+penalty for me so instead of 100 cycles now I would have 100 plus the penalty is going to
+be 20% of 20 which is 4 so I would have done it into 104 cycles but if I take the opportunity
+to move information or instruction from the option C it would have been successful on 20%
+of the time and the penalty would be 80% of the 20 branches because if I am successful I
+am only going to satisfy these many instructions but most of the time I am going there so moving
+an instruction from here is actually going to cost me 80% penalty that is 16 penalties
+so 100 plus 16 is going to give me 116 cycles of execution and if none of the option can be
+taken I need to put a no operation here and I would execute the same instruction in 120 cycles
+so option A would have been the best case option B only as long as you know which is the mostly
+taken branch if you move some instruction from there it is going to give us a lot of
+advantage but of course it depends on you need to figure out which branch is being taken or not
+and no operation is going to be the worst in this example with that we conclude this control
+hazard and in the next video and in the next lecture we are going to go through some more
+interesting concept and discussion on the topic thank you so much.

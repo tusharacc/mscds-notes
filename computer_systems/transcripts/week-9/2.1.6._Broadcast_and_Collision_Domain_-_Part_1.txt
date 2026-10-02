@@ -1,0 +1,61 @@
+Now let's move towards the broadcast and the collision domain and the broadcast domain
+as per the definition is includes all the hosts that a broadcast frame transmitted by
+a host can reach.
+So basically it includes the range of or the collection of the host where a broadcast by
+one host can reach.
+So basically if I do a broadcast where all places my broadcast can reach is defined as
+a broadcast domain.
+As far as the collision domain is concerned it is a section of network where the packet
+will collide if two nodes attempt to communicate with each other at the same time.
+Let's look at broadcast domain and collision domain with some example on different devices.
+Let's assume you have a hub and we know that the hub operates in a way that if I send a
+packet from a host to a hub the hub is going to take this input except for the input it
+is going to send to every other output of the hub.
+So it is anyways going to work in a broadcast domain.
+So every time I send a packet it is going to reach to every other PC connected onto
+this hub.
+So if I say my broadcast domain is basically if any host start to send a packet it is
+going to reach to every other host or if a packet start to do a broadcast it is anyways
+going to reach to every other host.
+So I can say that I have one collision domain which I already discussed also mentioned in
+the previous discussion over the hub over the introductory lecture.
+So here we have one collision domain and at the same time we also know that if a host
+is sending any packet any other host cannot send at the same time because a collision
+will happen because whenever let's say A was sending some information it is supposed to
+go to all these three channels and if any one of them start to do the communication
+it is going to scramble onto their own connection as well as it may also create interference
+onto the other channel.
+So we have one broadcast domain and one collision domain in case of a hub in the given example.
+Anyways also it is only one collision domain and one broadcast domain.
+Now let's move forward to the switch.
+In a switch we know that the switch are they operate at the layer 2 and they have the capability
+to identify where I need to send the packet based on the MAC addresses.
+Nevertheless if PC1 let's say does a broadcast which means it sends a local broadcast let's
+say on every MAC address by saying that my frame should go to every MAC address which
+means all F's go to all F's basically.
+So this is going to be how many bits 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 and 12.
+So 8, 8, 8 because this is 4 bit, 4 bit, 4 bit, 4 bit, 4 bit, 4 bit so 24, 24, 48 bits.
+So if I do a broadcast if PC1 does a broadcast the idea is the switch must send it to every
+other host into the LAN every other system into the LAN and we are doing a layer 2 broadcast
+because specifically we are dealing with the switch.
+So if I do a broadcast from here it should reach to every other host.
+Of course if I do a communication such as going from 1 to 2 the switch is going to ensure
+that it reaches to 2 only but when I ask this when I do a broadcast it is anyways going
+to go to every other host enabled by the switch.
+So if I do a broadcast what is going to happen is it is going to reach to every other host.
+Now if you look at the collision domain is going to be port specific.
+So as far as the broadcast domain is concerned we have 1 broadcast domain for a switch and
+we have 4 collision domain in this example because we have 4 ports onto the switch which
+are connected.
+So depending upon so it is always going to be 1 broadcast domain but n collision domain
+n equal to port number.
+So what is collision domain here is that if I am sending some packet here and if somebody
+is sending me packet I cannot have this communication happening because my signals will collide
+with each other because we have 1 channel which is half-duplex and in half-duplex channel
+only 1 party can speak at a time.
+So every port is going to have its own collision domain.
+So it is possible that this host was sending something and receiving something else but
+it is quite also possible that this communication is going without any problem.
+So collision will happen on a port specific scenario.
+So every port is going to have its own collision domain.
+So we have 1 and 4 collision domain in this example.

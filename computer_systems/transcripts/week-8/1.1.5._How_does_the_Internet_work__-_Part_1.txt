@@ -1,0 +1,36 @@
+Now in this lecture we are going to look at how does the internet actually work from start
+from the very start when you shoot a query on to the internet.
+So to explain this I have this configuration basically we have a computer connected to
+your home network so this is your computer connected to your home network basically your
+home router and the assumption is that everything is fresh which means your system has just booted
+up the computer has manually configured its IP address has subnet mask gateway DNS server configured
+manually and the DNS server and the default gateway is pointing to the LAN IP of your home
+router so you might want to figure out that your router has one internal IP which is your LAN IP
+which is 192.168.1.1 and your computer also has IP address within the same range 1.5 but your router
+also has one more IP which is your WAN IP so 115.20.97.114 and then because it's a NIC which
+is a network interface it also need to have a MAC address similarly your system also has a MAC
+address your NIC has a MAC address and we have an ISP router basically your router is connecting to
+your ISP and this ISP router has an IP address and a MAC address you have a web server possibly this
+is where you want to talk to whose IP address is this and you have a DNS server which is which is
+8.8.4.4 so this is the configuration the only assumption is everything is fresh no caching has
+happened nobody has talked to anybody before now in the beginning what I want to do is I want to
+send I go to my browser and I type www.http colon forward slash www.iis.se this is what I want to
+access on my browser so my browser on the other hand says like I will set up a session for you so
+it requests my operating system to set up a session for me to connect to www.iis.se onto the
+destination port 80 because I'm talking HTTP language now my operating system says okay I
+will set up a session for you and in order to do that what it does is it says let me look where
+is the iis.se into the DNS cache let me figure out what does www.iis.se means so it looks into
+its DNS cache and the cache is empty because the system is fresh so the DNS cache is empty which
+means I need to make a request a request to my DNS server for the corresponding address to this
+domain name so what I will do is I need to craft a DNS query so my operating system crafts a DNS
+query which says the source MAC is this which is my computer's MAC which is the same as here source
+MAC I say my source IP is this which I also place properly I also know what is my destination IP 192
+168.1.1 because this is what my DNS server has been configured into the system I also choose the
+destination port to be 53 on UDP because this is where your DNS query is run and this is the default
+port for it and my operating system chooses a random port for the request so chooses UDP protocol
+as the source and also a source port a randomly chosen source port the only thing I do not have
+at this moment is the destination MAC address what is the destination MAC address for the destination
+IP 192 168.1.1 I do not know because the system is fresh although I am still figuring out DNS query
+I still do not have one piece inside this query and the query is clear I have the query
+IP address of www.iis.ac but there is one missing piece into this query and I need to figure this
+out first.

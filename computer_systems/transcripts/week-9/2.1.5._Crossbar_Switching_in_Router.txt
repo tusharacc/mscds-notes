@@ -1,0 +1,70 @@
+Continuing our discussion on the routers more specifically on the crossbar switching, let's
+now discuss a problem that we encounter when a crossbar switching is in place and the problem
+is called the head-of-line blocking.
+The idea is that the packet in front of the queue blocks the packets behind it from being
+processed.
+Now let's imagine we have input 1, input 2 and input 3 and let's say the input 1 has
+a sequence of packets coming such that these packets want to go to the output port red,
+red and red.
+So basically these packets in input 1, 3 packets all of them want to go to output port red.
+Then we have input 2 and the first packet in this input port i2 wants to go to red,
+then the next one wants to go to green and the next one wants to go to blue.
+So basically this is blue and this is green and in i3 we have red, red and black.
+Now imagine if the first packet, so I will change the colour a bit, so the first packet
+in input 1 got and hold on to the crossbar switching and got connected to red output.
+So in this case this value, this packet is moving towards the red output port.
+However because this path is now being blocked on the output side what is going to happen
+is that this R packet in i2 and R packet in i3 cannot proceed because we remember that
+we can enable crossbar switching as long as there are the input output pairs are not competing
+with each other.
+As long as they compete with each other we cannot enable the same circuit, circuit to
+connect same input or same output port but it is beneficial to introduce parallelism
+as long as we have non-competing pair of inputs.
+So because of this red packet here and here and also here the packets green and the packet
+blue and the packet black here, this one, this one and this one are blocked even though
+this blue port, this green port and let's say this another black port is available and
+nobody is connected.
+So this is called the head of line blocking.
+So the packet in front of this blue, green and black are actually blocking the previous,
+the next subsequent packets even though the ports are free.
+Let's look at another example and in this example what we have is an input port, input
+port 1, 2, 3, 4 and let's say this input 1 has packets going to port number 4, then
+port number 3, then port number 2, then port number 1.
+So basically first, the first packet in the queue wants to go to input 4, the next one
+wants to go to 3, the next one wants to go to 2 and then 1 and similarly the other packets
+in other input ports.
+Now what is happening at this point is that we have two packets, the head packets in all
+four input ports, two of them wants to go to port number 4.
+This is something that wants to go to port 4.
+This packet is going to port 2 and we have already connected it to port number 2.
+So it can proceed and it will move forward.
+However this port which is also free, so we have also connected input port 4 to output
+port 1.
+But the problem is the other two ports which is input port 1 and input port 3 and both
+of them want to go to input port 4.
+Now let's assume if this packet or this port, input port 1 got connected to input port 4
+and this packet cannot move forward, then anyways we can also not move forward because
+one is also blocked and the only packet which is available, only packet or only port which
+is available is port 3.
+So we have two packets in front of packet 3 which are blocking it.
+Now in the other scenario, imagine if port 3 got connected to port 4, so it is proceeding
+forward but because of this, port 1 which wants to go to port 4 is also blocked but
+because of this head of line blocking, port 3 which is available is also being blocked.
+So it depends on which packet is being contending for the output port.
+But anyways because of this contention, we have a head of line blocking so that the packets
+waiting behind who can proceed forward are not going forward.
+In order to solve this problem, we have a solution called virtual output queues.
+So the idea is instead of having a single queue at each input, so here we had a single
+queue, single queue, single queue, single queue, why not maintain n queues one per every
+output, a virtual queues at each input.
+So if my input 1 can have different queues for every possible output.
+So output 1, output 2, output 3, I can have three virtual queues.
+So every time a blue port or output 1 comes, it goes into queue dedicated for that output.
+So this is output 1, this is output 2, this is output 3.
+So in that case, if this port is not available, let's say for some reason, these other two
+ports can continue or the other two packets can continue as long as these ports are available
+in the system.
+So head of line problem was happening only because we only had one queue and the head
+of the queue was blocking because the unavailability of the destination port and thus the other
+ports, other packets behind it were also being blocked.
+Thank you so much.

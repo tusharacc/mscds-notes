@@ -1,0 +1,53 @@
+Hello everyone, welcome to this new session on computer networks and in this particular
+lecture we are going to start a discussion about networking devices.
+We are going to look at how different devices operate at different layers, what are their
+purposes and why do we even need those devices into the network.
+So to begin with, we have different types of devices that we hear generally such as
+repeaters, hubs, bridges, gateways, routers, switches etc etc.
+So to begin with we can quickly say that repeaters and hubs operate in the broadcast mode, basically
+it takes an input signal and it sends out this signal to all the physical port except
+the input port.
+That's why we said that the repeaters and the hubs, they work in the broadcast mode.
+If you look at the bridges and switches, they only send the frames to the selected physical
+port based on the destination MAC address.
+And if you look here carefully, we are dealing with the MAC addresses, thus we can say such
+devices work on the layer 2, layer 2 as in the data link layer and we are also writing
+here the frames which also is an attribute at the layer 2.
+If we take the same analogy, the routers will send out the packet, so layer 3, to a selected
+physical port based on the destination IP address which is also layer 3 and we can say
+such devices, repeaters and hubs, they work on the physical layer, so layer 1.
+If we look at the gateways which we already discussed in the previous lectures, they provide
+interoperability between networks and they contain devices such as protocol translator,
+impedance matcher, fault isolators, signal translators or impedance matcher.
+Devices are distinct from these devices because all of these devices because they can communicate
+using more than one protocol and because they connect different type of network or multiple
+networks altogether and they can operate at any layer of the OSI model or the TCP-IB model.
+While these devices that we just discussed, they operate at a particular layer and they
+have a particular function to work, to perform on a given type of network.
+Now if you look more into details, the repeaters are used because when your electrical signal
+or your optical signal or any sort of signal in your network propagates to the medium,
+it becomes weaker.
+So we can only travel so much as long as the signal is healthy in the propagation path.
+So this physical property limits the length of the LAN.
+So we can only have a certain meter long or certain kilometer long LAN, but if we want
+to extend our LAN to be larger than this physical limitation of the signal, we need
+to amplify the signal again and thus we use a repeater into the LAN.
+These repeaters, they can join LANs together and they basically continuously monitor the
+electrical signal and they can amplify the input signal and then send it forward onto
+the network.
+And we say this is a layer 1 device because it is working with the electrical signals
+or whatever is the input signal.
+So the repeater can be local repeater and it can be a wired repeater or it can be a
+wireless repeater.
+Now wireless repeater, probably you might have heard very recently about the repeaters
+in big houses or offices, you need to repeat your incoming internet connection.
+So that you can have connectivity throughout your house or throughout your apartment building
+etc.
+And it can also be, so it can be wired device or wireless device, meaning working on the
+wired signals or wireless signals and it can also be digital versus analog repeater.
+So digital signal repeater or analog signal repeater.
+If we come to the next device which is the hub, hub is again a layer 1 device which means
+it again works at the physical layer where we do not have any notion of the addresses.
+So layer 2 we have the MAC addresses, layer 3 we have the IP addresses, layer 4 we have
+the port addresses and so on.
+we do not have any notion of the addresses.

@@ -1,0 +1,131 @@
+So, in this lecture we are going to look at the MISP instruction set which is the relatively
+easier instruction set and in fact, it is called reduced instruction set computers or
+reduced instruction set computer and we are also going to look at the assembly language
+programming in this lecture and we are going to understand what is the role of an instruction
+set and how does it play in designing the overall system. So, if you talk about MISP,
+MISP is a reduced instruction set computer. There are also different instruction set for
+example, x86 experimental arm for arm devices, IBM power and so on and so forth, but for the sake
+of this lecture and the course we are going to follow MISP because it is always nice to start
+with something relatively easier. So, instruction set architecture is something that is a key
+component and we are going to take a look at a high level programming language. So,
+here we have taken an example from a C programming language. We are looking at one simple instruction
+which says A equal to B plus C and we are going to see what is the role of an instruction set
+architecture here. So, I would say instruction set architecture is a critical component because
+it is an interface between the software that is the high level programming language. So,
+high level programming language and the underlying hardware. So, you can call that it is interface
+between the software and the hardware and it sits in between these two. So, it plays a very
+important role when we design a computer. So, here I will take an example of a C code
+which says A equal to B plus C which is a simple operation where we are taking two
+variables and they are adding them and storing the resultant value into the another variable
+called A. So, when I compile this code, my compiler is going to take this line of code
+and it is going to produce a machine code which says add A B and C which is again it is a human
+friendly machine instruction. So, we can read it because it has a similar structure to what we
+just said in the high level programming language. So, this assembly instruction says do an operation
+which is like add operation and take some operands B and C and do this operation defined here add and
+store the value A here. So, here we have two input operands B and C and the output or the
+destination operand is A. So, we do B plus C and store this value into A. So, it is fairly the
+same thing that we have written here. Now, once we get this assembly code or the machine code,
+your underlying machine is only going to accept zeros and ones because your computer
+can only understand bits. So, there will be an assembler which is going to take this machine
+code and is going to convert this assembly instruction into bits of zeros and ones.
+So, here we have 32 bit long string of zeros and ones and which is what your computer was
+expecting assuming that the system was a 32 bit system. So, here we have converted one high
+level operation into a machine instruction. So, it is a hardware friendly because the
+hardware now can read very easily. So, hardware friendly machine instruction. So, you can say
+assembly code sets somewhere between the machine as the machine and the programmer. So, assembly
+code is basically a machine instruction, but it is human friendly. So, somewhere in between.
+So, we have converted one simple instruction into a machine instruction and we can come up
+with hundreds of instruction that do different operations. So, if I take the basic primitive
+operations or basic primitive instructions which is roughly 20-25 instruction and do
+a combination of them to achieve some other complicated operations, I can come up with
+the set of instruction which can help me convert what my high level programming language was saying
+into what machine can interpret what machine can understand and operate upon.
+So, instruction set architecture or ISA is a set of instruction which sits in between the high
+level programming language and a machine code. We can say that ISA is a contract between high
+level programming language and underlying hardware to convert and convey exactly what
+your program wants to say. So, if I take an ISA, if I take if I compile a program,
+the compiler says that if you give me an instruction like this one here, I will convert
+this instruction into something which is taken out from the set of instructions in your ISA.
+So, the compiler is going to take the instruction in the high level programming language,
+convert that into a machine code which is taken from ISA and then it is also a commitment by the
+hardware which says if you give me a machine code. So, ISA says if so the underlying hardware says
+if you give me a machine code, I am going to do exactly I know what exactly I have to do because
+I know what this string of zeros and ones means. So, basically it establishes or basically when
+we will see an another example in the subsequent slides here, you will understand that we need
+to convey the exact meaning what the programmer wanted to convey and the machine should exactly
+evaluate that particular expression in the way the programmer wanted given that of course,
+if the programmer understood the expression or and written the expression correctly.
+So, even though these instruction set can convert any programming language,
+programming instruction high level programming instruction into machine instructions, they are
+kept to be relatively simple. So, we have I said before 2025 fundamental or primitive operations
+and we do a combination of them, we come up with a set of slightly more complicated instructions
+and we have this instruction set, but even then your programming language can give you
+even more complicated. The high level programming language allows you to express yourself in much
+more complicated or much more concise way if you want to call it. So, a given code given C code
+in this example has converted to single assembly instruction assembly code, but if you have a more
+complicated or a longer expression, but that can unfold into multiple or a sequence of assembly
+instructions. We will see come back to this slide come back to this evaluation in a bit.
+So, if you talk about instruction set you want to design your ISA following two principles,
+one is that you want to keep your hardware simple. Meaning that you want your hardware
+to only understand the primitive operations and if your chip understands the primitive operation,
+you can design some complicated or some complex expression using those basic primitive operations.
+So, now why you want to keep your hardware simple is because if you make your hardware
+more complicated maybe you will run into more energy consumption or maybe you need more
+circuitry or similar basically you are complicating the hardware design. So,
+this is a simplified explanation that your instruction set should work with even the
+simpler hardware. Another way to put it is that you want your instruction set architecture with
+the hardware that can only perform the basic operations. The other thing is you want to keep
+your instructions regular for example, you want your instructions to follow a certain set or
+certain syntax. So, that the machine the underlying machine when it is decoding or when it is scheduling
+the instruction it does not have to do too many complicated things. So, basically you are
+simplifying the life of the hardware and then we have RISC like MISP here and then CISC for
+example, x86 architecture and we can see what are the advantages and disadvantages of each of
+the architecture when we go forward in the lecture. So, coming back to this example where
+we have like we have a C code which says I want A equal to B plus C plus D plus E for us it is
+easy to compute this kind of operations as a human we can do it very fast, but to make this
+computer understand what you really want to do you can do it in a different I mean you can translate
+this code into assembly code in a different some couple of different ways. So, first what you can
+do is basically you can add B and C. So, what we are doing is add B and C and store this value
+into A. So, you evaluated this expression next what you can do is you can take the value of A
+which already holds the sum of B and C and add it to D. So, if you take A and D and again store
+it into A it is actually storing B plus C plus D. So, now, it is a storing B plus C plus D.
+Similarly, what you can do further is you can take the last operand and add it to A and store
+the value again back to A. So, basically now A is B plus C plus D plus C. So, this is one way
+of executing your operation. Now, the other way could be something like you add B and C store
+it into A and you evaluate D and E separately. So, you add D and E and store it in a temporary
+location called F and then you can add A and F and store it into let us say in A back. So,
+this is a slightly different manner of evaluating or converting your C code into assembly code.
+So, although in this example the outcome will be the same from both the arrangement both the
+assembly codes. Here there might be difference between what you want as far as the performance
+is concerned. So, in the second sequence of instruction we are using a temporary location
+called F and this temporary location is actually a storage entity a storage unit 32 bit storage unit
+onto your processor called register and there could be a couple of registers which we called
+a register file on your processor. On your processor there are some storage units which
+you can use to hold values, but keep in mind that these storage units are limited in number
+they are finite. So, basically your register file has multiple registers, but those registers are
+finite. So, you cannot just keep on building a new temporary keep on using a new temporary
+location for storing multiple codes multiple values. So, in this example here I am using
+only 1 2 3 4 and 5 registers let us say 4 to store the values and 1 to store the results.
+Here I am using an additional storage as an additional register which is something like
+an expensive thing on a processor because it is a finite thing. So, I so the first assembly code
+is sort of considered to be more efficient and more cost friendly as compared to the second
+instruction. If we take another example here where we are execute evaluating an expression
+such as F equal to G plus H minus I plus H. So, there are different ways again how we can
+translate this into assembly code. So, what we are doing is we are taking the value of G and H
+like the first parenthesis and evaluating it. So, adding these two operands and storing them
+into a temporary temporary location called T 0 and then we are also doing I plus J the
+second parenthesis and adding them and storing the value in a temporary register called F and
+finally, we are subtracting T 0 T 1 from T 0 and storing the value into F.
+Now, to do the same to convert the same line of C code I can also do something like I can do add
+the value of G and H store it into F and then subtract the value of I from F and then subtract
+the value of J from F. You would expect that this two expression two sequence of instruction
+are going to produce the same output, but this is not always the case because the floating point
+operations they may not necessarily be associative and commutative. So, basically your compiler
+need to figure out what is the correct way to convert the line of code that you have given to
+it such that it evaluates exactly what you want to evaluate. So, basically your compiler makes use
+of these parenthesis to understand the meaning and if you evaluate these two sequence of instruction
+they may have slight difference into the final output value.
+So, I have given you some example of what assembly code or assembly language programming
+looks like what operands are registers are in the next lecture we are going to go a little bit
+deeper into the memory registers and so on. So, with that I will take I will I will say thank you
+and see you in the next lecture.
