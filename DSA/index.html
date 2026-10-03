@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Data Structures and Algorithms course notes — MScDS IIIT Hyderabad. Weeks 1–10: Algorithm design, greedy strategies, dynamic programming, data structures.">
+<title>Data Structures and Algorithms — Course Notes</title>
+
+<!-- Scholarly fonts: Playfair Display (headings) + Lora (body) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,600&display=swap" rel="stylesheet">
+
+<style>
+/* ── Reset & Base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --page-bg: #faf6ef;
+  --surface:  #fffdf9;
+  --border:   #e5d9c8;
+  --text:     #1c1410;
+  --text-muted: #6b5f54;
+  --gold:     #92400e;
+  --accent:   #c05e2e;
+  --toc-w: 270px;
+  --radius: 10px;
+  --shadow-sm: 0 1px 3px rgba(28,20,16,.06), 0 1px 2px rgba(28,20,16,.04);
+  --shadow-md: 0 4px 14px rgba(28,20,16,.10), 0 2px 4px rgba(28,20,16,.06);
+}
+
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: 'Lora', Georgia, serif;
+  background: var(--page-bg);
+  color: var(--text);
+  line-height: 1.8;
+}
+
+/* ── Layout ── */
+.layout { display: flex; min-height: 100vh; }
+
+/* ── TOC Rail ── */
+.toc-rail {
+  width: var(--toc-w); flex-shrink: 0;
+  position: sticky; top: 0; height: 100vh; overflow-y: auto;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  padding: 1.8rem 1rem 2.5rem;
+}
+.toc-rail > .toc-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: .68rem; font-weight: 700; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--text-muted);
+  margin-bottom: 1.4rem; padding: 0 .4rem;
+}
+
+.toc-week { margin-bottom: .8rem; }
+.toc-week a {
+  display: block;
+  font-family: 'Lora', Georgia, serif;
+  font-size: .82rem; color: var(--text-muted); text-decoration: none;
+  padding: .5rem .8rem; border-radius: 6px; line-height: 1.4;
+  transition: all .2s;
+  border-left: 3px solid transparent;
+}
+.toc-week a:hover {
+  color: var(--gold);
+  background: rgba(146, 64, 14, 0.05);
+  border-left-color: var(--accent);
+}
+
+/* ── Main content ── */
+main { flex: 1; max-width: 900px; padding: 3rem 2.5rem 6rem; }
+
+/* ── Page Header ── */
+.page-header {
+  margin-bottom: 3.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+.page-header::after {
+  content: '';
+  position: absolute; bottom: -3px; left: 0;
+  width: 4rem; height: 3px;
+  background: var(--gold); border-radius: 2px;
+}
+.page-header h1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 2.8rem; font-weight: 800; color: var(--text);
+  line-height: 1.15; letter-spacing: -.02em;
+}
+.page-header .subtitle {
+  color: var(--text-muted); margin-top: .5rem;
+  font-size: .88rem; font-style: italic;
+}
+
+/* ── Week Section ── */
+.week-section { margin-bottom: 5rem; scroll-margin-top: 2rem; }
+.week-banner {
+  padding: 1.5rem 1.8rem;
+  border-radius: 12px; margin-bottom: 2rem;
+  background: linear-gradient(135deg, #e0e7ff 0%, #f5f3ff 70%);
+  border-left: 5px solid #4338ca;
+}
+.week-banner .week-tag {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: .65rem; font-weight: 700; letter-spacing: .16em;
+  text-transform: uppercase; opacity: .7;
+}
+.week-banner h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.6rem; font-weight: 700; line-height: 1.2; margin-top: .15rem;
+}
+
+/* ── Typography ── */
+.content h3 {
+  font-family: 'Playfair Display', Georgia, serif;
+  margin-top: 2rem; margin-bottom: 1rem;
+  color: var(--text);
+  font-size: 1.2rem; font-weight: 600;
+}
+
+.content p { margin-bottom: 1.2rem; }
+.content ul, .content ol { margin-left: 1.5rem; margin-bottom: 1.2rem; }
+.content li { margin-bottom: .5rem; }
+
+.content code {
+  font-family: 'Monaco', 'Menlo', monospace;
+  font-size: .88em;
+  background: rgba(146, 64, 14, 0.08);
+  padding: .15rem .4rem;
+  border-radius: 4px;
+  color: #92400e;
+}
+
+.content pre {
+  background: #2d2d2d;
+  color: #f8f8f2;
+  padding: 1.2rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+  font-family: 'Monaco', 'Menlo', monospace;
+  font-size: .88rem;
+  line-height: 1.6;
+}
+.content pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+}
+
+.content strong { font-weight: 600; color: var(--text); }
+.content em { font-style: italic; }
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .layout { flex-direction: column; }
+  .toc-rail {
+    width: 100%; height: auto; position: static;
+    border-right: none; border-bottom: 1px solid var(--border);
+  }
+  main { padding: 2rem 1.5rem; }
+  .page-header h1 { font-size: 2rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="layout">
+  <nav class="toc-rail">
+    <div class="toc-title">Contents</div>
+    <div class="toc-week">
+      <a href="#week1">Week 1: History of Computation</a>
+    </div>
+    <div class="toc-week">
+      <a href="#week2">Week 2: Interval Scheduling</a>
+    </div>
+    <div class="toc-week">
+      <a href="#week3">Week 3: Stable Marriage Problem</a>
+    </div>
+    <div class="toc-week">
+      <a href="#week4">Week 4: Huffman Coding</a>
+    </div>
+    <div class="toc-week">
+      <a href="#week5">Week 5: Coin Denominations</a>
+    </div>
+    <div class="toc-week">
+      <a href="#week6">Week 6: Box Packing Problem</a>
+    </div>
+    <div class="toc-week">
+      <a href="#week7">Week 7: Longest Common Subsequence</a>
+    </div>
+    <div class="toc-week">
+      <a href="#week8">Week 8: Multiplication Algorithms</a>
+    </div>
+    <div class="toc-week">
+      <a href="#week9">Week 9: Data Structures I</a>
+    </div>
+    <div class="toc-week">
+      <a href="#week10">Week 10: Data Structures II</a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="page-header">
+      <h1>Data Structures and Algorithms</h1>
+      <p class="subtitle">Algorithm Design and Analysis — MScDS IIIT Hyderabad</p>
+    </div>
+
+    <section id="week1" class="week-section">
+      <div class="week-banner">
+        <div class="week-tag">Week 1</div>
+        <h2>History of Computation</h2>
+      </div>
+      <div class="content">
+        <h3>Overview</h3>
+        <p>Introduction to computing fundamentals and the origins of computation dating back thousands of years.</p>
+
+        <h3>Key Topics</h3>
+        <ul>
+          <li><strong>Ancient Computing</strong>: Pingala's binary notation system from 3000 BC using musical notes (laghu and guru)</li>
+          <li><strong>Binary Numbers</strong>: First exposition of binary number systems through musical composition</li>
+          <li><strong>Fibonacci Sequences</strong>: Computing the nth Fibonacci number using multiple approaches</li>
+          <li><strong>Algorithm Design Ideology</strong>: Starting with simple recursive solutions and progressively optimizing</li>
+          <li><strong>Optimization Techniques</strong>: Memory caching, iterative approaches, dynamic programming, and matrix multiplication</li>
+        </ul>
+
+        <h3>Core Concepts</h3>
+        <p><strong>Musical Binary Encoding:</strong></p>
+        <ul>
+          <li>Laghu (short note) = 0, duration 1 second</li>
+          <li>Guru (long note) = 1, duration 2 seconds</li>
+          <li>Number of songs with n notes = 2<sup>n</sup></li>
+        </ul>
+
+        <p><strong>Algorithm Design Process:</strong></p>
+        <ol>
+          <li>Start with the simplest approach (often recursive)</li>
+          <li>Identify inefficiencies and bottlenecks</li>
+          <li>Progressively optimize through better data structures and approaches</li>
+          <li>Compare time and space complexity of different solutions</li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="week2" class="week-section">
+      <div class="week-banner">
+        <div class="week-tag">Week 2</div>
+        <h2>Interval Scheduling</h2>
+      </div>
+      <div class="content">
+        <h3>Problem Statement</h3>
+        <p>Given one classroom and multiple teachers requesting time slots, find the maximum number of non-overlapping classes that can be scheduled.</p>
+
+        <h3>Key Concepts</h3>
+        <ul>
+          <li><strong>Greedy Algorithms</strong>: Make locally optimal choices at each step</li>
+          <li><strong>Interval Representation</strong>: Each class defined by (start_time, end_time)</li>
+          <li><strong>Overlap Detection</strong>: Two intervals overlap if one starts before the other ends</li>
+        </ul>
+
+        <h3>Solution Approaches</h3>
+        <p>The course explores six different algorithms, with the optimal solution being:</p>
+        <p><strong>Greedy Strategy (Algorithm 6):</strong> Always select the interval that ends first among remaining intervals.</p>
+
+        <h3>Algorithm Steps</h3>
+        <ol>
+          <li>Sort all intervals by end time</li>
+          <li>Select the interval ending first</li>
+          <li>Remove all overlapping intervals</li>
+          <li>Repeat for remaining intervals</li>
+        </ol>
+
+        <h3>Why It Works</h3>
+        <p>By selecting intervals that end earliest, we maximize the remaining time available for scheduling additional classes, leading to an optimal solution.</p>
+      </div>
+    </section>
+
+    <section id="week3" class="week-section">
+      <div class="week-banner">
+        <div class="week-tag">Week 3</div>
+        <h2>Stable Marriage Problem</h2>
+      </div>
+      <div class="content">
+        <h3>Problem Overview</h3>
+        <p>The only algorithm to have won a Nobel Prize in Economics. Given n boys and n girls, each with preference rankings, find a stable matching where no pair would prefer each other over their current partners.</p>
+
+        <h3>Stability Definition</h3>
+        <p>A matching is <strong>stable</strong> if there are no two people who:</p>
+        <ul>
+          <li>Are not matched to each other</li>
+          <li>Would both prefer each other over their current partners</li>
+        </ul>
+
+        <h3>Gale-Shapley Algorithm</h3>
+        <p>A greedy algorithm that guarantees a stable matching:</p>
+        <ol>
+          <li>Each unmatched boy proposes to his highest-ranked girl who hasn't rejected him</li>
+          <li>Each girl accepts the best proposal she has received (may upgrade later)</li>
+          <li>Rejected boys propose to their next preference</li>
+          <li>Continue until all boys are matched</li>
+        </ol>
+
+        <h3>Key Properties</h3>
+        <ul>
+          <li><strong>Guaranteed Termination</strong>: Algorithm always terminates with everyone matched</li>
+          <li><strong>Guaranteed Stability</strong>: The resulting matching is always stable</li>
+          <li><strong>Boy-Optimal</strong>: Each boy gets the best partner possible in any stable matching</li>
+          <li><strong>Girl-Pessimal</strong>: Each girl gets the worst partner she would have in any stable matching</li>
+        </ul>
+
+        <h3>Applications</h3>
+        <ul>
+          <li>Medical residency matching programs</li>
+          <li>College admissions systems</li>
+          <li>Job market assignments</li>
+          <li>Economic resource allocation</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="week4" class="week-section">
+      <div class="week-banner">
+        <div class="week-tag">Week 4</div>
+        <h2>Huffman Coding</h2>
+      </div>
+      <div class="content">
+        <h3>Overview</h3>
+        <p>A greedy algorithm for optimal lossless data compression using variable-length prefix-free codes.</p>
+
+        <h3>Key Topics</h3>
+        <ul>
+          <li>Frequency-based encoding</li>
+          <li>Building optimal binary trees for compression</li>
+          <li>Prefix-free code construction</li>
+          <li>Greedy tree building strategy</li>
+          <li>Applications in file compression and data transmission</li>
+        </ul>
+
+        <h3>Algorithm Approach</h3>
+        <p>Build a binary tree bottom-up by repeatedly combining the two least-frequent characters/symbols until a complete tree is formed.</p>
+      </div>
+    </section>
+
+    <section id="week5" class="week-section">
+      <div class="week-banner">
+        <div class="week-tag">Week 5</div>
+        <h2>Coin Denominations Problem</h2>
+      </div>
+      <div class="content">
+        <h3>Problem Statement</h3>
+        <p>Given coin denominations and a target amount, find the minimum number of coins needed to make that amount.</p>
+
+        <h3>Key Concepts</h3>
+        <ul>
+          <li><strong>Dynamic Programming</strong>: Building solutions from subproblems</li>
+          <li><strong>Optimal Substructure</strong>: Optimal solution contains optimal solutions to subproblems</li>
+          <li><strong>Greedy vs. DP</strong>: When greedy fails and dynamic programming is needed</li>
+        </ul>
+
+        <h3>Applications</h3>
+        <ul>
+          <li>Making change with minimum coins</li>
+          <li>Resource allocation problems</li>
+          <li>Optimization in financial systems</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="week6" class="week-section">
+      <div class="week-banner">
+        <div class="week-tag">Week 6</div>
+        <h2>Box Packing Problem</h2>
+      </div>
+      <div class="content">
+        <h3>Overview</h3>
+        <p>Optimization problem involving efficient arrangement and packing of items into containers.</p>
+
+        <h3>Key Topics</h3>
+        <ul>
+          <li>Packing strategies and heuristics</li>
+          <li>Optimization under constraints</li>
+          <li>Approximation algorithms</li>
+          <li>Practical applications in logistics and storage</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="week7" class="week-section">
+      <div class="week-banner">
+        <div class="week-tag">Week 7</div>
+        <h2>Longest Common Subsequence</h2>
+      </div>
+      <div class="content">
+        <h3>Problem Definition</h3>
+        <p>Find the longest subsequence common to two sequences (subsequences don't need to be contiguous).</p>
+
+        <h3>Key Concepts</h3>
+        <ul>
+          <li><strong>Dynamic Programming Solution</strong>: Build 2D table of subproblem solutions</li>
+          <li><strong>Recurrence Relation</strong>: Define LCS in terms of smaller subproblems</li>
+          <li><strong>Backtracking</strong>: Reconstruct the actual subsequence from the DP table</li>
+        </ul>
+
+        <h3>Applications</h3>
+        <ul>
+          <li>DNA sequence alignment in bioinformatics</li>
+          <li>Diff utilities in version control systems</li>
+          <li>Plagiarism detection</li>
+          <li>File comparison tools</li>
+        </ul>
+
+        <h3>Time Complexity</h3>
+        <p>O(m × n) where m and n are the lengths of the two sequences.</p>
+      </div>
+    </section>
+
+    <section id="week8" class="week-section">
+      <div class="week-banner">
+        <div class="week-tag">Week 8</div>
+        <h2>Multiplication Algorithms</h2>
+      </div>
+      <div class="content">
+        <h3>Overview</h3>
+        <p>Advanced algorithms for efficient multiplication of large numbers and matrices.</p>
+
+        <h3>Key Topics</h3>
+        <ul>
+          <li><strong>Grade School Multiplication</strong>: O(n²) baseline approach</li>
+          <li><strong>Karatsuba Algorithm</strong>: Divide-and-conquer approach reducing complexity</li>
+          <li><strong>Strassen's Algorithm</strong>: Fast matrix multiplication</li>
+          <li><strong>Complexity Analysis</strong>: Understanding time trade-offs</li>
+        </ul>
+
+        <h3>Applications</h3>
+        <ul>
+          <li>Cryptography with large prime numbers</li>
+          <li>Scientific computing</li>
+          <li>Computer graphics transformations</li>
+          <li>Signal processing</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="week9" class="week-section">
+      <div class="week-banner">
+        <div class="week-tag">Week 9</div>
+        <h2>Data Structures — Part I</h2>
+      </div>
+      <div class="content">
+        <h3>Overview</h3>
+        <p>Introduction to fundamental data structures and their operations.</p>
+
+        <h3>Core Data Structures</h3>
+        <ul>
+          <li><strong>Arrays</strong>: Contiguous memory storage, O(1) access</li>
+          <li><strong>Linked Lists</strong>: Dynamic size, O(n) access, O(1) insertion/deletion at known positions</li>
+          <li><strong>Stacks</strong>: LIFO (Last In First Out) operations</li>
+          <li><strong>Queues</strong>: FIFO (First In First Out) operations</li>
+        </ul>
+
+        <h3>Analysis Focus</h3>
+        <ul>
+          <li>Time complexity of operations</li>
+          <li>Space complexity considerations</li>
+          <li>Trade-offs between different implementations</li>
+          <li>Appropriate use cases for each structure</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="week10" class="week-section">
+      <div class="week-banner">
+        <div class="week-tag">Week 10</div>
+        <h2>Data Structures — Part II</h2>
+      </div>
+      <div class="content">
+        <h3>Advanced Data Structures</h3>
+        <ul>
+          <li><strong>Trees</strong>: Hierarchical structures, binary trees, tree traversals</li>
+          <li><strong>Binary Search Trees</strong>: O(log n) search in balanced trees</li>
+          <li><strong>Hash Tables</strong>: O(1) average-case operations, collision handling</li>
+          <li><strong>Heaps</strong>: Priority queue implementations, heap operations</li>
+          <li><strong>Graphs</strong>: Vertices and edges, representations (adjacency matrix/list)</li>
+        </ul>
+
+        <h3>Key Operations</h3>
+        <ul>
+          <li>Insertion, deletion, and search operations</li>
+          <li>Traversal algorithms (DFS, BFS)</li>
+          <li>Balancing strategies</li>
+          <li>Performance optimization techniques</li>
+        </ul>
+
+        <h3>Applications</h3>
+        <p>Understanding when and why to use specific data structures based on problem requirements and performance characteristics.</p>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+</body>
+</html>
