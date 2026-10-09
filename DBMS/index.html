@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Database Management Systems course notes — MScDS IIIT Hyderabad. Relational model, SQL, database design, and transactions.">
+<title>Database Management Systems — Course Notes</title>
+
+<!-- Scholarly fonts: Playfair Display (headings) + Lora (body) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,600&display=swap" rel="stylesheet">
+
+<style>
+/* ── Reset & Base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --page-bg: #faf6ef;
+  --surface:  #fffdf9;
+  --border:   #e5d9c8;
+  --text:     #1c1410;
+  --text-muted: #6b5f54;
+  --gold:     #92400e;
+  --accent:   #c05e2e;
+  --toc-w: 270px;
+  --radius: 10px;
+  --shadow-sm: 0 1px 3px rgba(28,20,16,.06), 0 1px 2px rgba(28,20,16,.04);
+  --shadow-md: 0 4px 14px rgba(28,20,16,.10), 0 2px 4px rgba(28,20,16,.06);
+}
+
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: 'Lora', Georgia, serif;
+  background: var(--page-bg);
+  color: var(--text);
+  line-height: 1.8;
+}
+
+/* ── Layout ── */
+.layout { display: flex; min-height: 100vh; }
+
+/* ── TOC Rail ── */
+.toc-rail {
+  width: var(--toc-w); flex-shrink: 0;
+  position: sticky; top: 0; height: 100vh; overflow-y: auto;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  padding: 1.8rem 1rem 2.5rem;
+}
+.toc-rail > .toc-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: .68rem; font-weight: 700; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--text-muted);
+  margin-bottom: 1.4rem; padding: 0 .4rem;
+}
+
+.toc-week { margin-bottom: .8rem; }
+.toc-week a {
+  display: block;
+  font-family: 'Lora', Georgia, serif;
+  font-size: .82rem; color: var(--text-muted); text-decoration: none;
+  padding: .5rem .8rem; border-radius: 6px; line-height: 1.4;
+  transition: all .2s;
+  border-left: 3px solid transparent;
+}
+.toc-week a:hover {
+  color: var(--gold);
+  background: rgba(146, 64, 14, 0.05);
+  border-left-color: var(--accent);
+}
+
+/* ── Main content ── */
+main { flex: 1; max-width: 900px; padding: 3rem 2.5rem 6rem; }
+
+/* ── Page Header ── */
+.page-header {
+  margin-bottom: 3.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+.page-header::after {
+  content: '';
+  position: absolute; bottom: -3px; left: 0;
+  width: 4rem; height: 3px;
+  background: var(--gold); border-radius: 2px;
+}
+.page-header h1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 2.8rem; font-weight: 800; color: var(--text);
+  line-height: 1.15; letter-spacing: -.02em;
+}
+.page-header .subtitle {
+  color: var(--text-muted); margin-top: .5rem;
+  font-size: .88rem; font-style: italic;
+}
+
+/* ── Week Section ── */
+.week-section { margin-bottom: 5rem; scroll-margin-top: 2rem; }
+.week-banner {
+  padding: 1.5rem 1.8rem;
+  border-radius: 12px; margin-bottom: 2rem;
+  background: linear-gradient(135deg, #dbeafe 0%, #eff6ff 70%);
+  border-left: 5px solid #2563eb;
+}
+.week-banner .week-tag {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: .65rem; font-weight: 700; letter-spacing: .16em;
+  text-transform: uppercase; opacity: .7;
+}
+.week-banner h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.6rem; font-weight: 700; line-height: 1.2; margin-top: .15rem;
+}
+
+/* ── Typography ── */
+.content h1, .content h2, .content h3 {
+  font-family: 'Playfair Display', Georgia, serif;
+  margin-top: 2rem; margin-bottom: 1rem;
+  color: var(--text);
+}
+.content h1 { font-size: 2rem; font-weight: 700; }
+.content h2 { font-size: 1.5rem; font-weight: 700; }
+.content h3 { font-size: 1.2rem; font-weight: 600; }
+
+.content p { margin-bottom: 1.2rem; }
+.content ul, .content ol { margin-left: 1.5rem; margin-bottom: 1.2rem; }
+.content li { margin-bottom: .5rem; }
+
+.content code {
+  font-family: 'Monaco', 'Menlo', monospace;
+  font-size: .88em;
+  background: rgba(37, 99, 235, 0.08);
+  padding: .15rem .4rem;
+  border-radius: 4px;
+  color: #1e40af;
+}
+
+.content pre {
+  background: #2d2d2d;
+  color: #f8f8f2;
+  padding: 1.2rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+  font-family: 'Monaco', 'Menlo', monospace;
+  font-size: .88rem;
+  line-height: 1.6;
+}
+.content pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+}
+
+.content strong { font-weight: 600; color: var(--text); }
+.content em { font-style: italic; }
+
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: .75rem;
+  text-align: left;
+}
+.content th {
+  background: rgba(37, 99, 235, 0.08);
+  font-weight: 600;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .layout { flex-direction: column; }
+  .toc-rail {
+    width: 100%; height: auto; position: static;
+    border-right: none; border-bottom: 1px solid var(--border);
+  }
+  main { padding: 2rem 1.5rem; }
+  .page-header h1 { font-size: 2rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="layout">
+  <nav class="toc-rail">
+    <div class="toc-title">Contents</div>
+        <div class="toc-week">
+      <a href="#week1">Week 1: Introduction to Database Management Systems</a>
+    </div>
+
+  </nav>
+
+  <main>
+    <div class="page-header">
+      <h1>Database Management Systems</h1>
+      <p class="subtitle">Relational Model, SQL, Design & Transactions — MScDS IIIT Hyderabad</p>
+    </div>
+
+        <section id="week1" class="week-section">
+      <div class="week-banner">
+        <div class="week-tag">Week 1</div>
+        <h2>Week 1: Introduction to Database Management Systems</h2>
+      </div>
+      <div class="content">
+        <h1>Week 1: Introduction to Database Management Systems</h1><h2>Course Overview</h2><p><strong>Instructor:</strong> Professor Vikram Pudi, IIIT Hyderabad</p><p>This introductory course on Database Management Systems (DBMS) focuses on how to model, design, and implement databases from an application developer's perspective. The course emphasizes practical application development rather than deep internals of database systems.</p><h3>What This Course Covers</h3>
+<ul>
+<li>Database modeling and design</li>
+<li>Implementation techniques for databases</li>
+<li>Application development using databases</li>
+<li>Brief overview of database internals</li>
+<li>Query processing and relational algebra</li>
+</ul><h3>What This Course Does NOT Cover</h3>
+<ul>
+<li>Comprehensive textbook-level detail (textbook reading is required)</li>
+<li>Speech-to-text conversion of textbooks</li>
+<li>Installation guides and spoon-feeding</li>
+<li>Deep database internals (focus is on usage)</li>
+</ul><h2>Why Study Database Management Systems?</h2><p>DBMS represents "computer science in action" and caters to diverse interests:</p><ol>
+<li><strong>Theory enthusiasts:</strong> Mathematical foundations including sets, relations, theorems, and proofs</li>
+<li><strong>Algorithm designers:</strong> Implementation of sorting, searching, divide-and-conquer algorithms</li>
+<li><strong>Systems builders:</strong> Large-scale application development</li>
+<li><strong>Simulation experts:</strong> Performance analysis across different scenarios</li>
+</ol><h3>Practical Importance</h3>
+<ul>
+<li>Required in all non-trivial applications (web apps, mobile apps, etc.)</li>
+<li>Eliminates need to build everything from scratch</li>
+<li>Provides ready-to-use features for data storage and retrieval</li>
+<li>Essential for startups and career opportunities</li>
+</ul><h3>The DRY Principle</h3>
+"Do Not Repeat Yourself" - DBMS provides features out-of-the-box that developers would otherwise need to build repeatedly for each application.</p><h2>Recommended Textbooks</h2><ol>
+<li><strong>Ramakrishnan and Gehrke</strong> - Database Management Systems</li>
+<li><strong>Elmasri and Navathe</strong> - Fundamentals of Database Systems</li>
+<li><strong>Silberschatz, Korth, and Sudarshan</strong> - Database System Concepts (course follows this)</li>
+</ol><h2>The Relational Model</h2><h3>Structure of Relational Databases</h3><p>A <strong>relation</strong> is essentially a table consisting of:
+<ul>
+<li><strong>Rows</strong> (also called <strong>tuples</strong>): Represent actual data records</li>
+<li><strong>Columns</strong> (also called <strong>attributes</strong>): Represent the structure/schema</li>
+</ul><h3>Example: Instructor Relation</h3><pre><code>Instructor
++--------+-------------+---------------+--------+
+| ID     | Name        | Dept_Name     | Salary |
++--------+-------------+---------------+--------+
+| 10101  | Srinivasan  | Comp. Sci.    | 65000  |
+| 12121  | Wu          | Finance       | 90000  |
+| 15151  | Mozart      | Music         | 40000  |
+| 22222  | Einstein    | Physics       | 95000  |
+| 32343  | El Said     | History       | 60000  |
+| 33456  | Gold        | Physics       | 87000  |
++--------+-------------+---------------+--------+
+</code></pre><h3>Mathematical View of Relations</h3><ul>
+<li><strong>Relation schema:</strong> R = (A₁, A₂, A₃, ..., Aₙ) - The template/design of the table</li>
+<li><strong>Relation instance:</strong> The actual table with data at a given time</li>
+<li><strong>Tuple:</strong> An element t of relation r, represented by a row</li>
+<li><strong>Domain:</strong> Set of allowed values for each attribute</li>
+<li><strong>Atomic values:</strong> Attributes are indivisible units</li>
+<li><strong>Null value:</strong> Special value indicating unknown data (member of every domain)</li>
+</ul><p><strong>Important:</strong> Relations are unordered - the order of tuples is irrelevant (set theory principle).</p><h2>Database Schema vs. Instance</h2><ul>
+<li><strong>Database Schema:</strong> Logical structure/design of the database (fixed at design time)</li>
+<li><strong>Database Instance:</strong> Snapshot of data at a given instant (changes as data is added/modified)</li>
+</ul><p><strong>Best Practice:</strong> Fix your schema during database design and avoid frequent changes. Adding columns later requires populating existing records, which is problematic.</p><h2>Keys</h2><h3>Super Key</h3>
+A subset K of attributes R is a <strong>super key</strong> if K's values are sufficient to uniquely identify each tuple.</p><p><strong>Example:</strong> In the Instructor table:
+<ul>
+<li>ID is a super key</li>
+<li>{ID, Name} is also a super key (any superset of a super key is also a super key)</li>
+</ul><h3>Candidate Key</h3>
+A <strong>candidate key</strong> is a minimal super key - no proper subset is a super key.</p><p><strong>Example:</strong> ID is a candidate key (minimal), but {ID, Name} is not (not minimal).</p><h3>Primary Key</h3>
+One of the candidate keys chosen by the database designer to uniquely identify records.</p><p><strong>Example:</strong> ID is the primary key for the Instructor table.</p><h3>Foreign Key</h3>
+An attribute in one relation that references the primary key of another relation.</p><p><strong>Example:</strong>
+<ul>
+<li><code>Dept_Name</code> in Instructor table references the Department table</li>
+<li><strong>Referencing relation:</strong> Instructor</li>
+<li><strong>Referenced relation:</strong> Department</li>
+</ul><h2>University Database Schema Example</h2><p>A realistic database contains multiple related tables:</p><h3>Core Tables</h3>
+<ol>
+<li><strong>Instructor</strong> (ID, Name, Dept_Name, Salary)</li>
+<li><strong>Department</strong> (Dept_Name, Building, Budget)</li>
+<li><strong>Student</strong> (ID, Name, Dept<em>Name, Tot</em>Credits)</li>
+<li><strong>Course</strong> (Course<em>ID, Title, Dept</em>Name, Credits)</li>
+<li><strong>Section</strong> (Course<em>ID, Sec</em>ID, Semester, Year, Building, Room<em>Number, Time</em>Slot_ID)</li>
+<li><strong>Teaches</strong> (ID, Course<em>ID, Sec</em>ID, Semester, Year)</li>
+<li><strong>Takes</strong> (ID, Course<em>ID, Sec</em>ID, Semester, Year, Grade)</li>
+<li><strong>Prereq</strong> (Course<em>ID, Prereq</em>ID)</li>
+<li><strong>Advisor</strong> (S<em>ID, I</em>ID)</li>
+<li><strong>Classroom</strong> (Building, Room_Number, Capacity)</li>
+<li><strong>Time<em>Slot</strong> (Time</em>Slot<em>ID, Day, Start</em>Time, End_Time)</li>
+</ol><h3>Design Considerations</h3>
+<ul>
+<li>Avoid redundancy (e.g., semester appears in both Takes and Section - redundant)</li>
+<li>Don't store instructor name in Course table (multiple instructors, multiple semesters)</li>
+<li>Prerequisites can have multiple rows for one course (one row per prerequisite)</li>
+</ul><h2>Relational Query Languages</h2><h3>Types of Query Languages</h3><ol>
+<li><strong>Procedural:</strong> Specify WHAT data is needed AND HOW to get it</li>
+<li><strong>Non-procedural (Declarative):</strong> Specify WHAT data is needed only</li>
+</ol><h3>Pure Mathematical Languages</h3>
+<ul>
+<li><strong>Relational Algebra</strong> (procedural)</li>
+<li><strong>Tuple Relational Calculus</strong> (non-procedural)</li>
+<li><strong>Domain Relational Calculus</strong> (non-procedural)</li>
+</ul><p>These languages are:
+<ul>
+<li>Equivalent in computing power</li>
+<li>NOT Turing complete (cannot do everything C/Python can do)</li>
+<li>Designed specifically for database queries</li>
+</ul><h2>Relational Algebra</h2><p>A procedural, mathematically-oriented query language based on six basic operations.</p><h3>Six Basic Operations</h3><p>#### 1. Select (σ)
+Selects tuples satisfying a given predicate (condition).</p><p><strong>Notation:</strong> σₚ(r)</p><p><strong>Example:</strong>
+<pre><code>σ<em>Dept</em>Name="Physics"(Instructor)
+</code></pre>
+Returns all instructors in the Physics department.</p><p><strong>Comparison Operations Allowed:</strong>
+<ul>
+<li>= (equal)</li>
+<li>≠ (not equal)</li>
+<li>> (greater than)</li>
+<li>≥ (greater than or equal)</li>
+<li>< (less than)</li>
+<li>≤ (less than or equal)</li>
+</ul><p><strong>Combining Predicates:</strong>
+<ul>
+<li>AND (∧)</li>
+<li>OR (∨)</li>
+<li>NOT (¬)</li>
+</ul><p><strong>Example:</strong>
+<pre><code>σ<em>Dept</em>Name="Physics" ∧ Salary>90000(Instructor)
+</code></pre><p><strong>Attribute Comparisons:</strong>
+<pre><code>σ<em>Dept</em>Name=Building(Department)
+</code></pre><p>#### 2. Project (Π)
+Returns a relation with only specified attributes, removing duplicates.</p><p><strong>Notation:</strong> Π_{A₁, A₂, ..., Aₖ}(r)</p><p><strong>Example:</strong>
+<pre><code>Π_ID,Name,Salary(Instructor)
+</code></pre>
+Returns only ID, Name, and Salary columns (department name excluded).</p><p><strong>Composition Example:</strong>
+<pre><code>Π<em>Name(σ</em>Dept_Name="Physics"(Instructor))
+</code></pre>
+Returns names of all physics department instructors.</p><p>#### 3. Cartesian Product (×)
+Combines information from two relations by creating all possible pairs.</p><p><strong>Notation:</strong> r × s</p><p><strong>Result:</strong> For every row in r and every row in s, create a combined row.</p><p><strong>Example:</strong>
+<pre><code>Instructor × Teaches
+</code></pre><p><strong>Important Notes:</strong>
+<ul>
+<li>Number of result rows = (rows in r) × (rows in s)</li>
+<li>Attributes with same name get prefixed: <code>Instructor.ID</code>, <code>Teaches.ID</code></li>
+<li>Often creates many irrelevant combinations (needs filtering)</li>
+<li>Computationally expensive - use carefully</li>
+</ul><p>#### 4. Join (⋈)
+Combines Cartesian product with selection - more efficient than separate operations.</p><p><strong>Notation:</strong> r ⋈_θ s</p><p><strong>Mathematical Definition:</strong>
+<pre><code>r ⋈<em>θ s = σ</em>θ(r × s)
+</code></pre><p><strong>Example:</strong>
+<pre><code>Instructor ⋈_Instructor.ID=Teaches.ID Teaches
+</code></pre>
+Returns only rows where instructor ID matches teaches ID.</p><p><strong>Why Join is Important:</strong>
+<ul>
+<li>Combines information across tables efficiently</li>
+<li>Result is typically much smaller than Cartesian product</li>
+<li>Backend implementations optimize joins beyond simple cross-product filtering</li>
+</ul><p>#### 5. Union (∪)
+Combines two relations into one.</p><p><strong>Requirements:</strong>
+<ul>
+<li>Same arity (number of attributes)</li>
+<li>Compatible attribute domains (same types in same order)</li>
+</ul><p><strong>Example:</strong>
+<pre><code>Π<em>Course</em>ID(σ_Semester="Fall" ∧ Year=2017(Section))
+∪
+Π<em>Course</em>ID(σ_Semester="Spring" ∧ Year=2018(Section))
+</code></pre>
+Returns courses taught in Fall 2017 OR Spring 2018.</p><p>#### 6. Set Difference (−)
+Returns tuples in first relation but not in second.</p><p><strong>Requirements:</strong> Same as union (same arity, compatible domains)</p><p><strong>Example:</strong>
+<pre><code>Π<em>Course</em>ID(σ_Semester="Fall" ∧ Year=2017(Section))
+−
+Π<em>Course</em>ID(σ_Semester="Spring" ∧ Year=2018(Section))
+</code></pre>
+Returns courses taught in Fall 2017 but NOT in Spring 2018.</p><h3>Additional Operations</h3><p>#### Set Intersection (∩)
+Returns tuples present in both relations.</p><p><strong>Example:</strong>
+<pre><code>Π<em>Course</em>ID(σ_Semester="Fall" ∧ Year=2017(Section))
+∩
+Π<em>Course</em>ID(σ_Semester="Spring" ∧ Year=2018(Section))
+</code></pre>
+Returns courses taught in BOTH Fall 2017 AND Spring 2018.</p><p>#### Assignment (←)
+Stores intermediate results in variables for readability.</p><p><strong>Example:</strong>
+<pre><code>physics ← σ<em>Dept</em>Name="Physics"(Instructor)
+music ← σ<em>Dept</em>Name="Music"(Instructor)
+physics ∪ music
+</code></pre><p>#### Rename (ρ)
+Returns result under a new name, enabling use in larger expressions.</p><p><strong>Notation:</strong> ρ_x(E)</p><p>Returns relation E under name x.</p><h3>Query Equivalence and Optimization</h3><p>Multiple queries can produce the same result with different efficiency.</p><p><strong>Example 1:</strong>
+<pre><code>Query 1: σ<em>Dept</em>Name="Physics" ∧ Salary>90000(Instructor)
+Query 2: σ<em>Dept</em>Name="Physics"(σ_Salary>90000(Instructor))
+</code></pre>
+Both return the same result, but Query 2 may be more efficient if few instructors have salary > 90000.</p><p><strong>Example 2:</strong>
+<pre><code>Query 1: σ<em>Dept</em>Name="Physics"(Instructor ⋈ Teaches)
+Query 2: σ<em>Dept</em>Name="Physics"(Instructor) ⋈ Teaches
+</code></pre>
+Query 2 is more efficient - filters before expensive join operation.</p><p><strong>Query Optimizer:</strong> Database systems automatically choose the most efficient execution plan regardless of how the query is written.</p><h2>Data Definition Language (DDL)</h2><p>Language for defining database schema (structure).</p><h3>SQL DDL Example</h3><pre><code>CREATE TABLE Instructor (
+    ID          CHAR(5),
+    Name        VARCHAR(20),
+    Dept_Name   VARCHAR(20),
+    Salary      NUMERIC(8,2)
+);
+</code></pre><p><strong>Data Types:</strong>
+<ul>
+<li><code>CHAR(n)</code>: Fixed-length character string (exactly n characters)</li>
+<li><code>VARCHAR(n)</code>: Variable-length character string (up to n characters)</li>
+<li><code>NUMERIC(p,d)</code>: Numeric with p total digits, d after decimal point</li>
+</ul><h3>DDL Compiler and Data Dictionary</h3><p><strong>DDL Compiler</strong> generates table templates stored in the <strong>data dictionary</strong>.</p><p><strong>Data Dictionary Contains (Metadata):</strong>
+<ul>
+<li>Database schema (table structures, column types)</li>
+<li>Integrity constraints (e.g., primary keys, salary ≥ 0)</li>
+<li>Authorization information (who can access what)</li>
+</ul><p><strong>Primary Key Constraint:</strong>
+<pre><code>CREATE TABLE Instructor (
+    ID CHAR(5) PRIMARY KEY,
+    ...
+);
+</code></pre><h2>Data Manipulation Language (DML)</h2><p>Language for querying and modifying data.</p><h3>Types of DML</h3><ol>
+<li><strong>Procedural DML:</strong></li>
+</ol>
+<ul>
+<li>Specify WHAT data is needed AND HOW to get it</li>
+<li>User describes exact procedure to retrieve data</li>
+</ul><ol>
+<li><strong>Declarative (Non-procedural) DML:</strong></li>
+</ol>
+<ul>
+<li>Specify WHAT data is needed only</li>
+<li>Easier to learn and use</li>
+<li>SQL is a declarative DML</li>
+</ul><h3>SQL Query Example</h3><pre><code>SELECT Name
+FROM Instructor
+WHERE Dept_Name = 'Comp. Sci.';
+</code></pre><p><strong>Components:</strong>
+<ul>
+<li><code>SELECT</code>: Specifies attributes to retrieve</li>
+<li><code>FROM</code>: Specifies table(s)</li>
+<li><code>WHERE</code>: Specifies conditions</li>
+</ul><p><strong>Input:</strong> One or more tables
+<strong>Output:</strong> Single table (single column in this example)</p><h3>SQL is NOT Turing Complete</h3><p><strong>Cannot do:</strong>
+<ul>
+<li>Arbitrary programs</li>
+<li>User input</li>
+<li>Direct screen output</li>
+<li>Network communication</li>
+</ul><p><strong>Solution:</strong> Embed SQL in host languages (C, Python, Java)</p><h3>Language Extensions and APIs</h3><p><strong>Embedding SQL in Host Languages:</strong>
+<ul>
+<li>Python database modules (e.g., <code>sqlite3</code>, <code>psycopg2</code>)</li>
+<li>SQL queries passed as strings</li>
+<li>Results returned to host language</li>
+</ul><p><strong>Database APIs:</strong>
+<ul>
+<li><strong>ODBC</strong> (Open Database Connectivity)</li>
+<li><strong>JDBC</strong> (Java Database Connectivity)</li>
+<li>Neutral APIs independent of specific programming languages</li>
+</ul><h2>Application Programs and Database Access</h2><p>Databases are used within larger application programs:
+<ul>
+<li>Web applications (most common)</li>
+<li>Mobile applications</li>
+<li>Desktop applications</li>
+</ul><p><strong>Typical Flow:</strong>
+<ol>
+<li>User interacts with application interface</li>
+<li>Application generates SQL queries</li>
+<li>Database returns results</li>
+<li>Application formats and displays results</li>
+</ol><h2>Database Design</h2><h3>Logical Design</h3>
+<ul>
+<li>How to organize data into tables without redundancy</li>
+<li>Ensuring all necessary queries can be asked</li>
+<li><strong>Normal Forms:</strong> Techniques for good database design (covered in future chapters)</li>
+</ul><h3>Physical Design</h3>
+<ul>
+<li>How tables are stored on disk</li>
+<li>File organization and block allocation</li>
+<li>Contiguous vs. non-contiguous storage</li>
+</ul><h2>Database Engine Components</h2><h3>1. Storage Manager</h3><p>Responsible for storing, retrieving, and updating data efficiently.</p><p><strong>Components:</strong>
+<ul>
+<li><strong>Authorization and Integrity Manager:</strong> Ensures authorized access only</li>
+<li><strong>Transaction Manager:</strong> Manages transaction execution</li>
+<li><strong>File Manager:</strong> Interacts with OS to manage files on disk</li>
+<li><strong>Buffer Manager:</strong> Manages data movement between disk and main memory</li>
+</ul><p><strong>Storage Structures:</strong>
+<ul>
+<li><strong>Data files:</strong> Actual table data</li>
+<li><strong>Data dictionary:</strong> Metadata (schema, authorization)</li>
+<li><strong>Indices:</strong> Fast access structures (like textbook index)</li>
+</ul><p><strong>Performance Impact:</strong> Poor storage management can make simple queries take hours instead of milliseconds.</p><h3>2. Query Processor</h3><p>Responsible for executing user queries efficiently.</p><p><strong>Components:</strong></p><p>#### DDL Interpreter
+<ul>
+<li>Interprets DDL statements</li>
+<li>Stores definitions in data dictionary</li>
+</ul><p>#### DML Compiler
+<ul>
+<li>Translates DML queries into query plans</li>
+<li>Performs <strong>query optimization</strong></li>
+<li>Generates low-level instructions</li>
+</ul><p>#### Query Evaluation Engine
+<ul>
+<li>Executes query plans</li>
+<li>Returns results</li>
+</ul><p><strong>Query Optimization Process:</strong>
+<ol>
+<li>Parse user query</li>
+<li>Translate to relational algebra</li>
+<li>Generate multiple possible query plans</li>
+<li>Use statistics (table sizes, data distribution) to estimate costs</li>
+<li>Select lowest-cost plan</li>
+<li>Execute plan</li>
+</ol><p><strong>Why Optimization Matters:</strong> Can reduce execution time from hours to milliseconds.</p><h3>3. Transaction Management</h3><p>A <strong>transaction</strong> is a collection of operations performing a single logical function.</p><p><strong>Example:</strong> Money transfer between bank accounts
+<pre><code>-- Both must succeed or both must fail
+UPDATE Account SET Balance = Balance - 100 WHERE Account_ID = 'A';
+UPDATE Account SET Balance = Balance + 100 WHERE Account_ID = 'B';
+</code></pre><p><strong>Transaction Properties Ensured:</strong>
+<ul>
+<li><strong>Atomicity:</strong> All operations complete or none complete (indivisible)</li>
+<li><strong>Consistency:</strong> Database remains in valid state</li>
+<li><strong>Isolation:</strong> Concurrent transactions don't interfere</li>
+<li><strong>Durability:</strong> Committed changes survive failures</li>
+</ul><p><strong>Components:</strong></p><p>#### Transaction Manager
+<ul>
+<li>Ensures atomicity and consistency</li>
+<li>Handles recovery from failures (power, disk, OS crashes)</li>
+</ul><p>#### Concurrency Control Manager
+<ul>
+<li>Allows multiple users to execute transactions simultaneously</li>
+<li>Prevents conflicts (e.g., two users modifying same account)</li>
+<li>Uses locking mechanisms</li>
+<li>Allows parallel read-only transactions</li>
+</ul><h2>Database Architecture</h2><h3>1. Centralized Architecture</h3>
+<ul>
+<li>Database runs on single machine (possibly powerful server)</li>
+<li>Multiple cores, shared memory possible</li>
+<li>Users log into the machine to access database</li>
+</ul><h3>2. Client-Server Architecture</h3>
+<ul>
+<li><strong>Server:</strong> Database engine runs here</li>
+<li><strong>Clients:</strong> Applications connect remotely</li>
+<li>Most common for web/mobile applications</li>
+<li>No need to SSH into server</li>
+</ul><h3>3. Parallel Databases</h3>
+Speed up execution through parallelism:
+<ul>
+<li><strong>Shared Memory:</strong> Multiple cores, shared memory</li>
+<li><strong>Shared Disk:</strong> Separate memory spaces, shared disk</li>
+<li><strong>Shared Nothing:</strong> Separate machines, data partitioned across them</li>
+</ul><h3>4. Distributed Databases</h3>
+<ul>
+<li>Geographically distributed database servers</li>
+<li>Common for large enterprises (multinational corporations)</li>
+<li>May have schema heterogeneity (different schemas at different locations)</li>
+<li>Example: Supermarket chain with database at each store</li>
+</ul><h2>Application Architecture</h2><h3>Two-Tier Architecture</h3>
+<pre><code>[Client Machine]          [Server Machine]
+  Application   <----->   Database System
+</code></pre>
+<ul>
+<li>Application on client directly accesses database server</li>
+</ul><h3>Three-Tier Architecture</h3>
+<pre><code>[Client Machine]          [Application Server]     [Database Server]
+  Web Browser    <----->   Web Application   <---> Database System
+</code></pre>
+<ul>
+<li>Client accesses application server (e.g., web server)</li>
+<li>Application server accesses database</li>
+<li>Most common for modern web applications</li>
+</ul><h2>Database Users</h2><h3>1. Naive Users</h3>
+<ul>
+<li>Don't know SQL or query languages</li>
+<li>Use applications built by programmers</li>
+<li>Applications execute pre-written queries</li>
+</ul><h3>2. Application Programmers</h3>
+<ul>
+<li>Write applications containing SQL queries</li>
+<li>Create compiled application programs</li>
+<li>Develop user interfaces</li>
+</ul><h3>3. Sophisticated Users (Analysts)</h3>
+<ul>
+<li>Know SQL or other query languages</li>
+<li>Don't necessarily write full applications</li>
+<li>Perform data analysis and generate reports</li>
+<li>Understand business domain and translate to queries</li>
+<li>Use query tools for analysis</li>
+</ul><h3>4. Database Administrators (DBAs)</h3><p><strong>Responsibilities:</strong>
+<ul>
+<li><strong>Schema definition:</strong> Design table structures</li>
+<li><strong>Storage structure and access methods:</strong> Decide physical organization</li>
+<li><strong>Schema modification:</strong> Modify structure when needed</li>
+<li><strong>Authorization:</strong> Grant user access rights</li>
+<li><strong>Routine maintenance:</strong> Monitor disk space, backups, etc.</li>
+</ul><p><strong>Importance:</strong> DBAs are key assets to organizations, often well-compensated, not just doing mundane tasks.</p><h2>History of Database Systems</h2><h3>1950s-1960s: Early Data Processing</h3>
+<ul>
+<li><strong>Storage:</strong> Magnetic tapes (sequential access, slow)</li>
+<li><strong>Input:</strong> Punch cards</li>
+<li><strong>Impact:</strong> Programmers were more careful due to difficulty of making changes</li>
+</ul><h3>1960s-1970s: Hard Disks Emerge</h3>
+<ul>
+<li><strong>Storage:</strong> Hard disks enabled random access</li>
+<li><strong>Models:</strong> Network and hierarchical data models popular</li>
+</ul><h3>1970s: Relational Model Revolution</h3>
+<ul>
+<li><strong>Ted Codd</strong> defined the relational model (ACM Turing Award winner)</li>
+<li><strong>Prototypes:</strong></li>
+<li>IBM's System R</li>
+<li>UC Berkeley's Ingres (Michael Stonebraker)</li>
+<li><strong>Commercial:</strong> Oracle released first commercial relational DBMS</li>
+<li>Still captures ~50% of database market today</li>
+</ul><h3>1980s: Relational Systems Mature</h3>
+<ul>
+<li>Research on query optimization, transaction processing, logging</li>
+<li>Development of parallel and distributed databases</li>
+<li>Object-oriented databases emerge (niche market)</li>
+</ul><h3>1990s: Decision Support and Web</h3>
+<ul>
+<li><strong>Data warehousing:</strong> Multi-terabyte repositories</li>
+<li><strong>Data mining:</strong> Decision support applications</li>
+<li><strong>OLAP:</strong> Online Analytical Processing</li>
+<li><strong>Web commerce:</strong> Database-backed web applications</li>
+</ul><h3>2000s: Big Data Era</h3>
+<ul>
+<li><strong>Big Data Systems:</strong> Google BigTable, Yahoo PNUTS, Amazon systems</li>
+<li><strong>NoSQL:</strong> Designed for horizontal scalability across machines</li>
+<li><strong>Criticism of SQL:</strong> Limited to single-machine scalability</li>
+<li><strong>Use Case:</strong> Very large-scale applications (Facebook, Google)</li>
+<li><strong>MapReduce:</strong> Data analysis on distributed systems</li>
+</ul><h3>2010s: SQL Reloaded</h3>
+<ul>
+<li><strong>SQL front-ends:</strong> For MapReduce systems</li>
+<li><strong>Massively parallel databases:</strong> Using SQL</li>
+<li><strong>Main-memory databases:</strong> Entire database fits in RAM</li>
+<li>Main memory became cheaper</li>
+<li>Eliminates disk I/O bottleneck</li>
+<li>Hundreds of times faster than disk-based systems</li>
+<li><strong>Reality:</strong> Both SQL and NoSQL coexist, serving different needs</li>
+</ul><h3>Current State</h3>
+<ul>
+<li><strong>Relational databases:</strong> Still dominant for medium-scale applications</li>
+<li><strong>NoSQL:</strong> Best for very large-scale, horizontally-scalable applications</li>
+<li><strong>Main-memory databases:</strong> For applications fitting in RAM</li>
+<li><strong>Trade-offs:</strong> Relational provides flexibility and general queries; NoSQL provides scalability</li>
+</ul><h2>Key Takeaways</h2><h3>Why Use DBMS?</h3>
+<ul>
+<li>Avoid reinventing the wheel</li>
+<li>Proven, efficient data storage and retrieval</li>
+<li>Built-in transaction management, concurrency control, recovery</li>
+<li>Query optimization</li>
+</ul><h3>Relational Model Benefits</h3>
+<ul>
+<li>Mathematical foundation (sets and relations)</li>
+<li>Proven over 50+ years</li>
+<li>Flexible query capabilities</li>
+<li>Broad tool and talent ecosystem</li>
+</ul><h3>Learning Approach</h3>
+<ul>
+<li>Understand concepts, not just syntax</li>
+<li>Practice is essential (lectures alone insufficient)</li>
+<li>Ask "why" things work, not just "how"</li>
+<li>Study recommended textbooks alongside lectures</li>
+</ul><h3>Career Opportunities</h3>
+<ul>
+<li>Application programmer</li>
+<li>Data analyst</li>
+<li>Database administrator</li>
+<li>Database engineer/architect</li>
+</ul>
+</p>
+      </div>
+    </section>
+
+
+  </main>
+</div>
+
+</body>
+</html>

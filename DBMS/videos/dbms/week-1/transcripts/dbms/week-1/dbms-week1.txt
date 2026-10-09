@@ -1,0 +1,1326 @@
+So, hello and welcome to this course on Database Management Systems. This is going to be an
+introductory course on Database Management Systems and I am Professor Vikram Pudi from
+IIIT Hyderabad. I will be your instructor for this course. Being an introductory course,
+this course is only going to show you how to model, design and implement databases.
+This is all that you would need for building applications using databases. We will not
+be going too much into the internal details of how a database works. We will be looking
+at it from the point of view of an application developer who will be using databases for
+developing his databases. Of course, we will be touching a little bit on the internals
+as well in the first chapter today, but we will not be delving too much into the details
+of it in future chapters. So, this chapter will be covering an overview of the whole
+database management systems, what are all the topics in it. So, we will be touching
+upon all the aspects and if there is something that you do not understand, do not fret about
+it because we will be covering it in more detail in all the chapters that are going
+So, first of all, why do we study database management systems? So, after having studied
+very nice courses which you might have liked about algorithms and data structures and programming
+and so on, computer science. So, the database management systems represents the next bunch
+of topics that you would want to cover because it represents computer science in action.
+So, all the algorithms and data structures that you have learnt, they actually are very
+much implemented inside a database management system in order to make sure that you are
+able to build end user applications for end users. And so, that is the reason why database
+management systems is actually an exciting subject as exciting as the foundational subjects
+of computer science including algorithms and data structures.
+So, there are some students who might be interested in quite a lot in theory and database management
+systems does capture sufficient amount of theory, especially when you are trying to
+look at it from the foundational aspects of how it emerges from mathematical concepts
+such as sets and relations and so on. So, there are a lot of nice theorems and proofs
+that are available to be proven in database management systems. Of course, we will not
+be going too much into the depth of that and because this course is going to be more tuned
+towards application development. However, I am just pointing out that for students who
+are interested in theory database management systems does not leave that out.
+Second, if you are actually interested in algorithm design, you would like to develop
+nice algorithms that you know that that solve lots of problems. So, including for example,
+if you liked sorting and searching algorithms and data structures and algorithms or you
+know any of the other algorithms that you might have seen including topics of divide
+and conquer and so on. So, all of that is actually implemented very heavily in database
+management systems and again it is used for really top to really solve problems that are
+of immediate use for application development. Third, if you are actually interested if you
+are not very much interested in theory nor in algorithms, but you are interested only
+in systems which is application development. So, and you are interested in building large
+systems or even small systems whatever may be the case. So, database management systems
+is exactly that is exactly fits that line for you as well.
+So, and finally, if you are not the kind of person who likes theory or algorithms or systems,
+then you would want to you might want to do simulation studies which include trying to
+figure out which kind of algorithms or which kind of programs work best in what kind of
+scenarios. So, you would want to simulate different kind of programs or situations and
+try to see what is the performance of these systems in different kinds of scenarios.
+And so, the database management systems caters to a wide variety of different mindsets. So,
+whichever angle you are coming to the subject from it has something for you. Of course,
+database management systems is needed in all non-trivial applications. So, whatever kind
+of application that you are trying to build whether it is a web based app or whether it
+is an android app or you know any other kind of application. So, typically you are going
+to have to store large amounts of data and when you store large amounts of data in structured
+ways or even semi-structured ways. So, then you are going to need some kind of a database
+to store it. So, of course, you could always use just plain you know CSV files or excel
+files or just plain text files in order to store your data in your own formats, but there
+will be lot of issues that you will face including having to worry about the exact format of
+you want to store and how exactly you retrieve record from those files from you know maybe
+the middle of the file or the end of the file and so on.
+So, instead of worrying about that level of low level detail database management systems
+brings it all to you on a platter. So, that it becomes much easier for you to develop
+your applications. So, that is the idea of do not repeat yourself. So, earlier before
+database management systems came into picture people used to develop applications which
+were you know they had to build everything from scratch. So, including they had to worry
+about the file format of the files in which they are storing the data and how to retrieve
+those the data from those files and so on. However, after databases systems have been
+developed now you do not need to repeat all that over and over for every application that
+you build. So, lot of lot of features are available in the database management systems
+that you can use off the box. Of course, the other aspect is even if you
+are not interested in theory or algorithms or systems and simulation so on. If you are
+interested in money then database management systems is you know you know the go to thing
+because there are lots of jobs you know and even if you want to build for example, your
+own startup company you are not interested in going for the existing jobs you are going
+to have to you know develop applications for your startup where you are going to need to
+store lot of data and in order to store lots of data in meaningful ways in user friendly
+ways in developer friendly ways you definitely have to use database management systems.
+So, that is the reason why we study database management systems. Just a brief on what you
+are not going to get from this course. So, what this course is not. So, it is not going
+to be a comprehensive you know delivery of lot of topics which probably you would get
+from a full-fledged textbook. So, this especially the lectures here is not
+going to replace the textbook. It is understood that you are at the same time as you are going
+through this course you are going to also follow a textbook and I am going to give a
+couple of recommendations of textbooks in the next couple of slides. Of course, it is
+not a speech to text of a textbook. So, these lectures are not going to be a speech to text
+of a textbook. I am sure with current day modern technology you will be able to just
+put a textbook on let us say chart GPT or any other AI based system and use some speech
+to text technology in order to just read that out for you. So, we are not trying to
+you know just do that. It is not a manual. So, it is not going to replace you know practice.
+So, it is not like you can just attend these lectures and claim that you know everything
+about database systems. So, you would definitely need to practice the problems and assignments
+that are going to be given as part of this course and unless you are able to do them
+by yourself you would not have learnt very much because most of my students tell me that
+when they just listen to my lectures everything seems very simple. Because I tend to you know
+try to make things as simple as possible just look at the core essence of what is being
+taught but there is going to be a lot of you know things that are going to be left out
+which you need to practice on your own. So, you are going to get into stumbling blocks when you
+actually start with a blank screen and try to you know develop your first program which are going
+to use database management systems. But it is only when you do that and you overcome that then
+you will know how to you know use these systems effectively. So, there is not going to be any
+spoon feeding here. I am not going to tell you how to install a database management system or run
+commands and so on. You are going to have to you know do that on your own. So, the idea of the
+courses here is going to be more of learning how to learn. So, we are going to point you to resources
+and you know explain why this is an important thing and why you would want to learn it and how
+to learn it. But the rest of it is something that you would have to do on your own. So, that way
+these lectures are not going to be like just exam oriented. It is not going to be something
+that you know as soon as you have learnt this if you just do the exam then you have got it. So,
+you definitely need to practice because ultimately you are going to want to do this for developing
+real world applications. And like I already said we are not going to go into too much depth of the
+database internals of how a database works inside but rather how to use database management systems.
+So, this is what this course is going to be. So, it is going to be a simple concise essence
+of database management systems. It is going to be sufficient to apply the knowledge to build
+applications. We are just going to briefly touch upon the internals especially in the this first
+chapter. And we will also be at some point of time looking at what are the current and future
+trends of database management systems. But only touching upon them because this course
+is going to be more of getting the knowledge of how to build applications. I am also going to be
+giving you a researcher and developer perspective which is my perspective. There are going to be
+multiple perspectives of any subject that you can learn. So, and whoever is going to teach is
+definitely going to add their own perspective. I am going to try to deliver what the course
+is supposed to be but at some points of time you will find that I will also be giving my perspective
+about it. And the idea of you know when you are taking up a researcher perspective, you look at
+everything in terms of why is this there. It is not just how things are working. It is not just you
+know what database management systems is but why these things are there, why each component is there,
+why every algorithm that is running in the system, why is it there. And you would a researcher would
+be able to appreciate this because they would have seen how people have developed. They would know,
+okay so these were all the competing algorithms. People developed these. They had competitions
+among themselves. They used to say that this algorithm or you know whoever developed that
+algorithm they would publish a paper and say my algorithm is better than all the previous
+algorithms and they are all trying to solve important tasks that make a database work.
+So, when you see that then you appreciate why the subject is there and why particular topics
+are the way they are. And these are matters of you know gaining life skills in general being
+able to ask why certain things are the way they are rather than just following the herd of the
+sheep. So, these are the textbooks that you know are the most popular textbooks in database
+management systems. You see the first one by Raghuramakrishnan and Johannes Karke. The
+second one is by Elmasri and Navathi and the third one is by Silbershad, Korth and Sudarshan. So,
+this third one is the textbook that I am following as part of these slides. So, most of the slides
+in this course are from this third textbook. Of course, you are free to follow any of the
+other textbooks or even a combination of them. So, the first of these textbooks by
+Ramakrishnan and Gerke. So, it starts with this quote. So, the advantage of doing one's praising
+for oneself. I will let you read the rest of it. And so, instead of you know going on and on about
+why this course is great for you and why this way of teaching is great for you, I am just going
+to now move on to the content because I do not want to be guilty of what this quote is actually
+trying to say. Thank you. Hello. So, today I will be covering this chapter on relational model. So,
+earlier we have seen an introduction of all the different kinds of topics that we are going to
+study in database management systems. We have seen that what database management systems are
+meant for, different kinds of applications of database management systems. We have seen
+that database management systems consist of different major components including the query
+processor, the internals of you know the storage mechanisms and transaction management. And so,
+today we will be looking at you know the query processing part of it and there are many languages
+for query processing. They are all based upon this model which is called as the relational model. So,
+this in some sense represents the mathematical origins of database management systems because
+it has to do with sets and relations and so on. So, as we go through these topics you will see
+that it has a very much of a mathematical flavor and yes. So, this is the structure of today's
+talk. So, we will be looking at the structure of relational database management systems. We will
+be seeing what a database schema is about. We will be looking at keys. So, what a primary key
+and you know what is the key of each relation in a database. We will be looking at schema diagrams.
+We will be looking at the relational query language and the relational algebra. So,
+here is an example of an instructor relation. So, a relation consists is basically like a
+table. So, it consists of rows and columns. So, here you can see that there are all these
+rows here. So, this is a row and this is another row. These are the columns. So,
+the columns are also called as attributes and the rows are also called as tuples.
+So, the columns or the attributes here you can see are the id column, the name column,
+the department name and the salary. So, these column names in some sense represent the structure
+of your database. So, and the rows are representing the actual data. So, it is the columns that are
+actually kind of more important when you are starting off because that is going to represent
+what your how your database is actually designed. So, here you can see for example, that the id
+is like in some sense going to represent each record. So, for example, Srinivasan here has this
+id of 10101 and there might be multiple Srinivasan, multiple people with the same
+name as Srinivasan, but they are they might they will typically have they will definitely have
+different ids if they are different people. So, just by looking at the name you cannot figure
+out that this record is unique to that particular name. So, there might be multiple names, but when
+you see an id then that record will be unique to that particular id. So, that is called as a key
+column which will be also again covering later. So, and you can see that there are other columns
+here like salary and which are numeric columns, there are categorical columns like the department
+name which consists of multiple different possible departments and so on. So, here
+one more thing to notice here is that the id column is in increasing order,
+but it does not really need to be in increasing order. It is coming here as increasing order
+only because as you create more and more instructors and fill this table the next instructor that you
+add an id you will be creating or the system will be creating that id for you and that id will
+typically be the next number compared to the last the previous instructor the the id of the
+previous instructor would typically be added you would add one to that and create the next id.
+So, they will tend to increase all the time. So, most of the time.
+So, you find that it is ordered by id, but it does not have to be.
+So, that is an example of a table of a relation. So, in this slide you are going to see that a
+relation is we are going to see a mathematical view of what a relation is. So, we are going to
+remove you know our familiar names of attributes and so on and see it in terms of you know more
+cryptic mathematical symbols. So, we are going to use a1, a2, a3 and so on up to an call them
+as the attributes. So, these are the columns of the table and what we call as a relational schema
+is the set of all those attributes. So, put in you know a tuple format like this
+and that is called as the relation schema ok. So, this relation schema is in some way it is
+the template of the table that is why it is important it is representing the design of that
+table. So, the example we have already seen in the previous slide the instructor table
+which has all these different attributes. So, there is one more thing called the relation
+instance in addition to the schema we have something called as the instance
+which is defined over the schema. So, relation instance is like the table ok. So, the is like
+the table that we have seen here. So, this is an instance of that schema ok. So, this is the schema
+and the entire table here is an instance of that schema.
+So, this is that is the meaning of a relation instance. So, the current values of relation
+are specified by the table ok that we have seen. So, an element t of relation r is called a tuple
+and is represented by a row in the table. So, this is like in some sense how you are defining
+tables in a mathematical manner ok. So, instead of seeing them as diagrams and so on.
+So, by the way so why are we doing this why are we trying to you know make a mathematical model of
+tables and you know of query languages and so on. Mathematical models actually help us in some
+situations. So, for example, when you are trying to simplify certain expressions then it is always
+nice to look at mathematical expressions because you can always simplify them right. So, you can
+remove you know too many operations you can reduce the number of brackets or parenthesis and so on.
+And you can always simplify mathematical expressions and you know that when you simplify
+you are actually having exactly the same mathematical you know formula ok. So,
+the expression might be different, but they are actually computing exactly the same thing
+those kinds of things you will be able to prove you know when you have a mathematical
+representation of these things. So, attributes are the set of allowed
+values. So, the allowed values for each attribute is called the domain ok. So, that we understand
+from you know set theory. So, and the attribute values are normally required to be atomic ok.
+So, which means that they are indivisible. So, for example, when you have the name column
+you might have like the first name and last name you know two parts of it,
+but we will from the point of view of relational database we will assume that you are not going
+to get into the details of the internal internals of each attribute. An attribute is considered as
+an atomic indivisible one unit ok. So, we will treat it as such. If you really wanted to for
+example, have represent the first name and last name separately then you should have two different
+attributes for them. So, there is also a special value called null which is like a member of every
+domain and it is used to indicate that you know the value is unknown. So, for example,
+if you do not know for example, the salary of let us say Einstein here, then you could just
+actually instead of putting this over here you could put null ok. So, null is the value that
+is available for every domain. Of course, that does not mean that you should use null values
+wherever possible you should not use null values because null values cause complications in the
+definitions of many operations ok. So, and especially even when people are trying to
+implement those operations in practice it does cause complications sometimes. So, you should
+and even in real life it is always nice to have some value rather than you know if you if there
+is a value it is better to store it you should not should try to have no null values in your tables.
+So, relations are actually unordered because they come from the set theoretic idea of math
+mathematics and just like a set has no order right. So, you can put the elements of a set in
+any order and it is still the same set. So, in the same way the order of couples in a relation
+is irrelevant. So, for example, in the instructor table now you have you see the same instructor
+table the ID you know numbers are not sorted here. So, it is in a different you know order.
+So, all the rows are in different order here, but it is still definitely the same relation as earlier
+it is not considered as a different relation ok. So, that is the mathematical understanding
+of what the table is or what a relation is. So, a database schema is like what we have discussed
+it is a logical structure of the database it is a design of the database database instance is a
+snapshot of the data in the database at any given instant of time. So, the database instance might
+go on changing as you add more and more data, but the database schema never changes or it should
+never change. So, at the time of database design you should fix your schema and once you fix your
+schema you should not change it. So, at some point of time maybe in the future you might realize that
+you need one more attribute here one more column for example, you might want to say something more
+about the instructors like what is their home address or something like that.
+But in general you should not have to do that every other day. So, maybe once in a while you
+are adding that column the reason is when you add a column and there is already lot of data in the
+database what is going to happen to those values which are already there somebody has to find what
+those values are and then add them and that is going to be a huge problem. So, when you are
+designing your database itself you should figure out what are all the columns that you need and
+then make sure that all the columns that you need are actually part of your design.
+So, now we come to what is the notion of a key. So, R is the schema so the relational schema so
+that consists of the set of all the attributes in your table. Suppose K is a subset of R. So,
+K is some subset of R then K is called a super key of R if the values of K are sufficient to
+identify unique tuple. So, of each possible relation R of R. So, what this means is that
+no matter what you know what is the instance what is the database instance that you have
+if your K this set of attributes is sufficient to identify unique tuples.
+So, then it is called as a super key. So, for example, ID is a super key for us because using
+ID you can identify a unique tuple in your in your table. So, but ID is not the only super key
+you can also have ID and name together as a super key because if ID is a super key then every
+superset of that is also going to be a super key. So, because just using ID you can identify
+unique tuples then using ID and name together you can also identify unique tuples. So, but just
+using name you cannot identify unique tuples but with the combination of ID and name you can
+identify unique tuples. Of course, you would say why do I need name there I can just have only ID
+of course, you can and therefore, ID itself is also a super key but the notion of super key is
+any superset of that as well is a super key. So, a super key is called as a candidate key if K is
+minimal. So, for example, this ID comma name is not minimal as we have noticed. So, this is not
+a candidate key whereas, ID is a minimal super key and therefore, it is a candidate key for the
+instructor table. So, and one of the candidate keys so, if there are multiple candidate keys
+one of the candidate keys you are going to choose as the primary key. So, as a developer of the
+database you can choose which one of them is going to be a primary key in this case only ID is the
+candidate key for this table and therefore, you are going to have to choose ID as the primary key
+for that table. But suppose for example, I tell you that name is also going to be a key for this
+table which means that whenever you know a new instructor is added you are going to restrict
+saying that this instructor has to have a different name. So, for example, suppose there
+is another instructor with the same name as Srinivasan then you would definitely have to
+choose a different name. So, you might call the previous Srinivasan as B Srinivasan and this
+person as A Srinivasan or you know whatever. So, you have to change the name slightly you know
+in some way so that the instructor names are different. If you do that then you can treat
+name also as a as a key as a super key and as a candidate key and as a primary key because it
+can uniquely identify every record. So, now you have both ID is a key and name is also a key both
+can be treated as candidate keys. But as a developer you should choose one of them as
+the primary key because it is always nice to you know say that this one is the is the key that I am
+going to follow for this table. So, as a developer you would want to choose one of them
+as the primary key. It does not matter which one you choose as long as you are consistent about
+what you follow. There is also the notion of a foreign key. So, when a value in one relation
+is going to appear in another. So, for example, department name in the instructor. So, this
+department name here is a candidate key. So, there might be another table which is going to
+represent the details about the department. So, there might be a different table which
+is going to represent that. So, this is the physics department. This is the head of the
+physics department. This is the number of instructors in the physics department. This is the
+number of students in the physics department and so on. So, there might be another table which
+is going to tell you more details about every department. So, and therefore, this physics
+department what is being said here is actually like a pointer to another table which is the
+department table. So, this is called as a foreign key ok. So, because it is going to
+uniquely identify which record of this department table we are going to refer to when you say
+physics here ok. So, this physics here is a is a key and it
+is a foreign key ok. So, and when the notion of a foreign key is there, there is something
+called as the referencing relation which is in this case instructor table is the referencing
+relation and the department table is the referenced relation ok. So, that is the notion of a foreign
+key and this is the notion of keys in general. So, now, we see here a more detailed diagram
+of the schema of a university database ok. So, what we have seen so far is the instructor
+table and for the instructor table we have seen that it has four attributes the id the
+name department name and salary ok. So, but a realistic database system is going
+to have lots of relations ok. So, and here you can see that there are already so many
+different relations ok. So, even these might not be sufficient for a real database there
+might be even you know 20 or 30 such tables in a real database ok. So, for a real university
+database. But let us just go through what these different
+tables are like over here we have seen the instructor table there is also the department
+table ok. So, which we just try to define. So, the department table has the department
+name. So, the department name is the key column here which is why you can use the department
+name here in order to reference this table ok. So, and that becomes a foreign key ok.
+So, and in addition to the department name you are also storing what is the building
+name what is the budget of the department and any other details about the department
+you could store as attributes of that table. So, you also have the you know the student
+table here. So, again for the student you have the ID the name the department name
+and the total credits that the student has maybe so far taken ok. So, how many courses
+and what the credits were you could also have an advisor or like some somebody like a mentor
+for every student. So, you have like you know for which student you know and the advisor
+also probably reports to a particular instructor ok. So, are right. So, you have an instructor
+ID and an advisor ID and a student ID ok. So, as part of the advisor ok. So, who is
+advising his student you could also have a course table which is going to represent what
+are all the different courses being taught in this university. So, the course ID there
+is a title there is a department name and then there is the credits. You can notice
+here I am not storing here the instructor name because there could be multiple instructors
+for a particular course ok. So, and those instructors might be teaching that course
+together in the same semester or they might be teaching that course in separate semesters
+right. So, you do not want to put the instructor name as part of this course table. So, those
+are the kinds of issues that we look at when we are trying to design a database.
+Here you have also a notion of the prerequisites of a course ok. So, what is the for a particular
+course you know the which is represented by the course ID here which is a foreign key
+to the course table what is the prerequisite for that course ok. So, for example, in order
+to do the algorithm course you would have had to do the data structure course ok. So,
+in order to do the data structure course you would have had to do the programming course.
+So, those are the prerequisites ok. So, you looking at what are the prerequisites.
+You can see that there is only one prerequisite ID here there is not two or three, but it
+does not mean that you cannot have two or three prerequisites for a course it just means
+that you are going to repeat the rows ok. You are going to say for the data structure
+course or for the algorithm course you are going to say data structures is the prerequisite.
+You are going to say for the algorithm course programming is also the prerequisite those
+will come as two different rows in this table. So, you also have the teacher's table which
+says this particular instructor is going to teach this particular section ok.
+So, and the section consists of you know multiple students and you know and multiple courses
+which are being taught it consists of a particular semester and a year and is going to be taught
+maybe in a particular building in a particular room number and so on ok. So, those are the
+details of section which are being represented and an instructor as you can see is not teaching
+a course, but he is teaching a section ok. So, and that relationship is represented by
+this table ok. So, between section and instructor you have the teacher's relation which is
+represented as a table here. Of course, sections also are taught inside particular rooms which
+have you want to give more details about those rooms you can have a separate table for that
+right. And so, we have seen the section and the classroom tables and the teacher's tables
+there is also a time slot you want to give more details about the time slot then you have more
+details about which day you know is it a Wednesday Thursday what is the start time and end time of
+that time slot and you also have which students are taking which sections right. So, that detail
+is there here ok. So, this is in some sense a particular kind of design of a database of a
+university database in the same way you would want to design any other kind of database the
+exact way in which you go about trying to design this will see it in a future lecture,
+but this is just an example of a of a good of a reasonable you know database design.
+There are some issues for example, you can see here you know there is a semester you know thing
+a detail over here in the takes, but the semester is also there in the in the section ok. So,
+then there is no need for that right. So, you do not need to have a redundancy this redundancy
+here ok. So, when you are trying to design your tables you would want to reduce the amount of
+redundancies ok. So, next we are going to see you know what are the different kinds of relational
+query languages and in this particular lecture we are going to look at the relational algebra
+which is one such query language. So, there are multiple relational query languages and they are
+of two different kinds one is called procedural and the other is called non procedural. So,
+procedural means that you are not only going to ask for some result from your database you
+are also going to mention exactly how that result should be computed ok. So, it is you are giving
+the procedure of how that result needs to be computed. Non procedural or declarative languages
+it is the same thing it means that you are not going to mention how you are going to retrieve
+the result you are not going to give the method to do that you are just going to ask saying that
+this is what I want from my database. So, that is a non procedural language.
+There are some pure you know what is called as pure languages which are like you know
+mathematically oriented languages. So, and what we are going to look at in this particular
+lecture is going to be the relational algebra, but we also have other languages like the tuple
+relational calculus and the domain relational calculus. So, just by looking at the terms
+algebra and calculus over here you would immediately make out that these are mathematically oriented
+languages query languages and these languages are all equivalent in computing power which means
+that what you can do in one of them the others also you can do ok. So, they are just different
+ways of expressing the same things ok. So, and these languages ok. So, all these query
+languages they are not curing machine equivalent language they are not curing complete languages
+which means that there are certain things you cannot do in them which you can do in languages
+like C or python or java or any other full fledged language. So, these are not full fledged
+languages they are just meant for database queries ok. So, they are supposed to be simple
+and so many people you know you you can train people to just learn these languages even if
+they do not know a full fledged programming language. So, the relational algebra consists
+of six basic operations which we are going to look at next.
+So, the relational algebra is one kind of query language for database systems it is a mathematically
+oriented query language and it is also a procedural language ok. So, which means you are going to tell
+it exactly how you are going to compute the result that you are looking for. So, and in order to tell
+how to compute the result there is a set of operations that you are going to give you are
+going to use these operations in order to define how you are going to compute the result.
+So, and these are the six different operations which are the basic relational algebra operations.
+So, we have something called select and project and union and set difference
+Cartesian product and rename operations ok. So, you can see that these are all going to be
+operations that you are going to operate on sets ok. So, the input to these operations is sets like
+in a set theory of mathematics or relations ok. So, relation is a particular kind of set.
+So, the input to all these operations are going to be relations ok. So, and we are going to see
+one by one each of these operations and what they are, but the key idea here is that just using
+these six operations the entire language is based on ok. So, if you know these six operations you
+know the entire language and that is one of the beauty or you know the elegance of the relational
+algebra ok. So, and it is a mathematical language. So, starting with the first operation this is the
+select operation. So, the select operation it is used for selecting tuples that satisfy a given
+predicate ok. So, predicate is like a condition ok. So, that you are going to give and you want
+to retrieve all the tuples all the rows that satisfy that particular condition ok. So,
+this is the notation. So, this sigma here is used to represent select operation and the p
+here is the condition is the predicate that you are going to use in order to retrieve each row.
+For every row of the table you are going to apply that condition if it satisfies that then
+you return that row ok. So, and the input relation is given as the argument to that select operation.
+This p here is also called as a selection predicate ok. So, and it is basically a condition.
+So, here is an example you want to select those tuples of the instructor relation. So, that this
+is the instructor relation that is given here you want to select those tuples of the instructor
+relation where the instructor is in the physics department ok. So, if you want to do that then
+you would write the query like this. So, you would write sigma and the department names is equal to
+physics ok. So, you can choose any of the column names here and you can give any condition on that
+column and you can give any value that you want to compare that column with ok. So, you are able
+to now write a condition like this and you are going to give the input as the instructor table
+ok. So, this is the instructor table and when you give this result this query the output result
+you are going to get is going to be another table. So, the input to these operations are relations or
+tables and the output is also tables ok. So, obviously, you can find here that there is
+one person here Einstein in the physics department and there is also one person here
+whose name is Gold in the physics department. These are the only two people in this particular
+relation instance which have the physics department. So, the output is going to be those
+two particular rows ok. So, the input is this the output is that. So, this is the select operation.
+So, the select operation you can use all of these different comparison operations.
+So, you can give any column name ok. So, and you can give any of these comparison operations
+you have equal not equal greater than greater than equal to less than and less than or equal
+to. So, these are all the different operations comparison operation that you can use in your
+selection predicates. In addition to using these comparison operations you can also combine
+several predicates into a larger predicate using and or and not ok.
+So, here is an example. We have you know the previous condition where department name is
+physics. You also want to see all those instructors in this department whose salary is greater than
+90000 ok. So, you are putting an and operation in between them ok. So, you are trying to find all
+the instructors who are in the physics department whose salary is greater than 90000. The select
+predicate may include comparisons between two attributes right. So, and you can also say where
+the department name is equal to building for example ok. So, it does not have to be like
+it does not have to be like you know an attribute name and a value only ok. So,
+it can be an attribute name and another attribute name ok. So, for example, here you can have
+department name is equal to building. So, where get me all those departments whose department name
+is same as the building name ok. So, that was the first operation. This is the project
+operation is the second one. So, it is an unary operation. So, it takes a single you know it takes
+a single argument as its input ok. So, and this is the notation. So, you give it multiple attributes
+as part of the input to this operation. So, these are all attribute names and this is the relation
+on which you are applying that. When you give those attribute names the output is going to be
+another relation which is going to have you know the same as the input relation, but only these
+attributes are in the output. So, the input relation might consist of many many attributes
+more than these, but only these attributes will be part of the output ok. So, that is the idea
+of the project operation. One more important detail is that duplicate rows are removed from
+the result. Obviously, because the relation every relation is a set and if there is a duplicate row
+it is not it does not make any extra meaning ok. So, duplicate rows are removed from the result.
+So, here is an example. So, I want to project the id name and salary
+the attributes from the instructor table. So, remember that the instructor table also had like
+what was the department name ok. In this case I am not interested in the department name. So,
+I am only interested in these three attributes. So, when I project those three attributes on from
+the instructor table then I get a new table which consists of only those three attributes.
+So, that is the project operation. Of course, you know the power of these the language is because
+you can compose these relational operators you know one inside another ok. So, you can for example,
+do both a select operation and the output of the select operation you can give it as to a project
+operation and you can run that ok. So, for example, if you are not interested
+you know. So, earlier you would you had got you know we had done this select operation where we
+are interested in all the people all the instructors in the physics department. So, we got this as the
+output, but here if you are not interested in all of these columns, but we are interested only in
+the name column right. So, then the output of this select query you can give it as an input
+to the project query we are going to project only the name ok. So, and that you will be able to get
+as an output. So, here you are going to project only the name from the output of the select query
+ok. So, that way you will get only the name.
+The next operation this is an important operation. So, this is called a Cartesian product
+and it is important in the sense that if you do not do it right it is going to be very time
+consuming it is going to be a highly resource intensive kind of operation. So, the Cartesian
+product operation is denoted by a cross and it allows us to combine information from two relations
+so, from two different tables. So, for example, you can do a cross product
+or a Cartesian product between the instructor and the teachers table. So, you are doing a
+Cartesian product also called as a cross product between those two relations. What that means is
+you are going to create a new relation which is for every row here and for every row here
+your new relation is going to have one row which is going to be like you know which is going to
+include that ok. So, the number of rows of the result relation is going to be equal to the number
+of rows of this relation multiplied by the number of rows of this relation because for every row here
+you are going to have one row here ok. So, and because both of these tables might have the id
+column you know you in the result you might want to distinguish between whether this id
+came from the instructor table or the teachers table. So, we will call it like this instructor
+dot id and teachers dot id. So, here is you know the example and it is good to see you know the
+example in detail. So, for example, here you have the instructor id ok. So, for a particular
+instructor the first instructor here is 10101 which is Srinivasan. So, this is that particular
+instructor and this is that coming from the teachers table ok. So, which means that this
+instructor row is coming from the instructor table and this is coming from the teachers table
+and in this case you can see that it is the same instructor. So, the instructor dot id here
+which is coming from this id it is called id here it is called instructor dot id in the result
+because you want to make out whether this id is from the instructor table or is it from the
+teachers table. So, the teachers id is different ok. So, and here you can make out that this
+instructor ID and the teacher's ID is the same. So, it means that the same Srinivasan
+is actually teaching this course. So, he taught this course CS 101 in the fall semester of
+2017. The same Srinivasan, so you can see it is
+the same Srinivasan because it is the same ID in the instructor ID and the teacher's
+ID. He also taught the CS 315 course in the spring semester of 2018. And he also taught
+CS 347 in the fall semester of 2017. However, you can see that it is not the same
+ID here. This ID is different. So, 12121. So, this guy is not Srinivasan. So, who is
+he? He is Wu. But you can see that Wu's record. So, Wu has taught FIN 201 in the spring semester
+of 2018. And that record of Wu is being combined with the record of Srinivasan. You might wonder
+why are we combining it that way. So, it is of course, not natural. But this
+is like a mathematical language. So, first we are trying to show that how we can get
+a new table, which is a very big table, which is like a cross product of two different tables.
+This table contains all the information that you might want to need, that you might need
+in order to compute the exact columns that you are interested in. You might be interested
+in only these columns in only these rows. So, where they are matching, where the IDs
+are matching. You are not interested in this next row because it is for a different teacher
+here, for a different instructor. So, but the idea is the cross product tells you how
+to compute this entire table first and then you are going to remove these unnecessary
+ones. Again, you might wonder why are we doing that? Why not just compute the ones which
+we are interested in directly? And in practice, that is what will be done in the relational
+database backend. So, but from a mathematical point of view, you want to see what is happening
+to simplify things mathematically and therefore, first we see, what is the whole space of possible
+records that we are looking at and in that later we are going to prune away the records
+that we do not want. In order to do that pruning away, in order to find exactly the records
+that we want, we use what is called as a join operation.
+The join operation does better than the cross product or the Cartesian product. The Cartesian
+product associates every tuple of instructor with every tuple of teachers and most of the
+resulting rows have information about instructors who did not teach a particular course. We
+saw that in the previous slide. So, where we have seen that there is Srinivasan and
+this is a course that has been taught by Wu and in fact, most of the records here will
+be taught, will be combining records across instructors which are not relevant. So, we
+do not want those. To get only those tuples of instructors across teachers that pertain
+to instructors on the courses that they taught, we are going to write instead of a cross product.
+So, we write the cross product first and then we select from this cross product exactly
+the records that you are interested in. So, we have here. So, for example, we are looking
+at instructor dot id should be equal to teachers dot id. In this particular case, they are
+not equal and so, you are not interested in that particular row here. So, that is why
+we are saying instructor dot id should be equal to teachers dot id. So, this is an important
+concept. So, this is the notion of a join. So, it consists of a cross product and a select
+predicate on top of that. The select predicate is used in order to mention which rows are
+of interest, which rows you are not going to be interested in. You want to remove them. So,
+this is going to be the output of that. So, for example, here you have seen that only those
+records where the instructor dot id is going to be equal to the teachers dot id, only those records
+are going to be kept. So, we saw a huge table here. So, there is a huge table, but that huge
+table gets reduced to a much smaller table which is the join operation. So, this join
+operation is an important operation because it is going to allow you to combine information
+across tables in an efficient manner. So, the join operation allows us to combine
+a select operation and a Cartesian product into a single operation. So, if there are
+So, whose schemas are capital R and capital S and the relations themselves are represented
+by small r and small s. So, then we can use the notation of theta. So, this theta here
+is a predicate on the attributes in the schema R union S. So, something like instructor dot
+id is equal to teachers dot id. So, it is such a condition. So, and it is on the attributes
+which are a combination of the attributes of the instructor table and the teachers table.
+So, theta is a predicate on attributes in the schema of R union S and the join operation
+is defined like this. So, it is defined as. So, you give that theta as part of the input
+of the join operation. What it basically means is that you are going to first do a cross
+product and then you are going to do a select operation where that condition is the same
+condition as the join. So, join is nothing but a cross product followed by a selection
+mathematically. So, and therefore, this complicated expression that we saw which was a cross product
+and select operation can be written more simply as a join operation where you have the instructor
+table joining with the teachers table. So, on the join operation is taking this as the
+argument. So, what is the condition on which you want to join?
+So, again just to repeat this is an important operation it is going to allow us to combine
+information across multiple tables and the result might be huge if you just do a cross
+but the actual join operation typically is not as huge it is going to be much smaller
+than a cross product. So, and the idea of the join in terms of a cross product is a
+mathematical construct in order to be able to you know analyze join operations and all
+in term in terms of mathematics, but in actual implementation in a relational back end typically
+it is not like you are going to generate all the cross product and then remove you know
+the unnecessary ones join operations are going to be done much more efficiently than that.
+So, the next operation here is a union operation. So, these are all the other operations are
+actually going to be much simpler join operation is the most complicated one the union operation
+is much simpler operation. So, the union operation allows you to combine two relations. So, if
+R and S are two relations then union when you do it is basically a combination because
+R and S are relations which means they are also sets and you can always do a union of
+two sets right. So, but in order for it to be meaningful you
+need certain conditions to be followed. So, both R and S must have the same arity, arity
+means the number of attributes or the columns must be the same. So, for both the relations
+and the attributes domains must be compatible which means that you know the second column
+of R will deal with the same type as the values as the second column of S. The first
+column of R should have the same type as the first column of S the second column of R should
+have the same type as the second column of R and so on. So, they should all have exactly
+the same type. So, that you can compare them. So, and then you will be able to do a union
+of them. So, here is an example you want to find all
+the courses that are taught in the fall 2017 semester or in the spring 2018 semester or
+in both right. So, this is how you are going to do it. So, this is on the section table
+on the section table you are going to say that the semester should be fall and the year
+should be 2017. So, similarly you are going to say on the section table the semester is
+spring and the year is 2018. So, these are two different operations. So, and for both
+of them you only want to get the course IDs. So, you want to find all the courses means
+you only want the course IDs. So, you are going to project the course ID and the output
+of both of these is again going to be two relations which you can do a union on and
+you can do a union on them because both of them are having exactly the same attributes
+or compatible attributes. So, when you do an operation like that you would typically
+get you know an output which is the set of all courses which are offered in both of those
+semesters. Similar to union you also have the set intersection
+operation. So, you can do you know R intersection S and again the same restrictions are necessary
+on the you know schema of R and S which is R and S should have the same arity which means
+the same set of you know same number of attributes and the attributes of R and S should be compatible.
+So, that you can make a meaningful comparison. So, again here you want to find the set of
+all courses taught in both the fall 2017 and in the spring 2018 semesters which are taught
+in both those semesters right. So, again you have for the section table you have semester
+fall and year 2017. Similarly, for section table you have semester spring and year 2017
+you are projecting the course IDs from each of those two operations and then you are taking
+an intersection of them and you will of course, get a smaller number because you are looking
+at the AND operation right. So, the third one again a simple operation
+is called the set difference operation. So, again you have two relations and you are going
+to take a difference subtraction of them and again you need the same conditions that they
+should have the same arity and the relation attribute should be compatible. And what it
+means is that the output is going to be all the rows which are there in R, but which are
+not there in S they should be there in R, but they are not there in S. So, you want
+to find all the courses which were taught in the fall 2017 semester. So, in the fall
+2017 semester. So, but they are not taught in the spring 2018 semester. So, you are taking
+both of those operations and then you are taking a difference of them a set difference
+and you are going to get a some output. So, those are the different operations.
+Additionally, you have you know a few more operations which are not like critical. So,
+if you see the initial set of operations that we promised. So, these were the different
+operations. So, we have seen select, project, union, set difference, Cartesian product we
+are now going to look at the rename operation. And before we look at the rename operation
+we are going to look at the assignment operation. So, the assignment operation is just a convenient
+way of you know saying that the output of this particular relational algebra operation
+you want to store it as a variable. So, for example, you are using the variable
+name physics in order to store the relation which is the output of this query which is
+get me all the instructors you know who are in the physics department. Similarly, you
+could have a different name for saying get me all the instructors who are in the music
+department. And then you can actually do a union of them instead of you know writing
+big big expressions like this. You can now make convenient you know human
+readable expressions and then you can use those expressions in future you know commands.
+So, with this kind of you know assignment operation you can write sequential programs
+because sequential in the sense that first this operation is done then this operation
+is done and then this operation it is going like a sequence like a program.
+So, having seen the assignment operation now we are going to see the rename operation.
+So, rename operation is like a short hand it is like saying I do not want to have a
+separate operation to do an assignment instead when I have a relational algebra expression
+the output of that expression I want to rename it as x. So, that I can use x as the name
+of the output of that of that expression. So, by doing this you can use this directly
+as part of the next statement. So, as part of a bigger expression you do
+not have to write a separate statement which you had to do in the assignment operation
+you had to write separate lines for each one. If you want to combine all these lines into
+one and still you want to create you know names for each sub part you can rename each
+sub part with a particular name like you know like x here. So, it is going to return the
+e under the name of x. So, that is the rename operation.
+So, these are the 6 operations of relational algebra. Of course, having seen these operations
+the basic idea is that any kind of query that you would ever want to write in order to retrieve
+data from tables. So, can always be written by these 6 different operations and that is
+the magic of it. If you have understood these 6 different operations even though it might
+have seemed like pretty obvious or easy maybe a little tedious because these are all things
+that you might already know from set theory and so on. Still the beauty or the you know
+really nice aspect of this is that just knowing these 6 operations you can be confident that
+now I can write any kind of relational query. So, any kind of query that I want to write
+to retrieve any kind of data from any database which is in the form of tables I will be able
+to write using these 6 operations. Now, it turns out that there are multiple
+ways of writing the same query sometimes. So, there can be multiple queries which give
+the same output. So, here for example, you see that you know I am looking at this where
+I am saying department name is physics and salary is greater than 90000. So, this is
+one condition that I am giving to the instructor table and I am doing a select operation on
+that. So, instead I could first do a select operation on the salary attribute only getting
+all the instructors whose salary is greater than 90000 and then the output of that I can
+give it to another operation which is department name is physics and you know I am the output
+of this operation will be the same as the output of this of the previous operation.
+query 1 and query 2 are going to be having the same output. So, now, you might wonder
+is there any advantage or disadvantage of each one of these. So, typically in relational
+database implementations you might want to do this first. So, it depends it is not always
+true that you should do this first, but you know the database might just be able to you
+know optimize your query better because it is going to look it is going to know upfront
+that it is going to have to look at both the department name and the salary and figure
+out which one to do first which one to check first for each record. So, and it might just
+turn out to be faster in some cases. So, for example, if there are very few people
+with salary greater than 90000 may be only one or two. So, then this might retrieve a
+very small table and then this operation therefore, becomes efficient because it is going to work
+on a very small table. So, whereas, if you are done this first internally and then done
+this later there might be huge number of people in the physics department. So, and you would
+have to go through all of them it might turn out that you actually have an index on the
+salary, but you do not have an index on the department name. So, that determines which
+one you should run first and so on. So, there are different ways that might change the efficiency
+of which one is faster and which one is slower or which one takes more memory and so on,
+but the output of these commands will be exactly the same.
+So, here is a slightly more complicated example of equivalent queries. So, here I have a join
+operation. So, let us just take a look at what this means I am trying to join the instructor
+table and the teachers table. I am looking at where the instructor id is going to be
+equal to the teachers id the natural join right. So, where the instructor id and the
+teachers id are the same. So, and so this is going to get me what are all the courses
+that each instructor is teaching and within after getting that as an output then I am
+going to try to see which I am only interested in those rows for which the department name
+is physics. So, which means that I am only interested in the physics instructors and
+which courses they are teaching. So, that is the meaning of this query.
+Second query what am I doing first I am first doing this. So, I am first getting all from
+the instructor table I am getting all the people who are in the physics department.
+So, and only if they are in the physics department then I am doing a join of those instructors
+only with the teachers table. So, you can see that this is going to be a much smaller
+table than the original instructor table the original instructor table had all the people
+in all departments this one has only people in the physics department. So, this join query
+is going to be much smaller and as we know the join queries could be very big if especially
+if they are based on the cross product the Cartesian product then they could be very
+huge and very time consuming. So, obviously, which one of these two is going to be more
+efficient to compute the second one is going to be more efficient because you are first
+eliminating all the people who are not in the physics department and then you are doing
+the join query. So, therefore, the efficiency or the time
+that is going to take is going to change between you know whether you do query 1 or query 2
+but the output is going to be exactly the same and that is why they are called as equivalent
+queries. And in fact, one of the advantages of a well implemented database system is
+that it should not matter which way you write these you know if as a user or as a developer
+you messed up and you chose the one which is not very efficient which is more slow then
+there is a query optimizer which is you know supposed to take your query and automatically
+figure out which is the fastest way to compute it and it will do it the nicest and fastest
+way. So, that is one of the advantages of using a database management system.
+So, that is basically the idea of relational algebra. So, you would have seen six different
+operations having known these six different operations you can be confident that you can
+ask any kind of query you can retrieve any kind of information from a database and that
+is the beauty of relational algebra. Thank you.
+So, yesterday so we have so far seen how what databases are and certain ideas about
+it we have looked at relational databases the overall structure of the relational model
+and about data independence. Now, we are going to start looking at little bit about the query
+language what kind of queries are done and several other aspects about relational database
+systems. So, we are going to start with this data definition language. So, this is the
+language that is used in order to define the database schema. So, when you are trying to
+create a table and the columns or attributes that it is going to have this is the language
+that is going to be used. So, this is of course, different query languages are going
+to have their own data definition languages. So, this is the syntax that you see on this
+slide is for the SQL language. So, here for example, you see a command called create table
+instructor is the name of the table and these are the attributes that it contains or the
+columns. So, it has the ID column, the name column, the department name and salary. So,
+these columns are also described using the data types for the each of these columns.
+So, the ID is a character type which has up to 5 characters. So, name is a varchar. So,
+varchar means it has up to 20 characters in this case, but it does not need to have all
+20 characters. The ID over here is a char 5 character ID. So, all the IDs are going to
+consist of 5 characters. We have the department name again a varchar of 20 up to 20 characters
+and salary is a numeric type. So, it is having you know 8 digits and 2 of them are floating
+point. So, which come after the decimal point. So, this is an example of a data definition
+language instruction and this is used to create tables and modify tables and so on. So, it is
+used in order to define what your data is going to look like the scheme of the data. So, once you
+run commands like this. So, the internally the data definition language compiler. So, the DDL
+compiler is going to generate a set of table templates which store this information in what
+is called as a data dictionary. So, and the data dictionary contains this information.
+This kind of information is called the metadata because it is telling you data about the data.
+It is not you know the actual data you know it is not telling us a particular instructor
+what his name or salary is, but it is telling us data saying that the structure of the data
+is going to be consisting of a name and department name and salary. So, this is called metadata.
+And it consists of the database schema that is basically the set of columns and the types
+of those columns. It also consists of metadata also consists of what is called as integrity
+constraints. Integrity constraints like we had discussed earlier tell us certain constraints
+about the data that should be followed. For example, when we were talking about the banking
+example, we saw that you know the account you know the balance should not be less than zero.
+So, that was an integrity constraint, but a more common integrity constraint that is there for
+you know every well designed table is that every table is going to have what is called as a primary
+key. The primary key is like an ID in this case the ID you know column or attribute is going to
+be the primary key because it can tell us that you know it is going to uniquely identify the
+record. So, given the particular ID you know which record you know you need to go to.
+Whereas, names of you know instructors might be the same two different instructors might have the
+same name. So, you cannot use name as an unique identifying feature of the record. So, in this
+case the unique identifying feature is the ID and so that is called as the primary key.
+Now, the primary key in some cases might actually be a combination of multiple attributes. In this
+case there is a single attribute called ID which uniquely identifies the record. In some cases
+there could be more than one attribute such examples we will see later. Of course, this is
+just you know initial understanding of what the data definition language is.
+More details of such commands we are going to definitely see in future lectures.
+So, other kind of metadata that this data dictionary is going to have is also authorization
+like who can access this particular table and what columns of the table that they can access
+and so on. So, that is authorization details. So, all of this is called as metadata and that
+is stored in the data dictionary that is what we need to remember for now.
+So, in addition to the data definition language. So, we also have the data manipulation language
+which is once the tables are created and stored. So, then we are going to have to
+populate these tables. So, that is when we are going to use this you know data manipulation
+language which is also part of the query language. So, and this is there are two types
+of data manipulation language. So, one is the procedural data manipulation language
+which requires a user to specify exactly what data is needed and how to get that data.
+So, the user is not just specifying what data he wants, but he is also specifying exactly how
+to get it. So, in some sense it is going to be like a procedural you know language where he can
+say you know go to this particular record and from this record go through each of the next 10
+records and then retrieve the data from all of those and so on. So, he is going to describe
+the exact procedure of how to retrieve the records. Whereas, declarative DML which is kind of the more
+standard nowadays. So, the standard query language which is called SQL or SQL is a declarative DML
+and it only requires the user to specify what data he needs, but not how to get it right. So,
+and it is of course, because he does not actually specify how to get it, he does not have to write
+detailed programs of how to retrieve the data. He just specifies that I want to see this data
+and you know he gets back the output. So, declarative DMLs are usually easier
+to learn and use than procedural DMLs because they are not like you know full-fledged
+programming languages. They are just a subset of you know full-fledged programming language
+which contains instructions of how you know what to retrieve.
+So, declarative DMLs are also non-procedural DMLs and the portion of the DML that involves
+information retrieval is called a query language. So, this is you know the notion the term query
+language is overloaded here. So, for example, here you can see that DML is also known as query
+language. Here he says the portion of a DML that involves information retrieval is called
+a query language. So, the you know they are both you know depending on the context we will use one
+or the other. So, the latter says that only when you are trying to retrieve information,
+then you call it as a query language, whereas when you are trying to you know add information,
+for example, when you are trying to add records and so on, then that probably is not called as
+the query language. But here he clarifies that the entire DML where you could actually be adding
+records to your table, deleting records or even just you know searching for records or information
+retrieval all of that is known as the query language. So, depending on the context some
+people use it this way and some people use it this way. So, SQL or SQL right so depending on what
+you are comfortable with you can either call it as SQL or SQL. So, both are standardly used.
+So, the I prefer to call it SQL. So, SQL query language is non-procedural. So, you just mention
+what you want to retrieve and the query takes input as several tables, sometimes it could be
+just one table and it returns a single table. So, the input is one or more tables and the output is
+one table. So, here is an example of an SQL query and in this case you are retrieving information
+from the instructor table here and so you are saying from instructor and what is the what are
+you trying to retrieve? You are trying to retrieve the name column from the instructor table. So,
+you say select name. So, this is the name column from the instructor table and you are giving a
+condition. So, you are saying where department name is equal to computer science. So, you only
+want to retrieve those records where the department is computer science. So, this is a very typical
+example. So, this is called the select from where clause and this is kind of the most common
+clause or statement that you people run in the SQL language. So, here you can see that you are
+just mentioning what you want to retrieve. You are not mentioning how you are going to retrieve it
+like for example, which file to open, where the instructor table is present and how to go through
+the instructor table record by record or are you going to jump to some particular place.
+Some particular record in the instructor table and start searching from there. What exactly
+are you going to do? You are not writing a program to do all that. You are just writing
+exactly what you want to retrieve and that will be returned as a output. So, you will be getting
+a list of names which is basically a table which contains just a single column. So, the single
+column in this case will be the name column from the instructor table. So, SQL is not a Turing
+complete language in the sense that you cannot use it for doing arbitrary programs like you can
+do in C or Python. So, it is just for writing commands where you are trying to retrieve
+information from a database and you cannot do much more than that. To be able to compute complex
+functions, you need to put SQL in a different language which is Turing complete like C or Python
+or Java. So, you would put SQL inside that language. So, there is usually facilities to
+embed SQL in all of those higher level languages. So, application programs generally access databases
+there are language extensions. So, for example, Python has its own language extension which are
+like modules in Python where you can import a particular database module and then you can
+access tables in that database module and retrieve data. So, you can run SQL queries.
+At the SQL query itself, you will pass it as a string to this module and then that module
+run the SQL query and return results. So, such kinds of language extensions you can
+have in Python or Java or C or other languages. There is another way that typically
+there are APIs or application program interfaces for example, ODBC and JDBC.
+So, JDBC is the equivalent of ODBC for Java. So, the J here stands for Java.
+So, this is like an application programming interface which allows SQL queries to be sent
+to a database. So, it is a neutral API. So, it is not a Python specific or C specific.
+It runs independently of these languages and from within those languages you can call this API
+and you can run database queries in that. So, both mechanisms are possible and are used.
+So, non-procedural query languages like SQL are not as powerful as a complete Turing
+language because they do not represent universal Turing machines. They do not do
+everything that a Turing machine can do. SQL does not support actions such as input.
+You cannot take input from users. You cannot output the statements to the display. You cannot
+do communication over the network and so on. All that you can do is you are going to give input as
+some number of tables. You are going to give some conditions and you can get output which
+is also a table and this output goes into the standard output. So, now that you could
+redirect using your own programming language that you like. So, for example, which is called the
+host language, CC++, Java or Python and you can get the output of your SQL statements into this
+language and then you do whatever you want inside that language with the output. So,
+this is how it works. So, now of course, application programs is the key. I mean the whole
+idea of database systems is pretty useless unless they are used as part of larger application
+programs and typically web programs for example, are one of the very pervasive application programs
+for database systems. So, whenever you are trying to create a web application or a mobile application,
+typically you will have a lot of data in various structured manner that you would want to store,
+whether it is users and their passwords or what feed they are supposed to get. Each user
+probably is supposed to see a particular feed of messages and so on. So, all of those is going to
+be stored in some kind of a database and these databases will be queried and then in the target
+language or the host language and then there will be output on the web interface which users
+can see in their favorite browsers. So, database design. So, in order to use database systems,
+we need to be able to of course, design our databases in an efficient manner without
+redundancies and that is the subject matter of another chapter that we are going to see in future.
+And it is very important that we design our database very well because the schema that
+we come up with has to be without redundancies on one hand and it has to be efficient.
+So, that if you do not design it well, there could be multiple problems like
+the users could make errors while entering duplicate data or there are certain kinds of
+queries that you could have asked which you will not be able to ask and such examples we will see
+one by one as we look into the chapter of database design later and there is a whole set of
+techniques called normal forms which we will be seeing about how to design databases very well.
+So, that is the logical design what I have described. There is also the physical design
+which is about how you actually store these tables that you have designed on the physical
+layout of the hard disk which includes trying to look at which files the different tables are
+going to go into and which blocks of the hard disk are going to be used, are they contiguous,
+are there going to be gaps between from one block, how do you reference the next block and so on.
+So, this is database design. There is also the database engine which is the internals of the
+database and this is divided into three parts. One is the storage manager and the storage manager
+you know we will be looking at that in the next few slides what each of these are. There is the
+query processor and then there is a transaction management component. So, we will look at each
+of these in one slide each. So, there is the you know the storage manager is responsible for
+you know actually storing the data on the hard disk in different files. So, it is responsible
+for interacting with the operating system to be able to store data in different files.
+And it is you know it makes use of certain operating system features which typically
+most users will not you know worry about because when as a regular user if you open a text file or
+a Microsoft Word file or any other file the format in which that file will be stored
+is typically different from how database files are stored. Because when a database is trying
+to store its files it needs to really make it very efficient to be able to retrieve your data
+from any part of the database right. So, not necessarily it won't necessarily be reading the
+data from you know from the first line to the last line. It might want to do a random access
+to places in between okay. So, and depending on what the user is asking and so on okay. So,
+the exact manner in which you know it will be stored within files all the blocks will be stored
+within files it might have to you know hard core it might have to get into the nitty-gritty details
+of that. So, it is going to use certain features of the operating system file manager which
+typically most users will not worry about okay. So, and its task is to store retrieve and update
+the data in a very efficient manner. And trust me if you don't you know do this properly
+you could take like hours or days in order to run a very simple query okay. So, and if you do this
+well then it could run within seconds or milliseconds right. So, it is very important
+that these parts are done very efficiently. The storage manager includes you know multiple
+components. So, one which would be the authorization and integrity manager. So,
+it is going to tell that only the authorized users can access the data. There is going to be the
+transaction manager which is going to you know allow transactions to you know use the data on
+the hard disk. There is going to be the file manager and the buffer manager. So, the file manager
+is going to you know work with the actual files on the hard disk and you know when the database
+is trying to retrieve something it is going to go into the file and get it from the file. So,
+the buffer manager is going to work with you know the main memory. So, when you are retrieving data
+from the files and you have to put it into the main memory in a buffer. So, that you know you
+can access the data within the main memory much faster than you could do it on the hard disk.
+So, the illusion of speed is actually obtained by storing relevant portions of the data. So,
+the database are going to be huge right. So, they are going to be like terabytes.
+Database are designed to store terabytes of data right. So, and you cannot load terabytes of data
+into the main memory. So, there has to be some very smart way in which the data is going to be
+the relevant data which you are working on right now and maybe you are going to estimate which
+data you are going to need in the near future and that you have to load it into the memory
+and then you are going to work on that part and whenever you need more data you are going to
+retrieve it from the file and put it in the buffer in the main memory. So, that part is done by the
+buffer manager. So, this is the storage manager. So, the storage manager also consists of you know
+these parts. So, there is the data files itself which is the actual data in the tables that you
+are trying to store. So, then there is a data dictionary which we saw which stores metadata
+about the database. So, it is like the structure or the schema of the database and so on and the
+users who are authorized to access the data that kind of metadata information which is not the
+actual data, but it is data about the data that is stored in the data dictionary and you also have
+what is called as indices. So, each index so there is a database index and the plural of that is
+indices. So, each database index is meant to provide a fast access. So, this part of the
+system is meant for achieving fast access to the database. So, the database could be you know
+consisting of multiple tables. Each table could be a huge table consisting of
+millions of records and if you want to access a particular record you know using random access
+instead of going from the first to the last one by one typically you want to access a particular
+record using some key. So, maybe using the name of the student or the roll number of the student
+you want to access a particular record. So, when you want to do that you want to be able to
+quickly go to that particular place in the database where you can access that record.
+And the index allows you to do that. So, that is the indices. So, all this is part of the storage
+manager. Next the query processor. So, this query processor is what is responsible for taking the
+user query which could be either you know DDL kind of query data definition language kind of query
+where you are trying to define your tables or modify your table structure. So, or it could be
+a DML kind of query which is the data manipulation language where you are trying to add records to
+your table or you are trying to retrieve records from your tables. So, both the DDL and DML kind
+of queries are processed using the query processor. So, the DDL statements are you know interpreted
+using what is the DDL interpreter and then the output definitions are stored in the data
+dictionary. So, in the data dictionary you are going to have the definition of what the table
+structure looks like and so on. So, and the DML compiler is going to take the DML statements
+which is going to be typical you know retrieve these records like you know we saw that select
+you know query where you are trying to select the name from the instructor table based on some
+condition. So, those kinds of queries which are DML statements are you know compiled using
+this DML compiler and then you know there is an. So, the way the compiler works is that you know
+it translates this you know query that is given into a query plan. So, it of how you are going
+to execute that query. So, because we have seen that typically these languages they are not
+curing complete languages they are not going to tell you they are not going to tell the computer
+exactly how to retrieve the data. So, this query processor is responsible for figuring out how to
+retrieve the data from this database right. So, and so the plan that it eventually outputs consists
+of lower level instructions that the query evaluation engine is going to understand and then
+you know it is going to execute it. And so in order to do this the key task that is done here
+is called as query optimization. So, it will there are multiple you know query plans which
+are possible for any given user query. So, typically for more complex user queries where
+you are trying to join multiple tables and so on you can actually come up with many many
+different query plans. So, the query so the DML compiler is going to come up with these query
+plans and then it is going to figure out which is the lowest cost plan which is going to be
+most efficient in terms of time and retrieve it. If it does not do that it is going to take hours
+to execute even very simple queries whereas, if you do a proper query optimization you could
+do it in milliseconds right. So, this is and then the query evaluation engine is the one which is
+actually responsible for taking the plan and executing those low level instructions that
+are generated by the DML compiler. So, all of this is like internal details about how
+the database is going to work. As application programmer you typically do not need this level
+of you know internal details about you know how the database management system itself is structured.
+Instead you would just need to know the query language okay. So, how do you create tables,
+how do you you know add records to your tables and how do you retrieve those records depending
+on different different use case scenarios. However you know this internal details is
+going to be eventually useful. So, we are not going to cover this a lot more in depth
+you know as part of this course but just this overview is definitely going to help.
+In future you know if you are actually going to kind of for example pick up a career in
+you know in database management and so on then it is definitely useful to know the internal structure
+of how these things are done especially because you know these days when you are trying to choose
+which kind of database system you want to use there are many many options. If you look you know
+online for example you will find at least you know there are about 400 or more different database
+management systems available including MySQL, MySQL and you know Postgres and you know MongoDB
+and so on and so on and so on. Okay so you will come up with 400 and you know more such options
+and in order to figure out which option is the right option for your application
+you will need to know something about the internal structure of these different systems
+in order to figure out what they are doing differently and why you would want to choose
+one over the other. Okay so it is still important to be able to know what is the internal structure.
+So query processing is typically done in this manner like I said the query optimization is
+an important part and you definitely need to do that if you do not do that then you know you are
+going to your queries are going to just take you know they are going to be very slow and unusable
+right. So typically a query which the user gives which could be like the select query that we have
+seen earlier so it is parsed and translated you know so you need to go through you know and
+get the tokens out of that query then you need to so it is then this query is translated into
+what is called as relational algebra expression. So relational algebra is like a mathematical
+version of the query language and it so the advantage of converting into mathematical kind
+of notation is that it allows you to do certain kind of mathematical operations on it right.
+And the mathematical operations will help us to do to optimize okay so you can you know very
+quickly translate from one mathematical you know just like when we are trying to prove things in
+maths we can just you know take an equation and you can transform it into another you know you
+can simplify it and you know you can remove certain parts and you know and so on right.
+So you can remove the brackets you can convert into different kinds of forms.
+So all that is done using an optimizer and then a final execution plan is generated and this
+is you know evaluated using the evaluation engine which actually you know retrieves the data
+and then outputs the result. And the optimizer you know in order to figure out which plan is
+going to be work best for this particular query it also uses what is called as you know statistics
+that is stored about the data about each different tables like this table you know is very big okay
+so what is the size of this table this table is very small okay so and so on so what are the
+sizes of the different tables and what is the typical you know data distribution within those
+tables and so on. So all that statistics is used in order to figure out what is the plan
+of how to execute that query most efficiently. So all this magic is happening behind the scenes
+okay. The next component is the transaction manager okay so a transaction you know we had
+briefly looked at it earlier so a transaction is like a collection of queries right so it's a
+collection of operations that perform a single logical function in a database application.
+So for example when you know earlier we had looked at the example of when you're trying to
+let's say transfer data from you know transfer money from one bank account to another right so
+you need to deduct the money from one bank account and you need to increment the money
+in another bank account right so and if you don't do both together okay you need you need
+both to be done like like an atom you should not be able to divide it okay so and if you divide it
+in the sense that you run only part of it and then there's a failure you know power failure or some
+other kind of failure hard disk failure for example and then you know you stop so you have
+divided it okay so then you're going to result in an error state in an inconsistent state okay so
+you don't want to do that which means that as an application programmer you're going to define a
+transaction okay you're going to say that this is one query which consists of deducting the amount
+from this database from this table and this is the next query which consists of incrementing the
+you know account amount in another table okay or maybe in the same table but in another record
+right so and both these operations have to be put together as part of single transaction okay so
+so the transaction is a collection of such individual operations or queries
+so the transaction management component ensures that the database remains in a consistent state
+by ensuring this atomicity and you know certain other properties that you would want transactions
+to satisfy okay so so so so that it is resilient to power failures and operating system crashes
+hard disk crashes and so on okay so obviously it's a very important you know part of the system
+you know part of the system because you don't want any kinds of failures okay so especially
+when you're using this database management system for really critical tasks like you know managing
+finances of your company and so on you cannot or end user you know transactions you cannot show
+your face to your end users saying that you know data database has crashed and all your data is
+gone your money is gone right so it's not it does just doesn't work that way so concurrency
+control manager is also part of the transaction management which where you know you allow
+multiple users to run different different transactions on the system okay so it's not
+like saying that when one user is doing a transaction you're going to prevent all the
+other users from you know running on the system you would want if for example if it's a bank
+you would allow you would want to allow all the users to be able to log in whenever they want
+it shouldn't be that they you know they have to wait for the previous users to finish
+and then you you allow the next users to run right so so the concurrency control manager
+controls the interactions between these concurrent transactions to ensure that the
+database is consistent for example if there are certain parts of the database which should
+not be accessed by more than one person at the same time then you know concurrency control manager
+will make sure that they're not accessed at the same time okay so those parts that can be accessed
+at the same time it will allow them those parts that cannot be accessed it will kind you can you
+know it's going to kind of put a lock on those data items some kind of a lock there are many versions
+of that okay so and then it's going to prevent other transactions from accessing those data items
+when a particular transaction is running okay especially if they are they are right transactions
+where you're trying to modify something in the database then you would definitely want to put a
+lock before you know you're trying to modify okay so whereas if you're just trying to read
+if there are multiple transactions that are just trying to read the data then it doesn't matter you
+can just allow them to all read together okay in parallel okay so more or less okay so the
+exact details you know and exactly when you can allow what is the subject matter of
+different chapter which is like again this is internal details of the database management system
+so you will study it in a different course
+so then you know we have the database architecture this is about you know
+when you're trying to deploy your database management system exactly how you're going to
+do it right so so you have different options here for example you can have a centralized
+database where you have your database system running on one single machine or maybe a server
+or one big machine you know very powerful machine and anyone who wants to run any kind of query or
+store any kind of data in your database they all have to go into this particular machine they have
+to log into that machine and then they have to use the database there okay so typically it could
+be a powerful machine that you would select so it might have more than one core and shared memory
+right so and the second kind of architecture that you're looking here is called a client server
+architecture where you know the database runs on a server machine okay so and it executes work on
+behalf of multiple client machines so which means that all of these client machines can actually
+connect to this database server running on the on the server machine and they can run database
+queries directly okay so they don't need to log into this machine and you know and then for example
+they don't have to do an ssh login onto this machine and then run it on this machine okay so
+they can access the database server from any other machine okay so that is a client server
+architecture and typically many of the you know database system engines whether it's Postgres or
+MongoDB and so on they all enable or they all run in the form of this client server
+architecture because they allow you to run the server on one machine and you know for example
+you know if you're trying to write many different applications okay so many different for example
+web applications which are going to use the same database okay so you can do that okay so and each
+of these web applications might actually be running on many different machines on their own
+but they are accessing data on the central server okay so you can also have parallel databases
+where it's typical like you know parallel execution of processes in order to speed up these
+database systems okay so again within this you have multiple options you could have many core
+and shared memories so for example there are multiple cores in your machine so they're all
+running parallel threads of the different parts of the database components okay so and they're
+all sharing memory so that you know they can work on the same tasks sometimes you can have another
+option is you are not actually sharing memory so the different processes are not sharing memory
+they're all like real processes that are working on the in their own memory space but they might be
+sharing the hard disk okay so they might be sharing the their own common files you could also
+have shared nothing systems where you know they're actually just you know working on the same tasks
+but the database itself is split into multiple you know machines okay so and each process
+on each of those machines each of the database processes on each of these machines are working
+on their own collections of data within those their own machines and then maybe later they
+group together their outputs and then make a combined output to the to the end user okay so
+that would be a shared nothing kind of system then you have another kind of architecture called
+distributed databases where you actually have you know even parallel databases and so on it's like
+you know all the machines are in one data center okay so and they're all working together to
+you know achieve a particular task in a very efficient manner whereas distributed databases
+the databases themselves are distributed geographically okay so for example you might
+be running you know a very large enterprise okay so maybe a large supermarket chain all over the
+city or all over the country okay so or you might be a very large corporation like Microsoft or
+Google or any of these major you know companies which have like you know locations all over the
+all over the world okay so so there is a geographical distribution of all the of all the
+servers across the world and you know so they're all you know storing so for example if you're a
+supermarket chain you might have in each location you might have a separate database all right so
+and instead of putting them all together in one central location it could be that they're all
+running the same software but they're all running you know locally in their different you know
+locations if that were the case you could also have schema and data heterogeneity which means
+that the schemas of all of these databases in these different locations may not actually be the
+same okay ideally they should be the same but it could turn out that you know there are some
+you know differences because of the way things have developed over the history of that enterprise
+they could be like you know older machines and older databases which are just continuing to be
+used for you know different kinds of reasons and there are some other machines which are using
+newer versions so there could be like you know different schemas and different kinds of databases
+that are being run in order to you know do a distributed database so these are all different
+different options that are possible so more about database architecture so here for example we can
+see that you know in the actual disk so let's go from bottom to top here okay so in the disk
+so disks are usually represented using you know symbol like this okay so where you and so this
+consists of you know different kinds of data that stored on the disk so you have the actual data
+which consists of all the records you have indices on this data which are meant for fast access to
+different tables in the in the data so it's like an index in a you know when you open a textbook
+at the end of the textbook you find an index if you want to you know go to a particular word if
+you want to look up a particular word you know in the textbook you'll first look it up in the index
+and if you find it then you know which pages look up okay so it's something like that so these are
+indexes indices you have the data dictionary also which we talked about in the DDL part and then you
+have statistical data about you know what are the sizes of the tables and what is the distribution
+of the data in those tables and so on so all of this is stored in the hard disk right so and this
+is you know accessed using the storage manager so the storage manager is what is responsible
+for accessing this data and it consists of these parts right so one is the buffer manager
+and the file manager so the file manager is responsible for you know keeping the this data
+in different different files okay so and the buffer manager is responsible for retrieving the
+data from these files and putting into the main memory so that you know it can be accessed very
+efficiently and quickly and you have the authorization and integrity manager which is going to be
+accessing the data dictionary which is keeping information about which users have author which
+are authorized to access which tables and so on and you have the transaction manager
+you know which is responsible for you know like putting together multiple queries
+and then those queries are executed at this you know as an atomic unit okay so in order and each
+of those queries of course access the data you know in the hard disk so and this storage manager
+is of course you know a retrieve is called using the query processor so there's a query processor
+that's responsible for you know taking queries from the user and then using the storage manager
+after that in order to actually access the data so let us take a look at the query processor as well
+so here we have for example the application program code the object code that's the compiled
+code of the application program and this is constructed using you know the this is a compiled
+version so you have a compiler and linker which is you know going to take the application program
+source code and going to generate this application program object code okay which is a compiled
+version of the application and this application program object code could you know use a compiled
+version of the dml queries okay so dml queries are the queries of the data manipulation language
+which are going to you know store records or retrieve records from your database
+and these queries could be also compiled and stored so there's a compiler and organizer
+which is going to compile those queries and store it or they could be you know depending
+they could also be you know directly evaluated okay so the queries may also be directly evaluated
+so either way they're going to come to the query evaluation engine which is going to finally access
+the storage manager in order to run the query the query processor is also responsible for
+you know running the ddl queries because that's a data definition language queries which are
+responsible for creating tables and you know modifying the table structure okay so even
+those kinds of queries are ultimately processed using the query processor
+so database application so the architecture of how database applications run in and how they
+access the database typically there is either a two-tier architecture or a three-tier architecture
+which we'll see it's more clear to see as a diagram here so this is the two-tier architecture
+and this is the simpler architecture where you have you know an application which is running on
+the client okay so the client is a different machine and there could be an application running
+on the client machine which is going to access the database system which is going to be running
+on the server machine so this is a two-tier architecture because there's just a database
+server and then there are the applications that are running on the client machines the user is
+going to use that you know run that application and that application over the network it accesses
+the database system then there's the three-tier architecture where the user is going to start
+his application okay so the application is like a client which is going to access not the database
+system directly but it's going to access what is called an application server okay so and it's the
+application server's job to to access the database system on that machine okay so so notice that on
+the client machine you have an application client which is accessing an application server okay so
+this could be for example you know a typical web kind of application so the application server
+might be a web application server and the application client in this case might just be a
+browser okay of the user so the user is opening a browser and then the browser is through the
+network is you know accessing a web server okay so and that web server when it is running certain
+you know web applications it is accessing the database system in the backing okay so this is
+a three-tier architecture okay so next we see data different kinds of database users here so
+there are you know four kinds of database users who use databases in different different ways
+so we have nav users who really don't know any language as such so they might not know sql
+or any other database language but they use applications and using those applications
+those applications run the queries so whoever has created those applications
+they would have written the queries in those in the sql language or any other query language
+and those applications later use the databases okay so they call the query processor of the
+database system so application programmers is you know are the people who actually write
+the applications okay so and these application when they're writing the applications they write
+all the sql queries or any other query language queries in order to you know and those queries
+when those application programs are written those application programs are compiled and
+then the application program object code is created okay so this part we have seen in the
+in a previous slide so and this you know the compiling is being done for the application
+programs which are written by application programmers you also have sophisticated users
+who are probably not as sophisticated application programmers because they don't write applications
+as such but they use database queries directly so for example they know sql or some other query
+language and they can you know retrieve data from the database in order to analyze the data
+so they are typically analysts who are able to write reports of you know the different kinds of
+reports about the data that are there so they use different kinds of query tools in order to
+do their analysis of the data they typically do not create the application programs itself
+it doesn't mean that you know they're less sophisticated than the application programmers
+all that mostly that would be the case but sometimes application programmers may not know
+the you know the business logic and the and what is needed in order to do the analysis
+okay so so they are actually two different kinds of skills i would say okay so so you would need
+you know dedicated people who understand both the business domain and who have technical
+expertise of how to translate those business you know questions into database queries okay
+and that is what these analysts do and the fourth class of database are the database
+administrators who will see you know in the next slide in more detail about what they do
+do but you have you know different classes of database users here so the reason this might be
+of interest is if you are actually looking for you know careers or jobs where databases
+play a major role then you would want to think about which class of user or what kind of
+career you might be interested in so database administrator right so you know has many functions
+as we can see here to start off with you know we might be under the impression that database
+administrator is like a lousy job okay so it is you know not a high level job it is like a low
+level job where you know they're just kind of going to sit in some server room and they're going
+to receive instructions you know of what to do and they're going to do mundane jobs like
+monitoring the you know jobs that are running on the database they're going to periodically take
+the backup of the database and they're going to be held responsible for doing those very mundane
+kind of tasks okay so however database administrator is actually a you know in many cases it is a very
+high paying job okay so and many companies depend very heavily on database administrators
+okay so because as you can see database administrator is not just doing these very mundane jobs
+but he is also responsible for doing the schema definition that is how the data is organized
+into multiple tables what are the columns of those tables and so on okay so he can actually design
+the database for you okay so he can decide what is the storage structure and access methods
+for this for the tables that are going to be stored which is the nitty-gritty details of
+how they're actually going to be stored on the hard disk what kind of methodology is going to
+be used okay are you going to use a relational kind of storage structure or some of the more
+modern no sql kind of you know storage structures and so on okay so then there is the you know
+whenever somebody wants to change the schema or the physical organization so they have to go
+through the database administrator again so he is responsible for the modifying the schemas and so on
+okay so also in order to grant authorization which users are allowed to access which tables
+who's the owner of different tables and so on okay so that kind of rights is given by the
+database administrator and of course all the routine maintenance kind of you know things
+including trying to see is there enough disk space available on the hard disk these are routine
+maintenance but database administration is also doing some very important tasks so in some sense
+he's like a very he's like an owner of the data he is responsible for the data
+and so he's a key asset to any you know large organization
+so having seen all the different you know components of a database management system
+system now you know in the last bit of this lecture we'll be looking at what is the history
+of database systems and it is useful to know this history to some extent because we can see
+you know it's not just you know learning history has always been you know people wonder why do
+we learn history why are the dates important and so on but it's useful to know how things developed
+okay and what were what it was before and what things are now so that we don't repeat mistakes
+and we know what is it that is making today's world and today's database is very efficient and
+what are the mistakes that you know possibly people made earlier which we should not do again
+right so if you don't learn history you're condemned to repeat it okay and that is the reason
+why we need to know a little bit of history of course in the very early days like in 1950s and
+60s you know so these were the early days so data processing was done on magnetic tapes okay so
+magnetic tapes were used for storage if you remember older days you had like tape recorders
+you know so these magnetic tapes were like that and you also had like you know so those were small
+tapes if you remember but they were even much larger tapes okay so which is probably about
+this size okay so and so these tapes stored you know data and you can imagine that when you are
+recording data onto the tape you are recording from one end of the tape to the other end and
+when you're trying to read data from the tape again you have to go back you have rewind the tape
+and then you have read from there so it is going to be very slow it's the speed at which you know
+you can write and read onto this tape at how fast that tape is going to spin
+and you know and of course punch cards were used for input see these were the older days
+now it is not probably very relevant now but except to point out that you know people who
+worked on such kinds of devices they actually had a lot of you know they were much more
+careful okay so they were much more careful about the application programs that they wrote
+because you know any single mistake that you make it's going to be a huge you know it's going to
+take a huge amount of effort and time in order to develop the next version of your application
+program and again repeat you know test it out and run it again and so on so when there is so much
+of you know difficulty you make sure that when you're writing your program you write it very well
+okay and i think that is one key takeaway even today when you write your programs you should
+try to write it in such a way that the first time you write it it is well made okay so there are no
+bugs okay try to make sure it's not like oh the comp the you know my language is going to output
+the errors for me and when i see the errors then i'll correct it okay so you should try to write
+in such a way that there are no errors then later in the 1960s and 70s people started using hard
+disks okay so and hard disk allowed direct access to the data you didn't have to go through the
+tape you know from one end to the other to go to a particular record you could do random access
+you know you can access any block on the hard disk instantly and then there were the network
+and hierarchical data models which were in widespread use but quickly in the 1970s we had
+Ted Codd who defined the relational database model okay so and he later won the ACM Turing
+award for this work okay so because this relational data model is of course the most widespread
+and most popular and it still retains its popularity today in in spite of several other
+database models out there which include what we had seen earlier like object oriented object
+relational xml data model and also even more recent no sql models so in spite of all these
+different models being available the relational data model is still you know very highly popular
+okay so it still captures about half of the market of database systems okay so initially
+IBM research began with the system R prototype which implemented the relational database model
+and then we also had UC Berkeley you know a key name in this space is Michael Stonebreaker and he
+implemented the ingress prototype of the relational database model and commercially we had Oracle
+which also released its first commercial relational database engine okay so and of
+course we all know that Oracle became a very popular and very you know big and rich organization
+okay so and all that is because of database systems
+and we have seen that these relational database models also have transaction managers and so on
+so all kinds of high performance transaction processing was done during this time later
+in the 1980s you know we had different kinds of you know people worked on more and more relational
+research prototypes of relational systems to improve each of the different components of
+you know of these relational systems which include the query processor query optimizer
+the transaction processor you know how data is logged onto the hard disk and you know
+so that it prevents it allows you to sustain across you know hard disk crashes or power
+failures and so on to make your data robust okay so all those different kinds of research prototypes
+were created during this time and they evolved into commercial systems okay so typically whenever
+people created research prototypes they would also add it into Postgres SQL okay so which was a
+popular you know way of doing things and then evolve into their own commercial systems
+you also had parallel and distributed database systems you know all the way from Wisconsin IBM
+and Teradata companies were all there okay so and object-oriented database systems also started
+during that time and it started with a ban at that point of time people thought that oh this is the
+new kid in the block it is going to replace relational database systems and of course that
+did not happen and you know and object-oriented database is still there but they serve a niche
+purpose right so I wouldn't say that they're dead but they're still there in the 1990s we had also
+decision support and data mining applications we started with you know it's not just a lot of
+database not just for storing you know huge amounts of data for accounting purposes or
+other kinds of purposes but there's a huge amount of data that's being stored in all organizations
+and how best can we make use of this data you know that helps us to run the organization and take
+make business decisions for this for different organizations okay so that kind of decision
+support was done using data mining applications which were running on top of database systems
+okay so multi-terabyte data warehouses also were created which said that even for very big
+organizations which span across multiple you know branches or you know locations you might want to
+collect all the data from across locations and create a single data warehouse okay so and which
+allows you to actually do data mining or other kinds of OLAP operations which are online analytical
+processing kind of applications basically analytics so whenever you want to do analytics
+on your data you would want to collect all your data into a single large repository called as a
+data warehouse and you know we also had in the 1990s emergence of web commerce so there were
+lots of web applications which were out there companies trying to sell and create you know
+applications on the web and all of them had database backends in the 2000s we had you know
+big data storage systems you know including big google big table and yahoo's peanuts and amazon
+systems and so on no sql systems came up okay which said that you know we don't want to do just
+sql we don't want to use just relational systems and the key complaint was that relational systems
+are designed so that they work on one single machine okay so it could be a large machine
+it could be a server class machine but and you could you know make the server class machine
+bigger and bigger by adding more memory or more hard disks but eventually it's going to stop at
+some place right so how much memory can you add you know into a single system you need systems
+that are much more scalable for some kinds of applications so for example you know when you
+are building applications like facebook or other very large scale applications which are scaling
+across the whole you know whole globe right or you know maybe large applications are scaling across
+the whole country okay so then you cannot put all your data on a single machine you need to
+spread your data across multiple machines and then you know then you cannot you know certain
+aspects of relational systems start hurting you then okay especially when you are trying to join
+you know data across multiple tables in order to produce output then it becomes very come very
+slow i mean it becomes quite unusable so for such very large systems where you know you are trying
+to use so you know for all these big data kind of systems that is where no sql is actually useful
+okay so the reason it doesn't you know replace relational database systems is because relational
+database systems typically come with you know facilities that are you know that allow you to
+ask any kind of query okay so they are very general kind of queries that you can ask okay so
+and most real world applications are not you know big data type right so there are
+few very large scale companies which are doing big data kind of work but there are also a lot
+of you know a huge number of medium scale companies for which a single server is actually the go-to
+thing so relational data is still there right so and in order to do data analysis on such big
+data systems we had you know mechanisms like map reduce and you know other systems which were like
+that later in the 2010s you know sql again came back during the 2000s it appeared that you know
+no sql is going to kind of take over and then we had sql reloaded again in the 2010s people
+realized that sql is not going to go anywhere it's going to be there and so you have sql front ends
+for map reduce kind of systems and so on you also have massively parallel database systems
+which again use sql and multi-core main memory database because it became clear that nowadays
+main memory is also reasonably cheap it is not very costly so you can actually have very large
+amounts of main memory that you can store that you can have in your servers and therefore you
+can load your entire database into the main memory itself one of the reasons that database
+systems you know in older relational systems you know the idea was that hard disk is the main
+important part because you cannot fit all your data into the main memory you need a hard disk
+and hard disks are slow right there are hundreds of times slower than the main memory so you need
+to you know keep swapping data from the hard disk to the main memory and back and so on using the
+buffer manager and so on and so that becomes a bottleneck right so now people realize that
+for many databases you have sufficient amount of main memory that you can actually load the
+entire database into your main memory and start using it from there so which makes the database
+much faster to use okay so again that is for one class of you know database applications
+there are of course a lot of applications where you cannot fit it into the main memory
+it is still true that the hard disk is going to be cheaper than your main memory and therefore
+you would want to use the older relational you know systems are still in vogue because you know
+those use cases are still there quite a lot to in today's world as well so that is the history of
+databases and so in this chapter we have seen you know we have seen an introduction of database
+management systems what they are and what the different models are we have seen about query
+languages we have touched upon them we have seen about the internals of the databases to some extent
+and we have seen something about the history of databases so with that we will end this chapter
