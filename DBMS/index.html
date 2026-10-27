@@ -192,6 +192,12 @@ main { flex: 1; max-width: 900px; padding: 3rem 2.5rem 6rem; }
         <div class="toc-week">
       <a href="#week1">Week 1: Introduction to Database Management Systems</a>
     </div>
+    <div class="toc-week">
+      <a href="#week2">Week 2: Introduction to SQL</a>
+    </div>
+    <div class="toc-week">
+      <a href="#week3">Week 3: Intermediate SQL</a>
+    </div>
 
   </nav>
 
@@ -657,6 +663,704 @@ Speed up execution through parallelism:
 <li>Database administrator</li>
 <li>Database engineer/architect</li>
 </ul>
+</p>
+      </div>
+    </section>
+
+    <section id="week2" class="week-section">
+      <div class="week-banner">
+        <div class="week-tag">Week 2</div>
+        <h2>Week 2: Introduction to SQL</h2>
+      </div>
+      <div class="content">
+        <h1>Week 2: Introduction to SQL</h1><h2>Overview</h2><p>This week introduces SQL (Structured Query Language), the practical query language used across relational database systems. We cover SQL history and standardization, data definition language (DDL) for creating database schemas, basic query structure with SELECT-FROM-WHERE, and data manipulation operations. The content emphasizes practical SQL usage with SQLite demonstrations and covers essential concepts like joins, string operations, and aggregate functions.</p><h2>Key Concepts</h2><ul>
+<li><strong>SQL vs Relational Algebra</strong>: SQL is a practical, standardized language for database operations, while relational algebra is a mathematical foundation</li>
+<li><strong>SQL Standardization</strong>: ANSI/ISO standards (SQL-86, SQL-92, SQL-99, SQL:2003, SQL:2023) ensure portability across database vendors</li>
+<li><strong>Data Definition Language (DDL)</strong>: Commands for creating and modifying database structure (CREATE, ALTER, DROP)</li>
+<li><strong>Data Manipulation Language (DML)</strong>: Commands for querying and modifying data (SELECT, INSERT, UPDATE, DELETE)</li>
+<li><strong>Primary Key</strong>: Unique identifier for records in a table</li>
+<li><strong>Foreign Key</strong>: Reference to a primary key in another table, maintaining referential integrity</li>
+<li><strong>Natural Join</strong>: Joins tables by matching all common attributes automatically</li>
+</ul><h2>SQL Components</h2><h3>Parts of SQL</h3>
+<ol>
+<li><strong>Data Manipulation Language (DML)</strong>: Insert, delete, modify records</li>
+<li><strong>Data Definition Language (DDL)</strong>: Define schemas, integrity constraints, views</li>
+<li><strong>Transaction Control</strong>: Begin/end transactions with atomicity guarantees</li>
+<li><strong>Embedded SQL</strong>: Integrate SQL within general-purpose languages (C, Python, Java)</li>
+<li><strong>Authorization</strong>: Control user access to tables and columns</li>
+</ol><h2>Domain Types (Data Types)</h2><h3>String Types</h3>
+<ul>
+<li><code>CHAR(n)</code>: Fixed-length string of exactly n characters (padded with spaces)</li>
+<li><code>VARCHAR(n)</code>: Variable-length string up to n characters (more space-efficient)</li>
+</ul><h3>Numeric Types</h3>
+<ul>
+<li><code>INT</code>: Machine-dependent integer (typically 64-bit)</li>
+<li><code>SMALLINT</code>: Smaller integer (typically 2 bytes)</li>
+<li><code>NUMERIC(p, d)</code>: Fixed precision decimal with p total digits, d after decimal point</li>
+<li>Example: <code>NUMERIC(3,1)</code> can store 44.5 but not 444.5 or 0.32</li>
+<li><code>REAL</code>, <code>DOUBLE PRECISION</code>: Floating-point numbers</li>
+<li><code>FLOAT(n)</code>: Floating-point with precision n</li>
+</ul><h3>Other Types</h3>
+<ul>
+<li><code>DATE</code>: Calendar date</li>
+<li><code>TIME</code>: Time of day</li>
+</ul><h2>Data Definition Language (DDL)</h2><h3>Creating Tables</h3><pre><code>CREATE TABLE instructor (
+    id CHAR(5),
+    name VARCHAR(20) NOT NULL,
+    dept_name VARCHAR(20),
+    salary NUMERIC(8,2),
+    PRIMARY KEY (id),
+    FOREIGN KEY (dept_name) REFERENCES department
+);
+</code></pre><h3>Integrity Constraints</h3><ul>
+<li><strong>PRIMARY KEY</strong>: Unique, non-null identifier</li>
+<li><strong>FOREIGN KEY</strong>: References another table's primary key</li>
+<li><strong>NOT NULL</strong>: Attribute cannot have null values</li>
+</ul><h3>Table Modification</h3><pre><code>-- Add a column
+ALTER TABLE instructor ADD COLUMN office VARCHAR(10);</p><p>-- Remove a column
+ALTER TABLE instructor DROP COLUMN office;</p><p>-- Delete all records
+DELETE FROM instructor;</p><p>-- Remove entire table
+DROP TABLE instructor;
+</code></pre><p><strong>Warning</strong>: When adding columns to existing tables, all current records get NULL values for the new column.</p><h2>Basic SQL Query Structure</h2><h3>SELECT-FROM-WHERE Pattern</h3><pre><code>SELECT A1, A2, ..., An
+FROM r1, r2, ..., rm
+WHERE P;
+</code></pre><ul>
+<li><strong>SELECT clause</strong>: Specifies attributes to retrieve (corresponds to <strong>projection</strong> in relational algebra)</li>
+<li><strong>FROM clause</strong>: Lists relations to query (performs Cartesian product)</li>
+<li><strong>WHERE clause</strong>: Specifies conditions/predicates (corresponds to <strong>selection</strong> in relational algebra)</li>
+</ul><p><strong>Important</strong>: SQL's SELECT corresponds to relational algebra's <strong>project</strong> (π), not select (σ)</p><h3>Examples</h3><pre><code>-- Simple selection
+SELECT name FROM instructor;</p><p>-- With condition
+SELECT name
+FROM instructor
+WHERE dept_name = 'Comp. Sci.' AND salary > 70000;</p><p>-- Select all columns
+SELECT * FROM instructor;</p><p>-- Rename output column
+SELECT salary/12 AS monthly_salary FROM instructor;
+</code></pre><h2>Distinct and Duplicate Handling</h2><h3>Handling Duplicates</h3><pre><code>-- SQL allows duplicates by default (unlike relational algebra)
+SELECT dept_name FROM instructor;  -- May show duplicates</p><p>-- Remove duplicates
+SELECT DISTINCT dept_name FROM instructor;</p><p>-- Force showing all (including duplicates)
+SELECT ALL dept_name FROM instructor;
+</code></pre><h2>String Operations</h2><h3>Pattern Matching with LIKE</h3><ul>
+<li><code>%</code> matches any substring (like <code>*</code> in Unix)</li>
+<li><code>_</code> matches exactly one character (like <code>?</code> in Unix)</li>
+</ul><pre><code>-- Names starting with 'j'
+SELECT name FROM instructor WHERE name LIKE 'j%';</p><p>-- Names containing 'dir'
+SELECT name FROM instructor WHERE name LIKE '%dir%';</p><p>-- Exactly 3 characters
+SELECT name FROM instructor WHERE name LIKE '<em></em>_';</p><p>-- At least 3 characters
+SELECT name FROM instructor WHERE name LIKE '<em></em>_%';</p><p>-- Escape literal %
+SELECT name WHERE name LIKE 'ab\%cd%' ESCAPE '\';
+</code></pre><p><strong>Note</strong>: Patterns are case-sensitive in most SQL implementations (though SQLite may differ)</p><h3>String Functions</h3><ul>
+<li><code>||</code> : String concatenation</li>
+<li><code>UPPER()</code>, <code>LOWER()</code>: Case conversion</li>
+<li><code>LENGTH()</code>: String length</li>
+<li><code>SUBSTRING()</code>: Extract substring</li>
+</ul><h2>Ordering Results</h2><pre><code>-- Ascending order (default)
+ORDER BY name;</p><p>-- Descending order
+ORDER BY salary DESC;</p><p>-- Multiple attributes
+ORDER BY dept_name, name;  -- First by dept, then by name within each dept
+</code></pre><h2>Comparison and Range Operators</h2><h3>Comparison Operators</h3>
+<ul>
+<li><code>=</code> : Equal (single equals, not <code>==</code>)</li>
+<li><code><></code> : Not equal (NOT <code>!=</code>)</li>
+<li><code><</code>, <code><=</code>, <code>></code>, <code>>=</code> : Standard comparisons</li>
+</ul><h3>BETWEEN Operator</h3><pre><code>-- Shorthand for range
+WHERE salary BETWEEN 90000 AND 100000;</p><p>-- Equivalent to
+WHERE salary >= 90000 AND salary <= 100000;
+</code></pre><h3>Tuple Comparison</h3><pre><code>-- Compare multiple values at once
+WHERE (instructor.id, dept_name) = (teaches.id, 'Biology');</p><p>-- Equivalent to
+WHERE instructor.id = teaches.id AND dept_name = 'Biology';
+</code></pre><h2>Joins</h2><h3>Cartesian Product (Cross Join)</h3><pre><code>SELECT * FROM instructor, teaches;
+</code></pre><p>Generates every possible combination of records from both tables.</p><h3>Natural Join (Implicit)</h3><pre><code>-- Using WHERE clause
+SELECT name, course_id
+FROM instructor, teaches
+WHERE instructor.id = teaches.id;
+</code></pre><h3>Self-Join with Renaming</h3><pre><code>-- Find instructors with salary > some CS instructor
+SELECT T.name
+FROM instructor AS T, instructor AS S
+WHERE T.salary > S.salary AND S.dept_name = 'Comp. Sci.';</p><p>-- Note: AS keyword is optional
+FROM instructor T, instructor S
+</code></pre><h3>Self-Join Example: Employee-Supervisor</h3><pre><code>-- Find supervisor of Bob
+SELECT supervisor
+FROM emp_super
+WHERE person = 'Bob';</p><p>-- Find supervisor of supervisor of Bob
+SELECT S2.supervisor
+FROM emp<em>super S1, emp</em>super S2
+WHERE S1.person = 'Bob' AND S1.supervisor = S2.person;
+</code></pre><h2>Set Operations</h2><h3>UNION, INTERSECT, EXCEPT</h3><pre><code>-- Courses in Fall 2017 OR Spring 2018
+(SELECT course_id FROM section WHERE semester = 'Fall' AND year = 2017)
+UNION
+(SELECT course_id FROM section WHERE semester = 'Spring' AND year = 2018);</p><p>-- Courses in BOTH semesters (intersection)
+(SELECT course_id FROM section WHERE semester = 'Fall' AND year = 2017)
+INTERSECT
+(SELECT course_id FROM section WHERE semester = 'Spring' AND year = 2018);</p><p>-- Courses in Fall 2017 but NOT Spring 2018
+(SELECT course_id FROM section WHERE semester = 'Fall' AND year = 2017)
+EXCEPT
+(SELECT course_id FROM section WHERE semester = 'Spring' AND year = 2018);
+</code></pre><p><strong>Note</strong>: Set operations automatically eliminate duplicates. Use <code>UNION ALL</code>, <code>INTERSECT ALL</code>, <code>EXCEPT ALL</code> to retain duplicates.</p><h2>Null Values</h2><h3>Handling NULL</h3><pre><code>-- Check for null
+SELECT name FROM instructor WHERE salary IS NULL;</p><p>-- Check for non-null
+SELECT name FROM instructor WHERE salary IS NOT NULL;
+</code></pre><h3>NULL in Arithmetic and Comparisons</h3><ul>
+<li>Any arithmetic operation with NULL returns NULL: <code>5 + NULL = NULL</code></li>
+<li>Any comparison with NULL returns <strong>UNKNOWN</strong> (not NULL): <code>5 < NULL = UNKNOWN</code></li>
+<li>WHERE clause treats UNKNOWN as FALSE</li>
+</ul><h3>Three-Valued Logic</h3><p>| AND | TRUE | FALSE | UNKNOWN |
+|-----|------|-------|---------|
+| TRUE | TRUE | FALSE | UNKNOWN |
+| FALSE | FALSE | FALSE | FALSE |
+| UNKNOWN | UNKNOWN | FALSE | UNKNOWN |</p><p>| OR | TRUE | FALSE | UNKNOWN |
+|----|------|-------|---------|
+| TRUE | TRUE | TRUE | TRUE |
+| FALSE | TRUE | FALSE | UNKNOWN |
+| UNKNOWN | TRUE | UNKNOWN | UNKNOWN |</p><h2>Aggregate Functions</h2><h3>Functions</h3>
+<ul>
+<li><code>AVG()</code>: Average value</li>
+<li><code>MIN()</code>: Minimum value</li>
+<li><code>MAX()</code>: Maximum value</li>
+<li><code>SUM()</code>: Sum of values</li>
+<li><code>COUNT()</code>: Count of rows</li>
+</ul><h3>Examples</h3><pre><code>-- Average salary in CS department
+SELECT AVG(salary)
+FROM instructor
+WHERE dept_name = 'Comp. Sci.';</p><p>-- Number of instructors
+SELECT COUNT(*) FROM instructor;</p><p>-- Number of distinct salaries
+SELECT COUNT(DISTINCT salary) FROM instructor;
+</code></pre><h3>GROUP BY</h3><pre><code>-- Average salary per department
+SELECT dept<em>name, AVG(salary) AS avg</em>salary
+FROM instructor
+GROUP BY dept_name;
+</code></pre><p><strong>Rule</strong>: Attributes in SELECT must either:
+<ol>
+<li>Appear in GROUP BY clause, OR</li>
+<li>Be inside an aggregate function</li>
+</ol><pre><code>-- WRONG: id not in GROUP BY
+SELECT dept<em>name, id, AVG(salary) FROM instructor GROUP BY dept</em>name;</p><p>-- CORRECT
+SELECT dept<em>name, AVG(salary) FROM instructor GROUP BY dept</em>name;
+</code></pre><h3>HAVING Clause</h3><p>Filters groups (like WHERE filters rows):</p><pre><code>-- Departments with average salary > 42000
+SELECT dept<em>name, AVG(salary) AS avg</em>salary
+FROM instructor
+GROUP BY dept_name
+HAVING AVG(salary) > 42000;
+</code></pre><p><strong>WHERE vs HAVING</strong>:
+<ul>
+<li><strong>WHERE</strong>: Filters individual records before grouping</li>
+<li><strong>HAVING</strong>: Filters groups after aggregation</li>
+</ul><h2>Data Manipulation</h2><h3>INSERT</h3><pre><code>-- Single record
+INSERT INTO instructor VALUES ('10211', 'Smith', 'Biology', 66000);</p><p>-- Specify columns (different order)
+INSERT INTO course (title, course<em>id, credits, dept</em>name)
+VALUES ('Database Systems', 'CS-437', 4, 'Comp. Sci.');</p><p>-- Insert with NULL
+INSERT INTO student VALUES ('3003', 'Green', 'Finance', NULL);</p><p>-- Insert from query
+INSERT INTO instructor
+SELECT id, name, dept_name, 18000
+FROM student
+WHERE dept<em>name = 'Music' AND total</em>credits > 144;
+</code></pre><h3>DELETE</h3><pre><code>-- Delete all records
+DELETE FROM student;</p><p>-- Delete with condition
+DELETE FROM instructor WHERE dept_name = 'Finance';</p><p>-- Delete with subquery
+DELETE FROM instructor
+WHERE dept_name IN (
+    SELECT dept_name FROM department WHERE building = 'Watson'
+);</p><p>-- Delete based on aggregate
+DELETE FROM instructor
+WHERE salary < (SELECT AVG(salary) FROM instructor);
+</code></pre><p><strong>Important</strong>: SQL evaluates the entire SELECT before deleting, so average is computed on original data.</p><h3>UPDATE</h3><pre><code>-- Give 5% raise to all
+UPDATE instructor SET salary = salary * 1.05;</p><p>-- Conditional update
+UPDATE instructor
+SET salary = salary * 1.05
+WHERE salary < 70000;</p><p>-- Update with subquery
+UPDATE instructor
+SET salary = salary * 1.05
+WHERE salary < (SELECT AVG(salary) FROM instructor);</p><p>-- Conditional update with CASE
+UPDATE instructor
+SET salary = CASE
+    WHEN salary <= 100000 THEN salary * 1.05
+    ELSE salary * 1.03
+END;
+</code></pre><h2>SQLite Specifics</h2><h3>Starting SQLite</h3><pre><code># Open database file
+sqlite3 mydb.db</p><h1>Show tables</h1>
+.tables</p><h1>Show schema</h1>
+.schema instructor</p><h1>Show help</h1>
+.help</p><h1>Exit</h1>
+.exit  # or Ctrl+D
+</code></pre><h3>SQLite Differences from Standard SQL</h3><ol>
+<li><strong>Types are optional</strong>: SQLite infers types (defaults to VARCHAR for text)</li>
+<li><strong>Foreign keys disabled by default</strong>: Use <code>PRAGMA foreign_keys = ON;</code> to enable</li>
+<li><strong>Case-insensitive LIKE</strong>: Unlike most SQL implementations</li>
+<li><strong>Dot commands</strong>: Special commands starting with <code>.</code> (like <code>.tables</code>, <code>.schema</code>)</li>
+</ol><h2>Important Notes and Best Practices</h2><h3>Design Principles</h3><ol>
+<li><strong>Avoid NULL when possible</strong>: NULL values complicate queries and can cause unexpected behavior</li>
+<li><strong>Use appropriate data types</strong>: Choose CHAR for fixed-length, VARCHAR for variable-length</li>
+<li><strong>Define integrity constraints</strong>: Use PRIMARY KEY and FOREIGN KEY to maintain data consistency</li>
+<li><strong>Fixed table schemas</strong>: Design tables upfront; rarely ALTER after deployment</li>
+<li><strong>One table per entity type</strong>: Don't create separate tables for each student/course (violates normalization)</li>
+</ol><h3>Common Mistakes</h3><ol>
+<li><strong>Using <code>==</code> instead of <code>=</code></strong>: SQL uses single equals for comparison</li>
+<li><strong>Using <code>!=</code> instead of <code><></code></strong>: Standard SQL uses <code><></code> for not-equal</li>
+<li><strong>Forgetting DISTINCT</strong>: SQL allows duplicates by default</li>
+<li><strong>Mixing up WHERE and HAVING</strong>: WHERE for rows, HAVING for groups</li>
+<li><strong>Wrong attribute names in GROUP BY</strong>: Attributes in SELECT must be in GROUP BY or aggregated</li>
+</ol><h3>Performance Tips</h3><ol>
+<li><strong>Use indexes</strong> for frequently queried columns (covered in later chapters)</li>
+<li><strong>Aggregate in SQL</strong> rather than application code (more efficient)</li>
+<li><strong>Let SQL optimize joins</strong>: Database engines optimize Cartesian products automatically</li>
+</ol><h2>Practical Examples</h2><h3>University Database Schema</h3><pre><code>-- Instructor table
+CREATE TABLE instructor (
+    id CHAR(5) PRIMARY KEY,
+    name VARCHAR(20) NOT NULL,
+    dept_name VARCHAR(20),
+    salary NUMERIC(8,2),
+    FOREIGN KEY (dept_name) REFERENCES department
+);</p><p>-- Course table
+CREATE TABLE course (
+    course_id CHAR(7) PRIMARY KEY,
+    title VARCHAR(50),
+    dept_name VARCHAR(20),
+    credits NUMERIC(2,0),
+    FOREIGN KEY (dept_name) REFERENCES department
+);</p><p>-- Student table
+CREATE TABLE student (
+    id CHAR(5) PRIMARY KEY,
+    name VARCHAR(20) NOT NULL,
+    dept_name VARCHAR(20),
+    tot_cred NUMERIC(3,0),
+    FOREIGN KEY (dept_name) REFERENCES department
+);</p><p>-- Takes table (students enrolled in courses)
+CREATE TABLE takes (
+    id CHAR(5),
+    course_id CHAR(7),
+    sec_id CHAR(3),
+    semester VARCHAR(6),
+    year NUMERIC(4,0),
+    grade CHAR(2),
+    PRIMARY KEY (id, course<em>id, sec</em>id, semester, year),
+    FOREIGN KEY (id) REFERENCES student,
+    FOREIGN KEY (course<em>id, sec</em>id, semester, year) REFERENCES section
+);
+</code></pre><h3>Complex Queries</h3><pre><code>-- List students and courses they've taken
+SELECT name, course_id
+FROM student NATURAL JOIN takes;</p><p>-- Instructors in Art department who taught courses
+SELECT name, course_id
+FROM instructor, teaches
+WHERE instructor.id = teaches.id AND instructor.dept_name = 'Art';</p><p>-- Departments with more than one instructor
+SELECT dept<em>name, COUNT(*) AS num</em>instructors
+FROM instructor
+GROUP BY dept_name
+HAVING COUNT(*) > 1;
+</code></pre><h2>Summary</h2><p>Week 2 establishes SQL fundamentals covering:
+<ul>
+<li>SQL history, standardization, and importance</li>
+<li>Data definition with CREATE, ALTER, DROP</li>
+<li>Basic queries with SELECT-FROM-WHERE</li>
+<li>String operations and pattern matching</li>
+<li>Joins (implicit cross product with WHERE conditions)</li>
+<li>Set operations (UNION, INTERSECT, EXCEPT)</li>
+<li>NULL handling and three-valued logic</li>
+<li>Aggregate functions (AVG, SUM, COUNT, MIN, MAX)</li>
+<li>Grouping with GROUP BY and HAVING</li>
+<li>Data manipulation with INSERT, UPDATE, DELETE</li>
+</ul><p>The foundation established this week is essential for building real-world database applications, with emphasis on practical usage through SQLite demonstrations.
+</p>
+      </div>
+    </section>
+
+    <section id="week3" class="week-section">
+      <div class="week-banner">
+        <div class="week-tag">Week 3</div>
+        <h2>Week 3: Intermediate SQL</h2>
+      </div>
+      <div class="content">
+        <h1>Week 3: Intermediate SQL</h1><h2>Overview</h2><p>This week advances SQL knowledge beyond basics, covering nested subqueries, various join types (natural, inner, outer), views for data abstraction and security, transactions, integrity constraints, custom data types, indexing for performance, and authorization mechanisms. The content focuses on making SQL more effective for complex applications and understanding how databases maintain data consistency and security.</p><h2>Nested Subqueries</h2><p>Subqueries allow embedding one query within another, enabling powerful multi-step data retrieval.</p><h3>Subquery Locations</h3><ol>
+<li><strong>FROM clause</strong>: Subquery result becomes a temporary table</li>
+<li><strong>WHERE clause</strong>: Subquery result used in conditions</li>
+<li><strong>SELECT clause</strong>: Must return single value (scalar subquery)</li>
+</ol><h3>Set Membership: IN and NOT IN</h3><pre><code>-- Courses in Fall 2017 AND Spring 2018 (intersection)
+SELECT DISTINCT course_id
+FROM section
+WHERE semester = 'Fall' AND year = 2017
+  AND course_id IN (
+      SELECT course_id
+      FROM section
+      WHERE semester = 'Spring' AND year = 2018
+  );</p><p>-- Courses in Fall 2017 but NOT in Spring 2018 (difference)
+SELECT DISTINCT course_id
+FROM section
+WHERE semester = 'Fall' AND year = 2017
+  AND course_id NOT IN (
+      SELECT course_id
+      FROM section
+      WHERE semester = 'Spring' AND year = 2018
+  );</p><p>-- Simple usage
+SELECT name
+FROM instructor
+WHERE name NOT IN ('Mozart', 'Einstein');
+</code></pre><h3>Set Comparison: SOME and ALL</h3><p><strong>SOME (or ANY)</strong>: True if condition holds for <strong>at least one</strong> value</p><pre><code>-- Find instructors with salary > SOME instructor in Biology
+-- (i.e., greater than the minimum Biology salary)
+SELECT name
+FROM instructor
+WHERE salary > SOME (
+    SELECT salary
+    FROM instructor
+    WHERE dept_name = 'Biology'
+);
+</code></pre><p><strong>Semantics of SOME</strong>:
+<ul>
+<li><code>5 < SOME (0, 5, 6)</code> → TRUE (5 < 6)</li>
+<li><code>5 < SOME (0, 5)</code> → FALSE (not less than any)</li>
+<li><code>5 = SOME (0, 5)</code> → TRUE (equals 5)</li>
+<li><code>5 <> SOME (4, 6)</code> → TRUE (5 ≠ 4)</li>
+<li><code>= SOME</code> is equivalent to <code>IN</code></li>
+<li><code><> SOME</code> is <strong>NOT</strong> equivalent to <code>NOT IN</code></li>
+</ul><p><strong>ALL</strong>: True if condition holds for <strong>all</strong> values</p><pre><code>-- Find instructors with salary > ALL instructors in Biology
+-- (i.e., greater than the maximum Biology salary)
+SELECT name
+FROM instructor
+WHERE salary > ALL (
+    SELECT salary
+    FROM instructor
+    WHERE dept_name = 'Biology'
+);
+</code></pre><p><strong>Semantics of ALL</strong>:
+<ul>
+<li><code>5 < ALL (6, 10)</code> → TRUE (less than both)</li>
+<li><code>5 < ALL (4, 5, 6)</code> → FALSE (not less than 4 or 5)</li>
+<li><code>5 = ALL (5, 5)</code> → Could be TRUE if all are 5</li>
+<li><code>5 <> ALL (4, 6)</code> → TRUE (not equal to any)</li>
+<li><code><> ALL</code> is equivalent to <code>NOT IN</code></li>
+</ul><h3>EXISTS and NOT EXISTS</h3><p><strong>EXISTS</strong>: Returns TRUE if subquery returns any results (non-empty set)</p><pre><code>-- Courses offered in both Fall 2017 and Spring 2018
+SELECT course_id
+FROM section AS S
+WHERE semester = 'Fall' AND year = 2017
+  AND EXISTS (
+      SELECT *
+      FROM section AS T
+      WHERE semester = 'Spring' AND year = 2018
+        AND S.course<em>id = T.course</em>id
+  );
+</code></pre><p><strong>NOT EXISTS</strong>: Returns TRUE if subquery returns no results (empty set)</p><pre><code>-- Students who have taken ALL courses offered by Biology department
+SELECT S.id, S.name
+FROM student AS S
+WHERE NOT EXISTS (
+    -- Courses in Biology that student S has NOT taken
+    (SELECT course<em>id FROM course WHERE dept</em>name = 'Biology')
+    EXCEPT
+    (SELECT T.course_id FROM takes AS T WHERE S.id = T.id)
+);
+</code></pre><p><strong>Key Insight</strong>: <code>X - Y = ∅</code> is equivalent to <code>X ⊆ Y</code> (X is subset of Y)</p><h3>UNIQUE</h3><p>Tests whether subquery has duplicate tuples (returns TRUE if no duplicates)</p><pre><code>-- Find courses offered at most once in 2017
+SELECT T.course_id
+FROM course AS T
+WHERE UNIQUE (
+    SELECT R.course_id
+    FROM section AS R
+    WHERE T.course<em>id = R.course</em>id AND year = 2017
+);
+</code></pre><h3>Subqueries in FROM Clause</h3><pre><code>-- Departments with average salary > 42000 (without HAVING)
+SELECT dept<em>name, avg</em>salary
+FROM (
+    SELECT dept<em>name, AVG(salary) AS avg</em>salary
+    FROM instructor
+    GROUP BY dept_name
+) AS dept_avg
+WHERE avg_salary > 42000;</p><p>-- Rename entire result table
+SELECT dept_name, average
+FROM (
+    SELECT dept_name, AVG(salary)
+    FROM instructor
+    GROUP BY dept_name
+) AS dept<em>avg(dept</em>name, average)
+WHERE average > 42000;
+</code></pre><h3>WITH Clause</h3><p>Defines temporary named result sets for cleaner queries:</p><pre><code>-- Find departments with maximum budget
+WITH max_budget(value) AS (
+    SELECT MAX(budget)
+    FROM department
+)
+SELECT dept_name
+FROM department, max_budget
+WHERE department.budget = max_budget.value;</p><p>-- Complex query with multiple WITH clauses
+WITH dept<em>total(dept</em>name, value) AS (
+    SELECT dept_name, SUM(salary)
+    FROM instructor
+    GROUP BY dept_name
+),
+dept<em>total</em>avg(value) AS (
+    SELECT AVG(value)
+    FROM dept_total
+)
+SELECT dept_name
+FROM dept<em>total, dept</em>total_avg
+WHERE dept<em>total.value > dept</em>total_avg.value;
+</code></pre><h3>Scalar Subqueries</h3><p>Must return exactly one value (single row, single column):</p><pre><code>-- List departments with number of instructors
+SELECT dept_name, (
+    SELECT COUNT(*)
+    FROM instructor
+    WHERE department.dept<em>name = instructor.dept</em>name
+) AS num_instructors
+FROM department;
+</code></pre><p><strong>Error if subquery returns multiple values!</strong></p><h2>Join Operations</h2><h3>Join Types and Conditions</h3><p>SQL supports combining <strong>join type</strong> with <strong>join condition</strong>:</p><p><strong>Join Types</strong> (how to handle non-matching tuples):
+<ul>
+<li><code>INNER JOIN</code>: Discard non-matching tuples (default)</li>
+<li><code>LEFT OUTER JOIN</code>: Preserve tuples from left relation</li>
+<li><code>RIGHT OUTER JOIN</code>: Preserve tuples from right relation</li>
+<li><code>FULL OUTER JOIN</code>: Preserve tuples from both relations</li>
+</ul><p><strong>Join Conditions</strong> (how to match tuples):
+<ul>
+<li><code>NATURAL</code>: Match all common attributes</li>
+<li><code>USING (A1, A2, ...)</code>: Match specified attributes</li>
+<li><code>ON <predicate></code>: Match using custom condition</li>
+</ul><h3>Natural Join</h3><p>Automatically matches <strong>all</strong> attributes with the same name:</p><pre><code>-- List student names with courses they've taken
+SELECT name, course_id
+FROM student NATURAL JOIN takes;
+</code></pre><p><strong>Without natural join (equivalent)</strong>:
+<pre><code>SELECT name, course_id
+FROM student, takes
+WHERE student.id = takes.id;
+</code></pre><p><strong>Caution</strong>: Natural join matches ALL common attributes, which may cause issues if unrelated attributes share names (e.g., <code>name</code> in student vs <code>name</code> in course).</p><h3>Inner Join with ON</h3><p>Explicitly specify join condition:</p><pre><code>SELECT *
+FROM student JOIN takes ON student.id = takes.id;
+</code></pre><p><strong>Key Difference from Natural Join</strong>: Common attributes appear <strong>twice</strong> in result (e.g., <code>student.id</code> and <code>takes.id</code> both present)</p><h3>Outer Joins</h3><p>Preserve information from relations even when no match exists.</p><p>#### Example Tables</p><p><strong>course</strong>:
+| course<em>id | title | dept</em>name | credits |
+|-----------|-------|-----------|---------|
+| BIO-301 | Genetics | Biology | 4 |
+| CS-190 | Game Design | Comp. Sci. | 4 |
+| CS-315 | Robotics | Comp. Sci. | 3 |</p><p><strong>prereq</strong>:
+| course<em>id | prereq</em>id |
+|-----------|-----------|
+| BIO-301 | BIO-101 |
+| CS-190 | CS-101 |
+| CS-347 | CS-101 |</p><p><strong>Note</strong>: CS-315 has no prerequisites; CS-347 exists in prereq but not in course table.</p><p>#### LEFT OUTER JOIN</p><p>Preserve all tuples from <strong>left</strong> relation:</p><pre><code>SELECT *
+FROM course NATURAL LEFT OUTER JOIN prereq;
+</code></pre><p><strong>Result</strong>:
+| course<em>id | title | dept</em>name | credits | prereq_id |
+|-----------|-------|-----------|---------|-----------|
+| BIO-301 | Genetics | Biology | 4 | BIO-101 |
+| CS-190 | Game Design | Comp. Sci. | 4 | CS-101 |
+| CS-315 | Robotics | Comp. Sci. | 3 | <strong>NULL</strong> |</p><p><strong>Symbol</strong>: <code>⟕</code> (left side preserved)</p><p>#### RIGHT OUTER JOIN</p><p>Preserve all tuples from <strong>right</strong> relation:</p><pre><code>SELECT *
+FROM course NATURAL RIGHT OUTER JOIN prereq;
+</code></pre><p><strong>Result</strong>:
+| course<em>id | title | dept</em>name | credits | prereq_id |
+|-----------|-------|-----------|---------|-----------|
+| BIO-301 | Genetics | Biology | 4 | BIO-101 |
+| CS-190 | Game Design | Comp. Sci. | 4 | CS-101 |
+| CS-347 | <strong>NULL</strong> | <strong>NULL</strong> | <strong>NULL</strong> | CS-101 |</p><p><strong>Symbol</strong>: <code>⟖</code> (right side preserved)</p><p>#### FULL OUTER JOIN</p><p>Preserve tuples from <strong>both</strong> relations:</p><pre><code>SELECT *
+FROM course NATURAL FULL OUTER JOIN prereq;
+</code></pre><p><strong>Result</strong>:
+| course<em>id | title | dept</em>name | credits | prereq_id |
+|-----------|-------|-----------|---------|-----------|
+| BIO-301 | Genetics | Biology | 4 | BIO-101 |
+| CS-190 | Game Design | Comp. Sci. | 4 | CS-101 |
+| CS-315 | Robotics | Comp. Sci. | 3 | <strong>NULL</strong> |
+| CS-347 | <strong>NULL</strong> | <strong>NULL</strong> | <strong>NULL</strong> | CS-101 |</p><p><strong>Symbol</strong>: <code>⟗</code> (both sides preserved)</p><h3>USING Clause</h3><p>Specify which attributes to use for natural join:</p><pre><code>-- Join only on course_id (not all common attributes)
+SELECT *
+FROM course FULL OUTER JOIN prereq USING (course_id);
+</code></pre><p><strong>Advantage</strong>: Prevents unintended matches on attributes like <code>name</code> that may have different meanings.</p><p><strong>Difference from ON</strong>: With USING, common attribute appears <strong>once</strong> in output; with ON, it appears <strong>twice</strong>.</p><h3>Join Examples Summary</h3><pre><code>-- Natural inner join (default)
+course NATURAL JOIN prereq</p><p>-- Natural left outer join
+course NATURAL LEFT OUTER JOIN prereq</p><p>-- Using specific columns
+course FULL OUTER JOIN prereq USING (course_id)</p><p>-- Explicit condition
+course LEFT OUTER JOIN prereq ON course.course<em>id = prereq.course</em>id
+</code></pre><h2>Views</h2><p>Views are virtual tables defined by queries, providing:
+<ol>
+<li><strong>Data abstraction</strong>: Hide complexity</li>
+<li><strong>Security</strong>: Restrict access to specific data</li>
+<li><strong>Simplification</strong>: Reuse complex queries</li>
+</ol><h3>Creating Views</h3><pre><code>-- View of instructors without salary information
+CREATE VIEW faculty AS
+SELECT id, name, dept_name
+FROM instructor;</p><p>-- View with aggregation
+CREATE VIEW dept_stats AS
+SELECT dept<em>name, COUNT(*) AS num</em>instructors
+FROM instructor
+GROUP BY dept_name;
+</code></pre><h3>Using Views</h3><pre><code>-- Query view like a table
+SELECT name FROM faculty WHERE dept_name = 'Biology';</p><p>-- Views can reference other views
+CREATE VIEW physics_faculty AS
+SELECT * FROM faculty WHERE dept_name = 'Physics';
+</code></pre><h3>Materialized Views</h3><ul>
+<li><strong>Logical views</strong>: Recomputed each query (standard)</li>
+<li><strong>Materialized views</strong>: Stored physically, updated when base tables change</li>
+<li>Faster queries but requires maintenance</li>
+<li>Not in standard SQL but supported by many vendors</li>
+</ul><h3>Updating Views</h3><p><strong>Simple views</strong> (single table, no aggregates) are updatable:</p><pre><code>-- Allowed
+INSERT INTO faculty VALUES ('30128', 'Green', 'Music');</p><p>-- Translates to
+INSERT INTO instructor VALUES ('30128', 'Green', 'Music', NULL);
+</code></pre><p><strong>Complex views</strong> (joins, aggregates) generally <strong>not updatable</strong>:</p><pre><code>-- Most systems reject this
+INSERT INTO dept_stats VALUES ('Psychology', 10);
+</code></pre><p><strong>Reason</strong>: Ambiguous how to update base tables.</p><h2>Transactions</h2><p>A <strong>transaction</strong> is a sequence of queries/updates treated as a <strong>single unit</strong>:</p><pre><code>-- Transfer $50 from A to B
+BEGIN TRANSACTION;
+UPDATE account SET balance = balance - 50 WHERE account_number = 'A-101';
+UPDATE account SET balance = balance + 50 WHERE account_number = 'A-201';
+COMMIT;
+</code></pre><h3>ACID Properties</h3><ul>
+<li><strong>Atomicity</strong>: All operations succeed or all fail (no partial execution)</li>
+<li><strong>Consistency</strong>: Database remains in valid state</li>
+<li><strong>Isolation</strong>: Concurrent transactions don't interfere</li>
+<li><strong>Durability</strong>: Committed changes survive crashes</li>
+</ul><h3>Transaction Commands</h3><ul>
+<li><code>BEGIN TRANSACTION</code>: Start transaction</li>
+<li><code>COMMIT</code>: Finalize changes</li>
+<li><code>ROLLBACK</code>: Undo all changes since BEGIN</li>
+</ul><pre><code>BEGIN TRANSACTION;
+DELETE FROM instructor WHERE dept_name = 'Finance';
+-- Oops, mistake!
+ROLLBACK;  -- Undo deletion
+</code></pre><h2>Integrity Constraints</h2><p>Ensure database consistency by preventing invalid data.</p><h3>Constraint Types</h3><ol>
+<li><strong>NOT NULL</strong>: Attribute cannot be null</li>
+<li><strong>PRIMARY KEY</strong>: Unique, non-null identifier</li>
+<li><strong>FOREIGN KEY</strong>: References primary key in another table</li>
+<li><strong>UNIQUE</strong>: No duplicate values (but allows multiple NULLs)</li>
+<li><strong>CHECK</strong>: Custom condition</li>
+</ol><h3>Examples</h3><pre><code>CREATE TABLE instructor (
+    id CHAR(5) PRIMARY KEY,
+    name VARCHAR(20) NOT NULL,
+    dept_name VARCHAR(20),
+    salary NUMERIC(8,2) CHECK (salary > 0),
+    FOREIGN KEY (dept_name) REFERENCES department
+);</p><p>-- Multiple column primary key
+CREATE TABLE takes (
+    id CHAR(5),
+    course_id CHAR(7),
+    sec_id CHAR(3),
+    semester VARCHAR(6),
+    year NUMERIC(4,0),
+    PRIMARY KEY (id, course<em>id, sec</em>id, semester, year)
+);</p><p>-- Unique constraint
+CREATE TABLE department (
+    dept_name VARCHAR(20) UNIQUE,
+    building VARCHAR(15),
+    budget NUMERIC(12,2)
+);
+</code></pre><h3>Referential Integrity</h3><p>When foreign key constraint is violated, actions:</p><ol>
+<li><strong>Reject</strong> (default): Disallow operation</li>
+<li><strong>Cascade</strong>: Propagate change</li>
+<li><strong>Set NULL</strong>: Set foreign key to NULL</li>
+<li><strong>Set DEFAULT</strong>: Set to default value</li>
+</ol><pre><code>CREATE TABLE course (
+    course_id CHAR(7) PRIMARY KEY,
+    dept_name VARCHAR(20),
+    FOREIGN KEY (dept_name) REFERENCES department
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+</code></pre><p><strong>Cascade Example</strong>:
+<ul>
+<li>Delete department → Automatically deletes all courses in that department</li>
+<li>Update department name → Automatically updates dept_name in all courses</li>
+</ul><h3>CHECK Constraints</h3><pre><code>-- Simple check
+CREATE TABLE instructor (
+    salary NUMERIC(8,2) CHECK (salary >= 0)
+);</p><p>-- Complex check
+CREATE TABLE section (
+    semester VARCHAR(6),
+    year NUMERIC(4,0),
+    CHECK (semester IN ('Fall', 'Winter', 'Spring', 'Summer'))
+);</p><p>-- Table-level check
+CREATE TABLE time_slot (
+    time<em>slot</em>id CHAR(4),
+    day VARCHAR(1),
+    start_time TIME,
+    end_time TIME,
+    CHECK (start<em>time < end</em>time)
+);
+</code></pre><h3>Assertions (Not Widely Supported)</h3><p>Global constraints across tables:</p><pre><code>-- Ensure every student has an advisor
+CREATE ASSERTION student<em>advisor</em>check CHECK (
+    NOT EXISTS (
+        SELECT * FROM student
+        WHERE tot<em>cred > 0 AND id NOT IN (SELECT student</em>id FROM advisor)
+    )
+);
+</code></pre><p><strong>Note</strong>: Few systems support assertions due to performance overhead.</p><h2>SQL Data Types and Schemas</h2><h3>Built-in Types</h3><ul>
+<li><strong>BLOB</strong>: Binary Large Object (images, files)</li>
+<li><strong>CLOB</strong>: Character Large Object (documents)</li>
+<li><strong>XML</strong>: XML documents</li>
+<li><strong>JSON</strong>: JSON data (SQL:2023)</li>
+</ul><h3>User-Defined Types</h3><pre><code>-- Distinct type (strong typing)
+CREATE TYPE Dollars AS NUMERIC(12,2) FINAL;</p><p>CREATE TABLE department (
+    dept_name VARCHAR(20),
+    budget Dollars
+);</p><p>-- Cannot mix types
+-- budget + 100  -- ERROR
+-- budget + CAST(100 AS Dollars)  -- OK
+</code></pre><h3>Domains</h3><p>Create reusable constraints:</p><pre><code>CREATE DOMAIN degree_level AS VARCHAR(10)
+    CHECK (VALUE IN ('Bachelors', 'Masters', 'Doctorate'));</p><p>CREATE TABLE student (
+    name VARCHAR(20),
+    degree degree_level
+);
+</code></pre><h3>Large Objects</h3><pre><code>-- Store images
+CREATE TABLE images (
+    image_id INT,
+    image BLOB
+);</p><p>-- Store documents
+CREATE TABLE documents (
+    doc_id INT,
+    content CLOB
+);
+</code></pre><h2>Indexes</h2><p>Indexes dramatically speed up queries on specific attributes.</p><h3>Creating Indexes</h3><pre><code>-- Single column index
+CREATE INDEX instructor<em>name</em>idx ON instructor(name);</p><p>-- Multi-column index
+CREATE INDEX takes<em>course</em>idx ON takes(course_id, semester, year);</p><p>-- Unique index (enforces uniqueness)
+CREATE UNIQUE INDEX student<em>id</em>idx ON student(id);
+</code></pre><h3>When to Use Indexes</h3><p><strong>Create indexes on</strong>:
+<ul>
+<li>Primary keys (usually automatic)</li>
+<li>Foreign keys</li>
+<li>Frequently queried columns</li>
+<li>Columns in WHERE, ORDER BY, JOIN conditions</li>
+</ul><p><strong>Don't overuse</strong>:
+<ul>
+<li>Indexes consume space</li>
+<li>Slow down INSERT/UPDATE/DELETE</li>
+</ul><h3>Dropping Indexes</h3><pre><code>DROP INDEX instructor<em>name</em>idx;
+</code></pre><h3>Example Impact</h3><p><strong>Without index</strong>:
+<pre><code>SELECT * FROM instructor WHERE id = '10101';
+-- Scans all 100,000 records (slow)
+</code></pre><p><strong>With index</strong>:
+<pre><code>CREATE INDEX instructor<em>id</em>idx ON instructor(id);
+SELECT * FROM instructor WHERE id = '10101';
+-- Direct lookup (fast)
+</code></pre><h2>Authorization</h2><p>Control who can access/modify data.</p><h3>Privileges</h3><ul>
+<li><strong>SELECT</strong>: Read data</li>
+<li><strong>INSERT</strong>: Add records</li>
+<li><strong>UPDATE</strong>: Modify records</li>
+<li><strong>DELETE</strong>: Remove records</li>
+<li><strong>ALL PRIVILEGES</strong>: All of the above</li>
+</ul><h3>Granting Privileges</h3><pre><code>-- Grant SELECT to specific user
+GRANT SELECT ON instructor TO user1;</p><p>-- Grant multiple privileges
+GRANT SELECT, INSERT ON student TO user2;</p><p>-- Grant all privileges
+GRANT ALL PRIVILEGES ON course TO admin;</p><p>-- Grant to all users
+GRANT SELECT ON department TO PUBLIC;</p><p>-- Grant with ability to grant to others
+GRANT SELECT ON instructor TO user3 WITH GRANT OPTION;
+</code></pre><h3>Revoking Privileges</h3><pre><code>-- Revoke SELECT
+REVOKE SELECT ON instructor FROM user1;</p><p>-- Revoke with cascade
+REVOKE SELECT ON instructor FROM user3 CASCADE;
+-- Also revokes from anyone user3 granted to
+</code></pre><h3>Roles</h3><p>Group users with similar privileges:</p><pre><code>-- Create role
+CREATE ROLE teaching_assistant;</p><p>-- Grant privileges to role
+GRANT SELECT ON course TO teaching_assistant;
+GRANT SELECT ON section TO teaching_assistant;</p><p>-- Assign role to users
+GRANT teaching_assistant TO user4;
+GRANT teaching_assistant TO user5;
+</code></pre><h3>Column-Level Authorization</h3><pre><code>-- Grant access only to specific columns
+GRANT UPDATE (salary) ON instructor TO payroll_dept;</p><p>-- User can update salary but not other columns
+</code></pre><h2>Important Notes and Best Practices</h2><h3>Query Optimization</h3><ol>
+<li><strong>Use EXISTS over IN</strong> for correlated subqueries (often faster)</li>
+<li><strong>Use INNER JOIN</strong> explicitly rather than implicit joins in WHERE</li>
+<li><strong>Create indexes</strong> on frequently queried columns</li>
+<li><strong>Avoid SELECT </strong>* when you only need specific columns</li>
+<li><strong>Use UNION ALL</strong> instead of UNION if duplicates are acceptable (faster)</li>
+</ol><h3>Design Principles</h3><ol>
+<li><strong>Minimize NULL values</strong>: Complicate queries and indexes</li>
+<li><strong>Use foreign keys</strong>: Enforce referential integrity at database level</li>
+<li><strong>Create views</strong> for complex queries used repeatedly</li>
+<li><strong>Use transactions</strong> for multi-step operations requiring consistency</li>
+<li><strong>Apply principle of least privilege</strong>: Grant minimum necessary access</li>
+</ol><h3>Common Mistakes</h3><ol>
+<li><strong>Forgetting NULL handling</strong> in outer joins</li>
+<li><strong>Using natural join carelessly</strong> when attributes have same name but different meaning</li>
+<li><strong>Not using indexes</strong> on large tables</li>
+<li><strong>Over-indexing</strong>: Too many indexes slow down writes</li>
+<li><strong>Granting excessive privileges</strong>: Security risk</li>
+</ol><h2>Summary</h2><p>Week 3 covers advanced SQL features essential for complex applications:</p><p><strong>Nested Subqueries</strong>: IN/NOT IN, SOME/ALL, EXISTS/NOT EXISTS, UNIQUE, WITH clause
+<strong>Join Operations</strong>: Natural, inner, left/right/full outer joins; USING vs ON
+<strong>Views</strong>: Virtual tables for abstraction, security, and reusability
+<strong>Transactions</strong>: ACID properties ensuring data consistency
+<strong>Integrity Constraints</strong>: NOT NULL, PRIMARY/FOREIGN KEY, CHECK, referential integrity
+<strong>Custom Types</strong>: User-defined types, domains, large objects
+<strong>Indexes</strong>: Performance optimization for queries
+<strong>Authorization</strong>: Privileges, roles, column-level access control</p><p>These concepts enable building robust, secure, and performant database applications while maintaining data integrity and consistency.
 </p>
       </div>
     </section>

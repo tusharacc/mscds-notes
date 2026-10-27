@@ -1,0 +1,522 @@
+[00:00:00] Welcome. So, today we will be continuing our journey with SQL and we will look at again
+[00:00:11] these slides are based on the textbook from Silbershahit Korth and Sudarshan and it is
+[00:00:16] a great book and thanks to the authors for making these slides available for all of us
+[00:00:21] to use. So, I will just briefly you know maybe in a few minutes review what we had done in
+[00:00:28] the last class and then we will continue with the rest of SQL today.
+[00:00:33] So, going to the actual commands on SQL. So, this is the create table command. So, all
+[00:00:41] of the commands that we are going to see are probably not you know necessary for everyone
+[00:00:47] you know there is a very small subset of SQL that most people actually use while developing
+[00:00:52] applications, but in the it is always nice to see what all is possible it is nice to
+[00:00:59] see the full variety of commands that are available and that is what we will be seeing
+[00:01:04] in these slides. Of course, I will point out which commands are actually very popular and
+[00:01:12] which we use on an everyday basis in while developing applications and some of them are
+[00:01:17] you know some of the commands are rarely used, but it is nice to know that they are available.
+[00:01:23] So, that when we actually need them we know where to look up and that something like that
+[00:01:28] actually exists. So, the create table command of course, is a compulsory command I mean
+[00:01:32] you have to know how to use it in order to create tables and we have here you know this
+[00:01:40] command to create the table instructor with these different variable attributes. So, we
+[00:01:47] will just take a look at may be how we can create this I will show you how we can run
+[00:01:54] this on the actual on an actual to create an actual table in a real database.
+[00:02:01] So, for that I am I have opened my terminal here and I am going to run the SQLite 3 command
+[00:02:09] which will open the SQLite 3 database command line. So, and this SQLite 3 or SQLite itself
+[00:02:17] is a very small database, but it is full-fledged. So, it actually contains all the commands
+[00:02:24] that you will typically need even very full-fledged applications large applications are created
+[00:02:30] in SQLite. So, it is not proper to actually think that SQLite is just a toy database it
+[00:02:37] is actually used in deployment in practice for really large applications as well.
+[00:02:43] So, having opened this if you want to go know a little bit more detail about how to use
+[00:02:50] this because every SQL if you are using SQLite as compared to let us say MySQL or Postgres
+[00:02:56] SQL they will have small variations in the syntax. So, in order to know the commands
+[00:03:03] which will probably be slightly different it is good idea to do a dot help. So, there
+[00:03:08] is a command called dot help on the SQLite command line which will show you all the different
+[00:03:12] command these are commands which are specific to SQLite. So, and whenever you need them
+[00:03:21] you can look at them. So, for example, if you see here there will be a command called
+[00:03:25] dot table. So, these are all dot commands. So, there is a command called dot tables here
+[00:03:30] which will list the names of tables in the database. So, if I say dot tables you can
+[00:03:37] see there is no tables here and you might think that in my last class I actually created
+[00:03:41] some tables and what happened to them. So, after all we wanted database to be persistent
+[00:03:46] you do not want the tables that were created to actually vanish each time you run the database
+[00:03:51] right. So, the reason it vanished is I actually created the tables by starting SQLite like
+[00:03:58] this instead you should open a particular database file. So, and then if you run the
+[00:04:05] commands to create the tables and so on then it will you know actually store them in that
+[00:04:11] file. So, let us do that and I am going to exit from here by pressing control D and because
+[00:04:19] this is a Ubuntu or Linux environment. So, I could press control D.
+[00:04:27] Now let me open the same command, but I will give it let us say you know. So, there is
+[00:04:32] already let me see if I have. So, these are test files that I probably created earlier.
+[00:04:42] So, let me just delete them and now I am going to run the SQLite command again with let us
+[00:04:50] say mydb as file name and whatever tables or whatever data I am going to actually create
+[00:04:57] now is going to be stored in this file. So, next time if I again open SQLite 3 with this
+[00:05:02] file name it will again open the same file and all the data that I had stored will be
+[00:05:07] present in that file. So, now that I have opened it let me actually do a cut paste from
+[00:05:15] here. So, let me copy this and paste this command here. So, the SQLite commands expect
+[00:05:23] a semicolon at the end of every command. So, I am putting a semicolon and that is good.
+[00:05:29] So, it created the table. So, it created the table with the id, name, department name and
+[00:05:34] salary which is the table to store all the instructors and as we can see each of these
+[00:05:39] attributes has different kinds of attribute names, attribute types right. So, of course,
+[00:05:49] you know the SQLite environment actually does not require you to specify the types it will
+[00:05:56] infer the types later as you use them. So, if it is a numeric type then it is going to
+[00:06:00] infer that it is a number if it is a string type it is going to infer that it is a string
+[00:06:04] and so on and dates also it just stores dates as strings and so on. So, the types do not
+[00:06:11] have to be given in SQLite, but it does accept the types. So, it does not complain right.
+[00:06:19] So, now that I have created it if I say dot tables it is going to show me yes there is
+[00:06:25] one table, but if I see what is the contents of this table I can do a select star from
+[00:06:31] instructor because instructor is the name of the table. Let us put a semicolon if you
+[00:06:34] do not put a semicolon it is going to kind of complain a little bit. So, it is waiting
+[00:06:40] for a semicolon. So, I am going to put a semicolon and as you can see it did not give any output
+[00:06:45] because there are no instructors yet that we have inserted into this table. So, that
+[00:06:53] is that what we did. So, let us you know remove that table because this here is a more full
+[00:06:59] fledged instructor table with a primary key mentioned and so on.
+[00:07:04] So, let us use this drop instructor. So, let us do a dot help drop maybe there is no such.
+[00:07:21] So, we will figure that out because the commands are slightly different across the you know
+[00:07:29] different SQL versions. So, let me just remove that the easiest way to do is let us remove
+[00:07:36] that and then starts from scratch from there. So, now I am going to create this table with
+[00:07:46] all the frills that it shows with primary key and foreign key and so on. So, I have
+[00:07:53] the you know table here. So, if you see dot tables it is going to show me the table again.
+[00:08:01] Of course, there is a foreign key here which is referencing the department you know. So,
+[00:08:06] and department table has not yet been created. So, but it is only possibly when you are inserting
+[00:08:13] records then it is going to complain let us see if it complains. So, if you insert a record
+[00:08:20] which does not have a department. So, or if it has a department which is not there
+[00:08:26] in the department table then it is going to complain because that is a foreign key constraint.
+[00:08:31] Similarly, primary key id is a primary key. So, that is a constraint on the it is a primary
+[00:08:36] key constraint which means that if you create two records with the same id it is going to
+[00:08:41] complain. So, let us see. So, there were more tables.
+[00:08:46] So, let us just create all these tables. So, I am putting that there. So, that should have
+[00:08:56] created that table and this is the takes table. So, that was the student table earlier this
+[00:09:01] is the takes table takes is the table which was meant for student taking a particular
+[00:09:08] course and like I said you know the I did not really like that name. So, I am going
+[00:09:14] to change it to studies, but let us see let us just leave it as such because you know
+[00:09:23] there might be more examples and I have to change it everywhere. So, let me just leave
+[00:09:27] it as takes, but that basically means that a student has studied a particular course
+[00:09:32] in a particular section. So, yes it has created that table as well and now for the course
+[00:09:39] table. So, let us create the course table as well and you can see that all of these
+[00:09:42] tables have primary keys and they generally tend to have foreign keys as well because
+[00:09:47] you are referencing some other table in this table.
+[00:09:50] So, now we have so many tables let us see what all tables we have created. So, we have
+[00:09:55] four tables here that we have created, but we have not yet inserted any records and as
+[00:10:02] we went to the next slides we saw that they were you know these kinds of commands as well.
+[00:10:09] So that so let us try to insert an instructor and voila it is inserted the instructor we
+[00:10:20] thought that it would have actually complained because if you see the you know the schema
+[00:10:27] for instructor we mentioned that department name is a foreign key. So, now it should have
+[00:10:32] complained because the department name is like ID is the first attribute name is the
+[00:10:39] second department name is the third and salary is the fourth. So, department name here is
+[00:10:47] biology right and salary is the fourth value here which is 66000 right.
+[00:10:52] So, now biology department is not there in the department table there is no department
+[00:10:57] in the department table yet. So, it should have given as a you know foreign key reference
+[00:11:02] error, but it did not because SQLite is a little you know flexible the earlier version
+[00:11:11] which is SQLite 2 if you see when I started SQLite it is said the version is 3.46 something.
+[00:11:17] So, it is an SQLite version 3 point something the earlier version SQLite 2 point x did not
+[00:11:24] really incorporate foreign keys. So, by default for backwards compatibility SQLite says that
+[00:11:31] I am not going to look at foreign keys because I want my older database also to work with
+[00:11:36] the newer version of SQL. So, it does not look at you know foreign keys, but it is possible
+[00:11:45] that you could you know make it work by including a command called pragma foreign keys. So,
+[00:11:54] these is equal to on. So, if you actually do this and then if you insert let us say
+[00:12:01] another instructor. So, let us insert the next instructor let us say instead of Smith
+[00:12:09] some Jones and let us say in the physics department with the same salary. So, you can see that
+[00:12:16] it is giving you an error because it is saying no such table main dot department. So, this
+[00:12:25] particular department you know not this particular department itself it is complaining that even
+[00:12:29] a table called department does not exist and therefore, it is violating whatever it thought
+[00:12:36] should have been the foreign key and that is a you know that is the issue here.
+[00:12:43] And since our commands probably will not work properly with because of the foreign key constraints
+[00:12:47] let us just make sure that this pragma foreign key is set to off and then that works. So,
+[00:12:58] now if we see all the instructors that have been inserted select star from instructor.
+[00:13:05] So, it shows you all the instructors that are there. Now, you might think that unlike
+[00:13:12] some other you know SQL offerings like MySQL and so on here I am not seeing the header
+[00:13:20] right I am only seeing the values the records I am not seeing the header with the column
+[00:13:24] names and so on. So, at any point of time if you want to see what the different attributes
+[00:13:30] are for the instructor table because we created it just now we know what the things are we
+[00:13:35] can go up and see you know that these were the different attributes.
+[00:13:41] But in general if you are lost and if you do not know what the you know columns were
+[00:13:48] you can actually do a dot schema this is again a SQLite specific command because it is a
+[00:13:52] dot command and you can say dot schema and instructor and it will show you the schema
+[00:14:00] or the actual command which was used when we created the instructor table. So, including
+[00:14:06] all the details of the constraints and all that we did. So, it is going to show you
+[00:14:11] what are the different attributes. So, we can do that right I guess the command did
+[00:14:18] not work earlier because we should actually say drop table.
+[00:14:21] So, let us try to drop some of these tables that we have let us see what are tables we
+[00:14:25] have. So, let me drop the let us say takes table drop table takes yes and then if you
+[00:14:32] see the tables you can see that table is no longer existing. Now, could you also drop
+[00:14:40] the instructor table it is actually having data will it complain let us see if it does
+[00:14:44] it does not complain. So, all your data is gone. So, whenever you are using a drop you
+[00:14:52] should be really careful in this case we have just started. So, it does not contain much
+[00:14:56] data. So, we can again you know recreate the data it should not be very difficult.
+[00:15:03] So, let me create that table again and then let me insert. So, this is the value here
+[00:15:10] these are the records right. So, we have some more records we had this record as well
+[00:15:28] right. So, now. So, this is how you insert and remove you know records create tables
+[00:15:35] remove tables and so on. And so, again we saw that the typical SQL query is going to
+[00:15:43] have this kind of form which is you know select all these attributes from these tables r 1
+[00:15:50] r 2 r 3 and so on where some particular condition or what we call as a predicate here. So, this
+[00:15:58] is the most common structure of command that you will be writing. So, because most of the
+[00:16:03] time you will not be creating tables or deleting tables and so on, but you will be looking
+[00:16:08] up the data in the tables. So, this is the most common command. So, we should be very
+[00:16:12] familiar with this particular structure.
+[00:16:15] Now, so we have seen in the last class again details about how you know you use this you
+[00:16:23] know you select the case insensitive most of these you know keywords and the variable
+[00:16:31] names the table names and all are case insensitive in general. Let us see if SQLite follows that.
+[00:16:39] For example, if we say let us say select star from instructor let us put you know capital
+[00:16:46] I there it still shows it. So, it is case insensitive and you can actually even put
+[00:16:53] capital S there it should not matter. So, we did take a look at you know all the different
+[00:17:05] variations of the select clause and the from and so on. So, if you want to see all the
+[00:17:12] distinct department names for example, then you could use distinct if you want to see
+[00:17:16] all the department names and you could use all.
+[00:17:19] So, now in this case let us see I want to see let us say the you know the salary right.
+[00:17:29] So, this is the salary of the. So, if I say select salary from instructor it is going
+[00:17:40] to show it to me two times because both of them have the same salary. Now, if I say select
+[00:17:43] distinct salary it is going to show it to me only one time. So, now so that make sure
+[00:17:53] that you are not you are only getting the unique values. So, you can also use an asterisk
+[00:18:00] for showing all the attributes which we have already used earlier right. So, and there
+[00:18:05] were couple of more details about you know how you can use the you know literals inside
+[00:18:12] the select and so on and some more you know such edge cases. So, these are things that
+[00:18:19] we generally do not use, but it is always good to know that such facility is available.
+[00:18:24] So, for example, if you want to do salary by 12 that is you know typically used. So,
+[00:18:31] it is not a rarely used one, but these things where you are using a literal. So, in the
+[00:18:38] in the select clause is not a commonly used feature.
+[00:18:46] So, and the where is where you can put all you know conditions. So, you can imagine that
+[00:18:54] lot of complication is there you know possible in the where clause you can put all the different
+[00:18:59] kinds of connectives in your conditions you can you can put all your multiple conditions
+[00:19:06] and connect them using and or and not. So, and so on. So, you can write you know commands
+[00:19:15] like this. So, let us take a look at this command and see what it does I have to put
+[00:19:22] a semicolon. So, it does not show me any one because there is no one in the department
+[00:19:27] computer science or the salary greater than 70000, but let us put 60000 here and let us
+[00:19:34] put instead of computer science let us put physics right. So, you can see that Jones
+[00:19:43] which we had inserted earlier here he is the right person. So, we are able to retrieve
+[00:19:49] such kinds of data. So, in the from clause you can actually have
+[00:19:58] you know multiple tables instead of a single table and what happens is then it does a cross
+[00:20:04] product of these tables and then the expectation is that in the where clause you will be selecting
+[00:20:11] exactly which records from that cross product are of interest to you. So, and if there are
+[00:20:19] any attributes which are common for you know in multiple tables in the from clause for
+[00:20:24] example, in this case id is there in the instructor table and in the teachers table then you would
+[00:20:29] refer to them as instructor dot id and teachers dot id right. So, this is the kind of command
+[00:20:42] where you would do a join. So, this is a join kind of command where you are joining two
+[00:20:47] tables here instructor and teachers and you are joining them with the condition that instructor
+[00:20:51] dot id should be equal to teachers dot id. So, which we have seen the concept of this
+[00:20:57] in the previous class and in the relation algebra class as well. So, otherwise you would
+[00:21:03] get a very large table with just all the with the cross product of instructor and teachers
+[00:21:09] and most of those records would be meaningless. So, you definitely need to make sure that
+[00:21:13] the id's are matching because you want the instructor you know the id of the instructor
+[00:21:20] in the instructor table this that instructor you want to see what all courses he has been
+[00:21:24] teaching. So, in the teachers table it should be the same instructor id that is there in
+[00:21:29] the instructor table. So, and that is what this means.
+[00:21:34] So, there is also a rename operation you can you know for convenience instead of using
+[00:21:41] instructor you know big names like instructor you can just rename them as T inside your
+[00:21:46] query, but more than convenience it is also necessary especially when you are using a
+[00:21:53] self-join where you are trying to join the same table with the same table right. So,
+[00:21:58] which means that you are doing a cross product of that table with itself and you are generating
+[00:22:02] you know multiple you know much larger table which is like the square of the you know size
+[00:22:08] of the original table. And when you are trying to do a self-join then you have to rename
+[00:22:16] the table because it will have two names one you know in this case it is T instructor as
+[00:22:23] T and instructor as S right. So, and the as can also be omitted right.
+[00:22:31] So, let us you know for trying out some of these you know we did try this particular
+[00:22:38] example in the last class and we saw we did insert these records in a table and it we
+[00:22:49] did you know run these commands in the last class. So, if you have not seen it then you
+[00:22:55] should and I had also given an exercise at that point of time to because I had shown
+[00:23:00] how to run some of the commands of this particular query, but not all of them and I had asked
+[00:23:07] you to finish that and I hope you have done that. If not I would strongly suggest that
+[00:23:13] you try that out now because all of this is about you know actually trying you know and
+[00:23:19] practicing what we have learnt otherwise just some you know commands that we do not get
+[00:23:24] a feel of. So, the moment you try it out then you get a feel of it.
+[00:23:30] So, now let us start the remaining you know the SQL commands. So, let us start with the
+[00:23:37] or SQL features that we have here. So, in SQL you can also use the you know string kind
+[00:23:48] of operations and you can look for matches of substrings and patterns within strings.
+[00:23:56] So, just like you can do wild cards when you are looking for folder and file names on the
+[00:24:01] Unix you know command prompt or on the Windows command prompt. So, similarly you can do
+[00:24:08] such kinds of wild cards or patterns in SQL, but the syntax is slightly different. So,
+[00:24:15] you have here percent symbol which is used to match any substring generally you know
+[00:24:21] for files and folders we would use a star. So, this is similar to that and you have the
+[00:24:29] underscore and for files you know we generally put you know question mark there. So, and
+[00:24:36] this corresponds to that. So, let us just see you know how that works here.
+[00:24:45] So, let us search for select name from instructor. So, let us look for the name from instructor.
+[00:24:58] So, if we just see that we get all the names, but let us say I want to see only those which
+[00:25:04] start with j. So, I am going to put where name like. So, like is the command which is
+[00:25:15] used to check. So, if I say name is equal to then it is going to look for an exact match.
+[00:25:19] So, if I say name is equal to Jones it is going to look for an exact match, but if I
+[00:25:23] say name is equal to j it is not going to find it. So, I need to say name like and then
+[00:25:30] I can put you know starting with j and anything else after that. So, that is a percentage.
+[00:25:37] So, percentage is going to match the whole substring any anything that starts with j.
+[00:25:41] So, you could of course, just say j o. So, anything that starts with j o. So, that is
+[00:25:49] what it means. So, an underscore is used to say that it should have exactly one you know
+[00:25:58] it matches one character. So, any one character and in this case there is nothing that is
+[00:26:03] you know for example, there is no j o n there is no instructor with j o n or anything or
+[00:26:11] j o e. So, there is no such instructor. So, but if you say j o n e s. So, there is no
+[00:26:18] j o e. So, three characters then you will find him because he is having three characters
+[00:26:23] j o followed by three characters. So, you can also use you know in this case a name
+[00:26:35] that you know has dir in within it. So, this is the dir. So, which is having a percentage
+[00:26:42] and percentage it is you know between sandwich between the percentages. So, it means that
+[00:26:53] any name which has dir within it. So, it could have any amount of substring before and any
+[00:27:01] amount of substring after of course, the substrings could also have spaces or anything else because
+[00:27:07] you know the database SQLite or any other database is not going to really look at what
+[00:27:12] kind of characters it is. If at any point of time you actually want to match a literal
+[00:27:19] percentage then you need to escape it using a backslash and you need to mention what the
+[00:27:24] escape character is. So, that is how you would match a literal percentage.
+[00:27:32] So, unlike keywords and you know variable names which are not case sensitive in SQL
+[00:27:41] of course, patterns you would expect should be case sensitive and they are case sensitive
+[00:27:46] because when you are trying to match let us say you know j o n e s it is different from
+[00:27:53] doing j o n e s this should not well in this case it does. So, SQLite does not follow this
+[00:27:59] particular you know idea, but you would definitely find that in other you know SQL offerings
+[00:28:07] it would follow this patterns are supposed to be case sensitive.
+[00:28:12] So, and here are some more nice examples. So, this means anything starting with intro
+[00:28:19] this means anything which has come inside it. So, which could be computer science or
+[00:28:24] compelling or anything else. So, this means anything that matches exactly 3 literals and
+[00:28:30] this means any string that has at least 3 literals. So, this is a nice you know nice
+[00:28:38] pattern to know about because it is saying that it is any string the percentage is saying
+[00:28:43] any string, but the initial 3 characters they are saying it has to have at least 3 characters.
+[00:28:49] You can also do other kinds of operations like concatenation of strings you can concatenate
+[00:28:54] them using the pipe you know 2 pipes operator you can convert from upper to lower case and
+[00:29:03] you can find the string lengths you can extract substrings and so on. So, those kinds of you
+[00:29:08] know commands which you can do with strings are available in SQL.
+[00:29:16] Sometimes you want to order the output. So, you want to sort the output according to some
+[00:29:20] particular you know column. So, and order by is how you do that. So, you can order by
+[00:29:28] name here. So, which means that the output is going to be ordered according to name and
+[00:29:36] typically it will be in ascending order. If you actually want descending order then you
+[00:29:40] should mention descending order like that and it turns out that you can also sort on
+[00:29:48] multiple attributes. So, you can for example, sort by department name comma name what that
+[00:29:52] will do is that it will first sort all the instructors let us say by department name.
+[00:29:57] So, and then within each department it is going to sort it all the instructors by their
+[00:30:02] names. So, which is a useful feature to have. So, you can sort by 2 attributes or 3 attributes
+[00:30:08] or any number of attributes that there are in the table.
+[00:30:14] So, we also have a between comparison operator. So, this is obviously you know you do not
+[00:30:24] need to know it because even without this operator you can live right. So, you do not
+[00:30:29] you can write. So, this is basically to say that you know for example, salary is between
+[00:30:36] salary is between 90000 and 100000. So, you can actually say salary greater than or equal
+[00:30:42] to 90000 and salary is less than or equal to 1 lakh. So, and that would perfectly work,
+[00:30:49] but it is always nice to know that there is a short hand to do that and it is kind of
+[00:30:53] in some ways it is more readable when you use a between. So, but if you do not know
+[00:30:58] about this or you do not remember it is perfectly fine.
+[00:31:02] So, you can also do a tuple comparison and again this is like I would say an optional
+[00:31:07] feature for you to remember or know about. So, this basically says that instructor dot
+[00:31:13] id and department name should match the teachers dot id and biology. So, instead of saying
+[00:31:19] instructor dot id is equal to teachers dot id and department name is equal to biology
+[00:31:24] where you are putting 2 you know comparisons you can actually put it like this. And if
+[00:31:32] you think this is more readable you can use this version. In this case I am not sure this
+[00:31:36] is actually more readable because you are actually combining a notion of a join which
+[00:31:41] you know the instructor dot id is equal to teachers dot id is part of the join whereas,
+[00:31:46] department name is equal to biology is your actual constraint. So, and that is getting
+[00:31:53] mixed up in this particular command which you might not really like to use.
+[00:32:00] So, there are you know all the set operations. So, in relational algebra we did look at you
+[00:32:08] know various possible set operations like union and intersectional difference. So, this
+[00:32:14] is exactly the same thing being done in SQL. So, you can have one you know select command
+[00:32:22] which would be and you can have another select command and you can put a union between them
+[00:32:27] you can put an intersect and you can put a accept, accept is the difference it is like
+[00:32:32] the minus of set operations. So, if you take a closer look at what these
+[00:32:38] are it means that you know the first command is asking to find all the courses that ran
+[00:32:44] in fall 2017 semester or in the spring 2018 semester right. And you can see that the first
+[00:32:52] part of this command is saying select course id from section where semester is fall and
+[00:32:58] the year is 2017. So, the critical details are in the where clause and your union that
+[00:33:06] you are combining that with the output of select course id from section where the semester
+[00:33:12] is spring and the year is 2018. So, by doing a union you are getting all the courses that
+[00:33:17] were there in both of these you know parts. If you want to find the courses that ran in
+[00:33:24] fall 2017 and in spring 2018 which means that you only want those courses that were in the
+[00:33:31] intersection of both these semesters which were there in that semester and also are running
+[00:33:36] in the semester. So, then you would do the intersect. So, and if you want to find the
+[00:33:40] courses that ran in fall 2017, but did not run in September 2018 then you want to do
+[00:33:47] the difference. So, you want to say accept those which ran in spring 2018. So, and the
+[00:33:53] notion of accept is a very nice English word for set difference here.
+[00:34:01] So, and because these are set operations these commands would automatically eliminate duplicates.
+[00:34:08] So, if there are multiple courses. So, here you are finding all the course id's if some
+[00:34:17] course id is repeating for example, in you know in this case they would repeat and even
+[00:34:27] in the intersection you know ideally you know if there is any output at all those courses
+[00:34:32] are those which are repeating in both these semesters. So, you would find repetitions
+[00:34:37] in the output, but because these are set operations it will conveniently make sure that the repetitions
+[00:34:46] are removed from the output. So, all duplicates will be eliminated from the output because
+[00:34:54] these are set operations and if you actually want to show the duplicates as well then you
+[00:34:59] need to use the all command. So, you can use for example, accept all in this. So, select
+[00:35:07] or intersect all in this. So, then it would show repetitions. So, the course id it will
+[00:35:14] show it twice in for example, in the intersect command. So, you have to use the all command
+[00:35:22] here. So, we also have to deal with null values because we have seen that tables can in general
+[00:35:29] hold null values unless you explicitly mention a constraint that you know a particular attribute
+[00:35:35] cannot be null it can have null values therefore, we need to be able to deal with null values
+[00:35:40] and in this case it is possible for you know to deal with them.
+[00:35:45] So, in general what is the null value it signifies that you know this is a value that you do
+[00:35:50] not know in the table and therefore, you have put null. So, or it might mean that in the
+[00:35:57] or it might mean that in this particular record there is no such value there is no value at
+[00:36:02] all for that attribute. So, null has multiple meanings. So, and it could mean that like
+[00:36:09] I said that there is no value at all for this attribute. So, or it could mean that I do
+[00:36:17] not know what this value is and so on. So, now, so when you are having any arithmetic
+[00:36:24] expression like phi plus null. So, now obviously you are never going to actually type show
+[00:36:31] me what is phi plus null that is not going to be a query that you are going to ask. So,
+[00:36:35] but it will turn out that as a result of commands that you are typing naturally.
+[00:36:40] So, for example, if you are trying to find out you know if you are trying to add up you
+[00:36:47] know let us say we have salary as one of the attributes for the instructor table, but we
+[00:36:51] also have let us say bonus as another attribute. So, our monthly bonus. So, and if you want
+[00:36:58] to add up both of these and show the you know what is the total amount that we have to pay
+[00:37:04] for each instructor. So, the salary plus bonus. So, and if it turns out that for some of the
+[00:37:10] records you did have null in the bonus you know column then if you add up the salary
+[00:37:17] and the bonus column then it is going to give you null. So, any you know arithmetic operation
+[00:37:26] that involves null is going to return null and that might not be what you want. So, you
+[00:37:31] should make sure that if you actually have a bonus column like that you should make sure
+[00:37:36] that those values are actually 0 and not null if they are actually 0.
+[00:37:43] And in order to check whether a particular value is null you can use the is null command
+[00:37:50] and that is how you can check. So, here is an example you can say select name from instructor
+[00:37:56] where salary is null or you can also use where salary is not null. So, is not null also works.
+[00:38:03] And one more issue with the null values is that if there is any comparison that involves
+[00:38:16] a null value then SQL treats that value as unknown. So, unknown is again a different
+[00:38:23] kind of entity. So, it is not the same as null it creates a new type called as unknown.
+[00:38:30] So, for example, if you say 5 is less than null or null is not equal to null or null
+[00:38:35] is equal to null these are comparisons where one of these sides is involving a null and
+[00:38:41] that means that the output will be not null, but it will be unknown. So, and again you
+[00:38:48] are never going to actually you know write comparisons like this, but these comparisons
+[00:38:53] would come out you know if the tables are having null values inside you know as some
+[00:39:02] attribute as the values of some attributes and if you are using those attributes then
+[00:39:06] such kinds of comparisons would naturally happen and this is when they happen the outcome
+[00:39:11] will be unknown. So, and since you can have unknowns and in
+[00:39:19] as the outcome of conditions in order to deal with these unknowns you have to know how they
+[00:39:25] work when you do an and or and so on with these unknowns. So, if you have let us say
+[00:39:30] true and unknown then the outcome is unknown. So, what does that mean? It means that you
+[00:39:36] know one side it is just like true and false you know and the outcome is false. So, if
+[00:39:44] if it is an unknown it means that you do not know whether it is true or false. So, and
+[00:39:49] therefore, the outcome if this were true then would actually have been true and true and
+[00:39:53] if this were false then the outcome would have been true and false and that would be
+[00:39:59] false, right true and false is false and therefore, the outcome would be false and if it was true
+[00:40:05] then the outcome would be true. So, it true and true would be true, right.
+[00:40:09] So, you can see that it is actually working out. So, true and unknown is therefore, unknown.
+[00:40:13] So, whatever be unknown unknown might be true or false the outcome will be the same, so
+[00:40:18] as we have seen. So, that is the reason why we have this kind of you know design here.
+[00:40:27] Similarly false and unknown is going to give you false. So, because if unknown were false
+[00:40:34] you know whether unknown is false or true because you are having a false as part of
+[00:40:38] an and the outcome is definitely going to be false. So, the outcome is false it is not
+[00:40:43] unknown. So, and if you have unknown and unknown of course, the outcome is going to be unknown
+[00:40:50] because you have no clue. Similarly, you can you know if you know how
+[00:40:56] the logical expressions work like and and or you can figure out that you know unknown
+[00:41:01] or true should give you true, unknown or false should give you unknown and unknown or unknown
+[00:41:09] gives you unknown. So, this is the only one which gives you a true because when you say
+[00:41:13] unknown or true you already have a true here and anything are true when one of the elements
+[00:41:19] is true the outcome is definitely going to be true for an or you know clause.
+[00:41:24] So, result of the where clause is treated as false if it evaluates to unknown. So, this
+[00:41:32] in spite of all of these if your final outcome is unknown and you are using that as part
+[00:41:37] of a where clause then it will be treated as false which means that you will not see
+[00:41:41] those values. So, that is you know some of the details again you know these are aspects
+[00:41:48] which you will not use most of the time, but it is good to know that these things exist.
+[00:42:02] And when you actually come across null values you know how they are going to behave if you
+[00:42:07] know you actually combine them with all these kinds of conditions.
+[00:42:12] So, ideally you know you should if you are the one who is maintaining a system you should
+[00:42:18] try to make sure that there are no null values in your tables because nulls are not nice.
+[00:42:25] So, they have multiple meanings sometimes and you do not know what they mean and some
+[00:42:30] of the operators as you can see that will not give you meaningful results. So, if you
+[00:42:35] have nulls in your database. So, as far as possible you should try to avoid using nulls.
+[00:42:42] Of course, if it is an external database somebody else's database and you are using it there
+[00:42:48] could be many null values. So, especially as we know if you are actually trying to look
+[00:42:54] at government records and so on we know that you know they will typically tend to have
+[00:43:00] a lot of null values. So, because probably privacy reasons and people do not like to
+[00:43:07] reveal their information. So, there will be a lot of empty values and which you can treat
+[00:43:11] as null right. So, but for databases that you create and you are you know in charge
+[00:43:19] of you should try to make sure that as far as possible that there are no null values.
+[00:43:25] Now aggregate functions are you know again you know powerful set of operations. So, these
+[00:43:33] are again must know. So, it is not like an optional feature of SQL you should know these
+[00:43:39] things. You know. So, you have here 6 different kinds of aggregate functions that you can
+[00:43:46] run on your queries. So, you can have average some min max sum and count.
+[00:43:55] And obviously, this is going to make more sense when we see examples of them. So, here
+[00:44:00] are some examples. So, in the first case you are seeing the average salary of instructors
+[00:44:07] of those instructors whose department is computer science. So, you want to find the average
+[00:44:13] salary of all computer science instructors and this is what this does. So, if you just
+[00:44:18] say select salary it would print a table of all the salaries. So, if every record what
+[00:44:24] the salary was it is going to print that, but since you have said average it is going
+[00:44:28] to print the average salary. So, let us just see how that works. So, if I say select salary
+[00:44:36] from instructor I am seeing the salaries like this. So, let me create one more. So, let
+[00:44:44] let let us just see what are the. So, we have Smith and Jones let us create one more you
+[00:44:52] know one more record here. Let us make it a new ID Smith Jones and let us say William
+[00:45:07] and let us keep him in the computer science department. And I am just typing it exactly
+[00:45:15] as it is and I want to give him a different salary. So, that we get you know average.
+[00:45:24] So, computer science people right. So, right. So, now if we see we can see all of them and
+[00:45:34] if I say select the salary from here then I can see only their salaries and if I say
+[00:45:41] average salary then I get their average. So, this is nice to use. So, if I want to see
+[00:45:54] the max. So, let us just take a look at the other things. So, if I want to see the max
+[00:45:58] salary then that is the max salary if you want to see the min salary that is the min
+[00:46:02] salary. So, what are the other options that we had we had sum and count right. So, sum
+[00:46:10] of all the salaries. So, this is the sum and if you divide that by 3 obviously you are
+[00:46:17] going to get the average. And if I see the count I will see that there are 3 no sorry
+[00:46:29] count of salary in generally if I am doing count you know I do not need to do count of
+[00:46:36] that, but I can do a count star. So, star is all the attributes all the records I am
+[00:46:42] basically seeing the number of records. But if I want to see let us say distinct then
+[00:46:49] there are only 2 distinct salaries because you know I had 2 of them have 66000 as their
+[00:46:55] salary and 1 lakh is the other salary. So, there are only 2 distinct salaries here. So,
+[00:47:02] these are commands that you could use.
+[00:47:06] Yes. So, now coming back here. So, we have seen count distinct id. So, if you want to
+[00:47:15] see the distinct id's and in you know you really do not need to mention distinct id
+[00:47:20] because id's are anyway distinct. So, but we have seen an example where you know salaries
+[00:47:25] are not distinct always, but you know we have seen how that works with a better example
+[00:47:30] here. So, but this is saying you know find the total number of instructors who teach
+[00:47:38] a course in the spring 2018 semester who teach any course in the spring 2018 semester. So,
+[00:47:44] I am putting where semester is this and the year is this and when I see the count of that
+[00:47:51] I am going to see how many people are teaching in that semester.
+[00:47:54] So, now this is saying count of all the tuples of all the records in the course. So, we have
+[00:48:04] seen these examples as well. So, now there is also the notion of group pi. So, this again
+[00:48:12] gets even more powerful. So, I here what I am trying to do is select the department name
+[00:48:19] and the salary you know average salary from the instructor table and I want to group it
+[00:48:25] by the department name. Basically what I am trying to do is for every department I am
+[00:48:28] trying to get what the average salary is. So, for biology there is only one person whose
+[00:48:35] salary is this and so this will be the output. So, in biology there is only one person. So,
+[00:48:40] the average salary in the biology department is the same as of that person, but in computer
+[00:48:46] science I have three people. So, the average salary of the computer science department
+[00:48:50] will be the average of these three values which will come here. So, this is the kind
+[00:48:56] of command which will take this table this instructor table and output this as the result.
+[00:49:02] So, now here what you can see is I am saying department name is one of the output columns
+[00:49:10] and average salary is the other output column and this column I am giving it renaming that
+[00:49:19] as average salary. So, I am saying as average salary and the input is coming from the instructor
+[00:49:25] table this is the instructor table and group by department name. So, I am grouping the
+[00:49:33] output by departments. So, and it is not just the output being grouped by departments it
+[00:49:38] is also the computation of the averages is being done department wise. So, this is a
+[00:49:47] nice command to use. Now, you might say that why am I going to all this trouble you know.
+[00:49:52] So, if I can also do this kind of you know average computations and so on in my favorite
+[00:49:59] programming language I can use C or python or java or whatever other language that I
+[00:50:04] know now there are possibly two answers you know SQL is considered as simpler. So, even
+[00:50:11] if you do not know full fledged programming language if you know SQL then you can use
+[00:50:15] all of these. The second reason is you know even if you know other languages and you can
+[00:50:22] do these kinds of computation in other languages the notion of databases is that they are meant
+[00:50:28] to work on very large collections of data. So, even if your data is very big these kinds
+[00:50:33] of commands are meant to be efficient. So, they are well tuned and optimized to run.
+[00:50:40] So, and instead of like pulling out all the records from your database into let us say
+[00:50:45] the main memory using a programming language like C or python and then trying to find the
+[00:50:50] average of all those records in the main memory using your favorite language. So, what you
+[00:50:55] have done is you have pulled the data from the database and you are using your language
+[00:50:59] to do the average computation and so on. So, that is possible, but again that would probably
+[00:51:04] not be efficient because you know there is a lot of two and fourth of so much of data
+[00:51:09] that is going you know across you know let us say across the languages right. So, across
+[00:51:16] processes and across pipes and so on and it is going to be inefficient. Instead when you
+[00:51:23] ask the database itself to calculate the average it is going to go right down to the record
+[00:51:28] level and try to figure out the best optimal fashion in which it could compute these results
+[00:51:34] and do it for you. So, it is going to be much more efficient. So, this is why we should
+[00:51:40] learn and use these aggregate functions directly in the SQL.
+[00:51:45] So, you could you know attributes in the select laws outside of aggregate functions must appear
+[00:51:53] in the group by list. So, which means that whatever we had earlier. So, if you look at
+[00:51:58] the previous one. So, we did have what are all the attribute names outside of the aggregate
+[00:52:04] functions. So, this is the aggregate function here. So, we have average salary this is the
+[00:52:09] aggregate function and this is the only. So, department name is the only attribute which
+[00:52:17] is outside of the aggregate functions. So, this department name should be there sorry.
+[00:52:22] So, this department name should be there in the group by right. So, and so that is you
+[00:52:31] know compulsory. So, if you have you know anything else it is going to be an error.
+[00:52:37] So, in this case for example, you are having the department name and ID. So, which should
+[00:52:43] not be there. So, it is an error in this query if you have that ID there you should
+[00:52:47] also group by department name and ID which you would not want to. So, because that means
+[00:52:56] that you know it is not really a meaningful group every ID will be in its own group. So,
+[00:53:00] which means that it will get you the average of every record separately which is not meaningful.
+[00:53:05] So, average salary of every record is the salary in that record. So, it would not be
+[00:53:10] meaningful, but in this case it is not just not meaningful it is an error because you
+[00:53:15] do not have that ID in the group by if you did have it will execute it will not give
+[00:53:20] an error, but I would say it is not very meaningful. In some cases of course, you can it is meaningful
+[00:53:26] to group by more than one you know attribute in this case it is not.
+[00:53:34] So, and aggregate functions can also have the having clause. So, you have you know this
+[00:53:42] is the having clause and in this case what this means is that this having is like a where
+[00:53:51] clause, but except that the having is putting a condition not on the records, but on the
+[00:53:57] groups. So, in this case you have group by department name. So, and so let us see what
+[00:54:05] this means. So, this says find the names and average salaries of all departments whose
+[00:54:10] average salary is greater than 42000. So, you want to find the average salaries of all
+[00:54:14] departments. So, this is how you are finding the average salaries of all the departments
+[00:54:18] by doing a group by. So, you are grouping by department name. So, you are getting the
+[00:54:23] average salaries of each department. So, and then you want to see only those you do
+[00:54:28] not want to see the average salaries of all the departments, but you only want to see
+[00:54:31] those average salaries of those departments whose average salary is greater than 42000.
+[00:54:36] So, and therefore, you are doing this having this condition of average salary greater than
+[00:54:43] 42000 is a condition for the for a particular group. So, and therefore, you are putting
+[00:54:51] it in the having. So, this is a typical first timer error you know confusion you know what
+[00:54:58] should be in the where and what should be in the having and this is how it is you know
+[00:55:02] we understand it. So, that you know whatever any condition that you want to put on the
+[00:55:09] group itself. So, like here the department name is a group every department is a group
+[00:55:15] here and if you want to put constraints on the department. So, then you would put having
+[00:55:21] here. So, but any constraint that you want to put on the record. So, if you want to say
+[00:55:28] that you know where the I only want to get those you know records you know whose you
+[00:55:37] know instructor starts with let us say j the name starts with j or something like that.
+[00:55:41] So, then it has to be in the where clause because at a record level you know constraint.
+[00:55:50] So, then you know we can also have nested sub queries. So, and this is the idea here
+[00:56:01] that you know when you have a regular select from where clause you can have you know attributes
+[00:56:09] here and you in the from clause you have the tables from which you are retrieving the attributes
+[00:56:18] and you have you know conditions and as you can see each of these parts can actually be
+[00:56:24] sub queries. So, the you can actually retrieve not directly from a table, but you can actually
+[00:56:31] retrieve from you know this table can be a.

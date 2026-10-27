@@ -1,0 +1,510 @@
+[00:00:00] Welcome to this session. So, today we will be looking at intermediate SQL. So, in the
+[00:00:10] previous chapter we had seen about basic SQL and that basic SQL would be more or less enough
+[00:00:18] to build most applications. However, if you want to use SQL more effectively, then you
+[00:00:25] will need to know a little bit more and that is what we will be covering as part of this
+[00:00:29] chapter. So, these are the different topics that we will be covering today in this chapter.
+[00:00:37] So, we will be looking at more in-depth ideas about different kinds of join expressions.
+[00:00:44] We have already seen basic varieties of that, but we will be looking at more, there are
+[00:00:50] many more varieties of join expressions and we will be looking at all of them. We will
+[00:00:56] also be looking at how views are formed. So, views are about how you can enable different
+[00:01:04] kinds of users to have different kinds of views of the same relational tables that we have in
+[00:01:11] our database. So, for example, some classes of users you might not want them to see certain
+[00:01:16] parts of your data and you can restrict that only people with these roles or these particular
+[00:01:23] users should be able to see this kind of data or these tables and so on.
+[00:01:29] So, and then we will be looking at transactions, how we can run transactions. We will be looking
+[00:01:36] at integrity constraints. Again, we have already seen integrity constraints a little bit, but we
+[00:01:41] will be looking at it more thoroughly here and it will help us to use integrity constraint
+[00:01:47] to its utmost limit. So, and SQL data types and schemas, so how you can create your own
+[00:01:55] data types in SQL and we will be looking at how you can define your own index indices
+[00:02:04] which will help you to access your data very fast and this will kind of make or break your
+[00:02:12] application many times because if you do not use the right indices, your application could
+[00:02:16] get really really slow and by using the right index, your application gets really fast.
+[00:02:23] So, it is important to know that part and of course, we will also be looking at authorization.
+[00:02:29] So, authorization is about how you can enable certain users or certain classes of users
+[00:02:37] to have access to certain parts of your database. So, for example, certain tables and you can
+[00:02:44] restrict other kinds of users from accessing certain tables, right. So, we will be looking
+[00:02:51] at all these topics as part of this chapter. So, in this session itself, we will be looking
+[00:02:58] at some of these topics and in the next session, we will be looking at the remaining topics.
+[00:03:05] So, starting with join operations, so as we had seen, join operation is basically like
+[00:03:13] a Cartesian product. So, when we do a select from where clause, a typical, you know, the
+[00:03:20] most common kind of SQL query. So, here you have the from and after the from, you have
+[00:03:26] multiple tables and those tables are going to, so there will be a cross product of these
+[00:03:32] tables that is created and then in the where condition, you specify exactly which of those
+[00:03:37] which of those rows in that big cross product. Cross product is of course, going to be a
+[00:03:43] very big relation because it is going to be the product of the sizes of both the relations
+[00:03:49] that you are doing a cross product of and so, but you only are interested in some of
+[00:03:55] them because the cross product creates a lot of information that is unnecessary and
+[00:03:59] in fact, does not make sense at all and in order to pick out the rows that make sense
+[00:04:04] as we had seen in previous chapters, you need to apply certain conditions on the cross product
+[00:04:10] which effectively is a join operation and so, we will be looking at these kinds of join
+[00:04:17] operations here. So, like I said, the join operation is a Cartesian
+[00:04:22] product and it requires tuples in the two relations that you are trying to join to match.
+[00:04:29] So, you are going to give some kind of condition for which they need to match and it also specifies
+[00:04:36] the attributes that are present in the result of the join. So, what should be the part of
+[00:04:40] the output? So, the join operations are typically used as a sub query expressions in the from
+[00:04:46] clause like I had mentioned, it is like after the from clause, you are going to have a list
+[00:04:51] of tables that you could usually it is two tables, but you can definitely have more than
+[00:04:55] two tables. So, when you are creating more complex applications, you will be using like
+[00:05:01] more than two tables, sometimes people use four tables, five tables and so on also and
+[00:05:09] there are three types of joins here as you can see there is natural join, inner join
+[00:05:13] and outer join and we will be taking a look at all of these.
+[00:05:19] So, starting with natural join, so this is like as the name mentions, it is the most
+[00:05:28] natural way when you think of what a join means, this is what it is. So, in natural
+[00:05:34] join, you match tuples with the same values for all the common attributes. So, when you
+[00:05:40] are joining two tables, the two tables might have some attributes which are common attributes.
+[00:05:46] For example, an ID you know or a course ID might be common across two tables and you
+[00:05:55] want to make sure that the course ID in the first table should match should be the same
+[00:05:59] as the course ID in the second table, only then that record or that row in the cross
+[00:06:05] product makes sense, right. So, and in order to do that, so natural join automatically
+[00:06:12] does that, so it will figure out which are all the common attributes and it will make
+[00:06:16] sure that their values are matching, okay. So, and in the output, it returns only one
+[00:06:22] copy of that of those common attributes, okay. So, it will not repeat those common attributes.
+[00:06:30] So, if you recall, this is the kind of query that we had written earlier, if you want to
+[00:06:36] list the names of instructors along with the course IDs of the courses that they taught,
+[00:06:41] okay. So, we are listing the name of the instructor and the course ID of the course that he has
+[00:06:48] taught and we are looking at it from the, taking from the students and the takes table
+[00:06:55] which courses the students are taking and sorry, there must be some mistake in the slide.
+[00:07:05] So, here we are looking at the students along with the course ID of the courses that they
+[00:07:13] studied, okay. So, that is what this query does, okay. So, this seems to be a mistake
+[00:07:17] in the slide. So, here you are looking at the name of the student and the course ID
+[00:07:25] from the students table. So, the name is coming from the students table and we are looking
+[00:07:29] at the course that the student has taken from the takes table, right.
+[00:07:34] And here you have, you are trying to match that the student ID should be equal to the
+[00:07:39] takes ID because you want to see that this student has taken this course. In the takes
+[00:07:44] table, you are again going to have the student ID as part of the, as having the same name
+[00:07:50] as ID and in the student table, the ID is referring again to the ID of the student,
+[00:07:56] okay. And these two should match only then it is a meaningful output, right. So, and
+[00:08:02] this is what we had done earlier.
+[00:08:06] Now, this becomes little bit simpler when we use the natural join construct because
+[00:08:13] when you use the natural join, the same query becomes, you know, you are selecting name
+[00:08:17] and course ID as usual, but you say from student natural join takes. So, when you
+[00:08:23] do a natural join, it automatically makes sure that the ID columns are going to match
+[00:08:30] because it is the same column, right. So, by looking at the name of the column, you
+[00:08:34] see ID in this table and ID in this table and the SQL figures out that these two must
+[00:08:42] be the same, you know, column and therefore, they should have the same value, right. And
+[00:08:47] that is what is the meaning of natural join. And because it should have the same value,
+[00:08:51] in the output also, you will only see one column called ID. You will not see two columns,
+[00:08:56] whereas in the previous version like what we saw here, there would be two columns with,
+[00:09:02] you know, the name ID. One will be called as student dot ID and the other will be called
+[00:09:06] as takes dot ID. And since anyway we know that both are going to be same, in the output
+[00:09:11] it makes sense if you are actually doing a natural join that you only want one of them,
+[00:09:15] right. So, this is the meaning of natural join and this is typically what you want to
+[00:09:21] really do whenever you do a join or whenever you, you know, put multiple, whenever you
+[00:09:28] put multiple tables in the from clause, you usually want to do just this, okay. So, this
+[00:09:35] is a very nice operation which will help you to, you know, do that effectively.
+[00:09:41] Now, this is something that is important to understand, okay. So, because joins in SQL
+[00:09:47] is like the core, okay, so of the whole database management systems course, okay. So, and it
+[00:09:55] effectively tells you that, you know, do you know how to use databases effectively. It
+[00:10:00] is just like in, you know, when you are learning, let us say, data structures, then at some
+[00:10:05] point of time if you understand linked lists, okay, so then you know that you are through,
+[00:10:10] right. So, you can, you understand some aspect about, you know, complex data structures and
+[00:10:18] you can move on to more complex things after that. In the same way, in database management
+[00:10:23] systems if you understand what join means, you know, then it means that you know, you
+[00:10:29] know, to a good level what database systems is about, okay. It is just a, you know, benchmark
+[00:10:38] to figure out whether somebody knows enough of database systems or not.
+[00:10:45] So, the from clause can actually have multiple relations. So, just like we could, I mentioned
+[00:10:52] you can have multiple relations, you know, in the from clause you can have from R1, R2,
+[00:10:57] R3 and so on. You can actually do a natural join of all of them, okay, so instead of just
+[00:11:02] doing a cross product of all of them, right. So, it is not necessarily just to have two
+[00:11:09] relations, okay. So, for example sake, let us take a look at this, you know, couple of
+[00:11:16] tables. So, this is a student relation. So, it has, you know, the ID of the students,
+[00:11:23] the names of the students, the department names, you know, so which departments they
+[00:11:28] study in and the total credits of the subjects that they have taken so far, right.
+[00:11:33] So, now this is the takes relation. So, this table represents all the courses that the
+[00:11:40] students have taken so far, okay. So, and or they are actually may be taking also, okay,
+[00:11:48] so right now. So, this is the again the ID of the student, right. So, and this is the
+[00:11:54] ID of the course. So, this is that is why it is called course ID, right. So, it is mentioning
+[00:11:58] that this student has taken this course and when he was taking that course he was part
+[00:12:03] of this section, right. So, and he took this course in the fall semester of 2017 and he
+[00:12:11] got A grade, right. So, this is how this table is structured and you can see for example
+[00:12:19] there are some, you know, records for which the grade is null. So, possibly it is still
+[00:12:26] 2018, you know, when this table was probably, you know, when the slides were made. So, and
+[00:12:34] it probably means that the summer of 2018 is still happening may be and that is why
+[00:12:38] it is still null, right. So, that could be one reason why it is null. It could also be
+[00:12:44] that may be that record got lost somehow, you know, somebody did not enter the data
+[00:12:52] properly and all those other reasons. So, that is why null is something that typically
+[00:12:57] you do not want to have, but you know, in sometimes you do need it. So, you should whenever
+[00:13:03] you use nulls in your tables you should know exactly what the semantic is when you use
+[00:13:08] a null otherwise you will run into problems, okay.
+[00:13:13] So, now given those two tables if I do a natural join of them. So, I am doing a student natural
+[00:13:19] join takes. So, I am getting a big table here which is showing me. So, this was the student
+[00:13:28] relation and this is the takes relation and this is the natural student natural join takes,
+[00:13:35] right. So, here we know which student is taking which course, right. So, in the previous table
+[00:13:41] we did know that this student ID, right, is taking this course, but we did not have any
+[00:13:47] details about the student, okay. So, here we get all the details about the student because
+[00:13:52] we have the student ID and the name and the department name and so on and the total credits,
+[00:13:58] right. So, these columns came from the student table and the remaining columns came from
+[00:14:04] the takes table. So, these columns are coming from the takes table, right. So, and these
+[00:14:12] columns came from the student table, okay. So, and here we see that you know. So, this
+[00:14:21] student Zhang has taken this course and we have the entire details. So, why is this necessary?
+[00:14:29] So, it is necessary quite a lot in relational databases because the data is usually split
+[00:14:35] up into multiple tables because you want to avoid redundancy. So, for example, if you
+[00:14:40] take a look at this table you can see that there is a lot of redundancy. For example,
+[00:14:44] the name Zhang you know that he is in the computer science department, right and you know his
+[00:14:50] total credits. You do not need to repeat that, right. So, if it is just for storage sake,
+[00:14:56] if you are trying to store the data then you know you are just going to unnecessarily
+[00:15:00] waste space in your storage because you are storing the same information multiple times,
+[00:15:06] okay. So, for example, Shankar you can see is repeated four times, okay. So, this is
+[00:15:12] redundancy and you do not want redundancy, one because it wastes space and second because
+[00:15:17] it is prone to errors, okay. So, when there are multiple you know instances of the multiple
+[00:15:23] copies of the same information lying around, it is possible that some of these copies might
+[00:15:30] be wrongly entered or they just might become wrong because of some corruption issues somehow
+[00:15:36] and you will be left with you know data which is not meaningful, okay.
+[00:15:44] So, and you do not want that and therefore, databases strive to reduce redundancy, at
+[00:15:50] least relational databases strive to reduce redundancy, they try to remove all redundancy
+[00:15:55] effectively, okay. So, and that is why when they design the databases, they designed it
+[00:16:01] like this where you have the student information. So, you only have in one place that Zhang has
+[00:16:07] is in the computer science department with so many credits, Shankar is in the computer
+[00:16:11] science department with so many credits, it is mentioned only once, okay. So, and that
+[00:16:16] information is not repeating in the text table, right. So, in the text table you only have
+[00:16:23] the student ID, right and you do not have all the information about him repeating over
+[00:16:28] and over and over because we know that in the text relation, the student ID is going
+[00:16:32] to repeat because the same student is going to take multiple courses. So, you want the
+[00:16:37] student ID to repeat, but you do not want all the details of the student repeat and
+[00:16:41] that is why this information or these tables are well designed. However, in a real application,
+[00:16:49] when you are trying to show on the screen or you know in a web page, you are trying
+[00:16:54] to show information about you know a particular student and all the courses that he has taken,
+[00:16:59] okay and obviously, you would want if you are building a system to store information
+[00:17:04] about courses and students and so on for you know a university, then you would definitely
+[00:17:10] want a page where you are going to have where you can see all the details about a particular
+[00:17:14] student about what all courses he has taken and in that page, you have to pull the information
+[00:17:21] about the student like his name and so on from the student table and you have to pull
+[00:17:26] all the details about what courses he has taken from the text table, right.
+[00:17:31] So, you need to pull from both tables and that is why you are doing what we call as
+[00:17:35] a join, okay. So, we are joining these two tables and when we join, then obviously, there
+[00:17:43] is going to be redundancy and so after doing the join, you know if you are actually showing
+[00:17:49] on your web page, let us say in your application, you are showing for a particular student,
+[00:17:54] then you could in as part of your join, you can have a where clause as well where you
+[00:17:58] say that I am only interested in this particular ID, okay for Shankar, okay. So, and then you
+[00:18:04] will get only those courses which you might be relevant to that web page, okay. So, you
+[00:18:10] can write your query that way, but no matter what you do, you are going to have to do this
+[00:18:14] join, right. So, and therefore, that is why it you know this join is done. Although this
+[00:18:21] join looks like it has redundancy, it is done at the time when you are writing a query to
+[00:18:26] retrieve information from multiple tables to show the output to the user and that is
+[00:18:32] when you are going to do this join. So, this join is typically not stored and it so it
+[00:18:36] does not waste space, there is no redundancy, it is not like you know manually somebody
+[00:18:40] is creating all these multiple records and therefore, they might make errors and so on.
+[00:18:45] This is all done automatically and therefore, there is no scope for errors and that is the
+[00:18:50] reason why we do joins and why we separate first of all why we separate the information
+[00:18:55] into multiple tables to avoid redundancy and then when we are trying to show the information,
+[00:19:00] we need to do the join, right. So, this is the join.
+[00:19:09] Now, sometimes it is possible, so this is a you know possible error that you should
+[00:19:16] be careful about. So, there might be unrelated attributes with the same name, okay. So, in
+[00:19:22] the previous you know in example, we had the you know student ID which was common and we
+[00:19:30] in the takes relation also the student ID was common. So, it had the same name. It could
+[00:19:35] happen that you know that it could happen for example, that there is you know some other
+[00:19:46] attribute which is having the same name. In this case only ID had the same name, but suppose
+[00:19:51] you had you know this name here and in the takes table also suppose there was a name,
+[00:19:59] okay. So, and in the takes table may be that name was representing the course name, okay.
+[00:20:06] So, the same you know variable in this relation it is representing the student name, may be
+[00:20:15] in the takes table it is representing the course name, okay. So, it is not, okay. So,
+[00:20:19] but suppose you were in the course table, the name would be representing course name,
+[00:20:24] right. So, just as an example I am just suggesting that suppose the name was repeating in the
+[00:20:31] takes table then with some other semantic, okay. So, with some other meaning, okay. So,
+[00:20:37] then when you do a natural join it is definitely going to just you know try to match them,
+[00:20:45] which is not right, okay. You want the IDs to match because you know that this ID is
+[00:20:49] the student ID and even in the takes this ID is the student ID, okay. But if the name
+[00:20:54] was different, okay. So, in the student table the name was student name, in some other table
+[00:20:59] name is something else and you are trying to join them you know you do not want them
+[00:21:03] to actually match, okay. So, and therefore, you should be careful when you are doing a
+[00:21:08] natural join it is going to match them, okay. So, here is possibly a better example. So,
+[00:21:16] we are trying to list the names of student instructors along with the titles of courses
+[00:21:21] that they have taken. Not the students, but the students instructors, right. So, now here
+[00:21:28] we are trying to select the name of the student instructor, not the student and the titles
+[00:21:34] of the courses that they have taken, okay. So, and so we need to get the details of the
+[00:21:42] student, okay. So, because we want to see for each student which courses they have taken
+[00:21:47] and who are the instructors of those courses, right. So, we are taking the student table
+[00:21:52] joining with the takes table we are doing the regular what we did earlier natural join
+[00:21:56] with the takes table because that will get us what courses the student has taken. And
+[00:22:02] then to get the instructor we are looking at the course table, okay. So, in the course
+[00:22:11] table and so in the course table you can expect that there is going to be again this course
+[00:22:17] name and then there is going to be maybe who is the instructor of the course, okay.
+[00:22:24] So, now so then here we have in the condition we are trying to match the takes you know
+[00:22:34] the course ID takes dot course ID and the course dot course ID, okay. So, that is how
+[00:22:39] we are doing the join of these two. So, here we are doing that explicitly because we are
+[00:22:43] not doing a takes natural join course, okay. If we did a takes natural join course then
+[00:22:49] we do not have to you know do this where clause explicitly because it is anyway going to match
+[00:22:55] all the you know all the attributes which are having the same name. But we are doing
+[00:23:02] a regular you know join or a cross product there and therefore, we are doing this where
+[00:23:08] clause, okay. So, this is a correct version he says and if you actually do a natural join
+[00:23:15] then it would probably do this for you automatically, but it is going to do something else, okay.
+[00:23:20] So, and therefore, that is going to be wrong, okay. So, let us see what it is going to do.
+[00:23:24] So, the query omits all student name and course title pairs where the student takes a course
+[00:23:30] in the department other than the student's own department, okay. So, how did that happen?
+[00:23:38] So, it happened because you know this in this case the student you know could take
+[00:23:46] you know courses in his department or he might be taking courses in some other department,
+[00:23:52] right. So, and when you do you know a natural join of the course, okay. So, then it is going
+[00:23:59] to you know join with those with the course IDs of that other you know it is going to
+[00:24:07] basically you know check that the course IDs are going to match across you know the departments
+[00:24:15] as well and therefore, that is going to lead to an error, okay.
+[00:24:23] So, now here we have you know a different kind of join. So, having done the natural
+[00:24:30] join we are now going to do what we call as an outer join, okay. So, outer join is an
+[00:24:37] extension of join operation. So, it is meant to take care of the fact that you should not
+[00:24:42] you do not want to lose information. So, what is the information that we would lose in a
+[00:24:47] regular what we call the previous joins which we would now call as an inner join, okay,
+[00:24:53] because these are outer joins where we do not lose information all what we had done
+[00:24:57] so far we are going to call as inner join now and so let us see what kind of information
+[00:25:02] we would lose, okay. So, for example, here suppose you know our
+[00:25:12] you know our query was getting all the students and the courses that they were taking, right.
+[00:25:20] So, what courses they are taking. So, for example, Zhang he might have taken multiple
+[00:25:25] courses, right. So, Zhang's ID is 128 and 128 is there he has taken two courses, okay.
+[00:25:33] So, and each of these students have taken some course or the other, but suppose there
+[00:25:38] was a student who has not yet taken any course, but he is listed in the student relation,
+[00:25:42] okay. So, if he has not taken any course so far then obviously his record is now going
+[00:25:48] to match any record here in the takes relation. If it does not match then it is going to result
+[00:25:56] in the output where that student record itself is going to be missing because in the output
+[00:26:02] you will only get records where the IDs of the student ID is going to match with the
+[00:26:08] ID of the takes relation, right. So, and if a student has not taken any course
+[00:26:14] you will not find that ID here which means that there is no record that is matching.
+[00:26:18] So, there will be no output for that student at all which means that you would have lost
+[00:26:23] that information about the student, okay. So, what does it mean to lose information?
+[00:26:27] You might say that you know this is actually what I want because if the student has not
+[00:26:32] taken any courses obviously he should not be there as part of the output when I am looking
+[00:26:36] at what all courses a student has taken, but you might argue that you know when you are
+[00:26:42] actually building a real application you would really be interested in seeing may be a list
+[00:26:47] of all the students and the courses that they have taken and if they have not taken any
+[00:26:51] courses you want to know that as well, okay. So, you because it is important to know that
+[00:26:56] these students have not taken any courses you do not want to miss that information and
+[00:27:00] you want to know which students they are, right. So, it is important that you do not
+[00:27:04] lose that information for real applications and so if for doing that we have what is the
+[00:27:12] outer join. So, this is an extension of join operation that avoids such loss of information.
+[00:27:20] It computes the join and then adds tuples from one relation that do not match tuples
+[00:27:25] in the other relation to the result of join. So, it does the regular join and then it adds
+[00:27:31] those records which do not match also as part of the result and it fills it with null there
+[00:27:39] is remaining you know because it did not match any of the other record other relation it
+[00:27:45] is going to use null values for the other relation there. So, that way you will know
+[00:27:49] that this student is having null values in the output which means that he has not taken
+[00:27:53] any courses, okay. So, now there are three forms of outer join which we will be looking
+[00:27:57] at it is called left, right and full outer join. So, we will take a look at each one
+[00:28:01] of them more clearly.
+[00:28:06] So, yeah so in order to see it more clearly let us take a small example, okay. So, and
+[00:28:15] here we have you know a small relation you know called the course relation here means
+[00:28:22] table, right. So, in relational algebra basically the idea is that relations are tables and
+[00:28:29] it maps also if you remember the relational algebra that relations are basically sets,
+[00:28:36] okay. So, and from set theory you have the notion of a relation because you have like
+[00:28:41] you know one set you know mapping to another set and that you get you know the you form
+[00:28:49] a relation between the two sets and so this is like saying there is a relation between
+[00:28:54] you know multiple sets here. So, each of these like course ID has its own domain it is a
+[00:29:00] set of possible values and it has a domain title has its own domain it has you know a
+[00:29:08] set of possible values and this is a relation between all of them. So, that is why it is
+[00:29:12] called a relation here and relation basically just means for our consideration it just means
+[00:29:18] table, right. So, from the point of view of application building we just think in terms
+[00:29:24] of tables, but they are the same as relations. And here we have you know the course so just
+[00:29:34] three records you know in a realistic in the previous examples probably we have seen much
+[00:29:40] larger tables, but just to understand the notion of you know this outer join here we
+[00:29:45] just have a small tie example which is just having three records. So, there is a course
+[00:29:50] ID the title of the course which department is offering that course and how many credits
+[00:29:56] that course is for and then we have the prerequisites of that particular course. So, for each course
+[00:30:02] we have what is the prerequisite for that course. So, for example, the bio 301 course
+[00:30:09] has a prerequisite you need to do the bio 101 course before you can actually take that
+[00:30:14] course. So, this is the prerequisite table and again it is a small tie example. So, there
+[00:30:20] are just three records for us to demonstrate what the outer join means. In general the
+[00:30:25] prerequisite table is going to be much bigger and you could have repetitions because the
+[00:30:29] bio 301 might have multiple prerequisites which means that the bio 301 might repeat
+[00:30:36] you know you might have one more row here for bio 301 for with some other prerequisite
+[00:30:41] ok so and so on. But what you want to notice here is that course
+[00:30:47] information is missing you know for CS 347 ok. So, for CS 347 there is a course ID here
+[00:30:57] it has a prerequisite, but there is no information about that course. So, we do not know what
+[00:31:00] the title is it is not there in this relation. Obviously, in real life you will not come
+[00:31:07] across such a situation you should not if you have you know done your database design
+[00:31:11] properly and you are running it properly, but we have a tie example here to demonstrate
+[00:31:19] our outer joins. So, this is a course ID for which we do not have information and similarly
+[00:31:26] CS 315 here we do not have any prerequisites for that course.
+[00:31:34] So, now that might actually be meaningful it does not mean that we are that information
+[00:31:41] is missing it just means that you know this course does not have any prerequisites that
+[00:31:48] is what it means. So, it is not a missing value. So, now the first of these outer joins
+[00:31:55] we are looking at is the left outer join ok. So, and we are actually doing a course natural
+[00:32:05] left outer join prerequisite ok. Again the notion of natural join is the same as previous
+[00:32:10] it basically means that it is going to take you know all the matching columns and use
+[00:32:16] that in order to do the join and in the output those matching columns will appear only once
+[00:32:21] instead of repeating. So, when you do a course you know natural
+[00:32:27] left outer join prerequisite if you just did a course natural join prerequisite what would
+[00:32:34] it do it would you know try to match all those records which are the columns which are the
+[00:32:42] same. So, we have the course ID here and the course ID here. So, these are the two attributes
+[00:32:48] which are same none of the other attributes are you know are the same. So, in order to
+[00:32:53] do the join it is only the course ID that is important and then it is going to try to
+[00:32:58] match you know when you do the natural join it is going to try to match the courses right.
+[00:33:02] So, for bio 301 it is going to find a match for CS 190 it is going to find a match, but
+[00:33:08] for CS 315 it does not find a match right and similarly for CS 347 it does not find
+[00:33:15] a match. So, but we are doing the left outer join. So, which means that the left side we
+[00:33:20] are doing a course join prerequisite. So, the left side is course and the right side
+[00:33:26] is prerequisite which means that you want to make sure that the left side which is this
+[00:33:33] the course all of these course IDs should appear in the output. So, that is what it
+[00:33:39] means. So, when you do a course natural left outer join prerequisite all the course IDs
+[00:33:46] from the left side from the course table should be part of the output. So, if you see bio
+[00:33:51] 301 CS 190 and CS 315. So, 30 bio 301 CS 190 and CS 315 these are the three courses which
+[00:33:58] are there from the left side and then we have joined it with the prerequisites.
+[00:34:08] So, we see all the information about the course. So, because we have in the course table we
+[00:34:14] have the course ID the title department name and credits course ID title department name
+[00:34:20] and credits. So, these four attributes come from the course table. So, they are coming
+[00:34:27] from the course table and the prerequisite information. So, we have the course ID and
+[00:34:33] the prerequisite ID these two are coming from the prerequisite table. And you can see that
+[00:34:39] from the left side we have the list of all the course IDs. So, and all of their information
+[00:34:45] being present as part of your output on the right side you have the prerequisites and
+[00:34:50] we know that CS 315 there is no prerequisites in the prerequisite table for that it is missing
+[00:34:57] that and therefore, the CS 315 you are getting the value of null as part of the output. And
+[00:35:07] that is why this is called as a natural left outer join why is it natural because it is
+[00:35:12] matching the course ID automatically you are not explicitly mentioning a where clause where
+[00:35:17] you know course dot course ID is what a prereq dot course ID you do not need to mention that
+[00:35:21] when you do a natural. So, and it is left outer join because you are having all the
+[00:35:28] records of the left side table and the right side table if you do not find any matches
+[00:35:34] in that the corresponding values in the left side table will be null. And in relational
+[00:35:40] algebra this is represented using a symbol like this. So, the regular natural join would
+[00:35:47] be this way and since this is an you know left outer join you can see that you know
+[00:35:53] the small you know difference in the symbol towards the left side. So, and so that is
+[00:36:02] how you represent a natural left outer join a good way to think about this is you can
+[00:36:08] see that on the left side you have like you know you are trying to say that all of the
+[00:36:13] you know it is like the entire table you know it is like it is like the table right. So,
+[00:36:18] the entire table all of the records in the left side are going to be part of the output
+[00:36:22] ok. So, that is how that symbol you can it is easy way to remember what that symbol means.
+[00:36:29] So, and similarly when we do a right outer join you can expect that all the records in
+[00:36:37] the right side table are going to be present. So, and that is why the symbol looks like
+[00:36:42] that where you have all the records on the right side should be present as part of the
+[00:36:47] output. And again I am doing a natural join. So, I do not need to mention a where clause
+[00:36:53] where I am trying to match you know the course dot course id is equal to pre dot course id
+[00:37:00] ok. So, I do not to avoid mentioning that I am doing a natural join.
+[00:37:05] So, the term natural is actually you know not really really required because you know
+[00:37:12] you can actually just put that in the where clause whenever you need, but it is convenient
+[00:37:19] to have it ok. So, because that is the way probably we think about it and that is you
+[00:37:25] know it becomes more readable when we see it that way.
+[00:37:29] Now here ok. So, in the right outer join. So, again the these columns are coming from
+[00:37:36] the course table and these two columns are coming from the prerequisite table ok. So,
+[00:37:49] and we can see that all of the prerequisites are mentioned ok. So, all of the records from
+[00:37:55] the prereq table are going to be part of the output ok. There will be no nulls there because
+[00:38:01] you are actually just taking all of the unless there was a null in the prereq table itself
+[00:38:06] ok. But otherwise you are not going to introduce new nulls here ok. So, all of the values from
+[00:38:12] the prereq table are going to be part of this output here.
+[00:38:16] If you recall the prereq table. So, this is what we had ok. So, and these were the course
+[00:38:24] id's ok. So, of the prereq table ok. So, 301, 190 and 347. So, those course id's
+[00:38:31] would be part of my output right. So, 301, 190 and 347. So, just to confirm that those
+[00:38:46] are the ones which I am having in my course. And I am joining that with all the other you
+[00:38:53] know with the course table. So, whatever details I got from the course table they are all there
+[00:38:57] ok. Except for the third one there was no information. So, for CS 347 there was no information
+[00:39:05] in the course table. And therefore, that is going to be missing in the output. So, you
+[00:39:09] are going to get null values. So, this is basically trying to say that I am doing a
+[00:39:14] right outer join because I want to look at all the you know prerequisites ok. So, and
+[00:39:22] what it is a prerequisite for in some sense right. So, and therefore, it is you know I
+[00:39:29] am trying to see this ok. So, CS 347 has a prerequisite. So, and it should be part of
+[00:39:38] the output ok. So, and that. So, this is the right outer join ok. So, the right outer join
+[00:39:46] is preserving information from the right side table. The left outer join is preserving information
+[00:39:51] from the left table. Sometimes you want to preserve all the information from both the
+[00:39:55] left table and the right table. Then you use the full outer join. So, again the query is
+[00:40:02] written like this course natural full outer join prereq. Of course, this is just the from
+[00:40:07] part ok. So, you would say select star from course natural full outer join prereq where
+[00:40:15] may be some other conditions as you wish right. So, that would be the full query. So, this
+[00:40:20] is just part of the query here. And here you are able to see that you know you have four
+[00:40:28] records here because you know all of the information from both the tables you want to preserve
+[00:40:34] ok. So, you have here you know this particular course ID. You do not have information about
+[00:40:40] it and therefore, you know there are the null values here. This particular course ID has
+[00:40:47] no you know prerequisites at all. It is not you know there in the prerequisite table and
+[00:40:53] therefore, you have a null value in the prerequisite column ok. And so, by looking at this information
+[00:40:59] you have full details about you know all the courses and the prerequisites whether they
+[00:41:05] are you know whether they do not have information in the course table or they do not have any
+[00:41:10] prerequisites they are going to be part of this output ok.
+[00:41:14] And so, in real applications this is actually pretty useful because when you are trying
+[00:41:19] to show the information you know you would want to be complete ok. So, and if there is
+[00:41:26] something that you do not want at the time when you are actually trying to show the output
+[00:41:29] you could probably remove those records from the output that you are not interested in
+[00:41:34] ok. But this contains all the information and so, it is useful you know join item to
+[00:41:41] have ok. So, now let us take a look. So, this is you
+[00:41:50] know a summary of the things that we have done. So, like we have done the inner join.
+[00:41:56] So, this is you know called as a join type. There are four kinds of join types here. So,
+[00:42:02] it defines how tuples in each relation that do not match how we you know how we treat
+[00:42:10] them right. So, and the join condition is the you know so, this defines how you know
+[00:42:18] tuples are going to match right. So, what we mean when we say that two tuples are matching
+[00:42:22] ok. So, for example, when you say the natural join where it is going to say that all the
+[00:42:29] like id you know any attribute which is having the same name in both the tables they are
+[00:42:35] going to match right. So, their values if they are the same they are going to match
+[00:42:38] ok. So, that is the natural join. So, it is telling us how it is going to match the relations.
+[00:42:47] So, which defines which tuples in the two relations match and if they do not match then
+[00:42:53] how you know if there is no you know how tuples in each relation that do not match any tuple
+[00:43:00] in the other relation how you treat them ok. So, we have seen that inner join will
+[00:43:05] just remove them ok. So, it is not going to worry about them and the outer join is going
+[00:43:10] to keep them and depending on whether you do a left outer join or a right outer join
+[00:43:14] or a full outer join it is going to keep different parts of the of the information ok. So, it
+[00:43:20] is so, this join type is worried about how you are going to treat those that information
+[00:43:26] that does not match whereas, this is going to you know worry about how you are going
+[00:43:33] to match the relations right. So, there are two different and you will be looking at on
+[00:43:39] and using also ok. So, which will you know tell us how you are going to match the relations.
+[00:43:46] So, and you can have any combination of these ok. So, we have seen examples of natural left
+[00:43:53] outer join we have seen an example of natural right outer join and natural full outer join
+[00:43:57] ok. So, we can have natural inner join of course, we have seen that already we just
+[00:44:03] did not call it inner join. So, the term inner join inner is optional there because the default
+[00:44:09] join is inner join ok and let us say if it is an outer join then you want to mention
+[00:44:14] whether it is a left outer join or right outer join or a full outer join, but if it is an
+[00:44:19] inner join you do not need to mention inner it is optional ok. So, we have actually already
+[00:44:26] seen natural inner join as well. Now, we will also take a look at this on and using ok.
+[00:44:33] So, here we have you know. So, a couple of more examples before we get there. So, we
+[00:44:41] have the course natural right outer join prereq and here we have you know. So, the course
+[00:44:53] and the prerequisite table. So, this is what we have already seen an example of. So, just
+[00:44:57] to recap here we have we have the you know all the prerequisites you know mentioned and
+[00:45:04] we have you know the corresponding courses that treat those as prerequisites and for
+[00:45:12] courses for which the information is not available in the course table we are putting nulls there.
+[00:45:19] We have seen course full outer join prereq already, but now we are saying using ok. So,
+[00:45:25] using course ID when we say using it means that it is still you know it is like a natural
+[00:45:33] join you do not need to mention natural join ok. So, it is like a natural join, but natural
+[00:45:40] join is going to match all of the you know natural join is going to match all of the
+[00:45:47] you know attributes which have the same name in the two tables ok. In this case only course
+[00:45:52] ID is the same. So, you have like course dot course ID and prereq dot course ID. So, this
+[00:45:58] is the matching column, but some tables will have more than one matching column right and
+[00:46:04] as we had discussed in the previous example sometimes you do not want you should be careful
+[00:46:10] when you do a natural join because sometimes you do not want a particular column to be
+[00:46:15] treated as part of the same as part of a match because it means something different ok. So,
+[00:46:20] right. So, just like when we say name it could be student name or instructor name or course
+[00:46:26] name and you do not want to you know unnecessarily match the name column just because you are
+[00:46:31] trying to join those two tables. So, you want to leave that name column out
+[00:46:36] ok as part of the natural join and you want to use something else. So, when you say using
+[00:46:41] you are explicitly mentioning which attributes you want to use for your natural join ok.
+[00:46:47] So, it is going to be like natural join, but you are explicitly mentioning the attributes
+[00:46:52] which you want to be used for part for doing your matching and that is the meaning of using
+[00:46:57] here, but otherwise it is like a natural join which means that in the output those you know
+[00:47:05] the course ID will be again represented only once. You are now going to have course dot
+[00:47:09] course ID and prereq dot course ID as two separate columns in the output you will just
+[00:47:14] have it once ok.
+[00:47:17] So, now here in this example we are taking a course inner join prereq. So, it is same
+[00:47:26] as a regular you know join ok. So, inner is like I said is optional, but we are here saying
+[00:47:35] on course dot course ID is equal to prereq dot course ID ok. So, we are trying to match
+[00:47:41] the course ID and the prereq dot course ID ok. So, it is similar to putting it in the
+[00:47:48] where clause right. So, it is like doing the regular natural join, but you are explicitly
+[00:47:56] mentioning. So, natural join would automatically take these two columns because there is a
+[00:47:59] same column name and it is going to match them. So, this is going to be automatically
+[00:48:03] done in natural join here you are doing it explicitly.
+[00:48:07] So, now the question is what is the difference between this result and what we you would
+[00:48:12] get as a real natural join ok. So, initially you might think that they are the same and
+[00:48:19] effectively they are the same for most cases, but you should be careful to see that the
+[00:48:26] course ID column is repeating twice here and that is the only difference ok. And of course
+[00:48:32] it is the same course ID also. So, it does not matter, but it is good to know that you
+[00:48:38] know this is going to repeat because it is not doing a natural join. If you are doing
+[00:48:42] a natural join then it knows that or it treats that it is the same you know attribute and
+[00:48:49] the attribute it does not try it does not repeat it. But since this is not a natural
+[00:48:54] join you are not using a using either ok. So, you are using a very specific you know
+[00:49:01] you are giving the entire you know you are giving the entire detail about how you should
+[00:49:06] do the matching it is like manually you are doing the matching yourself ok. Whereas, when
+[00:49:10] you are doing a natural join you are automatically doing the matching it is doing everything
+[00:49:14] automatically. When you do a using it is doing it more or
+[00:49:18] less automatically except that you are mentioning which are the attributes which you should
+[00:49:22] use for the matching ok. But here when you are doing an on you are explicitly manually
+[00:49:30] mentioning what is the condition that should be used for matching ok. And therefore, it
+[00:49:36] does not know. So, the you know internal the SQL does not know that you know the course
+[00:49:41] IDs are actually the same ok. So, it cannot read it from this particular expression that
+[00:49:48] you that you mention ok. So, it is going to repeat that course ID here ok.
+[00:49:55] So, and the course left outer join prereq ok. So, on course dot course ID is equal to
+[00:50:03] prereq dot course ID. So, this is similar to the previous one except that here you are
+[00:50:09] doing an inner join here you are doing a left outer join. So, this is like again like similar
+[00:50:14] to earlier we have done a left outer join earlier except that we did not do the on we
+[00:50:19] did it as a natural left outer join ok. So, here it would be the same because you know
+[00:50:26] because it is a small relation and there is not much complications here. So, the output
+[00:50:30] would be similar except that as you can see the course ID is again repeating here ok.
+[00:50:35] So, that would be the difference ok. So, course natural out right outer join prerequisite
+[00:50:44] ok. So, here since you are doing a natural right outer join you can see the course ID
+[00:50:48] column is not repeating and we had done this earlier. So, there is no need to worry about
+[00:50:54] it. So, now the course full outer join prerequisite
+[00:51:01] ok and here you are using right. So, when you say using it is like a natural join in
+[00:51:07] the sense that the output is now going to have two course IDs two course ID columns
+[00:51:12] it is going to have only one course ID column because it knows that it is doing the matching
+[00:51:16] on course ID ok. So, and therefore, you are going to have one course ID column ok. So,
+[00:51:21] and so that is convenient ok. So, those are the you know different kinds of joins. So,
+[00:51:30] we have seen like you know fairly complex all the possible different kinds of joins
+[00:51:35] that there are and it is important to know this part in order to you know to get to a
+[00:51:42] you know stage where we say that you know you know enough about SQL ok. So, with this
+[00:51:47] we will stop this session and we will continue the remaining part in the next session.

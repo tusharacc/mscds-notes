@@ -1,0 +1,904 @@
+[00:00:00] Hello, welcome to today's session. In the last class, we saw about relational algebra.
+[00:00:14] So the relational algebra was a mathematical query language. So it is meant for us to be
+[00:00:21] able to look at different queries in a mathematical manner so that it will be useful to simplify
+[00:00:25] queries and for doing query optimization and so on in the database backend. However, from
+[00:00:31] a developer point of view and from a user point of view, what the query language that
+[00:00:36] really works is SQL. And today we will be looking at SQL. It is a very practical language
+[00:00:43] because this is one language that if you learn, you will be able to control many, many different
+[00:00:48] kinds of databases.
+[00:00:50] So there are many relational database offerings by various companies and also many open source
+[00:00:57] offerings. And in order to be able to use any of them, if you just know this one language
+[00:01:02] called SQL, you will be able to use any of them. So today we will be looking at an introduction
+[00:01:09] to SQL.
+[00:01:13] So this is the overview or the outline of the slides of this chapter. We will go through
+[00:01:21] some of these slides today and we will be looking at an overview as well as an SQL,
+[00:01:30] how SQL is used for doing data definition. So how you define your data using SQL and
+[00:01:37] how you do all the basic queries in SQL which consists of the SQL query structure and the
+[00:01:48] basic query structure. So there is a common structure that typically people use when they
+[00:01:53] are doing SQL queries and there are lots of additional operations that you would tend
+[00:01:58] to use when you are writing SQL queries as you get more and more advanced.
+[00:02:03] These include all the basic operations, set operations. We will be looking at how null
+[00:02:10] values are handled in SQL. We will be looking at aggregate functions, nested subqueries
+[00:02:18] and how you also modify the database. So all these earlier kinds of queries, they are meant
+[00:02:24] for how you retrieve information from the database, but we will also need to know how
+[00:02:28] you actually modify the database as well, how you add records, delete records and so
+[00:02:32] on. So we will be looking at all these different aspects and one of the advantages of learning
+[00:02:38] it in this systematic manner is that you will tend to know the entire range of possibilities
+[00:02:45] that there are in SQL. That is the advantage. There is also a disadvantage because when
+[00:02:50] you actually see all these different commands in SQL, you know, as just a lecture, you will
+[00:02:57] tend to just, you know, see it and then forget it, right? So it just looks, seems something
+[00:03:02] like an external, somebody is doing something somewhere and it is just, you know, a kind
+[00:03:08] of tedious or boring set of instructions that are being just, we are looking at the syntax
+[00:03:13] of that and so on. So in order to make it interesting, what you
+[00:03:16] need to really do is after going through this process, you will definitely have to go through
+[00:03:21] the exercises. You will have to try to run SQL commands on your own so that you will
+[00:03:26] be able to actually remember the SQL commands and also understand exactly what is happening.
+[00:03:35] So having said that, I will now move on to, you know, covering the slides of this chapter.
+[00:03:43] So starting with the history, so one slide on history. So the SQL language originated
+[00:03:50] in the IBM San Jose Research Lab and it was called as the SQL language at that point of
+[00:03:56] time. It was part of what is called as the system R project and soon it got renamed as
+[00:04:04] the structured query language, right? So the term here, so earlier it was called SQL, even
+[00:04:11] after it has changed as structured query language, we use the term SQL. So it is still pronounced
+[00:04:18] as SQL by most people but I prefer calling it as SQL. You can choose any way that you
+[00:04:27] want to pronounce it. So there is a standardization that has come
+[00:04:32] into this language and that is why it is actually powerful because different vendors, whenever
+[00:04:37] they are creating their own database management systems, relational systems, whichever company
+[00:04:45] they might try to add their own features and they might try to extend the SQL language,
+[00:04:50] they might tweak the language slightly this way, that way and when people do that, it
+[00:04:56] could become a chaos, right? So it could become a chaos because different people will have
+[00:05:01] their own kind of commands and if you just learn one way of doing it and then you go
+[00:05:06] to another vendor, a different database system, the same commands might not work exactly.
+[00:05:12] So that kind of field is there to some extent. So there are certain commands which are specific
+[00:05:17] to different vendors but luckily because there has been a lot of standardization that has
+[00:05:22] gone on, the language has become, so we have an ANSI standard and ISO standard, right?
+[00:05:29] So and the efforts of ANSI and ISO have succeeded to a large extent. So the SQL that you learn
+[00:05:36] will be very useful. It will work more or less seamlessly across all the different vendors,
+[00:05:42] okay? There will be certain small changes which is, you know, which you can probably
+[00:05:47] pick up in a day or two if you switch to a different database.
+[00:05:53] So the ANSI standard started in 1986, so but you can see that almost every three years
+[00:06:01] or so there has been a new version or a new version of the standard because there was
+[00:06:07] a lot of research that was going on in the database community and there were newer and
+[00:06:13] newer features every time that were being invented and in order to make sure that all
+[00:06:19] those new features come into the SQL, that they are usable in the SQL language, there
+[00:06:26] were updates to the SQL language, even the standard. Of course in 1999 people, you know,
+[00:06:33] changed it instead of calling it 89, 92 and then 99, SQL 99, they started calling it as
+[00:06:40] SQL 1999, okay? So and the slide does show that, you know, it says it is a Y2K compliant,
+[00:06:48] year 2000 compliant because at the year 2000 people realized that you do not want the years
+[00:06:54] to be just two digits, you want the years to be four digits because you are now moving
+[00:06:59] from, you know, 99 to 2000 and it could be a bit confusing because then it becomes 00,
+[00:07:07] the year becomes 00 and then 01, people are not used to that kind of years, okay? So all
+[00:07:12] the years started getting changed to 2000, 1999, 2000 and so on.
+[00:07:20] So after that again we see that almost every three years there has been a new version of
+[00:07:26] SQL, of course things slow down at some point of time and then pick up again. The latest
+[00:07:31] version of SQL is in 2023, so that is the most recent version and this version includes
+[00:07:42] provision for graph databases and for manipulating JSON files, those were the two major improvements
+[00:07:50] in this version of SQL but there were many other minor ones as well.
+[00:07:55] And like I said commercial systems typically offer most, if not all of the SQL 92, so SQL
+[00:08:02] 92 is like in some sense the standard of the standards, okay? So most of those features
+[00:08:08] are typically implemented in all of these systems and, you know, some of the systems
+[00:08:14] tend to offer features from the latest standards and they might also offer their own special
+[00:08:20] proprietary features, okay, which are now there in other commercial systems.
+[00:08:27] So some of the commands that you might see in what we cover in the slides, they might
+[00:08:33] not work on your particular system, okay? So you should make sure that you are using
+[00:08:39] the same versions of the systems as what is being used in these slides if you want them
+[00:08:44] to work but even otherwise do not fret because they will typically be just a small variation.
+[00:08:51] Most likely all the commands that you will see in these lectures will work but it is
+[00:08:55] just possible that one or two might not work exactly the same way, okay?
+[00:09:02] So these are the different parts of SQL, so you see that, you know, we have the data manipulation
+[00:09:08] language, so this is the language that is used in order to create, you know, the records
+[00:09:16] in tables, okay? So when you want to insert records or delete records or modify records,
+[00:09:21] this is the data manipulation language that you are going to use, okay? So but there is
+[00:09:26] the data definition language as well and so the data definition language is what you are
+[00:09:31] going to use when you want to do things like, you want to specify the kinds of tables that
+[00:09:40] are used, the definition of the tables, the schemas of those tables, what is the integrity
+[00:09:45] constraints that are there in the tables. For example, like we discussed when we, so
+[00:09:56] as we had discussed earlier, for example, in the banking application you might want
+[00:10:03] to say that there is an integrity constraint such that the account balance can never go
+[00:10:07] less than 0. So such kind of integrity constraints or key kind of integrity constraints that
+[00:10:13] this is the primary key of the table, those kinds of constraints are all defined in the
+[00:10:17] data definition language. We also have what is called as the view definition, okay? So
+[00:10:24] the view definition is also part of the data definition language. So defining views is
+[00:10:33] like you know you have original relations or tables in the database and you can define
+[00:10:37] additional views on these relations which different kinds of users might want to see.
+[00:10:43] So for example, some class of users might have access, you might want to provide access
+[00:10:48] to some class of users who are probably the power users or the owners of the company and
+[00:10:53] so on, they might have access to everything, all the data in the company, okay? But for
+[00:10:57] some class of users you might want to restrict, for example, they should not be able to see
+[00:11:01] the salaries of all the employees but they might be able to see the other details of
+[00:11:07] the employees, right? So in order to do that you would define views, different kinds of
+[00:11:11] views on the same data. So you also have transaction control that includes commands for specifying
+[00:11:20] what is the beginning of and the ending of transactions, okay? So whenever you want to
+[00:11:25] create a transaction, a transaction as we had discussed earlier is a collection of SQL
+[00:11:30] commands that you want to run as a unit, okay? So the system should never run only half of
+[00:11:37] those commands and then say that there was an error or there was a power cut and therefore
+[00:11:43] I am not able to run the rest of the commands. The system is constrained to either run all
+[00:11:50] those commands completely or if it is not able to run it should have a provision to
+[00:11:54] roll back to the state of the database as it was before those commands were run. So
+[00:12:00] in order to define such transactions which are definitely going to be very useful for
+[00:12:04] many important applications, you need transaction control and SQL is again going to be useful
+[00:12:12] for doing this transaction control. You also have things like embedded SQL that, you know,
+[00:12:19] shows how SQL statements can be embedded in higher purpose, in more general purpose programming
+[00:12:26] languages like C or Python or Java. So how you embed SQL within those languages because
+[00:12:31] as we had discussed SQL is not a Turing complete language. You cannot do everything in SQL.
+[00:12:38] SQL is, you know, tuned in order to help you to be able to query relations and tables very
+[00:12:46] effectively. Okay, so you also have authorization kind of commands. So you also have authorization
+[00:12:59] kind of commands which allow you to say that these tables or these columns should not be
+[00:13:07] visible to certain kinds of users. Okay, so who has access to what, that kind of authorization
+[00:13:13] is also done using commands within SQL.
+[00:13:19] So the data definition language, this, so these are all the functions of the data definition
+[00:13:25] language which we can use in SQL. So first it is used for defining the schema for all
+[00:13:30] the relations. Okay, so the schema was the set of columns that we have in every table
+[00:13:37] in your database. And in addition to the set of columns, we also need to look at the types.
+[00:13:43] What are the types of these columns so that, you know, each column might be either a text
+[00:13:51] type, a numeric type, a date type, you know, and so on. Okay, so exactly what the type
+[00:13:57] is the system needs to know and that is defined in this data definition language. We also
+[00:14:02] define the integrity constraints in the data definition language.
+[00:14:07] There is also something called as indices. So an index is a structure which is used in
+[00:14:14] order to say that this table I want to be able to access very efficiently using this
+[00:14:19] particular column. So for example, if you have an employees table, you might want to
+[00:14:23] say that using the employee ID, I want to be able to access records very efficiently.
+[00:14:28] Okay, so which means that it should be almost like an instantaneous access. Okay, so whereas
+[00:14:33] if you want to access the same table of, let us say the employee table using some other
+[00:14:38] information like, you know, you want to say I want to get all the employees who joined
+[00:14:43] my company between this year and this year, right. So if you want to ask such a query,
+[00:14:50] then you do not need, you know, you are not going to ask such kinds of queries every day,
+[00:14:54] right. So and so you do not need them to be that efficient. Whereas if you want to say,
+[00:15:01] get me this particular employee's details. Okay, so then based on the employee ID, I
+[00:15:06] want to be able to access the employee details very efficiently. So if you want to do that,
+[00:15:11] then you need to create an index on the employee ID for the employee table. So that is the
+[00:15:16] notion of index. So it is just like looking at the back of a textbook where you can see
+[00:15:20] the index in a textbook and you will be able to locate any particular word in the textbook
+[00:15:26] and you will be able to see which page numbers that word is defined on, right. So this notion
+[00:15:35] of index here is very similar to that. So again, the data definition language is where
+[00:15:42] the indexes are also defined. You can define the security and authorization information
+[00:15:49] for each of the relations also in the data definition language, that is, which users
+[00:15:54] are authorized to access which tables. You can also mention what is the physical storage
+[00:16:03] structure for each of the relations on the disk, okay.
+[00:16:08] And of course this is something that people generally do not do. There is a default way
+[00:16:13] of storing relations on disk and that is what will be used. But in certain situations for
+[00:16:20] certain kinds of applications, if you are really interested in controlling exactly what
+[00:16:25] is the physical structure that is going to be used for storing the relation on disk,
+[00:16:30] then you have a provision to do that in the data definition language.
+[00:16:37] So these are the different kinds of domain types that are there in SQL. So when you create
+[00:16:42] columns for your rows, for your tables, and these columns have, you know, they have a
+[00:16:50] different types. So these are the different types that you can have for those columns.
+[00:16:55] So a column could be a character, you know, a string kind of column where you say, okay,
+[00:17:00] so it is a char with brackets n. So whatever your n is, it could be like 8 or 10 or 32
+[00:17:08] or some particular number. So that means that this column, let us say the name of the employee
+[00:17:14] is a character data type with a fixed length which is n, whatever your n was, which could
+[00:17:22] be like 32 or 64 or any number that you want. So but it is going to be fixed length, which
+[00:17:28] means that all the names are going to have that much of length. So if the length is not
+[00:17:34] that much, it is going to be padded with spaces, maybe on the left or on the right. So and
+[00:17:41] the, if you do not want to have, you know, to waste the space there saying that why do
+[00:17:48] you want, you know, all the things to be fixed length when most of the names are not going
+[00:17:53] to be 64 characters long, many of the names are probably going to be just, let us say,
+[00:17:59] 15 characters long and you are going to waste the space, then you could actually define
+[00:18:03] your field as a varchar, okay. So a varchar will not occupy the full space as a field
+[00:18:11] because n, it is going to occupy up to n, so that is going to have a maximum length
+[00:18:15] of n, but it could occupy less than n. You can have integer types, okay, so which is
+[00:18:23] a machine dependent integer type. So typically whatever is your, you know, if it is a 64-bit
+[00:18:30] machine that you are using, then typically the integer will be 64 bits, right. So and
+[00:18:35] if you really are not interested in such large 64-bit integers for a particular data type,
+[00:18:42] for a particular column, then you could also use a small int, sorry. So you could also
+[00:18:48] use a small int there, right. So again that is a machine dependent, you know, subset of
+[00:18:55] the integer domain type. It could typically be like about 2 bytes, okay, so instead of
+[00:19:01] 64 bits. You can also define what is called as a numeric type where you give two arguments,
+[00:19:09] one is, you know, the precision and second is the number of digits to the right of the
+[00:19:16] decimal point, okay. So here is an example when you say numeric, let us say 3, 1, it
+[00:19:21] allows you to store up to 3 digits with 1 digit being after the decimal point, okay.
+[00:19:27] So for example you will be able to store 44.5 here like this, but you will not be able
+[00:19:32] to store 44.5 because this requires 4 digits here, okay, totally 4 digits with 3 before
+[00:19:40] the decimal point and 1 after the decimal point, okay. So you cannot store 0.32 either,
+[00:19:46] okay, so because it requires 2 digits after the decimal point. So you will not be able
+[00:19:54] to store those kinds of numbers. So sometimes you will be really sure that, you know, you
+[00:20:01] will only need this many digits after the decimal point. For example if you are storing,
+[00:20:07] let us say money, you know, if you are storing, let us say in rupees, you would store, you
+[00:20:13] know, at most in paisa, so you would have up to 2 decimal points there, okay.
+[00:20:20] So you can also store real and double precision floating point numbers which are typically
+[00:20:25] what you would tend to use, let us say in C language or C++ and so on. You would have
+[00:20:31] real and double precision floating point numbers, okay, so which are either just floating point
+[00:20:36] or double precision floating point numbers which are machine dependent again. So if it
+[00:20:40] is a 64-bit machine then it is typically going to use 64 bits for your numbers.
+[00:20:50] And here you are not really specifying that I am going to store so many digits after the
+[00:20:54] decimal point and so on. So it is now more flexible. You can also specify that I want
+[00:21:01] a floating point number, you know, with n digits, okay, so the position is going to
+[00:21:08] be n digits, okay. So and there are even more data types that are available in the SQL language.
+[00:21:16] For example, the most common ones would be date, okay, so and time kind of, you know,
+[00:21:23] data types. So you can use any of these data types for your columns of your tables when
+[00:21:28] you are defining them.
+[00:21:31] So in order to create a table, this is the construct that you will use. So you will say
+[00:21:37] create table r, r is the name of your table here and after giving, you know, data types,
+[00:21:45] the name of the table you will give a set of attribute values and so attribute values
+[00:21:54] and the data types, attribute 1 and its data type, attribute 2 and its data type and so
+[00:21:59] on, okay. So and you would also mention several integrity constraints about these table, about
+[00:22:07] these attributes and they are optional, right. So you do not have to have integrity constraints
+[00:22:16] all the time. Sometimes you will have them, sometimes you will not have them. But definitely
+[00:22:21] you are going to have some attributes on their data types.
+[00:22:24] So here is an example. So when you are trying to create a table for the instructor, for
+[00:22:32] storing instructors, typically you will have these kinds of columns. So you are storing
+[00:22:36] these columns, you are having an ID column, you are having a name column, you are having
+[00:22:41] a department name which the instructor is going to be in and the salary, right. So four
+[00:22:46] different attributes you are trying to store here. And you also have the data types. So
+[00:22:51] the ID is a string of up to 5, of exactly 5 characters because it is fixed with character
+[00:22:59] string. You have the name which you are saying it is going to be up to 20 characters. It
+[00:23:05] is a varchar. So you do not have to have exactly 20 characters in the name. Even if there are
+[00:23:11] less, it is not going to waste the space. It is going to store it in a more efficient
+[00:23:14] manner, okay. So the department is also varchar of size 20. And the salary is a numeric type
+[00:23:21] and the monetary is a numeric type as we had just mentioned. If it is a monetary kind of
+[00:23:29] thing which is like a rupee, then you might have at most two, you know, a position of
+[00:23:35] two decimal point, two digits after the decimal point because you can almost have, you know,
+[00:23:40] that many paisas, okay. So you can also define integrity constraints. They are optional.
+[00:23:47] The previous table, when you created this table, we did not specify any integrity constraints
+[00:23:55] at all which is perfectly fine. But you could also have integrity constraints. And the most
+[00:23:59] common integrity constraints are the primary key, mentioning what the key is for your tables,
+[00:24:08] okay. So the primary key is the most common integrity constraint, okay. So and a primary
+[00:24:14] key could, you know, you could mention that these are the attributes that constitute the
+[00:24:18] primary key. Typically most of the cases you might see that the primary key consists of
+[00:24:22] only one attribute. So for example, the ID, okay. So the instructor ID would be the primary
+[00:24:28] key, okay. So but in some cases the primary key might not be just a single attribute.
+[00:24:34] It might be a collection of attributes. And we will see such examples as we go through,
+[00:24:40] okay. So you can also have a foreign key which again consists of a number of attributes.
+[00:24:46] And you can see that this foreign key references this particular relation. So it is referencing
+[00:24:50] another relation. So for example, the department name in the instructor table is actually referencing
+[00:24:56] the different table, the department table, okay. And the department name might be the
+[00:25:02] key, the primary key in the department table. But here it is a foreign key because it is
+[00:25:08] referencing a particular record of the department table, okay. So you could also have another
+[00:25:15] integrity constraint called not null saying that this particular field or, you know, column
+[00:25:21] should never be null, okay. So the user cannot ever leave that as an empty value or null
+[00:25:27] value. He cannot insert a null value for that particular, for that particular field, okay.
+[00:25:34] So now the advantage of putting these integrity constraints is that the SQL itself is going
+[00:25:40] to prevent any updates to the database that violates these integrity constraints. So if
+[00:25:46] you are, you know, trying to add a record which does not have, you know, which violates
+[00:25:52] any of these constraints, then the SQL engine is going to give you an error, okay. So it
+[00:25:58] is not going to allow you to do that. And typically SQL, you might actually not be using
+[00:26:03] SQL directly, right. So you might be using SQL as part of, you know, let us say if you
+[00:26:10] are trying to build a web application, you would typically be using SQL within, you know,
+[00:26:16] embedded into a different language, maybe Python or whatever is the language that you
+[00:26:20] are using to build your web application, right. So and the end user is definitely not going
+[00:26:26] to be using the SQL at all. He is just going to be using your web application.
+[00:26:31] So he is going to be using his browser, going to your web application and he might be filling
+[00:26:36] some form and when he presses submit, then that data in that form goes to your web application.
+[00:26:44] In your web application, you are going to say that, you know, you are going to retrieve
+[00:26:48] all the information from that form and then you are going to formulate an SQL query and
+[00:26:54] query will finally store that data in the different tables of your database. So that
+[00:27:03] is the route that the data is going to take to get stored in your database. So if an integrity
+[00:27:10] constraint is violated, it is only at the time of when the SQL is being run, that is
+[00:27:15] when an error is going to be triggered and that error has to percolate back to your web
+[00:27:20] application and then in your web application, you have to manage that, you know, error saying
+[00:27:25] that, okay, so if this kind of error comes, then this is how you are going to handle it,
+[00:27:30] okay. So you are going to handle those errors in your web application so that the end user
+[00:27:35] who is, you know, actually using the browser to work on your web application, for him there
+[00:27:42] is no, you know, actual error that he sees or if he actually sees an error, it is a well,
+[00:27:48] you know, he sees an error that is well handled and he sees a good error message that you
+[00:27:54] would want him to see, okay. So whereas at the back end, the SQL is actually
+[00:28:00] going to look at the integrity constraints on its own as a programmer, as the web developer,
+[00:28:05] you do not have to worry about, you know, every time having to check whether these integrity
+[00:28:10] constraints are violated or whether they are not violated and so that is something that
+[00:28:16] you do not have to worry about, okay. So here is the example. So for example, here
+[00:28:23] you see that you are saying that the name should not be null, right, so the name is
+[00:28:37] not null and the department name here is a varkar, so but what you also see here is that,
+[00:28:45] you know, these are the additional integrity constraints, you are saying that id is a primary
+[00:28:48] key and you are saying that the department name is a foreign key which is going to reference
+[00:28:53] the department, right. So these are the different kinds of integrity
+[00:29:00] constraints that you can store. There are additional ones also, these are some of them,
+[00:29:05] okay. So here you have a few more relation definitions. So just like we created this
+[00:29:12] table, instructor table, we are creating more tables here. So just as examples you can see
+[00:29:16] that this is a student table and you have here, you know, again similar columns, you
+[00:29:24] have the id column for students, you have a name column, you have the department name
+[00:29:29] and you have the total credits that the student has probably taken so far, right. So and these
+[00:29:37] are the types, so this is a varkar and probably, you know, you have learned that char is just
+[00:29:46] going to use a fixed number of chars and you do not want to waste the space and therefore
+[00:29:50] most people tend to use varkar all the time, okay.
+[00:29:55] So the name is again, you are saying that it is not null, okay. So you never want a
+[00:30:00] null name for a student, okay. So you want a department name which is up to size 20,
+[00:30:09] but actually the department name is actually a foreign key which is going to reference
+[00:30:15] the department table, right. So and total credits you are saying is like an integer,
+[00:30:22] there are no decimal points, so there is no zero digits after the decimal point and you
+[00:30:27] can have up to three digits, okay. So you can have at most 999 credits which is typically
+[00:30:33] good enough for, you know, any university student and you are saying that the id is
+[00:30:40] the primary key and department name is a foreign key. So that is a student table.
+[00:30:46] You also have a takes, you know, table here and table with the name takes that is not
+[00:30:53] a very nice name because it sounds like it could actually be, you know, it could be a,
+[00:31:02] you know, for example just like you have, you know, create table is a command in SQL.
+[00:31:08] You do not want to, you know, you do not want to create a table with the name table itself,
+[00:31:12] okay, because that would be a reserved keyword and if you use such a name then you would
+[00:31:16] be violating something, right. So similarly takes sounds like it could be a reserved keyword,
+[00:31:21] it is not, but, you know, it is better to use, you know, names which are definitely
+[00:31:28] not reserved, wherever you are not sure, it is better to use, you know, more clear names,
+[00:31:34] maybe you could put a longer name with an underscore inside it and so on.
+[00:31:38] So all the names that you are creating that cannot be reserved keywords, okay. So these
+[00:31:44] are all names that you are creating for your tables, this is the name of the table, these
+[00:31:48] are the names of the columns. So these names cannot be reserved keywords of SQL. And so
+[00:31:57] the takes, so this is basically saying that student is going to take this particular course,
+[00:32:02] okay, so in this particular semester and so on. So you might actually have said studies
+[00:32:07] instead of takes because takes is a much more general, you know, name, right. So you could
+[00:32:14] actually have used the name studies which would have been much nicer. So this would
+[00:32:19] say that, you know, a particular student with a particular ID is going to use, so how do
+[00:32:25] I know that this ID is for student? So because here I know that the foreign key, this, you
+[00:32:33] know, has ID and it is going to reference student, okay. So by looking at that constraint
+[00:32:37] I know that this ID here is actually referencing the student, it is the same as the student
+[00:32:42] ID, okay. So and you have the course ID and so this is the course that the student is
+[00:32:52] taking. He is going to sit in a particular section and in a particular semester, in a
+[00:32:57] particular year and he is in a particular grade, okay. So all these details are there
+[00:33:02] in the study table or the takes table in this case, okay.
+[00:33:07] So and so here I am mentioning that this is the primary key. So the primary key is not
+[00:33:15] just the ID but it is the combination of all these different, you know, fields, okay. So
+[00:33:22] all of these fields here are, so all of these fields here are the primary key together.
+[00:33:32] Why do I have this? Because I do not want to restrict. Suppose I said only ID is the
+[00:33:36] primary key of this, it means that I will only be able to say that, you know, if I use
+[00:33:40] ID once, the ID of a student once, I cannot have another record with the same ID of that
+[00:33:47] student but I know that a student will be able to take multiple courses, right. A student
+[00:33:52] might be able to take, let us say, five courses in a semester, okay. So and therefore if I
+[00:33:59] insert one record with that particular ID then the student, it means that the student
+[00:34:04] cannot take any more courses in that, you know, at all, right.
+[00:34:09] So if I want to create one more record then, you know, I cannot have ID as the primary
+[00:34:13] key basically. So I might want to say that the combination of ID and course ID together,
+[00:34:19] okay. So the first two together might be a primary key because a particular student typically
+[00:34:25] is going to take a course only once. So if I take, look at that ID and the course ID
+[00:34:31] should be unique to that table but we know that students might have actually, you know,
+[00:34:37] withdrawn from the course, they might have initially thought that they are going to take
+[00:34:40] the course, they might withdraw from the course or they might fail the course and they might
+[00:34:44] have to repeat it so that same student ID and the course ID might repeat again in the
+[00:34:49] table, right, so and in the next semester. So you do not want to just keep the ID and
+[00:34:55] the course ID together as the primary key because it could repeat and therefore we have
+[00:35:00] to make sure that, you know, all of these, the ID and the course ID, the section ID,
+[00:35:05] the semester and the year together becomes the primary key, okay.
+[00:35:13] And the ID is actually a foreign key because it is going to reference the student table
+[00:35:20] and you also have a foreign key of all of these, you know, course ID, section ID, semester
+[00:35:25] and year which is going to reference the section table, okay, and in that section table you
+[00:35:31] have all of these fields, okay, so and so all of these fields together point to one
+[00:35:38] unique record in the section table and that is why you have all of them here as a foreign
+[00:35:44] key, okay. So ideally, you know, so you would want to
+[00:35:50] say that in the section table there is a primary key called as a section ID, okay,
+[00:35:57] and that section ID would not repeat for multiple things. So if it is a unique primary key then
+[00:36:03] you could just have a single, you know, section ID over here instead of having a group of
+[00:36:09] these things. But possibly the way that they have defined the section table is that it
+[00:36:15] is not, the section ID is not a unique key for the section table. Instead the section
+[00:36:20] ID is probably referencing a group of students and that group of students could, might actually
+[00:36:26] be taking different courses in different semesters and so on.
+[00:36:30] So that is why possibly there is a section ID is not a unique, you know, primary key
+[00:36:36] for this section table but it needs to be put as a group of including several other
+[00:36:44] fields in order to form, in order to be able to uniquely identify records in the section
+[00:36:50] table. So this is the details of how we are creating these tables. Now you can see that
+[00:36:58] the way that I am describing these tables here, you can see that there are many design
+[00:37:01] decisions that probably have been taken, okay. So the fact that section ID is not a primary
+[00:37:05] key of the section table but there is a group of attributes that was, that were the, that
+[00:37:13] you know, that has the primary key of the section table, right.
+[00:37:19] So like that there are many other, you know, design decisions that you can see here. The
+[00:37:24] fact that, you know, for example that, you know, the department name is being used as
+[00:37:30] a foreign key here, okay. So instead of a key, okay, so that you know, because you probably
+[00:37:36] have restricted the department names themselves have to be unique. You know, in a particular
+[00:37:41] university you cannot have two department names. You might have two students with the
+[00:37:44] same name but you cannot have two departments with the same name, right. So that is a design
+[00:37:49] decision that you have taken. So design decisions are things that you are going to take based
+[00:37:53] on the application that you are trying to create and there are lots of nuances about
+[00:37:58] how you exactly design these tables which we will be going into in future chapters,
+[00:38:05] okay. But for this chapter all that we need to see is that somebody has done the design
+[00:38:10] and they have created these tables for us.
+[00:38:14] So there is one more table here which is the course table and just to, you know, pay a
+[00:38:19] little bit more attention on the course table for us to be able to remember because in future
+[00:38:24] there will be examples which will use these tables and it is a good idea to kind of have
+[00:38:28] some familiarity with what are the fields of these tables. So we have the course table
+[00:38:34] here. We have the course ID which is basically a primary key. It is always a nice idea to
+[00:38:40] have an ID, you know, column for every table which is the primary key of that table. It
+[00:38:46] is not always strictly necessary but it is a good practice more or less most of the time
+[00:38:51] to follow, okay. So you can have the title of the course which
+[00:38:57] is, you know, up to 50 characters. There is a department name who is offering that particular
+[00:39:03] course and there is the number of credits for that particular course, okay. So we know
+[00:39:09] the course ID is the primary key and the department name is a foreign key which is going to reference
+[00:39:14] the department, right. So this is the course table.
+[00:39:22] So those were the set of tables that we had. Now we are going to look at a couple of SQL
+[00:39:30] which are going to help us to update these tables, okay. So when you are defining the
+[00:39:35] tables what you used was the data definition language. Now we are moving into the data
+[00:39:40] manipulation language which is, you know, the part of the SQL that helps you to manipulate
+[00:39:46] the data, okay. So here we have the insert command. So this insert command is going to
+[00:39:52] be used in order to insert values into different tables. So here it is in the instructor table
+[00:39:59] and what you have here is, you know, these are the values that you are trying to insert
+[00:40:05] into the table. Now when you are trying to insert these values you need to remember what
+[00:40:09] was the structure of the instructor table. It had four columns and you have to use exactly
+[00:40:15] the same order of the columns. So for example, the first was the ID of the instructor, then
+[00:40:20] the name of the instructor, the department of the instructor and the salary of the instructor.
+[00:40:25] So you have to remember that those were the, you know, because you have defined your table
+[00:40:29] you should remember what was the order or you probably have to create a small chart
+[00:40:34] and you know stick it on the side of your table so that whenever you are trying to use
+[00:40:39] this particular database you can just look at that chart quickly and you know exactly
+[00:40:44] how you should be using that particular table.
+[00:40:49] So the next command here is to delete records from tables. So this particular command here
+[00:40:56] it, you know, to remove all the records, it is to remove all the records from the student
+[00:41:07] table. So yes, delete from student. So it is just going to remove all the records from
+[00:41:12] the student table. Obviously you know that you should not do such things. Whenever you
+[00:41:16] using a delete command it has to be very carefully done. And even more dangerous command is a
+[00:41:22] drop table command. So whenever you think that you really do not need a particular table,
+[00:41:27] you know, you should drop it. So drop table R where R is the name of the table. So again
+[00:41:33] you have to be really careful when you use a delete command or a drop command because
+[00:41:37] there is no way to get it back. So unless you know that you are never going to use it
+[00:41:43] again then you would drop it.
+[00:41:48] So there is the alter command. So you can basically add, you know, columns to your,
+[00:41:56] you can add columns to your, you know, tables. So to a particular table R you are adding
+[00:42:03] this A and D. You know, you are adding this attribute A with a data type D. So you could
+[00:42:12] also remove a particular column. So you could say alter the table R which is, R is the name
+[00:42:17] of the table and you are saying drop A. Okay, so you are dropping that particular attribute.
+[00:42:22] You do not need to give the data type here because you are just dropping it. When you
+[00:42:24] are creating the attribute then you need to give the data type whether it is a char or
+[00:42:28] a var char or integer or what, right. So that is the data type.
+[00:42:32] Now it might turn out that you have, you already have a big table with lots of records and
+[00:42:38] when you are trying to add a particular column what happens to all the existing records?
+[00:42:43] Okay, so for all the existing records you will have null values as the, you know, in
+[00:42:50] them. So all the null values what will be used for, as will be inserted into those columns
+[00:43:01] which you have newly created for all the existing records. Obviously these are again commands
+[00:43:07] that you should rarely use. Okay, so it should not be that just because you have the provision,
+[00:43:11] SQL gives you the provision to add or remove columns from your tables but, you know, adding
+[00:43:18] and removing columns should be done rarely. Only when you, there is a, you know, change
+[00:43:22] in requirements. Okay, so initially you should, when you are building an application you should
+[00:43:27] take a look at what are the requirements of this application. You should talk to all the
+[00:43:31] people concerned and then you should come up with the design of your tables and in the
+[00:43:35] design of your tables basically that is the table schemas. Okay, so you would know that
+[00:43:39] these are the columns and these are the data types of those columns. Okay, so and that
+[00:43:43] is something that you need to be able to fix, okay, for the foreseeable future. Okay, so
+[00:43:50] the reason why this is important and why I am stressing upon it so much is that initially
+[00:43:54] when people learn SQL for the first time they tend to design their tables in such a way
+[00:43:58] that oh yeah I can create, you know, any number of tables so let me create one separate table
+[00:44:05] for each course. Okay, so in my university, so in my university I might have 100 courses,
+[00:44:10] maybe next semester I am going to add additional courses so whenever I am going to add an additional
+[00:44:15] course they will say why not create a new table for that course and in that table I
+[00:44:19] am going to keep all the student names. Okay, maybe I create a separate table for each student,
+[00:44:24] okay, so which is going to keep all the details of the student. Okay, so we do not think like
+[00:44:28] that in relational, when we are creating relational databases we want to fix the number of tables,
+[00:44:36] we do not like create arbitrary number of tables every now and then. Okay, we fix the
+[00:44:40] number of tables, we fix the number of columns in those tables so that, you know, we can
+[00:44:46] write queries more efficiently. If you actually are going to create a separate table for each
+[00:44:51] student or a separate table for each course then, you know, your application are going
+[00:44:57] to become very cumbersome at the time when you write your application, when you develop
+[00:45:01] your applications you will have to now start in your code, you are going to have to figure
+[00:45:07] out that, you know, which table are you using. Okay, so these are tables that, you know,
+[00:45:12] have not been designed by you, they are, you know, coming up on the fly every now and then
+[00:45:18] wherever whenever new student comes into the system or whenever new course comes into the
+[00:45:22] system these are tables that you have not designed so you do not know what fields there
+[00:45:27] are in those tables so you cannot write the queries for those applications at the time
+[00:45:31] when you are writing the applications. Okay, so and that is something that we tend not
+[00:45:35] to do, okay, so we should not do such kinds of things when in SQL.
+[00:45:42] So, having created tables and having populated them we have inserted records into those tables,
+[00:45:50] okay, so now we want to actually retrieve data from these tables and this is the basic
+[00:45:57] query structure, okay, so we have the, so we have select, you know, we are trying to
+[00:46:05] select which attributes from which tables where some particular predicate or a condition,
+[00:46:12] okay, so A1, A2, A3 and so on are attributes that you are trying to retrieve from your
+[00:46:16] data or columns, okay, so and you are trying to retrieve it from these particular tables
+[00:46:21] R1, R2, R3 and so on up to RM where some particular condition P is a predicate or a condition
+[00:46:28] that is given.
+[00:46:29] So, this is the basic query structure and it will become lot more clearer as we see
+[00:46:34] examples in the future slides. So, but one thing to note here is that the terminology
+[00:46:41] is slightly different, here when we say select, okay, so this select is not the same as the
+[00:46:47] select of the relational algebra that we saw, okay, so this select actually corresponds
+[00:46:54] to the projection operation of the relational algebra, okay, so that is slightly confusing
+[00:47:00] for beginners, okay, so but this is the way it is, okay, so the notion of select here
+[00:47:05] means that I am trying to select particular fields from my tables, okay, so which was
+[00:47:10] what was being done by the project operation if you remember in relational algebra we were
+[00:47:15] using a project operator and so which was like the pi you know kind of operator and
+[00:47:23] the select you know operator which was sigma operator, the sigma operator was what was
+[00:47:28] being used in order to specify a particular condition that needs to be run that needs
+[00:47:32] to be verified for each record in the table, right, so but here it is kind of different,
+[00:47:39] right, so the select operation is what you are using to project the attributes out, okay,
+[00:47:44] so from the table.
+[00:47:45] So, here is an example, so you see here you know select name from instructor, so this
+[00:47:53] is simple, right, so you are trying to select this particular attribute which is the name
+[00:47:57] attribute from the instructor table, so the output of this will be a table which will
+[00:48:02] have just one column which should be all the names of the instructors.
+[00:48:08] One thing to note is that you know SQL names are case insensitive, so it does not matter
+[00:48:12] whether you know this name here whether you use you know in what kind of capitals you
+[00:48:19] use it you know you could have just a capital N, you could have all of them as capital or
+[00:48:24] none of them as capital, right, so it does not matter.
+[00:48:31] People you know typically use even the commands here could be caps or small letters and so
+[00:48:37] on, so typically these SQL commands like select and from and so on some many people use caps
+[00:48:44] for them, some people do not like caps, some people like caps, so you can just choose what
+[00:48:49] you know is your favorite way of you know writing your commands.
+[00:48:57] So, this is more you know details about the select clause, the select part of the you
+[00:49:05] know query, so SQL allows duplicates and relations as well as in query results, so unlike relational
+[00:49:12] algebra which was like a mathematical query language, so we were actually looking in terms
+[00:49:17] of sets and relations, so in sets obviously there is no notion of duplicates, if there
+[00:49:22] are duplicates you know if there are two or three elements with which are exactly the
+[00:49:26] same they are actually the same element in the set, okay, so whereas in SQL because we
+[00:49:32] are actually dealing with real tables which are there on hard disk or in files you know
+[00:49:37] which are storing tables of records it might just turn out that there are duplicates, okay,
+[00:49:42] so SQL actually allows duplicates in the relations as well as in query results, except of course
+[00:49:49] if you have a primary key which you should, okay, so in most for most tables you should
+[00:49:54] have a primary key and when you actually define a primary key then you cannot have two records
+[00:49:59] with the same primary key, okay, so therefore you cannot have duplicates, but otherwise
+[00:50:04] if you do not have a primary key then you can definitely have duplicates in your relations.
+[00:50:09] Now, in the output also that is in the query results also you could have duplicates, so
+[00:50:16] for example in the previous one if there are two instructors with the same name then you
+[00:50:20] would you know actually see this them occurring twice in the output, if you actually want
+[00:50:27] to see it only once then you could use the keyword distinct after select, so you could
+[00:50:32] say select distinct department name from instructor, then you will be able to see all the department
+[00:50:39] names only once, okay, so if you do not do that then you know the SQL typically return
+[00:50:46] all of them with the duplicates, okay, so but again that depends on the implementation,
+[00:50:51] okay, so some vendors the way that they have implemented SQL they might actually you know
+[00:50:57] use distinct by default and therefore if you want to say that you know I actually want
+[00:51:02] to see all of them including the duplicates then you can force the SQL to show all the
+[00:51:07] duplicates by saying select all, okay, so if you select all then you would be able to
+[00:51:12] see from the instructor table because in the instructor table there will be multiple instructors
+[00:51:17] you know from different from the same department, okay, so from the computer science department
+[00:51:22] there might be 5 instructors, okay, so from the physics department there might be 4 instructors
+[00:51:26] and so on, right, so when you just select the department name, okay, so if you select
+[00:51:33] all or if you mostly kind of just ignore the all also typically the most vendors have
+[00:51:41] all as a default, so they would you know output 5 computer sciences, 4 physics computer science
+[00:51:51] will appear 5 times, physics will appear 4 times in the output, okay, so and that is
+[00:51:57] because there are 5 instructors in computer science, 4 instructors in physics and so on,
+[00:52:02] okay, so and therefore you will see you know the output to be something like this you can
+[00:52:06] see that there are repetitions here computer science for example is appearing here and
+[00:52:12] it is appearing here and here, so it is repeating 3 times in this particular case because there
+[00:52:17] are probably 3 instructors in the computer science department, so if you say distinct
+[00:52:22] then you will only be able to see computer science appearing only once, okay, so that
+[00:52:27] is the select clause and you could use a select star to say that I want to select all the
+[00:52:35] columns, okay, I want to see all the columns in my output, okay, so instead of specifying
+[00:52:41] that I want to see only the name of the instructor or the department name if I say star I am
+[00:52:45] going to see all 4 columns of my instructor table, so an attribute can be a literal with
+[00:52:53] no you know from clause you could say for example that you know just select 437, right,
+[00:53:01] so which is literal it is a string and you are not giving any tables, right, so from
+[00:53:06] where this is going to be retrieved because it is a literal, right, so it does not need
+[00:53:10] to come from any particular table, okay, so this is the way to kind of return a particular
+[00:53:17] literal, okay, so now you would generally not do this, okay, so most of the time this
+[00:53:24] is not a very useful thing but it is a provision that is there in SQL, you know occasionally
+[00:53:29] depending on the application you might want to do this once in a while, okay, so now in
+[00:53:36] this case when you just say select 437 you are going to the output is going to be a table,
+[00:53:41] so the output of all SQL commands are going to be tables, right, so in this case all the
+[00:53:46] output is going to be a table with one row whose value is going to be 437 and this table
+[00:53:56] has you know what is the column name of the table, there is no column name in this particular
+[00:54:01] case but if you want a column name then you can actually say you know give that column
+[00:54:05] name saying as foo here, foo here is the column name, you can put whatever column name that
+[00:54:11] you want, okay, so now you could also mention a from clause for you know even though you
+[00:54:19] use a literal, so here is an example where you are selecting a literal, okay, so a, so
+[00:54:25] a does not need to come from the particular table but you are saying from instructor,
+[00:54:29] so what happens here is that the result is a table with one column but it will have as
+[00:54:36] many rows as there are rows in the instructor table, so for every instructor in the instructor
+[00:54:41] table you will get one output, you will get one value in the result table and that value
+[00:54:46] will always be this literal which is a, okay, so again these are provisions that are there
+[00:54:53] in SQL most of the time you will not be using these kinds of things but for example suppose
+[00:54:58] you want to you know in your let us say you are writing an application and you want to
+[00:55:04] initialize some counter you know some counter for every instructor, okay, and you want to
+[00:55:09] initialize that counter to be 0 for all the instructors, okay, so you want to create one
+[00:55:13] counter for each instructor and you want to initialize them to 0, so then you would say
+[00:55:18] for example select 0 from instructor, right, so then the output will be a table which will
+[00:55:25] have 0 for each of the instructors, right, so there will be that many rows and they will
+[00:55:30] all be 0s, okay, so you could do things like that, okay, so more about the select laws,
+[00:55:38] so the select laws can contain arithmetic expressions with these you know typical mathematical
+[00:55:44] operations, okay, plus minus multiply and divide, okay, so which can work on the literals
+[00:55:50] or the constants or even on the attributes which are the columns of the tables that you
+[00:55:55] are working on, okay, so for example here you see salary divided by 12, we are trying
+[00:56:01] to retrieve from the instructor table the ID name and salary, you are dividing salary
+[00:56:06] by 12 so that you want to get for example the monthly salary of because the original
+[00:56:11] salary in the table might be the annual salary, you are dividing it by 12 in order to see
+[00:56:15] the monthly salaries, okay, so you can also rename salary by 12 using the as clause, so
+[00:56:23] you can say as monthly salary, right, so and this obviously means you know salary 12
+[00:56:30] as monthly salary, right, so when you see the output you know so it will show you typically
+[00:56:36] the column names and it will show you a table as the output with the different column names
+[00:56:43] and in the column name for salary by 12 it will show monthly salaries and then you will
+[00:56:47] be able to see the values in each row that appears after that, so that will be a neat
+[00:56:52] way to see the salaries of the instructors.
+[00:56:58] So next we see the where clause, so the where clause specifies conditions that the result
+[00:57:05] must satisfy, so all the records in your you know in the tables or in the output results
+[00:57:11] that you retrieve from your tables must satisfy a particular condition and whatever condition
+[00:57:18] that you wanted to satisfy you are going to put it in the where clause, right, so these
+[00:57:22] are the this is an example of a condition.
+[00:57:27] So selecting the names of all the instructors whose department name is computer science,
+[00:57:31] so you want to retrieve only the instructors from the computer science department and you
+[00:57:35] want to see only their names, so that is when you are going to use a command like this,
+[00:57:40] so you can see that here I have used the equal to sign, so it is not a double equal to sign,
+[00:57:44] so when you are doing C or python or most programming languages you use a double equal
+[00:57:50] to sign to do a comparison in SQL it is just a single equal to, but of course you can use
+[00:57:56] all of the other you know comparison operations like less than, less than equal to, greater
+[00:58:01] than, greater than equal to, the equal to that we have just seen and not equal to, so
+[00:58:06] again note the not equal to syntax is a less than and greater than operator, it is not
+[00:58:11] the typical exclamation mark equal to kind of operator, okay.
+[00:58:18] So SQL also allows you to use the logical connectives which are and, or and not, okay,
+[00:58:26] so and so these are you know commands that you can use, you can for example say where
+[00:58:32] the department name is called computer science and the salary is greater than 70,000 here,
+[00:58:38] okay so that is exactly what is done here, so you can say department name is equal to
+[00:58:42] computer science and salary is greater than 70,000 and you will get as the output a small
+[00:58:46] table of all those people who are satisfying those conditions, okay.
+[00:58:54] So and you can also use any kind of arithmetic operation on salary for example, so as we
+[00:58:59] had discussed in the previous slide you can say salary divided by 12, you can say salary
+[00:59:04] divided by 12 plus 10,000 or anything that you want to do. So that was the where clause,
+[00:59:16] finally we have the select where from and where clauses, so we are going to look at
+[00:59:21] the from clause as well, so from clause was you know is being described after the where
+[00:59:27] clause because the where clause was actually a simpler thing to do, the from clause in
+[00:59:31] some sense is slightly more complicated, so you know so the from clause is what is
+[00:59:37] used to mention what are the tables from which you are retrieving your results.
+[00:59:43] And it is going to do a Cartesian product operation of these tables, so whatever you
+[00:59:48] know we have seen in the relational algebra that you can do a Cartesian product like instructor
+[00:59:53] cross teachers, so when you say you know instructor comma teachers in your from clause, so this
+[01:00:00] is actually going to retrieve the entire cross product of the instructor and teachers tables,
+[01:00:07] and especially when you say select star it is going to show you all the columns of this
+[01:00:12] cross product, so it is going to do the entire cross product and that is going to be the
+[01:00:15] output of this particular command here when you say select star from instructor comma
+[01:00:20] teachers. So it is going to generate every possible instructor comma teachers pair with
+[01:00:25] all the attributes from both of those relations, so that is the meaning of a cross product
+[01:00:30] or a Cartesian product.
+[01:00:36] So this is going to include the you know common attributes, there might be some common attributes
+[01:00:41] like id which are common to both the instructor table and the teachers table, and there is
+[01:00:48] going to be the non-common columns as well, so for the common attributes you know like
+[01:00:56] id, so there might be id might be there in the instructor table and in the teachers table,
+[01:01:02] so when they are coming in the output you will see suppose you just see id as one of
+[01:01:06] the column names, now you do not know whether this id is coming from the instructor table
+[01:01:09] or from the teachers table, so in order to know it more clearly SQL is actually going
+[01:01:16] to rename those columns for you by putting a dot symbol, so you are going to see instructor
+[01:01:22] dot id in the column name.
+[01:01:26] So and so of course the Cartesian product is something that is not very useful, typically
+[01:01:33] you would want you know to see you know instructors who are teaching the courses that you know
+[01:01:41] that they are teaching, you do not want to see every possible instructor teacher pair,
+[01:01:45] you want to see only the instructors who are teaching their courses, you only want to see
+[01:01:49] the courses that those instructors are teaching, whereas the cross product will generate the
+[01:01:54] entire you know possible you know instructors and what they are teaching you know every
+[01:02:00] combination of them, so it is going to retrieve as we had seen in the relational algebra class,
+[01:02:09] the last class, so in order to do better so here are some examples, so you can see select
+[01:02:17] named comma course id from the instructor and teachers table, so this is going to get
+[01:02:22] you from the instructor table and the teachers table, because in the instructor table you
+[01:02:27] do not know what courses are teaching. In the teachers table you know that you know
+[01:02:31] this particular MacBook is teaching this particular course, but you do not know what is the name
+[01:02:35] of the instructor right, so the names of the instructors are there in only in the instructor
+[01:02:39] table and that is why you need to combine both the instructor table and the teachers
+[01:02:44] So, you are combining them in this particular case because you want the name from the instructor
+[01:02:50] table and the course ID from the teacher's table.
+[01:02:54] So, but the ID column of the instructor is going to be also present in the teacher's
+[01:03:01] table.
+[01:03:02] So, and you want to make sure that the instructor ID is going to match the teacher's ID and
+[01:03:08] only those rows of the cross product you want to keep and in those rows you will get which
+[01:03:14] instructor is teaching which course that particular instructor is going to match the instructor
+[01:03:20] ID in the teacher's dot ID and those are the rows that you want.
+[01:03:25] So, then you would get the right rows that Srinivasan is teaching CS 101, Srinivasan
+[01:03:30] is teaching this particular course and so he is taking three courses here.
+[01:03:35] So, you can see the courses that Srinivasan is teaching.
+[01:03:39] So now, you are not going to get Srinivasan and FIN 201, but in the cross product you
+[01:03:49] would get Srinivasan and FIN 201 because you will get all possible combinations of all
+[01:03:54] the names and all the course IDs that there are in both the tables.
+[01:04:00] But when you do this particular where condition where instructor dot ID is equal to teacher's
+[01:04:05] then you will be restricted to only those rows in that cross product where Srinivasan
+[01:04:12] is teaching only those courses that he is actually teaching because the teacher's
+[01:04:17] dot ID of in that course is going to match that of Srinivasan.
+[01:04:21] So, that sounds a little complicated, but it is not very complicated.
+[01:04:27] This is exactly what you typically want.
+[01:04:30] So you want to typically retrieve from a set of tables all those rows where the IDs are
+[01:04:40] matching or the primary key of these table and the foreign key in the other table they
+[01:04:48] are going to match.
+[01:04:49] So, that is what you typically want.
+[01:04:53] So, now here is another example to find the names of all instructors in the art department
+[01:04:59] who have taught some course and the course ID that they are teaching.
+[01:05:07] So here you can see that again you are going to combine the instructor table and the teacher's
+[01:05:11] table because you need the names of the instructors from the instructor table and the course IDs
+[01:05:16] from the teacher's table.
+[01:05:19] Again you are going to definitely do the instructor dot ID is equal to teacher's dot ID because
+[01:05:25] you do not want unnecessary wrong information that if this instructor is not teaching that
+[01:05:31] particular course you do not want those kinds of rows.
+[01:05:34] So this condition eliminates all those erroneous rows.
+[01:05:40] In addition you want to ensure that the instructor's department is in art.
+[01:05:46] So that therefore you see that the instructor's department name is equal to art.
+[01:05:52] So this is how you formulate queries.
+[01:05:54] So these are the ways in which you know this is the English representation of this particular
+[01:06:01] query and this is the SQL representation of that particular query.
+[01:06:06] So SQL is a language, English is a particular language.
+[01:06:09] Now obviously today you have LLMs like chat GPT and so on.
+[01:06:15] If you possibly just give this but you know English description and ask it for the SQL
+[01:06:20] version of it, it typically will give you the right answer.
+[01:06:26] The reason that we are learning all this even though you know chat GPT can do it is because
+[01:06:31] you know we never know that chat GPT has given the right answer, right.
+[01:06:36] So how do you, how are you ever 100 percent sure about it?
+[01:06:41] You are never 100 percent sure and therefore you also need to know how to write the SQL
+[01:06:45] query yourself.
+[01:06:46] You at least need to be able to interpret SQL queries to be able to see whether chat
+[01:06:50] GPT has given the right answer or not.
+[01:06:51] And therefore we need to know SQL therefore because of that.
+[01:06:59] So now so the, so there is the rename operation.
+[01:07:07] So just like in relational algebra we have the rename operation, okay.
+[01:07:12] So we can say you know we can use the as command which will rename an old name to a new name
+[01:07:20] and here is an example.
+[01:07:21] You are saying from instructor as T, right.
+[01:07:25] So and instructor as S, okay.
+[01:07:30] So you are trying to join these two tables.
+[01:07:32] It is the same table, the instructor table.
+[01:07:35] You are trying to join them and therefore because you are trying to join the same table
+[01:07:38] with the same table it means that you are trying to do like a cross product of the same
+[01:07:42] table with the same table, okay or Cartesian product and you cannot use the same table
+[01:07:49] because you know you need to know, you cannot use the same table twice without giving it
+[01:07:54] a different name, right.
+[01:07:56] So therefore you are renaming the instructor table as T in the first instance and as S
+[01:08:01] in the second instance.
+[01:08:03] And once you do that then you can write commands like this.
+[01:08:08] You can say where T dot salary is greater than S dot salary and S dot department name
+[01:08:13] is equal to computer science, okay.
+[01:08:17] So what this basically means is that I want to get you know the names of all the instructors
+[01:08:23] whose salary, so this is T dot name.
+[01:08:26] T is basically the instructor table, okay.
+[01:08:29] So I want to get all the instructors names whose salary is greater than S's salary
+[01:08:34] where S dot department is computer science, okay.
+[01:08:37] So S is also the instructor rows but S you are constraining to be from computer science.
+[01:08:44] So this will tell you that I want to get all the instructors who have a higher salary than
+[01:08:48] some instructor in computer science, okay.
+[01:08:51] So it typically means get me all the instructors who have a higher salary than the lowest income,
+[01:08:58] okay.
+[01:08:59] So this is the lowest salary in computer science, okay.
+[01:09:04] So the keyword as is also optional.
+[01:09:07] You can just say instructor T instead of saying instructor as T and similarly instructor S
+[01:09:13] instead of saying instructor as S, okay.
+[01:09:16] So this is the rename operation, okay.
+[01:09:22] So here is the you know is again more you know we are trying to figure out the self-join,
+[01:09:29] okay.
+[01:09:30] So what we did previously, so this was again a self-join.
+[01:09:36] We are trying to join instructor table with instructor table itself in order to write
+[01:09:40] queries like this just to get more familiar with these kinds of self-joins, okay.
+[01:09:44] So here is an example small table that is given here where you have person and supervisor
+[01:09:51] as two columns, okay.
+[01:09:53] So you have different people here and their supervisors, okay.
+[01:09:56] So these are employees.
+[01:09:58] So we are calling the relation as M super which is basically standing for employee supervisor.
+[01:10:04] And this is the user given name so you can give any name that you want.
+[01:10:08] So now you can you know give so the command that we are trying to write for is find the
+[01:10:19] supervisor of Bob, okay.
+[01:10:21] So let me now show you how we could do something like this.
+[01:10:26] So I am going to say you know, okay.
+[01:10:33] So let me keep it like that and we I have installed on my system relational database
+[01:10:43] called as SQLite.
+[01:10:44] So this SQLite is a very small and simple database.
+[01:10:48] It is not you know a very large database like MySQL or Oracle or Postgres SQL which uses
+[01:10:57] you know which basically runs as a server in the backend and then you have to you know
+[01:11:03] start a client in order to connect to that server and so on.
+[01:11:07] So SQLite is a very simple you know relational database offering and it is just a small file.
+[01:11:16] It is very easy to install whether you are using Linux or Windows.
+[01:11:20] You can look up the web page for SQLite.
+[01:11:22] It is an open source software.
+[01:11:25] So you can look up the you know web page and install it on your own systems for free.
+[01:11:30] So if I run SQLite then I can see that I am getting a prompt like this and I can create
+[01:11:37] using SQL commands that we have learned so far.
+[01:11:40] I can create a table.
+[01:11:42] So create table.
+[01:11:44] Let's call it as m super and I can give the field names.
+[01:11:49] So I can give the field names as person and supervisor.
+[01:11:57] So SQLite is not you know it deviates from standard SQL in some ways.
+[01:12:03] So every SQL you know whether you are using MySQL or Postgres or any other oracle or something
+[01:12:10] they are going to deviate in small ways.
+[01:12:12] But if you know the overall SQL they can pick up very quickly.
+[01:12:16] So one difference that you can see here is that I am not mentioning what is the data
+[01:12:21] type of person and the data type of supervisor.
+[01:12:24] Typically SQLite by default uses the string data type of varchar.
+[01:12:30] So you do not need to actually put that over here.
+[01:12:36] So it is showing that there is an error here.
+[01:12:38] So I cannot put a hyphen in the name.
+[01:12:42] Putting a hyphen in the name is not a good idea.
+[01:12:45] So I am just going to call it as m super.
+[01:12:48] So it would have created that table.
+[01:12:50] So and in SQLite the way to see what the tables are is I can say dot tables and it is going
+[01:12:56] to show me the list of tables that I have created so far.
+[01:12:59] Of course I only have the m super table.
+[01:13:03] So now since I have created it so that was the data definition language command.
+[01:13:08] Now I am going to use the data manipulation language commands in order to insert data
+[01:13:13] into it.
+[01:13:14] So the insert command that we have seen so far.
+[01:13:17] So insert into the table name and I can give the values.
+[01:13:23] So I am going to let us say create Bob and Alice.
+[01:13:33] So the actual command was I have to put the values and then do it.
+[01:13:37] So then it works.
+[01:13:39] So and notice that I am putting semicolon at the end of each command.
+[01:13:44] So typically most of these SQL based systems require you to put a semicolon but not all
+[01:13:51] of them.
+[01:13:54] So similarly I am going to add the remaining records here.
+[01:14:03] So which means that Mary is the person and Susan is the supervisor of Mary.
+[01:14:10] this and I have David is the supervisor of Alice and David's supervisor is Mary.
+[01:14:25] So now what I am expected to do is find the supervisor of Bob.
+[01:14:29] So given a table like this I need to run a command to get the supervisor of Bob.
+[01:14:36] So typically it is going to be a select and if I want to say the name of the supervisor
+[01:14:41] so I can say select supervisor.
+[01:14:45] So if I want to see both I can say select star both commands but since I only want to
+[01:14:49] see the supervisor I am going to say supervisor from which table I want I only have one table
+[01:14:57] here and I am going to give a where clause where the person is equal to Bob and you can
+[01:15:10] see that I have got Alice.
+[01:15:14] So Alice was the supervisor of Bob which I have got the correct answer for.
+[01:15:19] So this is a command.
+[01:15:21] So the second command that I am expected to write here is find the supervisor of the supervisor
+[01:15:26] of Bob.
+[01:15:29] So in order to do that I need to now of course I can see from the table I can just see all
+[01:15:40] the records in the table select star from M super and it is going to show me all the
+[01:15:48] and I can see who is the supervisor of Bob, Alice and for Alice David is the supervisor
+[01:15:53] and I can say yeah that is it but that is not what is expected.
+[01:15:57] So it is expected that I should be able to write a command which is going to retrieve
+[01:16:00] exactly that.
+[01:16:03] So in order to do that you can see that I cannot get in any particular record I can
+[01:16:11] only get two names here.
+[01:16:14] the Bob from the first record I can get that Bob supervisor is Alice.
+[01:16:18] I cannot get a third name from that particular record.
+[01:16:22] So if I want to get the Alice supervisor and know that from the same record from the same
+[01:16:33] row I need to be able to get whose Alice supervisor is.
+[01:16:36] So I need to now join this table with itself.
+[01:16:40] So I need to join the table with itself.
+[01:16:43] So I am going to write select you know I am going to say M super let us say S1, M super
+[01:16:54] S2.
+[01:16:56] So I am repeating the same table twice and I can say S1 dot supervisor.
+[01:17:06] So this is going to be very similar to the previous command.
+[01:17:09] So the output yeah where person is equal to Bob I cannot just say person because it does
+[01:17:14] not know person of which table.
+[01:17:17] So I probably have to say S1 dot person is equal to Bob and you can see that it is given
+[01:17:24] some output.
+[01:17:25] Let us see how it has given this kind of output.
+[01:17:27] So I am going to instead of just saying S1 dot supervisor I am going to say select star
+[01:17:33] and actually I am not going to put any condition.
+[01:17:37] So this is going to show me the cross product of both these tables.
+[01:17:40] So you can see that Bob Alice is being combined with Bob Alice and with Mary Susan and with
+[01:17:47] Alice David and David Mary and so on.
+[01:17:50] So and again Mary Susan is being combined with Bob Alice.
+[01:17:53] So you can see every record has been combined with every other record.
+[01:17:57] So that is the notion of a cross product and most of these are not useful for me.
+[01:18:02] I want to get those rows where this Alice and this Alice they are matching.
+[01:18:09] So and how do I do that?
+[01:18:11] I am going to write my command like this now where S1 dot person is Bob.
+[01:18:17] So S1 is the first two columns are from S1.
+[01:18:22] The second two columns are from S2.
+[01:18:27] So S1 dot person is equal to Bob and S1 dot supervisor is equal to S2 dot person.
+[01:18:39] So I want the S1 supervisor to be equal to S2 person.
+[01:18:45] So that is what I want.
+[01:18:46] I want to retrieve those kinds of results.
+[01:18:49] So and again let us see select star from that so that we will be able to see whether we
+[01:18:54] got exactly things that we want.
+[01:18:58] So you can see that I have got the exact row that I want because I have looked at S1 dot
+[01:19:06] person is equal to Bob.
+[01:19:08] If I did not put S1 dot person is equal to Bob I would have seen it for all of them.
+[01:19:13] So you can see that all those rows where the S1 dot supervisor is equal to S2 dot person
+[01:19:20] those kinds of rows have been output.
+[01:19:23] And now I am actually interested in only Bob.
+[01:19:27] So Bob supervisor supervisor.
+[01:19:29] So for this I am going to get not star but I am going to get S2 dot supervisor.
+[01:19:36] From the second table I want the supervisor of that table that will get me Alice's supervisor.
+[01:19:44] So that is going to get me David.
+[01:19:46] So this is the answer to the second part of the question.
+[01:19:50] So this is how you do it.
+[01:19:52] Now the third one is can you find all the supervisors both direct and indirect of Bob
+[01:19:57] which means that for Bob I want to get Alice's supervisor, Alice's supervisor David and
+[01:20:02] David's supervisor Mary and Mary's supervisor Susan.
+[01:20:05] So which means I want to get all of them.
+[01:20:07] And again I could not say that you know just select all the supervisors you know select
+[01:20:12] supervisor from the table.
+[01:20:21] But is my query right?
+[01:20:23] The query is not right because you know there might have been other records in the table
+[01:20:28] which do not you know connect to Bob at all.
+[01:20:33] And I would then be outputting all those supervisors which are not connected to Bob.
+[01:20:36] So for this particular database instance my answer is correct but my query is not correct.
+[01:20:42] So if I want to correct it, it is actually not easy or you know in standard you know
+[01:20:48] SQL 92 to get you know the answer to this kind of query, find all the supervisors both
+[01:20:55] direct and indirect of Bob.
+[01:20:57] So but if I want to get you know we have seen that I have got David right as the supervisor
+[01:21:03] of Alice.
+[01:21:04] Now if I want to get David's supervisor, how do I do it?
+[01:21:09] I again need to join the table with this you know result again.
+[01:21:16] So what I could do is select you know M super S2 and join it again M super S3.
+[01:21:26] And you can now imagine that I am going to get a cross product of S1, S2, S3 which is
+[01:21:30] going to be a really big table okay.
+[01:21:33] So and lots of repetitions but I only want you know S1 supervisor to be equal to S2 percent
+[01:21:41] and I want S2 supervisor to be equal to S3 dot percent.
+[01:21:46] So that way I will be able to match and I will be able to only retrieve that record
+[01:21:50] where I am actually going through the supervisors okay.
+[01:21:56] So and of course I should now get S3 supervisor not the S2 supervisor okay.
+[01:22:03] So if I do that then I am getting Mary.
+[01:22:05] So Mary is the supervisor of David right.
+[01:22:09] So David supervisor is Mary.
+[01:22:12] And so now I can keep going like this.
+[01:22:15] So this way I am going getting all the supervisors of Bob both direct and indirect and I am going
+[01:22:21] to go on and on like this.
+[01:22:23] Now you know you can add an S4 and an S5 and an S6 and so on and at some point of time
+[01:22:30] you are going to get a null result.
+[01:22:32] You are now going to get an output.
+[01:22:34] In this case I got Mary but if you add more and more constraints like that you will get
+[01:22:38] no results at all and then you will know that you have completed.
+[01:22:40] You have got all of the supervisors of Bob both direct and indirect.
+[01:22:45] Of course I have not got a single you know I have not done all of that using a single
+[01:22:51] query.
+[01:22:52] It is not easy or you know in traditional SQL to do it in a single query but you can
+[01:22:58] actually run multiple queries in order to do this and if you want to automate this then
+[01:23:03] you would need to put it in a program which you are not doing in SQL itself but maybe
+[01:23:08] in Python or C or Java or some other you know host language.
+[01:23:12] In that host language you need to embed SQL and in the host language you can write a while
+[01:23:16] loop or a for loop where you can repeatedly ask this kind of query until you get no result.
+[01:23:22] In that way you will be able to retrieve all the supervisors both direct and indirect of
+[01:23:28] Bob.
+[01:23:29] So as you know as a quick exercise you can probably try to write the queries or you can
+[01:23:36] try to repeat this process what I have just shown on your own system and you can try to
+[01:23:41] write the queries for you know where you have not just S3 but you have S4 and S5 and until
+[01:23:49] you get no result.
+[01:23:50] Okay so that I will leave it as a small exercise.
+[01:23:54] So with this I will stop today.
+[01:23:56] Thank you.

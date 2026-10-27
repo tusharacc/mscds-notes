@@ -1,0 +1,542 @@
+[00:00:00] So, welcome. In today's class, we will follow with the SQL queries again and we will be
+[00:00:12] continuing off from where we left in the last class. So, in the last class, we had seen
+[00:00:18] about nested subqueries, ok. So, we stopped here. So, nested subqueries are mechanism
+[00:00:25] where you know you allow a query within a query. So, you take one query, you take the
+[00:00:30] output of that and that output becomes as an input for a larger SQL query, right.
+[00:00:36] So, here is here are the different ways in which this could happen. So, you have for
+[00:00:41] example, a typical query would be a select from where clause and the select has you know
+[00:00:49] is going to select multiple attributes from multiple tables where you have some predicate
+[00:00:55] or a condition, right. So, and the typical places where you can have subqueries within
+[00:01:02] this query is you can have it in the from clause. So, any of these tables in the in
+[00:01:09] the from clause. So, it is actually a cross product of all these tables. So, any of these
+[00:01:14] tables could actually be the output of another query, ok. So, instead of putting a table
+[00:01:19] name directly there, you can have the output of another query in this from clause.
+[00:01:26] The where clause also you can have subqueries of course, the predicate will typically or
+[00:01:31] the condition will typically be having a left hand side and an operation like less than,
+[00:01:36] greater than, equal to and so on and a right hand side, right. So, there will be two parts
+[00:01:41] and then the with an operator in between. So, in the typically the left side will be
+[00:01:46] an attribute name like you know just like the instructor name or you know something
+[00:01:50] like that. The there will be an operation and the right side could be a sub query, ok.
+[00:01:56] And we will see examples of what kind of operations will allow such subqueries in the next few
+[00:02:02] slides. You can also have in the select clause also you can have subqueries where each of
+[00:02:10] these attributes or any of these attributes can be replaced by an entire sub query, ok.
+[00:02:16] So, the only restriction is that such sub queries should generate a single value, ok.
+[00:02:23] So, and not an entire table of records, ok. So, but it should generate a single value
+[00:02:29] in which case that becomes like you know a literal which can be used as part of the SQL
+[00:02:35] query.
+[00:02:37] So, examples of that, so let us look at you know how we can do set membership kind of
+[00:02:47] operations here. So, you can say here select distinct course id from section, ok. So, where
+[00:02:55] semester is going to fall and year is 2017 that kind of query we would probably asked
+[00:03:01] before also. The additional clause here is saying and course id in this, ok. So, this
+[00:03:10] in allows you to do a entire you know sub query here. So, you have an entire sub query
+[00:03:18] over here, right. So, as part of the in, so the in operators.
+[00:03:23] Course id is an attribute, in is an operator which allows you to have an entire sub query,
+[00:03:28] ok. So, and this is the output you know this query gives us an output the different course
+[00:03:35] id's. So, you can have you know, so it is going to check whether this course id is one
+[00:03:39] of those course id's which is output by this table.
+[00:03:43] So, let us take a look at what this query sub query means first because usually when
+[00:03:48] you are trying to understand nested expression, it is good to understand the sub parts first
+[00:03:56] and then see how they fit into the bigger one and then what the bigger one means, right.
+[00:04:00] So, in this case you have select course id from section where semester is equal to spring
+[00:04:06] and year is equal to 2018 which means that you are getting all the courses course id's
+[00:04:10] which were of course is conducted in spring 2018. And you are checking if these you know
+[00:04:19] this for the overall query you are checking if this course id is one of those courses,
+[00:04:25] ok. And what is this query doing? It is selecting all the course id's from section of this
+[00:04:31] semester fall semester of year 2017, ok. So, and then you are checking if the course
+[00:04:37] id is one of these courses. So, it is like actually doing a union you know of these it
+[00:04:47] is actually like doing an intersection, right. So, of these two of these two sub queries,
+[00:04:53] ok. So, find all the courses offered in fall 2017 and in spring 2018, ok. So, this is an
+[00:05:01] intersection operation, ok. So, and you can see it is actually getting the result of this
+[00:05:07] first and then checking for each one you know that there is output in the other part whether
+[00:05:13] they are matching or not whether they are in the same subset you know. So, that it becomes
+[00:05:19] like an intersection. Similarly, here is a query which says find courses offered in
+[00:05:25] fall 2017, but not in spring 2018. And again you know we have seen that these kinds of
+[00:05:32] queries can be answered using the union intersection and difference operations. In SQL it was union
+[00:05:41] intersection and accept operations, ok. So, but they can also be you know you can also
+[00:05:49] write those queries in this manner, ok. So, if you actually prefer to think in this way,
+[00:05:54] ok. So, again so in some sense this is like optional you can you know use other operations
+[00:06:02] to do similar things, but it is good to know. So, in this case find courses offered in fall
+[00:06:10] 2017, but not in spring 2018. So, you are again doing the same you know kind of query
+[00:06:19] where you are looking at fall 2017 courses and then you are checking that course ID should
+[00:06:25] not be in this you know in this list of courses which were offered in spring 2018, ok. So,
+[00:06:32] so that is how that works. So, name all instructors whose name is neither
+[00:06:41] Mozart nor Einstein, ok. So, you can actually just say where name not in Mozart and Einstein.
+[00:06:48] So, this is not a sub query. So, this in operator and not in do not have to be run on sub queries,
+[00:06:56] they can be run independently on you know on tuples like this, ok. So, and on a list
+[00:07:04] of you know data like this, ok. So, but you could also of course use a sub query instead
+[00:07:12] of this. So, this query is saying find the total number of distinct students who have
+[00:07:19] taken you know course sections taught by a particular instructor, ok. So, and so in this
+[00:07:29] case you are finding the distinct students, ok. So, their IDs from the takes table because
+[00:07:34] that is like the studies table and where the course ID and section ID and semester and
+[00:07:41] year are matching you know whatever has been taught by this particular instructor, ok.
+[00:07:47] So, you are looking at all the course IDs, section IDs, semester and years from the teacher's
+[00:07:52] table where this particular teacher has taught, ok. So, the teacher's ID is this. So, that
+[00:08:01] way you are you know checking you know cross checking that set of courses. Of course, you
+[00:08:07] can do this in a much simpler way by doing a join query, ok. So, by looking at you know
+[00:08:13] which by joining you know the takes table with the teacher's table, ok. So, this is
+[00:08:20] a different way of doing the same thing. So, it is basically to illustrate the SQL features,
+[00:08:25] but it could be done in a slightly different way.
+[00:08:29] So, let us look at again set comparison operations, ok. So, now there is the notion of sum, ok.
+[00:08:36] So, earlier if you remember we had done this kind of query, find names of all instructors
+[00:08:44] whose salary is greater than that of some instructor in the biology department, ok.
+[00:08:49] At least one instructor basically it means that find the instructors whose salary is
+[00:08:54] greater than you know the minimum biology you know whoever is getting the minimum salary
+[00:09:01] in the biology department, it is equivalent to that, ok. So, or the maximum, right. So,
+[00:09:11] it is sorry. So, this is the maximum. So, it means that anyone, right. So, it should
+[00:09:15] you should be having more salary than any of them, right. So, it is a minimum one.
+[00:09:23] So, and in this case, so you are getting all the distinct names of instructors whose salary
+[00:09:31] is greater than the instructors from the instructor table as T and the instructor table as S,
+[00:09:36] where T dot salary is greater than S dot salary and S dot department name is biology, ok.
+[00:09:42] So, you are doing a cross product of the two of instructor with instructor and you are
+[00:09:49] making sure that T is you know one of the instructors, S is the other instructor and
+[00:09:55] his salary is greater than this salary, S's salary and S's department is biology. So,
+[00:10:01] this is getting you all the T's whose salary is greater than any you know than you know
+[00:10:09] any S any one from the biology department their salary, right. So, basically that is
+[00:10:15] what this means and this we this we had done earlier, ok. So, in this manner, ok. So, here
+[00:10:22] we are doing it differently using possibly a more readable manner. So, we are using a
+[00:10:28] some you know keyword here. So, we are saying select name from instructor
+[00:10:36] where salary is greater than some you know from you know some entry from this particular
+[00:10:44] set, ok. So, where select salary from instructor where department is biology, ok. So, you
+[00:10:50] are going to get a set of salaries here and if this salary is greater than any one of
+[00:10:55] them then it should be output, ok. So, here you can notice again that it is not a T dot
+[00:11:01] name because there is no we are not doing a cross product, ok. So, here we had to use
+[00:11:06] T dot name because we are doing a cross product. So, this is in some sense a simpler way of
+[00:11:12] saying the same thing, ok. So, but of course, again this is optional.
+[00:11:18] I would suggest that you know eventually you should get familiar with you know joins and
+[00:11:24] cross products like this. So, where you have multiple entries in the from clause and so
+[00:11:31] it is fine to do it this way as well. You might think that this is actually more inefficient
+[00:11:36] because you know you are actually doing a cross product and you are you know building
+[00:11:41] a huge table with the whole cross product and then you are checking the condition, but
+[00:11:48] you know SQL is known to kind of optimize out such things. So, it is not necessarily
+[00:11:59] more expensive than this more simpler version, but of course, the simpler version is nice
+[00:12:05] more readable.
+[00:12:06] So, here are some more details about the sum keyword. So, if you have for example, you
+[00:12:14] are comparing 5 is less than sum and this is what you have, then it means that this
+[00:12:21] is true because it is less 5 is less than 6, right. There is some particular entry here
+[00:12:26] it is less than that. In this case it is false because 5 is not less than any of these. So,
+[00:12:32] 5 is not less than 5 and 5 is not less than 0. It is less than or equal to 5, but it is
+[00:12:37] not less than 5 and therefore, it is not less than any of these and therefore, it is false.
+[00:12:43] So, if 5 is equal to sum of these, it is true because it is equal to one of these. There
+[00:12:48] is some entry here that this operator you know is true for and if you say is it not
+[00:12:57] equal to sum of these, then it is that is also true because it is not equal to 0. So,
+[00:13:02] there is an entry in this you know list for which this operator is matching, ok.
+[00:13:09] So, if you take a look, so if you say equal to sum, you know this equal to sum is just
+[00:13:16] like you know the in operation because if you say 5 is equal to something inside this,
+[00:13:22] it means just like saying 5 in this particular entry in this particular list, ok. So, it
+[00:13:28] is equivalent, but not equal to is the same is not the same as not in that is what this
+[00:13:33] means because you can see that it is slightly more complicated than that. This means that
+[00:13:38] 5 is not equal to sum of this means that there is something here for which 5 is not
+[00:13:45] equal to, ok. So, and that has a slightly different meaning.
+[00:13:51] So, just like you have sum, you also have all, ok. So, this is very similar to the logical
+[00:13:57] you know predicate logic sum and all expressions. So, here you can say select name from instructor
+[00:14:04] where salary is greater than all of these, ok. So, in this case it should be max, right.
+[00:14:11] So, it should be greater than all of them. So, it should be greater than the maximum
+[00:14:14] of them, ok. So, the maximum salary of instructors in the biology department, ok.
+[00:14:22] So, again more details about you know how the semantics of all works. So, you want to
+[00:14:29] say that when you say 5 is less than all of these, it should be less than each one of
+[00:14:33] them, ok. And in this case it is not less than 6, it is definitely not, it is not less
+[00:14:38] than 5 either because less than equal to, but not less, ok. So, therefore, that is false.
+[00:14:43] When you say it is less than all of these, then it is true because it is less than 6
+[00:14:48] and it is less than 10. So, it should satisfy all of them. If you say it is equal to all
+[00:14:53] of these, obviously, it cannot be equal to all of these, ok. So, equal to 5, but it is
+[00:14:58] and therefore, it is false. And if you say not equal to all of these, so, 5 is not equal
+[00:15:05] to 4, 5 is not equal to 6 and therefore, that is true, ok. So, that works, ok. So, basically
+[00:15:12] you have to check with all of them, ok. So, this operation. And so, you have the idea
+[00:15:18] that not of all is the same as not in 5 not all is not equal to all of these. It means
+[00:15:24] that 5 is not any of them, right. So, it is the same as not in 5 not in this list, ok.
+[00:15:30] But again equal to all is not the same as not in as we can see the semantics are slightly
+[00:15:35] different, the meaning is different, ok. So, now, you can also use commands like exists
+[00:15:44] and not exists to check if, you know, some subquery is returning any results or not,
+[00:15:50] ok. So, is it a null set that the subquery is returning or it is not a null set, ok.
+[00:15:55] So, when you say exists, it means that it is returning something. If you say not exists,
+[00:16:00] it means that it is not returning anything, that subquery is returning null set, ok.
+[00:16:07] So, here is an example of its usage. So, yet another way of specifying the query find all
+[00:16:15] start in both the fall 2017 and in spring 2018, right. And you are basically getting
+[00:16:22] all the list of courses in fall 2017 and you are checking if they exist in this list of
+[00:16:29] courses that are returned when you check for spring 2018. So, that will give you, you know,
+[00:16:35] the same answer as what we had seen in multiple other ways.
+[00:16:42] One detail here you can see is that you are using the same section, you are searching
+[00:16:47] for section, right, so in the subquery, right. So, and you want to make sure that you are
+[00:16:53] able to use, you are able to compare this section and this section, right. So, and therefore,
+[00:17:00] you need this from section as s, you need to rename the section here and in the subquery
+[00:17:07] slightly differently, ok. So, because you want to check that it is like a join, right.
+[00:17:12] So, you want to check s dot course id is equal to t dot course id, ok. So, and in order to
+[00:17:19] make that, you know, particular comparison, you have to have these names of s and t for
+[00:17:28] the section, ok. So, basically you are trying to check if the same course is there in this
+[00:17:34] semester and in this semester, right. So, you want to make sure that you have names
+[00:17:39] for that section, you know, in this part of the query and in this part of the query and
+[00:17:45] the name should match, ok. So, that is why you have this kind of correlations and correlated
+[00:17:50] subqueries that we are doing.
+[00:17:55] So, again, like, you know, most of these queries can be done in other manners also. You can
+[00:18:04] use joins and you can use other ways, you know, in order to run these queries, but it
+[00:18:10] is useful to know that this kind of way also exists, ok, because sometimes it turns out
+[00:18:15] this is more readable and it is nicer to have or if you are reading somebody else's code
+[00:18:20] and you find something like exists in that code, then you know exactly what it means.
+[00:18:28] Similar to exists, you also have a not exists and this is, you know, you want to find all
+[00:18:33] students who have taken all courses offered in the biology department, ok. So, they have
+[00:18:43] taken all the courses, right, so offered in the biology department. So, what you are trying
+[00:18:47] to do is getting the student's ID and the student's name from the student's table.
+[00:18:52] You are again putting a name for the student table as S because you want to check that
+[00:18:57] these are the students who have taken the, you know, biology, all the biology courses
+[00:19:03] and you want to check if there does not exist, you know, so where not exists this, right.
+[00:19:12] So, you want to check what is this query going to tell us. So, this query is going to tell
+[00:19:16] us if there is, you know, any courses, you know, that the list of all courses that have
+[00:19:23] not been taken, right, so in the biology department, ok. So, this is the list of courses
+[00:19:28] that are taken in the biology department and this is accept, ok. So, if there are any,
+[00:19:34] basically what this means is there is a list of all courses and these are the courses which
+[00:19:38] he has taken, right. So, where, you know, this particular course,
+[00:19:47] these are the list of courses that this student has taken, right, and this is the list of
+[00:19:50] all courses in the biology department, right. So, and so this when you say accept, it is
+[00:19:55] a difference of those, so which basically tells all the courses in the biology department
+[00:20:00] which this guy did not take, right. So, and you do not want any such courses for, you
+[00:20:07] know, the students that you are interested in. There should not be any courses that this
+[00:20:12] biology courses that the student did not take, right. So, and that is why you are saying
+[00:20:16] where not exists, ok. So, this is the interpretation of this particular query and you can see that
+[00:20:25] this is coming out nicely here. Of course, you can write the same query in other ways
+[00:20:29] also, but this is a nicely readable, you know, manner in which you would write this query,
+[00:20:37] ok. So, and the kind of, you know, set related
+[00:20:45] ideas that we have used in this query is noted here which basically says that if you have
+[00:20:50] two sets X and Y, you know, X minus Y being a null set is the same as saying that X is
+[00:20:58] a subset of Y, subset R equal to of Y, ok. So, what does this mean? It basically means
+[00:21:07] that if X were equal to Y, then you would expect that X minus Y is a null set, right.
+[00:21:13] So, but if X is a subset of Y also, then also then you would get that X minus Y is a null
+[00:21:21] set, ok. So, which we do not typically notice when the moment we say X minus Y is a null
+[00:21:26] set, we tend to think that X should be equal to Y, but of course, X can actually be a subset
+[00:21:31] of Y as well, ok. And even then it works because, you know, when you remove something more from
+[00:21:39] X, then what X is having, then also you get a null set.
+[00:21:46] And this is the kind of idea that we have used here when we said this set, the set of
+[00:21:50] all courses in biology department minus the set of courses which the student has taken,
+[00:21:56] this set of courses could be more. So, because the student is obviously not taking courses
+[00:22:01] only in the biology department, he could be taking more courses, but you are taking the
+[00:22:05] difference of that and, you know, so that is basically the concept here, ok. So, it
+[00:22:11] is getting you as a result. Is this, has a student taken all the biology courses or not,
+[00:22:17] ok. So, that kind of idea you are getting out of this, ok.
+[00:22:24] So, there is also unique, you know, keyword called unique which allows you to test whether
+[00:22:31] a subquery has any duplicate tuples or not, ok. And here is an example of using it. Find
+[00:22:38] all courses that were offered at most once in the, in 2017, ok. So, and you are getting
+[00:22:47] all the, you know, so you do not want courses that were offered twice or thrice and so on,
+[00:22:53] ok. So, you are getting all the course IDs from the course table. You are giving it a
+[00:22:59] name as T because you are going to use this course table also in a subquery, ok.
+[00:23:04] So, and in the subquery you are looking at all the course IDs from sections where, you
+[00:23:12] know, in that particular year, ok. So, and you are making sure that this course is matching
+[00:23:18] the external part of the, you know, query, ok. So, basically by looking at this, you
+[00:23:26] are checking if the outcome of this is unique, if there are no duplicates, ok. So, if there
+[00:23:35] are any duplicates, you know, if that particular course was taught more than once in this particular
+[00:23:40] year, it will appear as duplicates as a result of this particular query. And then when you
+[00:23:45] put a constraint of unique here, then it is going to make sure that they will be removed,
+[00:23:50] ok. So, it is going to output only those which are unique in this particular result,
+[00:23:57] ok. So, so far we have seen, you know, subqueries
+[00:24:04] that occurred in the where clause and, you know, in the where clause. So, now we are
+[00:24:10] going to look at subqueries in the from part of the clause. So, you know, SQL generally
+[00:24:18] allows subqueries to be in the from clause without any restriction, because the output
+[00:24:24] of any subquery is going to be a table in general. And so, and the from query generally
+[00:24:31] accepts any table as input. So, you can actually put any subqueries without restrictions.
+[00:24:37] So, here is an example, find the average instructor salaries of departments where the average
+[00:24:44] salary is greater than 42,000, ok. So, and if you remember we had done a query like this
+[00:24:50] earlier using the, you know, having command, ok. So, and here we can see that we are doing
+[00:24:56] it slightly differently, we are getting all the department names under average salaries
+[00:25:01] from, you know, a particular subquery. And then we are just using a where clause where
+[00:25:08] average salary is greater than 42,000, ok. So, and this average salary, what is the average
+[00:25:13] salary here? It is coming out from this particular table, ok. So, and this table is being constructed
+[00:25:18] by this query, ok. So, we can see select department name, average salary. So, we are actually
+[00:25:24] doing a group by to get the averages, ok. So, of each group and we are calling each
+[00:25:30] of those average salaries of those groups as giving that column a name called average
+[00:25:36] salary, which we are later using in the where clause, ok.
+[00:25:40] And because this is in this outer query, you know, so there is no group by. So, there is
+[00:25:48] no averaging, there is no aggregate command, there is no group by. So, it is a simple query.
+[00:25:54] So, you can use an where clause because it is getting its data from a table which has
+[00:26:00] a column called average salary, ok. So, and you can see that this inner query is returning
+[00:26:06] a table with a column whose name is average salary. So, you can use that as a part of
+[00:26:11] a simple where clause instead of using a having clause as, you know, otherwise you would have
+[00:26:18] to use a having clause when you did the group by.
+[00:26:21] So, because of this, you can actually, you know, if you do not like having, you can avoid
+[00:26:27] having altogether and just use constructs like this. But of course, it is always nice
+[00:26:31] to know that there is also having clause which can make things more readable sometimes, ok.
+[00:26:40] So, here is an again another way to write the same query. So, you have select department
+[00:26:47] name average salary and from, ok. So, the select and the where clauses are exactly the
+[00:26:53] same as before. What differs is that you are not calling this as average salary here, but
+[00:27:01] instead of calling it as average salary as average salary here, you are giving the name,
+[00:27:07] you know, to the entire table, ok. So, the entire table, you are giving it a name, you
+[00:27:13] know, as department average and you are giving it, you know, department name and average
+[00:27:18] salary. So, you are giving, you know, you are renaming
+[00:27:23] this, you know, this sub-query whatever table is output of the sub-query using your own
+[00:27:29] new, you know, names, ok. So, you are giving the name as department average, you are giving
+[00:27:34] department name, it is the same name, but you could actually given a different name
+[00:27:38] as well and you are calling it as average salary, ok. So, you are giving new names to
+[00:27:44] entire tables, ok, so which is possible here. There is the with clause, you know, so which
+[00:27:54] allows you to take a sub-query and execute that sub-query and then using that sub-query
+[00:27:59] to execute the rest of the query, ok. So, and it often makes it more readable, ok.
+[00:28:06] So, when you have, you know, here the query is find all departments with the maximum budget,
+[00:28:12] ok. So, because in the department table there might be the budget, ok. So, but, you know,
+[00:28:19] if you look at all the departments, you know, some of them might have a maximum budget not
+[00:28:23] just one of them, right. So, and so you want to find all of them. So, you are saying with
+[00:28:30] max budget value, ok. So, this is the name of the table and its, you know, attributes,
+[00:28:36] right. So, and in this case there is going to be a sub-query which is going to return
+[00:28:42] this table, ok. So, and you are giving this name as the name to that sub-query, the table
+[00:28:49] that is output by that sub-query and its attributes also you are giving names to that, ok. So,
+[00:28:56] and you are selecting max budget from department. So, that is the inner query, ok. So, obviously,
+[00:29:01] this is going to return a single value because just the maximum budget, ok. So, and that
+[00:29:08] single value is going to become the value of this particular table with the table that
+[00:29:13] you are returning, ok. So, it is going to be the, this value will be the maximum budget
+[00:29:18] and it is going to be part of this table, you know, max budget, right.
+[00:29:25] And using this with this having defined this particular, you know, nomenclature, now I
+[00:29:31] am writing my actual query where I say select department dot name from department, ok. So,
+[00:29:38] and max budget. So, max budget is this table that I have created where department dot budget
+[00:29:44] is equal to max budget dot value, ok. So, and max budget dot value is going to be that
+[00:29:48] particular max budget as we have seen, ok. So, this is a way in which you could use this
+[00:29:53] with clause, ok. So, this is a slightly more complex query using the with clause. So, you
+[00:30:03] want to find all departments where the total salary is greater than the average of the
+[00:30:08] of all departments, ok. So, now, this is again going to be slightly complicated because,
+[00:30:17] you know, you do not have in the department table, you do not have the idea of total salary
+[00:30:22] in that table itself, right. So, the salaries of, you know, faculty of instructors
+[00:30:28] are in the instructor table. So, you need to work on the instructor table to get all
+[00:30:32] the salary details, not with the department table, ok. So, from the instructor table you
+[00:30:36] need to figure out what the total salary of each department is and then you need to
+[00:30:41] get the average of the total salaries of all these departments and then get all the departments
+[00:30:46] whose total salary is greater than that average, right. So, it becomes a slightly complicated
+[00:30:51] expression. And that is possible in this case with using the with, because we are creating
+[00:30:57] a table using a sub query, we are creating a department totals, ok. So, and this is going
+[00:31:06] to have a department name or the value which is going to be the total salary. So, these
+[00:31:10] values are going to be total salary for those departments, right.
+[00:31:13] So, and the sub query which you are using to construct this table is going to be select
+[00:31:19] department name comma some salary from instructor and group by department name. So, that is
+[00:31:24] a simple query. We understand this query, right. So, you are basically getting the summation
+[00:31:28] the totals of the salaries of all the instructors department wise. And that table we have put
+[00:31:35] in the department total. So, the department total, you know, and we are saying department
+[00:31:42] total average value as, so we are creating one more table, ok. So, not just this department
+[00:31:47] total table, we are creating the department total average value, ok. So, we are creating
+[00:31:52] one more table which is getting the average values of all these department totals, right.
+[00:31:59] So, you are getting, because we want to get greater than the average, greater than the
+[00:32:04] average of the total salary of all departments, right. So, that is why we are getting this
+[00:32:10] portrait table. And once we have these two tables defined, then the query becomes simple.
+[00:32:16] We can say select department name from department total comma department total average from
+[00:32:21] these two tables, ok. So, where department total dot value is greater than department
+[00:32:26] total dot department total average dot value, because this is the, you know, comparison
+[00:32:32] that we want. This is this average that we are looking at here, right. So, and you want
+[00:32:38] to get all the departments whose total salary which has been computed here, these values
+[00:32:44] were computed as the total salary is here, ok, and stored in this value here. And those
+[00:32:51] values you are comparing with the total average, right, of across all the departments. And
+[00:32:58] so, this kind of complex query is now made readable and possible with this with kind
+[00:33:05] of clause, ok, so which allowed you to create subqueries and rename them as with table names
+[00:33:12] and so on.
+[00:33:14] There is also something called as a scalar subquery. So, a scalar subquery is one, you
+[00:33:23] know, where a single value is expected, ok. So, it returns a scalar, ok. So, and you can
+[00:33:32] say select department name comma. So, you definitely have to use a scalar subquery in
+[00:33:40] which for the select clause, because the select clause can only use, you know, an attribute,
+[00:33:45] right. So, it requires a single entry, ok. So, you cannot actually have a table as an
+[00:33:50] entry here. You have to have a single entry, ok. So, you can say select department name
+[00:33:55] and you know, the second attribute here is select, it is a subquery. So, what are you
+[00:34:01] trying to do? You are trying to select the count star, get how many instructors are there,
+[00:34:08] you know, so where that in that department, ok. So, in that instructor's department,
+[00:34:13] ok. So, you are basically adding for each instructor, you know, that department you
+[00:34:19] are trying to get how many instructors are there in that department, ok. So, and you
+[00:34:24] are calling this, you know, subquery as num instructors, ok. So, and basically you are
+[00:34:32] renaming this attribute as num instructors. So, that will be the number of instructors,
+[00:34:37] you know, for that department, right. So, and you are getting that from department,
+[00:34:43] ok. So, this is of course, one way in which you can compute this, you know, number of
+[00:34:47] instructors of each department and it is reasonably, you know, understandable or readable way,
+[00:34:54] ok. So, of course, the requirement is that this is a subquery which is returning only
+[00:35:01] one entry, right. So, a single value is expected, right. So, and if it returns more, you know,
+[00:35:10] if subquery returns more than one result, then, you know, it will be an error, ok. So,
+[00:35:24] so that what we have seen so far is about subqueries, ok. So, we have seen that subqueries
+[00:35:29] can be part of, you know, the from clause without restrictions, it can be part of the
+[00:35:34] where clause where you have, you know, an operation and a condition and then a subquery,
+[00:35:40] ok. So, like in or exists and so on, ok. So, with the operator could be any of those and
+[00:35:48] you can have a subquery as part of the select clause as well. So, any of the attributes
+[00:35:52] in the select part can be a subquery with the restriction that it has to be a scalar
+[00:35:58] subquery which means it has to return only one value.
+[00:36:02] Now, we are going to move on to, you know, look at how you modify a database, ok. So,
+[00:36:09] when we, we already saw a couple of examples of how to insert records and so on. We will
+[00:36:14] be looking at some more details about, you know, how you do these operations, ok. So,
+[00:36:20] the way we had done it earlier was kind of a simple way and we had to do that in order
+[00:36:25] tables to show the, you know, example queries, but now we will be looking at all the, you
+[00:36:31] know, bells and whistles of how you can do that.
+[00:36:36] So, looking at deletion, so, you have here, you know, delete all instructors. So, we are
+[00:36:44] deleting from the instructor table, right. So, we just say delete from instructor table
+[00:36:48] without giving any further, you know, without giving any further details, it is going to
+[00:36:55] delete all of them, ok. So, for example, now let us see what all tables we have. We have
+[00:37:01] the instructor table and the student table. We have not populated any of the other tables,
+[00:37:06] I believe. So, select star from course, I do not think we have anything there and from
+[00:37:13] student, we do not have anything there either. We have only instructors. So, we have three
+[00:37:23] records here. So, if I say delete from instructor, it would delete all of them, ok. So, that
+[00:37:33] will be a powerful command. You do not typically want to do that very occasionally. You want
+[00:37:38] to do such things. Normally, you will never want to do that if you are doing something
+[00:37:42] like this. You will tend to do that when you are sitting in the middle of the night,
+[00:37:46] you know, so, and still working. So, without having enough sleep, then you will tend to
+[00:37:52] run commands like this which you should not, ok.
+[00:37:55] So, now the second command here is delete all instructors from the finance department.
+[00:38:00] So, only from a particular department, maybe a closing down that department. You want to
+[00:38:04] delete them. Well, should we close down the computer science department? So, let us say
+[00:38:11] delete from instructor where, you know, the department is equal to computer science, you
+[00:38:24] know, biology, right. So, it is saying there is no such column department. Possibly, we
+[00:38:35] had a different name there. Let us just see what was the name. So, to remember what the
+[00:38:39] name was, we have to say schema instructor and you can see the, so, it is called as department
+[00:38:47] name. So, let us use that. So, it would have deleted that. Now, if you see the same, you
+[00:39:00] know, all the ones, so, you can see that the biology instructors have been deleted, right.
+[00:39:07] Now, you want to delete all the tuples in the instructor relation for those instructors
+[00:39:12] associated with the department located in the Watson building, right. So, if you recall,
+[00:39:18] in the department name, in the department table, we had an attribute which was like
+[00:39:24] what is the name of the building in which this department is, right. So, and so, now,
+[00:39:30] we want to look at that, you know, so, select the department name from department where
+[00:39:35] building is called Watson. You do not remember that building, the department itself, but
+[00:39:39] you remember it was in that building, and you want to remove all the instructors in
+[00:39:44] that department now, right. So, you are deleting from instructor where department name in this
+[00:39:50] particular. So, all the kind of nuances that we had studied for the select from where,
+[00:39:58] ok. So, we can also apply the same kind of nuances for delete operations, ok. So, it
+[00:40:04] will be deleting only those records. If you run a select command and you get a list of
+[00:40:09] records, when you run a delete command, it will delete exactly those records. So, all
+[00:40:14] the nuances are from and where, you know, you can use for delete as well, ok.
+[00:40:21] So, now, more about delete. So, you can say delete all instructors whose salary is less
+[00:40:29] than the average salary of instructors, ok. So, and, you know, you are getting the average
+[00:40:35] salary of all instructors in a sub-query here, select average salary from instructor, and
+[00:40:41] you are deleting all from the instructor where salary is less than that, ok. So, it will
+[00:40:45] delete all the people whose salary is less than the average salary, ok.
+[00:40:50] So, now, you might think that this kind of query might pose a problem because as we delete
+[00:40:58] tuples from the instructor table, tuples means records. So, as we delete records from the
+[00:41:04] instructor table, the average salary is going to change. So, if you have deleted the first
+[00:41:08] record, then the average is going to be only the remaining records, right, so, for the
+[00:41:13] remaining records. And so, the average is changing every time you delete something.
+[00:41:16] So, obviously, you do not want to get into such confusions and SQL does not do that.
+[00:41:21] So, when you run a command like this, what it is going to do is first it is going to
+[00:41:25] compute the average salary. So, it is going to compute this sub-query first and then find
+[00:41:31] all the tuples that it is going to delete and then it is actually going to delete them.
+[00:41:35] So, it is going to do it the way you, we think it should do it. When you say select average
+[00:41:40] salary from instructor, it is first going to compute this. So, it is going to delete
+[00:41:43] all the instructors whose salary is less than the current average, okay. So, that was the
+[00:41:53] delete with all the nuances of delete. Now, about insert, okay, so, you can insert
+[00:41:59] into the course table, okay. So, did we delete the course table? Yeah, we do have a course
+[00:42:06] table. So, let us just see the schema of the course table. So, this is the course table.
+[00:42:16] It has a course ID, a title, a department name, right, and credits as well, right. So,
+[00:42:22] how many credits are there for that particular course?
+[00:42:25] So, let us insert into, you know, this part. Let us insert this. So, let us insert this
+[00:42:36] part. So, this is your problem with the alignment of the slides. So, let us see how to do this.
+[00:43:06] Okay, I hope that works. Yes, okay. So, I have the insert command here. So, I am going
+[00:43:26] to now copy and paste this insert command. So, it has created a course. Now, if I see
+[00:43:34] the course table. So, the course table has that particular course now, okay. So, this
+[00:43:44] is simple. You are creating, you have to use the same, you know, order of, you know, attributes
+[00:43:52] as what you have defined in the table in the schema. So, it is the course ID, title, department
+[00:43:58] name, and credits. That has to be the order of your values. Equivalently, you can also,
+[00:44:04] you know, mention, you know, the order that you want. So, you can say insert into course
+[00:44:10] like this. So, here you are giving the actual, you know, the order of the, you know, attributes
+[00:44:20] as what you want. Yeah, it is saying unique constraints. So,
+[00:44:27] constraint failed, okay. So, because there is a course ID, the course ID has to be different,
+[00:44:33] okay. So, because there is already a course ID, we have already inserted that. So, I need
+[00:44:37] to insert a different one. So, instead of database systems, let us insert, let us say,
+[00:44:42] a previous course, let us say, and data structures. So, it inserts that. So, if we see all the
+[00:44:49] courses, we see two courses, database systems and data structures, okay. So, we can do things
+[00:45:01] like that. We can also insert, you know, a new tuple into student with total credits
+[00:45:09] set to null, okay. So, you are actually inserting null values. And like I told you, we should
+[00:45:13] not really have null values. If you are putting null values, you should be a little uncomfortable.
+[00:45:18] I mean, it is not like it is the end, but it is possible. So, if we do now see who are
+[00:45:25] all the students. So, we have this student whose name is Green in the finance department
+[00:45:34] and what is the last thing. So, in order to know that, let us look at the schema. So,
+[00:45:41] that is the total credits. We do not know his total credits and that is bad, right.
+[00:45:46] So, we should know the total credits of all students. If we do not know, it is something
+[00:45:51] wrong, right. So, we should know and therefore, we should try not to have null values, okay.
+[00:45:59] So, now coming back. So, there is more about insertion, okay. So, now, instead of inserting
+[00:46:08] one record, you know, so you are actually inserting into instructor, you know. So, you
+[00:46:16] are saying, so basically the command is make each student in the music department who has
+[00:46:23] earned more than 144 credits as an instructor in the music department, okay. So, you are
+[00:46:29] getting the students from the music department and you are inserting them as instructors
+[00:46:34] in the music department, okay. So, you are going to insert into instructor and you are
+[00:46:38] going to get those records as the output of a sub query, okay. So, and that is possible.
+[00:46:44] So, you are selecting the ID name, department name and you know the total credits, no not
+[00:46:51] the total credits. This is the salary because he is now becoming an instructor, okay and
+[00:46:55] his initial salary is going to be 18,000 dollars and you are selecting these instructors from
+[00:47:01] the student table where the department name is music and the total credits is more than
+[00:47:06] 144. So, you are getting all those students and inserting them into the instructor table,
+[00:47:13] okay. So, and here you can see why you might want to actually, you know, put literal. Normally,
+[00:47:21] we just think that we should put attribute names in the select clause, but here is an
+[00:47:25] example where you see that we can put a literal here which is just 18,000 and it has a meaning
+[00:47:32] here because you are, you know, putting that as a new item in a table with that as a starting
+[00:47:40] value, okay. So, you can also say, you know, the select from where statement is actually
+[00:47:50] fully evaluated before any of its results are inserted into the relation, okay. So,
+[00:47:56] which means that if you say select star from table 1 and inserting to table 1, it will
+[00:48:01] actually work fine because you will be taking all the records from table 1 and again inserting
+[00:48:06] them again back into the table. Of course, it will not work if there is a unique key
+[00:48:12] column, okay, so like id because it will give you a, you know, key constraint, but otherwise
+[00:48:19] it should work, okay. So, that is insert. There is also a command called update, okay.
+[00:48:28] So, and this is to go through all the records, you know, one by one, match some particular
+[00:48:34] conditions like the where clause and then update those records, you know, you want
+[00:48:37] to change some values of some attributes, okay. So, here is our examples. You want to
+[00:48:43] give a 5 percent salary raise to all instructors and the way to do that is to say update the
+[00:48:48] instructor table and you want to set the salary attribute. So, there is an attribute called
+[00:48:52] salary, right, and you want to change it to salary into 1.05. So, that would increment
+[00:49:00] all of them by 5 percent, right. So, you want to give a salary increment of 5 percent to
+[00:49:06] those instructors who are earning less than 70,000 dollars, right. So, again you can do
+[00:49:12] the update command, but you can give a where clause where salary is less than 70,000 and
+[00:49:18] you know that once you can give a where clause, it can be, you know, all the complications
+[00:49:22] and nuances that we saw for the select from where clauses, okay, including all subqueries
+[00:49:28] and so on, can be also done here, okay. So, for example, we are giving a 5 percent salary
+[00:49:37] raise to instructors whose salary is less than the average, okay. So, we have a subquery
+[00:49:41] to get the average salary of all instructors and then we are incrementing the salaries
+[00:49:47] by 5 percent only for those instructors whose salary is less than this average, okay. So,
+[00:49:52] that kind of complicated queries we can write when we are doing updates as well.
+[00:49:59] More about updates, so increase the salaries of instructors whose salary is more than 1
+[00:50:05] lakh by 3 percent and all others by 5 percent, right. So, here we can write two update commands,
+[00:50:13] okay, so two update statements. First, we are updating the, you know, salary of all
+[00:50:19] those who are having more than 1 lakh, we are incrementing them by 3 percent and then
+[00:50:25] all those whose salary is less than 1 lakh, we are incrementing them by 5 percent, okay.
+[00:50:31] So, and notice here that the order is important. Suppose we ran the second query, okay. So,
+[00:50:37] if the second query, if we ran it first, okay, so then it would have given you a different,
+[00:50:43] you know, result, okay. So, because these salaries, the salaries of all people less
+[00:50:49] than 1 lakh is going to be incremented. So, there might be somebody with salary of let
+[00:50:53] us say 99,900 and so, you know, salary and when you incremented that guy's salary by
+[00:51:02] 5 percent, he would have crossed 1 lakh. So, then if you run this query with salary
+[00:51:07] is greater than 1 lakh, you will be incrementing that guy's salary again by 3 percent. So,
+[00:51:11] totally he will, his salary will kind of get incremented by about 8 percent, right.
+[00:51:17] So, and so, that might not be something that you had in mind. So, you should be careful
+[00:51:22] about the order of the, of these two instructions. So, in order to do it better, you can use
+[00:51:29] a statement called as, keyword called as case, okay, which will check, you know, within the
+[00:51:36] same update, you can check, you know, more carefully. So, you can say update instructor,
+[00:51:42] set the salary is equal to and you can give a case command here, okay. So, and in this
+[00:51:48] case command, you are saying when salary is less than 1 lakh, then salary into 1.05, which
+[00:51:55] is 5 percent increment, otherwise salary into 1.03, which is 3 percent increment and this
+[00:52:01] will definitely make sure irrespective of the order in which you write them, you know,
+[00:52:06] there is no, there is no messing up of order of, you know, of the queries. So, it will
+[00:52:11] give you the right result, okay. So, and updates with scalar sub-queries, okay. So, so, here
+[00:52:20] you want to recompute and update the total credits value for all the students, okay.
+[00:52:27] Suppose you remember that we said the total credits is 0, it was null, right, for a particular
+[00:52:34] student, okay. So, if it is null, you know, then you want to kind of recompute all those
+[00:52:40] values, okay. So, by actually looking at the courses that the student has taken and, you
+[00:52:45] know, look at how many credits those courses are, add up all of those credits and then
+[00:52:50] calculate the total and then insert it into this, into the student records, okay. So,
+[00:52:57] that is what you want to do. So, you want to update the student, you know, table. So,
+[00:53:03] and we are giving it a name S, okay. So, we want to set the total credit to be equal to,
+[00:53:09] this is the sub-query and since, you know, you want it to be a particular value, right,
+[00:53:15] so you want it to be a particular total credit value, okay. So, it has to return a single
+[00:53:21] entry, so a single value. So, it is a scalar sub-query. So, you are saying select some
+[00:53:27] credits. So, the moment you take an average or, you know, a sum or any aggregate, you
+[00:53:33] are going to get a single value, okay. So, and therefore, it will be a scalar sub-query.
+[00:53:37] So, you are selecting, you know, the sum of all the credits from the takes and the course
+[00:53:43] table where the takes dot course ID is equal to the course dot course ID, which means that
+[00:53:48] this student has taken that particular course and S dot ID is equal to takes dot ID, which
+[00:53:55] means that this is for that particular student, the same student for which we are computing
+[00:53:59] the sub-query and takes dot grade is not equal to F. So, he has not failed that course. You
+[00:54:06] do not want to, you know, you are being nice to students, you do not want to include their
+[00:54:13] failed courses as part of the total credits, okay. So, and, you know, and the grade should
+[00:54:22] not be null, okay. So, it should not be something that, you know, for example, the student is
+[00:54:26] right now taking that course. So, his grade is not yet released and so the grade might
+[00:54:30] be null for that particular student, okay. So, you want to use all these where conditions
+[00:54:36] and then, you know, set the total credit to be the result of that, okay.
+[00:54:43] So, now, instead of some credits, you could also use a case statement, okay. So, you could
+[00:54:49] say select, you know, case when some credits is not null, then some credits, otherwise
+[00:54:56] it is zero, okay. So, that makes sure that, you know, you are handling the null, you know,
+[00:55:05] issue as well, okay. So, if the sum credits is, it turns out to be null, then you are
+[00:55:10] actually using a zero there, okay. So, and that would be a nicer way of handling it than
+[00:55:16] here which, you know, if it is null, then it is just, you know, going to mess up, okay.
+[00:55:24] So, that ends this chapter. So, what we have seen is many, many different, you know, nuances
+[00:55:32] of multiple kinds of commands in SQL, okay. So, we have looked at the basic commands where
+[00:55:40] we had select from where, okay. So, we looked at different kinds of joins and also self-joins.
+[00:55:46] We have looked at sub-queries, okay. So, where you have nested sub-queries as part of bigger
+[00:55:53] queries and we have looked at, you know, the data manipulation commands where you have
+[00:55:59] insert, update and delete kind of commands, okay. So, with this we have covered the introduction
+[00:56:06] to SQL, okay. So, and this amount of SQL should help you more or less in order to develop
+[00:56:13] any kinds of applications because any further, you know, nuances about more advanced SQL
+[00:56:21] can typically be done also as part of, you know, another language. So, usually if you
+[00:56:28] are doing far more advanced things, you will be embedding SQL as part of a bigger language,
+[00:56:33] let us say C or Python or, you know, PHP or any other language. And so, within that language
+[00:56:40] you will be able to do certain all those different kinds of operations instead of complicating
+[00:56:45] your SQL more, okay. So, but there are more, you know, advanced version commands possible
+[00:56:54] in SQL itself, but this is good enough for most applications. So, with this we end this
+[00:56:59] chapter. Thank you.
