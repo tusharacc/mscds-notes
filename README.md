@@ -12,6 +12,7 @@ and rendered as self-contained HTML documents.
 |---|---|---|
 | Discrete Mathematics | [View notes](https://tusharacc.github.io/mscds-notes/discrete_mathematics/) | Weeks 1–7: Probability, random variables, linear algebra |
 | Python | [View notes](https://tusharacc.github.io/mscds-notes/python/) | Weeks 1–10: Foundations, expressions, loops, sorting, lists, functions, dictionaries, recursion, applied project |
+| Database Management Systems (DBMS) | [View notes](https://tusharacc.github.io/mscds-notes/DBMS/) | Weeks 1–3: Relational model, SQL basics, DDL/DML, queries, joins, aggregates, nested queries, views, transactions, constraints |
 
 ## Practice Problems
 
@@ -33,6 +34,7 @@ and rendered as self-contained HTML documents.
 ```
 discrete_mathematics/   ← notes + transcripts
 python/                 ← notes + transcripts
+DBMS/                   ← notes + transcripts + slides
 practice/               ← solved problem booklets
 quiz/                   ← interactive quiz module
 ```
